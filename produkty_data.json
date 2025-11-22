@@ -1,0 +1,104 @@
+{
+  "pyramidy": [
+    {
+      "nazev": "Pyramida OHORAI ~ Hojnost",
+      "cena": "8 800 Kč",
+      "popis": "Vesmír ukrytý v pyramidě ❤️ ručně vyrobená pyramida v meditativním stavu, v duchu přijetí sebe sama, všech...",
+      "dostupnost": "Skladem",
+      "obrazek_url": "pyramida-hojnost.jpg"
+    },
+    {
+      "nazev": "Pyramida OHORAI ~ Hojnost života",
+      "cena": "13 300 Kč",
+      "popis": "Vesmír ukrytý v pyramidě ❤️ ručně vyrobená pyramida v meditativním stavu, v duchu přijetí sebe sama, všech...",
+      "dostupnost": "Vyprodáno",
+      "obrazek_url": "pyramida-hojnost-zivota.jpg"
+    },
+    {
+      "nazev": "Pyramida OHORAI ~ Jednota",
+      "cena": "8 800 Kč",
+      "popis": "Vesmír ukrytý v pyramidě ❤️ ručně vyrobená pyramida v meditativním stavu, v duchu sjednocení všech aspektů duše...",
+      "dostupnost": "Skladem",
+      "obrazek_url": "pyramida-jednota.jpg"
+    },
+    {
+      "nazev": "Pyramida OHORAI ~ Královna andělů",
+      "cena": "13 300 Kč",
+      "popis": "Vesmír ukrytý v pyramidě ❤️ ručně vyrobená pyramida v meditativním stavu, v duchu přijetí a sjednocení všech...",
+      "dostupnost": "Vyprodáno",
+      "obrazek_url": "pyramida-kralovna-andelu.jpg"
+    },
+    {
+      "nazev": "Pyramida OHORAI ~ Kristovo světlo",
+      "cena": "8 800 Kč",
+      "popis": "Vesmír ukrytý v pyramidě ❤️ ručně vyrobená pyramida v meditativním stavu, v duchu projevení nejčistší formy...",
+      "dostupnost": "Skladem",
+      "obrazek_url": "pyramida-kristovo-svetlo.jpg"
+    },
+    {
+      "nazev": "Pyramida OHORAI ~ Kundaliní",
+      "cena": "9 000 Kč",
+      "popis": "Vesmír ukrytý v pyramidě ❤️ ručně vyrobená pyramida v meditativním stavu, v duchu aktivace spodních...",
+      "dostupnost": "Skladem",
+      "obrazek_url": "pyramida-kundalini.jpg"
+    }
+  ],
+  "esence": [
+    {
+      "nazev": "Esence ~ OhoRÁJ lotos",
+      "cena": "2 200 Kč",
+      "popis": "Silná esence snoubící Bulharskou růži, lípu, jasmín. Esence, která tvoří dokonalou kombinaci síly a jemnosti...",
+      "dostupnost": "Skladem",
+      "obrazek_url": "esence-ohoraj-lotos.jpg"
+    },
+    {
+      "nazev": "Ikonická esence ~ OHORAI modrý lotos 10ml",
+      "cena": "1 100 Kč",
+      "popis": "Ikonická, vámi oblíbená esence Ohorai snoubící vůni omamného modrého leknínu, růže, gerania a lípy...",
+      "dostupnost": "Skladem",
+      "obrazek_url": "esence-modry-lotos-10ml.jpg"
+    },
+    {
+      "nazev": "Ikonická esence ~ OHORAI modrý lotos 5ml",
+      "cena": "490 Kč",
+      "popis": "Ikonická, vámi oblíbená esence Ohorai snoubící vůni omamného modrého leknínu, růže, gerania a lípy...",
+      "dostupnost": "Skladem",
+      "obrazek_url": "esence-modry-lotos-5ml.jpg"
+    },
+    {
+      "nazev": "Esence ~ MUŽ 10ml",
+      "cena": "890 Kč",
+      "popis": "Velmi silná esence snoubící vůně dřevin - santalu, ylang ylang, borovice až po velmi silnou esenci vetiver...",
+      "dostupnost": "Skladem",
+      "obrazek_url": "esence-muz-10ml.jpg"
+    },
+    {
+      "nazev": "Esence ~ MUŽ 5ml",
+      "cena": "440 Kč",
+      "popis": "Velmi silná esence snoubící vůně dřevin - santalu, ylang ylang, borovice až po velmi silnou esenci vetiver...",
+      "dostupnost": "Skladem",
+      "obrazek_url": "esence-muz-5ml.jpg"
+    },
+    {
+      "nazev": "Esence ~ Žena - mateřská 5ml",
+      "cena": "440 Kč",
+      "popis": "Jemná esence snoubící růži a jasmín podporující naledění na nejjemnější vibrace nežnosti, lehkosti, přijetí...",
+      "dostupnost": "Skladem",
+      "obrazek_url": "esence-zena-materska.jpg"
+    },
+    {
+      "nazev": "Esence ~ Zlatá brána 10ml",
+      "cena": "990 Kč",
+      "popis": "Středně silná esence - limitovaná edice pouze 3 ks. Esence snoubící Bulharskou růži, santal, jasmín a slamněnku...",
+      "dostupnost": "Skladem",
+      "obrazek_url": "esence-zlata-brana.jpg"
+    },
+    {
+      "nazev": "Esence ~ Tantra 5ml",
+      "cena": "440 Kč",
+      "popis": "Silná esence kombinující oblíbený ylang-ylang v kombinaci s pomerančem a levandulí podpoří vnitřní ohen...",
+      "dostupnost": "Skladem",
+      "obrazek_url": "esence-tantra.jpg"
+    }
+  ]
+}
