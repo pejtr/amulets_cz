@@ -7,21 +7,25 @@ const pyramids = [
     name: "Pyramida OHORAI ~ Hojnost",
     price: "8 800 Kč",
     available: true,
+    image: "/products/pyramida-hojnost.jpg",
   },
   {
     name: "Pyramida OHORAI ~ Jednota",
     price: "8 800 Kč",
     available: true,
+    image: "/products/pyramida-hojnost.jpg",
   },
   {
     name: "Pyramida OHORAI ~ Kristovo světlo",
     price: "8 800 Kč",
     available: true,
+    image: "/products/pyramida-rovnovaha.jpg",
   },
   {
     name: "Pyramida OHORAI ~ Kundaliní",
     price: "9 000 Kč",
     available: true,
+    image: "/products/pyramida-rovnovaha.jpg",
   },
 ];
 
@@ -30,21 +34,25 @@ const essences = [
     name: "Ikonická esence ~ OHORAI modrý lotos 10ml",
     price: "1 100 Kč",
     available: true,
+    image: "/products/esence-modry-lotos.jpg",
   },
   {
     name: "Esence ~ OhoRÁJ lotos",
     price: "2 200 Kč",
     available: true,
+    image: "/products/esence-ohoraj.jpg",
   },
   {
     name: "Esence ~ MUŽ 10ml",
     price: "890 Kč",
     available: true,
+    image: "/products/esence-ohoraj.jpg",
   },
   {
     name: "Esence ~ Zlatá brána 10ml",
     price: "990 Kč",
     available: true,
+    image: "/products/esence-modry-lotos.jpg",
   },
 ];
 

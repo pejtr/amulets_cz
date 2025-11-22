@@ -60,4 +60,12 @@
 - [x] Testování na různých zařízeních
 - [ ] Optimalizace obrázků
 - [ ] SEO meta tagy
-- [ ] Vytvoření checkpointu (připravené)
+- [x] Vytvoření checkpointu
+
+## Vylepšení hero sekce a produktů
+- [x] Upravit hero sekci - pozadí bílá cihlová zeď jako v originálu
+- [x] Přidat fotografii Natálie do hero sekce (placeholder - čeká na skutečnou fotku)
+- [x] Přidat zlatý symbol vpravo v hero sekci (květ života)
+- [x] Stáhnout fotografie pyramid z www.ohorai.cz
+- [x] Stáhnout fotografie esencí z www.ohorai.cz
+- [x] Nahradit emoji ikony skutečnými fotografiemi produktů
