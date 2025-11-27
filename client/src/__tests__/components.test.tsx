@@ -37,7 +37,7 @@ describe('Amulets.cz Components', () => {
   describe('HeroSection', () => {
     it('should render main heading', () => {
       render(<HeroSection />);
-      const heading = screen.getByText(/Otevřete své srdce/i);
+      const heading = screen.getByText(/Královská Esence OhoRÁJ modrý lotos/i);
       expect(heading).toBeDefined();
     });
 
@@ -47,10 +47,11 @@ describe('Amulets.cz Components', () => {
       expect(button).toBeDefined();
     });
 
-    it('should render hero image', () => {
+    it('should render hero video', () => {
       render(<HeroSection />);
-      const img = screen.getByAltText(/Natálie Ohorai/i);
-      expect(img).toBeDefined();
+      const video = document.querySelector('video');
+      expect(video).toBeDefined();
+      expect(video?.querySelector('source')?.src).toContain('hero-video.mp4');
     });
   });
 
