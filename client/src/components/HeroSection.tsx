@@ -3,17 +3,13 @@ import { Button } from "@/components/ui/button";
 export default function HeroSection() {
   return (
     <section className="relative w-full overflow-hidden bg-white">
-      {/* Hero background video */}
+      {/* Hero background image */}
       <div className="relative w-full min-h-[500px] md:min-h-[600px]">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
+        <img
+          src="/hero-natalie-bg.jpg"
+          alt="Natálie Ohorai - Zakladatelka Amulets.cz"
           className="w-full h-full object-cover"
-        >
-          <source src="/hero-video.mp4" type="video/mp4" />
-        </video>
+        />
 
         {/* Content overlay - positioned on the LEFT to avoid covering the person */}
         <div className="absolute inset-0 flex items-center">
@@ -23,7 +19,7 @@ export default function HeroSection() {
               <div className="relative space-y-6 px-4 py-8 lg:py-16">
                 <div className="space-y-4">
                   <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight">
-                    Královská Esence OhoRÁJ modrý lotos
+                    Otevřete své srdce zázrakům
                   </h1>
                   <p className="text-lg md:text-xl text-[#2C3E50]/80">
                     ...začněte s tím právě teď

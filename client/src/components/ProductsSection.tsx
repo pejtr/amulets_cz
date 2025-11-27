@@ -42,10 +42,10 @@ const essences = [
     url: "https://www.ohorai.cz/esence-ohorai-modry-lotos/",
   },
   {
-    name: "Esence ~ OhoRÁJ lotos",
+    name: "Královská Esence OhoRÁJ modrý lotos",
     price: "2 200 Kč",
     available: true,
-    image: "/products/esence-ohoraj.jpg",
+    video: "/esence-ohoraj-video.mp4",
     url: "https://www.ohorai.cz/esence-ohoraj/",
   },
   {

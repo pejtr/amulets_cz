@@ -5,6 +5,7 @@ interface ProductCardProps {
   name: string;
   price: string;
   image?: string;
+  video?: string;
   available?: boolean;
   url?: string;
 }
@@ -13,6 +14,7 @@ export default function ProductCard({
   name,
   price,
   image,
+  video,
   available = true,
   url,
 }: ProductCardProps) {
@@ -29,9 +31,19 @@ export default function ProductCard({
       }`}
       onClick={handleClick}
     >
-      {/* Image */}
+      {/* Image or Video */}
       <div className="aspect-square bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center relative overflow-hidden">
-        {image ? (
+        {video ? (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src={video} type="video/mp4" />
+          </video>
+        ) : image ? (
           <img
             src={image}
             alt={name}
