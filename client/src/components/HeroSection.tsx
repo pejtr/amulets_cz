@@ -40,7 +40,7 @@ export default function HeroSection() {
                     onClick={() => window.open('https://www.ohorai.cz', '_blank')}
                   >
                     <span className="text-[#D4AF37]">Přejít na</span>
-                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-6 w-auto" />
+                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-8 w-auto" />
                   </Button>
                 </div>
 
