@@ -105,3 +105,8 @@
 ## Další optimalizace headeru
 - [x] Odstranit úplně všechny prázdné řádky v headeru (py-0)
 - [x] Zkrátit text v hledání na "Co hledáte?"
+
+## Favicon a SEO optimalizace
+- [x] Vytvořit favicon ve více velikostech (16x16, 32x32, 180x180, 192x192, 512x512)
+- [x] Přidat Apple touch icon
+- [x] Aktualizovat meta tagy pro Google vyhledávání
