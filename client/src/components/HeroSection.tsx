@@ -18,8 +18,8 @@ export default function HeroSection() {
               {/* Text content - LEFT aligned */}
               <div className="relative space-y-6 px-4 py-8 lg:py-16">
                 <div className="space-y-4">
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative">
-                    <span className="relative inline-block animate-shimmer bg-gradient-to-r from-white via-[#D4AF37] to-white bg-[length:200%_100%] bg-clip-text text-transparent" style={{ WebkitTextStroke: '1px #2C3E50' }}>
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-[#2C3E50] leading-tight animate-fade-in-up relative" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                    <span className="relative inline-block animate-shimmer bg-gradient-to-r from-white via-[#D4AF37] to-white bg-[length:200%_100%] bg-clip-text text-transparent" style={{ WebkitTextStroke: '0.5px #2C3E50' }}>
                       Otevřete své srdce zázrakům
                     </span>
                   </h1>
