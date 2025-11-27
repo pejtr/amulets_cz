@@ -44,14 +44,28 @@ export default function HeroSection() {
                 </div>
 
                 {/* Signature - below button */}
-                <div className="text-sm mt-4">
-                  <p className="font-bold text-xl" style={{ 
-                    color: '#D4AF37',
-                    textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6)'
-                  }}>Natálie Ohorai</p>
-                  <p className="italic text-[#2C3E50] font-semibold" style={{
-                    textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)'
-                  }}>Zakladatelka Amulets.cz a Ohorai.cz</p>
+                <div className="relative">
+                  {/* White fog background for better readability */}
+                  <div className="absolute -inset-4 bg-white/80 backdrop-blur-sm rounded-lg -z-10"></div>
+                  
+                  <div className="text-sm mt-4 relative z-10">
+                    <p className="font-bold text-xl" style={{ 
+                      color: '#D4AF37',
+                      textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6)'
+                    }}>Natálie Ohorai</p>
+                    <p className="italic text-[#2C3E50] font-semibold" style={{
+                      textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)'
+                    }}>Zakladatelka Amulets.cz a Ohorai.cz</p>
+                    
+                    {/* OHORAI logo */}
+                    <div className="mt-3 flex items-center gap-2">
+                      <img 
+                        src="/ohorai-logo.webp" 
+                        alt="OHORAI" 
+                        className="h-8 w-auto opacity-90"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

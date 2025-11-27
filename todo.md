@@ -121,3 +121,7 @@
 - [x] Zlepšit čitelnost jména ještě více (silnější stín)
 - [x] Změnit text na "Zakladatelka Amulets.cz a Ohorai.cz"
 - [x] Přidat druhé tlačítko "Přejít na Ohorai.cz" s odkazem na www.ohorai.cz
+
+## Vylepšení hero sekce - logo a mlha
+- [x] Přidat logo OHORAI do hero sekce
+- [x] Zesílit bílou mlhu pod jménem pro lepší kontrast
