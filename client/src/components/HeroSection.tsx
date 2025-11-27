@@ -48,12 +48,12 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Signature - positioned closer to the person (bottom right area) */}
-        <div className="absolute bottom-8 right-8 md:bottom-12 md:right-16 lg:bottom-16 lg:right-24">
+        {/* Signature - positioned to the left of the person, at middle height */}
+        <div className="absolute top-1/2 -translate-y-1/2 right-[45%] md:right-[40%] lg:right-[35%]">
           {/* White fog background for better readability */}
           <div className="absolute -inset-4 bg-white/80 backdrop-blur-sm rounded-lg -z-10"></div>
           
-          <div className="text-sm relative z-10 text-right">
+          <div className="text-sm relative z-10">
             <p className="font-bold text-xl" style={{ 
               color: '#D4AF37',
               textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6)'
