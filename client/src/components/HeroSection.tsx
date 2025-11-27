@@ -47,11 +47,11 @@ export default function HeroSection() {
                 </div>
 
                 {/* Signature - below buttons with reduced padding */}
-                <div className="relative mt-4 animate-fade-in-up animation-delay-600">
-                  {/* White fog background with reduced padding */}
-                  <div className="absolute -inset-2 bg-white/80 backdrop-blur-sm rounded-lg -z-10"></div>
+                <div className="relative mt-4 animate-fade-in-up animation-delay-600 inline-block">
+                  {/* White fog background with minimal padding */}
+                  <div className="absolute -inset-1 bg-white/80 backdrop-blur-sm rounded -z-10"></div>
                   
-                  <div className="text-sm relative z-10">
+                  <div className="text-sm relative z-10 px-2 py-1">
                     <p className="font-bold text-xl" style={{ 
                       color: '#D4AF37',
                       textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6)'
