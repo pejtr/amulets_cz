@@ -10,7 +10,7 @@ describe('Amulets.cz Components', () => {
   describe('Header', () => {
     it('should render logo', () => {
       render(<Header />);
-      const logo = screen.getByAltText('Amulets.cz');
+      const logo = screen.getByAltText('Amulets');
       expect(logo).toBeDefined();
     });
 
@@ -22,7 +22,7 @@ describe('Amulets.cz Components', () => {
 
     it('should render contact phone number', () => {
       render(<Header />);
-      const phone = screen.getByText('776 041 740');
+      const phone = screen.getByText(/776 041 740/i);
       expect(phone).toBeDefined();
     });
 
@@ -49,7 +49,7 @@ describe('Amulets.cz Components', () => {
 
     it('should render hero image', () => {
       render(<HeroSection />);
-      const img = screen.getByAltText(/Natálie Vachová/i);
+      const img = screen.getByAltText(/Natálie Ohorai/i);
       expect(img).toBeDefined();
     });
   });
@@ -103,7 +103,7 @@ describe('Amulets.cz Components', () => {
   describe('Footer', () => {
     it('should render contact information', () => {
       render(<Footer />);
-      expect(screen.getByText('776 041 740')).toBeDefined();
+      expect(screen.getByText(/776 041 740/i)).toBeDefined();
       expect(screen.getByText('info@amulets.cz')).toBeDefined();
     });
 

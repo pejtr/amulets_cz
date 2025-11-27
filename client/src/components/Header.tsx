@@ -1,100 +1,163 @@
 import { APP_LOGO } from "@/const";
-import { Search, ShoppingCart, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import {
+  Search,
+  User,
+  ShoppingCart,
+  Menu,
+  X,
+  ChevronDown,
+} from "lucide-react";
+import { useState } from "react";
+
+const navItems = [
+  { label: "Orgonitové pyramidy", hasDropdown: true },
+  { label: "Aromaterapie", hasDropdown: true },
+  { label: "Startovací balíčky", hasDropdown: false },
+  { label: "Domov", hasDropdown: false },
+  { label: "Drahé kameny", hasDropdown: false },
+  { label: "Šperky", hasDropdown: false },
+  { label: "🎁 Průvodce amulety", hasDropdown: false },
+  { label: "Magazín", hasDropdown: false },
+  { label: "Kontakt", hasDropdown: false },
+];
 
 export default function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
-    <header className="w-full bg-white border-b border-border">
-      {/* Top bar */}
-      <div className="container py-3">
-        <div className="flex items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-white border-b border-border">
+      {/* Top bar - only on desktop */}
+      <div className="hidden md:block bg-[#E8C4D8] py-2">
+        <div className="container flex justify-end items-center text-sm">
+          <span className="text-[#2C3E50]">Potřebujete poradit?</span>
+        </div>
+      </div>
+
+      {/* Main header */}
+      <div className="container py-3 md:py-4">
+        <div className="flex items-center justify-between gap-4">
           {/* Logo */}
-          <div className="flex items-center">
-            <img src={APP_LOGO} alt="Amulets.cz" className="h-16 w-auto" />
+          <div className="flex-shrink-0">
+            <img src={APP_LOGO} alt="Amulets" className="h-10 md:h-12 w-auto" />
           </div>
 
-          {/* Search bar */}
-          <div className="flex-1 max-w-md mx-8">
-            <div className="relative">
-              <Input
+          {/* Search bar - desktop */}
+          <div className="hidden md:flex flex-1 max-w-xl">
+            <div className="relative w-full">
+              <input
                 type="text"
                 placeholder="Co hledáte? Najít příběhy na xxx"
-                className="pr-10"
+                className="w-full px-4 py-2 pr-10 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
               />
-              <Button
-                size="icon"
-                variant="ghost"
-                className="absolute right-0 top-0 h-full"
-              >
-                <Search className="h-4 w-4" />
-              </Button>
+              <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             </div>
           </div>
 
-          {/* Contact info */}
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
-                <span className="text-xs">👤</span>
-              </div>
-              <div className="text-sm">
-                <div className="font-semibold">Potřebujete poradit?</div>
-                <div className="flex items-center gap-1 text-primary">
-                  <Phone className="h-3 w-3" />
-                  <span className="font-semibold">776 041 740</span>
-                </div>
-                <div className="text-xs text-muted-foreground">
-                  pon - pá: 9:00 - 19:00
-                </div>
-              </div>
+          {/* Contact info - desktop only */}
+          <div className="hidden lg:flex items-center gap-2 text-sm">
+            <User className="h-5 w-5 text-primary" />
+            <div>
+              <p className="font-semibold text-primary">Potřebujete poradit?</p>
+              <p className="text-muted-foreground">
+                📞 776 041 740{" "}
+                <span className="text-xs">(po - pá: 9:00 - 19:00)</span>
+              </p>
             </div>
+          </div>
+
+          {/* Icons - always visible */}
+          <div className="flex items-center gap-2 md:gap-3">
+            {/* Search icon - mobile only */}
+            <Button variant="ghost" size="icon" className="md:hidden">
+              <Search className="h-5 w-5" />
+            </Button>
+
+            {/* User icon */}
+            <Button variant="ghost" size="icon" className="hidden md:inline-flex">
+              <User className="h-5 w-5" />
+            </Button>
 
             {/* Cart */}
-            <Button variant="outline" className="bg-primary/10 border-primary/20">
-              <ShoppingCart className="h-4 w-4 mr-2 text-primary" />
-              <span className="font-semibold">0 Kč</span>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative bg-[#E8C4D8] hover:bg-[#E8C4D8]/80"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                0
+              </span>
+            </Button>
+
+            {/* Hamburger menu - mobile only */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Navigation */}
-      <nav className="bg-accent/50 border-t border-border">
+      {/* Navigation - desktop only */}
+      <nav className="hidden md:block border-t border-border bg-gray-50">
         <div className="container">
-          <div className="flex items-center justify-between py-3">
-            <div className="flex items-center gap-6">
-              <NavItem label="Orgonitové pyramidy" hasDropdown />
-              <NavItem label="Aromaterapie" hasDropdown />
-              <NavItem label="Startovací balíčky" />
-              <NavItem label="Domov" hasDropdown />
-              <NavItem label="Drahé kameny" hasDropdown />
-              <NavItem label="Šperky" hasDropdown />
-              <NavItem label="Průvodce amulety" icon="🦋" />
-              <NavItem label="Magazín" />
-              <NavItem label="Kontakt" />
-            </div>
-          </div>
+          <ul className="flex items-center justify-start gap-1 py-2 text-sm">
+            {navItems.map((item, index) => (
+              <li key={index}>
+                <Button
+                  variant="ghost"
+                  className="text-foreground hover:text-primary hover:bg-transparent gap-1"
+                >
+                  {item.label}
+                  {item.hasDropdown && <ChevronDown className="h-4 w-4" />}
+                </Button>
+              </li>
+            ))}
+          </ul>
         </div>
       </nav>
-    </header>
-  );
-}
 
-function NavItem({
-  label,
-  hasDropdown,
-  icon,
-}: {
-  label: string;
-  hasDropdown?: boolean;
-  icon?: string;
-}) {
-  return (
-    <button className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition-colors">
-      {icon && <span className="mr-1">{icon}</span>}
-      {label}
-      {hasDropdown && <ChevronDown className="h-3 w-3" />}
-    </button>
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-border shadow-lg max-h-[80vh] overflow-y-auto">
+          <nav className="container py-4">
+            <ul className="space-y-1">
+              {navItems.map((item, index) => (
+                <li key={index}>
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-between text-left text-base py-3"
+                  >
+                    {item.label}
+                    {item.hasDropdown && <ChevronDown className="h-5 w-5" />}
+                  </Button>
+                </li>
+              ))}
+            </ul>
+
+            {/* Mobile contact info */}
+            <div className="mt-6 pt-6 border-t border-border">
+              <p className="font-semibold text-primary mb-2">
+                Potřebujete poradit?
+              </p>
+              <p className="text-sm text-muted-foreground">
+                📞 776 041 740
+                <br />
+                <span className="text-xs">(po - pá: 9:00 - 19:00)</span>
+              </p>
+            </div>
+          </nav>
+        </div>
+      )}
+    </header>
   );
 }

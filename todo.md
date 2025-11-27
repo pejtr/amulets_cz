@@ -88,3 +88,10 @@
 - [x] USP boxy - 4 horizontální boxy s růžovými ikonami vlevo a textem vpravo
 - [x] USP - ikony: balíček, spirála, obálka, dárek
 - [x] Produktová sekce - 4 pyramidy v řadě přímo pod USP boxy
+
+## Úpravy hero a mobilního menu
+- [x] Posunout text v hero sekci doleva, aby nezakrýval postavu
+- [x] Změnit jméno z "Natálie Vachová" na "Natálie Ohorai"
+- [x] Vytvořit hamburger menu pro mobil
+- [x] Zredukovat sticky header na mobilu - pouze logo, hledání, účet, košík, hamburger
+- [x] Skrýt hlavní navigaci na mobilu, zobrazit pouze přes hamburger
