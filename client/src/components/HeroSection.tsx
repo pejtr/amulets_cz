@@ -18,11 +18,26 @@ export default function HeroSection() {
               {/* Text content - LEFT aligned */}
               <div className="relative space-y-6 px-4 py-8 lg:py-16">
                 <div className="space-y-4">
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 700 }}>
-                    <span className="relative inline-block animate-shimmer bg-gradient-to-r from-white via-[#D4AF37] to-white bg-[length:200%_100%] bg-clip-text text-transparent" style={{ WebkitTextStroke: '0.5px #2C3E50' }}>
-                      Otevřete své srdce zázrakům
-                    </span>
-                  </h1>
+                  <div className="relative">
+                    {/* White glow/smoke background */}
+                    <div className="absolute -inset-4 bg-gradient-to-r from-white/90 via-white/95 to-white/90 blur-2xl rounded-lg -z-10"></div>
+                    
+                    {/* Sparkling particles container */}
+                    <div className="absolute inset-0 overflow-hidden -z-5">
+                      <div className="sparkle sparkle-1"></div>
+                      <div className="sparkle sparkle-2"></div>
+                      <div className="sparkle sparkle-3"></div>
+                      <div className="sparkle sparkle-4"></div>
+                      <div className="sparkle sparkle-5"></div>
+                      <div className="sparkle sparkle-6"></div>
+                    </div>
+
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 700 }}>
+                      <span className="relative inline-block animate-shimmer bg-gradient-to-r from-white via-[#D4AF37] to-white bg-[length:200%_100%] bg-clip-text text-transparent" style={{ WebkitTextStroke: '1.5px #2C3E50' }}>
+                        Otevřete své srdce zázrakům
+                      </span>
+                    </h1>
+                  </div>
                   <p className="text-lg md:text-xl text-[#2C3E50]/80 animate-fade-in-up animation-delay-200">
                     ...začněte s tím právě teď
                   </p>
