@@ -43,24 +43,24 @@ describe('Amulets.cz Components', () => {
 
     it('should render CTA button', () => {
       render(<HeroSection />);
-      const button = screen.getByText('ZJISTIT VÍCE');
+      const button = screen.getByText('ZÍSKAT VÍCE');
       expect(button).toBeDefined();
     });
 
-    it('should render founder name', () => {
+    it('should render hero image', () => {
       render(<HeroSection />);
-      expect(screen.getByText('Natálie Vachová')).toBeDefined();
-      expect(screen.getByText('Zakladatelka Amulets.cz')).toBeDefined();
+      const img = screen.getByAltText(/Natálie Vachová/i);
+      expect(img).toBeDefined();
     });
   });
 
   describe('USPSection', () => {
     it('should render all 4 USP boxes', () => {
       render(<USPSection />);
-      expect(screen.getByText(/Doprava zdarma od 1 500 Kč/i)).toBeDefined();
-      expect(screen.getByText(/Úprava amuletů na míru/i)).toBeDefined();
-      expect(screen.getByText(/Ruční výroba/i)).toBeDefined();
-      expect(screen.getByText(/Dárek pro každého/i)).toBeDefined();
+      expect(screen.getAllByText(/Doprava zdarma od 1 500 Kč/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/Úprava amuletů na míru/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/Ruční výroba/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/Dárek pro každého/i).length).toBeGreaterThan(0);
     });
   });
 

@@ -69,3 +69,22 @@
 - [x] Stáhnout fotografie pyramid z www.ohorai.cz
 - [x] Stáhnout fotografie esencí z www.ohorai.cz
 - [x] Nahradit emoji ikony skutečnými fotografiemi produktů
+
+## Úpravy podle MASTER screenshotů
+- [x] Upravit hero sekci - použít skutečnou fotku Natálie na pozadí bílé cihlové zdi
+- [x] Přesunout USP boxy přímo pod hero sekci (bez mezery)
+- [x] Změnit USP boxy na růžové ikony s textem vpravo (desktop)
+- [x] Mobilní verze - USP boxy pod sebou s růžovými ikonami
+- [x] Odstranit vlnový divider z hero sekce
+- [ ] Přidat produktovou sekci s pyramidami přímo pod USP boxy
+
+## Kompletní přepracování podle MASTER mockupu
+- [x] Hero sekce - použít celou fotku jako pozadí (Natálie vlevo, text vpravo)
+- [x] Hero - bílá cihlová zeď jako pozadí
+- [x] Hero - Natálie v bílých šatech s pyramidou v ruce
+- [x] Hero - růžové kamínky vlevo, velká zlatá pyramida vpravo
+- [x] Hero - zlatý symbol květu života vpravo nahoře
+- [x] Hero - podpis "Natálie Vachová - Zakladatelka Amulets.cz" pod fotografií
+- [x] USP boxy - 4 horizontální boxy s růžovými ikonami vlevo a textem vpravo
+- [x] USP - ikony: balíček, spirála, obálka, dárek
+- [x] Produktová sekce - 4 pyramidy v řadě přímo pod USP boxy
