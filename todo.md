@@ -101,3 +101,7 @@
 
 ## Optimalizace headeru
 - [x] Odstranit prázdné řádky v headeru - zmenšit padding pro kompaktnější vzhled
+
+## Další optimalizace headeru
+- [x] Odstranit úplně všechny prázdné řádky v headeru (py-0)
+- [x] Zkrátit text v hledání na "Co hledáte?"
