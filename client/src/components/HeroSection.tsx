@@ -26,20 +26,32 @@ export default function HeroSection() {
                   </p>
                 </div>
 
-                <Button
-                  size="lg"
-                  className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white px-8 py-6 text-base md:text-lg font-semibold rounded-md shadow-lg"
-                >
-                  ZÍSKAT VÍCE
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button
+                    size="lg"
+                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-8 py-6 text-base"
+                  >
+                    ZÍSKAT VÍCE
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-2 border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-white font-semibold px-8 py-6 text-base"
+                    onClick={() => window.open('https://www.ohorai.cz', '_blank')}
+                  >
+                    Přejít na Ohorai.cz
+                  </Button>
+                </div>
 
                 {/* Signature - below button */}
                 <div className="text-sm mt-4">
-                  <p className="font-bold text-lg" style={{ 
+                  <p className="font-bold text-xl" style={{ 
                     color: '#D4AF37',
-                    textShadow: '0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.4)'
+                    textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6)'
                   }}>Natálie Ohorai</p>
-                  <p className="italic text-[#2C3E50]/70">Zakladatelka Amulets.cz</p>
+                  <p className="italic text-[#2C3E50] font-semibold" style={{
+                    textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)'
+                  }}>Zakladatelka Amulets.cz a Ohorai.cz</p>
                 </div>
               </div>
             </div>

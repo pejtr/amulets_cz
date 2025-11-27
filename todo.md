@@ -116,3 +116,8 @@
 
 ## Zlepšení čitelnosti jména zakladatelky
 - [x] Přidat bílý kouřový stín (text-shadow) za jméno pro lepší čitelnost
+
+## Vylepšení hero sekce - jméno a odkazy
+- [x] Zlepšit čitelnost jména ještě více (silnější stín)
+- [x] Změnit text na "Zakladatelka Amulets.cz a Ohorai.cz"
+- [x] Přidat druhé tlačítko "Přejít na Ohorai.cz" s odkazem na www.ohorai.cz
