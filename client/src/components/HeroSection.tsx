@@ -18,15 +18,17 @@ export default function HeroSection() {
               {/* Text content - LEFT aligned */}
               <div className="relative space-y-6 px-4 py-8 lg:py-16">
                 <div className="space-y-4">
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight">
-                    Otevřete své srdce zázrakům
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative">
+                    <span className="relative inline-block animate-shimmer bg-gradient-to-r from-[#2C3E50] via-[#D4AF37] to-[#2C3E50] bg-[length:200%_100%] bg-clip-text text-transparent">
+                      Otevřete své srdce zázrakům
+                    </span>
                   </h1>
-                  <p className="text-lg md:text-xl text-[#2C3E50]/80">
+                  <p className="text-lg md:text-xl text-[#2C3E50]/80 animate-fade-in-up animation-delay-200">
                     ...začněte s tím právě teď
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex flex-col sm:flex-row gap-3 animate-fade-in-up animation-delay-400">
                   <Button
                     size="lg"
                     className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-8 py-6 text-base"
@@ -45,7 +47,7 @@ export default function HeroSection() {
                 </div>
 
                 {/* Signature - below buttons with reduced padding */}
-                <div className="relative mt-4">
+                <div className="relative mt-4 animate-fade-in-up animation-delay-600">
                   {/* White fog background with reduced padding */}
                   <div className="absolute -inset-2 bg-white/80 backdrop-blur-sm rounded-lg -z-10"></div>
                   
