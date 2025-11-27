@@ -95,3 +95,6 @@
 - [x] Vytvořit hamburger menu pro mobil
 - [x] Zredukovat sticky header na mobilu - pouze logo, hledání, účet, košík, hamburger
 - [x] Skrýt hlavní navigaci na mobilu, zobrazit pouze přes hamburger
+
+## Úprava velikosti loga
+- [x] Zvětšit logo o 200% (3x větší než současná velikost)

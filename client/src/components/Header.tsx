@@ -39,7 +39,7 @@ export default function Header() {
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <img src={APP_LOGO} alt="Amulets" className="h-10 md:h-12 w-auto" />
+            <img src={APP_LOGO} alt="Amulets" className="h-20 md:h-24 w-auto" />
           </div>
 
           {/* Search bar - desktop */}
