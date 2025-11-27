@@ -110,3 +110,6 @@
 - [x] Vytvořit favicon ve více velikostech (16x16, 32x32, 180x180, 192x192, 512x512)
 - [x] Přidat Apple touch icon
 - [x] Aktualizovat meta tagy pro Google vyhledávání
+
+## Úprava hero sekce - jméno zakladatelky
+- [x] Zvýraznit jméno "Natálie Ohorai" zlatou barvou

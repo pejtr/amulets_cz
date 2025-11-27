@@ -34,9 +34,9 @@ export default function HeroSection() {
                 </Button>
 
                 {/* Signature - below button */}
-                <div className="text-sm text-[#2C3E50]/70 mt-4">
-                  <p className="font-semibold">Natálie Ohorai</p>
-                  <p className="italic">Zakladatelka Amulets.cz</p>
+                <div className="text-sm mt-4">
+                  <p className="font-bold text-lg" style={{ color: '#D4AF37' }}>Natálie Ohorai</p>
+                  <p className="italic text-[#2C3E50]/70">Zakladatelka Amulets.cz</p>
                 </div>
               </div>
             </div>
