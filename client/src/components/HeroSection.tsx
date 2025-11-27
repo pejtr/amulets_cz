@@ -43,24 +43,24 @@ export default function HeroSection() {
                     <img src="/ohorai-logo.webp" alt="OHORAI" className="h-8 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
                   </Button>
                 </div>
+
+                {/* Signature - below buttons with reduced padding */}
+                <div className="relative mt-4">
+                  {/* White fog background with reduced padding */}
+                  <div className="absolute -inset-2 bg-white/80 backdrop-blur-sm rounded-lg -z-10"></div>
+                  
+                  <div className="text-sm relative z-10">
+                    <p className="font-bold text-xl" style={{ 
+                      color: '#D4AF37',
+                      textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6)'
+                    }}>Natálie Ohorai</p>
+                    <p className="italic text-[#2C3E50] font-semibold" style={{
+                      textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)'
+                    }}>Zakladatelka Amulets.cz</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Signature - positioned to the left of the person, at middle height */}
-        <div className="absolute top-1/2 -translate-y-1/2 right-[45%] md:right-[40%] lg:right-[35%]">
-          {/* White fog background for better readability */}
-          <div className="absolute -inset-4 bg-white/80 backdrop-blur-sm rounded-lg -z-10"></div>
-          
-          <div className="text-sm relative z-10">
-            <p className="font-bold text-xl" style={{ 
-              color: '#D4AF37',
-              textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6)'
-            }}>Natálie Ohorai</p>
-            <p className="italic text-[#2C3E50] font-semibold" style={{
-              textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)'
-            }}>Zakladatelka Amulets.cz</p>
           </div>
         </div>
       </div>
