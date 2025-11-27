@@ -55,7 +55,7 @@ export default function HeroSection() {
                     }}>Natálie Ohorai</p>
                     <p className="italic text-[#2C3E50] font-semibold" style={{
                       textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)'
-                    }}>Zakladatelka Amulets.cz a Ohorai.cz</p>
+                    }}>Zakladatelka Amulets.cz</p>
                     
                     {/* OHORAI logo */}
                     <div className="mt-3 flex items-center gap-2">

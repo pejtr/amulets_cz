@@ -125,3 +125,6 @@
 ## Vylepšení hero sekce - logo a mlha
 - [x] Přidat logo OHORAI do hero sekce
 - [x] Zesílit bílou mlhu pod jménem pro lepší kontrast
+
+## Úprava textu v hero sekci
+- [x] Změnit text zpět na "Zakladatelka Amulets.cz" (odstranit zmínku o Ohorai.cz)
