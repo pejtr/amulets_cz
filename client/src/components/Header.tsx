@@ -28,14 +28,14 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-border">
       {/* Top bar - only on desktop */}
-      <div className="hidden md:block bg-[#E8C4D8] py-2">
+      <div className="hidden md:block bg-[#E8C4D8] py-1">
         <div className="container flex justify-end items-center text-sm">
           <span className="text-[#2C3E50]">Potřebujete poradit?</span>
         </div>
       </div>
 
       {/* Main header */}
-      <div className="container py-3 md:py-4">
+      <div className="container py-2">
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
           <div className="flex-shrink-0">

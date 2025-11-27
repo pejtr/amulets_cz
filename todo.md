@@ -98,3 +98,6 @@
 
 ## Úprava velikosti loga
 - [x] Zvětšit logo o 200% (3x větší než současná velikost)
+
+## Optimalizace headeru
+- [x] Odstranit prázdné řádky v headeru - zmenšit padding pro kompaktnější vzhled
