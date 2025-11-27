@@ -207,7 +207,7 @@
 }
 
 .animate-shimmer {
-  animation: shimmer 8s ease-in-out infinite;
+  animation: shimmer 12s ease-in-out infinite;
 }
 
 .animation-delay-200 {
