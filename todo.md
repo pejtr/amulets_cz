@@ -113,3 +113,6 @@
 
 ## Úprava hero sekce - jméno zakladatelky
 - [x] Zvýraznit jméno "Natálie Ohorai" zlatou barvou
+
+## Zlepšení čitelnosti jména zakladatelky
+- [x] Přidat bílý kouřový stín (text-shadow) za jméno pro lepší čitelnost
