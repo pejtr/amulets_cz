@@ -39,8 +39,8 @@ export default function HeroSection() {
                     className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37] hover:border-[#D4AF37] font-semibold px-6 py-6 text-base flex items-center gap-2 transition-all duration-300 group"
                     onClick={() => window.open('https://www.ohorai.cz', '_blank')}
                   >
-                    <span className="text-[#D4AF37] group-hover:text-white transition-colors duration-300">Přejít na</span>
-                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-8 w-auto brightness-0 group-hover:brightness-0 group-hover:invert transition-all duration-300" />
+                    <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
+                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-8 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
                   </Button>
                 </div>
               </div>
