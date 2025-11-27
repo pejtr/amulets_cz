@@ -36,31 +36,31 @@ export default function HeroSection() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37]/10 font-semibold px-6 py-6 text-base flex items-center gap-2"
+                    className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37] hover:border-[#D4AF37] font-semibold px-6 py-6 text-base flex items-center gap-2 transition-all duration-300 group"
                     onClick={() => window.open('https://www.ohorai.cz', '_blank')}
                   >
-                    <span className="text-[#D4AF37]">Přejít na</span>
-                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-8 w-auto" />
+                    <span className="text-[#D4AF37] group-hover:text-white transition-colors duration-300">Přejít na</span>
+                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-8 w-auto brightness-0 group-hover:brightness-0 group-hover:invert transition-all duration-300" />
                   </Button>
-                </div>
-
-                {/* Signature - below button */}
-                <div className="relative">
-                  {/* White fog background for better readability */}
-                  <div className="absolute -inset-4 bg-white/80 backdrop-blur-sm rounded-lg -z-10"></div>
-                  
-                  <div className="text-sm mt-4 relative z-10">
-                    <p className="font-bold text-xl" style={{ 
-                      color: '#D4AF37',
-                      textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6)'
-                    }}>Natálie Ohorai</p>
-                    <p className="italic text-[#2C3E50] font-semibold" style={{
-                      textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)'
-                    }}>Zakladatelka Amulets.cz</p>
-                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Signature - positioned closer to the person (bottom right area) */}
+        <div className="absolute bottom-8 right-8 md:bottom-12 md:right-16 lg:bottom-16 lg:right-24">
+          {/* White fog background for better readability */}
+          <div className="absolute -inset-4 bg-white/80 backdrop-blur-sm rounded-lg -z-10"></div>
+          
+          <div className="text-sm relative z-10 text-right">
+            <p className="font-bold text-xl" style={{ 
+              color: '#D4AF37',
+              textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6)'
+            }}>Natálie Ohorai</p>
+            <p className="italic text-[#2C3E50] font-semibold" style={{
+              textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)'
+            }}>Zakladatelka Amulets.cz</p>
           </div>
         </div>
       </div>
