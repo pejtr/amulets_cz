@@ -6,6 +6,7 @@ interface ProductCardProps {
   price: string;
   image?: string;
   available?: boolean;
+  url?: string;
 }
 
 export default function ProductCard({
@@ -13,9 +14,21 @@ export default function ProductCard({
   price,
   image,
   available = true,
+  url,
 }: ProductCardProps) {
+  const handleClick = () => {
+    if (url) {
+      window.open(url, '_blank');
+    }
+  };
+
   return (
-    <div className="group bg-white rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow">
+    <div 
+      className={`group bg-white rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow ${
+        url ? 'cursor-pointer' : ''
+      }`}
+      onClick={handleClick}
+    >
       {/* Image */}
       <div className="aspect-square bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center relative overflow-hidden">
         {image ? (

@@ -128,3 +128,13 @@
 
 ## Úprava textu v hero sekci
 - [x] Změnit text zpět na "Zakladatelka Amulets.cz" (odstranit zmínku o Ohorai.cz)
+
+## Aktualizace nabídky podle www.ohorai.cz
+- [ ] Získat aktuální seznam produktů z www.ohorai.cz
+- [ ] Aktualizovat produkty v ProductsSection podle ohorai.cz
+- [ ] Přidat odkazy na produkty vedoucí na ohorai.cz
+- [ ] Aktualizovat ceny podle ohorai.cz
+
+## Úprava tlačítka Ohorai.cz
+- [x] Přesunout logo OHORAI do tlačítka "Přejít na Ohorai.cz"
+- [x] Odstranit logo OHORAI ze spodní části (pod jménem)

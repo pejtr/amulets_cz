@@ -8,24 +8,28 @@ const pyramids = [
     price: "8 800 Kč",
     available: true,
     image: "/products/pyramida-hojnost.jpg",
+    url: "https://www.ohorai.cz/pyramida-ohorai-hojnost/",
   },
   {
     name: "Pyramida OHORAI ~ Jednota",
     price: "8 800 Kč",
     available: true,
     image: "/products/pyramida-hojnost.jpg",
+    url: "https://www.ohorai.cz/pyramida-ohorai-jednota/",
   },
   {
     name: "Pyramida OHORAI ~ Kristovo světlo",
     price: "8 800 Kč",
     available: true,
     image: "/products/pyramida-rovnovaha.jpg",
+    url: "https://www.ohorai.cz/pyramida-ohorai-kristovo-svetlo/",
   },
   {
     name: "Pyramida OHORAI ~ Kundaliní",
     price: "9 000 Kč",
     available: true,
     image: "/products/pyramida-rovnovaha.jpg",
+    url: "https://www.ohorai.cz/pyramida-ohorai-kundalini/",
   },
 ];
 
@@ -35,24 +39,28 @@ const essences = [
     price: "1 100 Kč",
     available: true,
     image: "/products/esence-modry-lotos.jpg",
+    url: "https://www.ohorai.cz/ikonicka-esence-ohorai-modry-lotos-10ml/",
   },
   {
     name: "Esence ~ OhoRÁJ lotos",
     price: "2 200 Kč",
     available: true,
     image: "/products/esence-ohoraj.jpg",
+    url: "https://www.ohorai.cz/esence-ohoraj-lotos/",
   },
   {
     name: "Esence ~ MUŽ 10ml",
     price: "890 Kč",
     available: true,
     image: "/products/esence-ohoraj.jpg",
+    url: "https://www.ohorai.cz/esence-muz-10ml/",
   },
   {
     name: "Esence ~ Zlatá brána 10ml",
     price: "990 Kč",
     available: true,
     image: "/products/esence-modry-lotos.jpg",
+    url: "https://www.ohorai.cz/esence-zlata-brana-10ml/",
   },
 ];
 
@@ -72,7 +80,11 @@ export default function ProductsSection() {
                 bylinou
               </p>
             </div>
-            <Button variant="outline" className="gap-2">
+            <Button 
+              variant="outline" 
+              className="gap-2"
+              onClick={() => window.open('https://www.ohorai.cz/autorske-tvorba/', '_blank')}
+            >
               Zobrazit vše
               <ArrowRight className="h-4 w-4" />
             </Button>
@@ -96,7 +108,11 @@ export default function ProductsSection() {
                 Čistá vůně přírody pro harmonii těla & ducha
               </p>
             </div>
-            <Button variant="outline" className="gap-2">
+            <Button 
+              variant="outline" 
+              className="gap-2"
+              onClick={() => window.open('https://www.ohorai.cz/esence/', '_blank')}
+            >
               Zobrazit vše
               <ArrowRight className="h-4 w-4" />
             </Button>

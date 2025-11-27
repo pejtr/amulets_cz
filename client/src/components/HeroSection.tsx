@@ -36,10 +36,11 @@ export default function HeroSection() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-white font-semibold px-8 py-6 text-base"
+                    className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37]/10 font-semibold px-6 py-6 text-base flex items-center gap-2"
                     onClick={() => window.open('https://www.ohorai.cz', '_blank')}
                   >
-                    Přejít na Ohorai.cz
+                    <span className="text-[#D4AF37]">Přejít na</span>
+                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-6 w-auto" />
                   </Button>
                 </div>
 
@@ -56,15 +57,6 @@ export default function HeroSection() {
                     <p className="italic text-[#2C3E50] font-semibold" style={{
                       textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)'
                     }}>Zakladatelka Amulets.cz</p>
-                    
-                    {/* OHORAI logo */}
-                    <div className="mt-3 flex items-center gap-2">
-                      <img 
-                        src="/ohorai-logo.webp" 
-                        alt="OHORAI" 
-                        className="h-8 w-auto opacity-90"
-                      />
-                    </div>
                   </div>
                 </div>
               </div>
