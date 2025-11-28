@@ -178,51 +178,62 @@ export default function GuideDetail() {
                               {heading.replace(/\*\*/g, '')}
                             </h3>
                           )}
-                          <ul className="list-none space-y-2">
+                          <ul className="list-none space-y-3">
                             {items.map((item, i) => {
                               const text = item.replace(/^-\s*/, '').replace(/\*\*/g, '');
                               
+                              // Rozdělíme text na název a popis (oddělené pomlčkou)
+                              const dashIndex = text.indexOf(' - ');
+                              let name = text;
+                              let description = '';
+                              
+                              if (dashIndex > 0) {
+                                name = text.substring(0, dashIndex).trim();
+                                description = text.substring(dashIndex + 3).trim();
+                              }
+                              
                               // Zkontrolujeme, jestli je to symbol nebo kámen
-                              let linkElement = <span className="text-muted-foreground">{text}</span>;
+                              let linkElement = null;
                               
                               for (const symbolName of symbolNames) {
-                                if (text.includes(symbolName)) {
+                                if (name === symbolName || text.includes(symbolName)) {
                                   const slug = nameToSlug(symbolName);
-                                  const parts = text.split(symbolName);
                                   linkElement = (
-                                    <span className="text-muted-foreground">
-                                      {parts[0]}
-                                      <Link href={`/symbol/${slug}`} className="text-[#D4AF37] hover:underline font-semibold">
-                                        {symbolName}
-                                      </Link>
-                                      {parts[1]}
-                                    </span>
+                                    <Link href={`/symbol/${slug}`} className="text-[#D4AF37] hover:underline font-semibold">
+                                      {symbolName}
+                                    </Link>
                                   );
                                   break;
                                 }
                               }
                               
-                              for (const stoneName of stoneNames) {
-                                if (text.includes(stoneName)) {
-                                  const slug = nameToSlug(stoneName);
-                                  const parts = text.split(stoneName);
-                                  linkElement = (
-                                    <span className="text-muted-foreground">
-                                      {parts[0]}
+                              if (!linkElement) {
+                                for (const stoneName of stoneNames) {
+                                  if (name === stoneName || text.includes(stoneName)) {
+                                    const slug = nameToSlug(stoneName);
+                                    linkElement = (
                                       <Link href={`/kamen/${slug}`} className="text-[#D4AF37] hover:underline font-semibold">
                                         {stoneName}
                                       </Link>
-                                      {parts[1]}
-                                    </span>
-                                  );
-                                  break;
+                                    );
+                                    break;
+                                  }
                                 }
                               }
                               
                               return (
                                 <li key={i} className="flex items-start gap-2">
-                                  <span className="text-[#D4AF37] mt-1">•</span>
-                                  {linkElement}
+                                  <span className="text-[#D4AF37] mt-1.5 flex-shrink-0">•</span>
+                                  <div className="flex-1">
+                                    <div className="font-semibold text-foreground">
+                                      {linkElement || name}
+                                    </div>
+                                    {description && (
+                                      <div className="text-sm text-muted-foreground mt-0.5">
+                                        {description}
+                                      </div>
+                                    )}
+                                  </div>
                                 </li>
                               );
                             })}
