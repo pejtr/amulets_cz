@@ -4,8 +4,9 @@ import Footer from "@/components/Footer";
 import GuideSection from "@/components/GuideSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { ShareButtons } from "@/components/ShareButtons";
+import { ImageLightbox } from "@/components/ImageLightbox";
 import { symbolsData, stonesData, purposesData } from "@/data/guideContent";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
@@ -21,13 +22,14 @@ function nameToSlug(name: string): string {
 }
 
 // Mapování názvů na typy URL
-const symbolNames = ["Ruka Fatimy", "Kv\u011bt \u017eivota v lotosu", "\u010c\u00ednsk\u00fd drak", "Davidova hv\u011bzda", "Strom \u017eivota", "Hv\u011bzda sjednocen\u00ed", "Kv\u011bt \u017eivota", "Metatronova krychle", "Choku Rei", "Buddha", "Jin Jang", "Horovo oko"];
-const stoneNames = ["Lapis Lazuli", "Ametyst", "R\u016f\u017een\u00edn", "Tygr\u00ed oko", "K\u0159i\u0161\u0165\u00e1l", "Obsidi\u00e1n", "\u010caroit", "Turmal\u00edn"];
+const symbolNames = ["Ruka Fatimy", "Květ života v lotosu", "Čínský drak", "Davidova hvězda", "Strom života", "Hvězda sjednocení", "Květ života", "Metatronova krychle", "Choku Rei", "Buddha", "Jin Jang", "Horovo oko"];
+const stoneNames = ["Lapis Lazuli", "Ametyst", "Růženín", "Tygří oko", "Křišťál", "Obsidián", "Čaroit", "Turmalín"];
 
 export default function GuideDetail() {
   const params = useParams();
   const [location] = useLocation();
   const slug = params.slug || "";
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   
   // Detekce typu z URL path
   let type = "";
@@ -121,10 +123,26 @@ export default function GuideDetail() {
             { label: content.title }
           ]} />
 
-          <div className="max-w-3xl">
+          <div className="max-w-6xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
               {content.title}
             </h1>
+
+            {/* Obrázek pod nadpisem na mobilu */}
+            {content.image && (
+              <div className="lg:hidden mb-6">
+                <div 
+                  className="rounded-lg overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50 p-4 cursor-pointer hover:opacity-90 transition-opacity"
+                  onClick={() => setLightboxOpen(true)}
+                >
+                  <img
+                    src={content.image}
+                    alt={content.title}
+                    className="w-full h-auto object-cover rounded-lg"
+                  />
+                </div>
+              </div>
+            )}
 
             <ShareButtons 
               url={location}
@@ -132,120 +150,151 @@ export default function GuideDetail() {
               description={content.metaDescription}
             />
 
-            <div className="prose prose-lg max-w-none">
-              {content.content.split('\n\n').map((paragraph, index) => {
-                // Pokud odstavec začíná **text**, je to nadpis
-                if (paragraph.startsWith('**') && paragraph.includes(':**')) {
-                  const title = paragraph.replace(/\*\*/g, '').replace(':', '');
-                  return (
-                    <h2 key={index} className="text-2xl font-bold mt-8 mb-4 text-foreground">
-                      {title}
-                    </h2>
-                  );
-                }
-                
-                // Pokud odstavec obsahuje seznam (začíná -)
-                if (paragraph.includes('\n-')) {
-                  const lines = paragraph.split('\n');
-                  const heading = lines[0];
-                  const items = lines.filter(line => line.trim().startsWith('-'));
-                  
-                  return (
-                    <div key={index} className="my-6">
-                      {heading && !heading.startsWith('-') && (
-                        <h3 className="text-lg font-semibold text-foreground mb-3">
-                          {heading.replace(/\*\*/g, '')}
-                        </h3>
-                      )}
-                      <ul className="list-none space-y-2">
-                        {items.map((item, i) => {
-                          const text = item.replace(/^-\s*/, '').replace(/\*\*/g, '');
-                          
-                          // Zkontrolujeme, jestli je to symbol nebo kámen
-                          let linkElement = <span className="text-muted-foreground">{text}</span>;
-                          
-                          for (const symbolName of symbolNames) {
-                            if (text.includes(symbolName)) {
-                              const slug = nameToSlug(symbolName);
-                              const parts = text.split(symbolName);
-                              linkElement = (
-                                <span className="text-muted-foreground">
-                                  {parts[0]}
-                                  <Link href={`/symbol/${slug}`} className="text-[#D4AF37] hover:underline font-semibold">
-                                    {symbolName}
-                                  </Link>
-                                  {parts[1]}
-                                </span>
-                              );
-                              break;
-                            }
-                          }
-                          
-                          for (const stoneName of stoneNames) {
-                            if (text.includes(stoneName)) {
-                              const slug = nameToSlug(stoneName);
-                              const parts = text.split(stoneName);
-                              linkElement = (
-                                <span className="text-muted-foreground">
-                                  {parts[0]}
-                                  <Link href={`/kamen/${slug}`} className="text-[#D4AF37] hover:underline font-semibold">
-                                    {stoneName}
-                                  </Link>
-                                  {parts[1]}
-                                </span>
-                              );
-                              break;
-                            }
-                          }
-                          
-                          return (
-                            <li key={i} className="flex items-start gap-2">
-                              <span className="text-[#D4AF37] mt-1">•</span>
-                              {linkElement}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  );
-                }
-
-                // Normální odstavec
-                return (
-                  <p key={index} className="text-muted-foreground leading-relaxed mb-4">
-                    {paragraph.split('**').map((part, i) => 
-                      i % 2 === 0 ? part : <strong key={i} className="text-foreground font-semibold">{part}</strong>
-                    )}
-                  </p>
-                );
-              })}
-            </div>
-
-            <div className="mt-12 p-6 bg-accent/20 rounded-lg">
-              <h3 className="text-xl font-bold mb-3">Objevte naše produkty</h3>
-              <p className="text-muted-foreground mb-4">
-                Prozkoumejte naši nabídku ručně vyráběných orgonitových pyramid a aromaterapeutických esencí.
-              </p>
-              <Link 
-                href="/"
-                onClick={() => {
-                  setTimeout(() => {
-                    const element = document.getElementById('produkty');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+              {/* Levý sloupec - text */}
+              <div className="lg:col-span-2">
+                <div className="prose prose-lg max-w-none">
+                  {content.content.split('\n\n').map((paragraph, index) => {
+                    // Pokud odstavec začíná **text**, je to nadpis
+                    if (paragraph.startsWith('**') && paragraph.includes(':**')) {
+                      const title = paragraph.replace(/\*\*/g, '').replace(':', '');
+                      return (
+                        <h2 key={index} className="text-2xl font-bold mt-8 mb-4 text-foreground">
+                          {title}
+                        </h2>
+                      );
                     }
-                  }, 100);
-                }}
-                className="inline-block bg-[#E85A9F] text-white px-6 py-3 rounded-md hover:bg-[#E85A9F]/90 transition-colors font-semibold"
-              >
-                Zobrazit produkty
-              </Link>
+                    
+                    // Pokud odstavec obsahuje seznam (začíná -)
+                    if (paragraph.includes('\n-')) {
+                      const lines = paragraph.split('\n');
+                      const heading = lines[0];
+                      const items = lines.filter(line => line.trim().startsWith('-'));
+                      
+                      return (
+                        <div key={index} className="my-6">
+                          {heading && !heading.startsWith('-') && (
+                            <h3 className="text-lg font-semibold text-foreground mb-3">
+                              {heading.replace(/\*\*/g, '')}
+                            </h3>
+                          )}
+                          <ul className="list-none space-y-2">
+                            {items.map((item, i) => {
+                              const text = item.replace(/^-\s*/, '').replace(/\*\*/g, '');
+                              
+                              // Zkontrolujeme, jestli je to symbol nebo kámen
+                              let linkElement = <span className="text-muted-foreground">{text}</span>;
+                              
+                              for (const symbolName of symbolNames) {
+                                if (text.includes(symbolName)) {
+                                  const slug = nameToSlug(symbolName);
+                                  const parts = text.split(symbolName);
+                                  linkElement = (
+                                    <span className="text-muted-foreground">
+                                      {parts[0]}
+                                      <Link href={`/symbol/${slug}`} className="text-[#D4AF37] hover:underline font-semibold">
+                                        {symbolName}
+                                      </Link>
+                                      {parts[1]}
+                                    </span>
+                                  );
+                                  break;
+                                }
+                              }
+                              
+                              for (const stoneName of stoneNames) {
+                                if (text.includes(stoneName)) {
+                                  const slug = nameToSlug(stoneName);
+                                  const parts = text.split(stoneName);
+                                  linkElement = (
+                                    <span className="text-muted-foreground">
+                                      {parts[0]}
+                                      <Link href={`/kamen/${slug}`} className="text-[#D4AF37] hover:underline font-semibold">
+                                        {stoneName}
+                                      </Link>
+                                      {parts[1]}
+                                    </span>
+                                  );
+                                  break;
+                                }
+                              }
+                              
+                              return (
+                                <li key={i} className="flex items-start gap-2">
+                                  <span className="text-[#D4AF37] mt-1">•</span>
+                                  {linkElement}
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                      );
+                    }
+
+                    // Normální odstavec
+                    return (
+                      <p key={index} className="text-muted-foreground leading-relaxed mb-4">
+                        {paragraph.split('**').map((part, i) => 
+                          i % 2 === 0 ? part : <strong key={i} className="text-foreground font-semibold">{part}</strong>
+                        )}
+                      </p>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-12 p-6 bg-accent/20 rounded-lg">
+                  <h3 className="text-xl font-bold mb-3">Objevte naše produkty</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Prozkoumejte naši nabídku ručně vyráběných orgonitových pyramid a aromaterapeutických esencí.
+                  </p>
+                  <Link 
+                    href="/"
+                    onClick={() => {
+                      setTimeout(() => {
+                        const element = document.getElementById('produkty');
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }, 100);
+                    }}
+                    className="inline-block bg-[#E85A9F] text-white px-6 py-3 rounded-md hover:bg-[#E85A9F]/90 transition-colors font-semibold"
+                  >
+                    Zobrazit produkty
+                  </Link>
+                </div>
+              </div>
+
+              {/* Pravý sloupec - obrázek (pouze desktop) */}
+              {content.image && (
+                <div className="hidden lg:block lg:col-span-1">
+                  <div 
+                    className="sticky top-8 rounded-lg overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50 p-4 cursor-pointer hover:opacity-90 transition-opacity"
+                    onClick={() => setLightboxOpen(true)}
+                  >
+                    <img
+                      src={content.image}
+                      alt={content.title}
+                      className="w-full h-auto object-cover rounded-lg"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </article>
       </main>
       <GuideSection />
       <Footer />
+
+      {/* Lightbox pro zvětšení obrázku */}
+      {content.image && (
+        <ImageLightbox
+          src={content.image}
+          alt={content.title}
+          isOpen={lightboxOpen}
+          onClose={() => setLightboxOpen(false)}
+        />
+      )}
     </div>
   );
 }

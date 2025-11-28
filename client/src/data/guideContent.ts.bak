@@ -3,6 +3,8 @@ export const symbolsData = [
     slug: "ruka-fatimy",
     title: "Ruka Fatimy",
     image: "/images/symbols/ruka-fatimy.png",
+    image: "/images/symbols/ruka-fatimy.png",
+    image: "/images/symbols/ruka-fatimy.png",
     metaTitle: "Ruka Fatimy - Význam a Symbolika | Amulets.cz",
     metaDescription: "Objevte význam symbolu Ruka Fatimy. Ženský ochranný talisman napříč kulturami, který chrání před neštěstím a podporuje plodnost.",
     content: `**Ženský ochranný symbol** užívaný jako **talisman** napříč časem a různými kulturami. Fatima znamená "ta co hovoří s anděly". 
@@ -17,6 +19,8 @@ Tento mocný symbol se objevuje v mnoha kulturách a náboženstvích, vždy s p
     slug: "kvet-zivota-v-lotosu",
     title: "Květ života v lotosu",
     image: "/images/symbols/kvet-zivota.png",
+    image: "/images/symbols/kvet-zivota.png",
+    image: "/images/symbols/kvet-zivota.png",
     metaTitle: "Květ života v lotosu - Posvátná geometrie | Amulets.cz",
     metaDescription: "Květ života v lotosu spojuje dva mocné symboly. Posvátná geometrie pro harmonii, duchovní růst a propojení s vesmírem.",
     content: `**Květ života** je jedním z nejstarších symbolů posvátné geometrie, který obsahuje vzorce stvoření vesmíru. Když je kombinován s **lotosem**, symbolem duchovního probuzení, vytváří mimořádně silný duchovní nástroj.
@@ -28,6 +32,8 @@ Tento symbol **podporuje meditaci**, pomáhá při duchovním růstu a připomí
   {
     slug: "cinsky-drak",
     title: "Čínský drak",
+    image: "/images/symbols/cinsky-drak.png",
+    image: "/images/symbols/cinsky-drak.png",
     image: "/images/symbols/cinsky-drak.png",
     metaTitle: "Čínský drak - Symbol síly a štěstí | Amulets.cz",
     metaDescription: "Čínský drak je symbol moci, štěstí a prosperity. Objevte význam tohoto mocného talismanu pro úspěch a ochranu.",
@@ -41,6 +47,8 @@ Tento symbol **podporuje úspěch v podnikání**, přináší štěstí a chrá
     slug: "davidova-hvezda",
     title: "Davidova hvězda",
     image: "/images/symbols/davidova-hvezda.png",
+    image: "/images/symbols/davidova-hvezda.png",
+    image: "/images/symbols/davidova-hvezda.png",
     metaTitle: "Davidova hvězda - Hexagram a jeho význam | Amulets.cz",
     metaDescription: "Davidova hvězda (hexagram) symbolizuje spojení nebe a země, mužského a ženského principu. Mocný ochranný symbol.",
     content: `**Davidova hvězda**, také známá jako **hexagram**, je tvořena dvěma překrývajícími se trojúhelníky. Trojúhelník směřující nahoru představuje **mužský princip, oheň a nebe**, zatímco trojúhelník směřující dolů symbolizuje **ženský princip, vodu a zemi**.
@@ -52,6 +60,8 @@ V kabale Davidova hvězda představuje **spojení božského a pozemského**, du
   {
     slug: "strom-zivota",
     title: "Strom života",
+    image: "/images/symbols/strom-zivota.png",
+    image: "/images/symbols/strom-zivota.png",
     image: "/images/symbols/strom-zivota.png",
     metaTitle: "Strom života - Symbol růstu a propojení | Amulets.cz",
     metaDescription: "Strom života symbolizuje růst, sílu a propojení všeho živého. Objevte význam tohoto univerzálního symbolu.",
@@ -65,6 +75,7 @@ Symbol **podporuje osobní růst**, pomáhá při hledání životní cesty a p�
     slug: "hvezda-sjednoceni",
     title: "Hvězda sjednocení",
     image: "/images/symbols/hvezda-sjednoceni.png",
+    image: "/images/symbols/hvezda-sjednoceni.png",
     metaTitle: "Hvězda sjednocení - Symbol harmonie | Amulets.cz",
     metaDescription: "Hvězda sjednocení spojuje různé energie do harmonického celku. Symbol jednoty, míru a duchovního sjednocení.",
     content: `**Hvězda sjednocení** je symbol **harmonie a jednoty** všech aspektů existence. Reprezentuje sjednocení **těla, mysli a ducha** v dokonalé rovnováze.
@@ -76,6 +87,7 @@ Hvězda sjednocení **podporuje meditaci**, pomáhá při duchovní práci a př
   {
     slug: "kvet-zivota",
     title: "Květ života",
+    image: "/images/symbols/kvet-zivota-simple.png",
     image: "/images/symbols/kvet-zivota-simple.png",
     metaTitle: "Květ života - Posvátná geometrie a harmonie | Amulets.cz",
     metaDescription: "Květ života je základní vzorec posvátné geometrie. Obsahuje tajemství stvoření a přináší harmonii do života.",
@@ -89,6 +101,7 @@ Symbol **harmonizuje energii**, podporuje meditaci a pomáhá při duchovním r�
     slug: "metatronova-krychle",
     title: "Metatronova krychle",
     image: "/images/symbols/metatronova-krychle.png",
+    image: "/images/symbols/metatronova-krychle.png",
     metaTitle: "Metatronova krychle - Posvátná geometrie | Amulets.cz",
     metaDescription: "Metatronova krychle obsahuje všech pět platónských těles. Mocný symbol ochrany a duchovní transformace.",
     content: `**Metatronova krychle** je komplexní geometrický vzorec, který obsahuje **všech pět platónských těles** - základních stavebních kamenů vesmíru. Je pojmenována po archandělu Metatronovi, strážci posvátné geometrie.
@@ -100,6 +113,7 @@ Symbol **chrání před negativními energiemi**, podporuje duchovní transforma
   {
     slug: "choku-rei",
     title: "Choku Rei",
+    image: "/images/symbols/choku-rei.png",
     image: "/images/symbols/choku-rei.png",
     metaTitle: "Choku Rei - Reiki symbol síly | Amulets.cz",
     metaDescription: "Choku Rei je mocný Reiki symbol pro zesilování energie a ochranu. Objevte jeho použití a význam.",
@@ -113,6 +127,7 @@ Choku Rei **chrání před negativními vlivy**, zesiluje pozitivní záměry a 
     slug: "buddha",
     title: "Buddha",
     image: "/images/symbols/buddha.png",
+    image: "/images/symbols/buddha.png",
     metaTitle: "Buddha - Symbol osvícení a míru | Amulets.cz",
     metaDescription: "Buddha symbolizuje osvícení, mír a moudrost. Objevte význam tohoto duchovního symbolu pro vnitřní klid.",
     content: `**Buddha** reprezentuje **osvícení, mír a moudrost**. Není to bůh, ale učitel, který dosáhl nejvyššího stavu vědomí a ukázal cestu k osvobození od utrpení.
@@ -125,6 +140,7 @@ Tento symbol **podporuje vnitřní klid**, pomáhá při meditaci a připomíná
     slug: "jin-jang",
     title: "Jin Jang",
     image: "/images/symbols/jin-jang.png",
+    image: "/images/symbols/jin-jang.png",
     metaTitle: "Jin Jang - Symbol rovnováhy a harmonie | Amulets.cz",
     metaDescription: "Jin Jang (Yin Yang) symbolizuje rovnováhu protikladů. Objevte význam tohoto mocného symbolu harmonie.",
     content: `**Jin Jang** (Yin Yang) je symbol **dokonalé rovnováhy** mezi protiklady. Černá část (Yin) představuje **ženskou energii** - tmu, chlad, pasivitu. Bílá část (Yang) symbolizuje **mužskou energii** - světlo, teplo, aktivitu.
@@ -136,6 +152,7 @@ Symbol **učí rovnováze**, pomáhá harmonizovat energie a připomíná, že p
   {
     slug: "horovo-oko",
     title: "Horovo oko",
+    image: "/images/symbols/horovo-oko.png",
     image: "/images/symbols/horovo-oko.png",
     metaTitle: "Horovo oko - Egyptský symbol ochrany | Amulets.cz",
     metaDescription: "Horovo oko je starověký egyptský symbol ochrany, zdraví a královské moci. Mocný ochranný talisman.",
@@ -152,6 +169,7 @@ export const stonesData = [
     slug: "lapis-lazuli",
     title: "Lapis Lazuli",
     image: "/images/stones/lapis-lazuli.png",
+    image: "/images/stones/lapis-lazuli.png",
     metaTitle: "Lapis Lazuli - Kámen moudrosti a pravdy | Amulets.cz",
     metaDescription: "Lapis Lazuli je kámen moudrosti, pravdy a duchovního probuzení. Objevte léčivé vlastnosti tohoto vzácného kamene.",
     content: `**Lapis Lazuli** je kámen **moudrosti, pravdy a duchovního probuzení**. Jeho hluboká modrá barva s zlatými tečkami pyritu připomíná noční oblohu plnou hvězd.
@@ -163,6 +181,7 @@ Kámen **pomáhá při komunikaci**, podporuje sebevyjádření a odvahu mluvit 
   {
     slug: "ametyst",
     title: "Ametyst",
+    image: "/images/stones/ametyst.png",
     image: "/images/stones/ametyst.png",
     metaTitle: "Ametyst - Kámen duchovní ochrany | Amulets.cz",
     metaDescription: "Ametyst je mocný kámen duchovní ochrany a transformace. Podporuje meditaci, intuici a vnitřní klid.",
@@ -176,6 +195,7 @@ Kámen **podporuje intuici**, pomáhá při duchovní práci a přináší vnit�
     slug: "ruzenin",
     title: "Růženín",
     image: "/images/stones/ruzenin.png",
+    image: "/images/stones/ruzenin.png",
     metaTitle: "Růženín - Kámen lásky a srdce | Amulets.cz",
     metaDescription: "Růženín je kámen bezpodmínečné lásky a léčení srdce. Podporuje sebelásku, vztahy a emocionální rovnováhu.",
     content: `**Růženín** je kámen **bezpodmínečné lásky a léčení srdce**. Jeho jemná růžová barva vyzařuje energii něhy, soucitu a emocionálního uzdravení.
@@ -187,6 +207,7 @@ Kámen **harmonizuje vztahy**, přináší mír do rodiny a podporuje odpuštěn
   {
     slug: "tygri-oko",
     title: "Tygří oko",
+    image: "/images/stones/tygriooko.png",
     image: "/images/stones/tygriooko.png",
     metaTitle: "Tygří oko - Kámen síly a ochrany | Amulets.cz",
     metaDescription: "Tygří oko je mocný ochranný kámen přinášející sílu, odvahu a jasnost mysli. Podporuje sebevědomí a rozhodnost.",
@@ -200,6 +221,7 @@ Kámen **podporuje odvahu**, pomáhá překonávat strach a posiluje vůli. Je n
     slug: "kristal",
     title: "Křišťál",
     image: "/images/stones/kristal.png",
+    image: "/images/stones/kristal.png",
     metaTitle: "Křišťál - Univerzální léčivý kámen | Amulets.cz",
     metaDescription: "Křišťál je univerzální léčivý kámen zesilující energii. Podporuje jasnost, očistu a duchovní růst.",
     content: `**Křišťál** (čirý křemen) je **univerzální léčivý kámen** a zesilova energií. Jeho čirá průhlednost symbolizuje čistotu a jasnost.
@@ -211,6 +233,7 @@ Kámen **podporuje jasnost mysli**, pomáhá při meditaci a duchovní práci. J
   {
     slug: "obsidian",
     title: "Obsidián",
+    image: "/images/stones/obsidian.png",
     image: "/images/stones/obsidian.png",
     metaTitle: "Obsidián - Kámen ochrany a pravdy | Amulets.cz",
     metaDescription: "Obsidián je mocný ochranný kámen odhalující pravdu. Pomáhá při stínové práci a duchovní transformaci.",
@@ -224,6 +247,7 @@ Kámen **podporuje transformaci**, pomáhá při uvolňování starých vzorců 
     slug: "caroit",
     title: "Čaroit",
     image: "/images/stones/caroit.png",
+    image: "/images/stones/caroit.png",
     metaTitle: "Čaroit - Kámen transformace a intuice | Amulets.cz",
     metaDescription: "Čaroit je vzácný kámen duchovní transformace. Podporuje intuici, odvahu a překonání strachu.",
     content: `**Čaroit** je vzácný kámen **duchovní transformace a intuice**. Jeho fialová barva s charakteristickými víry připomíná proudící energii transformace.
@@ -235,6 +259,7 @@ Kámen **harmonizuje energii**, pomáhá při meditaci a podporuje duchovní rů
   {
     slug: "turmalin",
     title: "Turmalín",
+    image: "/images/stones/turmalin.png",
     image: "/images/stones/turmalin.png",
     metaTitle: "Turmalín - Kámen ochrany a uzemnění | Amulets.cz",
     metaDescription: "Turmalín je mocný ochranný kámen s uzemnující energií. Chrání před elektrosmo gem a negativními vlivy.",
@@ -250,10 +275,11 @@ export const purposesData = [
   {
     slug: "finance-a-hojnost",
     title: "Pro podporu financí a hojnosti",
-    image: "/images/purposes/finance-hojnost.png",
     metaTitle: "Amulety pro finance a hojnost | Amulets.cz",
     metaDescription: "Objevte amulety podporující finanční prosperitu a hojnost. Symboly a kameny pro přitažení bohatství a úspěchu.",
-    content: `**Doporučené symboly:**
+    content: `**Amulety pro finance a hojnost** pomáhají otevřít energii prosperity a přitáhnout materiální blahobyt do vašeho života.
+
+**Doporučené symboly:**
 - **Čínský drak** - symbol moci a prosperity
 - **Strom života** - růst a regenerace
 - **Jin Jang** - rovnováha v materiálním světě
@@ -268,10 +294,11 @@ Tyto amulety **podporují úspěch v podnikání**, pomáhají při manifestaci 
   {
     slug: "vztahy-a-laska",
     title: "Pro podporu vztahů a lásky",
-    image: "/images/purposes/vztahy-laska.png",
     metaTitle: "Amulety pro lásku a vztahy | Amulets.cz",
     metaDescription: "Amulety podporující lásku, vztahy a harmonii. Symboly a kameny pro léčení srdce a přitažení lásky.",
-       content: `**Doporučené symboly:****
+    content: `**Amulety pro vztahy a lásku** pomáhají otevřít srdce, léčit emocionální rány a přitáhnout harmonické vztahy.
+
+**Doporučené symboly:**
 - **Ruka Fatimy** - ochrana a požehnání
 - **Květ života** - harmonie a propojení
 - **Buddha** - soucit a přijetí
@@ -286,10 +313,11 @@ Tyto amulety **podporují sebelásku**, pomáhají léčit vztahy a otevírají 
   {
     slug: "vnitrni-hlas-a-intuice",
     title: "Pro podporu vnitřního hlasu a intuice",
-    image: "/images/purposes/intuice.png",
     metaTitle: "Amulety pro intuici a vnitřní vedení | Amulets.cz",
     metaDescription: "Amulety pro rozvoj intuice a propojení s vnitřním hlasem. Symboly a kameny pro duchovní vedení.",
-    content: `**Doporučené symboly:**
+    content: `**Amulety pro vnitřní hlas a intuici** pomáhají otevřít třetí oko, posílit intuici a propojit se s duchovním vedením.
+
+**Doporučené symboly:**
 - **Horovo oko** - duchovní vidění
 - **Metatronova krychle** - propojení s vyššími dimenzemi
 - **Choku Rei** - zesilování energie
@@ -304,10 +332,11 @@ Tyto amulety **podporují meditaci**, pomáhají při duchovní práci a posiluj
   {
     slug: "transformace-v-zivote",
     title: "Pro transformaci v životě",
-    image: "/images/purposes/transformace.png",
     metaTitle: "Amulety pro životní transformaci | Amulets.cz",
     metaDescription: "Amulety podporující životní změny a transformaci. Symboly a kameny pro odvahu a duchovní růst.",
-    content: `**Doporučené symboly:**
+    content: `**Amulety pro transformaci** pomáhají při velkých životních změnách, podporují odvahu a duchovní růst.
+
+**Doporučené symboly:**
 - **Strom života** - růst a regenerace
 - **Hvězda sjednocení** - harmonie v změně
 - **Davidova hvězda** - rovnováha
