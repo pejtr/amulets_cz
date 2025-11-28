@@ -8,6 +8,7 @@ interface ProductCardProps {
   video?: string;
   available?: boolean;
   url?: string;
+  description?: string;
 }
 
 export default function ProductCard({
@@ -17,6 +18,7 @@ export default function ProductCard({
   video,
   available = true,
   url,
+  description,
 }: ProductCardProps) {
   const handleClick = () => {
     if (url) {
@@ -71,6 +73,12 @@ export default function ProductCard({
         <h3 className="font-semibold text-foreground text-sm line-clamp-2 min-h-[2.5rem]">
           {name}
         </h3>
+
+        {description && (
+          <p className="text-xs text-muted-foreground line-clamp-2">
+            {description}
+          </p>
+        )}
 
         <div className="flex items-center justify-between">
           <span className="text-lg font-bold text-primary">{price}</span>

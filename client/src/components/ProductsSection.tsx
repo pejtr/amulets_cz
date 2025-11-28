@@ -9,6 +9,7 @@ const pyramids = [
     available: true,
     image: "/products/pyramida-hojnost.jpg",
     url: "https://www.ohorai.cz/pyramida-ohorai-hojnost/",
+    description: "Ručně vyráběná pyramida s drahými krystaly a vzácnou bylinou pro přitahování hojnosti",
   },
   {
     name: "Pyramida OHORAI ~ Jednota",
@@ -16,6 +17,7 @@ const pyramids = [
     available: true,
     image: "/products/pyramida-jednota.jpg",
     url: "https://www.ohorai.cz/pyramida-ohorai-odevzdani/",
+    description: "Pyramida podporující harmonii a propojení s vyššími vibracemi",
   },
   {
     name: "Pyramida OHORAI ~ Kristovo světlo",
@@ -23,6 +25,7 @@ const pyramids = [
     available: true,
     image: "/products/pyramida-kristovo-svetlo.jpg",
     url: "https://www.ohorai.cz/pyramida-ohorai-pevnost-vule/",
+    description: "Pyramida nesoucí energii Kristova světla pro duchovní růst",
   },
   {
     name: "Pyramida OHORAI ~ Kundaliní",
@@ -30,6 +33,7 @@ const pyramids = [
     available: true,
     image: "/products/pyramida-kundalini.jpg",
     url: "https://www.ohorai.cz/pyramida-ohorai-kundalini/",
+    description: "Pyramida pro probuzení a harmonizaci kundaliní energie",
   },
 ];
 
@@ -40,13 +44,15 @@ const essences = [
     available: true,
     image: "/products/esence-modry-lotos.jpg",
     url: "https://www.ohorai.cz/esence-ohorai-modry-lotos/",
+    description: "Ikonická, vámi oblíbená esence Ohorai snoubící vůni omamného modrého leknínu, růže, gerania a lípy...",
   },
   {
-    name: "Královská Esence OhoRÁJ modrý lotos",
+    name: "Esence ~ OhoRÁJ lotos",
     price: "2 200 Kč",
     available: true,
     video: "/esence-ohoraj-video.mp4",
     url: "https://www.ohorai.cz/esence-ohoraj/",
+    description: "Silná esence snoubící Bulharskou růži, lípu, jasmín. Esence, která tvoří dokonalou kombinaci síly a jemnosti...",
   },
   {
     name: "Esence ~ MUŽ 10ml",
@@ -54,13 +60,15 @@ const essences = [
     available: true,
     image: "/products/esence-muz.jpg",
     url: "https://www.ohorai.cz/esence-muz/",
+    description: "Velmi silná esence snoubící vůně dřevin - santalu, ylang ylang, borovice až po velmi silnou esenci vetiver...",
   },
   {
-    name: "Esence ~ Zlatá brána 10ml",
-    price: "990 Kč",
+    name: "Esence ~ Žena - mateřská 10ml",
+    price: "890 Kč",
     available: true,
     image: "/products/esence-zlata-brana.jpg",
-    url: "https://www.ohorai.cz/esence-zlata-brana/",
+    url: "https://www.ohorai.cz/esence-zena-materska/",
+    description: "Jemná esence snoubící růži a jasmín podporující naladění na nejjemnější vibrace něžnosti, lehkosti, přijetí...",
   },
 ];
 
