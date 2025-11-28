@@ -36,7 +36,7 @@ const purposes = [
 
 export default function GuideSection() {
   return (
-    <section id="pruvodce" className="w-full bg-accent/20 py-16">
+    <section id="pruvodce-amulety" className="w-full bg-accent/20 py-16">
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
