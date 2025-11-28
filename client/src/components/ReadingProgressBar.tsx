@@ -41,10 +41,29 @@ export default function ReadingProgressBar() {
     };
   }, []);
 
+  // Interpolace barvy podle progress (0-100)
+  const getColorForProgress = (progress: number) => {
+    // Růžová #E85A9F (232, 90, 159) → Fialová #9B59B6 (155, 89, 182)
+    const startColor = { r: 232, g: 90, b: 159 };
+    const endColor = { r: 155, g: 89, b: 182 };
+    
+    const ratio = progress / 100;
+    
+    const r = Math.round(startColor.r + (endColor.r - startColor.r) * ratio);
+    const g = Math.round(startColor.g + (endColor.g - startColor.g) * ratio);
+    const b = Math.round(startColor.b + (endColor.b - startColor.b) * ratio);
+    
+    return `rgb(${r}, ${g}, ${b})`;
+  };
+
   // Barvy podle zařízení
-  const backgroundColor = isMobile ? '#E85A9F' : '#FFFFFF';
+  const backgroundColor = isMobile ? getColorForProgress(progress) : '#FFFFFF';
+  
   const boxShadowColor = isMobile 
-    ? '0 0 20px rgba(232, 90, 159, 1), 0 0 40px rgba(232, 90, 159, 0.8), 0 0 60px rgba(232, 90, 159, 0.5), 0 2px 10px rgba(232, 90, 159, 0.7)'
+    ? (() => {
+        const color = getColorForProgress(progress);
+        return `0 0 20px ${color}, 0 0 40px ${color}CC, 0 0 60px ${color}80, 0 2px 10px ${color}B3`;
+      })()
     : '0 0 15px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.6), 0 0 35px rgba(255, 255, 255, 0.3)';
 
   return (
