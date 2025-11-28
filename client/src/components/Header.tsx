@@ -20,7 +20,7 @@ const navItems = [
   { label: "O mě", hasDropdown: false, url: "https://www.ohorai.cz/o-projektu/" },
   { label: "Drahé kameny", hasDropdown: false, url: "https://www.ohorai.cz/" },
   { label: "Šperky", hasDropdown: false, url: "https://www.ohorai.cz/" },
-  { label: "Magazín", hasDropdown: false, url: "https://www.ohorai.cz/" },
+  { label: "Magazín", hasDropdown: false, url: "/#magazin", isInternal: true },
   { label: "Kontakt", hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },
 ];
 
@@ -131,11 +131,12 @@ export default function Header() {
                   onClick={(e) => {
                     if ((item as any).isInternal) {
                       e.preventDefault();
-                      const element = document.getElementById('pruvodce');
+                      const targetId = item.url.replace('/#', '');
+                      const element = document.getElementById(targetId);
                       if (element) {
                         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       } else {
-                        window.location.href = '/#pruvodce';
+                        window.location.href = item.url;
                       }
                     }
                   }}
@@ -166,11 +167,12 @@ export default function Header() {
                         e.preventDefault();
                         setMobileMenuOpen(false);
                         setTimeout(() => {
-                          const element = document.getElementById('pruvodce');
+                          const targetId = item.url.replace('/#', '');
+                          const element = document.getElementById(targetId);
                           if (element) {
                             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                           } else {
-                            window.location.href = '/#pruvodce';
+                            window.location.href = item.url;
                           }
                         }, 100);
                       }
