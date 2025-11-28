@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { ShareButtons } from "@/components/ShareButtons";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import RelatedArticles from "@/components/RelatedArticles";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { symbolsData, stonesData, purposesData } from "@/data/guideContent";
 import { getMixedRelatedArticles } from "@/lib/relatedArticles";
 import { useEffect, useState } from "react";
@@ -116,6 +117,7 @@ export default function GuideDetail() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ReadingProgressBar />
       <Header />
       <main className="flex-1">
         <article className="container py-8 md:py-16">

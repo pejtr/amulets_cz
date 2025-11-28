@@ -5,6 +5,7 @@ import GuideSection from "@/components/GuideSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { ShareButtons } from "@/components/ShareButtons";
 import RelatedArticles from "@/components/RelatedArticles";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { magazineArticles } from "@/data/magazineContent";
 import { getMixedRelatedArticles } from "@/lib/relatedArticles";
 import { useEffect } from "react";
@@ -75,6 +76,7 @@ export default function MagazineArticle() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ReadingProgressBar />
       <Header />
       <main className="flex-1">
         <article className="container py-8 md:py-16">
