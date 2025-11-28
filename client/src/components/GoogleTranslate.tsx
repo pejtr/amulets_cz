@@ -30,7 +30,34 @@ export default function GoogleTranslate() {
     script.async = true;
     document.body.appendChild(script);
 
+    // Přidání custom labelu "Select language" a úprava textu jazyků
+    const checkAndUpdateLabels = () => {
+      const selectElement = document.querySelector('.goog-te-menu-value span:first-child');
+      const languageSpan = document.querySelector('.goog-te-menu-value span:last-child');
+      
+      if (selectElement && !selectElement.textContent?.includes('Select language')) {
+        selectElement.textContent = 'Select language >';
+      }
+      
+      // Změna textu jazyků na anglické názvy
+      if (languageSpan) {
+        const text = languageSpan.textContent || '';
+        if (text.includes('čeština')) {
+          languageSpan.textContent = text.replace('čeština', 'Czech');
+        } else if (text.includes('angličtina')) {
+          languageSpan.textContent = text.replace('angličtina', 'English');
+        } else if (text.includes('italština')) {
+          languageSpan.textContent = text.replace('italština', 'Italian');
+        }
+      }
+    };
+
+    // Opakované volání pro zachycení změn
+    const interval = setInterval(checkAndUpdateLabels, 100);
+    setTimeout(() => clearInterval(interval), 5000);
+
     return () => {
+      clearInterval(interval);
       // Cleanup
       if (script.parentNode) {
         script.parentNode.removeChild(script);
@@ -69,7 +96,11 @@ export default function GoogleTranslate() {
           color: #2C3E50 !important;
         }
         .goog-te-menu-value span:first-child {
-          display: none !important;
+          display: inline !important;
+        }
+        .goog-te-menu-value span:first-child::after {
+          content: ' ' !important;
+          white-space: pre !important;
         }
         /* Skrytí "Powered by" */
         .goog-te-gadget-simple .goog-te-menu-value span:last-child {
@@ -88,6 +119,9 @@ export default function GoogleTranslate() {
         }
         .goog-te-menu2-item {
           padding: 8px 12px !important;
+        }
+        .goog-te-menu2-item div {
+          color: #2C3E50 !important;
         }
         /* Z-index pro dropdown */
         .goog-te-menu-frame {
