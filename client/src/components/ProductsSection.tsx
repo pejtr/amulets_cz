@@ -155,6 +155,14 @@ export default function ProductsSection() {
               <p className="text-muted-foreground max-w-3xl">
                 Ručně vyráběné vůně ze 100% esenciálních olejů nejvyšší kvality. Řada KORUNA s nejčistšími esencemi, krystaly a pravým 24k zlatem.
               </p>
+              <a 
+                href="https://www.ohorai.cz/aromaterapie/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#D4AF37] hover:underline font-semibold text-sm mt-2 inline-block"
+              >
+                Aromaterapie & esence - k čemu nám slouží?
+              </a>
             </div>
             <Button 
               variant="outline" 
