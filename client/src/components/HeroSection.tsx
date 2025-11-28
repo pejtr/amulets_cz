@@ -18,7 +18,12 @@ export default function HeroSection() {
               {/* Text content - LEFT aligned */}
               <div className="relative space-y-4 md:space-y-6 px-4 py-6 md:py-8 lg:py-16 mt-5 md:mt-0">
                 <div className="space-y-3 md:space-y-4">
-                  <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative">
+                  <h1 
+                    className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative"
+                    style={{
+                      textShadow: '0 0 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5)'
+                    }}
+                  >
                     Otevřete své srdce zázrakům
                   </h1>
                   <p className="text-base md:text-lg lg:text-xl text-[#2C3E50]/80 animate-fade-in-up animation-delay-200">
