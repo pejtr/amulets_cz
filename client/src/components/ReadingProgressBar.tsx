@@ -32,10 +32,13 @@ export default function ReadingProgressBar() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+    <div className="fixed top-0 left-0 w-full h-1.5 bg-transparent z-[100]">
       <div
-        className="h-full bg-gradient-to-r from-[#D4AF37] to-[#E85A9F] transition-all duration-150 ease-out"
-        style={{ width: `${progress}%` }}
+        className="h-full bg-[#D4AF37] transition-all duration-150 ease-out shadow-[0_0_10px_rgba(212,175,55,0.8)]"
+        style={{ 
+          width: `${progress}%`,
+          boxShadow: '0 0 15px rgba(212, 175, 55, 0.9), 0 0 25px rgba(212, 175, 55, 0.6)'
+        }}
       />
     </div>
   );
