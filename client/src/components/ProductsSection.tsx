@@ -118,14 +118,17 @@ export default function ProductsSection() {
               <p className="text-muted-foreground">
                 Ručně vyráběné pyramidy s drahými krystaly a vzácnou, silnou bylinou modrý lotos
               </p>
-              <a 
-                href="https://www.ohorai.cz/mysterium-modreho-lotosu/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-[#D4AF37] hover:underline font-semibold text-sm mt-2 inline-block"
-              >
-                Mystérium modrého lotosu
-              </a>
+              <div className="text-sm mt-2">
+                <span className="text-muted-foreground">Přečtěte si: </span>
+                <a 
+                  href="https://www.ohorai.cz/mysterium-modreho-lotosu/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[#D4AF37] hover:underline font-semibold"
+                >
+                  Mystérium modrého lotosu
+                </a>
+              </div>
             </div>
             <Button 
               variant="outline" 
@@ -154,14 +157,17 @@ export default function ProductsSection() {
               <p className="text-muted-foreground max-w-3xl">
                 Ručně vyráběné vůně ze 100% esenciálních olejů nejvyšší kvality. Řada KORUNA s nejčistšími esencemi, krystaly a pravým 24k zlatem.
               </p>
-              <a 
-                href="https://www.ohorai.cz/aromaterapie/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-[#D4AF37] hover:underline font-semibold text-sm mt-2 inline-block"
-              >
-                Aromaterapie & esence - k čemu nám slouží?
-              </a>
+              <div className="text-sm mt-2">
+                <span className="text-muted-foreground">Přečtěte si: </span>
+                <a 
+                  href="https://www.ohorai.cz/aromaterapie/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[#D4AF37] hover:underline font-semibold"
+                >
+                  Aromaterapie & esence - k čemu nám slouží?
+                </a>
+              </div>
             </div>
             <Button 
               variant="outline" 
