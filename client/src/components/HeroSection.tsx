@@ -16,27 +16,30 @@ export default function HeroSection() {
           <div className="container">
             <div className="max-w-xl">
               {/* Text content - LEFT aligned */}
-              <div className="relative space-y-6 px-4 py-8 lg:py-16">
-                <div className="space-y-4">
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative">
-                    Otevřete své srdce zázrakům
-                  </h1>
-                  <p className="text-lg md:text-xl text-[#2C3E50]/80 animate-fade-in-up animation-delay-200">
-                    ...začněte s tím právě teď
-                  </p>
+              <div className="relative space-y-4 md:space-y-6 px-4 py-6 md:py-8 lg:py-16">
+                <div className="space-y-3 md:space-y-4">
+                  {/* Add semi-transparent background for mobile readability */}
+                  <div className="bg-white/90 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-3 md:p-0 rounded-lg md:rounded-none">
+                    <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative">
+                      Otevřete své srdce zázrakům
+                    </h1>
+                    <p className="text-base md:text-lg lg:text-xl text-[#2C3E50]/80 animate-fade-in-up animation-delay-200 mt-2">
+                      ...začněte s tím právě teď
+                    </p>
+                  </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 animate-fade-in-up animation-delay-400">
+                <div className="flex flex-col gap-3 animate-fade-in-up animation-delay-400 max-w-sm md:max-w-none">
                   <Button
                     size="lg"
-                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-8 py-6 text-base"
+                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-8 py-6 text-base w-full md:w-auto"
                   >
                     ZÍSKAT VÍCE
                   </Button>
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37] hover:border-[#D4AF37] font-semibold px-6 py-6 text-base flex items-center gap-2 transition-all duration-300 group"
+                    className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37] hover:border-[#D4AF37] font-semibold px-6 py-6 text-base flex items-center justify-center gap-2 transition-all duration-300 group w-full md:w-auto"
                     onClick={() => window.open('https://www.ohorai.cz', '_blank')}
                   >
                     <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
@@ -45,16 +48,16 @@ export default function HeroSection() {
                 </div>
 
                 {/* Signature - below buttons with reduced padding */}
-                <div className="relative mt-4 animate-fade-in-up animation-delay-600 inline-block">
+                <div className="relative mt-3 md:mt-4 animate-fade-in-up animation-delay-600 inline-block">
                   {/* White fog background with minimal padding */}
                   <div className="absolute -inset-1 bg-white/80 backdrop-blur-sm rounded -z-10"></div>
                   
                   <div className="text-sm relative z-10 px-2 py-1">
-                    <p className="font-bold text-xl" style={{ 
+                    <p className="font-bold text-lg md:text-xl" style={{ 
                       color: '#D4AF37',
                       textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6)'
                     }}>Natálie Ohorai</p>
-                    <p className="italic text-[#2C3E50] font-semibold" style={{
+                    <p className="italic text-[#2C3E50] font-semibold text-sm md:text-base" style={{
                       textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)'
                     }}>Zakladatelka Amulets.cz</p>
                   </div>
