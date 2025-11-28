@@ -1,6 +1,7 @@
 import { useParams, Link, useLocation } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GuideSection from "@/components/GuideSection";
 import { symbolsData, stonesData, purposesData } from "@/data/guideContent";
 import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
@@ -229,6 +230,7 @@ export default function GuideDetail() {
           </div>
         </article>
       </main>
+      <GuideSection />
       <Footer />
     </div>
   );

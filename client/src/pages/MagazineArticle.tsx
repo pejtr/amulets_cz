@@ -1,6 +1,7 @@
 import { useParams, Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GuideSection from "@/components/GuideSection";
 import { magazineArticles } from "@/data/magazineContent";
 import { useEffect } from "react";
 import { ArrowLeft, Calendar } from "lucide-react";
@@ -193,6 +194,7 @@ export default function MagazineArticle() {
           </div>
         </article>
       </main>
+      <GuideSection />
       <Footer />
     </div>
   );
