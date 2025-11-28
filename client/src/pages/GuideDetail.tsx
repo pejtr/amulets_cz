@@ -174,7 +174,7 @@ export default function GuideDetail() {
                       return (
                         <div key={index} className="my-6">
                           {heading && !heading.startsWith('-') && (
-                            <h3 className="text-lg font-semibold text-foreground mb-3">
+                            <h3 className="text-lg font-semibold text-foreground mb-3 mt-8">
                               {heading.replace(/\*\*/g, '')}
                             </h3>
                           )}
