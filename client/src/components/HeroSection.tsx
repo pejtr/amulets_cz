@@ -16,7 +16,7 @@ export default function HeroSection() {
           <div className="container">
             <div className="max-w-xl">
               {/* Text content - LEFT aligned */}
-              <div className="relative space-y-4 md:space-y-6 px-4 py-6 md:py-8 lg:py-16">
+              <div className="relative space-y-4 md:space-y-6 px-4 py-6 md:py-8 lg:py-16 mt-5 md:mt-0">
                 <div className="space-y-3 md:space-y-4">
                   <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative">
                     Otevřete své srdce zázrakům
