@@ -4,10 +4,12 @@ import USPSection from "@/components/USPSection";
 import ProductsSection from "@/components/ProductsSection";
 import GuideSection from "@/components/GuideSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 import { setOpenGraphTags } from "@/lib/seo";
-import { setSchemaMarkup, createWebsiteSchema, createOrganizationSchema } from "@/lib/schema";
+import { setSchemaMarkup, createWebsiteSchema, createOrganizationSchema, createFAQSchema } from "@/lib/schema";
+import { faqData } from "@/data/faqData";
 
 export default function Home() {
   useEffect(() => {
@@ -24,6 +26,7 @@ export default function Home() {
     setSchemaMarkup([
       createWebsiteSchema(),
       createOrganizationSchema(),
+      createFAQSchema(faqData),
     ]);
   }, []);
 
@@ -36,6 +39,7 @@ export default function Home() {
         <ProductsSection />
         <TestimonialsSection />
         <GuideSection />
+        <FAQSection />
       </main>
       <Footer />
     </div>
