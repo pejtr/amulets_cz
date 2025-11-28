@@ -37,8 +37,8 @@ export default function ReadingProgressBar() {
         className="h-full transition-all duration-150 ease-out"
         style={{ 
           width: `${progress}%`,
-          background: 'linear-gradient(90deg, #FFFFFF 0%, #FFE5B4 30%, #FFD700 50%, #FFE5B4 70%, #FFFFFF 100%)',
-          boxShadow: '0 0 15px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 229, 180, 0.7), 0 0 35px rgba(255, 215, 0, 0.4), 0 1px 5px rgba(255, 255, 255, 0.6)'
+          background: '#FFFFFF',
+          boxShadow: '0 0 15px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.6), 0 0 35px rgba(255, 255, 255, 0.3)'
         }}
       />
     </div>
