@@ -254,11 +254,13 @@ export const purposesData = [
     metaTitle: "Amulety pro finance a hojnost | Amulets.cz",
     metaDescription: "Objevte amulety podporující finanční prosperitu a hojnost. Symboly a kameny pro přitažení bohatství a úspěchu.",
     content: `**Doporučené symboly:**
+
 - **Čínský drak** - symbol moci a prosperity
 - **Strom života** - růst a regenerace
 - **Jin Jang** - rovnováha v materiálním světě
 
 **Doporučené kameny:**
+
 - **Tygří oko** - úspěch a manifestace
 - **Křišťál** - zesilování záměrů
 - **Lapis Lazuli** - moudrost v podnikání
@@ -271,12 +273,14 @@ Tyto amulety **podporují úspěch v podnikání**, pomáhají při manifestaci 
     image: "/images/purposes/vztahy-laska.png",
     metaTitle: "Amulety pro lásku a vztahy | Amulets.cz",
     metaDescription: "Amulety podporující lásku, vztahy a harmonii. Symboly a kameny pro léčení srdce a přitažení lásky.",
-       content: `**Doporučené symboly:****
+       content: `**Doporučené symboly:**
+
 - **Ruka Fatimy** - ochrana a požehnání
 - **Květ života** - harmonie a propojení
 - **Buddha** - soucit a přijetí
 
 **Doporučené kameny:**
+
 - **Růženín** - bezpodmínečná láska
 - **Ametyst** - duchovní propojení
 - **Křišťál** - čistota záměrů
@@ -290,11 +294,13 @@ Tyto amulety **podporují sebelásku**, pomáhají léčit vztahy a otevírají 
     metaTitle: "Amulety pro intuici a vnitřní vedení | Amulets.cz",
     metaDescription: "Amulety pro rozvoj intuice a propojení s vnitřním hlasem. Symboly a kameny pro duchovní vedení.",
     content: `**Doporučené symboly:**
+
 - **Horovo oko** - duchovní vidění
 - **Metatronova krychle** - propojení s vyššími dimenzemi
 - **Choku Rei** - zesilování energie
 
 **Doporučené kameny:**
+
 - **Lapis Lazuli** - otevření třetího oka
 - **Ametyst** - duchovní probuzení
 - **Čaroit** - intuice a vedení
@@ -308,11 +314,13 @@ Tyto amulety **podporují meditaci**, pomáhají při duchovní práci a posiluj
     metaTitle: "Amulety pro životní transformaci | Amulets.cz",
     metaDescription: "Amulety podporující životní změny a transformaci. Symboly a kameny pro odvahu a duchovní růst.",
     content: `**Doporučené symboly:**
+
 - **Strom života** - růst a regenerace
 - **Hvězda sjednocení** - harmonie v změně
 - **Davidova hvězda** - rovnováha
 
 **Doporučené kameny:**
+
 - **Obsidián** - stínová práce a transformace
 - **Čaroit** - odvaha při změnách
 - **Turmalín** - ochrana během transformace
