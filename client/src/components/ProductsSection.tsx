@@ -127,6 +127,14 @@ export default function ProductsSection() {
                   modrý lotos
                 </a>
               </p>
+              <a 
+                href="https://www.ohorai.cz/mysterium-modreho-lotosu/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#D4AF37] hover:underline font-semibold text-sm mt-2 inline-block"
+              >
+                Mystérium modrého lotosu
+              </a>
             </div>
             <Button 
               variant="outline" 
