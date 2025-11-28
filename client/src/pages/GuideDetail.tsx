@@ -5,7 +5,9 @@ import GuideSection from "@/components/GuideSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { ShareButtons } from "@/components/ShareButtons";
 import { ImageLightbox } from "@/components/ImageLightbox";
+import RelatedArticles from "@/components/RelatedArticles";
 import { symbolsData, stonesData, purposesData } from "@/data/guideContent";
+import { getMixedRelatedArticles } from "@/lib/relatedArticles";
 import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
@@ -294,6 +296,7 @@ export default function GuideDetail() {
           </div>
         </article>
       </main>
+      <RelatedArticles articles={getMixedRelatedArticles(params.slug || '', 'guide', 3)} />
       <GuideSection />
       <Footer />
 

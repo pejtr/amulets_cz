@@ -4,7 +4,9 @@ import Footer from "@/components/Footer";
 import GuideSection from "@/components/GuideSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { ShareButtons } from "@/components/ShareButtons";
+import RelatedArticles from "@/components/RelatedArticles";
 import { magazineArticles } from "@/data/magazineContent";
+import { getMixedRelatedArticles } from "@/lib/relatedArticles";
 import { useEffect } from "react";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
@@ -210,6 +212,7 @@ export default function MagazineArticle() {
           </div>
         </article>
       </main>
+      <RelatedArticles articles={getMixedRelatedArticles(slug, 'magazine', 3)} />
       <GuideSection />
       <Footer />
     </div>
