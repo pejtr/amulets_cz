@@ -18,17 +18,23 @@ export default function HeroSection() {
               {/* Text content - LEFT aligned */}
               <div className="relative space-y-4 md:space-y-6 px-4 py-6 md:py-8 lg:py-16 mt-5 md:mt-0">
                 <div className="space-y-3 md:space-y-4">
-                  <h1 
-                    className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative"
-                    style={{
-                      textShadow: '0 0 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5)'
-                    }}
-                  >
-                    Otevřete své<br />srdce zázrakům
-                  </h1>
-                  <p className="text-base md:text-lg lg:text-xl text-[#2C3E50]/80 animate-fade-in-up animation-delay-200">
-                    ...začněte s tím právě teď
-                  </p>
+                  {/* Semi-transparent background for better readability on mobile */}
+                  <div className="bg-white/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-4 md:p-0 rounded-lg md:rounded-none">
+                    <h1 
+                      className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative"
+                      style={{
+                        textShadow: '2px 2px 4px rgba(255, 255, 255, 1), -2px -2px 4px rgba(255, 255, 255, 1), 0 0 15px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.8)'
+                      }}
+                    >
+                      Otevřete své<br />srdce zázrakům
+                    </h1>
+                    <p className="text-base md:text-lg lg:text-xl text-[#2C3E50] font-semibold animate-fade-in-up animation-delay-200"
+                       style={{
+                         textShadow: '1px 1px 3px rgba(255, 255, 255, 1), -1px -1px 3px rgba(255, 255, 255, 1), 0 0 10px rgba(255, 255, 255, 0.9)'
+                       }}>
+                      ...začněte s tím právě teď
+                    </p>
+                  </div>
                 </div>
 
                 <div className="flex flex-row gap-2 animate-fade-in-up animation-delay-400">
