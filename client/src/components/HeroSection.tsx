@@ -12,11 +12,11 @@ export default function HeroSection() {
         />
 
         {/* Content overlay - positioned on the LEFT to avoid covering the person */}
-        <div className="absolute inset-0 flex items-center">
+        <div className="absolute inset-0 flex items-end md:items-center">
           <div className="container">
             <div className="max-w-xl">
               {/* Text content - LEFT aligned */}
-              <div className="relative space-y-4 md:space-y-6 px-4 py-6 md:py-8 lg:py-16 mt-5 md:mt-0">
+              <div className="relative space-y-4 md:space-y-6 px-4 py-6 md:py-8 lg:py-16 mb-8 md:mb-0 md:mt-0">
                 <div className="space-y-3 md:space-y-4">
                   {/* Semi-transparent background for better readability on mobile */}
                   <div className="bg-white/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-4 md:p-0 rounded-lg md:rounded-none">
