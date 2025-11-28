@@ -1,15 +1,22 @@
-import { useParams, Link } from "wouter";
+import { useParams, Link, useLocation } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { symbolsData, stonesData, purposesData } from "@/data/guideContent";
 import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
+import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
 
 export default function GuideDetail() {
   const params = useParams();
+  const [location] = useLocation();
   const slug = params.slug || "";
-  const type = params.type || "";
+  
+  // Detekce typu z URL path
+  let type = "";
+  if (location.startsWith("/symbol/")) type = "symbol";
+  else if (location.startsWith("/kamen/")) type = "kamen";
+  else if (location.startsWith("/ucel/")) type = "ucel";
 
   // Najdeme správný obsah podle typu a slugu
   let content = null;
@@ -51,6 +58,23 @@ export default function GuideDetail() {
         url: `https://amulets.cz/${type}/${slug}`,
         type: "article",
       });
+
+      // Schema.org markup
+      const breadcrumbs = createBreadcrumbSchema([
+        { name: "Domů", url: "https://amulets.cz/" },
+        { name: "Průvodce amulety", url: "https://amulets.cz/#pruvodce" },
+        { name: content.title, url: `https://amulets.cz/${type}/${slug}` },
+      ]);
+
+      const article = createArticleSchema({
+        title: content.metaTitle,
+        description: content.metaDescription,
+        url: `https://amulets.cz/${type}/${slug}`,
+        datePublished: "2025-11-28",
+        dateModified: "2025-11-28",
+      });
+
+      setSchemaMarkup([breadcrumbs, article]);
     }
   }, [content, type, slug]);
 

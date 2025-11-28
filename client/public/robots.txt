@@ -1,0 +1,10 @@
+# robots.txt for Amulets.cz
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://amulets.cz/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1

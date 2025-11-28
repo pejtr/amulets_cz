@@ -5,6 +5,7 @@ import { magazineArticles } from "@/data/magazineContent";
 import { useEffect } from "react";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
+import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
 
 export default function MagazineArticle() {
   const params = useParams();
@@ -32,6 +33,23 @@ export default function MagazineArticle() {
         url: `https://amulets.cz/magazin/${slug}`,
         type: "article",
       });
+
+      // Schema.org markup
+      const breadcrumbs = createBreadcrumbSchema([
+        { name: "Domů", url: "https://amulets.cz/" },
+        { name: "Magazín", url: "https://amulets.cz/#magazin" },
+        { name: article.title, url: `https://amulets.cz/magazin/${slug}` },
+      ]);
+
+      const articleSchema = createArticleSchema({
+        title: article.metaTitle,
+        description: article.metaDescription,
+        url: `https://amulets.cz/magazin/${slug}`,
+        datePublished: "2025-11-28",
+        dateModified: "2025-11-28",
+      });
+
+      setSchemaMarkup([breadcrumbs, articleSchema]);
     }
   }, [article, slug]);
 

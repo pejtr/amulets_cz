@@ -6,6 +6,7 @@ import GuideSection from "@/components/GuideSection";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 import { setOpenGraphTags } from "@/lib/seo";
+import { setSchemaMarkup, createWebsiteSchema, createOrganizationSchema } from "@/lib/schema";
 
 export default function Home() {
   useEffect(() => {
@@ -17,6 +18,12 @@ export default function Home() {
       url: "https://amulets.cz/",
       type: "website",
     });
+
+    // Schema.org markup
+    setSchemaMarkup([
+      createWebsiteSchema(),
+      createOrganizationSchema(),
+    ]);
   }, []);
 
   return (
