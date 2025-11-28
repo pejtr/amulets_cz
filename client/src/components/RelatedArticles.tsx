@@ -27,7 +27,7 @@ export default function RelatedArticles({ articles }: RelatedArticlesProps) {
           {articles.map((article, index) => (
             <Link
               key={index}
-              href={article.category === 'guide' ? `/pruvodce/${article.slug}` : `/magazin/${article.slug}`}
+              href={article.category === 'magazin' ? `/magazin/${article.slug}` : `/${article.category}/${article.slug}`}
               className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col"
             >
               <div className="relative h-48 overflow-hidden">

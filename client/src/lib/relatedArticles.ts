@@ -10,28 +10,28 @@ interface Article {
 }
 
 export function getRelatedGuideArticles(currentSlug: string, limit: number = 3): Article[] {
-  // Kombinujeme všechny průvodce články
+  // Kombinujeme všechny průvodce články s jejich správnou kategorií
   const allGuideArticles = [
     ...symbolsData.map(item => ({
       title: item.title,
       slug: item.slug,
       image: item.image,
       excerpt: item.metaDescription,
-      category: 'guide' as const,
+      category: 'symbol' as const,
     })),
     ...stonesData.map(item => ({
       title: item.title,
       slug: item.slug,
       image: item.image,
       excerpt: item.metaDescription,
-      category: 'guide' as const,
+      category: 'kamen' as const,
     })),
     ...purposesData.map(item => ({
       title: item.title,
       slug: item.slug,
       image: item.image,
       excerpt: item.metaDescription,
-      category: 'guide' as const,
+      category: 'ucel' as const,
     })),
   ];
 
@@ -53,7 +53,7 @@ export function getRelatedMagazineArticles(currentSlug: string, limit: number = 
       slug: article.slug,
       image: article.image || '/images/magazine-placeholder.jpg',
       excerpt: article.excerpt,
-      category: 'magazine' as const,
+      category: 'magazin' as const,
     }));
   
   // Náhodně vybereme články
