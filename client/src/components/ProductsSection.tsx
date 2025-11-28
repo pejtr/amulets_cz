@@ -2,6 +2,8 @@ import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
+import ProductQuickView from "@/components/ProductQuickView";
+import { useState } from "react";
 
 const pyramids = [
   {
@@ -106,6 +108,14 @@ const essences = [
 ];
 
 export default function ProductsSection() {
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
+
+  const handleQuickView = (product: any) => {
+    setSelectedProduct(product);
+    setQuickViewOpen(true);
+  };
+
   return (
     <div id="produkty" className="w-full bg-white py-16">
       <div className="container space-y-16">
@@ -141,7 +151,11 @@ export default function ProductsSection() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {pyramids.map((product, index) => (
-              <ProductCard key={index} {...product} />
+              <ProductCard 
+                key={index} 
+                {...product} 
+                onQuickView={() => handleQuickView(product)}
+              />
             ))}
           </div>
         </section>
@@ -178,11 +192,22 @@ export default function ProductsSection() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {essences.map((product, index) => (
-              <ProductCard key={index} {...product} />
+              <ProductCard 
+                key={index} 
+                {...product} 
+                onQuickView={() => handleQuickView(product)}
+              />
             ))}
           </div>
         </section>
       </div>
+
+      {/* Quick View Modal */}
+      <ProductQuickView
+        product={selectedProduct}
+        isOpen={quickViewOpen}
+        onClose={() => setQuickViewOpen(false)}
+      />
     </div>
   );
 }

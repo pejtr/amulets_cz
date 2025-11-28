@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Eye } from "lucide-react";
 
 interface ProductCardProps {
   name: string;
@@ -9,6 +9,7 @@ interface ProductCardProps {
   available?: boolean;
   url?: string;
   description?: string;
+  onQuickView?: () => void;
 }
 
 export default function ProductCard({
@@ -19,10 +20,18 @@ export default function ProductCard({
   available = true,
   url,
   description,
+  onQuickView,
 }: ProductCardProps) {
   const handleClick = () => {
     if (url) {
       window.open(url, '_blank');
+    }
+  };
+
+  const handleQuickViewClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onQuickView) {
+      onQuickView();
     }
   };
 
@@ -65,6 +74,16 @@ export default function ProductCard({
           <div className="absolute top-2 right-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded">
             Skladem
           </div>
+        )}
+        {/* Quick View Button */}
+        {onQuickView && (
+          <button
+            onClick={handleQuickViewClick}
+            className="absolute bottom-2 right-2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100"
+            aria-label="Rychlý náhled"
+          >
+            <Eye className="h-5 w-5 text-[#D4AF37]" />
+          </button>
         )}
       </div>
 
