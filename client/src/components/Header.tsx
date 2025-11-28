@@ -1,5 +1,6 @@
 import { APP_LOGO } from "@/const";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 import {
   Search,
   User,
@@ -11,15 +12,15 @@ import {
 import { useState } from "react";
 
 const navItems = [
-  { label: "Orgonitové pyramidy", hasDropdown: true },
-  { label: "Aromaterapie", hasDropdown: true },
-  { label: "Startovací balíčky", hasDropdown: false },
-  { label: "Domov", hasDropdown: false },
-  { label: "Drahé kameny", hasDropdown: false },
-  { label: "Šperky", hasDropdown: false },
-  { label: "🎁 Průvodce amulety", hasDropdown: false },
-  { label: "Magazín", hasDropdown: false },
-  { label: "Kontakt", hasDropdown: false },
+  { label: "Orgonitové pyramidy", hasDropdown: true, url: "https://www.ohorai.cz/autorske-tvorba/" },
+  { label: "Aromaterapie", hasDropdown: true, url: "https://www.ohorai.cz/esence/" },
+  { label: "Startovací balíčky", hasDropdown: false, url: "https://www.ohorai.cz/" },
+  { label: "Domov", hasDropdown: false, url: "https://www.ohorai.cz/" },
+  { label: "Drahé kameny", hasDropdown: false, url: "https://www.ohorai.cz/" },
+  { label: "Šperky", hasDropdown: false, url: "https://www.ohorai.cz/" },
+  { label: "🎁 Průvodce amulety", hasDropdown: false, url: "https://www.ohorai.cz/" },
+  { label: "Magazín", hasDropdown: false, url: "https://www.ohorai.cz/" },
+  { label: "Kontakt", hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },
 ];
 
 export default function Header() {
@@ -38,9 +39,9 @@ export default function Header() {
       <div className="container py-0">
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <img src={APP_LOGO} alt="Amulets" className="h-20 md:h-24 w-auto" />
-          </div>
+          <Link href="/" className="flex-shrink-0">
+            <img src={APP_LOGO} alt="Amulets" className="h-20 md:h-24 w-auto cursor-pointer" />
+          </Link>
 
           {/* Search bar - desktop */}
           <div className="hidden md:flex flex-1 max-w-xl">
@@ -113,13 +114,15 @@ export default function Header() {
           <ul className="flex items-center justify-start gap-1 py-1 text-sm">
             {navItems.map((item, index) => (
               <li key={index}>
-                <Button
-                  variant="ghost"
-                  className="text-foreground hover:text-primary hover:bg-transparent gap-1"
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 px-3 py-2 text-foreground hover:text-primary hover:bg-transparent rounded-md transition-colors"
                 >
                   {item.label}
                   {item.hasDropdown && <ChevronDown className="h-4 w-4" />}
-                </Button>
+                </a>
               </li>
             ))}
           </ul>
@@ -133,13 +136,15 @@ export default function Header() {
             <ul className="space-y-1">
               {navItems.map((item, index) => (
                 <li key={index}>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-between text-left text-base py-3"
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between w-full px-3 py-3 text-left text-base hover:bg-gray-100 rounded-md transition-colors"
                   >
                     {item.label}
                     {item.hasDropdown && <ChevronDown className="h-5 w-5" />}
-                  </Button>
+                  </a>
                 </li>
               ))}
             </ul>
