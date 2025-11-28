@@ -26,7 +26,7 @@ export default function HeroSection() {
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 animate-fade-in-up animation-delay-400">
+                <div className="flex flex-row gap-2 animate-fade-in-up animation-delay-400">
                   <Button
                     size="lg"
                     className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base whitespace-nowrap"
