@@ -79,6 +79,9 @@ export default function GuideDetail() {
         description: content.metaDescription,
         url: `https://amulets.cz/${type}/${slug}`,
         type: "article",
+        image: content.image ? `https://amulets.cz${content.image}` : "https://amulets.cz/og-image.jpg",
+        imageWidth: "1200",
+        imageHeight: "630",
       });
 
       // Schema.org markup

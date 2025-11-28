@@ -41,6 +41,9 @@ export default function MagazineArticle() {
         description: article.metaDescription,
         url: `https://amulets.cz/magazin/${slug}`,
         type: "article",
+        image: article.image ? `https://amulets.cz${article.image}` : "https://amulets.cz/og-image.jpg",
+        imageWidth: "1200",
+        imageHeight: "630",
       });
 
       // Schema.org markup

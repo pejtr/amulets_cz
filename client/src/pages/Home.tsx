@@ -19,9 +19,12 @@ export default function Home() {
     
     setOpenGraphTags({
       title: "Amulets.cz - Otevřete své srdce zázrakům",
-      description: "Ručně vyráběné orgonitové pyramidy s drahými krystaly a modrým lotosem. Aromaterapeutické esence ze 100% esenciálních olejů nejvyšší kvality.",
+      description: "Ručně vyráběné orgonitové pyramidy s drahými krystaly a modrým lotosem. Aromaterapeutické esence ze 100% esenciálních olejů nejvyšší kvality. Objevte sílu drahých kamenů a posvátné geometrie.",
       url: "https://amulets.cz/",
       type: "website",
+      image: "https://amulets.cz/og-image.jpg",
+      imageWidth: "1200",
+      imageHeight: "630",
     });
 
     // Schema.org markup
