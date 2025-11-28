@@ -4,7 +4,7 @@ export default function HeroSection() {
   return (
     <section className="relative w-full overflow-hidden bg-white">
       {/* Hero background image */}
-      <div className="relative w-full min-h-[500px] md:min-h-[600px]">
+      <div className="relative w-full min-h-[400px] md:min-h-[600px]">
         <img
           src="/hero-natalie-bg.jpg"
           alt="Natálie Ohorai - Zakladatelka Amulets.cz"
@@ -26,26 +26,26 @@ export default function HeroSection() {
                   </p>
                 </div>
 
-                <div className="flex flex-row gap-3 animate-fade-in-up animation-delay-400">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 animate-fade-in-up animation-delay-400">
                   <Button
                     size="lg"
-                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-8 py-6 text-base"
+                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base whitespace-nowrap"
                   >
                     ZÍSKAT VÍCE
                   </Button>
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37] hover:border-[#D4AF37] font-semibold px-6 py-6 text-base flex items-center justify-center gap-2 transition-all duration-300 group"
+                    className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37] hover:border-[#D4AF37] font-semibold px-4 sm:px-6 py-5 sm:py-6 text-sm sm:text-base flex items-center justify-center gap-2 transition-all duration-300 group whitespace-nowrap"
                     onClick={() => window.open('https://www.ohorai.cz', '_blank')}
                   >
                     <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
-                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-8 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
+                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-6 sm:h-8 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
                   </Button>
                 </div>
 
-                {/* Signature - below buttons with reduced padding */}
-                <div className="relative mt-3 md:mt-4 animate-fade-in-up animation-delay-600 inline-block">
+                {/* Signature - below buttons with minimal spacing */}
+                <div className="relative mt-3 md:mt-4 mb-0 animate-fade-in-up animation-delay-600 inline-block">
                   {/* White fog background with minimal padding */}
                   <div className="absolute -inset-1 bg-white/80 backdrop-blur-sm rounded -z-10"></div>
                   
