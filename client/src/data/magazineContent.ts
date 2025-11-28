@@ -5,6 +5,8 @@ export const magazineArticles = [
     metaTitle: "Mystérium modrého lotosu - Vzácná bylina | Amulets.cz",
     metaDescription: "Objevte tajemství modrého lotosu, vzácné byliny spojené se starověkým Egyptem. Duchovní význam a použití v orgonitových pyramidách.",
     excerpt: "Modrý lotos je vzácná a silná bylina spojená se starověkým Egyptem, která otevírá bránu k duchovnímu probuzení.",
+    image: "/images/magazine/modry-lotos.png",
+    externalUrl: "https://www.ohorai.cz/modry-lotos/",
     content: `**Modrý lotos** (Nymphaea caerulea) je vzácná vodní rostlina, která hrála klíčovou roli ve **starověké egyptské kultuře**. Byla považována za posvátnou bylinu spojenou s bohem slunce Ra a symbolizovala **znovuzrození a duchovní probuzení**.
 
 **Historie a symbolika**
@@ -56,6 +58,7 @@ Objevte **sílu modrého lotosu** v našich ručně vyráběných pyramidách a 
     metaTitle: "Aromaterapie a esenciální oleje - Použití a účinky | Amulets.cz",
     metaDescription: "Objevte sílu aromaterapie a esenciálních olejů. Jak používat esence pro zdraví, relaxaci a duchovní růst.",
     excerpt: "Aromaterapie je starobylá metoda léčení pomocí esenciálních olejů, která harmonizuje tělo, mysl i duši.",
+    image: "/images/magazine/aromaterapie.png",
     content: `**Aromaterapie** je starobylá metoda **holistického léčení**, která využívá sílu esenciálních olejů k harmonizaci těla, mysli a duše. Esenciální oleje jsou vysoce koncentrované látky získané z rostlin, které obsahují jejich **léčivou esenci**.
 
 **Historie aromaterapie**

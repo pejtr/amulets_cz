@@ -5,7 +5,7 @@ const categories = [
     icon: Flower2,
     title: "Mysterium modrého lotosu",
     description: "Autorská tvorba s modrým lotosem",
-    url: "https://www.ohorai.cz/",
+    url: "https://www.ohorai.cz/modry-lotos/",
   },
   {
     icon: Music,

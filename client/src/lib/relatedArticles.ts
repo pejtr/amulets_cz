@@ -51,7 +51,7 @@ export function getRelatedMagazineArticles(currentSlug: string, limit: number = 
     .map(article => ({
       title: article.title,
       slug: article.slug,
-      image: '/images/magazine-placeholder.jpg', // Placeholder - magazineArticles nemá image property
+      image: article.image || '/images/magazine-placeholder.jpg',
       excerpt: article.excerpt,
       category: 'magazine' as const,
     }));

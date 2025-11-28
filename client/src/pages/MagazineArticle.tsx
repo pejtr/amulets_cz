@@ -101,6 +101,20 @@ export default function MagazineArticle() {
                 {article.excerpt}
               </p>
 
+              {article.externalUrl && (
+                <div className="mt-6">
+                  <a
+                    href={article.externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#E85A9F] text-white font-medium rounded-md hover:bg-[#E85A9F]/90 transition-colors"
+                  >
+                    Zobrazit produkty
+                    <ArrowLeft className="h-4 w-4 rotate-180" />
+                  </a>
+                </div>
+              )}
+
               <div className="mt-6">
                 <ShareButtons 
                   url={`/magazin/${slug}`}

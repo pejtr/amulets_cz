@@ -8,6 +8,8 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import GuideDetail from "./pages/GuideDetail";
 import MagazineArticle from "./pages/MagazineArticle";
+import CookieConsent from "./components/CookieConsent";
+import BackToTop from "./components/BackToTop";
 
 function Router() {
   const [location] = useLocation();
@@ -46,6 +48,8 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Router />
+          <CookieConsent />
+          <BackToTop />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
