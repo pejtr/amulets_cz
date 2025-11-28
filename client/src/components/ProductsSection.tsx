@@ -152,9 +152,9 @@ export default function ProductsSection() {
               <h2 className="text-3xl font-bold text-foreground mb-2">
                 Aromaterapeutické esence
               </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-            100% čistá vůně přírody pro harmonii těla & ducha
-          </p>
+              <p className="text-muted-foreground max-w-3xl">
+                Ručně vyráběné vůně ze 100% esenciálních olejů nejvyšší kvality. Řada KORUNA s nejčistšími esencemi, krystaly a pravým 24k zlatem.
+              </p>
             </div>
             <Button 
               variant="outline" 
