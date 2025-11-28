@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GuideSection from "@/components/GuideSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { ShareButtons } from "@/components/ShareButtons";
 import { symbolsData, stonesData, purposesData } from "@/data/guideContent";
 import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
@@ -124,6 +125,12 @@ export default function GuideDetail() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
               {content.title}
             </h1>
+
+            <ShareButtons 
+              url={location}
+              title={content.title}
+              description={content.metaDescription}
+            />
 
             <div className="prose prose-lg max-w-none">
               {content.content.split('\n\n').map((paragraph, index) => {

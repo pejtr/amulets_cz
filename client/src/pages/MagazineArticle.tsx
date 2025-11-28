@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GuideSection from "@/components/GuideSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { ShareButtons } from "@/components/ShareButtons";
 import { magazineArticles } from "@/data/magazineContent";
 import { useEffect } from "react";
 import { ArrowLeft, Calendar } from "lucide-react";
@@ -92,9 +93,17 @@ export default function MagazineArticle() {
                 {article.title}
               </h1>
 
-              <p className="text-lg text-muted-foreground italic">
+               <p className="text-lg text-muted-foreground italic">
                 {article.excerpt}
               </p>
+
+              <div className="mt-6">
+                <ShareButtons 
+                  url={`/magazin/${slug}`}
+                  title={article.title}
+                  description={article.metaDescription}
+                />
+              </div>
             </div>
 
             <div className="prose prose-lg max-w-none">

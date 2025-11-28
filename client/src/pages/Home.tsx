@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import USPSection from "@/components/USPSection";
 import ProductsSection from "@/components/ProductsSection";
 import GuideSection from "@/components/GuideSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 import { setOpenGraphTags } from "@/lib/seo";
@@ -33,6 +34,7 @@ export default function Home() {
         <HeroSection />
         <USPSection />
         <ProductsSection />
+        <TestimonialsSection />
         <GuideSection />
       </main>
       <Footer />
