@@ -13,7 +13,7 @@ import { useState } from "react";
 import GoogleTranslate from "@/components/GoogleTranslate";
 
 const navItems = [
-  { label: "🎁 Průvodce amulety", hasDropdown: false, url: "https://www.ohorai.cz/" },
+  { label: "🎁 Průvodce amulety", hasDropdown: false, url: "/#pruvodce", isInternal: true },
   { label: "Orgonitové pyramidy", hasDropdown: true, url: "https://www.ohorai.cz/autorske-tvorba/" },
   { label: "Aromaterapie", hasDropdown: true, url: "https://www.ohorai.cz/esence/" },
   { label: "Startovací balíčky", hasDropdown: false, url: "https://www.ohorai.cz/" },
@@ -117,8 +117,19 @@ export default function Header() {
               <li key={index}>
                 <a
                   href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={(item as any).isInternal ? undefined : "_blank"}
+                  rel={(item as any).isInternal ? undefined : "noopener noreferrer"}
+                  onClick={(e) => {
+                    if ((item as any).isInternal) {
+                      e.preventDefault();
+                      const element = document.getElementById('pruvodce');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      } else {
+                        window.location.href = '/#pruvodce';
+                      }
+                    }
+                  }}
                   className="inline-flex items-center gap-1 px-3 py-2 text-foreground hover:text-primary hover:bg-transparent rounded-md transition-colors"
                 >
                   {item.label}
@@ -139,8 +150,22 @@ export default function Header() {
                 <li key={index}>
                   <a
                     href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={(item as any).isInternal ? undefined : "_blank"}
+                    rel={(item as any).isInternal ? undefined : "noopener noreferrer"}
+                    onClick={(e) => {
+                      if ((item as any).isInternal) {
+                        e.preventDefault();
+                        setMobileMenuOpen(false);
+                        setTimeout(() => {
+                          const element = document.getElementById('pruvodce');
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          } else {
+                            window.location.href = '/#pruvodce';
+                          }
+                        }, 100);
+                      }
+                    }}
                     className="flex items-center justify-between w-full px-3 py-3 text-left text-base hover:bg-gray-100 rounded-md transition-colors"
                   >
                     {item.label}
