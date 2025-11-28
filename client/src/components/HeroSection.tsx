@@ -16,19 +16,19 @@ export default function HeroSection() {
           <div className="container">
             <div className="max-w-xl">
               {/* Text content - LEFT aligned */}
-              <div className="relative space-y-4 md:space-y-6 px-4 py-6 md:py-8 lg:py-16 mb-8 md:mb-0 md:mt-0">
+              <div className="relative space-y-2 md:space-y-6 px-4 py-3 md:py-8 lg:py-16 mb-4 md:mb-0 md:mt-0">
                 <div className="space-y-3 md:space-y-4">
                   {/* Semi-transparent background for better readability on mobile */}
-                  <div className="bg-white/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-4 md:p-0 rounded-lg md:rounded-none">
+                  <div className="bg-white/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-3 md:p-0 rounded-lg md:rounded-none">
                     <h1 
-                      className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative"
+                      className="text-xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative"
                       style={{
                         textShadow: '2px 2px 4px rgba(255, 255, 255, 1), -2px -2px 4px rgba(255, 255, 255, 1), 0 0 15px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.8)'
                       }}
                     >
                       Otevřete své<br />srdce zázrakům
                     </h1>
-                    <p className="text-base md:text-lg lg:text-xl text-[#2C3E50] font-semibold animate-fade-in-up animation-delay-200"
+                    <p className="text-sm md:text-lg lg:text-xl text-[#2C3E50] font-semibold animate-fade-in-up animation-delay-200"
                        style={{
                          textShadow: '1px 1px 3px rgba(255, 255, 255, 1), -1px -1px 3px rgba(255, 255, 255, 1), 0 0 10px rgba(255, 255, 255, 0.9)'
                        }}>
@@ -37,10 +37,10 @@ export default function HeroSection() {
                   </div>
                 </div>
 
-                <div className="flex flex-row gap-2 animate-fade-in-up animation-delay-400">
+                <div className="flex flex-row gap-1.5 animate-fade-in-up animation-delay-400">
                   <Button
                     size="lg"
-                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base whitespace-nowrap"
+                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-4 sm:px-8 py-3 sm:py-6 text-xs sm:text-base whitespace-nowrap"
                     onClick={() => {
                       const produktySection = document.getElementById('produkty');
                       if (produktySection) {
@@ -53,21 +53,21 @@ export default function HeroSection() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37] hover:border-[#D4AF37] font-semibold px-4 sm:px-6 py-5 sm:py-6 text-sm sm:text-base flex items-center justify-center gap-2 transition-all duration-300 group whitespace-nowrap"
+                    className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37] hover:border-[#D4AF37] font-semibold px-3 sm:px-6 py-3 sm:py-6 text-xs sm:text-base flex items-center justify-center gap-1.5 transition-all duration-300 group whitespace-nowrap"
                     onClick={() => window.open('https://www.ohorai.cz', '_blank')}
                   >
                     <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
-                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-6 sm:h-8 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
+                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-5 sm:h-8 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
                   </Button>
                 </div>
 
                 {/* Signature - below buttons with minimal spacing */}
-                <div className="relative mt-6 md:mt-4 mb-0 animate-fade-in-up animation-delay-600 inline-block">
+                <div className="relative mt-2 md:mt-4 mb-0 animate-fade-in-up animation-delay-600 inline-block">
                   {/* White fog background with minimal padding */}
                   <div className="absolute -inset-1 bg-white/80 backdrop-blur-sm rounded -z-10"></div>
                   
-                  <div className="text-sm relative z-10 px-2 py-1">
-                    <p className="font-bold text-lg md:text-xl" style={{ 
+                  <div className="text-sm relative z-10 px-2 py-0.5">
+                    <p className="font-bold text-base md:text-xl" style={{ 
                       color: '#D4AF37',
                       textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6)'
                     }}>Natálie Ohorai</p>
