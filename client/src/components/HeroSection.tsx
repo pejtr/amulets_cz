@@ -73,7 +73,7 @@ export default function HeroSection() {
                     onClick={() => window.open('https://www.ohorai.cz', '_blank')}
                   >
                     <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
-                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-7 sm:h-8 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
+                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-10 sm:h-8 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
                   </Button>
                 </div>
               </div>
