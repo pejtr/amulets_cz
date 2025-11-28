@@ -12,13 +12,13 @@ import {
 import { useState } from "react";
 
 const navItems = [
+  { label: "🎁 Průvodce amulety", hasDropdown: false, url: "https://www.ohorai.cz/" },
   { label: "Orgonitové pyramidy", hasDropdown: true, url: "https://www.ohorai.cz/autorske-tvorba/" },
   { label: "Aromaterapie", hasDropdown: true, url: "https://www.ohorai.cz/esence/" },
   { label: "Startovací balíčky", hasDropdown: false, url: "https://www.ohorai.cz/" },
   { label: "O mě", hasDropdown: false, url: "https://www.ohorai.cz/o-projektu/" },
   { label: "Drahé kameny", hasDropdown: false, url: "https://www.ohorai.cz/" },
   { label: "Šperky", hasDropdown: false, url: "https://www.ohorai.cz/" },
-  { label: "🎁 Průvodce amulety", hasDropdown: false, url: "https://www.ohorai.cz/" },
   { label: "Magazín", hasDropdown: false, url: "https://www.ohorai.cz/" },
   { label: "Kontakt", hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },
 ];
