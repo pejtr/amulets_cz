@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { magazineArticles } from "@/data/magazineContent";
 import { useEffect } from "react";
 import { ArrowLeft, Calendar } from "lucide-react";
+import { setOpenGraphTags } from "@/lib/seo";
 
 export default function MagazineArticle() {
   const params = useParams();
@@ -23,8 +24,16 @@ export default function MagazineArticle() {
         document.head.appendChild(metaDesc);
       }
       metaDesc.setAttribute('content', article.metaDescription);
+
+      // Open Graph tags
+      setOpenGraphTags({
+        title: article.metaTitle,
+        description: article.metaDescription,
+        url: `https://amulets.cz/magazin/${slug}`,
+        type: "article",
+      });
     }
-  }, [article]);
+  }, [article, slug]);
 
   if (!article) {
     return (

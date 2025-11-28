@@ -4,8 +4,21 @@ import USPSection from "@/components/USPSection";
 import ProductsSection from "@/components/ProductsSection";
 import GuideSection from "@/components/GuideSection";
 import Footer from "@/components/Footer";
+import { useEffect } from "react";
+import { setOpenGraphTags } from "@/lib/seo";
 
 export default function Home() {
+  useEffect(() => {
+    document.title = "Amulets.cz - Otevřete své srdce zázrakům";
+    
+    setOpenGraphTags({
+      title: "Amulets.cz - Otevřete své srdce zázrakům",
+      description: "Ručně vyráběné orgonitové pyramidy s drahými krystaly a modrým lotosem. Aromaterapeutické esence ze 100% esenciálních olejů nejvyšší kvality.",
+      url: "https://amulets.cz/",
+      type: "website",
+    });
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />

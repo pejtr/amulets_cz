@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { symbolsData, stonesData, purposesData } from "@/data/guideContent";
 import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
+import { setOpenGraphTags } from "@/lib/seo";
 
 export default function GuideDetail() {
   const params = useParams();
@@ -42,8 +43,16 @@ export default function GuideDetail() {
         document.head.appendChild(metaDesc);
       }
       metaDesc.setAttribute('content', content.metaDescription);
+
+      // Open Graph tags
+      setOpenGraphTags({
+        title: content.metaTitle,
+        description: content.metaDescription,
+        url: `https://amulets.cz/${type}/${slug}`,
+        type: "article",
+      });
     }
-  }, [content]);
+  }, [content, type, slug]);
 
   if (!content) {
     return (
