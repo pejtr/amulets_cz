@@ -1,6 +1,7 @@
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
+import { Link } from "wouter";
 
 const pyramids = [
   {
@@ -120,14 +121,12 @@ export default function ProductsSection() {
               </p>
               <div className="text-sm mt-2">
                 <span className="text-muted-foreground">Přečtěte si: </span>
-                <a 
-                  href="https://www.ohorai.cz/mysterium-modreho-lotosu/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                <Link 
+                  href="/magazin/mysterium-modreho-lotosu"
                   className="text-[#D4AF37] hover:underline font-semibold"
                 >
                   Mystérium modrého lotosu
-                </a>
+                </Link>
               </div>
             </div>
             <Button 
@@ -159,14 +158,12 @@ export default function ProductsSection() {
               </p>
               <div className="text-sm mt-2">
                 <span className="text-muted-foreground">Přečtěte si: </span>
-                <a 
-                  href="https://www.ohorai.cz/aromaterapie/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                <Link 
+                  href="/magazin/aromaterapie-esence"
                   className="text-[#D4AF37] hover:underline font-semibold"
                 >
                   Aromaterapie & esence - k čemu nám slouží?
-                </a>
+                </Link>
               </div>
             </div>
             <Button 

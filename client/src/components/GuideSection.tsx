@@ -1,4 +1,5 @@
 import { Heart, Sparkles, Gem } from "lucide-react";
+import { Link } from "wouter";
 
 const guideCategories = [
   {
@@ -6,44 +7,44 @@ const guideCategories = [
     description: "Rychlý výběr podle účelu amuletů",
     icon: Heart,
     links: [
-      { name: "Pro podporu financí a hojnosti", url: "https://www.ohorai.cz/pro-podporu-financi-a-hojnosti/" },
-      { name: "Pro podporu vztahů a lásky", url: "https://www.ohorai.cz/pro-podporu-vztahu-a-lasky/" },
-      { name: "Pro podporu vnitřního hlasu a intuice", url: "https://www.ohorai.cz/pro-podporu-vnitrniho-hlasu-a-intuice/" },
-      { name: "Pro transformaci v životě", url: "https://www.ohorai.cz/pro-transformaci-v-zivote/" },
+      { name: "Pro podporu financí a hojnosti", url: "/ucel/finance-a-hojnost" },
+      { name: "Pro podporu vztahů a lásky", url: "/ucel/vztahy-a-laska" },
+      { name: "Pro podporu vnitřního hlasu a intuice", url: "/ucel/vnitrni-hlas-a-intuice" },
+      { name: "Pro transformaci v životě", url: "/ucel/transformace-v-zivote" },
     ],
-    allLink: { name: "Všechny amulety", url: "https://www.ohorai.cz/amulety-podle-ucelu/" },
+    allLink: null,
   },
   {
     title: "Výběr podle symbolů",
     description: "Jaký je jejich význam?",
     icon: Sparkles,
     links: [
-      { name: "Ruka Fatimy", url: "https://www.ohorai.cz/symbol-ruka-fatimy/" },
-      { name: "Květ života v lotosu", url: "https://www.ohorai.cz/symbol-kvet-zivota-v-lotosu/" },
-      { name: "Čínský drak", url: "https://www.ohorai.cz/symbol-cinsky-drak/" },
-      { name: "Davidova hvězda", url: "https://www.ohorai.cz/symbol-davidova-hvezda/" },
-      { name: "Strom života", url: "https://www.ohorai.cz/symbol-strom-zivota/" },
-      { name: "Hvězda sjednocení", url: "https://www.ohorai.cz/symbol-hvezda-sjednoceni/" },
-      { name: "Květ života", url: "https://www.ohorai.cz/symbol-kvet-zivota/" },
-      { name: "Metatronova krychle", url: "https://www.ohorai.cz/symbol-metatronova-krychle/" },
+      { name: "Ruka Fatimy", url: "/symbol/ruka-fatimy" },
+      { name: "Květ života v lotosu", url: "/symbol/kvet-zivota-v-lotosu" },
+      { name: "Čínský drak", url: "/symbol/cinsky-drak" },
+      { name: "Davidova hvězda", url: "/symbol/davidova-hvezda" },
+      { name: "Strom života", url: "/symbol/strom-zivota" },
+      { name: "Hvězda sjednocení", url: "/symbol/hvezda-sjednoceni" },
+      { name: "Květ života", url: "/symbol/kvet-zivota" },
+      { name: "Metatronova krychle", url: "/symbol/metatronova-krychle" },
     ],
-    allLink: { name: "Všechny symboly", url: "https://www.ohorai.cz/symboly-amuletu/" },
+    allLink: null,
   },
   {
     title: "Výběr podle kamenů",
     description: "Rychlý výběr podle druhu kamenů",
     icon: Gem,
     links: [
-      { name: "Lapis lazuli", url: "https://www.ohorai.cz/kamen-lapis-lazuli-lazurit/" },
-      { name: "Ametyst", url: "https://www.ohorai.cz/kamen-ametyst/" },
-      { name: "Růženín", url: "https://www.ohorai.cz/kamen-ruzenin/" },
-      { name: "Tygří oko", url: "https://www.ohorai.cz/kamen-tygri-oko/" },
-      { name: "Křišťál", url: "https://www.ohorai.cz/kamen-kristal/" },
-      { name: "Obsidián", url: "https://www.ohorai.cz/kamen-obsidian/" },
-      { name: "Čaroit", url: "https://www.ohorai.cz/kamen-caroit/" },
-      { name: "Turmalín", url: "https://www.ohorai.cz/kamen-turmalim/" },
+      { name: "Lapis lazuli", url: "/kamen/lapis-lazuli" },
+      { name: "Ametyst", url: "/kamen/ametyst" },
+      { name: "Růženín", url: "/kamen/ruzenin" },
+      { name: "Tygří oko", url: "/kamen/tygri-oko" },
+      { name: "Křišťál", url: "/kamen/kristal" },
+      { name: "Obsidián", url: "/kamen/obsidian" },
+      { name: "Čaroit", url: "/kamen/caroit" },
+      { name: "Turmalín", url: "/kamen/turmalin" },
     ],
-    allLink: { name: "Všechny kameny", url: "https://www.ohorai.cz/vyznamy-kamenu/" },
+    allLink: null,
   },
 ];
 
@@ -82,29 +83,18 @@ export default function GuideSection() {
                   </div>
                 </div>
 
-                <ul className="space-y-2 mb-4">
+                <ul className="space-y-2">
                   {category.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
-                      <a
+                      <Link
                         href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="text-sm text-muted-foreground hover:text-[#D4AF37] transition-colors"
                       >
                         {link.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
-
-                <a
-                  href={category.allLink.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block text-[#D4AF37] hover:underline font-semibold text-sm"
-                >
-                  {category.allLink.name} →
-                </a>
               </div>
             );
           })}
