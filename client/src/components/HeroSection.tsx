@@ -18,15 +18,12 @@ export default function HeroSection() {
               {/* Text content - LEFT aligned */}
               <div className="relative space-y-4 md:space-y-6 px-4 py-6 md:py-8 lg:py-16">
                 <div className="space-y-3 md:space-y-4">
-                  {/* Add semi-transparent background for mobile readability */}
-                  <div className="bg-white/90 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-3 md:p-0 rounded-lg md:rounded-none">
-                    <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative">
-                      Otevřete své srdce zázrakům
-                    </h1>
-                    <p className="text-base md:text-lg lg:text-xl text-[#2C3E50]/80 animate-fade-in-up animation-delay-200 mt-2">
-                      ...začněte s tím právě teď
-                    </p>
-                  </div>
+                  <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C3E50] leading-tight animate-fade-in-up relative">
+                    Otevřete své srdce zázrakům
+                  </h1>
+                  <p className="text-base md:text-lg lg:text-xl text-[#2C3E50]/80 animate-fade-in-up animation-delay-200">
+                    ...začněte s tím právě teď
+                  </p>
                 </div>
 
                 <div className="flex flex-row gap-3 animate-fade-in-up animation-delay-400">
