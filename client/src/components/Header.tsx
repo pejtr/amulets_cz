@@ -10,6 +10,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useState } from "react";
+import GoogleTranslate from "@/components/GoogleTranslate";
 
 const navItems = [
   { label: "🎁 Průvodce amulety", hasDropdown: false, url: "https://www.ohorai.cz/" },
@@ -29,9 +30,9 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-border">
       {/* Top bar - only on desktop */}
-      <div className="hidden md:block bg-[#E8C4D8] py-0">
+      <div className="hidden md:block bg-[#E8C4D8] py-1">
         <div className="container flex justify-end items-center text-sm">
-          <span className="text-[#2C3E50]">Potřebujete poradit?</span>
+          <GoogleTranslate />
         </div>
       </div>
 
