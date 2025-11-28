@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { AlertTriangle, RotateCcw } from "lucide-react";
-import { Component, ReactNode } from "react";
+import { Component, ReactNode, ErrorInfo } from "react";
 
 interface Props {
   children: ReactNode;
@@ -21,6 +21,19 @@ class ErrorBoundary extends Component<Props, State> {
     return { hasError: true, error };
   }
 
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    // Log error details for debugging
+    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    
+    // Ignore generic "Script error" from external sources
+    if (error.message === 'Script error.' || error.message === '') {
+      console.warn('Ignoring generic script error (likely from external source)');
+      // Reset error state to prevent showing error UI
+      this.setState({ hasError: false, error: null });
+      return;
+    }
+  }
+
   render() {
     if (this.state.hasError) {
       return (
@@ -31,13 +44,18 @@ class ErrorBoundary extends Component<Props, State> {
               className="text-destructive mb-6 flex-shrink-0"
             />
 
-            <h2 className="text-xl mb-4">An unexpected error occurred.</h2>
+            <h2 className="text-xl mb-4">Něco se pokazilo</h2>
+            <p className="text-muted-foreground mb-6 text-center">
+              Omlouváme se, došlo k neočekávané chybě. Zkuste prosím obnovit stránku.
+            </p>
 
-            <div className="p-4 w-full rounded bg-muted overflow-auto mb-6">
-              <pre className="text-sm text-muted-foreground whitespace-break-spaces">
-                {this.state.error?.stack}
-              </pre>
-            </div>
+            {this.state.error && (
+              <div className="p-4 w-full rounded bg-muted overflow-auto mb-6 max-h-48">
+                <pre className="text-sm text-muted-foreground whitespace-break-spaces">
+                  {this.state.error.message}
+                </pre>
+              </div>
+            )}
 
             <button
               onClick={() => window.location.reload()}
@@ -48,7 +66,7 @@ class ErrorBoundary extends Component<Props, State> {
               )}
             >
               <RotateCcw size={16} />
-              Reload Page
+              Obnovit stránku
             </button>
           </div>
         </div>
