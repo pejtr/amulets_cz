@@ -221,7 +221,15 @@ export default function GuideDetail() {
                 Prozkoumejte naši nabídku ručně vyráběných orgonitových pyramid a aromaterapeutických esencí.
               </p>
               <Link 
-                href="/#produkty"
+                href="/"
+                onClick={() => {
+                  setTimeout(() => {
+                    const element = document.getElementById('produkty');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }, 100);
+                }}
                 className="inline-block bg-[#E85A9F] text-white px-6 py-3 rounded-md hover:bg-[#E85A9F]/90 transition-colors font-semibold"
               >
                 Zobrazit produkty

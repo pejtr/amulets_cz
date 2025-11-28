@@ -185,8 +185,16 @@ export default function MagazineArticle() {
                 Objevte naši nabídku ručně vyráběných orgonitových pyramid s modrým lotosem a aromaterapeutických esencí z řady KORUNA.
               </p>
               <Link 
-                href="/#produkty"
-                className="inline-block bg-[#E85A9F] text-white px-8 py-4 rounded-md hover:bg-[#E85A9F]/90 transition-colors font-semibold text-lg"
+                href="/"
+                onClick={() => {
+                  setTimeout(() => {
+                    const element = document.getElementById('produkty');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }, 100);
+                }}
+                className="inline-block bg-[#E85A9F] text-white px-6 py-3 rounded-md hover:bg-[#E85A9F]/90 transition-colors font-semibold"
               >
                 Zobrazit produkty
               </Link>
