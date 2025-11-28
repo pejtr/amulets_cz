@@ -7,6 +7,20 @@ import { ArrowLeft } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
 
+// Funkce pro převod názvu na slug
+function nameToSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // Odstranění diakritiky
+    .replace(/\s+/g, "-") // Mezery na pomlčky
+    .replace(/[^a-z0-9-]/g, ""); // Odstranění speciálních znaků
+}
+
+// Mapování názvů na typy URL
+const symbolNames = ["Ruka Fatimy", "Kv\u011bt \u017eivota v lotosu", "\u010c\u00ednsk\u00fd drak", "Davidova hv\u011bzda", "Strom \u017eivota", "Hv\u011bzda sjednocen\u00ed", "Kv\u011bt \u017eivota", "Metatronova krychle", "Choku Rei", "Buddha", "Jin Jang", "Horovo oko"];
+const stoneNames = ["Lapis Lazuli", "Ametyst", "R\u016f\u017een\u00edn", "Tygr\u00ed oko", "K\u0159i\u0161\u0165\u00e1l", "Obsidi\u00e1n", "\u010caroit", "Turmal\u00edn"];
+
 export default function GuideDetail() {
   const params = useParams();
   const [location] = useLocation();
@@ -126,19 +140,66 @@ export default function GuideDetail() {
                 // Pokud odstavec obsahuje seznam (začíná -)
                 if (paragraph.includes('\n-')) {
                   const lines = paragraph.split('\n');
+                  const heading = lines[0];
                   const items = lines.filter(line => line.trim().startsWith('-'));
+                  
                   return (
-                    <ul key={index} className="list-none space-y-2 my-4">
-                      {items.map((item, i) => {
-                        const text = item.replace(/^-\s*/, '').replace(/\*\*/g, '');
-                        return (
-                          <li key={i} className="flex items-start gap-2">
-                            <span className="text-[#D4AF37] mt-1">•</span>
-                            <span className="text-muted-foreground">{text}</span>
-                          </li>
-                        );
-                      })}
-                    </ul>
+                    <div key={index} className="my-6">
+                      {heading && !heading.startsWith('-') && (
+                        <h3 className="text-lg font-semibold text-foreground mb-3">
+                          {heading.replace(/\*\*/g, '')}
+                        </h3>
+                      )}
+                      <ul className="list-none space-y-2">
+                        {items.map((item, i) => {
+                          const text = item.replace(/^-\s*/, '').replace(/\*\*/g, '');
+                          
+                          // Zkontrolujeme, jestli je to symbol nebo kámen
+                          let linkElement = <span className="text-muted-foreground">{text}</span>;
+                          
+                          for (const symbolName of symbolNames) {
+                            if (text.includes(symbolName)) {
+                              const slug = nameToSlug(symbolName);
+                              const parts = text.split(symbolName);
+                              linkElement = (
+                                <span className="text-muted-foreground">
+                                  {parts[0]}
+                                  <Link href={`/symbol/${slug}`} className="text-[#D4AF37] hover:underline font-semibold">
+                                    {symbolName}
+                                  </Link>
+                                  {parts[1]}
+                                </span>
+                              );
+                              break;
+                            }
+                          }
+                          
+                          for (const stoneName of stoneNames) {
+                            if (text.includes(stoneName)) {
+                              const slug = nameToSlug(stoneName);
+                              const parts = text.split(stoneName);
+                              linkElement = (
+                                <span className="text-muted-foreground">
+                                  {parts[0]}
+                                  <Link href={`/kamen/${slug}`} className="text-[#D4AF37] hover:underline font-semibold">
+                                    {stoneName}
+                                  </Link>
+                                  {parts[1]}
+                                </span>
+                              );
+                              break;
+                            }
+                          }
+                          
+                          return (
+                            <li key={i} className="flex items-start gap-2">
+                              <span className="text-[#D4AF37] mt-1">•</span>
+                              {linkElement}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
                   );
                 }
 
