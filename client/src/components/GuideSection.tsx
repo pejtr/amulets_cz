@@ -28,10 +28,10 @@ const stones = [
 ];
 
 const purposes = [
-  { name: "Pro podporu financí a hojnosti", url: "/ucel/finance-a-hojnost" },
-  { name: "Pro podporu vztahů a lásky", url: "/ucel/vztahy-a-laska" },
-  { name: "Pro podporu vnitřního hlasu a intuice", url: "/ucel/vnitrni-hlas-a-intuice" },
-  { name: "Pro transformaci v životě", url: "/ucel/transformace-v-zivote" },
+  { name: "💰 Pro podporu financí a hojnosti", url: "/ucel/finance-a-hojnost" },
+  { name: "💕 Pro podporu vztahů a lásky", url: "/ucel/vztahy-a-laska" },
+  { name: "🔮 Pro podporu vnitřního hlasu a intuice", url: "/ucel/vnitrni-hlas-a-intuice" },
+  { name: "✨ Pro transformaci v životě", url: "/ucel/transformace-v-zivote" },
 ];
 
 export default function GuideSection() {
