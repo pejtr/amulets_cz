@@ -40,7 +40,16 @@ export default function Header() {
       <div className="container py-0">
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
+          <Link 
+            href="/" 
+            className="flex-shrink-0"
+            onClick={(e) => {
+              if (window.location.pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+          >
             <img src={APP_LOGO} alt="Amulets" className="h-20 md:h-24 w-auto cursor-pointer" />
           </Link>
 
