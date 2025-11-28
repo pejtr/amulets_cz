@@ -152,9 +152,9 @@ export default function ProductsSection() {
               <h2 className="text-3xl font-bold text-foreground mb-2">
                 Aromaterapeutické esence
               </h2>
-              <p className="text-muted-foreground">
-                Čistá vůně přírody pro harmonii těla & ducha
-              </p>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+            100% čistá vůně přírody pro harmonii těla & ducha
+          </p>
             </div>
             <Button 
               variant="outline" 
