@@ -29,17 +29,17 @@ export default function HeroSection() {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3 animate-fade-in-up animation-delay-400 max-w-sm md:max-w-none">
+                <div className="flex flex-row gap-3 animate-fade-in-up animation-delay-400">
                   <Button
                     size="lg"
-                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-8 py-6 text-base w-full md:w-auto"
+                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-8 py-6 text-base"
                   >
                     ZÍSKAT VÍCE
                   </Button>
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37] hover:border-[#D4AF37] font-semibold px-6 py-6 text-base flex items-center justify-center gap-2 transition-all duration-300 group w-full md:w-auto"
+                    className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37] hover:border-[#D4AF37] font-semibold px-6 py-6 text-base flex items-center justify-center gap-2 transition-all duration-300 group"
                     onClick={() => window.open('https://www.ohorai.cz', '_blank')}
                   >
                     <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
