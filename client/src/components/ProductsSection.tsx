@@ -116,16 +116,7 @@ export default function ProductsSection() {
                 Orgonitové pyramidy
               </h2>
               <p className="text-muted-foreground">
-                Ručně vyráběné pyramidy s drahými krystaly a vzácnou, silnou bylinou{' '}
-                <a 
-                  href="https://www.ohorai.cz/modry-lotos/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-[#D4AF37] hover:underline font-semibold"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  modrý lotos
-                </a>
+                Ručně vyráběné pyramidy s drahými krystaly a vzácnou, silnou bylinou modrý lotos
               </p>
               <a 
                 href="https://www.ohorai.cz/mysterium-modreho-lotosu/" 
