@@ -1,8 +1,11 @@
-import { Phone, Mail, Facebook, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
+import FeaturedCategories from "@/components/FeaturedCategories";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-accent/30 border-t border-border mt-16">
+    <>
+      <FeaturedCategories />
+      <footer className="w-full bg-accent/30 border-t border-border">
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Contact */}
@@ -90,5 +93,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }
