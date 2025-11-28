@@ -70,7 +70,7 @@ export default function ProductsSection() {
       <div className="container space-y-16">
         {/* Pyramidy */}
         <section className="space-y-8">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-2">
                 Orgonitové pyramidy
@@ -82,7 +82,7 @@ export default function ProductsSection() {
             </div>
             <Button 
               variant="outline" 
-              className="gap-2"
+              className="gap-2 self-start md:self-auto shrink-0"
               onClick={() => window.open('https://www.ohorai.cz/autorske-tvorba/', '_blank')}
             >
               Zobrazit vše
@@ -99,7 +99,7 @@ export default function ProductsSection() {
 
         {/* Esence */}
         <section className="space-y-8">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-2">
                 Aromaterapeutické esence
@@ -110,7 +110,7 @@ export default function ProductsSection() {
             </div>
             <Button 
               variant="outline" 
-              className="gap-2"
+              className="gap-2 self-start md:self-auto shrink-0"
               onClick={() => window.open('https://www.ohorai.cz/esence/', '_blank')}
             >
               Zobrazit vše
