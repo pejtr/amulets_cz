@@ -42,10 +42,10 @@ export default function TestimonialsSection() {
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-[#2C3E50] mb-4">
-            Co říkají naši zákazníci
+            Co říkají zákazníci
           </h2>
           <p className="text-lg text-[#2C3E50]/70 max-w-2xl mx-auto">
-            Přečtěte si recenze spokojených zákazníků z Heureky
+            Recenze spokojených zákazníků z Heureky
           </p>
         </div>
 
