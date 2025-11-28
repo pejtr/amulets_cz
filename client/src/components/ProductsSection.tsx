@@ -12,12 +12,12 @@ const pyramids = [
     description: "Ručně vyráběná pyramida s drahými krystaly a vzácnou bylinou pro přitahování hojnosti",
   },
   {
-    name: "Pyramida OHORAI ~ Jednota",
+    name: "Pyramida OHORAI ~ Světlo univerza",
     price: "8 800 Kč",
     available: true,
-    image: "/products/pyramida-jednota.jpg",
-    url: "https://www.ohorai.cz/pyramida-ohorai-odevzdani/",
-    description: "Pyramida podporující harmonii a propojení s vyššími vibracemi",
+    image: "/products/pyramida-svetlo-univerza.png",
+    url: "https://www.ohorai.cz/pyramida-ohorai-svetlo-univerza/",
+    description: "Vesmír ukrytý v pyramidě ❤️ ručně vyrobená pyramida v meditativním stavu, v duchu propojení duše s vyšším...",
   },
   {
     name: "Pyramida OHORAI ~ Kristovo světlo",
