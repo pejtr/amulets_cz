@@ -6,7 +6,9 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { ShareButtons } from "@/components/ShareButtons";
 import RelatedArticles from "@/components/RelatedArticles";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
+import { ImageLightbox } from "@/components/ImageLightbox";
 import { magazineArticles } from "@/data/magazineContent";
+import { useState } from "react";
 import { getMixedRelatedArticles } from "@/lib/relatedArticles";
 import { useEffect } from "react";
 import { ArrowLeft, Calendar } from "lucide-react";
@@ -16,6 +18,7 @@ import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/
 export default function MagazineArticle() {
   const params = useParams();
   const slug = params.slug || "";
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const article = magazineArticles.find((item) => item.slug === slug);
 
@@ -86,8 +89,10 @@ export default function MagazineArticle() {
             { label: article.title }
           ]} />
 
-          <div className="max-w-4xl mx-auto">
-            <div className="mb-8">
+          {/* Responzivní layout - obrázek pod nadpisem na mobilu, vpravo na desktopu */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 max-w-6xl mx-auto">
+            {/* Levý sloupec - text */}
+            <div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                 <Calendar className="h-4 w-4" />
                 <span>Magazín</span>
@@ -124,6 +129,28 @@ export default function MagazineArticle() {
               </div>
             </div>
 
+            {/* Pravý sloupec - obrázek (sticky na desktopu) */}
+            {article.image && (
+              <div className="lg:order-last order-first">
+                <div className="lg:sticky lg:top-24">
+                  <div 
+                    className="relative aspect-video lg:aspect-square rounded-lg overflow-hidden shadow-lg cursor-pointer group"
+                    onClick={() => setLightboxOpen(true)}
+                  >
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Obsah článku */}
+          <div className="max-w-4xl mx-auto mt-12">
             <div className="prose prose-lg max-w-none">
               {article.content.split('\n\n').map((paragraph, index) => {
                 // Nadpis H2
@@ -231,6 +258,16 @@ export default function MagazineArticle() {
       <RelatedArticles articles={getMixedRelatedArticles(slug, 'magazine', 3)} />
       <GuideSection />
       <Footer />
+      
+      {/* Lightbox pro zvětšení obrázku */}
+      {article.image && (
+        <ImageLightbox
+          isOpen={lightboxOpen}
+          onClose={() => setLightboxOpen(false)}
+          src={article.image}
+          alt={article.title}
+        />
+      )}
     </div>
   );
 }
