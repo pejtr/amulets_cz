@@ -30,7 +30,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-border">
       {/* Top bar - only on desktop */}
-      <div className="hidden md:block bg-[#E8C4D8] py-1">
+      <div className="hidden md:block bg-[#E8C4D8] py-1 overflow-visible">
         <div className="container flex justify-end items-center text-sm">
           <GoogleTranslate />
         </div>

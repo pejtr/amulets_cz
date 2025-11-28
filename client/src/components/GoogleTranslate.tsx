@@ -79,6 +79,20 @@ export default function GoogleTranslate() {
           display: inline-block;
           vertical-align: middle;
         }
+        /* Dropdown menu */
+        .goog-te-menu2 {
+          max-width: 100% !important;
+          overflow-x: auto !important;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+          border: 1px solid #e5e7eb !important;
+        }
+        .goog-te-menu2-item {
+          padding: 8px 12px !important;
+        }
+        /* Z-index pro dropdown */
+        .goog-te-menu-frame {
+          z-index: 9999 !important;
+        }
       `}</style>
     </>
   );
