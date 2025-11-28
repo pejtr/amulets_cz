@@ -7,6 +7,7 @@ import MagazineSection from "@/components/MagazineSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { useEffect } from "react";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createWebsiteSchema, createOrganizationSchema, createFAQSchema } from "@/lib/schema";
@@ -33,6 +34,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ReadingProgressBar />
       <Header />
       <main>
         <HeroSection />
