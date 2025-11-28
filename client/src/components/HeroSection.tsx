@@ -30,6 +30,12 @@ export default function HeroSection() {
                   <Button
                     size="lg"
                     className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base whitespace-nowrap"
+                    onClick={() => {
+                      const produktySection = document.getElementById('produkty');
+                      if (produktySection) {
+                        produktySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }}
                   >
                     ZÍSKAT VÍCE
                   </Button>
