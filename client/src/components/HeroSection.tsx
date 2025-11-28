@@ -24,7 +24,7 @@ export default function HeroSection() {
                       textShadow: '0 0 10px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5)'
                     }}
                   >
-                    Otevřete své srdce<br /> zázrakům
+                    Otevřete své<br />srdce zázrakům
                   </h1>
                   <p className="text-base md:text-lg lg:text-xl text-[#2C3E50]/80 animate-fade-in-up animation-delay-200">
                     ...začněte s tím právě teď

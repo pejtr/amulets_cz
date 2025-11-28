@@ -37,7 +37,7 @@ describe('Amulets.cz Components', () => {
   describe('HeroSection', () => {
     it('should render main heading', () => {
       render(<HeroSection />);
-      const heading = screen.getByText(/Otevřete své srdce/i);
+      const heading = screen.getByText(/Otevřete své/i);
       expect(heading).toBeDefined();
     });
 
