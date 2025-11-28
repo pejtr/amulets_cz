@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import USPSection from "@/components/USPSection";
 import ProductsSection from "@/components/ProductsSection";
 import GuideSection from "@/components/GuideSection";
+import MagazineSection from "@/components/MagazineSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
@@ -39,6 +40,7 @@ export default function Home() {
         <ProductsSection />
         <TestimonialsSection />
         <GuideSection />
+        <MagazineSection />
         <FAQSection />
       </main>
       <Footer />
