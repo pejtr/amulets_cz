@@ -2,6 +2,7 @@ import { useParams, Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GuideSection from "@/components/GuideSection";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { magazineArticles } from "@/data/magazineContent";
 import { useEffect } from "react";
 import { ArrowLeft, Calendar } from "lucide-react";
@@ -74,13 +75,11 @@ export default function MagazineArticle() {
       <Header />
       <main className="flex-1">
         <article className="container py-8 md:py-16">
-          <Link 
-            href="/"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-[#D4AF37] transition-colors mb-8"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Zpět na hlavní stránku
-          </Link>
+          <Breadcrumbs items={[
+            { label: "Domů", href: "/" },
+            { label: "Magazín", href: "/#magazin" },
+            { label: article.title }
+          ]} />
 
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">

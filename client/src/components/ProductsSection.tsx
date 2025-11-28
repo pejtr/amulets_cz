@@ -112,7 +112,7 @@ export default function ProductsSection() {
         {/* Pyramidy */}
         <section className="space-y-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
+            <div className="text-center md:text-left">
               <h2 className="text-3xl font-bold text-foreground mb-2">
                 Orgonitové pyramidy
               </h2>
@@ -149,7 +149,7 @@ export default function ProductsSection() {
         {/* Esence */}
         <section className="space-y-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
+            <div className="text-center md:text-left">
               <h2 className="text-3xl font-bold text-foreground mb-2">
                 Aromaterapeutické esence
               </h2>

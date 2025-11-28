@@ -56,7 +56,7 @@ export default function HeroSection() {
                 </div>
 
                 {/* Signature - below buttons with minimal spacing */}
-                <div className="relative mt-3 md:mt-4 mb-0 animate-fade-in-up animation-delay-600 inline-block">
+                <div className="relative mt-6 md:mt-4 mb-0 animate-fade-in-up animation-delay-600 inline-block">
                   {/* White fog background with minimal padding */}
                   <div className="absolute -inset-1 bg-white/80 backdrop-blur-sm rounded -z-10"></div>
                   

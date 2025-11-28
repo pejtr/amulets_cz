@@ -2,6 +2,7 @@ import { useParams, Link, useLocation } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GuideSection from "@/components/GuideSection";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { symbolsData, stonesData, purposesData } from "@/data/guideContent";
 import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
@@ -113,13 +114,11 @@ export default function GuideDetail() {
       <Header />
       <main className="flex-1">
         <article className="container py-8 md:py-16">
-          <Link 
-            href={backLink}
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-[#D4AF37] transition-colors mb-8"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            {backText}
-          </Link>
+          <Breadcrumbs items={[
+            { label: "Domů", href: "/" },
+            { label: "Průvodce amulety", href: "/#pruvodce" },
+            { label: content.title }
+          ]} />
 
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
