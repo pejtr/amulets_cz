@@ -103,6 +103,7 @@ export default function GuideSection() {
                   <img
                     src={symbol.image}
                     alt={symbol.name}
+                    loading="lazy"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -140,6 +141,7 @@ export default function GuideSection() {
                   <img
                     src={stone.image}
                     alt={stone.name}
+                    loading="lazy"
                     className="w-full h-full object-cover"
                   />
                 </div>
