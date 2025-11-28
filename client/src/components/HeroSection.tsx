@@ -17,6 +17,22 @@ export default function HeroSection() {
             <div className="max-w-xl">
               {/* Text content - LEFT aligned */}
               <div className="relative space-y-2 md:space-y-6 px-4 py-3 md:py-8 lg:py-16 mb-4 md:mb-0 md:mt-0">
+                {/* Signature - moved to top */}
+                <div className="relative mb-2 md:mb-4 animate-fade-in-up inline-block">
+                  {/* White fog background with minimal padding */}
+                  <div className="absolute -inset-1 bg-white/80 backdrop-blur-sm rounded -z-10"></div>
+                  
+                  <div className="text-sm relative z-10 px-2 py-0.5">
+                    <p className="font-bold text-base md:text-xl" style={{ 
+                      color: '#D4AF37',
+                      textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6)'
+                    }}>Natálie Ohorai</p>
+                    <p className="italic text-[#2C3E50] font-semibold text-sm md:text-base" style={{
+                      textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)'
+                    }}>Zakladatelka Amulets.cz</p>
+                  </div>
+                </div>
+
                 <div className="space-y-3 md:space-y-4">
                   {/* Semi-transparent background for better readability on mobile */}
                   <div className="bg-white/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-3 md:p-0 rounded-lg md:rounded-none">
@@ -59,22 +75,6 @@ export default function HeroSection() {
                     <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
                     <img src="/ohorai-logo.webp" alt="OHORAI" className="h-5 sm:h-8 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
                   </Button>
-                </div>
-
-                {/* Signature - below buttons with minimal spacing */}
-                <div className="relative mt-2 md:mt-4 mb-0 animate-fade-in-up animation-delay-600 inline-block">
-                  {/* White fog background with minimal padding */}
-                  <div className="absolute -inset-1 bg-white/80 backdrop-blur-sm rounded -z-10"></div>
-                  
-                  <div className="text-sm relative z-10 px-2 py-0.5">
-                    <p className="font-bold text-base md:text-xl" style={{ 
-                      color: '#D4AF37',
-                      textShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6)'
-                    }}>Natálie Ohorai</p>
-                    <p className="italic text-[#2C3E50] font-semibold text-sm md:text-base" style={{
-                      textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)'
-                    }}>Zakladatelka Amulets.cz</p>
-                  </div>
                 </div>
               </div>
             </div>
