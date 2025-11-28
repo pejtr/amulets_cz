@@ -70,6 +70,38 @@ const essences = [
     url: "https://www.ohorai.cz/esence-zena-materska/",
     description: "Jemná esence snoubící růži a jasmín podporující naladění na nejjemnější vibrace něžnosti, lehkosti, přijetí...",
   },
+  {
+    name: "Esence ~ Andělská 10ml",
+    price: "890 Kč",
+    available: true,
+    image: "/products/esence-andelska.jpg",
+    url: "https://www.ohorai.cz/esence-andelska/",
+    description: "Jemná, lehká esence snoubící Bulharskou růži nejvyšší kvality destilace, jasmín, santal, bílý lotos...",
+  },
+  {
+    name: "Esence ~ Plynoucí 10ml",
+    price: "890 Kč",
+    available: true,
+    image: "/products/esence-plynouci.jpg",
+    url: "https://www.ohorai.cz/esence-plynouci/",
+    description: "Jemná esence snoubící pravou Bulharskou růži, jasmín a zklidnující levanduli podpoří životní flow...",
+  },
+  {
+    name: "Esence ~ Tantra 5ml",
+    price: "440 Kč",
+    available: true,
+    image: "/products/esence-tantra.jpg",
+    url: "https://www.ohorai.cz/esence-tantra/",
+    description: "Silná esence kombinující oblíbený ylang-ylang v kombinaci s pomerančem a levandulí podpoří vnitřní ohen...",
+  },
+  {
+    name: "Esence ~ matka Země 10ml",
+    price: "690 Kč",
+    available: true,
+    image: "/products/esence-matka-zeme.jpg",
+    url: "https://www.ohorai.cz/esence-matka-zeme-10ml/",
+    description: "Silná esence snoubící vůni skořice, borovice, kadidla tvoří v kombinaci s modrým lotosem propojení...",
+  },
 ];
 
 export default function ProductsSection() {
