@@ -33,7 +33,7 @@ export const appRouter = router({
             SOURCE: "exit_intent_popup",
             DISCOUNT_CODE: "OHORAI11",
           },
-          listIds: [2], // Replace with your Brevo list ID
+          listIds: [3], // Brevo list ID
         });
         
         if (!contactAdded) {

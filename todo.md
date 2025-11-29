@@ -138,3 +138,6 @@
 ## Úprava tlačítka Ohorai.cz
 - [x] Přesunout logo OHORAI do tlačítka "Přejít na Ohorai.cz"
 - [x] Odstranit logo OHORAI ze spodní části (pod jménem)
+
+## Brevo email marketing integrace
+- [x] Nastavit Brevo List ID na 3 v server/routers.ts
