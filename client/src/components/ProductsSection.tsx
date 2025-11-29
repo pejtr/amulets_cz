@@ -19,7 +19,7 @@ const pyramids = [
     price: "8 800 Kč",
     available: true,
     image: "/products/pyramida-svetlo-univerza-new.jpg",
-    url: "https://www.ohorai.cz/pyramida-ohorai-svetlo-univerza/",
+    url: "https://www.ohorai.cz/pyramida-ohorai-hojnost-2/",
     description: "Vesmír ukrytý v pyramidě ❤️ ručně vyrobená pyramida v meditativním stavu, v duchu propojení duše s vyšším...",
   },
   {
