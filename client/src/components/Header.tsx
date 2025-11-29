@@ -13,12 +13,12 @@ import { useState } from "react";
 import GoogleTranslate from "@/components/GoogleTranslate";
 
 const navItems = [
-  { label: "🎁 Průvodce amulety", hasDropdown: false, url: "/#pruvodce", isInternal: true },
-  { label: "Orgonitové pyramidy", hasDropdown: true, url: "https://www.ohorai.cz/autorske-tvorba/" },
-  { label: "Aromaterapie", hasDropdown: true, url: "https://www.ohorai.cz/esence/" },
+  { label: "🎁 Průvodce amulety", hasDropdown: false, url: "/#pruvodce-amulety", isInternal: true },
+  { label: "Orgonitové pyramidy", hasDropdown: true, url: "/#orgonitove-pyramidy", isInternal: true },
+  { label: "Aromaterapie", hasDropdown: true, url: "/#aromaterapeuticke-esence", isInternal: true },
   { label: "Startovací balíčky", hasDropdown: false, url: "https://www.ohorai.cz/" },
   { label: "O mě", hasDropdown: false, url: "https://www.ohorai.cz/o-projektu/" },
-  { label: "Drahé kameny", hasDropdown: false, url: "https://www.ohorai.cz/" },
+  { label: "Drahé kameny", hasDropdown: false, url: "/#vyber-podle-kamenu", isInternal: true },
   { label: "Šperky", hasDropdown: false, url: "https://www.ohorai.cz/" },
   { label: "Magazín", hasDropdown: false, url: "/#magazin", isInternal: true },
   { label: "Kontakt", hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },

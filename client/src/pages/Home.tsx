@@ -17,11 +17,11 @@ import { faqData } from "@/data/faqData";
 
 export default function Home() {
   useEffect(() => {
-    document.title = "Amulets.cz - Otevřete své srdce zázrakům";
+    document.title = "Amulets.cz - Zjisti svůj spirituální symbol | 33 posvátných symbolů";
     
     setOpenGraphTags({
-      title: "Amulets.cz - Otevřete své srdce zázrakům",
-      description: "Ručně vyráběné orgonitové pyramidy s drahými krystaly a modrým lotosem. Aromaterapeutické esence ze 100% esenciálních olejů nejvyšší kvality. Objevte sílu drahých kamenů a posvátné geometrie.",
+      title: "Amulets.cz - Zjisti svůj spirituální symbol | 33 posvátných symbolů",
+      description: "Objevte význam 33 spirituálních symbolů a najděte svůj osobní talisman. Průvodce ezoterikými symboly, drahými kameny a jejich léčivými účinky. Ručně vyráběné orgonitové pyramidy a aromaterapeutické esence.",
       url: "https://amulets.cz/",
       type: "website",
       image: "https://amulets.cz/og-image.jpg",

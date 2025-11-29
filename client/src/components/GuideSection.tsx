@@ -1,30 +1,60 @@
 import { Heart, Sparkles, Gem } from "lucide-react";
 import { Link } from "wouter";
+import { useState } from "react";
 
 const symbols = [
-  { name: "Ruka Fatimy", url: "/symbol/ruka-fatimy", image: "/images/symbols/ruka-fatimy.png" },
-  { name: "Květ života v lotosu", url: "/symbol/kvet-zivota-v-lotosu", image: "/images/symbols/kvet-zivota.png" },
-  { name: "Čínský drak", url: "/symbol/cinsky-drak", image: "/images/symbols/cinsky-drak.png" },
-  { name: "Davidova hvězda", url: "/symbol/davidova-hvezda", image: "/images/symbols/davidova-hvezda.png" },
-  { name: "Strom života", url: "/symbol/strom-zivota", image: "/images/symbols/strom-zivota.png" },
-  { name: "Hvězda sjednocení", url: "/symbol/hvezda-sjednoceni", image: "/images/symbols/hvezda-sjednoceni.png" },
-  { name: "Květ života", url: "/symbol/kvet-zivota", image: "/images/symbols/kvet-zivota-simple.png" },
-  { name: "Metatronova krychle", url: "/symbol/metatronova-krychle", image: "/images/symbols/metatronova-krychle.png" },
-  { name: "Choku Rei", url: "/symbol/choku-rei", image: "/images/symbols/choku-rei.png" },
-  { name: "Buddha", url: "/symbol/buddha", image: "/images/symbols/buddha.png" },
-  { name: "Jin Jang", url: "/symbol/jin-jang", image: "/images/symbols/jin-jang.png" },
-  { name: "Horovo oko", url: "/symbol/horovo-oko", image: "/images/symbols/horovo-oko.png" },
+  // Původních 12
+  { name: "Ruka Fatimy", url: "/symbol/ruka-fatimy", image: "/images/symbols/thumbs/ruka-fatimy-thumb.jpg" },
+  { name: "Květ života v lotosu", url: "/symbol/kvet-zivota-v-lotosu", image: "/images/symbols/thumbs/kvet-zivota-thumb.jpg" },
+  { name: "Čínský drak", url: "/symbol/cinsky-drak", image: "/images/symbols/thumbs/cinsky-drak-thumb.jpg" },
+  { name: "Davidova hvězda", url: "/symbol/davidova-hvezda", image: "/images/symbols/thumbs/davidova-hvezda-thumb.jpg" },
+  { name: "Strom života", url: "/symbol/strom-zivota", image: "/images/symbols/thumbs/strom-zivota-thumb.jpg" },
+  { name: "Hvězda sjednocení", url: "/symbol/hvezda-sjednoceni", image: "/images/symbols/thumbs/hvezda-sjednoceni-thumb.jpg" },
+  { name: "Květ života", url: "/symbol/kvet-zivota", image: "/images/symbols/thumbs/kvet-zivota-simple-thumb.jpg" },
+  { name: "Metatronova krychle", url: "/symbol/metatronova-krychle", image: "/images/symbols/thumbs/metatronova-krychle-thumb.jpg" },
+  { name: "Choku Rei", url: "/symbol/choku-rei", image: "/images/symbols/thumbs/choku-rei-thumb.jpg" },
+  { name: "Buddha", url: "/symbol/buddha", image: "/images/symbols/thumbs/buddha-thumb.jpg" },
+  { name: "Jin Jang", url: "/symbol/jin-jang", image: "/images/symbols/thumbs/jin-jang-thumb.jpg" },
+  { name: "Horovo oko", url: "/symbol/horovo-oko", image: "/images/symbols/thumbs/horovo-oko-thumb.jpg" },
+  
+  // Nových 21 symbolů
+  { name: "Om", url: "/symbol/om", image: "/images/symbols/thumbs/om-thumb.jpg" },
+  { name: "Pentagram", url: "/symbol/pentagram", image: "/images/symbols/thumbs/pentagram-thumb.jpg" },
+  { name: "Ankh", url: "/symbol/ankh", image: "/images/symbols/thumbs/ankh-thumb.jpg" },
+  { name: "Triquetra", url: "/symbol/triquetra", image: "/images/symbols/thumbs/triquetra-thumb.jpg" },
+  { name: "Merkaba", url: "/symbol/merkaba", image: "/images/symbols/thumbs/merkaba-thumb.jpg" },
+  { name: "Hamsa s okem", url: "/symbol/hamsa-s-okem", image: "/images/symbols/thumbs/hamsa-eye-thumb.jpg" },
+  { name: "Lotosová mandala", url: "/symbol/lotosova-mandala", image: "/images/symbols/thumbs/lotus-mandala-thumb.jpg" },
+  { name: "Sri Yantra", url: "/symbol/sri-yantra", image: "/images/symbols/thumbs/sri-yantra-thumb.jpg" },
+  { name: "Triskelion", url: "/symbol/triskelion", image: "/images/symbols/thumbs/triskelion-thumb.jpg" },
+  { name: "Vesica Piscis", url: "/symbol/vesica-piscis", image: "/images/symbols/thumbs/vesica-piscis-thumb.jpg" },
+  { name: "Nekonečno", url: "/symbol/nekonecno", image: "/images/symbols/thumbs/infinity-thumb.jpg" },
+  { name: "Trojitý měsíc", url: "/symbol/trojity-mesic", image: "/images/symbols/thumbs/triple-moon-thumb.jpg" },
+  { name: "Kříž", url: "/symbol/kriz", image: "/images/symbols/thumbs/cross-thumb.jpg" },
+  { name: "Skarabeus", url: "/symbol/skarabeus", image: "/images/symbols/thumbs/scarab-thumb.jpg" },
+  { name: "Caduceus", url: "/symbol/caduceus", image: "/images/symbols/thumbs/caduceus-thumb.jpg" },
+  { name: "Pentakl", url: "/symbol/pentakl", image: "/images/symbols/thumbs/pentacle-thumb.jpg" },
+  { name: "Půlměsíc", url: "/symbol/pulmesic", image: "/images/symbols/thumbs/crescent-moon-thumb.jpg" },
+  { name: "Slunce", url: "/symbol/slunce", image: "/images/symbols/thumbs/sun-thumb.jpg" },
+  { name: "Enso", url: "/symbol/enso", image: "/images/symbols/thumbs/enso-thumb.jpg" },
+  { name: "Ouroboros", url: "/symbol/ouroboros", image: "/images/symbols/thumbs/ouroboros-thumb.jpg" },
+  { name: "Keltský kříž", url: "/symbol/keltsky-kriz", image: "/images/symbols/thumbs/celtic-cross-thumb.jpg" },
+  { name: "Mandala", url: "/symbol/mandala", image: "/images/symbols/thumbs/mandala-thumb.jpg" },
+  { name: "Dharmachakra", url: "/symbol/dharmachakra", image: "/images/symbols/thumbs/dharma-wheel-thumb.jpg" },
+  { name: "Spirála", url: "/symbol/spirala", image: "/images/symbols/thumbs/spiral-thumb.jpg" },
+  { name: "Hexagram", url: "/symbol/hexagram", image: "/images/symbols/thumbs/hexagram-thumb.jpg" },
+  { name: "Posvátné pero", url: "/symbol/posvatne-pero", image: "/images/symbols/thumbs/feather-thumb.jpg" },
 ];
 
 const stones = [
-  { name: "Lapis lazuli", url: "/kamen/lapis-lazuli", image: "/images/stones/lapis-lazuli.png" },
-  { name: "Ametyst", url: "/kamen/ametyst", image: "/images/stones/ametyst.png" },
-  { name: "Růženín", url: "/kamen/ruzenin", image: "/images/stones/ruzenin.png" },
-  { name: "Tygří oko", url: "/kamen/tygri-oko", image: "/images/stones/tygriooko.png" },
-  { name: "Křišťál", url: "/kamen/kristal", image: "/images/stones/kristal.png" },
-  { name: "Obsidián", url: "/kamen/obsidian", image: "/images/stones/obsidian.png" },
-  { name: "Čaroit", url: "/kamen/caroit", image: "/images/stones/caroit.png" },
-  { name: "Turmalín", url: "/kamen/turmalin", image: "/images/stones/turmalin.png" },
+  { name: "Lapis lazuli", url: "/kamen/lapis-lazuli", image: "/images/stones/thumbs/lapis-lazuli-thumb.jpg" },
+  { name: "Ametyst", url: "/kamen/ametyst", image: "/images/stones/thumbs/ametyst-thumb.jpg" },
+  { name: "Růženín", url: "/kamen/ruzenin", image: "/images/stones/thumbs/ruzenin-thumb.jpg" },
+  { name: "Tygrí oko", url: "/kamen/tygri-oko", image: "/images/stones/thumbs/tygriooko-thumb.jpg" },
+  { name: "Křišťál", url: "/kamen/kristal", image: "/images/stones/thumbs/kristal-thumb.jpg" },
+  { name: "Obsidián", url: "/kamen/obsidian", image: "/images/stones/thumbs/obsidian-thumb.jpg" },
+  { name: "Čaroit", url: "/kamen/caroit", image: "/images/stones/thumbs/caroit-thumb.jpg" },
+  { name: "Turmalín", url: "/kamen/turmalin", image: "/images/stones/thumbs/turmalin-thumb.jpg" },
 ];
 
 const purposes = [
@@ -35,6 +65,9 @@ const purposes = [
 ];
 
 export default function GuideSection() {
+  const [showAllSymbols, setShowAllSymbols] = useState(false);
+  const displayedSymbols = showAllSymbols ? symbols : symbols.slice(0, 12);
+
   return (
     <section id="pruvodce-amulety" className="w-full bg-accent/20 py-16">
       <div className="container">
@@ -93,7 +126,7 @@ export default function GuideSection() {
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-            {symbols.map((symbol, index) => (
+            {displayedSymbols.map((symbol, index) => (
               <Link
                 key={index}
                 href={symbol.url}
@@ -103,7 +136,7 @@ export default function GuideSection() {
                   <img
                     src={symbol.image}
                     alt={symbol.name}
-                    loading="lazy"
+                    loading={index < 4 ? "eager" : "lazy"}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -113,10 +146,22 @@ export default function GuideSection() {
               </Link>
             ))}
           </div>
+          
+          {/* Tlačítko "Zobrazit další" */}
+          {!showAllSymbols && (
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={() => setShowAllSymbols(true)}
+                className="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+              >
+                Zobrazit další ({symbols.length - 12})
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Výběr podle kamenů */}
-        <div>
+        <div id="vyber-podle-kamenu">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 rounded-full bg-[#E85A9F]/10 flex items-center justify-center">
               <Gem className="h-6 w-6 text-[#E85A9F]" />
