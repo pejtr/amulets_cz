@@ -7,6 +7,7 @@ import MagazineSection from "@/components/MagazineSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 import { GuideCTA } from "@/components/GuideCTA";
+import QuizCTA from "@/components/QuizCTA";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
@@ -48,6 +49,7 @@ export default function Home() {
         <ProductsSection />
         <TestimonialsSection />
         <GuideSection />
+        <QuizCTA />
         <MagazineSection />
         <FAQSection />
         <TestimonialsCarousel />

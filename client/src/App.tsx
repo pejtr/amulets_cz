@@ -8,6 +8,8 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import GuideDetail from "./pages/GuideDetail";
 import MagazineArticle from "./pages/MagazineArticle";
+import Quiz from "./pages/Quiz";
+import QuizResult from "./pages/QuizResult";
 import CookieConsent from "./components/CookieConsent";
 import BackToTop from "./components/BackToTop";
 
@@ -26,6 +28,8 @@ function Router() {
       <Route path="/kamen/:slug" component={GuideDetail} />
       <Route path="/ucel/:slug" component={GuideDetail} />
       <Route path="/magazin/:slug" component={MagazineArticle} />
+      <Route path="/kviz" component={Quiz} />
+      <Route path="/kviz/vysledek/:symbol" component={QuizResult} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

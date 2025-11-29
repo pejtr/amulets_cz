@@ -14,6 +14,7 @@ import GoogleTranslate from "@/components/GoogleTranslate";
 
 const navItems = [
   { label: "🎁 Průvodce amulety", hasDropdown: false, url: "/#pruvodce-amulety", isInternal: true },
+  { label: "✨ Kvíz: Tvůj symbol", hasDropdown: false, url: "/kviz", isInternal: true },
   { label: "Orgonitové pyramidy", hasDropdown: true, url: "/#orgonitove-pyramidy", isInternal: true },
   { label: "Aromaterapie", hasDropdown: true, url: "/#aromaterapeuticke-esence", isInternal: true },
   { label: "Startovací balíčky", hasDropdown: false, url: "https://www.ohorai.cz/" },
@@ -129,7 +130,7 @@ export default function Header() {
                   target={(item as any).isInternal ? undefined : "_blank"}
                   rel={(item as any).isInternal ? undefined : "noopener noreferrer"}
                   onClick={(e) => {
-                    if ((item as any).isInternal) {
+                    if ((item as any).isInternal && item.url.startsWith('/#')) {
                       e.preventDefault();
                       const targetId = item.url.replace('/#', '');
                       const element = document.getElementById(targetId);
@@ -138,6 +139,10 @@ export default function Header() {
                       } else {
                         window.location.href = item.url;
                       }
+                    } else if ((item as any).isInternal) {
+                      // For internal routes like /kviz, let the router handle it
+                      e.preventDefault();
+                      window.location.href = item.url;
                     }
                   }}
                   className="inline-flex items-center gap-1 px-3 py-2 text-foreground hover:text-primary hover:bg-transparent rounded-md transition-colors"
