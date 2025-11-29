@@ -19,8 +19,7 @@ const navItems = [
   { label: "Aromaterapie", hasDropdown: true, url: "/#aromaterapeuticke-esence", isInternal: true },
   { label: "Startovací balíčky", hasDropdown: false, url: "https://www.ohorai.cz/" },
   { label: "O mě", hasDropdown: false, url: "https://www.ohorai.cz/o-projektu/" },
-  { label: "Drahé kameny", hasDropdown: false, url: "/#vyber-podle-kamenu", isInternal: true },
-  { label: "Šperky", hasDropdown: false, url: "https://www.ohorai.cz/" },
+  { label: "Draho kameny", hasDropdown: false, url: "/#vyber-podle-kamenu", isInternal: true },
   { label: "Magazín", hasDropdown: false, url: "/#magazin", isInternal: true },
   { label: "Kontakt", hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },
 ];
