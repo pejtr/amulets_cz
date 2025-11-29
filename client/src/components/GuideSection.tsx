@@ -141,7 +141,7 @@ export default function GuideSection() {
                   <img
                     src={stone.image}
                     alt={stone.name}
-                    loading="lazy"
+                    loading={index < 4 ? "eager" : "lazy"}
                     className="w-full h-full object-cover"
                   />
                 </div>
