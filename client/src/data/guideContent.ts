@@ -145,6 +145,318 @@ Symbol je považován za jeden z **nejmocnějších ochranných talismanů** sta
 
 Horovo oko **chrání před zlým pohledem**, přináší zdraví a sílu. Je nástrojem pro **duchovní vidění** a ochranu před negativními energiemi. Symbol také reprezentuje **uzdravení a regeneraci**.`,
   },
+  {
+    slug: "om",
+    title: "Om (Aum)",
+    image: "/images/symbols/om.jpg",
+    metaTitle: "Om (Aum) - Posvátný zvuk vesmíru | Amulets.cz",
+    metaDescription: "Om je nejposvětnější mantra hinduismu a buddhismu. Symbol kosmické vibrace a duchovního probuzení.",
+    content: `**Om** (také **Aum**) je nejposvětnější **mantra hinduismu a buddhismu**. Představuje **prvotní zvuk vesmíru**, ze kterého vzniklo vše stvoření. Symbol se skládá ze tří křivek, půlměsíce a tečky.
+
+Každá část symbolu má hluboký význam: dolní křivka reprezentuje **bdělý stav** (jagrat), střední křivka **stav snění** (svapna), horní křivka **hluboký spánek** (sushupti). Půlměsíc symbolizuje **māyā** (iluzi) a tečka **turiya** (transcendentální stav).
+
+Om je **bránou k meditaci** a duchovnímu probuzení. Recitace této mantry harmonizuje tělo, mysl a ducha, **otevírá čakry** a spojuje nás s kosmickou energií. Používá se na začátku i na konci meditací a jógy.`,
+  },
+  {
+    slug: "pentagram",
+    title: "Pentagram",
+    image: "/images/symbols/pentagram.jpg",
+    metaTitle: "Pentagram - Symbol pěti živlů a ochrany | Amulets.cz",
+    metaDescription: "Pentagram je starověký symbol pěti živlů, ochrany a duchovní síly. Mocný ochranný talisman.",
+    content: `**Pentagram** je pěticípá hvězda, jeden z **nejstarších duchovních symbolů** lidstva. Každý cíp reprezentuje jeden ze **pěti živlů**: oheň, vodu, vzduch, zemi a ducha (éter).
+
+V magické tradici je pentagram **mocným ochranným symbolem**. Špička směřující nahoru symbolizuje **duchovní sílu** převládající nad hmotným světem. Používá se pro **ochranu před negativními energiemi** a jako nástroj v rituálech.
+
+Pentagram také reprezentuje **lidské tělo** - hlava a čtyři končetiny. Je symbolem **harmonie mezi tělem a duchem**, rovnováhy pěti živlů v našem životě. V pythagorejské tradici byl znakem **dokonalosti a zdraví**.`,
+  },
+  {
+    slug: "ankh",
+    title: "Ankh (Kříž života)",
+    image: "/images/symbols/ankh.jpg",
+    metaTitle: "Ankh - Egyptský kříž života a nesmrtelnosti | Amulets.cz",
+    metaDescription: "Ankh je starověký egyptský symbol věčného života, nesmrtelnosti a božské energie.",
+    content: `**Ankh**, známý jako **kříž života**, je starověký egyptský symbol **věčného života a nesmrtelnosti**. Jeho tvar kombinuje kříž s oválnou smyčkou nahoře, která reprezentuje **věčnost**.
+
+V hieroglyfech znamená ankh "život" a byl **atributem bohů**. Faraoni a kněží ho drželi jako znak **božské moci** a spojení s věčností. Symbol představuje **spojení mužského a ženského principu**, hmoty a ducha.
+
+Ankh je **klíčem k věčnému životu** a duchovní moudrosti. Používá se pro **posílení životní energie**, ochranu zdraví a spojení s vyššími dimenzemi. Je nástrojem pro **duchovní transformaci** a probuzení.`,
+  },
+  {
+    slug: "triquetra",
+    title: "Triquetra (Trojitý uzel)",
+    image: "/images/symbols/triquetra.jpg",
+    metaTitle: "Triquetra - Keltský symbol trojjedinosti | Amulets.cz",
+    metaDescription: "Triquetra je keltský symbol trojjedinosti, ochrany a věčného cyklu života.",
+    content: `**Triquetra**, také **trojitý uzel**, je starověký **keltský symbol** tvořený třemi propojenými oblouky. Reprezentuje **trojjedinost** - tělo, mysl a ducha, nebo minulost, přítomnost a budoucnost.
+
+V keltské tradici symbolizuje **věčný cyklus života** - narození, život a smrt. Tři oblouky bez začátku a konce představují **nekonečnost** a propojení všeho ve vesmíru. Symbol byl také spojen s **bohyní v její trojí podobě** - panna, matka, stařena.
+
+Triquetra je **mocným ochranným symbolem**. Používá se pro **harmonizaci trojjedinosti** v našem životě, ochranu před negativními vlivy a **posílení duchovní síly**. Je ideální pro meditaci o rovnováze a propojení.`,
+  },
+  {
+    slug: "merkaba",
+    title: "Merkaba",
+    image: "/images/symbols/merkaba.jpg",
+    metaTitle: "Merkaba - Vozidlo světla a ascenze | Amulets.cz",
+    metaDescription: "Merkaba je posvátný geometrický symbol vozidla světla, duchovní ascenze a transformace.",
+    content: `**Merkaba** je posvátný geometrický symbol tvořený **dvěma propojenými tetraedry** (trojbokými jehlany). Název pochází z hebrejštiny: Mer (světlo), Ka (duch), Ba (tělo) - doslova **"vozidlo světla"**.
+
+Symbol reprezentuje **energetické pole** obklopující každou živou bytost. Aktivovaná Merkaba vytváří **ochranné pole** a umožňuje **duchovní cestování** mezi dimenzemi. Je klíčem k **ascenzi** a vyšším stavům vědomí.
+
+Merkaba harmonizuje **mužskou a ženskou energii** (dva tetraedry), spojuje **nebe a zemi**, hmotu a ducha. Meditace s Merkabaou **aktivuje čakry**, čistí aurické pole a **urychluje duchovní růst**. Je nástrojem pro transformaci a probuzení.`,
+  },
+  {
+    slug: "hamsa-eye",
+    title: "Hamsa s okem",
+    image: "/images/symbols/hamsa-eye.jpg",
+    metaTitle: "Hamsa s okem - Dvojitá ochrana před zlým pohledem | Amulets.cz",
+    metaDescription: "Hamsa s okem kombinuje dvě mocné ochranné symboly pro maximální ochranu před negativními energiemi.",
+    content: `**Hamsa s okem** je kombinace dvou **nejmocnějších ochranných symbolů** - Ruky Fatimy a vševidoucího oka. Tato kombinace vytváří **dvojitou ochranu** proti zlému pohledu a negativním energiím.
+
+Oko v dlani symbolizuje **bdělost a duchovní vidění**. Zatímco Hamsa odráží negativní energie, oko **odhaluje skryté nebezpečí** a chrání před psychickými útoky. Symbol je obzvláště silný proti **závisti a zlým úmyslům**.
+
+Hamsa s okem se používá jako **osobní ochranný talisman** nebo jako ochrana domova. Přináší **mír, zdraví a štěstí**, odstraňuje strach a úzkost. Je ideální pro ty, kteří pracují s veřejností nebo jsou vystaveni **negativním energiím**.`,
+  },
+  {
+    slug: "lotus-mandala",
+    title: "Lotosová mandala",
+    image: "/images/symbols/lotus-mandala.jpg",
+    metaTitle: "Lotosová mandala - Symbol čistoty a duchovního růstu | Amulets.cz",
+    metaDescription: "Lotosová mandala kombinuje sílu lotosu a mandaly pro hlubokou meditaci a duchovní transformaci.",
+    content: `**Lotosová mandala** je posvátný symbol kombinující **lotos** (čistotu a duchovní růst) s **mandalou** (kosmický řád). Vytváří **mocný nástroj pro meditaci** a duchovní transformaci.
+
+Lotos vyrůstající z bahna symbolizuje **duchovní probuzení** navzdory životním překážkám. Mandala představuje **cestu k osvícení** - od vnějšího kruhu (hmotný svět) k středu (božské vědomí). Okvětní lístky lotosu reprezentují **čakry** a jejich rozvinutí.
+
+Meditace s lotosovou mandalou **harmonizuje čakry**, čistí mysl a **otevírá srdce**. Symbol podporuje **vnitřní klid**, sebepoznání a spojení s vyšším já. Je ideální pro **hlubokou kontemplaci** a duchovní praxi.`,
+  },
+  {
+    slug: "sri-yantra",
+    title: "Šrí Jantra",
+    image: "/images/symbols/sri-yantra.jpg",
+    metaTitle: "Šrí Jantra - Nejposvětnější geometrický symbol | Amulets.cz",
+    metaDescription: "Šrí Jantra je nejposvětnější symbol posvátné geometrie, reprezentující vesmír a božskou energii.",
+    content: `**Šrí Jantra** je nejsložitější a **nejposvětnější symbol** hinduistické posvátné geometrie. Skládá se z **devíti propojených trojúhelníků** obklopených lotosovými okvětními lístky a čtverci.
+
+Čtyři trojúhelníky směřující nahoru reprezentují **Šivu** (mužský princip), pět směřujících dolů **Šakti** (ženský princip). Jejich propojení vytváří **43 menších trojúhelníků**, které symbolizují **celý vesmír** a všechny aspekty stvoření.
+
+Meditace na Šrí Jantru **harmonizuje vnitřní a vnější svět**, přináší **prosperitu, moudrost a duchovní osvícení**. Symbol **aktivuje všechny čakry** současně a vytváří silné energetické pole. Je považován za **vizuální mantru** a bránu k vyšším stavům vědomí.`,
+  },
+  {
+    slug: "triskelion",
+    title: "Triskelion (Trojspiralá)",
+    image: "/images/symbols/triskelion.jpg",
+    metaTitle: "Triskelion - Keltský symbol pohybu a evoluce | Amulets.cz",
+    metaDescription: "Triskelion je starověký keltský symbol trojjedinosti, věčného pohybu a duchovní evoluce.",
+    content: `**Triskelion**, také **trojspiralá**, je starověký **keltský symbol** tvořený třemi propojenými spirálami. Reprezentuje **věčný pohyb**, cyklickou povahu života a **duchovní evoluci**.
+
+Tři spirály symbolizují **trojjedinost** - tělo, mysl, ducha; nebo zemi, moře, nebe. Směr spirál naznačuje **neustálý pohyb vpřed**, růst a transformaci. Symbol byl nalezen na megalitických památkách starých přes 5000 let.
+
+Triskelion je symbolem **osobního růstu** a překonávání překážek. Používá se pro **posílení vůle**, odvahu a vytrvalost. Podporuje **duchovní evoluci** a pomáhá najít rovnováhu mezi třemi aspekty bytí. Je ideální pro ty, kteří procházejí **životními změnami**.`,
+  },
+  {
+    slug: "vesica-piscis",
+    title: "Vesica Piscis",
+    image: "/images/symbols/vesica-piscis.jpg",
+    metaTitle: "Vesica Piscis - Symbol stvoření a posvátné geometrie | Amulets.cz",
+    metaDescription: "Vesica Piscis je základní symbol posvátné geometrie, reprezentující stvoření a božskou proporci.",
+    content: `**Vesica Piscis** (latinsky "rybí měchýř") je základní symbol **posvátné geometrie** tvořený průnikem dvou kruhů stejné velikosti. Vytváří **mandorlu** - mandlový tvar v průsečíku.
+
+Symbol reprezentuje **stvoření** - ze dvou (dualita) vzniká třetí (jednota). Je považován za **bránu mezi světy**, průchod z hmotného do duchovního. Vesica Piscis obsahuje **poměr √3:1**, který se objevuje v přírodě a architektuře.
+
+V křesťanství byl symbol spojen s **Kristem** a rybou (ICHTHYS). V posvátné geometrii je **základem pro další symboly** jako Květ života. Používá se pro **harmonizaci protikladů**, spojení mužského a ženského principu a **duchovní zrození**.`,
+  },
+  {
+    slug: "infinity",
+    title: "Nekonečno (∞)",
+    image: "/images/symbols/infinity.jpg",
+    metaTitle: "Symbol nekonečna - Věčnost a neomezené možnosti | Amulets.cz",
+    metaDescription: "Symbol nekonečna reprezentuje věčnost, neomezené možnosti a propojení všeho ve vesmíru.",
+    content: `**Symbol nekonečna** (∞), také **lemniskata**, reprezentuje **věčnost, neomezené možnosti** a cyklickou povahu vesmíru. Jeho tvar připomíná **ležící osmičku** nebo **Möbiův pás** - povrch bez začátku a konce.
+
+V matematice symbolizuje nekonečnost, v duchovní tradici **věčný koloběh života** - narození, smrt a znovuzrození. Dvě smyčky reprezentují **dualitu** (hmota a duch, nebe a země), které jsou **navždy propojeny**.
+
+Symbol nekonečna se používá pro **meditaci o věčnosti**, překonání limitů a **otevření se neomezeným možnostem**. Připomíná nám, že energie nikdy nezaniká, pouze se **transformuje**. Je ideální pro ty, kteří hledají **svobodu** a duchovní expanzi.`,
+  },
+  {
+    slug: "triple-moon",
+    title: "Trojitý měsíc",
+    image: "/images/symbols/triple-moon.jpg",
+    metaTitle: "Trojitý měsíc - Symbol bohyně v trojí podobě | Amulets.cz",
+    metaDescription: "Trojitý měsíc reprezentuje bohyni v trojí podobě - panna, matka, stařena. Symbol ženské síly a cyklů.",
+    content: `**Trojitý měsíc** je posvátný symbol **bohyně v trojí podobě** - dorůstající měsíc (panna), úplněk (matka) a couvající měsíc (stařena). Reprezentuje **cykly života, smrti a znovuzrození**.
+
+Každá fáze má svou energii: **panna** (nové začátky, čistota), **matka** (plodnost, síla, naplnění), **stařena** (moudrost, transformace, odpočinek). Symbol je spojen s **měsíčními cykly** a ženskou energií.
+
+Trojitý měsíc je **mocným symbolem pro ženy** - pomáhá harmonizovat menstruační cyklus, **posílí intuici** a spojení s přírodou. Používá se v rituálech **nového měsíce a úplňku** pro manifestaci a uvolnění. Je ideální pro práci s **ženskou energií** a bohyní.`,
+  },
+  {
+    slug: "cross",
+    title: "Kříž",
+    image: "/images/symbols/cross.jpg",
+    metaTitle: "Kříž - Univerzální symbol víry a ochrany | Amulets.cz",
+    metaDescription: "Kříž je univerzální duchovní symbol víry, ochrany a spojení nebe a země.",
+    content: `**Kříž** je jeden z **nejstarších a nejuniverzálnějších symbolů** lidstva. Vertikální linie spojuje **nebe a zemi**, horizontální linie reprezentuje **hmotný svět**. Jejich průsečík je **střed vesmíru**, bod rovnováhy.
+
+V křesťanství symbolizuje **oběť a vykoupení**, v předkřesťanských tradicích **čtyři světové strany, čtyři živly** a kosmický řád. Kříž je také symbolem **lidského těla** - hlava, ruce a nohy.
+
+Kříž je **mocným ochranným symbolem** napříč kulturami. Používá se pro **požehnání, ochranu** a spojení s božskou energií. Meditace s křížem **harmonizuje tělo a ducha**, přináší vnitřní mír a **duchovní sílu**. Je univerzálním symbolem **víry a naděje**.`,
+  },
+  {
+    slug: "scarab",
+    title: "Skarabeus",
+    image: "/images/symbols/scarab.jpg",
+    metaTitle: "Skarabeus - Egyptský symbol znovuzrození a transformace | Amulets.cz",
+    metaDescription: "Skarabeus je starověký egyptský symbol znovuzrození, transformace a ochranné síly slunce.",
+    content: `**Skarabeus** je posvátný brouk starověkého Egypta, symbol **znovuzrození, transformace** a **ochranné síly slunce**. Egyptští kněží pozorovali, jak skarabeus válí kouli z hnoje, což připomínalo **boha slunce Ré** valícího sluneční disk po obloze.
+
+Brouk vylézající z koule symbolizoval **znovuzrození** a **spontánní stvoření**. Skarabeus byl proto spojen s **věčným životem** a regenerací. Amulety ve tvaru skarabea se **ukládaly do hrobek** pro ochranu na cestě do posmrtného života.
+
+Skarabeus je symbolem **osobní transformace** a překonání překážek. Používá se pro **posílení životní energie**, odvahu a vytrvalost. Podporuje **duchovní znovuzrození** a pomáhá v těžkých životních obdobích. Je ideální pro ty, kteří procházejí **velkými změnami**.`,
+  },
+  {
+    slug: "caduceus",
+    title: "Caduceus (Hermesova hůl)",
+    image: "/images/symbols/caduceus.jpg",
+    metaTitle: "Caduceus - Symbol léčení a duchovní rovnováhy | Amulets.cz",
+    metaDescription: "Caduceus je starověký symbol léčení, obchodu a duchovní rovnováhy. Hermesova hůl se dvěma hady.",
+    content: `**Caduceus**, také **Hermesova hůl**, je starověký symbol tvořený **holí se dvěma propletenými hady** a křídly nahoře. Reprezentuje **léčení, rovnováhu** a duchovní transformaci.
+
+Dva hadi symbolizují **dualitu** - mužské a ženské, dobro a zlo, hmotu a ducha. Jejich propletení kolem hole představuje **harmonizaci protikladů** a **kundalini energii** stoupající podél páteře. Křídla symbolizují **transcendenci** a duchovní vzestup.
+
+Caduceus je **symbolem medicíny** a léčitelství (často zaměňován s Asklépiovou holí). Používá se pro **harmonizaci těla a ducha**, aktivaci čaker a **léčení na všech úrovních**. Je ideální pro léčitele, terapeuty a ty, kteří hledají **vnitřní rovnováhu**.`,
+  },
+  {
+    slug: "pentacle",
+    title: "Pentakl",
+    image: "/images/symbols/pentacle.jpg",
+    metaTitle: "Pentakl - Ochranný symbol pěti živlů | Amulets.cz",
+    metaDescription: "Pentakl je pentagram v kruhu, mocný ochranný symbol pěti živlů a duchovní síly.",
+    content: `**Pentakl** je **pentagram obklopený kruhem**, jeden z nejmocnějších **ochranných symbolů** v magické tradici. Kruh reprezentuje **jednotu a ochranu**, pentagram **pět živlů** - oheň, vodu, vzduch, zemi a ducha.
+
+V Wicca a pohanských tradicích je pentakl **posvátným nástrojem** používaným v rituálech pro ochranu a manifestaci. Špička směřující nahoru symbolizuje **duchovní sílu** převládající nad hmotným světem. Kruh **uzavírá a chrání** energii pentagramu.
+
+Pentakl se používá pro **ochranu před negativními energiemi**, vyvolávání živlů a **vytváření posvátného prostoru**. Je mocným talismanem pro **osobní ochranu** a duchovní praxi. Podporuje **rovnováhu pěti živlů** v našem životě a spojení s přírodními silami.`,
+  },
+  {
+    slug: "crescent-moon",
+    title: "Půlměsíc",
+    image: "/images/symbols/crescent-moon.jpg",
+    metaTitle: "Půlměsíc - Symbol intuice a ženské energie | Amulets.cz",
+    metaDescription: "Půlměsíc je symbol intuice, ženské energie a nových začátků. Spojení s měsíčními cykly.",
+    content: `**Půlměsíc** je posvátný symbol **intuice, ženské energie** a **nových začátků**. Dorůstající měsíc symbolizuje **růst a manifestaci**, couvající měsíc **uvolnění a odpočinek**.
+
+V mnoha kulturách je půlměsíc spojen s **bohyněmi** - Diana, Artemis, Selene. Reprezentuje **měsíční cykly**, které ovlivňují příliv a odliv, ženský cyklus a **emocionální vlny**. Měsíc je také symbolem **podvědomí** a snů.
+
+Půlměsíc se používá pro **posílení intuice**, práci s sny a **spojení s ženskou energií**. Rituály při dorůstajícím měsíci slouží k **manifestaci cílů**, při couvajícím k **uvolnění** a odpuštění. Je ideální pro ty, kteří chtějí **harmonizovat své emoce** a pracovat s měsíčními cykly.`,
+  },
+  {
+    slug: "sun",
+    title: "Slunce",
+    image: "/images/symbols/sun.jpg",
+    metaTitle: "Symbol slunce - Životní síla a duchovní osvícení | Amulets.cz",
+    metaDescription: "Slunce je univerzální symbol životní síly, osvícení a mužské energie. Zdroj světla a tepla.",
+    content: `**Slunce** je univerzální symbol **životní síly, osvícení** a **mužské energie**. Ve všech kulturách bylo uctíváno jako **zdroj života** - bez slunce by nebylo tepla, světla ani růstu.
+
+Slunce reprezentuje **vědomí, jasnost** a duchovní osvícení. Je symbolem **božské přítomnosti**, síly a autority. V alchymii symbolizuje **zlato** a dokonalost. Sluneční energie je **aktivní, tvůrčí** a transformační.
+
+Symbol slunce se používá pro **posílení životní energie**, sebevědomí a **osobní síly**. Meditace se sluncem **aktivuje solární plexus**, přináší jasnost mysli a **optimismus**. Je ideální pro ty, kteří potřebují **energii, odvahu** a spojení s mužskou energií. Podporuje **duchovní osvícení** a sebepoznání.`,
+  },
+  {
+    slug: "enso",
+    title: "Ensó (Zenový kruh)",
+    image: "/images/symbols/enso.jpg",
+    metaTitle: "Ensó - Zenový kruh osvícení a dokonalosti | Amulets.cz",
+    metaDescription: "Ensó je zenový kruh symbolizující osvícení, prázdnotu a dokonalost v nedokonalosti.",
+    content: `**Ensó** je **zenový kruh** namalovaný jedním tahem štětce. Symbolizuje **osvícení, prázdnotu** (šúnjatá) a **dokonalost v nedokonalosti**. V zen buddhismu je považován za jeden z nejhlubších duchovních symbolů.
+
+Nedokonalost kruhu je záměrná - reprezentuje **wabi-sabi** (krásu v nedokonalosti) a **mu** (prázdnotu). Ensó může být uzavřené (jednota, dokonalost) nebo otevřené (nekonečnost, růst). Každé ensó je **jedinečné** a odráží stav mysli umělce.
+
+Meditace s ensó **uklidňuje mysl**, učí nás **přijmout nedokonalost** a být přítomní v okamžiku. Symbol připomíná, že **vše je pomíjivé** a dokonalost spočívá v přijetí této pravdy. Je ideální pro **zen praxi** a kultivaci vnitřního klidu.`,
+  },
+  {
+    slug: "ouroboros",
+    title: "Ouroboros (Had požírající svůj ocas)",
+    image: "/images/symbols/ouroboros.jpg",
+    metaTitle: "Ouroboros - Symbol věčného cyklu a transformace | Amulets.cz",
+    metaDescription: "Ouroboros je starověký symbol věčného cyklu, transformace a jednoty protikladů.",
+    content: `**Ouroboros** je starověký symbol **hada nebo draka požírajícího svůj ocas**, reprezentující **věčný cyklus** života, smrti a znovuzrození. Symbol byl nalezen v egyptských, řeckých i aztéckých kulturách.
+
+Kruhový tvar symbolizuje **nekonečnost** a **jednotu všeho**. Had požírající svůj ocas představuje **sebeobnovení**, transformaci a **alchemickou transmutaci**. V alchymii symbolizuje **prima materia** - prvotní hmotu, ze které vzniká vše.
+
+Ouroboros učí, že **konec je zároveň začátkem**, smrt je znovuzrozením. Používá se pro **meditaci o cykličnosti života**, překonání strachu ze smrti a **pochopení jednoty protikladů**. Je ideální pro ty, kteří procházejí **velkými životními transformacemi** a hledají hlubší smysl.`,
+  },
+  {
+    slug: "celtic-cross",
+    title: "Keltský kříž",
+    image: "/images/symbols/celtic-cross.jpg",
+    metaTitle: "Keltský kříž - Symbol víry a keltského dědictví | Amulets.cz",
+    metaDescription: "Keltský kříž kombinuje křesťanský kříž s pohanským kruhem. Symbol víry, ochrany a keltské tradice.",
+    content: `**Keltský kříž** je jedinečný symbol kombinující **křesťanský kříž** s **pohanským kruhem**. Kruh obklopující průsečík kříže reprezentuje **slunce, věčnost** nebo **kosmický řád**.
+
+Symbol vznikl v raném středověku jako **spojení křesťanství** s keltskou tradicí. Čtyři ramena kříže symbolizují **čtyři světové strany** nebo čtyři živly, kruh **jednotu všeho** a božskou přítomnost. Často je zdoben **keltskými uzly** - symboly věčnosti.
+
+Keltský kříž je **mocným ochranným symbolem** spojujícím duchovní a hmotný svět. Používá se pro **ochranu**, požehnání a **spojení s keltským dědictvím**. Podporuje **víru**, odvahu a duchovní sílu. Je ideální pro ty, kteří hledají **rovnováhu** mezi tradicí a vírou.`,
+  },
+  {
+    slug: "mandala",
+    title: "Mandala",
+    image: "/images/symbols/mandala.jpg",
+    metaTitle: "Mandala - Posvátný kruh harmonie a meditace | Amulets.cz",
+    metaDescription: "Mandala je posvátný geometrický symbol harmonie, jednoty a cesty k osvícení. Nástroj pro meditaci.",
+    content: `**Mandala** (sanskrt "kruh") je posvátný **geometrický symbol** reprezentující **vesmír, jednotu** a cestu k osvícení. V hinduismu a buddhismu se používá jako **nástroj pro meditaci** a duchovní praxi.
+
+Mandala má **symetrickou strukturu** vycházející ze středu - symbolizuje **kosmický řád** a harmonii. Vnější kruhy reprezentují **hmotný svět**, vnitřní kruhy **duchovní dimenze**, střed **božské vědomí**. Každá mandala je **mapou duchovní cesty**.
+
+Tvorba nebo meditace s mandalou **harmonizuje mysl**, přináší vnitřní klid a **soustředění**. Pomáhá **integrovat protikladné aspekty** osobnosti a najít rovnováhu. Mandala je **zrcadlem duše** - odráží náš vnitřní stav. Je ideální pro **hlubokou meditaci** a sebepoznání.`,
+  },
+  {
+    slug: "dharma-wheel",
+    title: "Dharmachakra (Kolo dharmy)",
+    image: "/images/symbols/dharma-wheel.jpg",
+    metaTitle: "Dharmachakra - Buddhist ické kolo učení | Amulets.cz",
+    metaDescription: "Dharmachakra je buddhist ický symbol učení Buddhy, osmidílné cesty a věčného koloběhu.",
+    content: `**Dharmachakra** (kolo dharmy) je jeden z **nejstarších buddhist ických symbolů**. Reprezentuje **učení Buddhy** a cestu k osvobození od utrpení. Kolo má obvykle **osm paprsků** symbolizujících **Ušlechtilou osmidílnou stezku**.
+
+Osm paprsků představuje: správné porozumění, správné myšlení, správnou řeč, správné jednání, správné živobytí, správné úsilí, správnou všímavost a správné soustředění. **Střed kola** symbolizuje disciplínu, **ráfek** soustředění.
+
+Dharmachakra připomíná **cyklickou povahu existence** (samsára) a možnost **osvobození** (nirvána). Používá se pro **meditaci o buddhist ickém učení**, kultivaci moudrosti a **soucitu**. Je ideální pro ty, kteří následují **buddhist ickou cestu** nebo hledají osvobození od utrpení.`,
+  },
+  {
+    slug: "spiral",
+    title: "Spirála",
+    image: "/images/symbols/spiral.jpg",
+    metaTitle: "Spirála - Symbol růstu a duchovní evoluce | Amulets.cz",
+    metaDescription: "Spirála je univerzální symbol růstu, evoluce a cesty ke středu. Objevuje se v přírodě i v duchovních tradicích.",
+    content: `**Spirála** je jeden z **nejstarších symbolů** lidstva, objevující se v přírodě i duchovních tradicích. Reprezentuje **růst, evoluci** a **cestu ke středu** (nebo z centra ven).
+
+Spirálu najdeme všude - v galaxiích, mušlích, rostlinách (zlatý řez). Symbolizuje **nekonečný pohyb**, expanzi a kontrakci, **dech vesmíru**. Spirála směřující dovnitř představuje **introspekci**, ven **expanzi** a projevení.
+
+Spirálu používali **keltové, Mayové** i domorodé kultury jako symbol **duchovní cesty**. Meditace se spirálou **harmonizuje energii**, podporuje růst a **transformaci**. Připomíná nám, že **cesta není přímá** - vracíme se k stejným tématům na vyšší úrovni. Je ideální pro ty, kteří procházejí **duchovní evolucí**.`,
+  },
+  {
+    slug: "hexagram",
+    title: "Hexagram (Davidova hvězda)",
+    image: "/images/symbols/hexagram.jpg",
+    metaTitle: "Hexagram - Symbol harmonie protikladů | Amulets.cz",
+    metaDescription: "Hexagram (Davidova hvězda) je symbol harmonie protikladů, spojení nebe a země, mužského a ženského.",
+    content: `**Hexagram**, známý jako **Davidova hvězda** (Magen David), je šesticípá hvězda tvořená **dvěma propojenými trojúhelníky**. Trojúhelník směřující nahoru symbolizuje **oheň, nebe, mužské**, dolů **vodu, zemi, ženské**.
+
+V židovské tradici je hexagram **symbolem ochrany** a spojení s Bohem. V alchymii reprezentuje **harmonii protikladů** - spojení čtyř živlů (oheň, voda, vzduch, země). V hinduismu je spojen s **anáhata čakrou** (srdečním centrem).
+
+Hexagram symbolizuje **dokonalou rovnováhu** mezi duchovním a hmotným, mužským a ženským, aktivním a receptivním. Používá se pro **harmonizaci protikladů**, ochranu a **duchovní rovnováhu**. Je ideální pro ty, kteří hledají **jednotu v rozmanitosti** a vnitřní harmonii.`,
+  },
+  {
+    slug: "feather",
+    title: "Posvátné pero",
+    image: "/images/symbols/feather.jpg",
+    metaTitle: "Posvátné pero - Symbol pravdy a duchovního vzestupu | Amulets.cz",
+    metaDescription: "Posvátné pero je symbol pravdy, lehkosti bytí a spojení s duchovním světem. Používáno v mnoha tradicích.",
+    content: `**Posvátné pero** je mocný symbol **pravdy, lehkosti bytí** a **spojení s duchovním světem**. Ve starověkém Egyptě bylo pero bohyně Maat používáno při **vážení srdce** - srdce zesnulého muselo být lehčí než pero, aby mohl vstoupit do posmrtného života.
+
+V domorodých tradicích Ameriky je pero **posvátným darem** od ptáků - poslů mezi nebem a zemí. Orlí pero symbolizuje **odvahu a duchovní sílu**, havraní **magii a transformaci**. Pero také reprezentuje **vzdušný živel** - myšlenky, komunikaci, inspiraci.
+
+Posvátné pero se používá pro **čištění aury**, požehnání a **duchovní rituály**. Připomíná nám, abychom žili v **pravdě** a lehkosti, bez zbytečného břemene. Podporuje **duchovní vzestup**, jasnost mysli a **spojení s vyššími dimenzemi**. Je ideální pro ty, kteří hledají **svobodu** a pravdu.`,
+  },
 ];
 
 export const stonesData = [
