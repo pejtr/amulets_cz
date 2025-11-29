@@ -1,0 +1,145 @@
+import { useState, useEffect } from "react";
+import { X, Gift, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+export default function ExitIntentPopup() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasShown, setHasShown] = useState(false);
+
+  useEffect(() => {
+    // Check if popup was already shown
+    const popupShown = localStorage.getItem("exitPopupShown");
+    if (popupShown) {
+      setHasShown(true);
+      return;
+    }
+
+    // Exit intent detection - mouse leaving viewport from top
+    const handleMouseLeave = (e: MouseEvent) => {
+      // Only trigger if mouse is leaving from top and moving upward
+      if (e.clientY <= 0 && !hasShown && !isVisible) {
+        setIsVisible(true);
+        setHasShown(true);
+        // Mark as shown in localStorage (expires after 7 days)
+        const expiryDate = new Date();
+        expiryDate.setDate(expiryDate.getDate() + 7);
+        localStorage.setItem("exitPopupShown", expiryDate.toISOString());
+      }
+    };
+
+    document.addEventListener("mouseout", handleMouseLeave);
+
+    return () => {
+      document.removeEventListener("mouseout", handleMouseLeave);
+    };
+  }, [hasShown, isVisible]);
+
+  const handleClose = () => {
+    setIsVisible(false);
+  };
+
+  const handleClaim = () => {
+    // Open Ohorai.cz in new tab
+    window.open("https://www.ohorai.cz/?discount=OHORAI11", "_blank");
+    setIsVisible(false);
+  };
+
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText("OHORAI11");
+    // Visual feedback could be added here
+  };
+
+  if (!isVisible) return null;
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 animate-in fade-in duration-300"
+        onClick={handleClose}
+      />
+
+      {/* Popup */}
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md mx-4 animate-in zoom-in-95 duration-300">
+        <div className="relative bg-gradient-to-br from-pink-50 via-purple-50 to-white rounded-2xl shadow-2xl p-8 border-2 border-purple-200">
+          {/* Close button */}
+          <button
+            onClick={handleClose}
+            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            aria-label="Zavřít"
+          >
+            <X className="h-6 w-6" />
+          </button>
+
+          {/* Icon */}
+          <div className="flex justify-center mb-4">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full blur-xl opacity-50 animate-pulse" />
+              <div className="relative bg-gradient-to-r from-pink-500 to-purple-600 rounded-full p-4">
+                <Gift className="h-12 w-12 text-white" />
+              </div>
+            </div>
+          </div>
+
+          {/* Heading */}
+          <h2 className="text-3xl font-bold text-center mb-2 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+            Počkejte! 🎁
+          </h2>
+
+          {/* Subheading */}
+          <p className="text-center text-gray-600 mb-6">
+            Získejte <span className="font-bold text-purple-600">11% slevu</span> na celý sortiment
+          </p>
+
+          {/* Discount code */}
+          <div className="bg-white rounded-xl p-4 mb-6 border-2 border-dashed border-purple-300 shadow-inner">
+            <p className="text-sm text-gray-500 text-center mb-2">
+              Váš slevový kód:
+            </p>
+            <div className="flex items-center justify-center gap-2">
+              <code className="text-2xl font-bold text-purple-600 tracking-wider">
+                OHORAI11
+              </code>
+              <button
+                onClick={handleCopyCode}
+                className="text-purple-600 hover:text-purple-700 transition-colors"
+                aria-label="Kopírovat kód"
+              >
+                <Sparkles className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Benefits */}
+          <ul className="space-y-2 mb-6 text-sm text-gray-600">
+            <li className="flex items-start gap-2">
+              <span className="text-purple-600 mt-0.5">✓</span>
+              <span>Platí na <strong>všechny produkty</strong> na Ohorai.cz</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-purple-600 mt-0.5">✓</span>
+              <span>Orgonitové pyramidy, esence, amulety</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-purple-600 mt-0.5">✓</span>
+              <span>Sleva platí <strong>7 dní</strong></span>
+            </li>
+          </ul>
+
+          {/* CTA Button */}
+          <Button
+            onClick={handleClaim}
+            className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all"
+          >
+            Uplatnit slevu na Ohorai.cz
+          </Button>
+
+          {/* Small print */}
+          <p className="text-xs text-center text-gray-400 mt-4">
+            Kód se automaticky aplikuje při přesměrování
+          </p>
+        </div>
+      </div>
+    </>
+  );
+}
