@@ -63,8 +63,19 @@ export default function ExitIntentPopup() {
       return;
     }
 
-    // Call backend API
-    subscribeDiscount.mutate({ email });
+    // Get Facebook tracking parameters from cookies
+    const getCookie = (name: string) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop()?.split(';').shift();
+      return undefined;
+    };
+
+    const fbc = getCookie('_fbc'); // Facebook click ID
+    const fbp = getCookie('_fbp'); // Facebook browser ID
+
+    // Call backend API with tracking parameters
+    subscribeDiscount.mutate({ email, fbc, fbp });
   };
 
   const handleClaim = () => {

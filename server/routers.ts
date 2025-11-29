@@ -4,6 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import { addBrevoContact, sendDiscountWelcomeEmail } from "./brevo";
+import { sendLeadEvent } from "./meta-conversions";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -22,8 +23,12 @@ export const appRouter = router({
   // Email marketing
   email: router({
     subscribeDiscount: publicProcedure
-      .input(z.object({ email: z.string().email() }))
-      .mutation(async ({ input }) => {
+      .input(z.object({ 
+        email: z.string().email(),
+        fbc: z.string().optional(),
+        fbp: z.string().optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
         const { email } = input;
         
         // Add contact to Brevo
@@ -46,6 +51,20 @@ export const appRouter = router({
         if (!emailSent) {
           throw new Error("Failed to send welcome email");
         }
+        
+        // Send Lead event to Meta Conversions API
+        const clientIp = ctx.req.ip || ctx.req.headers['x-forwarded-for'] as string || ctx.req.socket.remoteAddress;
+        const userAgent = ctx.req.headers['user-agent'];
+        const referer = ctx.req.headers['referer'] || 'https://amulets.cz';
+        
+        await sendLeadEvent({
+          email,
+          eventSourceUrl: referer,
+          clientIp,
+          userAgent,
+          fbc: input.fbc,
+          fbp: input.fbp,
+        });
         
         return { success: true };
       }),
