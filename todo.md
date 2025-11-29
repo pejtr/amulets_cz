@@ -154,3 +154,6 @@
 ## Open Graph meta tagy pro symboly
 - [x] Implementovat dynamické OG tagy pro každou stránku symbolu (obrázek, název, popis)
 - [x] Změnit obecný OG obrázek na logo Amulets (místo Ohorai)
+
+## Google Analytics 4 integrace
+- [x] Přidat GA4 tracking kód (G-NSFK0CWT89) do index.html
