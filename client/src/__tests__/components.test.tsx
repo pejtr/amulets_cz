@@ -85,7 +85,9 @@ describe('Amulets.cz Components', () => {
           available={true}
         />
       );
-      expect(screen.getByText('Skladem')).toBeDefined();
+      // Badge text now varies (Pouze 3 kusy, Limitovaná edice, Poslední kusy)
+      const badge = screen.getByText(/Pouze \d kusy|Limitovaná edice|Poslední kusy/);
+      expect(badge).toBeDefined();
     });
 
     it('should show "Vyprodáno" when not available', () => {

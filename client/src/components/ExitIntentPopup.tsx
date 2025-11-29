@@ -2,13 +2,25 @@ import { useState, useEffect } from "react";
 import { X, Gift, Sparkles, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { trpc } from "@/lib/trpc";
+import { toast } from "sonner";
 
 export default function ExitIntentPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [showCode, setShowCode] = useState(false);
   const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const subscribeDiscount = trpc.email.subscribeDiscount.useMutation({
+    onSuccess: () => {
+      setShowCode(true);
+      toast.success("Email odeslán! Zkontrolujte svou schránku.");
+    },
+    onError: (error) => {
+      toast.error("Nepodařilo se odeslat email. Zkuste to prosím znovu.");
+      console.error("[ExitIntentPopup] Error:", error);
+    },
+  });
 
   useEffect(() => {
     // Check if popup was already shown
@@ -47,17 +59,12 @@ export default function ExitIntentPopup() {
     
     // Basic email validation
     if (!email || !email.includes("@")) {
+      toast.error("Zadejte prosím platný email");
       return;
     }
 
-    setIsSubmitting(true);
-
-    // Simulate API call (in real implementation, send to backend/email service)
-    await new Promise(resolve => setTimeout(resolve, 500));
-
-    // Show the code
-    setShowCode(true);
-    setIsSubmitting(false);
+    // Call backend API
+    subscribeDiscount.mutate({ email });
   };
 
   const handleClaim = () => {
@@ -68,6 +75,7 @@ export default function ExitIntentPopup() {
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText("OHORAI11");
+    toast.success("Kód zkopírován!");
   };
 
   if (!isVisible) return null;
@@ -123,16 +131,17 @@ export default function ExitIntentPopup() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    disabled={subscribeDiscount.isPending}
                     className="pl-10 py-6 text-base border-2 border-purple-200 focus:border-purple-400"
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={subscribeDiscount.isPending}
                   className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all"
                 >
-                  {isSubmitting ? "Odesílám..." : "Zobrazit slevový kód"}
+                  {subscribeDiscount.isPending ? "Odesílám..." : "Zobrazit slevový kód"}
                 </Button>
               </form>
 
