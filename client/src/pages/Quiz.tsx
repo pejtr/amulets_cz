@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { quizQuestions, calculateQuizResult } from "@/data/quizData";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Sparkles, ArrowRight, ArrowLeft } from "lucide-react";
+import { track } from "@/lib/tracking";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -15,6 +16,18 @@ export default function Quiz() {
 
   const progress = ((currentQuestion + 1) / quizQuestions.length) * 100;
   const question = quizQuestions[currentQuestion];
+
+  // Track quiz start
+  useEffect(() => {
+    track.quizStarted();
+  }, []);
+
+  // Track quiz progress
+  useEffect(() => {
+    if (currentQuestion > 0) {
+      track.quizProgress(currentQuestion + 1, quizQuestions.length);
+    }
+  }, [currentQuestion]);
 
   const handleOptionSelect = (optionIndex: number) => {
     setSelectedOption(optionIndex);

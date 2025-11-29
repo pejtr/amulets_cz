@@ -10,6 +10,7 @@ interface ProductCardProps {
   url?: string;
   description?: string;
   onQuickView?: () => void;
+  badgeText?: string; // Custom urgency badge text
 }
 
 export default function ProductCard({
@@ -21,7 +22,22 @@ export default function ProductCard({
   url,
   description,
   onQuickView,
+  badgeText,
 }: ProductCardProps) {
+  // Default urgency badges if not provided
+  const urgencyBadges = [
+    "Pouze 3 kusy",
+    "Limitovaná edice",
+    "Poslední kusy",
+    "Pouze pár kusů",
+  ];
+  
+  // Use custom badge or pick one based on product name hash
+  const getBadgeText = () => {
+    if (badgeText) return badgeText;
+    const hash = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return urgencyBadges[hash % urgencyBadges.length];
+  };
   const handleClick = () => {
     if (url) {
       window.open(url, '_blank');
@@ -72,8 +88,8 @@ export default function ProductCard({
           </div>
         )}
         {available && (
-          <div className="absolute top-2 right-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded">
-            Skladem
+          <div className="absolute top-2 right-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg animate-pulse">
+            {getBadgeText()}
           </div>
         )}
         {/* Quick View Button */}

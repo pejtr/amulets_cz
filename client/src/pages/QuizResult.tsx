@@ -3,6 +3,7 @@ import { useRoute, useLocation, Link } from "wouter";
 import { symbolMapping } from "@/data/quizData";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Share2, RotateCcw, ArrowRight } from "lucide-react";
+import { track } from "@/lib/tracking";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { toast } from "sonner";
@@ -19,11 +20,15 @@ export default function QuizResult() {
     // Animace při načtení
     setTimeout(() => setIsVisible(true), 100);
 
-    // SEO meta tagy
+    // SEO meta tagy a tracking
     if (result) {
       document.title = `Tvůj symbol: ${result.name} | Amulets.cz`;
+      
+      // Track quiz completion and result view
+      track.quizCompleted(symbolSlug, result.name);
+      track.resultViewed(symbolSlug, result.name);
     }
-  }, [result]);
+  }, [result, symbolSlug]);
 
   if (!result) {
     return (
@@ -46,6 +51,9 @@ export default function QuizResult() {
   const shareUrl = `https://amulets.cz/kviz/vysledek/${symbolSlug}`;
 
   const handleShare = async () => {
+    // Track share attempt
+    track.resultShared(symbolSlug, result.name, (navigator as any).share ? "native_share" : "clipboard");
+    
     if (navigator.share) {
       try {
         await navigator.share({

@@ -3,6 +3,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
 import { useEffect } from "react";
+import { initFacebookPixel, initGoogleAnalytics } from "@/lib/tracking";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -43,6 +44,20 @@ function Router() {
 // - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
 
 function App() {
+  // Initialize tracking pixels
+  useEffect(() => {
+    const fbPixelId = import.meta.env.VITE_FACEBOOK_PIXEL_ID;
+    const gaId = import.meta.env.VITE_GOOGLE_ANALYTICS_ID;
+    
+    if (fbPixelId) {
+      initFacebookPixel(fbPixelId);
+    }
+    
+    if (gaId) {
+      initGoogleAnalytics(gaId);
+    }
+  }, []);
+
   return (
     <ErrorBoundary>
       <ThemeProvider
