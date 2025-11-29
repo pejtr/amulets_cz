@@ -17,9 +17,9 @@ const navItems = [
   { label: "✨ Kvíz: Tvůj symbol", hasDropdown: false, url: "/kviz", isInternal: true },
   { label: "Orgonitové pyramidy", hasDropdown: true, url: "/#orgonitove-pyramidy", isInternal: true },
   { label: "Aromaterapie", hasDropdown: true, url: "/#aromaterapeuticke-esence", isInternal: true },
+  { label: "Drahé kameny", hasDropdown: false, url: "/#vyber-podle-kamenu", isInternal: true },
   { label: "Startovací balíčky", hasDropdown: false, url: "https://www.ohorai.cz/" },
-  { label: "O mě", hasDropdown: false, url: "https://www.ohorai.cz/o-projektu/" },
-  { label: "Draho kameny", hasDropdown: false, url: "/#vyber-podle-kamenu", isInternal: true },
+  { label: "O nás", hasDropdown: false, url: "https://www.ohorai.cz/o-projektu/" },
   { label: "Magazín", hasDropdown: false, url: "/#magazin", isInternal: true },
   { label: "Kontakt", hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },
 ];

@@ -141,3 +141,16 @@
 
 ## Brevo email marketing integrace
 - [x] Nastavit Brevo List ID na 3 v server/routers.ts
+
+## Úprava menu
+- [x] Opravit překlep "Draho kameny" → "Drahé kameny"
+- [x] Přesunout "Drahé kameny" za "Aromaterapie"
+- [x] Změnit "O mě" → "O nás"
+
+## Oprava exit-intent popup
+- [ ] Diagnostikovat proč popup nefunguje
+- [ ] Opravit a otestovat popup
+
+## Open Graph meta tagy pro symboly
+- [x] Implementovat dynamické OG tagy pro každou stránku symbolu (obrázek, název, popis)
+- [x] Změnit obecný OG obrázek na logo Amulets (místo Ohorai)
