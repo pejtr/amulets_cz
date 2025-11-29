@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Eye } from "lucide-react";
+import { track } from "@/lib/tracking";
 
 interface ProductCardProps {
   name: string;
@@ -40,6 +41,11 @@ export default function ProductCard({
   };
   const handleClick = () => {
     if (url) {
+      // Track product click
+      const priceNum = parseInt(price.replace(/\D/g, ''));
+      const category = name.includes('Pyramida') ? 'Pyramidy' : 'Esence';
+      track.buyButtonClicked(name, priceNum, url);
+      
       window.open(url, '_blank');
     }
   };

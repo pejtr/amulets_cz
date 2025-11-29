@@ -257,4 +257,121 @@ export const track = {
     trackFacebookEvent.symbolDetailViewed(symbolSlug, symbolName, source);
     trackGoogleEvent.symbolDetailViewed(symbolSlug, symbolName, source);
   },
+
+  // Product viewed
+  productViewed: (productName: string, productPrice: number, productCategory: string) => {
+    if (window.fbq) {
+      window.fbq("track", "ViewContent", {
+        content_name: productName,
+        content_category: productCategory,
+        content_type: "product",
+        value: productPrice,
+        currency: "CZK",
+      });
+    }
+    if (window.gtag) {
+      window.gtag("event", "view_item", {
+        event_category: "Product",
+        event_label: productName,
+        value: productPrice,
+        currency: "CZK",
+        items: [{
+          item_name: productName,
+          item_category: productCategory,
+          price: productPrice,
+        }],
+      });
+    }
+  },
+
+  // Guide viewed (symbol/stone/purpose pages)
+  guideViewed: (guideName: string, guideType: 'symbol' | 'stone' | 'purpose') => {
+    if (window.fbq) {
+      window.fbq("track", "ViewContent", {
+        content_name: guideName,
+        content_category: `Guide - ${guideType}`,
+        content_type: "article",
+      });
+      window.fbq("trackCustom", "GuideViewed", {
+        guide_name: guideName,
+        guide_type: guideType,
+      });
+    }
+    if (window.gtag) {
+      window.gtag("event", "view_item", {
+        event_category: "Guide",
+        event_label: `${guideType}: ${guideName}`,
+        guide_type: guideType,
+      });
+    }
+  },
+
+  // CTA button clicked
+  ctaClicked: (ctaName: string, ctaLocation: string, destinationUrl?: string) => {
+    if (window.fbq) {
+      window.fbq("track", "InitiateCheckout", {
+        content_name: ctaName,
+        content_category: "CTA Click",
+      });
+      window.fbq("trackCustom", "CTAClicked", {
+        cta_name: ctaName,
+        cta_location: ctaLocation,
+        destination_url: destinationUrl || "",
+      });
+    }
+    if (window.gtag) {
+      window.gtag("event", "click", {
+        event_category: "CTA",
+        event_label: `${ctaName} - ${ctaLocation}`,
+        destination_url: destinationUrl || "",
+      });
+    }
+  },
+
+  // Buy button clicked on product
+  buyButtonClicked: (productName: string, productPrice: number, productUrl: string) => {
+    if (window.fbq) {
+      window.fbq("track", "InitiateCheckout", {
+        content_name: productName,
+        content_category: "Product",
+        content_type: "product",
+        value: productPrice,
+        currency: "CZK",
+      });
+      window.fbq("trackCustom", "BuyButtonClicked", {
+        product_name: productName,
+        product_price: productPrice,
+        product_url: productUrl,
+      });
+    }
+    if (window.gtag) {
+      window.gtag("event", "begin_checkout", {
+        event_category: "Product",
+        event_label: productName,
+        value: productPrice,
+        currency: "CZK",
+        items: [{
+          item_name: productName,
+          price: productPrice,
+        }],
+      });
+    }
+  },
+
+  // "Go to Ohorai" button clicked
+  ohoraiButtonClicked: (location: string) => {
+    if (window.fbq) {
+      window.fbq("trackCustom", "OhoraiButtonClicked", {
+        button_location: location,
+        destination: "https://www.ohorai.cz",
+      });
+    }
+    if (window.gtag) {
+      window.gtag("event", "click", {
+        event_category: "External Link",
+        event_label: `Ohorai Button - ${location}`,
+        destination: "https://www.ohorai.cz",
+      });
+    }
+  },
 };

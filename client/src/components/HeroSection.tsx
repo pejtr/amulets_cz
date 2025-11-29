@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { track } from "@/lib/tracking";
 
 export default function HeroSection() {
   return (
@@ -58,6 +59,9 @@ export default function HeroSection() {
                     size="lg"
                     className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-4 sm:px-8 py-3 sm:py-6 text-xs sm:text-base whitespace-nowrap"
                     onClick={() => {
+                      // Track CTA click
+                      track.ctaClicked('ZÍSKAT VÍCE', 'Hero Section', '#produkty');
+                      
                       const produktySection = document.getElementById('produkty');
                       if (produktySection) {
                         produktySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -70,7 +74,11 @@ export default function HeroSection() {
                     size="lg"
                     variant="outline"
                     className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37] hover:border-[#D4AF37] font-semibold px-3 sm:px-6 py-3 sm:py-6 text-xs sm:text-base flex items-center justify-center gap-1.5 transition-all duration-300 group whitespace-nowrap"
-                    onClick={() => window.open('https://www.ohorai.cz', '_blank')}
+                    onClick={() => {
+                      // Track Ohorai button click
+                      track.ohoraiButtonClicked('Hero Section');
+                      window.open('https://www.ohorai.cz', '_blank');
+                    }}
                   >
                     <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
                     <img src="/ohorai-logo.webp" alt="OHORAI" className="h-10 sm:h-8 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />

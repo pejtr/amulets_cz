@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
+import { track } from "@/lib/tracking";
 
 // Funkce pro převod názvu na slug
 function nameToSlug(name: string): string {
@@ -59,10 +60,14 @@ export default function GuideDetail() {
     backText = "Zpět na Průvodce amulety";
   }
 
-  // SEO meta tagy
+  // SEO meta tagy and tracking
   useEffect(() => {
     if (content) {
       document.title = content.metaTitle;
+      
+      // Track guide page view
+      const guideType = type === 'symbol' ? 'symbol' : type === 'kamen' ? 'stone' : 'purpose';
+      track.guideViewed(content.title, guideType);
       
       // Meta description
       let metaDesc = document.querySelector('meta[name="description"]');
