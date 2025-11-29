@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
-import { X, Gift, Sparkles } from "lucide-react";
+import { X, Gift, Sparkles, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function ExitIntentPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasShown, setHasShown] = useState(false);
+  const [showCode, setShowCode] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     // Check if popup was already shown
@@ -38,6 +42,24 @@ export default function ExitIntentPopup() {
     setIsVisible(false);
   };
 
+  const handleSubmitEmail = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Basic email validation
+    if (!email || !email.includes("@")) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Simulate API call (in real implementation, send to backend/email service)
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    // Show the code
+    setShowCode(true);
+    setIsSubmitting(false);
+  };
+
   const handleClaim = () => {
     // Open Ohorai.cz in new tab
     window.open("https://www.ohorai.cz/?discount=OHORAI11", "_blank");
@@ -46,7 +68,6 @@ export default function ExitIntentPopup() {
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText("OHORAI11");
-    // Visual feedback could be added here
   };
 
   if (!isVisible) return null;
@@ -86,58 +107,112 @@ export default function ExitIntentPopup() {
             Počkejte! 🎁
           </h2>
 
-          {/* Subheading */}
-          <p className="text-center text-gray-600 mb-6">
-            Získejte <span className="font-bold text-purple-600">11% slevu</span> na celý sortiment
-          </p>
+          {!showCode ? (
+            <>
+              {/* Email capture form */}
+              <p className="text-center text-gray-600 mb-6">
+                Získejte <span className="font-bold text-purple-600">11% slevu</span> na celý sortiment
+              </p>
 
-          {/* Discount code */}
-          <div className="bg-white rounded-xl p-4 mb-6 border-2 border-dashed border-purple-300 shadow-inner">
-            <p className="text-sm text-gray-500 text-center mb-2">
-              Váš slevový kód:
-            </p>
-            <div className="flex items-center justify-center gap-2">
-              <code className="text-2xl font-bold text-purple-600 tracking-wider">
-                OHORAI11
-              </code>
-              <button
-                onClick={handleCopyCode}
-                className="text-purple-600 hover:text-purple-700 transition-colors"
-                aria-label="Kopírovat kód"
+              <form onSubmit={handleSubmitEmail} className="space-y-4">
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <Input
+                    type="email"
+                    placeholder="Váš email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="pl-10 py-6 text-base border-2 border-purple-200 focus:border-purple-400"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all"
+                >
+                  {isSubmitting ? "Odesílám..." : "Zobrazit slevový kód"}
+                </Button>
+              </form>
+
+              {/* Benefits */}
+              <ul className="space-y-2 mt-6 text-sm text-gray-600">
+                <li className="flex items-start gap-2">
+                  <span className="text-purple-600 mt-0.5">✓</span>
+                  <span>Platí na <strong>všechny produkty</strong> na Ohorai.cz</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-purple-600 mt-0.5">✓</span>
+                  <span>Orgonitové pyramidy, esence, amulety</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-purple-600 mt-0.5">✓</span>
+                  <span>Sleva platí <strong>7 dní</strong></span>
+                </li>
+              </ul>
+
+              {/* Privacy note */}
+              <p className="text-xs text-center text-gray-400 mt-4">
+                Váš email nebudeme sdílet s třetími stranami
+              </p>
+            </>
+          ) : (
+            <>
+              {/* Success message */}
+              <p className="text-center text-gray-600 mb-6">
+                Slevový kód byl odeslán na <span className="font-semibold">{email}</span>
+              </p>
+
+              {/* Discount code */}
+              <div className="bg-white rounded-xl p-4 mb-6 border-2 border-dashed border-purple-300 shadow-inner">
+                <p className="text-sm text-gray-500 text-center mb-2">
+                  Váš slevový kód:
+                </p>
+                <div className="flex items-center justify-center gap-2">
+                  <code className="text-2xl font-bold text-purple-600 tracking-wider">
+                    OHORAI11
+                  </code>
+                  <button
+                    onClick={handleCopyCode}
+                    className="text-purple-600 hover:text-purple-700 transition-colors"
+                    aria-label="Kopírovat kód"
+                  >
+                    <Sparkles className="h-5 w-5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Benefits */}
+              <ul className="space-y-2 mb-6 text-sm text-gray-600">
+                <li className="flex items-start gap-2">
+                  <span className="text-purple-600 mt-0.5">✓</span>
+                  <span>Platí na <strong>všechny produkty</strong> na Ohorai.cz</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-purple-600 mt-0.5">✓</span>
+                  <span>Orgonitové pyramidy, esence, amulety</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-purple-600 mt-0.5">✓</span>
+                  <span>Sleva platí <strong>7 dní</strong></span>
+                </li>
+              </ul>
+
+              {/* CTA Button */}
+              <Button
+                onClick={handleClaim}
+                className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all"
               >
-                <Sparkles className="h-5 w-5" />
-              </button>
-            </div>
-          </div>
+                Uplatnit slevu na Ohorai.cz
+              </Button>
 
-          {/* Benefits */}
-          <ul className="space-y-2 mb-6 text-sm text-gray-600">
-            <li className="flex items-start gap-2">
-              <span className="text-purple-600 mt-0.5">✓</span>
-              <span>Platí na <strong>všechny produkty</strong> na Ohorai.cz</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-purple-600 mt-0.5">✓</span>
-              <span>Orgonitové pyramidy, esence, amulety</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-purple-600 mt-0.5">✓</span>
-              <span>Sleva platí <strong>7 dní</strong></span>
-            </li>
-          </ul>
-
-          {/* CTA Button */}
-          <Button
-            onClick={handleClaim}
-            className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all"
-          >
-            Uplatnit slevu na Ohorai.cz
-          </Button>
-
-          {/* Small print */}
-          <p className="text-xs text-center text-gray-400 mt-4">
-            Kód se automaticky aplikuje při přesměrování
-          </p>
+              {/* Small print */}
+              <p className="text-xs text-center text-gray-400 mt-4">
+                Kód se automaticky aplikuje při přesměrování
+              </p>
+            </>
+          )}
         </div>
       </div>
     </>
