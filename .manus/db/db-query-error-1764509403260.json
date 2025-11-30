@@ -1,0 +1,8 @@
+{
+  "query": "SELECT COUNT(*) as total_subscribers, \n       MAX(created_at) as latest_subscription\nFROM newsletter_subscribers;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute SELECT COUNT(*) as total_subscribers, \n       MAX(created_at) as latest_subscription\nFROM newsletter_subscribers;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1146 (42S02) at line 1: Table 'hawyzkdau8mixfpxqdspsj.newsletter_subscribers' doesn't exist"
+  ]
+}
