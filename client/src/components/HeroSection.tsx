@@ -81,7 +81,7 @@ export default function HeroSection() {
                     }}
                   >
                     <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
-                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-10 sm:h-8 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
+                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-10 sm:h-12 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
                   </Button>
                 </div>
               </div>

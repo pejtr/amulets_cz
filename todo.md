@@ -160,3 +160,18 @@
 
 ## Vizuální zvýraznění sekce Průvodce amulety
 - [x] Zvýraznit nadpis "Průvodce amulety" na mobilu - větší font, gradient pozadí, výraznější styling
+
+## Google Analytics 4 Reporting Dashboard
+- [ ] Nastavit Google Analytics Data API v Google Cloud Console
+- [ ] Vytvořit service account a stáhnout JSON klíč
+- [ ] Přidat GA4 Data API integraci do server/routers.ts
+- [ ] Vytvořit Analytics Dashboard stránku (/admin/analytics)
+- [ ] Implementovat klíčové metriky: návštěvnost, bounce rate, session duration
+- [ ] Přidat grafy: návštěvnost v čase, top stránky, zdroje návštěvnosti
+- [ ] Implementovat real-time data z GA4
+- [ ] Vytvořit email reporting systém (denní/týdenní souhrny)
+- [ ] Přidat export dat do CSV/Excel
+- [ ] Otestovat dashboard a email reporty
+
+## Úprava velikosti loga OHORAI v tlačítku
+- [x] Zvětšit logo OHORAI v tlačítku "Přejít na OHORAI" o 50% na desktopu
