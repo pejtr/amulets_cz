@@ -157,3 +157,6 @@
 
 ## Google Analytics 4 integrace
 - [x] Přidat GA4 tracking kód (G-NSFK0CWT89) do index.html
+
+## Vizuální zvýraznění sekce Průvodce amulety
+- [x] Zvýraznit nadpis "Průvodce amulety" na mobilu - větší font, gradient pozadí, výraznější styling

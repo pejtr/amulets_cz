@@ -72,10 +72,14 @@ export default function GuideSection() {
     <section id="pruvodce-amulety" className="w-full bg-accent/20 py-16">
       <div className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Průvodce amulety
-          </h2>
-          <p className="text-muted-foreground text-lg">
+          <div className="inline-block">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 px-6 py-4 md:px-8 md:py-5 rounded-2xl bg-gradient-to-br from-white via-purple-50/80 to-pink-50/80 shadow-lg">
+              <span className="bg-gradient-to-r from-[#2C3E50] via-[#E85A9F] to-[#9B59B6] bg-clip-text text-transparent">
+                Průvodce amulety
+              </span>
+            </h2>
+          </div>
+          <p className="text-muted-foreground text-lg mt-6">
             Potřebuješ s něčím poradit? Začni s výběrem zde
           </p>
         </div>
