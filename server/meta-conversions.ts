@@ -1,6 +1,6 @@
 import crypto from "crypto";
 
-const META_PIXEL_ID = "1150262920608217";
+const META_PIXEL_ID = "2015838995869855";
 const META_CONVERSIONS_API_TOKEN = process.env.META_CONVERSIONS_API_TOKEN;
 const META_API_VERSION = "v22.0";
 
