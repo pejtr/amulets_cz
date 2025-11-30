@@ -175,3 +175,14 @@
 
 ## Úprava velikosti loga OHORAI v tlačítku
 - [x] Zvětšit logo OHORAI v tlačítku "Přejít na OHORAI" o 50% na desktopu
+
+## Mobilní hero redesign pro snížení bounce rate
+- [x] Vygenerovat magické hero pozadí se zlatým zářením a jiskřícími efekty
+- [x] Upravit hero layout na mobilu - text přímo přes fotku s tmavým stínem
+- [x] Změnit tlačítko "ZÍSKAT VÍCE" na růžový gradient (from-pink-500 to-pink-600)
+- [x] Změnit tlačítko "Přejít na OHORAI" na zlaté pozadí (#D4AF37)
+- [x] Přepracovat USP sekci - zlaté ikony v kruzích, bílé pozadí, vertikální layout
+- [x] Změnit ikonu "Ruční výroba" na Sparkles (hvězdička)
+- [x] Vytvořit kvíz stránku /kviz pro výběr amuletu (již existuje)
+- [x] Přidat velké CTA tlačítko "Zjistit svůj amulet" s odkazem na /kviz
+- [ ] Otestovat na mobilu a desktopu

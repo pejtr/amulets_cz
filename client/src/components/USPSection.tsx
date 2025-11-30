@@ -1,4 +1,7 @@
 import { Truck, Sparkles, Mail, Gift } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useLocation } from "wouter";
+import { track } from "@/lib/tracking";
 
 const uspItems = [
   {
@@ -8,7 +11,7 @@ const uspItems = [
   },
   {
     icon: Sparkles,
-    title: "Úprava amuletů na míru",
+    title: "Úprava na míru",
     description: "Ručně orgonitové a amulety na míru",
   },
   {
@@ -24,8 +27,10 @@ const uspItems = [
 ];
 
 export default function USPSection() {
+  const [, setLocation] = useLocation();
+
   return (
-    <section className="w-full bg-white py-8 md:py-12 border-t border-gray-100">
+    <section className="w-full bg-gradient-to-b from-white/80 to-white py-8 md:py-12">
       <div className="container">
         {/* Desktop - 4 columns horizontal */}
         <div className="hidden md:grid md:grid-cols-4 gap-8">
@@ -49,14 +54,14 @@ export default function USPSection() {
           })}
         </div>
 
-        {/* Mobile - stacked list */}
-        <div className="md:hidden space-y-6">
+        {/* Mobile - white cards with golden icons */}
+        <div className="md:hidden space-y-4">
           {uspItems.map((item, index) => {
             const Icon = item.icon;
             return (
-              <div key={index} className="flex items-start gap-4">
-                <div className="w-14 h-14 rounded-full bg-[#E85A9F]/20 flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-7 h-7 text-[#E85A9F]" strokeWidth={1.5} />
+              <div key={index} className="flex items-start gap-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-sm">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#F4D03F] flex items-center justify-center flex-shrink-0 shadow-md">
+                  <Icon className="w-8 h-8 text-black" strokeWidth={2} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-foreground text-base mb-1">
@@ -69,6 +74,23 @@ export default function USPSection() {
               </div>
             );
           })}
+
+          {/* Quiz CTA Button - Mobile Only */}
+          <div className="pt-4">
+            <Button
+              size="lg"
+              className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-6 text-lg rounded-full shadow-xl relative overflow-hidden group"
+              onClick={() => {
+                track.ctaClicked('Zjistit svůj amulet', 'USP Section', '/kviz');
+                setLocation('/kviz');
+              }}
+            >
+              <span className="relative z-10">Zjistit svůj amulet</span>
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 text-2xl group-hover:translate-x-1 transition-transform">
+                →
+              </div>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
