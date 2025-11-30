@@ -185,4 +185,10 @@
 - [x] Změnit ikonu "Ruční výroba" na Sparkles (hvězdička)
 - [x] Vytvořit kvíz stránku /kviz pro výběr amuletu (již existuje)
 - [x] Přidat velké CTA tlačítko "Zjistit svůj amulet" s odkazem na /kviz
-- [ ] Otestovat na mobilu a desktopu
+- [x] Otestovat na mobilu a desktopu
+
+## Oprava duplikovaného obsahu na mobilu
+- [ ] Opravit duplikovaný header (zobrazuje se 2x) - vyřeší se restartem serveru
+- [x] Použít mockup obrázek jako pozadí na mobilu (text je v grafice)
+- [x] Odstranit HTML text přes obrázek na mobilu
+- [x] Přidat reálná tlačítka pod obrázek (stejné rozízení jako v grafice)
