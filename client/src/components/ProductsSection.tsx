@@ -53,7 +53,7 @@ const essences = [
     name: "Esence ~ OhoRÁJ lotos",
     price: "2 200 Kč",
     available: true,
-    video: "/esence-ohoraj-video.mp4",
+    image: "/products/esence-ohoraj-lotos.webp",
     url: "https://www.ohorai.cz/esence-ohoraj/",
     description: "Silná esence snoubící Bulharskou růži, lípu, jasmín. Esence, která tvoří dokonalou kombinaci síly a jemnosti...",
   },
