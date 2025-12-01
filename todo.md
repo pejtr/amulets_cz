@@ -196,3 +196,6 @@
 ## Fix duplikovaného headeru
 - [x] Zjistit proč se header renderuje 2x na mobilu - jeden je v mockup obrázku
 - [x] Oříznout mockup obrázek - odstraněno 110px z vrchu (header area)
+
+## Oříznuti spodní části mockupu
+- [x] Oříznout tlačítko "Zjistit svůj amulet" ze spodní části mockup obrázku (150px)
