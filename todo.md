@@ -199,3 +199,6 @@
 
 ## Oříznuti spodní části mockupu
 - [x] Oříznout tlačítko "Zjistit svůj amulet" ze spodní části mockup obrázku (150px)
+
+## Finální oříznutí mockupu
+- [x] Oříznout mockup na pouze hero sekci (Natálie + text, bez tlačítek a USP)

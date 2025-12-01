@@ -7,10 +7,10 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-full overflow-hidden bg-white">
-      {/* Mobile: mockup image with text already in it (header and bottom button removed) */}
+      {/* Mobile: hero section only - Natalie with magical background and text */}
       <div className="md:hidden">
         <img
-          src="/hero-mobile-clean.jpg"
+          src="/hero-mobile-hero-only.jpg"
           alt="Natálie Ohorai - Zakladatelka Amulets.cz"
           className="w-full h-auto"
         />
