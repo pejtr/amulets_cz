@@ -7,10 +7,10 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-full overflow-hidden bg-white">
-      {/* Mobile: mockup image with text already in it */}
+      {/* Mobile: mockup image with text already in it (header removed) */}
       <div className="md:hidden">
         <img
-          src="/hero-mobile-mockup.jpg"
+          src="/hero-mobile-no-header.jpg"
           alt="Natálie Ohorai - Zakladatelka Amulets.cz"
           className="w-full h-auto"
         />

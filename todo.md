@@ -192,3 +192,7 @@
 - [x] Použít mockup obrázek jako pozadí na mobilu (text je v grafice)
 - [x] Odstranit HTML text přes obrázek na mobilu
 - [x] Přidat reálná tlačítka pod obrázek (stejné rozízení jako v grafice)
+
+## Fix duplikovaného headeru
+- [x] Zjistit proč se header renderuje 2x na mobilu - jeden je v mockup obrázku
+- [x] Oříznout mockup obrázek - odstraněno 110px z vrchu (header area)
