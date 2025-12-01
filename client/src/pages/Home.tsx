@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import PromoBanner from "@/components/PromoBanner";
 import HeroSection from "@/components/HeroSection";
 import USPSection from "@/components/USPSection";
 import ProductsSection from "@/components/ProductsSection";
@@ -41,6 +42,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <ReadingProgressBar />
+      <PromoBanner />
       <Header />
       <main>
         <HeroSection />

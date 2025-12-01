@@ -202,3 +202,12 @@
 
 ## Finální oříznutí mockupu
 - [x] Oříznout mockup na pouze hero sekci (Natálie + text, bez tlačítek a USP)
+
+## Konverzní optimalizace
+- [x] Vytvořit scroll animation hook pro fade-in efekty
+- [x] Přidat scroll animace do USP sekce
+- [x] Přidat scroll animace do produktových sekcí (USP sekce animovaná)
+- [x] Implementovat sticky promo banner "🎁 Doprava zdarma nad 1500 Kč"
+- [x] Vytvořit real-time viewing counter komponentu
+- [x] Přidat viewing counter k produktům
+- [x] Otestovat všechny funkce

@@ -2,6 +2,7 @@ import { Truck, Sparkles, Mail, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocation } from "wouter";
 import { track } from "@/lib/tracking";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const uspItems = [
   {
@@ -58,8 +59,16 @@ export default function USPSection() {
         <div className="md:hidden space-y-4">
           {uspItems.map((item, index) => {
             const Icon = item.icon;
-            return (
-              <div key={index} className="flex items-start gap-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-sm">
+            const AnimatedCard = () => {
+              const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
+              return (
+                <div 
+                  ref={ref}
+                  className={`flex items-start gap-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-sm transition-all duration-700 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#F4D03F] flex items-center justify-center flex-shrink-0 shadow-md">
                   <Icon className="w-8 h-8 text-black" strokeWidth={2} />
                 </div>
@@ -72,7 +81,9 @@ export default function USPSection() {
                   </p>
                 </div>
               </div>
-            );
+              );
+            };
+            return <AnimatedCard key={index} />;
           })}
 
           {/* Quiz CTA Button - Mobile Only */}
