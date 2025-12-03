@@ -119,6 +119,20 @@ export default function ProductsSection() {
   return (
     <div id="produkty" className="w-full bg-white py-16">
       <div className="container space-y-16">
+        {/* Positioning Banner */}
+        <div className="bg-gradient-to-r from-pink-50 to-purple-50 border-l-4 border-[#D4AF37] rounded-lg p-4 md:p-6">
+          <div className="flex items-start gap-3">
+            <div className="text-2xl">🛍️</div>
+            <div>
+              <h3 className="font-bold text-foreground mb-1">
+                Jak nakoupit?
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Vyberte si produkt, klikněte na tlačítko <span className="font-semibold text-[#D4AF37]">"Koupit na OHORAI"</span> a budete přesměrováni na oficiální e-shop OHORAI.cz, kde dokončíte objednávku.
+              </p>
+            </div>
+          </div>
+        </div>
         {/* Pyramidy */}
         <section className="space-y-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">

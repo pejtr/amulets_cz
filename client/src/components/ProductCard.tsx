@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Eye } from "lucide-react";
+import { ShoppingCart, Eye, ExternalLink } from "lucide-react";
 import { track } from "@/lib/tracking";
 import ViewingCounter from "@/components/ViewingCounter";
 
@@ -130,12 +130,14 @@ export default function ProductCard({
           <span className="text-lg font-bold text-primary">{price}</span>
           <Button
             size="sm"
-            variant="outline"
-            className="gap-2"
+            className="gap-1.5 bg-[#D4AF37] hover:bg-[#C19B2E] text-black font-semibold"
             disabled={!available}
+            title="Přesměrování na obchod OHORAI.cz"
           >
             <ShoppingCart className="h-4 w-4" />
-            Do košíku
+            <span className="hidden sm:inline">Koupit na</span>
+            <span className="font-bold">OHORAI</span>
+            <ExternalLink className="h-3 w-3" />
           </Button>
         </div>
       </div>

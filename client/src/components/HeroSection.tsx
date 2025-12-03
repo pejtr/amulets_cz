@@ -15,20 +15,30 @@ export default function HeroSection() {
           className="w-full h-auto"
         />
         
+        {/* Positioning text */}
+        <div className="px-4 pt-4 pb-2 bg-gradient-to-b from-white/80 to-white text-center">
+          <p className="text-sm text-muted-foreground">
+            📍 Oficiální katalog produktů <span className="font-semibold text-[#D4AF37]">OHORAI</span>
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">
+            Vyberte si svůj amulet a pokračujte na OHORAI.cz pro nákup
+          </p>
+        </div>
+        
         {/* Buttons below the image on mobile */}
-        <div className="px-4 py-6 space-y-3 bg-gradient-to-b from-white/80 to-white">
+        <div className="px-4 pb-6 space-y-3 bg-gradient-to-b from-white/80 to-white">
           <Button
             size="lg"
             className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold py-6 text-base rounded-lg shadow-lg"
             onClick={() => {
-              track.ctaClicked('ZÍSKAT VÍCE', 'Hero Section', '#produkty');
+              track.ctaClicked('PROHLÉDNOUT PRODUKTY', 'Hero Section', '#produkty');
               const produktySection = document.getElementById('produkty');
               if (produktySection) {
                 produktySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }
             }}
           >
-            ZÍSKAT VÍCE
+            PROHLÉDNOUT PRODUKTY
           </Button>
           <Button
             size="lg"
@@ -99,14 +109,14 @@ export default function HeroSection() {
                     size="lg"
                     className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-4 sm:px-8 py-3 sm:py-6 text-xs sm:text-base whitespace-nowrap"
                     onClick={() => {
-                      track.ctaClicked('ZÍSKAT VÍCE', 'Hero Section', '#produkty');
+                      track.ctaClicked('PROHLÉDNOUT PRODUKTY', 'Hero Section', '#produkty');
                       const produktySection = document.getElementById('produkty');
                       if (produktySection) {
                         produktySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }
                     }}
                   >
-                    ZÍSKAT VÍCE
+                    PROHLÉDNOUT PRODUKTY
                   </Button>
                   <Button
                     size="lg"

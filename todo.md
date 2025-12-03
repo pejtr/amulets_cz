@@ -211,3 +211,13 @@
 - [x] Vytvořit real-time viewing counter komponentu
 - [x] Přidat viewing counter k produktům
 - [x] Otestovat všechny funkce
+
+## UX Analýza a oprava vysokého bounce rate (80%)
+- [x] Analyzovat uživatelské cesty od příchodu po konverzi
+- [x] Identifikovat konverzní bariéry - všechna tlačítka vedou PR YČ z webu!
+- [x] Změnit "ZÍSKAT VÍCE" → "PROHLÉDNOUT PRODUKTY"
+- [x] Přidat positioning text: "Oficiální katalog produktů OHORAI"
+- [x] Upravit "Do košíku" → "Koupit na OHORAI" + ikona ↗
+- [x] Přidat tooltip k externím odkazům
+- [x] Zlepšit value proposition - přidán banner "Jak nakoupit?"
+- [x] Zjednodušit CTA hierarchii - primární: Koupit, sekundární: Kvíz
