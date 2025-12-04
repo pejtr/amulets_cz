@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import PromoBanner from "@/components/PromoBanner";
+import PurchaseNotification from "@/components/PurchaseNotification";
 import HeroSection from "@/components/HeroSection";
 import USPSection from "@/components/USPSection";
 import ProductsSection from "@/components/ProductsSection";
@@ -44,6 +45,7 @@ export default function Home() {
       <ReadingProgressBar />
       <PromoBanner />
       <Header />
+      <PurchaseNotification />
       <main>
         <HeroSection />
         <USPSection />

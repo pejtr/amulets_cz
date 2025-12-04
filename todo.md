@@ -221,3 +221,10 @@
 - [x] Přidat tooltip k externím odkazům
 - [x] Zlepšit value proposition - přidán banner "Jak nakoupit?"
 - [x] Zjednodušit CTA hierarchii - primární: Koupit, sekundární: Kvíz
+
+## Popup notifikace "Nedávno zakoupeno"
+- [x] Odstranit viewing counter z ProductCard
+- [x] Vytvořit PurchaseNotification komponentu
+- [x] Přidat data s jmény, městy a produkty (10 variací)
+- [x] Implementovat rotaci notifikací (12s interval)
+- [x] Přidat do Home.tsx - levý dolní roh

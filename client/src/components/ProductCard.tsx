@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Eye, ExternalLink } from "lucide-react";
 import { track } from "@/lib/tracking";
-import ViewingCounter from "@/components/ViewingCounter";
 
 interface ProductCardProps {
   name: string;
@@ -93,14 +92,9 @@ export default function ProductCard({
           </div>
         )}
         {available && (
-          <>
-            <div className="absolute top-2 right-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
-              {getBadgeText()}
-            </div>
-            <div className="absolute top-2 left-2">
-              <ViewingCounter baseCount={6} variation={5} />
-            </div>
-          </>
+          <div className="absolute top-2 right-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
+            {getBadgeText()}
+          </div>
         )}
         {/* Quick View Button */}
         {onQuickView && (
