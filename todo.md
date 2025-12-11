@@ -228,3 +228,10 @@
 - [x] Přidat data s jmény, městy a produkty (10 variací)
 - [x] Implementovat rotaci notifikací (12s interval)
 - [x] Přidat do Home.tsx - levý dolní roh
+
+## Favicon a SEO optimalizace pro Google
+- [x] Vytvořit favicon.ico z loga Amulets (16x16, 32x32, 48x48, 64x64)
+- [x] Přidat všechny velikosti faviconů do client/public/
+- [x] Meta tagy již existují v index.html
+- [x] Přidat FAQ strukturovaná data pro "Lidé se také ptají" (4 nové otázky)
+- [x] site.webmanifest již existuje

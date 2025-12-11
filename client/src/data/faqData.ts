@@ -1,4 +1,22 @@
 export const faqData = [
+  // Google "Lidé se také ptají" optimalizované otázky
+  {
+    question: "Jak se jinak řekne amulet?",
+    answer: "Amulet se také nazývá talisman, maskot, ochraný symbol nebo přívěsek. V různých kulturách se používají různé názvy - například fetish, periapt nebo phylakterion. Všechny tyto terminy označují předmět, který má chránit svého nositele před negativními vlivy a přinášet štěstí."
+  },
+  {
+    question: "Co je talisman?",
+    answer: "Talisman je předmět nebo symbol, který má magickou nebo ochrannou moc. Na rozdíl od amuletu, který primárně chrání, talisman aktivně přitáhá pozitivní energii, štěstí a hojnost. Může to být kamen, šperk, symbol nebo jakýkoliv předmět nabítý záměrem. Talismany se používají již tisíce let ve všech kulturách světa pro duchovní ochranu a osobní transformaci."
+  },
+  {
+    question: "Jak si vyrobit amulet?",
+    answer: "Amulet si můžete vyrobit z přírodních materiálů - druhých kamenů, dřeva, kovů nebo bylinek. Vyberte si materiál, který rezonuje s vaším záměrem (např. růženín pro lásku, tygrí oko pro ochranu). Vyčistěte ho pod tekoucou vodou, nabijte svým záměrem během meditace a noste u sebe. Pro silnější účinky doporučujeme ručně vyráběné orgonitové pyramidy, které kombinují druhé kameny, kovy a posvtné symboly v ideálních proporcích."
+  },
+  {
+    question: "Co jsou amulety?",
+    answer: "Amulety jsou předměty s magickou nebo spiritulní mocí, které chrání svého nositele před negativními vlivy, zlm kem, kletbami nebo nemocemi. Mohou to být přírodní materiály (druhé kameny, byliny), symboly (oko, kříž, zvířecí zuby) nebo uměle vytvořené předměty. Jejich původ sahá do starověkých civilizací a mohou být vyrobeny z různých materiálů, často s konkrétními symboly jako oko, kříž nebo zvířecí zuby. Dnes se používají pro duchovní ochranu, meditaci a osobní růst."
+  },
+  // Původní FAQ otázky
   {
     question: "Co jsou orgonitové pyramidy a jak fungují?",
     answer: "Orgonitové pyramidy jsou ručně vyráběné energetické nástroje složené z pryskyřice, kovových částic a drahých kamenů. Fungují na principu orgonové energie - transformují negativní energii na pozitivní. Pyramida zesiluje energii díky své geometrické formě a kombinaci materiálů. Používají se pro harmonizaci prostoru, meditaci a duchovní růst."
