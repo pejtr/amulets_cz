@@ -137,8 +137,8 @@ export default function ProductCard({
           </div>
         )}
 
-        <div className="flex items-center justify-between">
-          <span className="text-lg font-bold text-primary">{price}</span>
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-lg font-bold text-primary whitespace-nowrap">{price}</span>
           <Button
             size="sm"
             className="gap-1.5 bg-[#D4AF37] hover:bg-[#C19B2E] text-black font-semibold"

@@ -242,3 +242,16 @@
 - [x] Implementovat Product schema markup s AggregateRating
 - [x] Aktualizovat ProductCard s hvězdičkami
 - [ ] Otestovat rich snippets v Google Testing Tool
+
+## Oprava formátování ceny produktů
+- [x] Opravit zalamování ceny "8 800 Kč" na více řádků
+- [x] Přidat whitespace-nowrap pro cenu
+- [ ] Otestovat na všech produktech
+
+## Nové SEO články do sekce Magazín
+- [x] Vytvořit článek "10 nejsilnějších amuletů pro ochranu 2025"
+- [x] Vytvořit článek "Jak vybrat kámen podle znamení zvěrokruhu"
+- [x] Vygenerovat AI obrázky pro oba články
+- [x] Přidat články do magazineContent.ts
+- [x] Aktualizovat sitemap.xml
+- [x] Otestovat nové články (build úspěšný)
