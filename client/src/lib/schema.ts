@@ -100,3 +100,52 @@ export function createFAQSchema(faqs: { question: string; answer: string }[]) {
     })),
   };
 }
+
+export function createProductSchema(data: {
+  name: string;
+  description: string;
+  image: string;
+  price: string;
+  currency?: string;
+  availability?: string;
+  rating?: number;
+  reviewCount?: number;
+  url: string;
+}) {
+  const schema: any = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": data.name,
+    "description": data.description,
+    "image": data.image,
+    "url": data.url,
+    "brand": {
+      "@type": "Brand",
+      "name": "OHORAI"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": data.price.replace(/[^\d]/g, ''),
+      "priceCurrency": data.currency || "CZK",
+      "availability": data.availability || "https://schema.org/InStock",
+      "url": data.url,
+      "seller": {
+        "@type": "Organization",
+        "name": "OHORAI"
+      }
+    }
+  };
+
+  // Add aggregate rating if available
+  if (data.rating !== undefined && data.reviewCount !== undefined) {
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      "ratingValue": data.rating.toString(),
+      "reviewCount": data.reviewCount.toString(),
+      "bestRating": "5",
+      "worstRating": "1"
+    };
+  }
+
+  return schema;
+}

@@ -235,3 +235,10 @@
 - [x] Meta tagy již existují v index.html
 - [x] Přidat FAQ strukturovaná data pro "Lidé se také ptají" (4 nové otázky)
 - [x] site.webmanifest již existuje
+
+## Product reviews a Google rich snippets
+- [x] Vytvořit StarRating komponentu
+- [x] Přidat rating data k produktům (4 pyramidy + 8 esencí)
+- [x] Implementovat Product schema markup s AggregateRating
+- [x] Aktualizovat ProductCard s hvězdičkami
+- [ ] Otestovat rich snippets v Google Testing Tool

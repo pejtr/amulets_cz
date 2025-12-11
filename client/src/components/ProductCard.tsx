@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Eye, ExternalLink } from "lucide-react";
 import { track } from "@/lib/tracking";
+import StarRating from "@/components/StarRating";
 
 interface ProductCardProps {
   name: string;
@@ -12,6 +13,8 @@ interface ProductCardProps {
   description?: string;
   onQuickView?: () => void;
   badgeText?: string; // Custom urgency badge text
+  rating?: number; // 0-5 star rating
+  reviewCount?: number; // Number of reviews
 }
 
 export default function ProductCard({
@@ -24,6 +27,8 @@ export default function ProductCard({
   description,
   onQuickView,
   badgeText,
+  rating,
+  reviewCount,
 }: ProductCardProps) {
   // Determine badge text based on product type
   const getBadgeText = () => {
@@ -118,6 +123,18 @@ export default function ProductCard({
           <p className="text-xs text-muted-foreground line-clamp-2">
             {description}
           </p>
+        )}
+
+        {/* Star Rating */}
+        {rating !== undefined && reviewCount !== undefined && (
+          <div className="pt-1">
+            <StarRating 
+              rating={rating} 
+              reviewCount={reviewCount} 
+              showCount={true}
+              size="sm"
+            />
+          </div>
         )}
 
         <div className="flex items-center justify-between">
