@@ -6,6 +6,8 @@ export const magazineArticles = [
     metaDescription: "Objevte tajemství modrého lotosu, vzácné byliny spojené se starověkým Egyptem. Duchovní význam a použití v orgonitových pyramidách.",
     excerpt: "Modrý lotos je vzácná a silná bylina spojená se starověkým Egyptem, která otevírá bránu k duchovnímu probuzení.",
     image: "/images/magazine/modry-lotos.png",
+    datePublished: "2024-11-15",
+    dateModified: "2024-12-01",
     externalUrl: "https://www.ohorai.cz/modry-lotos/",
     content: `**Modrý lotos** (Nymphaea caerulea) je vzácná vodní rostlina, která hrála klíčovou roli ve **starověké egyptské kultuře**. Byla považována za posvátnou bylinu spojenou s bohem slunce Ra a symbolizovala **znovuzrození a duchovní probuzení**.
 
@@ -59,6 +61,8 @@ Objevte **sílu modrého lotosu** v našich ručně vyráběných pyramidách a 
     metaDescription: "Objevte sílu aromaterapie a esenciálních olejů. Jak používat esence pro zdraví, relaxaci a duchovní růst.",
     excerpt: "Aromaterapie je starobylá metoda léčení pomocí esenciálních olejů, která harmonizuje tělo, mysl i duši.",
     image: "/images/magazine/aromaterapie.png",
+    datePublished: "2024-11-20",
+    dateModified: "2024-12-05",
     content: `**Aromaterapie** je starobylá metoda **holistického léčení**, která využívá sílu esenciálních olejů k harmonizaci těla, mysli a duše. Esenciální oleje jsou vysoce koncentrované látky získané z rostlin, které obsahují jejich **léčivou esenci**.
 
 **Historie aromaterapie**
@@ -169,6 +173,8 @@ Objevte **sílu aromaterapie** v našich ručně vyráběných esencích a aroma
     metaDescription: "Objevte 10 nejsilnějších ochraných amuletů pro rok 2025. Ruka Fatimy, Květ života, Davidova hvězda a další posvátné symboly pro ochranu a harmonii.",
     excerpt: "Ochrana před negativní energií je v dnešní době důležitější než kdy jindy. Objevte 10 nejsilnějších amuletů, které vás ochrání v roce 2025.",
     image: "/images/magazine/10-amuletu-ochrana.png",
+    datePublished: "2024-12-10",
+    dateModified: "2024-12-10",
     content: `V dnešní době, kdy jsme neustále vystaveni **stresu, negativní energii a elektromagnetickému záření**, je ochrana naší aury a energetického pole důležitější než kdy předtm. Amulety jsou **starobylé nástroje ochrany**, které lidé používají již tisíce let.
 
 V tomto článku objevte **10 nejsilnějších ochraných amuletů** pro rok 2025, jejich význam a jak je správně používat.
@@ -347,6 +353,8 @@ Objevte **sílu ochraných amuletů** v naší nabídce ručně vyráběných or
     metaDescription: "Objevte ideální drahé kameny pro vaše znamení zvěrokruhu. Kompletní průvodce kameny pro všech 12 znamení - Beran, Ryby, Lev, Panna a další.",
     excerpt: "Každé znamení zvěrokruhu má své unikátní kameny, které posilují jeho přirozené vlastnosti. Objevte, který kámen je ideální právě pro vás.",
     image: "/images/magazine/kameny-zverokruh.png",
+    datePublished: "2024-12-11",
+    dateModified: "2024-12-11",
     content: `**Drahé kameny** a **znamení zvěrokruhu** jsou propojeny již od starověku. Každé znamení má **své unikátní vibrace**, které rezonují s určitými kameny. Správně vybraný kámen může **posilívat vaše silné stránky** a pomoci harmonizovat slabé.
 
 V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a naučte se, jak je správně používat.

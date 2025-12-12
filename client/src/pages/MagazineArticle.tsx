@@ -57,8 +57,9 @@ export default function MagazineArticle() {
         title: article.metaTitle,
         description: article.metaDescription,
         url: `https://amulets.cz/magazin/${slug}`,
-        datePublished: "2025-11-28",
-        dateModified: "2025-11-28",
+        datePublished: article.datePublished || "2024-11-01",
+        dateModified: article.dateModified || article.datePublished || "2024-11-01",
+        image: article.image,
       });
 
       setSchemaMarkup([breadcrumbs, articleSchema]);

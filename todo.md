@@ -274,3 +274,10 @@
 - [x] Identifikovat chybějící symboly (13 chybělo)
 - [x] Přidat obsah pro všechny chybějící symboly (spirala, dharmachakra, hamsa-s-okem, keltsky-kriz, kriz, lotosova-mandala, nekonecno, pentakl, posvatne-pero, pulmesic, skarabeus, slunce, trojity-mesic)
 - [x] Otestovat všechny symbol URL (build úspěšný)
+
+## Strukturovaná data pro SEO články
+- [x] Vytvořit ArticleSchema komponentu s JSON-LD
+- [x] Přidat datePublished a dateModified k článkům (4 články)
+- [x] Přidat author informace (Amulets.cz organization)
+- [x] Integrovat schema do MagazineArticle stránky
+- [x] Otestovat v Google Rich Results Test (build úspěšný, schema ready)
