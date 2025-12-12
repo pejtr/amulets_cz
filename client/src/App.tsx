@@ -9,6 +9,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import GuideDetail from "./pages/GuideDetail";
+import Magazine from "./pages/Magazine";
 import MagazineArticle from "./pages/MagazineArticle";
 import Quiz from "./pages/Quiz";
 import QuizResult from "./pages/QuizResult";
@@ -29,6 +30,7 @@ function Router() {
       <Route path="/symbol/:slug" component={GuideDetail} />
       <Route path="/kamen/:slug" component={GuideDetail} />
       <Route path="/ucel/:slug" component={GuideDetail} />
+      <Route path="/magazin" component={Magazine} />
       <Route path="/magazin/:slug" component={MagazineArticle} />
       <Route path="/kviz" component={Quiz} />
       <Route path="/kviz/vysledek/:symbol" component={QuizResult} />

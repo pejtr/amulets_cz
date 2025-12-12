@@ -255,3 +255,9 @@
 - [x] Přidat články do magazineContent.ts
 - [x] Aktualizovat sitemap.xml
 - [x] Otestovat nové články (build úspěšný)
+
+## Oprava nefunkční stránky Magazín
+- [x] Diagnostikovat proč Magazín zobrazuje "Stránka nenalezena" - chyběla route pro /magazin
+- [x] Opravit routing pro /magazin - přidána route do App.tsx
+- [x] Vytvořit Magazine.tsx komponentu se seznamem článků
+- [x] Otestovat všechny magazín URL (build úspěšný)
