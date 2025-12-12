@@ -637,6 +637,162 @@ Tyto amulety **podporují meditaci**, pomáhají při duchovní práci a posiluj
 - **Čaroit** - odvaha při změnách
 - **Turmalín** - ochrana během transformace
 
-Tyto amulety **podporují odvahu**, pomáhají při uvolňování starých vzorců a otevírají cestu novým možnostem. Transformace je přirozená část života - amulety nás provázejí na této cestě.`,
+Tyto amulety **podporují odvahu**, pomahají při uvolnění starých vzorců a otevírají cestu novým možnostem. Transformace je přirozená část života - amulety nás provázejí na této cestě.`,
+  },
+  {
+    slug: "spirala",
+    title: "Spirála",
+    image: "/images/symbols/spirala.png",
+    metaTitle: "Spirála - Symbol růstu a evoluce | Amulets.cz",
+    metaDescription: "Spirála symbolizuje růst, evoluci a věčný cyklus života. Objevte význam tohoto univerzálního symbolu.",
+    content: `**Spirála** je jedním z **nejstarších symbolů** lidé používaných lidstvem. Vyskytuje se v přírodě všude kolem nás - od ulity šneka přes galaxie až po DNA.
+
+Spirála reprezentuje **růst, vývoj a evoluci**. Není to kruh, který se vrací na stejné místo, ale cesta, která se **neustále rozvíjí** a pohybuje se vpřed.
+
+Tento symbol **podporuje osobní transformaci**, připomíná nám, že život je cesta, nikoli cíl. Spirála nás učí, že každá zkušenost nás posouvá dál na naší duchovní cestě.`,
+  },
+  {
+    slug: "dharmachakra",
+    title: "Dharmachakra",
+    image: "/images/symbols/dharmachakra.png",
+    metaTitle: "Dharmachakra - Kolo dharmy | Amulets.cz",
+    metaDescription: "Dharmachakra je buddhistický symbol kola dharmy. Reprezentuje Buddhovo učení a cestu k osvícení.",
+    content: `**Dharmachakra**, také známé jako **Kolo dharmy**, je jedním z nejdůležitějších buddhistických symbolů. Reprezentuje **Buddhovo učení** a cestu k osvícení.
+
+Kolo má obvykle **osm paprseků**, které symbolizují **Osměrnou stezku** - Buddhovu cestu k ukončení utrpení. Každý paprsek reprezentuje jeden aspekt správného života.
+
+Dharmachakra **podporuje duchovní praxi**, připomíná nám věčný cyklus zrození, smrti a znovuzrození. Je nástrojem pro **meditaci** a pochopení buddhistických učení.`,
+  },
+  {
+    slug: "hamsa-s-okem",
+    title: "Hamsa s okem",
+    image: "/images/symbols/hamsa.png",
+    metaTitle: "Hamsa s okem - Ochrana před závistným okem | Amulets.cz",
+    metaDescription: "Hamsa s okem je mocný ochraný symbol. Chrání před závistným okem a negativní energií.",
+    content: `**Hamsa s okem** je varianta Ruky Fatimy, která má uprostřed dlaně **oko**. Toto oko má chránit před **závistným okem** (evil eye) a negativní energií.
+
+Oko v hamse **sleduje a odraží** všechny negativní vlivy zpět k jejich zdroji. Je to **aktivní ochrana**, která nejen chrání, ale také vrací negativitu tam, odkud přišla.
+
+Tento symbol je **obzvláště silný** pro ochranu před závistí, špatnými úmysly a psychickými útoky. Používá se jako **talisman** pro ochranu domova i osobní ochranu.`,
+  },
+  {
+    slug: "keltsky-kriz",
+    title: "Keltský kříž",
+    image: "/images/symbols/keltsky-kriz.png",
+    metaTitle: "Keltský kříž - Symbol věčnosti | Amulets.cz",
+    metaDescription: "Keltský kříž spojuje křesťanský kříž s keltským kruhem. Symbol věčnosti a duchovního propojení.",
+    content: `**Keltský kříž** je jediněčná kombinace **křesťanského kříže** a **keltského kruhu**. Kruh reprezentuje **věčnost, slunce a cyklickou povahu života**.
+
+Tento symbol spojuje **křesťanské učení** s **keltskou spiritualitou**. Kruh kolem kříže symbolizuje **Boží nekonečnou lásku** a propojení všeho stvoření.
+
+Keltský kříž **podporuje duchovní sílu**, připomíná nám naše kořeny a chrání na životní cestě. Je symbolem **víry, náděje a věčného života**.`,
+  },
+  {
+    slug: "kriz",
+    title: "Kříž",
+    image: "/images/symbols/kriz.png",
+    metaTitle: "Kříž - Symbol víry a oběti | Amulets.cz",
+    metaDescription: "Kříž je univerzální symbol víry, oběti a duchovního propojení. Objevte jeho hluboký význam.",
+    content: `**Kříž** je jedním z **nejrozpoznatelnějších symbolů** na světě. Představuje **spojení nebe a země**, duchovního a materiálního světa.
+
+V křesťanství kříž symbolizuje **oběť Ježíše Krista** a víkupní lásku. Vertikální linie reprezentuje **spojení s Božským**, horizontální linie **pozemský život**.
+
+Kříž je **ochraný symbol**, který poskytuje duchovní sílu a připomíná nám **víru, náději a lásku**. Je nástrojem pro meditaci a duchovní růst.`,
+  },
+  {
+    slug: "lotosova-mandala",
+    title: "Lotosová mandala",
+    image: "/images/symbols/lotosova-mandala.png",
+    metaTitle: "Lotosová mandala - Symbol čistoty | Amulets.cz",
+    metaDescription: "Lotosová mandala spojuje lotos a mandalu. Symbol duchovního probouzení, čistoty a osvícení.",
+    content: `**Lotosová mandala** spojuje **lotos**, symbol duchovního probouzení, s **mandalou**, nástrojem pro meditaci. Vytváří mocný **duchovní symbol**.
+
+Lotos roste z bahna k světlu, aniž by byl poškvrněn, což symbolizuje **čistotu ducha** i uprostřed světských věcí. Mandala reprezentuje **vesmír a cestu k osvícení**.
+
+Lotosová mandala **podporuje meditaci**, pomahá při duchovní praxi a připomíná nám, že **osvícení je možné** pro každého, kdo se vydá na duchovní cestu.`,
+  },
+  {
+    slug: "nekonecno",
+    title: "Nekonečno",
+    image: "/images/symbols/nekonecno.png",
+    metaTitle: "Symbol nekonečna - Věčnost a rovnováha | Amulets.cz",
+    metaDescription: "Symbol nekonečna reprezentuje věčnost, nekonečnou lásku a rovnováhu. Objevte jeho hluboký význam.",
+    content: `**Symbol nekonečna** (lemniskáta) je matematický symbol ve tvaru **ležaté osmičky**. Reprezentuje **věčnost, nekonečnost a cyklickou povahu** existence.
+
+Tento symbol představuje **nekonečnou lásku**, věčný život a **rovnováhu mezi protiklady**. Dvě smyčky symbolizují dualitu - mužské a ženské, světlo a tmu, život a smrt.
+
+Nekonečno **podporuje pochopení věčné povahy** duše, připomíná nám, že **energie nikdy nezaniká**, pouze se transformuje. Je symbolem **věčné lásky** a duchovního propojení.`,
+  },
+  {
+    slug: "pentakl",
+    title: "Pentakl",
+    image: "/images/symbols/pentakl.png",
+    metaTitle: "Pentakl - Ochraný magický symbol | Amulets.cz",
+    metaDescription: "Pentakl je pentagram v kruhu. Mocný ochraný symbol používaný v magii a duchovní praxi.",
+    content: `**Pentakl** je **pentagram (pěticipá hvězda) uzavřený v kruhu**. Kruh zesiluje ochrannou sílu pentagramu a vytváří **magický kruh ochrany**.
+
+Pět cipů hvězdy reprezentuje **pět elementů** - zemi, vodu, oheň, vzduch a ducha. Kruh symbolizuje **jednotu a věčnost**, která vše spojuje.
+
+Pentakl je **mocný ochraný symbol** používaný v magii, Wicce a duchovní praxi. **Chrání před negativní energií**, vytváří posvátný prostor a podporuje **rovnováhu elementů**.`,
+  },
+  {
+    slug: "posvatne-pero",
+    title: "Posvátné pero",
+    image: "/images/symbols/posvatne-pero.png",
+    metaTitle: "Posvátné pero - Symbol svobody | Amulets.cz",
+    metaDescription: "Posvátné pero je symbol svobody, pravdy a duchovního propojení. Objevte jeho význam v indianských kulturách.",
+    content: `**Posvátné pero** je v **indianských kulturách** symbolem **svobody, pravdy a duchovního propojení**. Pera byla považována za dary od ptaků, kterí jsou nejblíže nebi.
+
+Každý druh pera má **svůj význam** - orlovo pero reprezentuje **odvahu a moudrost**, havraní pero **magii a transformaci**, sokolové pero **jasnovidnost**.
+
+Posvátné pero **podporuje komunikaci s duchovním světem**, připomíná nám **svobodu ducha** a pomahá při meditaci. Je symbolem **česti, pravdy a duchovní síly**.`,
+  },
+  {
+    slug: "pulmesic",
+    title: "Půlměsíc",
+    image: "/images/symbols/pulmesic.png",
+    metaTitle: "Půlměsíc - Symbol islámu | Amulets.cz",
+    metaDescription: "Půlměsíc je symbol islámu a muslimské víry. Reprezentuje lunarní kalendář a duchovní světlo.",
+    content: `**Půlměsíc** je jedním z nejznámějších symbolů **islámu**. Reprezentuje **lunarní kalendář**, podle kterého se řídí muslimské svátky a náboženská praxe.
+
+Měsíc v islámu symbolizuje **světlo v temnostě**, duchovní vedeni a **Boží milost**. Hvězda často zobrazovaná s půlměsícem reprezentuje **světlo víry**.
+
+Půlměsíc **podporuje duchovní praxi**, připomíná nám **cyklickou povahu času** a pomahá při meditaci. Je symbolem **víry, náděje a duchovního světla**.`,
+  },
+  {
+    slug: "skarabeus",
+    title: "Skarabeus",
+    image: "/images/symbols/skarabeus.png",
+    metaTitle: "Skarabeus - Staroegyptský symbol | Amulets.cz",
+    metaDescription: "Skarabeus je staroegyptský symbol znovuzrození a ochrany. Posvátný brouk představující slunečního boha.",
+    content: `**Skarabeus** je v **starověkém Egyptě** symbolem **znovuzrození, transformace a ochrany**. Tento posvátný brouk byl spojen se **slunečním bohem Ra**.
+
+Egypťané pozorovali, jak skarabeus kutaleček valcí kouře hnůj, což připomíná **slunce pohybující se po obloze**. Skarabeus se tak stal symbolem **slunečního cyklu** a věčného znovuzrození.
+
+Tento symbol **chrání před negativní energií**, podporuje **transformaci a osobní růst**. Byl používán jako **talisman pro ochranu** v životě i po smrti.`,
+  },
+  {
+    slug: "slunce",
+    title: "Slunce",
+    image: "/images/symbols/slunce.png",
+    metaTitle: "Symbol slunce - Zdroj života a energie | Amulets.cz",
+    metaDescription: "Slunce je univerzální symbol života, energie a světla. Objevte význam tohoto mocného symbolu.",
+    content: `**Slunce** je **univerzální symbol** přítomný ve všech kulturách. Reprezentuje **život, energii, světlo a teplo** - základní podmínky existence.
+
+V mnoha kulturách bylo slunce **uctiováno jako božstvo** - Ra v Egyptě, Helios v Řecku, Surya v Indii. Slunce symbolizuje **mužskou energii**, aktivitu a tvořivou sílu.
+
+Symbol slunce **podporuje vitalitu**, přináší **radost a optimismus**. Je nástrojem pro **nabíjení energie**, podporuje sebevědomí a připomíná nám **světlo v našem vnitřním světě**.`,
+  },
+  {
+    slug: "trojity-mesic",
+    title: "Trojitý měsíc",
+    image: "/images/symbols/trojity-mesic.png",
+    metaTitle: "Trojitý měsíc - Symbol trojité bohyně | Amulets.cz",
+    metaDescription: "Trojitý měsíc reprezentuje trojitou bohyni - pannu, matku a starénu. Symbol ženské síly a cyklů.",
+    content: `**Trojitý měsíc** je symbol **trojité bohyně** ve Wicce a pohanskych tradicích. Tři fáze měsíce reprezentují **tři aspekty ženské síly**.
+
+Rostoučí měsíc symbolizuje **pannu** - mladé, nové začátky. Úplněk reprezentuje **matku** - plodnost, tvořivost. Ubyvající měsíc je **staréna** - moudrost, transformace.
+
+Trojitý měsíc **podporuje ženskou energii**, připomíná nám **cyklickou povahu života** a pomahá při práci s **měsíčními cykly**. Je symbolem **ženské síly a magie**.`,
   },
 ];

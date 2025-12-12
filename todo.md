@@ -261,3 +261,16 @@
 - [x] Opravit routing pro /magazin - přidána route do App.tsx
 - [x] Vytvořit Magazine.tsx komponentu se seznamem článků
 - [x] Otestovat všechny magazín URL (build úspěšný)
+
+## Úprava favicon
+- [x] Odstranit bílé pozadí - udělat transparentní
+- [x] Zvětšit logo ve favicon (85% canvas)
+- [x] Vygenerovat nové favicon ve všech velikostech (16, 32, 180, 192, 512)
+- [x] Nahradit všechny favicon soubory
+
+## Kontrola a oprava chybějících symbolů
+- [x] Extrahovat všechny symboly ze sitemap.xml (38 symbolů)
+- [x] Porovnat se symboly v guideContent.ts
+- [x] Identifikovat chybějící symboly (13 chybělo)
+- [x] Přidat obsah pro všechny chybějící symboly (spirala, dharmachakra, hamsa-s-okem, keltsky-kriz, kriz, lotosova-mandala, nekonecno, pentakl, posvatne-pero, pulmesic, skarabeus, slunce, trojity-mesic)
+- [x] Otestovat všechny symbol URL (build úspěšný)
