@@ -1,6 +1,7 @@
-import { Heart, Sparkles, Gem } from "lucide-react";
+import { Sparkles, Gem, Target } from "lucide-react";
 import { Link } from "wouter";
 import { useState } from "react";
+import LazyImage from "@/components/LazyImage";
 
 const symbols = [
   // Původních 12
@@ -79,20 +80,20 @@ export default function GuideSection() {
               </span>
             </h2>
           </div>
-          <p className="text-muted-foreground text-lg mt-6">
-            Potřebuješ s něčím poradit? Začni s výběrem zde
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Vyberte si amulet podle symbolů, kamenů nebo účelu
           </p>
         </div>
 
-        {/* Výběr dle použití */}
+        {/* Výběr podle účelu */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 rounded-full bg-[#E85A9F]/10 flex items-center justify-center">
-              <Heart className="h-6 w-6 text-[#E85A9F]" />
+              <Target className="h-6 w-6 text-[#E85A9F]" />
             </div>
             <div>
               <h3 className="text-2xl font-bold text-foreground">
-                Výběr dle použití
+                Výběr podle účelu
               </h3>
               <p className="text-sm text-muted-foreground">
                 Rychlý výběr podle účelu amuletů
@@ -136,14 +137,14 @@ export default function GuideSection() {
                 href={symbol.url}
                 className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all hover:scale-105 flex flex-col items-center gap-3"
               >
-                <div className="w-full aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50">
-                  <img
-                    src={symbol.image}
-                    alt={symbol.name}
-                    loading={index < 4 ? "eager" : "lazy"}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <LazyImage
+                  src={symbol.image}
+                  alt={symbol.name}
+                  loading={index < 4 ? "eager" : "lazy"}
+                  aspectRatio="square"
+                  containerClassName="w-full rounded-lg overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50"
+                  showSkeleton={true}
+                />
                 <p className="text-sm font-medium text-foreground text-center">
                   {symbol.name}
                 </p>
@@ -186,14 +187,14 @@ export default function GuideSection() {
                 href={stone.url}
                 className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all hover:scale-105 flex flex-col items-center gap-3"
               >
-                <div className="w-full aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-gray-50 to-purple-50">
-                  <img
-                    src={stone.image}
-                    alt={stone.name}
-                    loading={index < 4 ? "eager" : "lazy"}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <LazyImage
+                  src={stone.image}
+                  alt={stone.name}
+                  loading={index < 4 ? "eager" : "lazy"}
+                  aspectRatio="square"
+                  containerClassName="w-full rounded-lg overflow-hidden bg-gradient-to-br from-gray-50 to-purple-50"
+                  showSkeleton={true}
+                />
                 <p className="text-sm font-medium text-foreground text-center">
                   {stone.name}
                 </p>

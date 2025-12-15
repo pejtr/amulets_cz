@@ -354,3 +354,7 @@
 - [x] Přidat preload pro hero obrázky do index.html (desktop + mobile + logo + první symboly)
 - [x] Implementovat srcset pro produktové obrázky (vytvořena OptimizedImage komponenta)
 - [x] Vytvořit skeleton loading komponentu pro obrázky (přidáno do ProductCard)
+
+## Skeleton loading a Intersection Observer (Dec 15, 2025)
+- [x] Přidat skeleton loading do GuideSection (symboly a kameny) - použita LazyImage komponenta
+- [x] Vytvořit useIntersectionObserver hook pro lazy loading fallback
