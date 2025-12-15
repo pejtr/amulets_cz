@@ -816,7 +816,7 @@ Trojitý měsíc **podporuje ženskou energii**, připomíná nám **cyklickou p
   {
     slug: "egyptsky-symbol-lasky",
     title: "Egyptský symbol lásky",
-    image: "/images/symbols/egyptsky-symbol-lasky.png",
+    image: "/images/symbols/egyptsky-symbol-lasky.webp",
     metaTitle: "Egyptský symbol lásky - Ankh a Skarabeus | Amulets.cz",
     metaDescription: "Objevte egyptské symboly lásky - Ankh jako klíč k věčnému životu a lásce, Skarabeus jako symbol znovuzrození a ochrany.",
     content: `**Egyptské symboly lásky** jsou hluboce zakotvené v mytologii starověkého Egypta. Nejvýznamnějším je **Ankh** - kříž života, který symbolizuje **věčnou lásku a nesmrtelnost**.
@@ -830,7 +830,7 @@ Ankh byl používán egyptskými bohy jako **klíč k životu a lásce**. Bohyn�
   {
     slug: "symbol-ochrany",
     title: "Symbol ochrany",
-    image: "/images/symbols/symbol-ochrany.png",
+    image: "/images/symbols/symbol-ochrany.webp",
     metaTitle: "Nejsilnější symboly ochrany - Přehled | Amulets.cz",
     metaDescription: "Kompletni průvodce ochrannými symboly. Ruka Fatimy, Horovo oko, Pentagram a další mocné talismany pro ochranu.",
     content: `**Symboly ochrany** jsou nejstaršími talismany lidstva. Slouží k **ochraně před negativními energiemi**, uhranutím a zlým pohledem.
@@ -943,7 +943,7 @@ Tyto symboly nás učí, že **smrt není konec**, ale transformace. Duše je v�
   {
     slug: "symbol-sily",
     title: "Symbol síly",
-    image: "/images/symbols/symbol-sily.png",
+    image: "/images/symbols/symbol-sily.webp",
     metaTitle: "Symbol síly - Nejsilnější symboly moci a odvahy | Amulets.cz",
     metaDescription: "Objevte nejsilnější symboly síly a moci. Lev, Thorův mlát, runy a další talismany pro vnitřní sílu a odvahu.",
     content: `**Symboly síly** jsou mocné talismany, které posilí vaši **vnitřní sílu, odvahu a odhodlání**. Pomáhají překonávat překážky a čelit výzvám.

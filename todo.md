@@ -335,3 +335,9 @@
 - [x] Vygenerovat ilustraci pro "Symbol ochrany"
 - [x] Vygenerovat ilustraci pro "Symbol síly"
 - [x] Přidat obrázky do guideContent.ts
+
+## Optimalizace obrázků do WebP (Dec 15, 2025)
+- [x] Převést egyptsky-symbol-lasky.png do WebP (5.8 MB → 313 KB, -94.6%)
+- [x] Převést symbol-ochrany.png do WebP (6.2 MB → 359 KB, -94.2%)
+- [x] Převést symbol-sily.png do WebP (6.8 MB → 647 KB, -90.5%)
+- [x] Aktualizovat cesty v guideContent.ts
