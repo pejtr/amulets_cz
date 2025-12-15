@@ -358,3 +358,6 @@
 ## Skeleton loading a Intersection Observer (Dec 15, 2025)
 - [x] Přidat skeleton loading do GuideSection (symboly a kameny) - použita LazyImage komponenta
 - [x] Vytvořit useIntersectionObserver hook pro lazy loading fallback
+
+## Oprava nefunkčních symbolů (Dec 15, 2025)
+- [x] Opravit /symbol/spirala - stránka nenalezena (opraveno: slug změněn z 'spiral' na 'spirala' v symbolsData, odstraněn duplikát z purposesData)

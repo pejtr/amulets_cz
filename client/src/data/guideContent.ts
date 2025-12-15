@@ -440,9 +440,9 @@ Osm paprsků představuje: správné porozumění, správné myšlení, správno
 Dharmachakra připomíná **cyklickou povahu existence** (samsára) a možnost **osvobození** (nirvána). Používá se pro **meditaci o buddhist ickém učení**, kultivaci moudrosti a **soucitu**. Je ideální pro ty, kteří následují **buddhist ickou cestu** nebo hledají osvobození od utrpení.`,
   },
   {
-    slug: "spiral",
+    slug: "spirala",
     title: "Spirála",
-    image: "/images/symbols/spiral.jpg",
+    image: "/images/symbols/spirala.png",
     metaTitle: "Spirála - Symbol růstu a duchovní evoluce | Amulets.cz",
     metaDescription: "Spirála je univerzální symbol růstu, evoluce a cesty ke středu. Objevuje se v přírodě i v duchovních tradicích.",
     content: `**Spirála** je jeden z **nejstarších symbolů** lidstva, objevující se v přírodě i duchovních tradicích. Reprezentuje **růst, evoluci** a **cestu ke středu** (nebo z centra ven).
@@ -656,18 +656,6 @@ Tyto amulety **podporují meditaci**, pomáhají při duchovní práci a posiluj
 - **Turmalín** - ochrana během transformace
 
 Tyto amulety **podporují odvahu**, pomahají při uvolnění starých vzorců a otevírají cestu novým možnostem. Transformace je přirozená část života - amulety nás provázejí na této cestě.`,
-  },
-  {
-    slug: "spirala",
-    title: "Spirála",
-    image: "/images/symbols/spirala.png",
-    metaTitle: "Spirála - Symbol růstu a evoluce | Amulets.cz",
-    metaDescription: "Spirála symbolizuje růst, evoluci a věčný cyklus života. Objevte význam tohoto univerzálního symbolu.",
-    content: `**Spirála** je jedním z **nejstarších symbolů** lidé používaných lidstvem. Vyskytuje se v přírodě všude kolem nás - od ulity šneka přes galaxie až po DNA.
-
-Spirála reprezentuje **růst, vývoj a evoluci**. Není to kruh, který se vrací na stejné místo, ale cesta, která se **neustále rozvíjí** a pohybuje se vpřed.
-
-Tento symbol **podporuje osobní transformaci**, připomíná nám, že život je cesta, nikoli cíl. Spirála nás učí, že každá zkušenost nás posouvá dál na naší duchovní cestě.`,
   },
   {
     slug: "dharmachakra",
