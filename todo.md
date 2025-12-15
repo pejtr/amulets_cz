@@ -329,3 +329,9 @@
 - [x] Přidat interní prolinkování mezi symboly (propojit nové stránky s existujícími) - vytvořena komponenta RelatedSymbols
 - [x] Vytvořit článek o modrém lotosu do Magazínu s detailní egyptskou historií - přidáno
 - [x] Přidat FAQ schema markup na nové stránky (pro "Lidé se také ptají" v Google) - vytvořena komponenta FAQSchema
+
+## Ilustrace pro nové stránky (Dec 15, 2025)
+- [x] Vygenerovat ilustraci pro "Egyptský symbol lásky"
+- [x] Vygenerovat ilustraci pro "Symbol ochrany"
+- [x] Vygenerovat ilustraci pro "Symbol síly"
+- [x] Přidat obrázky do guideContent.ts

@@ -816,7 +816,7 @@ Trojitý měsíc **podporuje ženskou energii**, připomíná nám **cyklickou p
   {
     slug: "egyptsky-symbol-lasky",
     title: "Egyptský symbol lásky",
-    image: "/images/symbols/ankh.png",
+    image: "/images/symbols/egyptsky-symbol-lasky.png",
     metaTitle: "Egyptský symbol lásky - Ankh a Skarabeus | Amulets.cz",
     metaDescription: "Objevte egyptské symboly lásky - Ankh jako klíč k věčnému životu a lásce, Skarabeus jako symbol znovuzrození a ochrany.",
     content: `**Egyptské symboly lásky** jsou hluboce zakotvené v mytologii starověkého Egypta. Nejvýznamnějším je **Ankh** - kříž života, který symbolizuje **věčnou lásku a nesmrtelnost**.
@@ -830,7 +830,7 @@ Ankh byl používán egyptskými bohy jako **klíč k životu a lásce**. Bohyn�
   {
     slug: "symbol-ochrany",
     title: "Symbol ochrany",
-    image: "/images/symbols/ruka-fatimy.png",
+    image: "/images/symbols/symbol-ochrany.png",
     metaTitle: "Nejsilnější symboly ochrany - Přehled | Amulets.cz",
     metaDescription: "Kompletni průvodce ochrannými symboly. Ruka Fatimy, Horovo oko, Pentagram a další mocné talismany pro ochranu.",
     content: `**Symboly ochrany** jsou nejstaršími talismany lidstva. Slouží k **ochraně před negativními energiemi**, uhranutím a zlým pohledem.
@@ -939,5 +939,30 @@ Tyto symboly nám připomínají, že **život je věčný** a smrt je pouze tra
 
 **Duchovní význam:**
 Tyto symboly nás učí, že **smrt není konec**, ale transformace. Duše je věčná a prochází **cyklem inkarnací**. Používejte tyto symboly pro **připojení k věčné podstatě** svého bytí.`,
+  },
+  {
+    slug: "symbol-sily",
+    title: "Symbol síly",
+    image: "/images/symbols/symbol-sily.png",
+    metaTitle: "Symbol síly - Nejsilnější symboly moci a odvahy | Amulets.cz",
+    metaDescription: "Objevte nejsilnější symboly síly a moci. Lev, Thorův mlát, runy a další talismany pro vnitřní sílu a odvahu.",
+    content: `**Symboly síly** jsou mocné talismany, které posilí vaši **vnitřní sílu, odvahu a odhodlání**. Pomáhají překonávat překážky a čelit výzvám.
+
+**Nejsilnější symboly síly:**
+
+• **Lev** - král zvířat, symbol odvahy, síly a vedení
+• **Thorův mlát (Mjölnir)** - nordický symbol síly a ochrany
+• **Runa Uruz** - prastará runa fyzické a duchovní síly
+• **Runa Tiwaz** - runa válečníka a vítězství
+• **Drak** - symbol primární síly a transformace
+• **Orel** - symbol duchovní síly a jasného vidění
+
+**Jak pracovat se symboly síly:**
+
+Noste je jako **amulety** pro posílení sebevědomí, umístěte je do **pracovního prostoru** pro podporu cílů, nebo je používejte při **meditaci** pro probuzení vnitřní síly.
+
+**Duchovní význam:**
+
+Skutečná síla nepřichází z vnějšku, ale z **hloubky našeho bytí**. Symboly síly nám pomáhají **připomenout si tuto vnitřní moc** a čerpat z ní v obtížných chvílích.`,
   },
 ];
