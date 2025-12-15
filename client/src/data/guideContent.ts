@@ -123,15 +123,33 @@ Tento symbol **podporuje vnitřní klid**, pomáhá při meditaci a připomíná
   },
   {
     slug: "jin-jang",
-    title: "Jin Jang",
+    title: "Jin a Jang",
     image: "/images/symbols/jin-jang.png",
-    metaTitle: "Jin Jang - Symbol rovnováhy a harmonie | Amulets.cz",
-    metaDescription: "Jin Jang (Yin Yang) symbolizuje rovnováhu protikladů. Objevte význam tohoto mocného symbolu harmonie.",
-    content: `**Jin Jang** (Yin Yang) je symbol **dokonalé rovnováhy** mezi protiklady. Černá část (Yin) představuje **ženskou energii** - tmu, chlad, pasivitu. Bílá část (Yang) symbolizuje **mužskou energii** - světlo, teplo, aktivitu.
+    metaTitle: "Jin a Jang - Význam symbolu rovnováhy | Amulets.cz",
+    metaDescription: "Jin a Jang (Yin Yang) - co znamená tento symbol? Význam, vlastnosti a jak dosáhnout rovnováhy jin a jang v životě.",
+    content: `**Jin a Jang** (také Yin Yang, jin jang) je nejznámější symbol **dokonalé rovnováhy** z čínské filozofie. Představuje harmonii protikladů, které se navzájem doplňují.
 
-Každá část obsahuje malé semínko té druhé, což ukazuje, že **v každém protikladu je obsažen jeho opak**. Nic není absolutně černé nebo bílé - vše obsahuje obojí.
+## Co znamená jin a jang?
 
-Symbol **učí rovnováze**, pomáhá harmonizovat energie a připomíná, že protiklady se navzájem doplňují. Je nástrojem pro **pochopení duality** a dosažení vnitřní harmonie.`,
+**Jin (Yin)** - černá část symbolu představuje:
+• Ženskou energii
+• Tmu, noc, měsíc
+• Chlad, pasivitu, klid
+• Zemi, vodu
+
+**Jang (Yang)** - bílá část symbolu představuje:
+• Mužskou energii
+• Světlo, den, slunce
+• Teplo, aktivitu, pohyb
+• Nebe, oheň
+
+## Vlastnosti jin a jang
+
+Každá část obsahuje **malé semínko té druhé** (tečka opačné barvy), což ukazuje, že **v každém protikladu je obsažen jeho opak**. Nic není absolutně černé nebo bílé - vše obsahuje obojí.
+
+## Jak dosáhnout rovnováhy jin a jang?
+
+Symbol **učí rovnováze** v každodenním životě. Používejte ho při meditaci, umístěte ho do prostoru pro harmonizaci energie, nebo ho noste jako připomínku, že **protiklady se navzájem doplňují**.`,
   },
   {
     slug: "horovo-oko",
@@ -794,5 +812,132 @@ Symbol slunce **podporuje vitalitu**, přináší **radost a optimismus**. Je n�
 Rostoučí měsíc symbolizuje **pannu** - mladé, nové začátky. Úplněk reprezentuje **matku** - plodnost, tvořivost. Ubyvající měsíc je **staréna** - moudrost, transformace.
 
 Trojitý měsíc **podporuje ženskou energii**, připomíná nám **cyklickou povahu života** a pomahá při práci s **měsíčními cykly**. Je symbolem **ženské síly a magie**.`,
+  },
+  {
+    slug: "egyptsky-symbol-lasky",
+    title: "Egyptský symbol lásky",
+    image: "/images/symbols/ankh.png",
+    metaTitle: "Egyptský symbol lásky - Ankh a Skarabeus | Amulets.cz",
+    metaDescription: "Objevte egyptské symboly lásky - Ankh jako klíč k věčnému životu a lásce, Skarabeus jako symbol znovuzrození a ochrany.",
+    content: `**Egyptské symboly lásky** jsou hluboce zakotvené v mytologii starověkého Egypta. Nejvýznamnějším je **Ankh** - kříž života, který symbolizuje **věčnou lásku a nesmrtelnost**.
+
+Ankh byl používán egyptskými bohy jako **klíč k životu a lásce**. Bohyně Isis, patronka lásky a mateřství, držela Ankh jako symbol své **božské lásky ke všem bytostem**.
+
+**Skarabeus** je dalším egyptským symbolem spojeným s láskou - reprezentuje **znovuzrození, transformaci a ochranu** milovaných. Ve starověkém Egyptě se skarabei dávali jako **dárky lásky** a ochrany.
+
+**Modrý lotos** (Nymphaea caerulea) byl posvátnou květinou Egypta, symbolizující **duchovní lásku a probuzení**. Používal se v chrámových rituálech pro **spojení s božskou láskou**.`,
+  },
+  {
+    slug: "symbol-ochrany",
+    title: "Symbol ochrany",
+    image: "/images/symbols/ruka-fatimy.png",
+    metaTitle: "Nejsilnější symboly ochrany - Přehled | Amulets.cz",
+    metaDescription: "Kompletni průvodce ochrannými symboly. Ruka Fatimy, Horovo oko, Pentagram a další mocné talismany pro ochranu.",
+    content: `**Symboly ochrany** jsou nejstaršími talismany lidstva. Slouží k **ochraně před negativními energiemi**, uhranutím a zlým pohledem.
+
+**Nejsilnější ochranné symboly:**
+
+• **Ruka Fatimy (Hamsa)** - chrání před zlým pohledem a přináší štěstí
+• **Horovo oko** - egyptský symbol ochrany a uzdravení
+• **Pentagram** - mocný ochranný symbol v magii
+• **Kříž** - univerzální symbol ochrany a víry
+• **Triquetra** - keltský symbol ochrany a jednoty
+
+**Jak používat ochranné symboly:**
+Nosíte je jako **šperky nebo amulety**, umístěte je u vchodu do domu, nebo je používejte při **meditaci a vizualizaci**. Každý symbol má svou specifickou energii a účel.`,
+  },
+  {
+    slug: "nejsilnejsi-ochranny-symbol",
+    title: "Nejsilnější ochranný symbol",
+    image: "/images/symbols/metatronova-krychle.png",
+    metaTitle: "Nejsilnější ochranný symbol - Který je nejlepší? | Amulets.cz",
+    metaDescription: "Který je nejsilnější ochranný symbol? Porovnání Metatronovy krychle, Pentagramu, Ruky Fatimy a dalších.",
+    content: `**Nejsilnější ochranný symbol** je téma, které zajímá mnoho lidí hledajících duchovní ochranu. Odpověď závisí na vaší **osobní rezonanci** a účelu.
+
+**Top 5 nejsilnějších ochranných symbolů:**
+
+1. **Metatronova krychle** - obsahuje všech 5 platónských těles, chrání na všech úrovních
+2. **Květ života** - posvátná geometrie harmonizující energii
+3. **Pentagram** - mocný symbol v magii, chrání před negativitou
+4. **Horovo oko** - egyptský symbol vševidoucí ochrany
+5. **Ruka Fatimy** - univerzální ochrana před zlým pohledem
+
+**Jak vybrat svůj ochranný symbol:**
+Nejlepší symbol je ten, ke kterému cítíte **nejsilnější přitahování**. Meditujte nad různými symboly a všimněte si, který ve vás vyvolává **největší pocit bezpečí a klidu**.`,
+  },
+  {
+    slug: "symbol-harmonie",
+    title: "Symbol harmonie",
+    image: "/images/symbols/jin-jang.png",
+    metaTitle: "Symbol harmonie - Jin a Jang, Květ života | Amulets.cz",
+    metaDescription: "Symboly harmonie pro rovnováhu v životě. Jin a Jang, Květ života, Mandala a další symboly vnitřního klidu.",
+    content: `**Symboly harmonie** nám pomáhají najít **rovnováhu a vnitřní klid** v chaotickém světě. Jsou nástroji pro **harmonizaci energie** a dosahování vyváženosti.
+
+**Nejvýznamnější symboly harmonie:**
+
+• **Jin a Jang** - dokonala rovnováha protikladů, světla a tmy
+• **Květ života** - posvátná geometrie harmonizující vše
+• **Mandala** - symbol vesmirné harmonie a celistvosti
+• **Om** - zvuk univerza, vibrace harmonie
+• **Enso** - zen kruh reprezentující dokonalost v nedokonalosti
+
+**Jak pracovat se symboly harmonie:**
+Používejte je při **meditaci**, umístěte je do prostoru, kde potřebujete **uklidnit energii**, nebo je noste jako **připomínku rovnováhy** v každodenním životě.`,
+  },
+  {
+    slug: "keltsky-symbol-lasky",
+    title: "Keltský symbol lásky",
+    image: "/images/symbols/triquetra.png",
+    metaTitle: "Keltský symbol lásky - Triquetra a keltské uzly | Amulets.cz",
+    metaDescription: "Keltské symboly lásky - Triquetra, keltské uzly a jejich význam pro věčnou lásku a propojení duší.",
+    content: `**Keltské symboly lásky** jsou hluboce zakotvené v tradici starověkých Keltů. Reprezentují **věčnou lásku**, propojení duší a nekonečnost vztahu.
+
+**Nejvýznamnější keltské symboly lásky:**
+
+• **Triquetra** - tři propojené smyčky symbolizují **tělo, mysl a ducha** v lásce
+• **Keltský uzel lásky** - nekonečná linie bez začátku a konce = **věčná láska**
+• **Serch Bythol** - dva propojené uzly reprezentují **dvě duše spojené navždy**
+• **Triskelion** - tři spirály symbolizují **růst a vývoj lásky**
+
+**Proč jsou keltské symboly tak mocné:**
+Keltové věřili v **nekonečnost duše** a věčnost lásky. Jejich symboly nemají začátek ani konec, což reprezentuje **nesmrtelnost pravé lásky**.`,
+  },
+  {
+    slug: "znak-zivota",
+    title: "Znak života",
+    image: "/images/symbols/ankh.png",
+    metaTitle: "Znak života - Ankh a další symboly života | Amulets.cz",
+    metaDescription: "Znak života v různých kulturách. Egyptský Ankh, Strom života, Květ života a jejich význam.",
+    content: `**Znak života** je univerzální symbol přítomný ve všech kulturách světa. Reprezentuje **věčnost, vitalitu a spojení s božským**.
+
+**Nejvýznamnější znaky života:**
+
+• **Ankh** - egyptský kříž života, klíč k nesmrtelnosti
+• **Strom života** - propojení nebe, země a podzemní říše
+• **Květ života** - základní vzorec stvoření
+• **Ouroboros** - had pojídající svůj ocas = věčný cyklus života
+• **Spirala** - nekonečný růst a evoluce
+
+**Význam znaku života:**
+Tyto symboly nám připomínají, že **život je věčný** a smrt je pouze transformace. Používají se pro **ochranu života**, podporu vitality a spojení s **cyklem znovuzrození**.`,
+  },
+  {
+    slug: "symbol-nesmrtelnosti",
+    title: "Symbol nesmrtelnosti",
+    image: "/images/symbols/ouroboros.png",
+    metaTitle: "Symbol nesmrtelnosti - Ouroboros, Ankh, Fénix | Amulets.cz",
+    metaDescription: "Symboly nesmrtelnosti a věčného života. Ouroboros, Ankh, Fénix a jejich duchovní význam.",
+    content: `**Symbol nesmrtelnosti** reprezentuje **věčnost duše** a nekonečný cyklus života, smrti a znovuzrození.
+
+**Nejvýznamnější symboly nesmrtelnosti:**
+
+• **Ouroboros** - had pojídající svůj ocas, symbol věčného návratu
+• **Ankh** - egyptský klíč k věčnému životu
+• **Fénix** - pták povstávající z popela, symbol znovuzrození
+• **Skarabeus** - egyptský symbol transformace a nesmrtelnosti
+• **Lotosový květ** - duchovní nesmrtelnost a osvícení
+
+**Duchovní význam:**
+Tyto symboly nás učí, že **smrt není konec**, ale transformace. Duše je věčná a prochází **cyklem inkarnací**. Používejte tyto symboly pro **připojení k věčné podstatě** svého bytí.`,
   },
 ];

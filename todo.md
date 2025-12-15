@@ -281,3 +281,46 @@
 - [x] Přidat author informace (Amulets.cz organization)
 - [x] Integrovat schema do MagazineArticle stránky
 - [x] Otestovat v Google Rich Results Test (build úspěšný, schema ready)
+
+## AI Chatbot s WhatsApp eskalací (Open-source)
+- [x] Vytvořit Docker Compose setup (LibreChat + Ollama + MongoDB)
+- [x] Implementovat WhatsApp Web.js bot s eskalacní logikou
+- [x] Vytvořit knowledge base s produkty a FAQ (amulets-products.md)
+- [x] Nastavit eskalacní logiku (AI → WhatsApp)
+- [x] Vytvořit chat widget pro web (ChatWidget.tsx)
+- [x] Napsat deployment dokumentaci (README.md + QUICKSTART.md)
+- [x] Vytvořit start.sh skript pro snadné spuštění
+
+## N8N AI Chatbot (ZDARMA řešení)
+- [x] Vytvořit Docker Compose s N8N + PostgreSQL
+- [x] Vytvořit N8N workflow pro AI chatbot (amulets-ai-chatbot.json)
+- [x] Přidat WhatsApp eskalaci přes Twilio
+- [x] Vytvořit chat widget s webhook (ChatWidget.tsx)
+- [x] Napsat setup dokumentaci (README.md + QUICKSTART.md)
+- [x] Připravit k nasazení
+
+## Cloudflare Workers AI Chatbot (ZDARMA, bez VPS)
+- [x] Vytvořit Cloudflare Worker s OpenAI API (src/index.ts)
+- [x] Přidat WhatsApp eskalaci přes Twilio
+- [x] Vytvořit chat widget pro Manus web (ChatWidget.tsx)
+- [x] Napsat deployment dokumentaci (README.md + QUICKSTART.md)
+- [x] Připravit wrangler.toml konfiguraci
+- [x] Připravit k nasazení
+
+
+## SEO Optimalizace - Klíčová slova z Google Search Console (Dec 15, 2025)
+- [x] Přidat/vylepšit obsah pro "caduceus" (58 zobrazení, pozice 5.14) - již existuje
+- [x] Přidat/vylepšit obsah pro "vesica piscis" (31 zobrazení, pozice 8.13) - již existuje
+- [x] Přidat obsah pro "had požírající svůj ocas" / "ouroboros" (25 zobrazení) - již existuje
+- [x] Vylepšit obsah pro "jin a jang" / "jin jang" (vysoký zájem, špatná pozice 87) - vylepšeno
+- [x] Přidat obsah pro "hexagram" (8 zobrazení, pozice 9.12) - již existuje
+- [x] Vylepšit obsah pro "ochranný pentagram" (7 zobrazení, pozice 22.71) - přidána stránka symbol-ochrany
+- [x] Přidat obsah pro "egyptský symbol lásky" (4 zobrazení) - přidáno
+- [x] Přidat obsah pro "symbol ochrany" (4 zobrazení, pozice 28) - přidáno
+- [x] Vylepšit obsah pro "triquetra" (4 zobrazení, pozice 56) - již existuje
+- [x] Přidat obsah pro "znak života" / "symbol života" (5 zobrazení) - přidáno
+- [x] Přidat obsah pro "symbol nesmrtelnosti" (2 zobrazení, pozice 12) - přidáno
+- [x] Přidat obsah pro "keltský symbol lásky" (1 zobrazení) - přidáno
+- [x] Přidat obsah pro "symbol harmonie" (1 zobrazení) - přidáno
+- [x] Přidat obsah pro "nejsilnější ochranný symbol" (1 zobrazení) - přidáno
+- [x] Přidat zmínku o modrém lotosu s egyptskou mytologií do sekce esencí - přidáno

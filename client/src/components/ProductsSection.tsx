@@ -206,7 +206,7 @@ export default function ProductsSection() {
                 Aromaterapeutické esence
               </h2>
               <p className="text-muted-foreground max-w-3xl">
-                Ručně vyráběné vůně ze 100% esenciálních olejů nejvyšší kvality. Řada KORUNA s nejčistšími esencemi, krystaly a pravým 24k zlatem.
+                Ručně vyráběné vůně ze 100% esenciálních olejů nejvyšší kvality. Řada KORUNA s nejčistšími esencemi, krystaly a pravým 24k zlatem. <span className="text-[#D4AF37] font-medium">Naše ikonická esence s modrým lotosem</span> – posvátnou květinou starověkého Egypta, která byla používána v chrámových rituálech a symbolizuje duchovní probuzení a spojení s vyššími sférami.
               </p>
               <div className="text-sm mt-2">
                 <span className="text-muted-foreground">Přečtěte si: </span>
