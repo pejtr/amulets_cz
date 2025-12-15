@@ -442,7 +442,7 @@ Dharmachakra připomíná **cyklickou povahu existence** (samsára) a možnost *
   {
     slug: "spirala",
     title: "Spirála",
-    image: "/images/symbols/spirala.png",
+    image: "/images/symbols/spiral.jpg",
     metaTitle: "Spirála - Symbol růstu a duchovní evoluce | Amulets.cz",
     metaDescription: "Spirála je univerzální symbol růstu, evoluce a cesty ke středu. Objevuje se v přírodě i v duchovních tradicích.",
     content: `**Spirála** je jeden z **nejstarších symbolů** lidstva, objevující se v přírodě i duchovních tradicích. Reprezentuje **růst, evoluci** a **cestu ke středu** (nebo z centra ven).

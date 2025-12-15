@@ -361,3 +361,4 @@
 
 ## Oprava nefunkčních symbolů (Dec 15, 2025)
 - [x] Opravit /symbol/spirala - stránka nenalezena (opraveno: slug změněn z 'spiral' na 'spirala' v symbolsData, odstraněn duplikát z purposesData)
+- [x] Opravit chybějící obrázek spirály (změněno na /images/symbols/spiral.jpg)
