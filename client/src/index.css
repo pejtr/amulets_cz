@@ -289,3 +289,30 @@
   width: 4px;
   height: 4px;
 }
+
+
+/* Skeleton loading animation for images */
+@keyframes skeletonShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-shimmer {
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+}
+
+/* Image loading skeleton */
+.img-skeleton {
+  background: linear-gradient(
+    90deg,
+    oklch(0.95 0 0) 0%,
+    oklch(0.98 0 0) 50%,
+    oklch(0.95 0 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}

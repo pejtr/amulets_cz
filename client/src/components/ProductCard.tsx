@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useState, useRef, useEffect } from "react";
 import { ShoppingCart, Eye, ExternalLink } from "lucide-react";
 import { track } from "@/lib/tracking";
 import StarRating from "@/components/StarRating";
@@ -30,6 +31,15 @@ export default function ProductCard({
   rating,
   reviewCount,
 }: ProductCardProps) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      setImageLoaded(true);
+    }
+  }, []);
+
   // Determine badge text based on product type
   const getBadgeText = () => {
     if (badgeText) return badgeText;
@@ -80,12 +90,22 @@ export default function ProductCard({
             <source src={video} type="video/mp4" />
           </video>
         ) : image ? (
-          <img
-            src={image}
-            alt={name}
-            loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
+          <>
+            {/* Skeleton loader */}
+            {!imageLoaded && (
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skeleton-shimmer" />
+              </div>
+            )}
+            <img
+              ref={imgRef}
+              src={image}
+              alt={name}
+              loading="lazy"
+              onLoad={() => setImageLoaded(true)}
+              className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+            />
+          </>
         ) : (
           <div className="text-6xl">🔺</div>
         )}

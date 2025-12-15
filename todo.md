@@ -349,3 +349,8 @@
 - [x] Přidat loading="lazy" do RelatedSymbols (související symboly)
 - [x] Přidat loading="lazy" do GuideDetail (detail symbolu) - již implementováno
 - [x] Přidat loading="lazy" do TestimonialsSection (recenze) - není potřeba (text only)
+
+## Optimalizace obrázků - Pokročilé (Dec 15, 2025)
+- [x] Přidat preload pro hero obrázky do index.html (desktop + mobile + logo + první symboly)
+- [x] Implementovat srcset pro produktové obrázky (vytvořena OptimizedImage komponenta)
+- [x] Vytvořit skeleton loading komponentu pro obrázky (přidáno do ProductCard)

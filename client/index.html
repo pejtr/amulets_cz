@@ -74,11 +74,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
     
     <!-- Preload critical images for faster LCP -->
-    <link rel="preload" as="image" href="/hero-natalie-bg.jpg" />
-    <link rel="preload" as="image" href="/images/symbols/ruka-fatimy.png" />
-    <link rel="preload" as="image" href="/images/symbols/kvet-zivota.png" />
-    <link rel="preload" as="image" href="/images/stones/lapis-lazuli.png" />
-    <link rel="preload" as="image" href="/images/stones/ametyst.png" />
+    <!-- Desktop hero - highest priority -->
+    <link rel="preload" as="image" href="/hero-natalie-bg.jpg" fetchpriority="high" media="(min-width: 768px)" />
+    <!-- Mobile hero - highest priority on mobile -->
+    <link rel="preload" as="image" href="/hero-mobile-hero-only.jpg" fetchpriority="high" media="(max-width: 767px)" />
+    <!-- Logo -->
+    <link rel="preload" as="image" href="/images/logo-amulets-new.png" fetchpriority="high" />
+    <!-- First visible symbols (above fold) -->
+    <link rel="preload" as="image" href="/images/symbols/thumbs/ruka-fatimy-thumb.jpg" />
+    <link rel="preload" as="image" href="/images/symbols/thumbs/kvet-zivota-thumb.jpg" />
+    <link rel="preload" as="image" href="/images/symbols/thumbs/cinsky-drak-thumb.jpg" />
+    <link rel="preload" as="image" href="/images/symbols/thumbs/davidova-hvezda-thumb.jpg" />
   </head>
 
   <body>
