@@ -94,6 +94,7 @@ export default function QuizResult() {
               <img
                 src={`/images/symbols/${symbolSlug}.png`}
                 alt={result.name}
+                loading="lazy"
                 className="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-2xl animate-in zoom-in-50 duration-700"
                 onError={(e) => {
                   // Fallback pro nové symboly s .jpg

@@ -102,6 +102,7 @@ export default function RelatedSymbols({ currentSlug, maxItems = 4 }: RelatedSym
                 <img 
                   src={item!.image} 
                   alt={item!.title}
+                  loading="lazy"
                   className="w-full h-full object-contain group-hover:scale-105 transition-transform"
                 />
               </div>

@@ -341,3 +341,11 @@
 - [x] Převést symbol-ochrany.png do WebP (6.2 MB → 359 KB, -94.2%)
 - [x] Převést symbol-sily.png do WebP (6.8 MB → 647 KB, -90.5%)
 - [x] Aktualizovat cesty v guideContent.ts
+
+## Lazy Loading pro obrázky (Dec 15, 2025)
+- [x] Přidat loading="lazy" do GuideSection (symboly, kameny) - již implementováno
+- [x] Přidat loading="lazy" do ProductCard (produkty) - již implementováno
+- [x] Přidat loading="lazy" do MagazineSection (články) - již implementováno
+- [x] Přidat loading="lazy" do RelatedSymbols (související symboly)
+- [x] Přidat loading="lazy" do GuideDetail (detail symbolu) - již implementováno
+- [x] Přidat loading="lazy" do TestimonialsSection (recenze) - není potřeba (text only)

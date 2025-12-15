@@ -75,6 +75,7 @@ export default function PurchaseNotification() {
           <img
             src={currentPurchase.productImage}
             alt={currentPurchase.product}
+            loading="lazy"
             className="w-full h-full object-cover"
           />
         </div>
