@@ -6,6 +6,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { ShareButtons } from "@/components/ShareButtons";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import RelatedArticles from "@/components/RelatedArticles";
+import RelatedSymbols from "@/components/RelatedSymbols";
+import { FAQSchema, symbolFAQs } from "@/components/FAQSchema";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { symbolsData, stonesData, purposesData } from "@/data/guideContent";
 import { getMixedRelatedArticles } from "@/lib/relatedArticles";
@@ -264,6 +266,16 @@ export default function GuideDetail() {
                     );
                   })}
                 </div>
+
+                {/* FAQ Schema pro SEO */}
+                {type === "symbol" && symbolFAQs[slug] && (
+                  <FAQSchema faqs={symbolFAQs[slug]} />
+                )}
+
+                {/* Související symboly - interní prolinkování */}
+                {type === "symbol" && (
+                  <RelatedSymbols currentSlug={slug} maxItems={4} />
+                )}
 
                 <div className="mt-12 p-6 bg-accent/20 rounded-lg">
                   <h3 className="text-xl font-bold mb-3">Objevte naše produkty</h3>

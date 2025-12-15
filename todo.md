@@ -324,3 +324,8 @@
 - [x] Přidat obsah pro "symbol harmonie" (1 zobrazení) - přidáno
 - [x] Přidat obsah pro "nejsilnější ochranný symbol" (1 zobrazení) - přidáno
 - [x] Přidat zmínku o modrém lotosu s egyptskou mytologií do sekce esencí - přidáno
+
+## SEO vylepšení - Interní prolinkování, Článek, FAQ Schema (Dec 15, 2025)
+- [x] Přidat interní prolinkování mezi symboly (propojit nové stránky s existujícími) - vytvořena komponenta RelatedSymbols
+- [x] Vytvořit článek o modrém lotosu do Magazínu s detailní egyptskou historií - přidáno
+- [x] Přidat FAQ schema markup na nové stránky (pro "Lidé se také ptají" v Google) - vytvořena komponenta FAQSchema
