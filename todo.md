@@ -362,3 +362,9 @@
 ## Oprava nefunkčních symbolů (Dec 15, 2025)
 - [x] Opravit /symbol/spirala - stránka nenalezena (opraveno: slug změněn z 'spiral' na 'spirala' v symbolsData, odstraněn duplikát z purposesData)
 - [x] Opravit chybějící obrázek spirály (změněno na /images/symbols/spiral.jpg)
+
+## Audit obrázků na webu (Dec 15, 2025)
+- [x] Zkontrolovat všechny cesty k obrázkům v guideContent.ts (opraveno 15 chybných cest)
+- [x] Zkontrolovat obrázky v produktech (všechny OK)
+- [x] Zkontrolovat obrázky v magazínu (všechny OK)
+- [x] Opravit chybějící nebo nefunkční odkazy (opraveno: ankh, dharmachakra, hamsa, keltsky-kriz, kriz, lotosova-mandala, nekonecno, ouroboros, pentakl, posvatne-pero, pulmesic, skarabeus, slunce, triquetra, trojity-mesic)

@@ -660,7 +660,7 @@ Tyto amulety **podporují odvahu**, pomahají při uvolnění starých vzorců a
   {
     slug: "dharmachakra",
     title: "Dharmachakra",
-    image: "/images/symbols/dharmachakra.png",
+    image: "/images/symbols/dharma-wheel.jpg",
     metaTitle: "Dharmachakra - Kolo dharmy | Amulets.cz",
     metaDescription: "Dharmachakra je buddhistický symbol kola dharmy. Reprezentuje Buddhovo učení a cestu k osvícení.",
     content: `**Dharmachakra**, také známé jako **Kolo dharmy**, je jedním z nejdůležitějších buddhistických symbolů. Reprezentuje **Buddhovo učení** a cestu k osvícení.
@@ -672,7 +672,7 @@ Dharmachakra **podporuje duchovní praxi**, připomíná nám věčný cyklus zr
   {
     slug: "hamsa-s-okem",
     title: "Hamsa s okem",
-    image: "/images/symbols/hamsa.png",
+    image: "/images/symbols/hamsa-eye.jpg",
     metaTitle: "Hamsa s okem - Ochrana před závistným okem | Amulets.cz",
     metaDescription: "Hamsa s okem je mocný ochraný symbol. Chrání před závistným okem a negativní energií.",
     content: `**Hamsa s okem** je varianta Ruky Fatimy, která má uprostřed dlaně **oko**. Toto oko má chránit před **závistným okem** (evil eye) a negativní energií.
@@ -684,7 +684,7 @@ Tento symbol je **obzvláště silný** pro ochranu před závistí, špatnými 
   {
     slug: "keltsky-kriz",
     title: "Keltský kříž",
-    image: "/images/symbols/keltsky-kriz.png",
+    image: "/images/symbols/celtic-cross.jpg",
     metaTitle: "Keltský kříž - Symbol věčnosti | Amulets.cz",
     metaDescription: "Keltský kříž spojuje křesťanský kříž s keltským kruhem. Symbol věčnosti a duchovního propojení.",
     content: `**Keltský kříž** je jediněčná kombinace **křesťanského kříže** a **keltského kruhu**. Kruh reprezentuje **věčnost, slunce a cyklickou povahu života**.
@@ -696,7 +696,7 @@ Keltský kříž **podporuje duchovní sílu**, připomíná nám naše kořeny 
   {
     slug: "kriz",
     title: "Kříž",
-    image: "/images/symbols/kriz.png",
+    image: "/images/symbols/cross.jpg",
     metaTitle: "Kříž - Symbol víry a oběti | Amulets.cz",
     metaDescription: "Kříž je univerzální symbol víry, oběti a duchovního propojení. Objevte jeho hluboký význam.",
     content: `**Kříž** je jedním z **nejrozpoznatelnějších symbolů** na světě. Představuje **spojení nebe a země**, duchovního a materiálního světa.
@@ -708,7 +708,7 @@ Kříž je **ochraný symbol**, který poskytuje duchovní sílu a připomíná 
   {
     slug: "lotosova-mandala",
     title: "Lotosová mandala",
-    image: "/images/symbols/lotosova-mandala.png",
+    image: "/images/symbols/lotus-mandala.jpg",
     metaTitle: "Lotosová mandala - Symbol čistoty | Amulets.cz",
     metaDescription: "Lotosová mandala spojuje lotos a mandalu. Symbol duchovního probouzení, čistoty a osvícení.",
     content: `**Lotosová mandala** spojuje **lotos**, symbol duchovního probouzení, s **mandalou**, nástrojem pro meditaci. Vytváří mocný **duchovní symbol**.
@@ -720,7 +720,7 @@ Lotosová mandala **podporuje meditaci**, pomahá při duchovní praxi a připom
   {
     slug: "nekonecno",
     title: "Nekonečno",
-    image: "/images/symbols/nekonecno.png",
+    image: "/images/symbols/infinity.jpg",
     metaTitle: "Symbol nekonečna - Věčnost a rovnováha | Amulets.cz",
     metaDescription: "Symbol nekonečna reprezentuje věčnost, nekonečnou lásku a rovnováhu. Objevte jeho hluboký význam.",
     content: `**Symbol nekonečna** (lemniskáta) je matematický symbol ve tvaru **ležaté osmičky**. Reprezentuje **věčnost, nekonečnost a cyklickou povahu** existence.
@@ -732,7 +732,7 @@ Nekonečno **podporuje pochopení věčné povahy** duše, připomíná nám, ž
   {
     slug: "pentakl",
     title: "Pentakl",
-    image: "/images/symbols/pentakl.png",
+    image: "/images/symbols/pentacle.jpg",
     metaTitle: "Pentakl - Ochraný magický symbol | Amulets.cz",
     metaDescription: "Pentakl je pentagram v kruhu. Mocný ochraný symbol používaný v magii a duchovní praxi.",
     content: `**Pentakl** je **pentagram (pěticipá hvězda) uzavřený v kruhu**. Kruh zesiluje ochrannou sílu pentagramu a vytváří **magický kruh ochrany**.
@@ -744,7 +744,7 @@ Pentakl je **mocný ochraný symbol** používaný v magii, Wicce a duchovní pr
   {
     slug: "posvatne-pero",
     title: "Posvátné pero",
-    image: "/images/symbols/posvatne-pero.png",
+    image: "/images/symbols/feather.jpg",
     metaTitle: "Posvátné pero - Symbol svobody | Amulets.cz",
     metaDescription: "Posvátné pero je symbol svobody, pravdy a duchovního propojení. Objevte jeho význam v indianských kulturách.",
     content: `**Posvátné pero** je v **indianských kulturách** symbolem **svobody, pravdy a duchovního propojení**. Pera byla považována za dary od ptaků, kterí jsou nejblíže nebi.
@@ -756,7 +756,7 @@ Posvátné pero **podporuje komunikaci s duchovním světem**, připomíná nám
   {
     slug: "pulmesic",
     title: "Půlměsíc",
-    image: "/images/symbols/pulmesic.png",
+    image: "/images/symbols/crescent-moon.jpg",
     metaTitle: "Půlměsíc - Symbol islámu | Amulets.cz",
     metaDescription: "Půlměsíc je symbol islámu a muslimské víry. Reprezentuje lunarní kalendář a duchovní světlo.",
     content: `**Půlměsíc** je jedním z nejznámějších symbolů **islámu**. Reprezentuje **lunarní kalendář**, podle kterého se řídí muslimské svátky a náboženská praxe.
@@ -768,7 +768,7 @@ Půlměsíc **podporuje duchovní praxi**, připomíná nám **cyklickou povahu 
   {
     slug: "skarabeus",
     title: "Skarabeus",
-    image: "/images/symbols/skarabeus.png",
+    image: "/images/symbols/scarab.jpg",
     metaTitle: "Skarabeus - Staroegyptský symbol | Amulets.cz",
     metaDescription: "Skarabeus je staroegyptský symbol znovuzrození a ochrany. Posvátný brouk představující slunečního boha.",
     content: `**Skarabeus** je v **starověkém Egyptě** symbolem **znovuzrození, transformace a ochrany**. Tento posvátný brouk byl spojen se **slunečním bohem Ra**.
@@ -780,7 +780,7 @@ Tento symbol **chrání před negativní energií**, podporuje **transformaci a 
   {
     slug: "slunce",
     title: "Slunce",
-    image: "/images/symbols/slunce.png",
+    image: "/images/symbols/sun.jpg",
     metaTitle: "Symbol slunce - Zdroj života a energie | Amulets.cz",
     metaDescription: "Slunce je univerzální symbol života, energie a světla. Objevte význam tohoto mocného symbolu.",
     content: `**Slunce** je **univerzální symbol** přítomný ve všech kulturách. Reprezentuje **život, energii, světlo a teplo** - základní podmínky existence.
@@ -792,7 +792,7 @@ Symbol slunce **podporuje vitalitu**, přináší **radost a optimismus**. Je n�
   {
     slug: "trojity-mesic",
     title: "Trojitý měsíc",
-    image: "/images/symbols/trojity-mesic.png",
+    image: "/images/symbols/triple-moon.jpg",
     metaTitle: "Trojitý měsíc - Symbol trojité bohyně | Amulets.cz",
     metaDescription: "Trojitý měsíc reprezentuje trojitou bohyni - pannu, matku a starénu. Symbol ženské síly a cyklů.",
     content: `**Trojitý měsíc** je symbol **trojité bohyně** ve Wicce a pohanskych tradicích. Tři fáze měsíce reprezentují **tři aspekty ženské síly**.
@@ -875,7 +875,7 @@ Používejte je při **meditaci**, umístěte je do prostoru, kde potřebujete *
   {
     slug: "keltsky-symbol-lasky",
     title: "Keltský symbol lásky",
-    image: "/images/symbols/triquetra.png",
+    image: "/images/symbols/triquetra.jpg",
     metaTitle: "Keltský symbol lásky - Triquetra a keltské uzly | Amulets.cz",
     metaDescription: "Keltské symboly lásky - Triquetra, keltské uzly a jejich význam pro věčnou lásku a propojení duší.",
     content: `**Keltské symboly lásky** jsou hluboce zakotvené v tradici starověkých Keltů. Reprezentují **věčnou lásku**, propojení duší a nekonečnost vztahu.
@@ -893,7 +893,7 @@ Keltové věřili v **nekonečnost duše** a věčnost lásky. Jejich symboly ne
   {
     slug: "znak-zivota",
     title: "Znak života",
-    image: "/images/symbols/ankh.png",
+    image: "/images/symbols/ankh.jpg",
     metaTitle: "Znak života - Ankh a další symboly života | Amulets.cz",
     metaDescription: "Znak života v různých kulturách. Egyptský Ankh, Strom života, Květ života a jejich význam.",
     content: `**Znak života** je univerzální symbol přítomný ve všech kulturách světa. Reprezentuje **věčnost, vitalitu a spojení s božským**.
@@ -912,7 +912,7 @@ Tyto symboly nám připomínají, že **život je věčný** a smrt je pouze tra
   {
     slug: "symbol-nesmrtelnosti",
     title: "Symbol nesmrtelnosti",
-    image: "/images/symbols/ouroboros.png",
+    image: "/images/symbols/ouroboros.jpg",
     metaTitle: "Symbol nesmrtelnosti - Ouroboros, Ankh, Fénix | Amulets.cz",
     metaDescription: "Symboly nesmrtelnosti a věčného života. Ouroboros, Ankh, Fénix a jejich duchovní význam.",
     content: `**Symbol nesmrtelnosti** reprezentuje **věčnost duše** a nekonečný cyklus života, smrti a znovuzrození.
