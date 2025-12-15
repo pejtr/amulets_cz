@@ -368,3 +368,15 @@
 - [x] Zkontrolovat obrázky v produktech (všechny OK)
 - [x] Zkontrolovat obrázky v magazínu (všechny OK)
 - [x] Opravit chybějící nebo nefunkční odkazy (opraveno: ankh, dharmachakra, hamsa, keltsky-kriz, kriz, lotosova-mandala, nekonecno, ouroboros, pentakl, posvatne-pero, pulmesic, skarabeus, slunce, triquetra, trojity-mesic)
+
+## Optimalizace obrázků do WebP (Dec 15, 2025)
+- [x] Převést obrázky symbolů do WebP (38 souborů)
+- [x] Převést obrázky kamenů do WebP (8 souborů)
+- [x] Převést obrázky účelů do WebP (4 soubory)
+- [x] Převést obrázky magazínu do WebP (4 soubory)
+- [x] Převést obrázky produktů do WebP (17 souborů)
+- [x] Aktualizovat cesty v guideContent.ts
+- [x] Aktualizovat cesty v magazineContent.ts
+- [x] Aktualizovat cesty v ProductsSection.tsx
+- [x] Otestovat všechny stránky (build úspěšný)
+- [x] Smazat staré JPG/PNG soubory (ušetřeno ~80MB)
