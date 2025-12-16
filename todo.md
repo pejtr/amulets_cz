@@ -414,3 +414,6 @@
 
 ## Snížení počtu recenzí u produktů (Dec 16, 2025)
 - [x] Snížit počet recenzí u každého produktu o 90% pro realističtější čísla
+
+## Vynutit aktualizaci favicon (Dec 16, 2025)
+- [x] Přidat version query string k favicon URL v index.html
