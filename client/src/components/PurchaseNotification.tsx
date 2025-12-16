@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react";
-import { X, ShoppingBag } from "lucide-react";
+import { X, ShoppingBag, Clock } from "lucide-react";
 
 interface PurchaseData {
   name: string;
   city: string;
   product: string;
   productImage: string;
+  timeAgo: string;
 }
 
 const purchaseData: PurchaseData[] = [
-  { name: "Eva", city: "Brna", product: "Esence Andělská", productImage: "/products/esence-andelska.webp" },
-  { name: "Petra", city: "Prahy", product: "Pyramida Hojnost", productImage: "/products/pyramida-hojnost.webp" },
-  { name: "Jana", city: "Ostravy", product: "Esence Plynoucí", productImage: "/products/esence-plynouci.webp" },
-  { name: "Lucie", city: "Plzně", product: "Pyramida Světlo univerza", productImage: "/products/pyramida-svetlo-univerza-new.webp" },
-  { name: "Martina", city: "Liberce", product: "Esence Tantra", productImage: "/products/esence-tantra.webp" },
-  { name: "Kateřina", city: "Olomouce", product: "Pyramida Kristovo světlo", productImage: "/products/pyramida-kristovo-svetlo.webp" },
-  { name: "Tereza", city: "Hradce Králové", product: "Esence Matka Země", productImage: "/products/esence-matka-zeme.webp" },
-  { name: "Veronika", city: "Českých Budějovic", product: "Pyramida Kundaliní", productImage: "/products/pyramida-kundalini.webp" },
-  { name: "Lenka", city: "Pardubic", product: "Esence Koruna", productImage: "/products/esence-andelska.webp" },
-  { name: "Michaela", city: "Zlína", product: "Pyramida Hojnost", productImage: "/products/pyramida-hojnost.webp" },
+  { name: "Eva", city: "Brna", product: "Esence Andělská", productImage: "/products/esence-andelska.webp", timeAgo: "před 3 minutami" },
+  { name: "Petra", city: "Prahy", product: "Pyramida Hojnost", productImage: "/products/pyramida-hojnost.webp", timeAgo: "před 7 minutami" },
+  { name: "Jana", city: "Ostravy", product: "Esence Plynoucí", productImage: "/products/esence-plynouci.webp", timeAgo: "před 12 minutami" },
+  { name: "Lucie", city: "Plzně", product: "Pyramida Světlo univerza", productImage: "/products/pyramida-svetlo-univerza-new.webp", timeAgo: "před 18 minutami" },
+  { name: "Martina", city: "Liberce", product: "Esence Tantra", productImage: "/products/esence-tantra.webp", timeAgo: "před 25 minutami" },
+  { name: "Kateřina", city: "Olomouce", product: "Pyramida Kristovo světlo", productImage: "/products/pyramida-kristovo-svetlo.webp", timeAgo: "před 34 minutami" },
+  { name: "Tereza", city: "Hradce Králové", product: "Esence Matka Země", productImage: "/products/esence-matka-zeme.webp", timeAgo: "před 47 minutami" },
+  { name: "Veronika", city: "Českých Budějovic", product: "Pyramida Kundaliní", productImage: "/products/pyramida-kundalini.webp", timeAgo: "před 1 hodinou" },
+  { name: "Lenka", city: "Pardubic", product: "Esence Koruna", productImage: "/products/esence-andelska.webp", timeAgo: "před 2 hodinami" },
+  { name: "Michaela", city: "Zlína", product: "Pyramida Hojnost", productImage: "/products/pyramida-hojnost.webp", timeAgo: "před 3 hodinami" },
 ];
 
 export default function PurchaseNotification() {
@@ -82,11 +83,13 @@ export default function PurchaseNotification() {
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-start gap-2 mb-1">
-            <ShoppingBag className="h-4 w-4 text-[#D4AF37] flex-shrink-0 mt-0.5" />
-            <p className="text-sm font-semibold text-foreground">
-              Nedávno zakoupeno
-            </p>
+          <div className="flex items-start justify-between gap-2 mb-1">
+            <div className="flex items-center gap-1.5">
+              <ShoppingBag className="h-4 w-4 text-[#D4AF37] flex-shrink-0" />
+              <p className="text-sm font-semibold text-foreground">
+                Nedávno zakoupeno
+              </p>
+            </div>
           </div>
           <p className="text-sm text-muted-foreground">
             <span className="font-medium text-foreground">{currentPurchase.name}</span> z{' '}
@@ -95,6 +98,10 @@ export default function PurchaseNotification() {
           <p className="text-xs text-muted-foreground line-clamp-1 mt-0.5">
             {currentPurchase.product}
           </p>
+          <div className="flex items-center gap-1 mt-1.5 text-xs text-muted-foreground/70">
+            <Clock className="h-3 w-3" />
+            <span>{currentPurchase.timeAgo}</span>
+          </div>
         </div>
 
         {/* Close Button */}

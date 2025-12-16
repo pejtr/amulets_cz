@@ -405,3 +405,6 @@
 
 ## Úprava notifikací "Nedávno zakoupeno" (Dec 16, 2025)
 - [x] Snížit frekvenci notifikací z 12s na 45-60s pro realističtější dojem
+
+## Časový údaj v notifikacích (Dec 16, 2025)
+- [x] Přidat časový údaj k notifikacím "Nedávno zakoupeno" (např. "před 5 minutami")
