@@ -417,3 +417,6 @@
 
 ## Vynutit aktualizaci favicon (Dec 16, 2025)
 - [x] Přidat version query string k favicon URL v index.html
+
+## Aktualizace site.webmanifest (Dec 16, 2025)
+- [x] Zkontrolovat a aktualizovat site.webmanifest pro správné zobrazení ikon
