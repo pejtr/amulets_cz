@@ -32,7 +32,7 @@ export default function PurchaseNotification() {
     // Initial delay before first notification
     const initialDelay = setTimeout(() => {
       setIsVisible(true);
-    }, 5000); // Show first notification after 5 seconds
+    }, 15000); // Show first notification after 15 seconds
 
     return () => clearTimeout(initialDelay);
   }, [isClosedManually]);
@@ -49,7 +49,7 @@ export default function PurchaseNotification() {
         setCurrentIndex((prev) => (prev + 1) % purchaseData.length);
         setIsVisible(true);
       }, 500); // Wait for fade out animation
-    }, 12000); // Show each notification for 12 seconds
+    }, 45000); // Show each notification for 45 seconds (more realistic)
 
     return () => clearInterval(interval);
   }, [isClosedManually]);

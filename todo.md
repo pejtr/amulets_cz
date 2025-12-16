@@ -399,3 +399,9 @@
 
 ## Úprava zobrazení Doprava zdarma (Dec 16, 2025)
 - [x] Zobrazit "Doprava zdarma" pouze u produktů nad 1500 Kč
+
+## Oprava favicon - transparentní pozadí (Dec 16, 2025)
+- [x] Vytvořit nový favicon s transparentním pozadím (bez bílého čtverce)
+
+## Úprava notifikací "Nedávno zakoupeno" (Dec 16, 2025)
+- [x] Snížit frekvenci notifikací z 12s na 45-60s pro realističtější dojem
