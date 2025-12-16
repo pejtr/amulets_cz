@@ -14,7 +14,7 @@ export const faqData = [
   },
   {
     question: "Co jsou amulety?",
-    answer: "Amulety jsou předměty s magickou nebo spiritulní mocí, které chrání svého nositele před negativními vlivy, zlm kem, kletbami nebo nemocemi. Mohou to být přírodní materiály (druhé kameny, byliny), symboly (oko, kříž, zvířecí zuby) nebo uměle vytvořené předměty. Jejich původ sahá do starověkých civilizací a mohou být vyrobeny z různých materiálů, často s konkrétními symboly jako oko, kříž nebo zvířecí zuby. Dnes se používají pro duchovní ochranu, meditaci a osobní růst."
+    answer: "Amulety jsou předměty s magickou nebo spirituální mocí, které chrání svého nositele před negativními vlivy, zlým okem, kletbami nebo nemocemi. Mohou to být přírodní materiály (druhé kameny, byliny), symboly (oko, kříž, zvířecí zuby) nebo uměle vytvořené předměty. Jejich původ sahá do starověkých civilizací a mohou být vyrobeny z různých materiálů, často s konkrétními symboly jako oko, kříž nebo zvířecí zuby. Dnes se používají pro duchovní ochranu, meditaci a osobní růst."
   },
   // Původní FAQ otázky
   {

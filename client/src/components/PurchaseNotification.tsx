@@ -9,16 +9,16 @@ interface PurchaseData {
 }
 
 const purchaseData: PurchaseData[] = [
-  { name: "Eva", city: "Brna", product: "Esence Andělská", productImage: "/products/esence-andelska.jpg" },
-  { name: "Petra", city: "Prahy", product: "Pyramida Hojnost", productImage: "/products/pyramida-hojnost.jpg" },
-  { name: "Jana", city: "Ostravy", product: "Esence Plynoucí", productImage: "/products/esence-plynouci.jpg" },
+  { name: "Eva", city: "Brna", product: "Esence Andělská", productImage: "/products/esence-andelska.webp" },
+  { name: "Petra", city: "Prahy", product: "Pyramida Hojnost", productImage: "/products/pyramida-hojnost.webp" },
+  { name: "Jana", city: "Ostravy", product: "Esence Plynoucí", productImage: "/products/esence-plynouci.webp" },
   { name: "Lucie", city: "Plzně", product: "Pyramida Světlo univerza", productImage: "/products/pyramida-svetlo-univerza-new.webp" },
-  { name: "Martina", city: "Liberce", product: "Esence Tantra", productImage: "/products/esence-tantra.jpg" },
-  { name: "Kateřina", city: "Olomouce", product: "Pyramida Kristovo světlo", productImage: "/products/pyramida-kristovo-svetlo.jpg" },
-  { name: "Tereza", city: "Hradce Králové", product: "Esence Matka Země", productImage: "/products/esence-matka-zeme.jpg" },
-  { name: "Veronika", city: "Českých Budějovic", product: "Pyramida Kundaliní", productImage: "/products/pyramida-kundalini.jpg" },
-  { name: "Lenka", city: "Pardubic", product: "Esence Koruna", productImage: "/products/esence-koruna.jpg" },
-  { name: "Michaela", city: "Zlína", product: "Pyramida Hojnost", productImage: "/products/pyramida-hojnost.jpg" },
+  { name: "Martina", city: "Liberce", product: "Esence Tantra", productImage: "/products/esence-tantra.webp" },
+  { name: "Kateřina", city: "Olomouce", product: "Pyramida Kristovo světlo", productImage: "/products/pyramida-kristovo-svetlo.webp" },
+  { name: "Tereza", city: "Hradce Králové", product: "Esence Matka Země", productImage: "/products/esence-matka-zeme.webp" },
+  { name: "Veronika", city: "Českých Budějovic", product: "Pyramida Kundaliní", productImage: "/products/pyramida-kundalini.webp" },
+  { name: "Lenka", city: "Pardubic", product: "Esence Koruna", productImage: "/products/esence-andelska.webp" },
+  { name: "Michaela", city: "Zlína", product: "Pyramida Hojnost", productImage: "/products/pyramida-hojnost.webp" },
 ];
 
 export default function PurchaseNotification() {

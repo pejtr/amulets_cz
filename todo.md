@@ -391,3 +391,8 @@
 - [x] Vytvořit thumbnaily z WebP souborů pro symboly (38 souborů)
 - [x] Vytvořit thumbnaily z WebP souborů pro kameny (8 souborů)
 - [x] Ověřit načítání obrázků na homepage
+
+## Oprava SEO a favicon (Dec 16, 2025)
+- [x] Opravit meta description - odstranit "zlm kem" text (opraveno na "zlým okem")
+- [x] Změnit favicon na logo AMULETS (transparentní pozadí)
+- [x] Opravit rozbité obrázky v popup notifikaci "Nedávno zakoupeno" (změněno .jpg na .webp)
