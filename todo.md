@@ -411,3 +411,6 @@
 
 ## Nový favicon z nahraného obrázku (Dec 16, 2025)
 - [x] Použít nahrané logo jako favicon (s bílým pozadím)
+
+## Snížení počtu recenzí u produktů (Dec 16, 2025)
+- [x] Snížit počet recenzí u každého produktu o 90% pro realističtější čísla
