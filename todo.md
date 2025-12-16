@@ -408,3 +408,6 @@
 
 ## Časový údaj v notifikacích (Dec 16, 2025)
 - [x] Přidat časový údaj k notifikacím "Nedávno zakoupeno" (např. "před 5 minutami")
+
+## Nový favicon z nahraného obrázku (Dec 16, 2025)
+- [x] Použít nahrané logo jako favicon (s bílým pozadím)
