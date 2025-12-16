@@ -169,16 +169,24 @@ export default function ProductCard({
         )}
 
         {/* Social Proof & Benefit Row */}
-        <div className="flex items-center justify-between text-xs text-muted-foreground pt-1">
-          <div className="flex items-center gap-1 text-green-600">
-            <Users className="h-3 w-3" />
-            <span className="font-medium">500+ spokojených</span>
-          </div>
-          <div className="flex items-center gap-1 text-blue-600">
-            <Truck className="h-3 w-3" />
-            <span className="font-medium">Doprava zdarma</span>
-          </div>
-        </div>
+        {(() => {
+          const priceNum = parseInt(price.replace(/\D/g, ''));
+          const showFreeShipping = priceNum >= 1500;
+          return (
+            <div className="flex items-center justify-between text-xs text-muted-foreground pt-1">
+              <div className="flex items-center gap-1 text-green-600">
+                <Users className="h-3 w-3" />
+                <span className="font-medium">500+ spokojených</span>
+              </div>
+              {showFreeShipping && (
+                <div className="flex items-center gap-1 text-blue-600">
+                  <Truck className="h-3 w-3" />
+                  <span className="font-medium">Doprava zdarma</span>
+                </div>
+              )}
+            </div>
+          );
+        })()}
 
         <div className="flex items-center justify-between gap-2 pt-2">
           <span className="text-lg font-bold text-primary whitespace-nowrap">{price}</span>

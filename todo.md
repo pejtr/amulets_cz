@@ -396,3 +396,6 @@
 - [x] Opravit meta description - odstranit "zlm kem" text (opraveno na "zlým okem")
 - [x] Změnit favicon na logo AMULETS (transparentní pozadí)
 - [x] Opravit rozbité obrázky v popup notifikaci "Nedávno zakoupeno" (změněno .jpg na .webp)
+
+## Úprava zobrazení Doprava zdarma (Dec 16, 2025)
+- [x] Zobrazit "Doprava zdarma" pouze u produktů nad 1500 Kč
