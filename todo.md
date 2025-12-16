@@ -380,3 +380,14 @@
 - [x] Aktualizovat cesty v ProductsSection.tsx
 - [x] Otestovat všechny stránky (build úspěšný)
 - [x] Smazat staré JPG/PNG soubory (ušetřeno ~80MB)
+
+## Konverzní prvky (Dec 16, 2025)
+- [ ] Přidat "Poslední kusy!" urgency badge
+- [ ] Přidat "500+ spokojených" sociální důkaz
+- [ ] Přidat "Doprava zdarma" benefit
+- [ ] Změnit CTA na "KOUPIT NYNÍ"
+
+## Oprava thumbnail obrázků symbolů (Dec 16, 2025)
+- [x] Vytvořit thumbnaily z WebP souborů pro symboly (38 souborů)
+- [x] Vytvořit thumbnaily z WebP souborů pro kameny (8 souborů)
+- [x] Ověřit načítání obrázků na homepage

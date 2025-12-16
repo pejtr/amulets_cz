@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useState, useRef, useEffect } from "react";
-import { ShoppingCart, Eye, ExternalLink } from "lucide-react";
+import { ShoppingCart, Eye, ExternalLink, Flame, Users, Truck } from "lucide-react";
 import { track } from "@/lib/tracking";
 import StarRating from "@/components/StarRating";
 
@@ -72,7 +72,7 @@ export default function ProductCard({
 
   return (
     <div 
-      className={`group bg-white rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow ${
+      className={`group bg-white rounded-lg border border-border overflow-hidden hover:shadow-xl transition-all duration-300 ${
         url ? 'cursor-pointer' : ''
       }`}
       onClick={handleClick}
@@ -116,11 +116,22 @@ export default function ProductCard({
             </span>
           </div>
         )}
+        
+        {/* Urgency Badge - "Poslední kusy!" */}
+        {available && (
+          <div className="absolute top-2 left-2 bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1 animate-pulse">
+            <Flame className="h-3 w-3" />
+            Poslední kusy!
+          </div>
+        )}
+        
+        {/* Original Badge */}
         {available && (
           <div className="absolute top-2 right-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
             {getBadgeText()}
           </div>
         )}
+        
         {/* Quick View Button */}
         {onQuickView && (
           <button
@@ -134,7 +145,7 @@ export default function ProductCard({
       </div>
 
       {/* Content */}
-      <div className="p-4 space-y-3">
+      <div className="p-4 space-y-2">
         <h3 className="font-semibold text-foreground text-sm line-clamp-2 min-h-[2.5rem]">
           {name}
         </h3>
@@ -157,17 +168,28 @@ export default function ProductCard({
           </div>
         )}
 
-        <div className="flex items-center justify-between gap-2">
+        {/* Social Proof & Benefit Row */}
+        <div className="flex items-center justify-between text-xs text-muted-foreground pt-1">
+          <div className="flex items-center gap-1 text-green-600">
+            <Users className="h-3 w-3" />
+            <span className="font-medium">500+ spokojených</span>
+          </div>
+          <div className="flex items-center gap-1 text-blue-600">
+            <Truck className="h-3 w-3" />
+            <span className="font-medium">Doprava zdarma</span>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between gap-2 pt-2">
           <span className="text-lg font-bold text-primary whitespace-nowrap">{price}</span>
           <Button
             size="sm"
-            className="gap-1.5 bg-[#D4AF37] hover:bg-[#C19B2E] text-black font-semibold"
+            className="gap-1.5 bg-gradient-to-r from-[#D4AF37] to-[#F4CF47] hover:from-[#C19B2E] hover:to-[#D4AF37] text-black font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             disabled={!available}
             title="Přesměrování na obchod OHORAI.cz"
           >
             <ShoppingCart className="h-4 w-4" />
-            <span className="hidden sm:inline">Koupit na</span>
-            <span className="font-bold">OHORAI</span>
+            <span>KOUPIT NYNÍ</span>
             <ExternalLink className="h-3 w-3" />
           </Button>
         </div>
