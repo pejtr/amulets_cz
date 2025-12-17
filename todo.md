@@ -423,3 +423,6 @@
 
 ## Úprava menu odkazů na ohorai.cz (Dec 16, 2025)
 - [x] Změnit odkazy v menu (Orgonitové pyramidy, Aromaterapie, Drahé kameny) na www.ohorai.cz
+
+## Kontrola odkazů v menu (Dec 16, 2025)
+- [x] Ověřit všechny externí odkazy v menu vedou na existující stránky
