@@ -429,3 +429,11 @@
 
 ## Přesměrování 404 stránek na ohorai.cz (Dec 17, 2025)
 - [x] Vytvořit přesměrování starých URL (/product/, /product-category/, /uncategorized/) na www.ohorai.cz
+
+## Komplexní SEO opravy dle GSC reportu (Dec 17, 2025)
+- [x] Analyzovat a opravit 59 alternativních stránek s kanonickou značkou
+- [x] Analyzovat 30 stránek s přesměrováním
+- [x] Opravit 16 falešných 404
+- [x] Opravit 9 duplicitních stránek bez kanonické verze
+- [x] Opravit 4 stránky blokované 403
+- [ ] Zkontrolovat 3 stránky s noindex

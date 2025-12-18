@@ -33,18 +33,40 @@ async function startServer() {
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
-  // Redirect old product/category URLs to ohorai.cz (SEO fix for 404 errors)
-  app.get('/product/*', (_req, res) => {
-    res.redirect(301, 'https://www.ohorai.cz/');
-  });
-  app.get('/product-category/*', (_req, res) => {
-    res.redirect(301, 'https://www.ohorai.cz/');
-  });
-  app.get('/uncategorized/*', (_req, res) => {
-    res.redirect(301, 'https://www.ohorai.cz/');
-  });
-  app.get('/aroma-nahrdelnik-love-ruzerin/*', (_req, res) => {
-    res.redirect(301, 'https://www.ohorai.cz/');
+  // Redirect old URLs to ohorai.cz (SEO fix for 404, 403, and redirect errors from GSC)
+  const redirectPatterns = [
+    '/product/*',
+    '/product-category/*',
+    '/product-tag/*',
+    '/uncategorized/*',
+    '/aroma-nahrdelnik-love-ruzerin/*',
+    '/shop',
+    '/shop/*',
+    '/blog',
+    '/blog/*',
+    '/blog-2',
+    '/blog-2/*',
+    '/contact',
+    '/contact/*',
+    '/contact-2',
+    '/contact-2/*',
+    '/brand/*',
+    '/2-columns',
+    '/2-columns/*',
+    '/3-columns',
+    '/3-columns/*',
+    '/3-columns-2',
+    '/3-columns-2/*',
+    '/page',
+    '/page/*',
+    '/index.php/*',
+    '/wpcontent_category/*',
+  ];
+  
+  redirectPatterns.forEach(pattern => {
+    app.get(pattern, (_req, res) => {
+      res.redirect(301, 'https://www.ohorai.cz/');
+    });
   });
   
   // OAuth callback under /api/oauth/callback
