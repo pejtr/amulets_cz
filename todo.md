@@ -426,3 +426,6 @@
 
 ## Kontrola odkazů v menu (Dec 16, 2025)
 - [x] Ověřit všechny externí odkazy v menu vedou na existující stránky
+
+## Přesměrování 404 stránek na ohorai.cz (Dec 17, 2025)
+- [x] Vytvořit přesměrování starých URL (/product/, /product-category/, /uncategorized/) na www.ohorai.cz
