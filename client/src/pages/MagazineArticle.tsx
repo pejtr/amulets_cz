@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
+import { MarkdownContent } from "@/lib/markdownParser";
 
 export default function MagazineArticle() {
   const params = useParams();
@@ -154,122 +155,9 @@ export default function MagazineArticle() {
             )}
           </div>
 
-          {/* Obsah článku */}
+          {/* Obsah článku s TOC, obrázky a odkazy */}
           <div className="max-w-4xl mx-auto mt-12">
-            <div className="prose prose-lg max-w-none">
-              {article.content.split('\n\n').map((paragraph, index) => {
-                // Nadpis H2 s markdown syntaxí ##
-                if (paragraph.trim().startsWith('## ')) {
-                  const title = paragraph.trim().replace(/^## /, '');
-                  return (
-                    <h2 key={index} className="text-2xl md:text-3xl font-bold mt-12 mb-6 text-foreground">
-                      {title}
-                    </h2>
-                  );
-                }
-
-                // Nadpis H3 s markdown syntaxí ###
-                if (paragraph.trim().startsWith('### ')) {
-                  const title = paragraph.trim().replace(/^### /, '');
-                  return (
-                    <h3 key={index} className="text-xl md:text-2xl font-semibold mt-8 mb-4 text-foreground">
-                      {title}
-                    </h3>
-                  );
-                }
-
-                // Nadpis H2 s ** syntaxí (zpětná kompatibilita)
-                if (paragraph.startsWith('**') && paragraph.endsWith('**') && !paragraph.includes('.')) {
-                  const title = paragraph.replace(/\*\*/g, '');
-                  return (
-                    <h2 key={index} className="text-2xl md:text-3xl font-bold mt-12 mb-6 text-foreground">
-                      {title}
-                    </h2>
-                  );
-                }
-                
-                // Seznam s odrážkami
-                if (paragraph.includes('\n-')) {
-                  const lines = paragraph.split('\n');
-                  const heading = lines[0];
-                  const items = lines.filter(line => line.trim().startsWith('-'));
-                  
-                  return (
-                    <div key={index} className="my-6">
-                      {heading && !heading.startsWith('-') && (
-                        <p className="font-semibold text-foreground mb-3">
-                          {heading.replace(/\*\*/g, '')}
-                        </p>
-                      )}
-                      <ul className="list-none space-y-2">
-                        {items.map((item, i) => {
-                          const text = item.replace(/^-\s*/, '');
-                          const parts = text.split('**');
-                          return (
-                            <li key={i} className="flex items-start gap-3">
-                              <span className="text-[#D4AF37] mt-1 text-xl">•</span>
-                              <span className="text-muted-foreground flex-1">
-                                {parts.map((part, j) => 
-                                  j % 2 === 0 ? part : <strong key={j} className="text-foreground font-semibold">{part}</strong>
-                                )}
-                              </span>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  );
-                }
-
-                // Číslovaný seznam
-                if (paragraph.match(/^\d+\./m)) {
-                  const lines = paragraph.split('\n');
-                  const items = lines.filter(line => /^\d+\./.test(line.trim()));
-                  
-                  return (
-                    <ol key={index} className="list-none space-y-3 my-6">
-                      {items.map((item, i) => {
-                        const text = item.replace(/^\d+\.\s*/, '');
-                        const parts = text.split('**');
-                        return (
-                          <li key={i} className="flex items-start gap-3">
-                            <span className="text-[#D4AF37] font-bold min-w-[24px]">{i + 1}.</span>
-                            <span className="text-muted-foreground flex-1">
-                              {parts.map((part, j) => 
-                                j % 2 === 0 ? part : <strong key={j} className="text-foreground font-semibold">{part}</strong>
-                              )}
-                            </span>
-                          </li>
-                        );
-                      })}
-                    </ol>
-                  );
-                }
-
-                // Citace/blockquote s > syntaxí
-                if (paragraph.trim().startsWith('> ')) {
-                  const quoteText = paragraph.trim().replace(/^> /, '');
-                  return (
-                    <blockquote key={index} className="border-l-4 border-[#D4AF37] pl-6 py-2 my-6 italic text-muted-foreground bg-accent/5 rounded-r-lg">
-                      <p className="text-lg">
-                        {quoteText.split('**').map((part, i) => 
-                          i % 2 === 0 ? part : <strong key={i} className="text-foreground font-semibold">{part}</strong>
-                        )}
-                      </p>
-                    </blockquote>
-                  );
-                }
-
-                // Normální odstavec
-                return (
-                  <p key={index} className="text-muted-foreground leading-relaxed mb-6 text-lg">
-                    {paragraph.split('**').map((part, i) => 
-                      i % 2 === 0 ? part : <strong key={i} className="text-foreground font-semibold">{part}</strong>
-                    )}
-                  </p>
-                );
-              })}
-            </div>
+            <MarkdownContent content={article.content} showTOC={true} />
 
             <div className="mt-16 p-8 bg-gradient-to-br from-accent/20 to-accent/5 rounded-lg border border-accent/20">
               <h3 className="text-2xl font-bold mb-4">Prozkoumejte naše produkty</h3>

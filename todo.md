@@ -645,3 +645,8 @@
 - [x] Opravit zobrazení ## nadpisů - zobrazují se jako surový text místo renderovaných nadpisů
 - [x] Přidat podporu pro ### podnadpisy
 - [x] Přidat podporu pro > citace (blockquotes)
+
+## Rozšíření markdown parseru (Dec 19, 2025)
+- [x] Přidat podporu pro obrázky v textu - ![alt](url) syntaxe
+- [x] Přidat podporu pro odkazy - [text](url) syntaxe
+- [x] Přidat automatický obsah článku (TOC) - navigace z nadpisů
