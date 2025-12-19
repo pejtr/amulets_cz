@@ -1116,9 +1116,200 @@ Každý symbol má svou specifickou energii. Při výběru se řiďte těmito z�
 
 ## Související stránky
 
-➡️ [Symbol lásky](/symbol/symbol-lasky) - symboly lásky a harmonie ve vztazích
-➡️ [Posvátná geometrie](/symbol/posvatna-geometrie) - geometrické vzory vesmíru
-➡️ [Kameny podle znamení](/symbol/kameny-podle-znameni) - ochranné kameny pro vaše znamení`,
+➡️ [Symbol lásky](/symbol/symbol-lasky)`,
+  },
+  {
+    slug: "byk-kameny",
+    title: "Býk kameny",
+    image: "/images/zodiac/byk.webp",
+    metaTitle: "♉ Býk kameny - Jaké kameny jsou pro Býka nejlepší?",
+    metaDescription: "Býk kameny: Růženín, Smaragd, Lapis lazuli, Malachit. Kameny pro znamení Býk posilují lásku, stabilitu a prosperitu ✓",
+    content: `**Býk** (21. dubna - 20. května) je zemské znamení ovládané Venuší. Býci jsou známí svou **spolehlivostí, smyslem pro krásu a láskou k pohodlí**.
+
+## Nejlepší kameny pro Býka
+
+### 1. Růženín
+**Růženín** je hlavní kámen Býka. Posiluje **lásku, sebehodnocení a emocionální léčení**.
+➡️ [Více o Růženínu](/kamen/ruzenin)
+
+### 2. Smaragd
+**Smaragd** přináší **prosperitu a harmonii** do vztahů.
+
+### 3. Lapis lazuli
+**Lapis lazuli** podporuje **moudrost a pravdivou komunikaci**.
+➡️ [Více o Lapis lazuli](/kamen/lapis-lazuli)
+
+### 4. Malachit
+**Malachit** chrání před negativitou a podporuje **transformaci**.
+
+### 5. Karneol
+**Karneol** dodává Býkům **energii a motivaci**.
+
+## Jak Býk používá kameny?
+
+• **Růženín na srdci** - pro lásku a sebehodnocení
+• **Smaragd při důležitých rozhodnutích** - pro moudrost
+• **Malachit pro ochranu** - při změnách
+
+➡️ [Zpět na kameny podle znamení](/symbol/kameny-podle-znameni)`,
+  },
+  {
+    slug: "vahy-kameny",
+    title: "Váhy kameny",
+    image: "/images/zodiac/vahy.webp",
+    metaTitle: "♎ Váhy kameny - Jaké kameny jsou pro Váhy nejlepší?",
+    metaDescription: "Váhy kameny: Opál, Lapis lazuli, Růženín, Turmalín. Kameny pro znamení Váhy posilují harmonii, krásu a rovnováhu ✓",
+    content: `**Váhy** (23. září - 22. října) jsou vzdušné znamení ovládané Venuší. Váhy hledají **harmonii, krásu a spravedlnost** ve všem.
+
+## Nejlepší kameny pro Váhy
+
+### 1. Opál
+**Opál** je hlavní kámen Váh. Posiluje **kreativitu, intuici a emocionální rovnováhu**.
+
+### 2. Lapis lazuli
+**Lapis lazuli** podporuje **moudrost a pravdivou komunikaci** - klíčové pro Váhy.
+➡️ [Více o Lapis lazuli](/kamen/lapis-lazuli)
+
+### 3. Růženín
+**Růženín** přináší **lásku a harmonii** do vztahů.
+➡️ [Více o Růženínu](/kamen/ruzenin)
+
+### 4. Turmalín
+**Turmalín** chrání před negativitou a vyvazuje **energie**.
+➡️ [Více o Turmalínu](/kamen/turmalin)
+
+### 5. Citrín
+**Citrín** dodává Váhám **optimismus a sebevědomí**.
+
+## Jak Váhy používají kameny?
+
+• **Opál pro kreativitu** - při umělecké práci
+• **Lapis lazuli pro rozhodování** - když váhají
+• **Růženín pro vztahy** - pro harmonii s partnerem
+
+➡️ [Zpět na kameny podle znamení](/symbol/kameny-podle-znameni)`,
+  },
+  {
+    slug: "strelec-kameny",
+    title: "Střelec kameny",
+    image: "/images/zodiac/strelec.webp",
+    metaTitle: "♐ Střelec kameny - Jaké kameny jsou pro Střelce nejlepší?",
+    metaDescription: "Střelec kameny: Tyrkys, Lapis lazuli, Ametyst, Obsidián. Kameny pro znamení Střelec posilují dobrodružství, moudrost a optimismus ✓",
+    content: `**Střelec** (22. listopadu - 21. prosince) je ohně znamení ovládané Jupiterem. Střelci jsou známí svou **láskou k dobrodružství, optimismem a hledáním pravdy**.
+
+## Nejlepší kameny pro Střelce
+
+### 1. Tyrkys
+**Tyrkys** je hlavní kámen Střelce. Podporuje **ochranu na cestách, komunikaci a duchovní růst**.
+
+### 2. Lapis lazuli
+**Lapis lazuli** posiluje **moudrost a pravdu** - klíčové pro filozofické Střelce.
+➡️ [Více o Lapis lazuli](/kamen/lapis-lazuli)
+
+### 3. Ametyst
+**Ametyst** podporuje **duchovní růst a intuici**.
+➡️ [Více o Ametystu](/kamen/ametyst)
+
+### 4. Obsidián
+**Obsidián** chrání Střelce na jejich cestách a přináší **uzemění**.
+➡️ [Více o Obsidiánu](/kamen/obsidian)
+
+### 5. Sodalit
+**Sodalit** podporuje **logické myšlení a komunikaci**.
+
+## Jak Střelec používá kameny?
+
+• **Tyrkys na cestách** - pro ochranu a štěstí
+• **Lapis lazuli při studiu** - pro moudrost
+• **Ametyst pro meditaci** - pro duchovní růst
+
+➡️ [Zpět na kameny podle znamení](/symbol/kameny-podle-znameni)`,
+  },
+  {
+    slug: "cinsky-kalendar",
+    title: "Čínský kalendář",
+    image: "/images/symbols/cinsky-kalendar.webp",
+    metaTitle: "🐉 Čínský kalendář 2025 - Rok Hada | Znamení a význam",
+    metaDescription: "Čínský kalendář 2025: Rok Dřevěného Hada. Všech 12 čínských znamení, jejich vlastnosti a kompatibilita. Zjistěte své čínské znamení ✓",
+    content: `**Čínský kalendář** je lunisolární kalendář s 12letovým cyklem, kde každý rok je spojen s jedním z **12 zvířecích znamení**.
+
+## Rok 2025 - Rok Dřevěného Hada
+
+Rok 2025 začíná **29. ledna 2025** a je rokem **Dřevěného Hada**. Had symbolizuje **moudrost, intuici a transformaci**.
+
+## 12 Čínských znamení
+
+### 🐀 Krysa (1948, 1960, 1972, 1984, 1996, 2008, 2020)
+**Vlastnosti:** Chytrá, přizpůsobivá, ambiciózní
+**Kameny:** Granát, Ametyst
+
+### 🐂 Bůvol (1949, 1961, 1973, 1985, 1997, 2009, 2021)
+**Vlastnosti:** Pracovitý, spolehivý, trpělivý
+**Kameny:** Lapis lazuli, Tygří oko
+
+### 🐅 Tygr (1950, 1962, 1974, 1986, 1998, 2010, 2022)
+**Vlastnosti:** Odvážný, sebevědomý, charismatický
+**Kameny:** Karneol, Citrín
+➡️ [Více o Tygřím oku](/kamen/tygri-oko)
+
+### 🐇 Králík (1951, 1963, 1975, 1987, 1999, 2011, 2023)
+**Vlastnosti:** Jemný, diplomatický, elegantní
+**Kameny:** Růženín, Perlá
+➡️ [Více o Růženínu](/kamen/ruzenin)
+
+### 🐉 Drak (1952, 1964, 1976, 1988, 2000, 2012, 2024)
+**Vlastnosti:** Mocný, štědry, ambiciózní
+**Kameny:** Ametyst, Smaragd
+➡️ [Více o Čínském draku](/symbol/cinsky-drak)
+
+### 🐍 Had (1953, 1965, 1977, 1989, 2001, 2013, 2025)
+**Vlastnosti:** Moudrý, intuitivní, tajemný
+**Kameny:** Ametyst, Obsidián
+➡️ [Více o Ametystu](/kamen/ametyst)
+
+### 🐎 Kůň (1954, 1966, 1978, 1990, 2002, 2014, 2026)
+**Vlastnosti:** Energický, nezávislý, dobrodružný
+**Kameny:** Citrín, Karneol
+
+### 🐏 Koza (1955, 1967, 1979, 1991, 2003, 2015, 2027)
+**Vlastnosti:** Kreativní, jemná, empatická
+**Kameny:** Růženín, Měsíční kámen
+
+### 🐒 Opice (1956, 1968, 1980, 1992, 2004, 2016, 2028)
+**Vlastnosti:** Chytrá, vtipná, přizpůsobivá
+**Kameny:** Citrín, Tygří oko
+
+### 🐓 Kohout (1957, 1969, 1981, 1993, 2005, 2017, 2029)
+**Vlastnosti:** Pracovitý, přesný, sebevědomý
+**Kameny:** Citrín, Karneol
+
+### 🐕 Pes (1958, 1970, 1982, 1994, 2006, 2018, 2030)
+**Vlastnosti:** Loajální, čestný, ochránce
+**Kameny:** Ametyst, Lapis lazuli
+➡️ [Více o Lapis lazuli](/kamen/lapis-lazuli)
+
+### 🐖 Prase (1959, 1971, 1983, 1995, 2007, 2019, 2031)
+**Vlastnosti:** Štědré, upřímné, tolerantní
+**Kameny:** Růženín, Korund
+
+## 5 Elementů Čínského kalendáře
+
+Každý rok je také spojen s jedním z 5 elementů:
+
+• **Dřevo** - růst, kreativita
+• **Oheň** - energie, vášeň
+• **Země** - stabilita, praktickost
+• **Kov** - síla, rozhodnost
+• **Voda** - moudrost, flexibilita
+
+## Jak zjistit své čínské znamení?
+
+Čínský Nový rok začíná mezi 21. lednem a 20. únorem. Pokud jste se narodili v lednu nebo únoru, zkontrolujte přesné datum čínského Nového roku vašeho roku narození.
+
+## Související stránky
+
+➡️ [Kameny podle znamení](/symbol/kameny-podle-znameni) - západní horoskop
+➡️ [Čínský drak](/symbol/cinsky-drak) - symbol moci a štěstí`,
   },
   {
     slug: "nejsilnejsi-ochranny-symbol",
@@ -1424,7 +1615,7 @@ Pro začátečníky doporučujeme **Triquetra** nebo **Nekonečno** - jsou unive
   {
     slug: "panna-kameny",
     title: "Panna kameny",
-    image: "/images/stones/jaspis.webp",
+    image: "/images/zodiac/panna.webp",
     metaTitle: "♍ Panna kameny - Léčivé krystaly pro znamení Panny",
     metaDescription: "Jaké kameny jsou nejlepší pro znamení Panny? Jaspis, Karneol, Safír. Kompletni přehled kamenů pro Pannu a jejich účinky ✓",
     content: `**Panna** (23. srpna - 22. září) je zemské znamení ovládané Merkurem. Panny jsou známé svou **analytickou myslí, precizností a smyslem pro detail**.
@@ -1457,7 +1648,7 @@ Pro začátečníky doporučujeme **Triquetra** nebo **Nekonečno** - jsou unive
   {
     slug: "rak-kameny",
     title: "Rak kameny",
-    image: "/images/stones/mesicni-kamen.webp",
+    image: "/images/zodiac/rak.webp",
     metaTitle: "♋ Rak kameny - Léčivé krystaly pro znamení Raka",
     metaDescription: "Jaké kameny jsou nejlepší pro znamení Raka? Měsíční kámen, Perla, Smaragd. Kompletní přehled kamenů pro Raka a jejich účinky ✓",
     content: `**Rak** (22. června - 22. července) je vodní znamení ovládané Měsícem. Raci jsou známí svou **emocionální hloubkou, intuicí a pečující povahou**.
@@ -1490,7 +1681,7 @@ Pro začátečníky doporučujeme **Triquetra** nebo **Nekonečno** - jsou unive
   {
     slug: "stir-kameny",
     title: "Štír kameny",
-    image: "/images/stones/obsidian.webp",
+    image: "/images/zodiac/stir.webp",
     metaTitle: "♏ Štír kameny - Léčivé krystaly pro znamení Štíra",
     metaDescription: "Jaké kameny jsou nejlepší pro znamení Štíra? Obsidián, Topáz, Malachit. Kompletní přehled kamenů pro Štíra a jejich účinky ✓",
     content: `**Štír** (24. října - 22. listopadu) je vodní znamení ovládané Plutem a Marsem. Štíři jsou známí svou **intenzitou, vášní a transformační silou**.
@@ -1523,7 +1714,7 @@ Pro začátečníky doporučujeme **Triquetra** nebo **Nekonečno** - jsou unive
   {
     slug: "blizenci-kameny",
     title: "Blíženci kameny",
-    image: "/images/stones/citrin.webp",
+    image: "/images/zodiac/blizenci.webp",
     metaTitle: "♊ Blíženci kameny - Léčivé krystaly pro znamení Blíženců",
     metaDescription: "Jaké kameny jsou nejlepší pro znamení Blíženců? Citrín, Tygrí oko, Achát. Kompletní přehled kamenů pro Blížence ✓",
     content: `**Blíženci** (21. května - 21. června) jsou vzdušné znamení ovládané Merkurem. Blíženci jsou známí svou **komunikativností, zvědavostí a adaptabilitou**.
@@ -1556,7 +1747,7 @@ Pro začátečníky doporučujeme **Triquetra** nebo **Nekonečno** - jsou unive
   {
     slug: "ryby-kameny",
     title: "Ryby kameny",
-    image: "/images/stones/ametyst.webp",
+    image: "/images/zodiac/ryby.webp",
     metaTitle: "♓ Ryby kameny - Léčivé krystaly pro znamení Ryb",
     metaDescription: "Jaké kameny jsou nejlepší pro znamení Ryb? Ametyst, Akvamarín, Měsíční kámen. Kompletní přehled kamenů pro Ryby ✓",
     content: `**Ryby** (19. února - 20. března) jsou vodní znamení ovládané Neptunem. Ryby jsou známé svou **intuicí, empatii a duchovností**.
@@ -1589,7 +1780,7 @@ Pro začátečníky doporučujeme **Triquetra** nebo **Nekonečno** - jsou unive
   {
     slug: "vodnar-kameny",
     title: "Vodnář kameny",
-    image: "/images/stones/ametyst.webp",
+    image: "/images/zodiac/vodnar.webp",
     metaTitle: "♒ Vodnář kameny - Léčivé krystaly pro znamení Vodnáře",
     metaDescription: "Jaké kameny jsou nejlepší pro znamení Vodnáře? Ametyst, Akvamarín, Tyrkys. Kompletní přehled kamenů pro Vodnáře ✓",
     content: `**Vodnář** (21. ledna - 18. února) je vzdušné znamení ovládané Uranem. Vodnáři jsou známí svou **originálností, nezávislostí a humanismí**.
@@ -1622,7 +1813,7 @@ Pro začátečníky doporučujeme **Triquetra** nebo **Nekonečno** - jsou unive
   {
     slug: "lev-kameny",
     title: "Lev kameny",
-    image: "/images/stones/citrin.webp",
+    image: "/images/zodiac/lev.webp",
     metaTitle: "♌ Lev kameny - Léčivé krystaly pro znamení Lva",
     metaDescription: "Jaké kameny jsou nejlepší pro znamení Lva? Sluneční kámen, Rubín, Citrín. Kompletní přehled kamenů pro Lva ✓",
     content: `**Lev** (23. července - 22. srpna) je ohně znamení ovládané Sluncem. Lvi jsou známí svou **sebejistotou, kreativitou a vůdcovstvím**.
@@ -1655,7 +1846,7 @@ Pro začátečníky doporučujeme **Triquetra** nebo **Nekonečno** - jsou unive
   {
     slug: "kozoroh-kameny",
     title: "Kozoroh kameny",
-    image: "/images/stones/obsidian.webp",
+    image: "/images/zodiac/kozoroh.webp",
     metaTitle: "♑ Kozoroh kameny - Léčivé krystaly pro znamení Kozoroha",
     metaDescription: "Jaké kameny jsou nejlepší pro znamení Kozoroha? Granát, Onyx, Obsidián. Kompletní přehled kamenů pro Kozoroha ✓",
     content: `**Kozoroh** (22. prosince - 20. ledna) je zemské znamení ovládané Saturnem. Kozorozi jsou známí svou **disciplínou, ambicemi a praktickostí**.
@@ -1688,7 +1879,7 @@ Pro začátečníky doporučujeme **Triquetra** nebo **Nekonečno** - jsou unive
   {
     slug: "beran-kameny",
     title: "Beran kameny",
-    image: "/images/stones/karneol.webp",
+    image: "/images/zodiac/beran.webp",
     metaTitle: "♈ Beran kameny - Léčivé krystaly pro znamení Berana",
     metaDescription: "Jaké kameny jsou nejlepší pro znamení Berana? Karneol, Jaspis, Diamant. Kompletní přehled kamenů pro Berana ✓",
     content: `**Beran** (21. března - 20. dubna) je ohně znamení ovládané Marsem. Berani jsou známí svou **energií, odvahou a průkopnickým duchem**.

@@ -521,3 +521,11 @@
 - [x] Vytvořit hub stránku Posvátná geometrie
 - [x] Propojit hub stránky Symbol lásky a Symbol ochrany
 - [x] Změnit obrázek na stránce Symbol lásky (triquetra.webp)
+
+## Doplnění znamení a obrázků (Dec 19, 2025)
+- [x] Býk znamení - vytvořit stránku s kameny
+- [x] Váhy znamení - vytvořit stránku s kameny
+- [x] Střelec znamení - vytvořit stránku s kameny
+- [x] Vygenerovat obrázky pro všechna znamení (12 obrázků)
+- [x] Vytvořit stránku Čínský kalendář
+- [x] Aktualizovat sitemap.xml s novými URL
