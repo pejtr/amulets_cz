@@ -123,7 +123,7 @@ export default function ExitIntentPopup() {
 
           {/* Heading */}
           <h2 className="text-3xl font-bold text-center mb-2 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-            Počkejte! 🎁
+            Exkluzivní sleva na amulety 🎁
           </h2>
 
           {!showCode ? (

@@ -584,3 +584,7 @@
 - [x] Opravit title na hlavní stránce (max 60 znaků) - 42 znaků
 - [x] Opravit description na hlavní stránce (max 160 znaků) - 108 znaků
 - [x] Omezit keywords na 3-8 (aktuálně 14) - 6 keywords
+
+## SEO opravy nadpisů (Dec 19, 2025)
+- [x] Opravit H1 nadpis - změněno na "Posvátné symboly a amulety"
+- [x] Opravit H2 nadpis - změněno na "Exkluzivní sleva na amulety"
