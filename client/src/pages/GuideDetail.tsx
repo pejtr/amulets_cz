@@ -98,12 +98,37 @@ export default function GuideDetail() {
         { name: content.title, url: `https://amulets.cz/${type}/${slug}` },
       ]);
 
+      // Determine article section and keywords based on type
+      const articleSection = type === 'symbol' ? 'Symboly a amulety' : type === 'kamen' ? 'Drahé kameny' : 'Účely amuletů';
+      
+      // Extract keywords from title and content
+      const keywords = [
+        content.title,
+        type === 'symbol' ? 'symbol' : type === 'kamen' ? 'kámen' : 'účel',
+        'amulet',
+        'talisman',
+        'duchovní',
+        'energie',
+        'ochrana'
+      ];
+
+      // Calculate word count from content
+      const wordCount = content.content ? content.content.split(/\s+/).length : 0;
+
+      // Get modification date - use today for recently updated pages
+      const recentlyUpdatedSlugs = ['caduceus', 'vesica-piscis', 'metatronova-krychle', 'triskelion', 'choku-rei', 'jin-jang', 'ouroboros', 'hexagram', 'ruka-fatimy', 'horovo-oko', 'symbol-ochrany'];
+      const dateModified = recentlyUpdatedSlugs.includes(slug) ? '2025-12-19' : '2025-11-28';
+
       const article = createArticleSchema({
         title: content.metaTitle,
         description: content.metaDescription,
         url: `https://amulets.cz/${type}/${slug}`,
         datePublished: "2025-11-28",
-        dateModified: "2025-11-28",
+        dateModified: dateModified,
+        image: content.image ? `https://amulets.cz${content.image}` : undefined,
+        articleSection: articleSection,
+        keywords: keywords,
+        wordCount: wordCount
       });
 
       setSchemaMarkup([breadcrumbs, article]);

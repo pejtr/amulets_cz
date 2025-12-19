@@ -469,3 +469,8 @@
 ### Technické SEO
 - [x] Přidat FAQ schema pro klíčové stránky (Caduceus, Vesica Piscis, Metatronova krychle, Ouroboros)
 - [x] Aktualizovat sitemap.xml s novými stránkami
+
+## Article Schema pro symboly (Dec 19, 2025)
+- [x] Vytvořit ArticleSchema komponentu pro symboly
+- [x] Integrovat do GuideDetail stránky
+- [x] Otestovat schema markup (build úspěšný)

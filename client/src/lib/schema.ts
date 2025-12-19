@@ -31,8 +31,11 @@ export function createArticleSchema(data: {
   datePublished: string;
   dateModified: string;
   image?: string;
+  articleSection?: string;
+  keywords?: string[];
+  wordCount?: number;
 }) {
-  return {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": data.title,
@@ -40,20 +43,47 @@ export function createArticleSchema(data: {
     "url": data.url,
     "datePublished": data.datePublished,
     "dateModified": data.dateModified,
-    "image": data.image || "https://amulets.cz/og-image.jpg",
+    "image": {
+      "@type": "ImageObject",
+      "url": data.image || "https://amulets.cz/og-image.jpg",
+      "width": 1200,
+      "height": 630
+    },
     "author": {
       "@type": "Person",
       "name": "Natálie Ohorai",
+      "url": "https://amulets.cz"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Amulets.cz",
+      "url": "https://amulets.cz",
       "logo": {
         "@type": "ImageObject",
         "url": "https://amulets.cz/logo.png",
-      },
+        "width": 200,
+        "height": 60
+      }
     },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": data.url
+    },
+    "inLanguage": "cs-CZ"
   };
+
+  // Add optional fields if provided
+  if (data.articleSection) {
+    schema.articleSection = data.articleSection;
+  }
+  if (data.keywords && data.keywords.length > 0) {
+    schema.keywords = data.keywords.join(", ");
+  }
+  if (data.wordCount) {
+    schema.wordCount = data.wordCount;
+  }
+
+  return schema;
 }
 
 export function createWebsiteSchema() {
