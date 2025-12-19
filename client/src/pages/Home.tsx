@@ -20,11 +20,11 @@ import { faqData } from "@/data/faqData";
 
 export default function Home() {
   useEffect(() => {
-    document.title = "Amulets.cz - Zjisti svůj spirituální symbol | 33 posvátných symbolů";
+    document.title = "Amulets.cz - Posvátné symboly a amulety";
     
     setOpenGraphTags({
-      title: "Amulets.cz - Zjisti svůj spirituální symbol | 33 posvátných symbolů",
-      description: "Objevte význam 33 spirituálních symbolů a najděte svůj osobní talisman. Průvodce ezoterikými symboly, drahými kameny a jejich léčivými účinky. Ručně vyráběné orgonitové pyramidy a aromaterapeutické esence.",
+      title: "Amulets.cz - Posvátné symboly a amulety",
+      description: "Objevte význam posvátných symbolů, drahých kamenů a amuletů. Průvodce ezoterickými symboly a jejich léčivou silou.",
       url: "https://amulets.cz/",
       type: "website",
       image: "https://amulets.cz/og-image.jpg",

@@ -11,7 +11,7 @@ import { FAQSchema, symbolFAQs } from "@/components/FAQSchema";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { symbolsData, stonesData, purposesData } from "@/data/guideContent";
 import { getMixedRelatedArticles } from "@/lib/relatedArticles";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { ArrowLeft } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
@@ -194,9 +194,12 @@ export default function GuideDetail() {
               <div className="lg:col-span-2">
                 <div className="prose prose-lg max-w-none">
                   {content.content.split('\n\n').map((paragraph, index) => {
-                    // H2 nadpis (## text)
-                    if (paragraph.startsWith('## ')) {
-                      const title = paragraph.replace(/^## /, '');
+                    // Trim whitespace from paragraph
+                    const trimmedParagraph = paragraph.trim();
+                    
+                    // H2 nadpis (## text) - check for ## at start of line
+                    if (trimmedParagraph.startsWith('## ')) {
+                      const title = trimmedParagraph.replace(/^## /, '').replace(/\*\*/g, '');
                       return (
                         <h2 key={index} className="text-2xl font-bold mt-8 mb-4 text-foreground">
                           {title}
@@ -205,12 +208,38 @@ export default function GuideDetail() {
                     }
                     
                     // H3 nadpis (### text)
-                    if (paragraph.startsWith('### ')) {
-                      const title = paragraph.replace(/^### /, '').replace(/\*\*/g, '');
+                    if (trimmedParagraph.startsWith('### ')) {
+                      const title = trimmedParagraph.replace(/^### /, '').replace(/\*\*/g, '');
                       return (
                         <h3 key={index} className="text-xl font-semibold mt-6 mb-3 text-foreground">
                           {title}
                         </h3>
+                      );
+                    }
+                    
+                    // Check if paragraph contains ## on its own line (mixed content)
+                    if (trimmedParagraph.includes('\n## ')) {
+                      const parts = trimmedParagraph.split(/\n(?=## )/);
+                      return (
+                        <Fragment key={index}>
+                          {parts.map((part, partIndex) => {
+                            const trimmedPart = part.trim();
+                            if (trimmedPart.startsWith('## ')) {
+                              return (
+                                <h2 key={`${index}-${partIndex}`} className="text-2xl font-bold mt-8 mb-4 text-foreground">
+                                  {trimmedPart.replace(/^## /, '').replace(/\*\*/g, '')}
+                                </h2>
+                              );
+                            }
+                            return (
+                              <p key={`${index}-${partIndex}`} className="text-muted-foreground leading-relaxed mb-4">
+                                {trimmedPart.split('**').map((p, i) => 
+                                  i % 2 === 0 ? p : <strong key={i} className="text-foreground font-semibold">{p}</strong>
+                                )}
+                              </p>
+                            );
+                          })}
+                        </Fragment>
                       );
                     }
                     

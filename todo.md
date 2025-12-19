@@ -559,3 +559,28 @@
 - [x] Stránka Element Voda
 - [x] Vygenerovat ilustrace pro 5 elementů
 - [x] Aktualizovat sitemap.xml
+
+## Opravy bugů - Markdown (Dec 19, 2025)
+- [x] Opravit ## nadpisy na stránkách kamenů (Růženín atd.) - zobrazují se jako text
+
+## Čínský horoskop 2026 a kompatibilita (Dec 19, 2025)
+- [ ] Krysa 2026 - roční předpověď
+- [ ] Bůvol 2026 - roční předpověď
+- [ ] Tygr 2026 - roční předpověď
+- [ ] Králík 2026 - roční předpověď
+- [ ] Drak 2026 - roční předpověď
+- [ ] Had 2026 - roční předpověď
+- [ ] Kůň 2026 - roční předpověď
+- [ ] Koza 2026 - roční předpověď
+- [ ] Opice 2026 - roční předpověď
+- [ ] Kohout 2026 - roční předpověď
+- [ ] Pes 2026 - roční předpověď
+- [ ] Prase 2026 - roční předpověď
+- [ ] Sekce denní/týdenní horoskopy
+- [ ] Tabulka kompatibility západních znamení
+- [ ] Aktualizovat sitemap.xml
+
+## SEO opravy (Dec 19, 2025)
+- [x] Opravit title na hlavní stránce (max 60 znaků) - 42 znaků
+- [x] Opravit description na hlavní stránce (max 160 znaků) - 108 znaků
+- [x] Omezit keywords na 3-8 (aktuálně 14) - 6 keywords
