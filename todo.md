@@ -474,3 +474,9 @@
 - [x] Vytvořit ArticleSchema komponentu pro symboly
 - [x] Integrovat do GuideDetail stránky
 - [x] Otestovat schema markup (build úspěšný)
+
+## SEO vylepšení - FAQPage a Související symboly (Dec 19, 2025)
+- [x] Přidat FAQPage schema.org na stránku Caduceus (již existuje v symbolFAQs)
+- [x] Ověřit propojení Symbol ochrany s relevantními symboly (interní odkazy v obsahu)
+- [x] Ověřit implementaci sekce Související symboly na všech stránkách (RelatedSymbols komponenta)
+- [x] Přidat caduceus do relatedSymbolsMap pro lepší prolinkování
