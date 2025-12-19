@@ -626,3 +626,8 @@
 
 ## Miniatury předpovědí 2026 na stránce čínského horoskopu (Dec 19, 2025)
 - [x] Přidat miniatury ilustrací k odkazům na předpovědi 2026
+
+## Vylepšení stránek předpovědí 2026 (Dec 19, 2025)
+- [x] Přidat velkou ilustraci do hero sekce každé předpovědi
+- [x] Přidat navigační tlačítka "Předchozí/Další znamení"
+- [x] Přidat sdílecí tlačítka pro sociální sítě
