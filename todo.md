@@ -529,3 +529,19 @@
 - [x] Vygenerovat obrázky pro všechna znamení (12 obrázků)
 - [x] Vytvořit stránku Čínský kalendář
 - [x] Aktualizovat sitemap.xml s novými URL
+
+## Čínský horoskop - detailí podstránky (Dec 19, 2025)
+- [x] Krysa - vytvořit detailní stránku
+- [x] Bůvol - vytvořit detailní stránku
+- [x] Tygr - vytvořit detailní stránku
+- [x] Králík - vytvořit detailní stránku
+- [x] Drak - vytvořit detailní stránku
+- [x] Had - vytvořit detailní stránku
+- [x] Kůň - vytvořit detailní stránku
+- [x] Koza - vytvořit detailní stránku
+- [x] Opice - vytvořit detailní stránku
+- [x] Kohout - vytvořit detailní stránku
+- [x] Pes - vytvořit detailní stránku
+- [x] Prase - vytvořit detailní stránku
+- [x] Vygenerovat ilustrace pro 12 čínských znamení
+- [x] Aktualizovat sitemap.xml

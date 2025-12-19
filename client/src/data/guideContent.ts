@@ -1242,55 +1242,62 @@ Rok 2025 začíná **29. ledna 2025** a je rokem **Dřevěného Hada**. Had symb
 ### 🐀 Krysa (1948, 1960, 1972, 1984, 1996, 2008, 2020)
 **Vlastnosti:** Chytrá, přizpůsobivá, ambiciózní
 **Kameny:** Granát, Ametyst
+➡️ [Více o Kryse](/symbol/cinsky-horoskop-krysa)
 
 ### 🐂 Bůvol (1949, 1961, 1973, 1985, 1997, 2009, 2021)
 **Vlastnosti:** Pracovitý, spolehivý, trpělivý
 **Kameny:** Lapis lazuli, Tygří oko
+➡️ [Více o Bůvolovi](/symbol/cinsky-horoskop-buvol)
 
 ### 🐅 Tygr (1950, 1962, 1974, 1986, 1998, 2010, 2022)
 **Vlastnosti:** Odvážný, sebevědomý, charismatický
 **Kameny:** Karneol, Citrín
-➡️ [Více o Tygřím oku](/kamen/tygri-oko)
+➡️ [Více o Tygrovi](/symbol/cinsky-horoskop-tygr)
 
 ### 🐇 Králík (1951, 1963, 1975, 1987, 1999, 2011, 2023)
 **Vlastnosti:** Jemný, diplomatický, elegantní
-**Kameny:** Růženín, Perlá
-➡️ [Více o Růženínu](/kamen/ruzenin)
+**Kameny:** Růženín, Perla
+➡️ [Více o Králíkovi](/symbol/cinsky-horoskop-kralik)
 
 ### 🐉 Drak (1952, 1964, 1976, 1988, 2000, 2012, 2024)
 **Vlastnosti:** Mocný, štědry, ambiciózní
 **Kameny:** Ametyst, Smaragd
-➡️ [Více o Čínském draku](/symbol/cinsky-drak)
+➡️ [Více o Drakovi](/symbol/cinsky-horoskop-drak)
 
 ### 🐍 Had (1953, 1965, 1977, 1989, 2001, 2013, 2025)
-**Vlastnosti:** Moudrý, intuitivní, tajemný
+**Vlastnosti:** Moudrý, intuitivní, tajemný - **ROK 2025!**
 **Kameny:** Ametyst, Obsidián
-➡️ [Více o Ametystu](/kamen/ametyst)
+➡️ [Více o Hadovi](/symbol/cinsky-horoskop-had)
 
 ### 🐎 Kůň (1954, 1966, 1978, 1990, 2002, 2014, 2026)
 **Vlastnosti:** Energický, nezávislý, dobrodružný
 **Kameny:** Citrín, Karneol
+➡️ [Více o Koni](/symbol/cinsky-horoskop-kun)
 
 ### 🐏 Koza (1955, 1967, 1979, 1991, 2003, 2015, 2027)
 **Vlastnosti:** Kreativní, jemná, empatická
 **Kameny:** Růženín, Měsíční kámen
+➡️ [Více o Koze](/symbol/cinsky-horoskop-koza)
 
 ### 🐒 Opice (1956, 1968, 1980, 1992, 2004, 2016, 2028)
 **Vlastnosti:** Chytrá, vtipná, přizpůsobivá
 **Kameny:** Citrín, Tygří oko
+➡️ [Více o Opici](/symbol/cinsky-horoskop-opice)
 
 ### 🐓 Kohout (1957, 1969, 1981, 1993, 2005, 2017, 2029)
 **Vlastnosti:** Pracovitý, přesný, sebevědomý
 **Kameny:** Citrín, Karneol
+➡️ [Více o Kohoutovi](/symbol/cinsky-horoskop-kohout)
 
 ### 🐕 Pes (1958, 1970, 1982, 1994, 2006, 2018, 2030)
 **Vlastnosti:** Loajální, čestný, ochránce
 **Kameny:** Ametyst, Lapis lazuli
-➡️ [Více o Lapis lazuli](/kamen/lapis-lazuli)
+➡️ [Více o Psovi](/symbol/cinsky-horoskop-pes)
 
 ### 🐖 Prase (1959, 1971, 1983, 1995, 2007, 2019, 2031)
 **Vlastnosti:** Štědré, upřímné, tolerantní
 **Kameny:** Růženín, Korund
+➡️ [Více o Praseti](/symbol/cinsky-horoskop-prase)
 
 ## 5 Elementů Čínského kalendáře
 
@@ -1967,5 +1974,695 @@ Posvátná geometrie zahrnuje také **Zlatý řez** (φ = 1.618) a **Fibonacciho
 
 ➡️ [Symbol ochrany](/symbol/symbol-ochrany) - ochranné symboly včetně posvátné geometrie
 ➡️ [Symbol lásky](/symbol/symbol-lasky) - symboly lásky a harmonie`,
+  },
+  {
+    slug: "cinsky-horoskop-krysa",
+    title: "Čínský horoskop Krysa",
+    image: "/images/chinese-zodiac/krysa.webp",
+    metaTitle: "🐀 Čínský horoskop Krysa - Vlastnosti, kompatibilita, kameny",
+    metaDescription: "Čínské znamení Krysa: roky narození, osobnostní rysy, láska a kompatibilita. Kameny pro Krysu: Granát, Ametyst ✓",
+    content: `**Krysa** je první znamení čínského zvěrokruhu. Lidé narození v roce Krysy jsou **chytří, přizpůsobiví a ambiciózní**.
+
+## Roky Krysy
+
+1924, 1936, 1948, 1960, 1972, 1984, 1996, 2008, 2020, 2032
+
+## Osobnostní rysy Krysy
+
+### Pozitivní vlastnosti
+• **Inteligence** - rychlé myšlení a bystrý úsudek
+• **Přizpůsobivost** - snadno se adaptují na nové situace
+• **Ambice** - silná touha po úspěchu
+• **Šarm** - přirozené charisma a společenské dovednosti
+• **Vynálezavost** - kreativní řešení problémů
+
+### Výzvy
+• Tendence k manipulaci
+• Občas přílišná kritickost
+• Skřívání emocí
+
+## Krysa v lásce
+
+Krysa je **romantická a loajální** partnerka. Hledá intelektuální spojení a potřebuje partnera, který jí rozumí.
+
+### Nejlepší kompatibilita
+• **Drak** - silné spojení, vzájemný obdiv
+• **Opice** - podobné myšlení, zábavný vztah
+• **Bůvol** - stabilní a podporující
+
+### Nejhorší kompatibilita
+• **Kůň** - příliš odlišné povahy
+• **Kohout** - časté konflikty
+
+## Kameny pro Krysu
+
+### 1. Granát
+**Granát** posiluje **energii a vášeň** Krysy.
+
+### 2. Ametyst
+**Ametyst** podporuje **intuici a duchovní růst**.
+➡️ [Více o Ametystu](/kamen/ametyst)
+
+### 3. Citrín
+**Citrín** přináší **prosperitu a optimismus**.
+
+## Krysa v kariéře
+
+Krysa exceluje v oborech vyžadujících **analytické myšlení**: finance, právo, věda, podnikání.
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+  },
+  {
+    slug: "cinsky-horoskop-buvol",
+    title: "Čínský horoskop Bůvol",
+    image: "/images/chinese-zodiac/buvol.webp",
+    metaTitle: "🐂 Čínský horoskop Bůvol - Vlastnosti, kompatibilita, kameny",
+    metaDescription: "Čínské znamení Bůvol: roky narození, osobnostní rysy, láska a kompatibilita. Kameny pro Bůvola: Lapis lazuli, Tygří oko ✓",
+    content: `**Bůvol** je druhé znamení čínského zvěrokruhu. Lidé narození v roce Bůvola jsou **pracovití, spolehliví a trpěliví**.
+
+## Roky Bůvola
+
+1925, 1937, 1949, 1961, 1973, 1985, 1997, 2009, 2021, 2033
+
+## Osobnostní rysy Bůvola
+
+### Pozitivní vlastnosti
+• **Pracovitost** - nevšední vytrvalost a píle
+• **Spolehlivost** - vždy dodrží slovo
+• **Trpělivost** - klidný přístup k životu
+• **Loajalita** - oddáný rodinným a přátelům
+• **Praktickost** - reálný pohled na svět
+
+### Výzvy
+• Tvrdohlavost
+• Odpor ke změnám
+• Občas přílišná vážnost
+
+## Bůvol v lásce
+
+Bůvol je **věrný a oddáný** partner. Hledá stabilní, dlouhodobý vztah založený na důvěře.
+
+### Nejlepší kompatibilita
+• **Krysa** - vzájemné doplnění
+• **Had** - hluboké porozumění
+• **Kohout** - sdílené hodnoty
+
+### Nejhorší kompatibilita
+• **Koza** - příliš odlišné přístupy
+• **Kůň** - konfliktní energie
+
+## Kameny pro Bůvola
+
+### 1. Lapis lazuli
+**Lapis lazuli** podporuje **moudrost a komunikaci**.
+➡️ [Více o Lapis lazuli](/kamen/lapis-lazuli)
+
+### 2. Tygří oko
+**Tygří oko** posiluje **odvahu a ochranu**.
+➡️ [Více o Tygřím oku](/kamen/tygri-oko)
+
+### 3. Jaspis
+**Jaspis** přináší **uzemění a stabilitu**.
+
+## Bůvol v kariéře
+
+Bůvol exceluje v oborech vyžadujících **vytrvalost**: zemědělství, stavebnictví, bankovnictví, medicna.
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+  },
+  {
+    slug: "cinsky-horoskop-tygr",
+    title: "Čínský horoskop Tygr",
+    image: "/images/chinese-zodiac/tygr.webp",
+    metaTitle: "🐅 Čínský horoskop Tygr - Vlastnosti, kompatibilita, kameny",
+    metaDescription: "Čínské znamení Tygr: roky narození, osobnostní rysy, láska a kompatibilita. Kameny pro Tygra: Karneol, Citrín ✓",
+    content: `**Tygr** je třetí znamení čínského zvěrokruhu. Lidé narození v roce Tygra jsou **odvážní, sebevědomí a charismatickí**.
+
+## Roky Tygra
+
+1926, 1938, 1950, 1962, 1974, 1986, 1998, 2010, 2022, 2034
+
+## Osobnostní rysy Tygra
+
+### Pozitivní vlastnosti
+• **Odvaha** - nebojí se žádné výzvy
+• **Sebevědomí** - přirozené vůdcovství
+• **Charisma** - magnetická osobnost
+• **Vášeň** - intenzivní přístup k životu
+• **Velkorysost** - štědrost k ostatním
+
+### Výzvy
+• Impulzivnost
+• Netrpělivost
+• Tendence k dominanci
+
+## Tygr v lásce
+
+Tygr je **vášnivý a ochránce** své rodiny. Potřebuje partnera, který respektuje jeho nezávislost.
+
+### Nejlepší kompatibilita
+• **Kůň** - dobrodružný a vzrušující vztah
+• **Pes** - loajální a podporující
+• **Prase** - harmonické spojení
+
+### Nejhorší kompatibilita
+• **Opice** - příliš mnoho konfliktů
+• **Had** - vzájemná nedůvěra
+
+## Kameny pro Tygra
+
+### 1. Karneol
+**Karneol** posiluje **odvahu a vitalitu** Tygra.
+
+### 2. Citrín
+**Citrín** přináší **optimismus a prosperitu**.
+
+### 3. Rubín
+**Rubín** podporuje **vášeň a energii**.
+
+## Tygr v kariéře
+
+Tygr exceluje v oborech vyžadujících **vůdcovství**: management, armáda, politika, podnikání.
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+  },
+  {
+    slug: "cinsky-horoskop-kralik",
+    title: "Čínský horoskop Králík",
+    image: "/images/chinese-zodiac/kralik.webp",
+    metaTitle: "🐇 Čínský horoskop Králík - Vlastnosti, kompatibilita, kameny",
+    metaDescription: "Čínské znamení Králík: roky narození, osobnostní rysy, láska a kompatibilita. Kameny pro Králíka: Růženín, Perla ✓",
+    content: `**Králík** je čtvrté znamení čínského zvěrokruhu. Lidé narození v roce Králíka jsou **jemní, diplomatickí a elegantní**.
+
+## Roky Králíka
+
+1927, 1939, 1951, 1963, 1975, 1987, 1999, 2011, 2023, 2035
+
+## Osobnostní rysy Králíka
+
+### Pozitivní vlastnosti
+• **Jemnost** - citlivý a ohleduplný
+• **Diplomacie** - schopnost řešit konflikty
+• **Elegance** - vytváření smyslu pro krásu
+• **Intuice** - silné vnitřní vedení
+• **Opatrnost** - promyšlená rozhodnutí
+
+### Výzvy
+• Přílišná opatrnost
+• Vyhýbání se konfliktům
+• Občas povrchnost
+
+## Králík v lásce
+
+Králík je **romantický a pečující** partner. Hledá klidný, harmonický vztah.
+
+### Nejlepší kompatibilita
+• **Koza** - sdílená citlivost
+• **Prase** - vzájemné porozumění
+• **Pes** - loajální spojení
+
+### Nejhorší kompatibilita
+• **Kohout** - příliš kritický
+• **Drak** - příliš dominantní
+
+## Kameny pro Králíka
+
+### 1. Růženín
+**Růženín** podporuje **lásku a harmonii**.
+➡️ [Více o Růženínu](/kamen/ruzenin)
+
+### 2. Perla
+**Perla** přináší **klid a eleganci**.
+
+### 3. Měsíční kámen
+**Měsíční kámen** posiluje **intuici a emocionální rovnováhu**.
+
+## Králík v kariéře
+
+Králík exceluje v oborech vyžadujících **kreativitu a diplomacii**: umění, design, PR, poradenství.
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+  },
+  {
+    slug: "cinsky-horoskop-drak",
+    title: "Čínský horoskop Drak",
+    image: "/images/chinese-zodiac/drak.webp",
+    metaTitle: "🐉 Čínský horoskop Drak - Vlastnosti, kompatibilita, kameny",
+    metaDescription: "Čínské znamení Drak: roky narození, osobnostní rysy, láska a kompatibilita. Kameny pro Draka: Ametyst, Smaragd ✓",
+    content: `**Drak** je páté znamení čínského zvěrokruhu a jediné mytické zvíře. Lidé narození v roce Draka jsou **mocní, štědří a ambiciózní**.
+
+## Roky Draka
+
+1928, 1940, 1952, 1964, 1976, 1988, 2000, 2012, 2024, 2036
+
+## Osobnostní rysy Draka
+
+### Pozitivní vlastnosti
+• **Moc** - přirozená autorita a vliv
+• **Štědrost** - velkorysé srdce
+• **Ambice** - vysoké cíle a sny
+• **Charisma** - magnetická přitažlivost
+• **Energie** - nevšední vitalita
+
+### Výzvy
+• Arogance
+• Netrpělivost
+• Perfekcionismus
+
+## Drak v lásce
+
+Drak je **vášnivý a romantický** partner. Potřebuje partnera, který ho obdivuje, ale zároveň je soběstačný.
+
+### Nejlepší kompatibilita
+• **Krysa** - silné intelektuální spojení
+• **Opice** - zábavný a dynamický vztah
+• **Kohout** - vzájemný respekt
+
+### Nejhorší kompatibilita
+• **Pes** - časté konflikty
+• **Drak** - boj o dominanci
+
+## Kameny pro Draka
+
+### 1. Ametyst
+**Ametyst** podporuje **duchovní růst a moudrost**.
+➡️ [Více o Ametystu](/kamen/ametyst)
+
+### 2. Smaragd
+**Smaragd** přináší **prosperitu a harmonii**.
+
+### 3. Rubín
+**Rubín** posiluje **vášeň a energii** Draka.
+
+## Drak v kariéře
+
+Drak exceluje v oborech vyžadujících **vůdcovství a kreativitu**: podnikání, umění, politika, showbusiness.
+
+➡️ [Více o Čínském draku jako symbolu](/symbol/cinsky-drak)
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+  },
+  {
+    slug: "cinsky-horoskop-had",
+    title: "Čínský horoskop Had",
+    image: "/images/chinese-zodiac/had.webp",
+    metaTitle: "🐍 Čínský horoskop Had - Vlastnosti, kompatibilita, kameny | Rok 2025",
+    metaDescription: "Čínské znamení Had: roky narození, osobnostní rysy, láska a kompatibilita. Rok 2025 je Rok Hada! Kameny: Ametyst, Obsidián ✓",
+    content: `**Had** je šesté znamení čínského zvěrokruhu. Lidé narození v roce Hada jsou **moudří, intuitivní a tajemní**. **Rok 2025 je Rok Dřevěného Hada!**
+
+## Roky Hada
+
+1929, 1941, 1953, 1965, 1977, 1989, 2001, 2013, **2025**, 2037
+
+## Osobnostní rysy Hada
+
+### Pozitivní vlastnosti
+• **Moudrost** - hluboké porozumění životu
+• **Intuice** - silné vnitřní vedení
+• **Tajemnost** - přitažlivá aura
+• **Elegance** - přirozený smysl pro krásu
+• **Analytické myšlení** - schopnost vidět pod povrch
+
+### Výzvy
+• Žárlivost
+• Tendence k manipulaci
+• Uzavřenost
+
+## Had v lásce
+
+Had je **vášnivý a oddáný** partner. Hledá hluboké, intenzivní spojení.
+
+### Nejlepší kompatibilita
+• **Bůvol** - stabilní a podporující
+• **Kohout** - vzájemný obdiv
+• **Opice** - intelektuální stimulace
+
+### Nejhorší kompatibilita
+• **Tygr** - vzájemná nedůvěra
+• **Prase** - odlišné hodnoty
+
+## Kameny pro Hada
+
+### 1. Ametyst
+**Ametyst** podporuje **intuici a duchovní růst**.
+➡️ [Více o Ametystu](/kamen/ametyst)
+
+### 2. Obsidián
+**Obsidián** přináší **ochranu a transformaci**.
+➡️ [Více o Obsidiánu](/kamen/obsidian)
+
+### 3. Labradorit
+**Labradorit** posiluje **intuici a psychické schopnosti**.
+
+## Had v kariéře
+
+Had exceluje v oborech vyžadujících **analytické myšlení**: věda, psychologie, finance, detektivní práce.
+
+## Rok Hada 2025
+
+Rok Dřevěného Hada 2025 začíná **29. ledna 2025**. Je to rok **transformace, moudrosti a intuice**.
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+  },
+  {
+    slug: "cinsky-horoskop-kun",
+    title: "Čínský horoskop Kůň",
+    image: "/images/chinese-zodiac/kun.webp",
+    metaTitle: "🐎 Čínský horoskop Kůň - Vlastnosti, kompatibilita, kameny",
+    metaDescription: "Čínské znamení Kůň: roky narození, osobnostní rysy, láska a kompatibilita. Kameny pro Koně: Citrín, Karneol ✓",
+    content: `**Kůň** je sedmé znamení čínského zvěrokruhu. Lidé narození v roce Koně jsou **energickí, nezávislí a dobrodružní**.
+
+## Roky Koně
+
+1930, 1942, 1954, 1966, 1978, 1990, 2002, 2014, 2026, 2038
+
+## Osobnostní rysy Koně
+
+### Pozitivní vlastnosti
+• **Energie** - nevšední vitalita a nadšení
+• **Nezávislost** - svobodný duch
+• **Dobrodružnost** - láska k novým zážitkům
+• **Společenskost** - přirozený šarm
+• **Uprimnost** - přímá komunikace
+
+### Výzvy
+• Netrpělivost
+• Impulzivnost
+• Obtížné závazky
+
+## Kůň v lásce
+
+Kůň je **vášnivý a romantický** partner. Potřebuje svobodu a dobrodružství ve vztahu.
+
+### Nejlepší kompatibilita
+• **Tygr** - dobrodružný a vzrušující vztah
+• **Koza** - vzájemné doplnění
+• **Pes** - loajální spojení
+
+### Nejhorší kompatibilita
+• **Krysa** - časté konflikty
+• **Bůvol** - příliš odlišné tempo
+
+## Kameny pro Koně
+
+### 1. Citrín
+**Citrín** podporuje **optimismus a energii**.
+
+### 2. Karneol
+**Karneol** posiluje **odvahu a vitalitu**.
+
+### 3. Sluneční kámen
+**Sluneční kámen** přináší **radost a sebevědomí**.
+
+## Kůň v kariéře
+
+Kůň exceluje v oborech vyžadujících **svobodu a pohyb**: sport, cestování, prodej, zábavní průmysl.
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+  },
+  {
+    slug: "cinsky-horoskop-koza",
+    title: "Čínský horoskop Koza",
+    image: "/images/chinese-zodiac/koza.webp",
+    metaTitle: "🐏 Čínský horoskop Koza - Vlastnosti, kompatibilita, kameny",
+    metaDescription: "Čínské znamení Koza: roky narození, osobnostní rysy, láska a kompatibilita. Kameny pro Kozu: Růženín, Měsíční kámen ✓",
+    content: `**Koza** je osmé znamení čínského zvěrokruhu. Lidé narození v roce Kozy jsou **kreativní, jemní a empatickí**.
+
+## Roky Kozy
+
+1931, 1943, 1955, 1967, 1979, 1991, 2003, 2015, 2027, 2039
+
+## Osobnostní rysy Kozy
+
+### Pozitivní vlastnosti
+• **Kreativita** - umělecká duše
+• **Jemnost** - citlivý a ohleduplný
+• **Empatie** - hluboké porozumění druhým
+• **Elegance** - přirozený smysl pro krásu
+• **Klid** - mírumilovná povaha
+
+### Výzvy
+• Nerozhodnost
+• Závislost na druhých
+• Přecitlivělost
+
+## Koza v lásce
+
+Koza je **romantická a pečující** partnerka. Hledá bezpečný, harmonický vztah.
+
+### Nejlepší kompatibilita
+• **Králík** - sdílená citlivost
+• **Kůň** - vzájemné doplnění
+• **Prase** - harmonické spojení
+
+### Nejhorší kompatibilita
+• **Bůvol** - příliš praktický
+• **Pes** - časté nedorozumění
+
+## Kameny pro Kozu
+
+### 1. Růženín
+**Růženín** podporuje **lásku a sebehodnocení**.
+➡️ [Více o Růženínu](/kamen/ruzenin)
+
+### 2. Měsíční kámen
+**Měsíční kámen** posiluje **intuici a emocionální rovnováhu**.
+
+### 3. Jade
+**Jade** přináší **harmonii a štěstí**.
+
+## Koza v kariéře
+
+Koza exceluje v oborech vyžadujících **kreativitu**: umění, design, hudba, literatura, péče o druhé.
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+  },
+  {
+    slug: "cinsky-horoskop-opice",
+    title: "Čínský horoskop Opice",
+    image: "/images/chinese-zodiac/opice.webp",
+    metaTitle: "🐒 Čínský horoskop Opice - Vlastnosti, kompatibilita, kameny",
+    metaDescription: "Čínské znamení Opice: roky narození, osobnostní rysy, láska a kompatibilita. Kameny pro Opici: Citrín, Tygří oko ✓",
+    content: `**Opice** je deváté znamení čínského zvěrokruhu. Lidé narození v roce Opice jsou **chytří, vtipní a přizpůsobiví**.
+
+## Roky Opice
+
+1932, 1944, 1956, 1968, 1980, 1992, 2004, 2016, 2028, 2040
+
+## Osobnostní rysy Opice
+
+### Pozitivní vlastnosti
+• **Inteligence** - rychlé myšlení
+• **Vtip** - přirozený smysl pro humor
+• **Přizpůsobivost** - flexibilita v každé situaci
+• **Zvědavost** - touha po poznání
+• **Vynálezavost** - kreativní řešení
+
+### Výzvy
+• Nestabilita
+• Tendence k podvádění
+• Obtížné dodržování pravidel
+
+## Opice v lásce
+
+Opice je **zábavná a stimulující** partnerka. Potřebuje intelektuální výzvy ve vztahu.
+
+### Nejlepší kompatibilita
+• **Krysa** - podobné myšlení
+• **Drak** - dynamický vztah
+• **Had** - intelektuální stimulace
+
+### Nejhorší kompatibilita
+• **Tygr** - příliš mnoho konfliktů
+• **Prase** - odlišné hodnoty
+
+## Kameny pro Opici
+
+### 1. Citrín
+**Citrín** podporuje **kreativitu a optimismus**.
+
+### 2. Tygří oko
+**Tygří oko** posiluje **odvahu a ochranu**.
+➡️ [Více o Tygřím oku](/kamen/tygri-oko)
+
+### 3. Peridot
+**Peridot** přináší **prosperitu a radost**.
+
+## Opice v kariéře
+
+Opice exceluje v oborech vyžadujících **kreativitu a komunikaci**: marketing, média, IT, zábavní průmysl.
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+  },
+  {
+    slug: "cinsky-horoskop-kohout",
+    title: "Čínský horoskop Kohout",
+    image: "/images/chinese-zodiac/kohout.webp",
+    metaTitle: "🐓 Čínský horoskop Kohout - Vlastnosti, kompatibilita, kameny",
+    metaDescription: "Čínské znamení Kohout: roky narození, osobnostní rysy, láska a kompatibilita. Kameny pro Kohouta: Citrín, Karneol ✓",
+    content: `**Kohout** je desáté znamení čínského zvěrokruhu. Lidé narození v roce Kohouta jsou **pracovití, přesní a sebevědomí**.
+
+## Roky Kohouta
+
+1933, 1945, 1957, 1969, 1981, 1993, 2005, 2017, 2029, 2041
+
+## Osobnostní rysy Kohouta
+
+### Pozitivní vlastnosti
+• **Pracovitost** - nevšední píle
+• **Přesnost** - smysl pro detail
+• **Sebevědomí** - hrdá osobnost
+• **Uprimnost** - přímá komunikace
+• **Organizovanost** - systematický přístup
+
+### Výzvy
+• Kritickost
+• Arogance
+• Perfekcionismus
+
+## Kohout v lásce
+
+Kohout je **loajální a ochránce** své rodiny. Hledá partnera, který oceňuje jeho kvality.
+
+### Nejlepší kompatibilita
+• **Bůvol** - sdílené hodnoty
+• **Had** - vzájemný obdiv
+• **Drak** - respekt a podpora
+
+### Nejhorší kompatibilita
+• **Králík** - příliš kritický
+• **Kohout** - boj o dominanci
+
+## Kameny pro Kohouta
+
+### 1. Citrín
+**Citrín** podporuje **sebevědomí a prosperitu**.
+
+### 2. Karneol
+**Karneol** posiluje **odvahu a motivaci**.
+
+### 3. Topaz
+**Topaz** přináší **jasnost a moudrost**.
+
+## Kohout v kariéře
+
+Kohout exceluje v oborech vyžadujících **preciznost**: účetnictví, medicna, armáda, management.
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+  },
+  {
+    slug: "cinsky-horoskop-pes",
+    title: "Čínský horoskop Pes",
+    image: "/images/chinese-zodiac/pes.webp",
+    metaTitle: "🐕 Čínský horoskop Pes - Vlastnosti, kompatibilita, kameny",
+    metaDescription: "Čínské znamení Pes: roky narození, osobnostní rysy, láska a kompatibilita. Kameny pro Psa: Ametyst, Lapis lazuli ✓",
+    content: `**Pes** je jedenácté znamení čínského zvěrokruhu. Lidé narození v roce Psa jsou **loajální, čestní a ochránci**.
+
+## Roky Psa
+
+1934, 1946, 1958, 1970, 1982, 1994, 2006, 2018, 2030, 2042
+
+## Osobnostní rysy Psa
+
+### Pozitivní vlastnosti
+• **Loajalita** - oddáný přátelům a rodině
+• **Čestnost** - uprimná a přímá povaha
+• **Ochrana** - chrání své blízké
+• **Spravedlnost** - silný smysl pro férovost
+• **Spolehlivost** - vždy dodrží slovo
+
+### Výzvy
+• Pesimismus
+• Úzkostlivost
+• Tvrdohlavost
+
+## Pes v lásce
+
+Pes je **věrný a oddáný** partner. Hledá stabilní, důvěryhodný vztah.
+
+### Nejlepší kompatibilita
+• **Tygr** - loajální spojení
+• **Králík** - harmonický vztah
+• **Kůň** - dobrodružná láska
+
+### Nejhorší kompatibilita
+• **Drak** - časté konflikty
+• **Koza** - nedorozumění
+
+## Kameny pro Psa
+
+### 1. Ametyst
+**Ametyst** podporuje **klid a duchovní růst**.
+➡️ [Více o Ametystu](/kamen/ametyst)
+
+### 2. Lapis lazuli
+**Lapis lazuli** posiluje **moudrost a komunikaci**.
+➡️ [Více o Lapis lazuli](/kamen/lapis-lazuli)
+
+### 3. Turmalín
+**Turmalín** přináší **ochranu a uzemění**.
+➡️ [Více o Turmalínu](/kamen/turmalin)
+
+## Pes v kariéře
+
+Pes exceluje v oborech vyžadujících **loajalitu a spravedlnost**: právo, policie, sociální práce, zdravotnictví.
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+  },
+  {
+    slug: "cinsky-horoskop-prase",
+    title: "Čínský horoskop Prase",
+    image: "/images/chinese-zodiac/prase.webp",
+    metaTitle: "🐖 Čínský horoskop Prase - Vlastnosti, kompatibilita, kameny",
+    metaDescription: "Čínské znamení Prase: roky narození, osobnostní rysy, láska a kompatibilita. Kameny pro Prase: Růženín, Korund ✓",
+    content: `**Prase** je dvanácté a poslední znamení čínského zvěrokruhu. Lidé narození v roce Prasete jsou **štědří, upřímní a tolerantní**.
+
+## Roky Prasete
+
+1935, 1947, 1959, 1971, 1983, 1995, 2007, 2019, 2031, 2043
+
+## Osobnostní rysy Prasete
+
+### Pozitivní vlastnosti
+• **Štědrost** - velkorysé srdce
+• **Uprimnost** - přímá a čestná povaha
+• **Tolerance** - přijímá ostatní takové, jací jsou
+• **Optimismus** - pozitivní pohled na život
+• **Spořivost** - schopnost užívat si života
+
+### Výzvy
+• Naivita
+• Materialism
+• Lenost
+
+## Prase v lásce
+
+Prase je **romantické a pečující** partner. Hledá harmonický, pohodový vztah.
+
+### Nejlepší kompatibilita
+• **Tygr** - harmonické spojení
+• **Králík** - vzájemné porozumění
+• **Koza** - sdílené hodnoty
+
+### Nejhorší kompatibilita
+• **Had** - odlišné hodnoty
+• **Opice** - vzájemná nedůvěra
+
+## Kameny pro Prase
+
+### 1. Růženín
+**Růženín** podporuje **lásku a harmonii**.
+➡️ [Více o Růženínu](/kamen/ruzenin)
+
+### 2. Korund
+**Korund** posiluje **prosperitu a štěstí**.
+
+### 3. Jade
+**Jade** přináší **klid a dlouhověkost**.
+
+## Prase v kariéře
+
+Prase exceluje v oborech vyžadujících **péči a kreativitu**: gastronomie, zábavní průmysl, charita, umění.
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
   },
 ];
