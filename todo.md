@@ -437,3 +437,6 @@
 - [x] Opravit 9 duplicitních stránek bez kanonické verze
 - [x] Opravit 4 stránky blokované 403
 - [ ] Zkontrolovat 3 stránky s noindex
+
+## Vylepšení sitemap.xml (Dec 17, 2025)
+- [x] Zkontrolovat a rozšířit sitemap.xml o všechny důležité stránky webu
