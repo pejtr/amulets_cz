@@ -6,22 +6,28 @@ import GuideSection from "@/components/GuideSection";
 import { predictions2026, Prediction2026 as PredictionType } from "@/data/predictions2026";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
-import { ChevronRight, ChevronLeft, Calendar, Heart, Briefcase, Activity, Coins, Share2, Facebook, Twitter } from "lucide-react";
+import { ChevronRight, ChevronLeft, Calendar, Heart, Briefcase, Activity, Coins, Share2, Facebook, Twitter, Linkedin, Send } from "lucide-react";
 import { ShareButtons } from "@/components/ShareButtons";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { ImageLightbox } from "@/components/ImageLightbox";
-import { Button } from "@/components/ui/button";
+import { SectionShareModal } from "@/components/SectionShareModal";
+
+interface SectionData {
+  title: string;
+  content: string;
+}
 
 export default function Prediction2026() {
   const { slug } = useParams<{ slug: string }>();
   const [prediction, setPrediction] = useState<PredictionType | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [selectedSection, setSelectedSection] = useState<SectionData | null>(null);
 
   // Find current prediction and calculate prev/next
-  const { currentIndex, prevPrediction, nextPrediction } = useMemo(() => {
+  const { prevPrediction, nextPrediction } = useMemo(() => {
     const idx = predictions2026.findIndex((p) => p.slug === slug);
     return {
-      currentIndex: idx,
       prevPrediction: idx > 0 ? predictions2026[idx - 1] : predictions2026[predictions2026.length - 1],
       nextPrediction: idx < predictions2026.length - 1 ? predictions2026[idx + 1] : predictions2026[0],
     };
@@ -38,13 +44,11 @@ export default function Prediction2026() {
     if (prediction) {
       document.title = prediction.metaTitle;
 
-      // Set meta description
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
         metaDesc.setAttribute("content", prediction.metaDescription);
       }
 
-      // Set Open Graph tags
       setOpenGraphTags({
         title: prediction.metaTitle,
         description: prediction.metaDescription,
@@ -55,7 +59,6 @@ export default function Prediction2026() {
         imageHeight: "630",
       });
 
-      // Set Schema.org markup
       setSchemaMarkup([
         createArticleSchema({
           title: prediction.title,
@@ -92,7 +95,6 @@ export default function Prediction2026() {
     );
   }
 
-  // Get zodiac emoji from title
   const getZodiacEmoji = (title: string) => {
     const emojiMap: Record<string, string> = {
       "Krysa": "🐀", "Bůvol": "🐂", "Tygr": "🐅", "Králík": "🐇",
@@ -105,7 +107,57 @@ export default function Prediction2026() {
     return "🔮";
   };
 
-  // Parse markdown content
+  const getZodiacName = (title: string) => {
+    const names = ["Krysa", "Bůvol", "Tygr", "Králík", "Drak", "Had", "Kůň", "Koza", "Opice", "Kohout", "Pes", "Prase"];
+    for (const name of names) {
+      if (title.includes(name)) return name;
+    }
+    return title;
+  };
+
+  // Extract sections from content
+  const extractSections = (content: string): Record<string, SectionData> => {
+    const sections: Record<string, SectionData> = {};
+    const lines = content.split("\n");
+    let currentSection = "";
+    let currentContent: string[] = [];
+
+    lines.forEach((line) => {
+      if (line.startsWith("## ")) {
+        if (currentSection && currentContent.length > 0) {
+          sections[currentSection] = {
+            title: currentSection,
+            content: currentContent.join("\n"),
+          };
+        }
+        currentSection = line.replace("## ", "").trim();
+        currentContent = [];
+      } else if (currentSection) {
+        currentContent.push(line);
+      }
+    });
+
+    if (currentSection && currentContent.length > 0) {
+      sections[currentSection] = {
+        title: currentSection,
+        content: currentContent.join("\n"),
+      };
+    }
+
+    return sections;
+  };
+
+  const sections = extractSections(prediction.content);
+
+  const handleShareSection = (sectionTitle: string) => {
+    const section = sections[sectionTitle];
+    if (section) {
+      setSelectedSection(section);
+      setShareModalOpen(true);
+    }
+  };
+
+  // Parse markdown content with share buttons
   const parseContent = (content: string) => {
     const lines = content.split("\n");
     const elements: React.ReactNode[] = [];
@@ -113,25 +165,21 @@ export default function Prediction2026() {
     let tableRows: string[][] = [];
 
     lines.forEach((line, index) => {
-      // Skip the first H1 as we render it separately
       if (line.startsWith("# ") && index === 0) {
         return;
       }
 
-      // Table detection
       if (line.startsWith("|")) {
         if (!inTable) {
           inTable = true;
           tableRows = [];
         }
-        // Skip separator row
         if (!line.includes("---")) {
           const cells = line.split("|").filter((c) => c.trim());
           tableRows.push(cells.map((c) => c.trim()));
         }
         return;
       } else if (inTable) {
-        // End of table
         inTable = false;
         elements.push(
           <div key={`table-${index}`} className="overflow-x-auto my-6">
@@ -162,27 +210,50 @@ export default function Prediction2026() {
         tableRows = [];
       }
 
-      // H2 headers
+      // H2 headers with share button
       if (line.startsWith("## ")) {
         const text = line.replace("## ", "");
         let icon = null;
-        if (text.includes("Láska")) icon = <Heart className="w-6 h-6 text-pink-500" />;
-        else if (text.includes("Kariéra")) icon = <Briefcase className="w-6 h-6 text-blue-500" />;
-        else if (text.includes("Zdraví")) icon = <Activity className="w-6 h-6 text-green-500" />;
-        else if (text.includes("Šťastné")) icon = <Calendar className="w-6 h-6 text-yellow-500" />;
-        else if (text.includes("Měsíční")) icon = <Calendar className="w-6 h-6 text-purple-500" />;
-        else if (text.includes("Speciální")) icon = <Coins className="w-6 h-6 text-orange-500" />;
+        let canShare = false;
+
+        if (text.includes("Láska")) {
+          icon = <Heart className="w-6 h-6 text-pink-500" />;
+          canShare = true;
+        } else if (text.includes("Kariéra")) {
+          icon = <Briefcase className="w-6 h-6 text-blue-500" />;
+          canShare = true;
+        } else if (text.includes("Zdraví")) {
+          icon = <Activity className="w-6 h-6 text-green-500" />;
+          canShare = true;
+        } else if (text.includes("Šťastné")) {
+          icon = <Calendar className="w-6 h-6 text-yellow-500" />;
+        } else if (text.includes("Měsíční")) {
+          icon = <Calendar className="w-6 h-6 text-purple-500" />;
+        } else if (text.includes("Speciální")) {
+          icon = <Coins className="w-6 h-6 text-orange-500" />;
+        }
 
         elements.push(
-          <h2 key={index} className="text-2xl font-bold text-gray-800 mt-8 mb-4 flex items-center gap-2">
-            {icon}
-            {text}
-          </h2>
+          <div key={index} className="flex items-center justify-between mt-8 mb-4">
+            <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+              {icon}
+              {text}
+            </h2>
+            {canShare && (
+              <button
+                onClick={() => handleShareSection(text)}
+                className="flex items-center gap-1 text-sm text-orange-600 hover:text-orange-700 bg-orange-50 hover:bg-orange-100 px-3 py-1.5 rounded-full transition-colors"
+                title="Sdílet tuto sekci"
+              >
+                <Share2 className="w-4 h-4" />
+                <span className="hidden sm:inline">Sdílet</span>
+              </button>
+            )}
+          </div>
         );
         return;
       }
 
-      // H3 headers
       if (line.startsWith("### ")) {
         elements.push(
           <h3 key={index} className="text-xl font-semibold text-gray-700 mt-6 mb-3">
@@ -192,7 +263,6 @@ export default function Prediction2026() {
         return;
       }
 
-      // Bold paragraphs
       if (line.startsWith("**") && line.endsWith("**")) {
         elements.push(
           <p key={index} className="font-semibold text-gray-800 my-3">
@@ -202,10 +272,8 @@ export default function Prediction2026() {
         return;
       }
 
-      // List items
       if (line.startsWith("• ") || line.startsWith("- ")) {
         const text = line.replace(/^[•-]\s*/, "");
-        // Parse bold and links in list items
         const parsed = text
           .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
           .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-[#D4AF37] hover:underline">$1</a>');
@@ -216,7 +284,6 @@ export default function Prediction2026() {
         return;
       }
 
-      // Links (➡️)
       if (line.startsWith("➡️")) {
         const match = line.match(/\[([^\]]+)\]\(([^)]+)\)/);
         if (match) {
@@ -231,7 +298,6 @@ export default function Prediction2026() {
         return;
       }
 
-      // Regular paragraphs with markdown parsing
       if (line.trim()) {
         const parsed = line
           .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
@@ -248,15 +314,16 @@ export default function Prediction2026() {
 
   const shareUrl = `https://amulets.cz/predpoved-2026/${slug}`;
   const shareTitle = prediction.title;
+  const zodiacEmoji = getZodiacEmoji(prediction.title);
+  const zodiacName = getZodiacName(prediction.title);
 
   return (
     <div className="min-h-screen flex flex-col">
       <ReadingProgressBar />
       <Header />
       <main className="flex-1">
-        {/* Hero Section with Large Illustration */}
+        {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-orange-600 via-red-600 to-pink-600 text-white overflow-hidden">
-          {/* Background pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
@@ -264,30 +331,20 @@ export default function Prediction2026() {
           </div>
 
           <div className="container max-w-6xl mx-auto px-4 py-8 md:py-12 relative z-10">
-            {/* Breadcrumbs */}
             <nav className="mb-6" aria-label="Breadcrumb">
               <ol className="flex items-center space-x-2 text-sm text-orange-100">
-                <li>
-                  <Link href="/" className="hover:text-white transition-colors">
-                    Domů
-                  </Link>
-                </li>
+                <li><Link href="/" className="hover:text-white transition-colors">Domů</Link></li>
                 <ChevronRight className="w-4 h-4" />
-                <li>
-                  <Link href="/cinsky-horoskop" className="hover:text-white transition-colors">
-                    Čínský horoskop
-                  </Link>
-                </li>
+                <li><Link href="/cinsky-horoskop" className="hover:text-white transition-colors">Čínský horoskop</Link></li>
                 <ChevronRight className="w-4 h-4" />
                 <li className="font-semibold text-white">{prediction.title}</li>
               </ol>
             </nav>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              {/* Text content */}
               <div className="order-2 md:order-1">
                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
-                  <span className="text-2xl">{getZodiacEmoji(prediction.title)}</span>
+                  <span className="text-2xl">{zodiacEmoji}</span>
                   <span className="font-semibold">Rok Ohnivého Koně 2026</span>
                 </div>
                 
@@ -299,7 +356,7 @@ export default function Prediction2026() {
                   {prediction.metaDescription}
                 </p>
 
-                {/* Social Share Buttons */}
+                {/* Extended Social Share Buttons */}
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="text-sm text-orange-200 flex items-center gap-1">
                     <Share2 className="w-4 h-4" /> Sdílet:
@@ -308,7 +365,7 @@ export default function Prediction2026() {
                     href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white/20 hover:bg-white/30 backdrop-blur-sm p-2 rounded-full transition-colors"
+                    className="bg-white/20 hover:bg-blue-600 backdrop-blur-sm p-2 rounded-full transition-colors"
                     aria-label="Sdílet na Facebooku"
                   >
                     <Facebook className="w-5 h-5" />
@@ -317,10 +374,39 @@ export default function Prediction2026() {
                     href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white/20 hover:bg-white/30 backdrop-blur-sm p-2 rounded-full transition-colors"
+                    className="bg-white/20 hover:bg-sky-500 backdrop-blur-sm p-2 rounded-full transition-colors"
                     aria-label="Sdílet na Twitteru"
                   >
                     <Twitter className="w-5 h-5" />
+                  </a>
+                  <a
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white/20 hover:bg-blue-700 backdrop-blur-sm p-2 rounded-full transition-colors"
+                    aria-label="Sdílet na LinkedIn"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a
+                    href={`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white/20 hover:bg-sky-400 backdrop-blur-sm p-2 rounded-full transition-colors"
+                    aria-label="Sdílet na Telegramu"
+                  >
+                    <Send className="w-5 h-5" />
+                  </a>
+                  <a
+                    href={`https://wa.me/?text=${encodeURIComponent(shareTitle + " " + shareUrl)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white/20 hover:bg-green-500 backdrop-blur-sm p-2 rounded-full transition-colors"
+                    aria-label="Sdílet na WhatsAppu"
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
                   </a>
                   <button
                     onClick={() => {
@@ -329,17 +415,13 @@ export default function Prediction2026() {
                     }}
                     className="bg-white/20 hover:bg-white/30 backdrop-blur-sm px-3 py-2 rounded-full transition-colors text-sm font-medium"
                   >
-                    📋 Kopírovat odkaz
+                    📋 Kopírovat
                   </button>
                 </div>
               </div>
 
-              {/* Hero Image */}
               <div className="order-1 md:order-2 flex justify-center">
-                <div
-                  className="relative cursor-pointer group"
-                  onClick={() => setLightboxOpen(true)}
-                >
+                <div className="relative cursor-pointer group" onClick={() => setLightboxOpen(true)}>
                   <div className="absolute -inset-4 bg-white/20 rounded-3xl blur-xl group-hover:bg-white/30 transition-colors" />
                   <img
                     src={prediction.image}
@@ -422,6 +504,24 @@ export default function Prediction2026() {
                   <Twitter className="w-5 h-5" />
                 </a>
                 <a
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-blue-700 hover:bg-blue-800 text-white p-2 rounded-lg transition-colors"
+                  aria-label="Sdílet na LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a
+                  href={`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-sky-400 hover:bg-sky-500 text-white p-2 rounded-lg transition-colors"
+                  aria-label="Sdílet na Telegramu"
+                >
+                  <Send className="w-5 h-5" />
+                </a>
+                <a
                   href={`https://wa.me/?text=${encodeURIComponent(shareTitle + " " + shareUrl)}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -479,18 +579,32 @@ export default function Prediction2026() {
           </div>
         </article>
 
-        {/* Guide section */}
         <GuideSection />
       </main>
       <Footer />
 
-      {/* Lightbox */}
       <ImageLightbox
         isOpen={lightboxOpen}
         src={prediction.image}
         alt={prediction.title}
         onClose={() => setLightboxOpen(false)}
       />
+
+      {selectedSection && (
+        <SectionShareModal
+          isOpen={shareModalOpen}
+          onClose={() => {
+            setShareModalOpen(false);
+            setSelectedSection(null);
+          }}
+          sectionTitle={selectedSection.title}
+          sectionContent={selectedSection.content}
+          zodiacSign={zodiacName}
+          zodiacEmoji={zodiacEmoji}
+          zodiacImage={prediction.image}
+          baseUrl={shareUrl}
+        />
+      )}
     </div>
   );
 }

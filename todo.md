@@ -631,3 +631,8 @@
 - [x] Přidat velkou ilustraci do hero sekce každé předpovědi
 - [x] Přidat navigační tlačítka "Předchozí/Další znamení"
 - [x] Přidat sdílecí tlačítka pro sociální sítě
+
+## Rozšířené sdílecí funkce (Dec 19, 2025)
+- [x] Přidat sdílení konkrétních sekcí (láska, kariéra, zdraví, finance)
+- [x] Přidat LinkedIn a Telegram k sdílecím tlačítkům
+- [x] Implementovat generování sdílecích obrázků pro Instagram
