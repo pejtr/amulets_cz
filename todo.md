@@ -604,3 +604,22 @@
 - [x] Vytvořit stránku předpovědi 2026 pro Prase
 - [x] Aktualizovat sitemap.xml s novými URL
 - [x] Přidat odkazy na předpovědi na stránku čínského horoskopu
+
+## Ilustrace pro předpovědi 2026 (Dec 19, 2025)
+- [x] Vygenerovat ilustraci pro Krysu 2026
+- [x] Vygenerovat ilustraci pro Bůvola 2026
+- [x] Vygenerovat ilustraci pro Tygra 2026
+- [x] Vygenerovat ilustraci pro Králíka 2026
+- [x] Vygenerovat ilustraci pro Draka 2026
+- [x] Vygenerovat ilustraci pro Hada 2026
+- [x] Vygenerovat ilustraci pro Koně 2026
+- [x] Vygenerovat ilustraci pro Kozu 2026
+- [x] Vygenerovat ilustraci pro Opici 2026
+- [x] Vygenerovat ilustraci pro Kohouta 2026
+- [x] Vygenerovat ilustraci pro Psa 2026
+- [x] Vygenerovat ilustraci pro Prase 2026
+- [x] Optimalizovat obrázky do WebP formátu
+- [x] Aktualizovat predictions2026.ts s novými obrázky
+
+## Oprava H1 nadpisu (Dec 19, 2025)
+- [x] Opravit chybějící mezeru v H1 - "Posvátné symbolya amulety" → "Posvátné symboly a amulety"

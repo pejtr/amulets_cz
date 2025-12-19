@@ -14,7 +14,7 @@ export const predictions2026: Prediction2026[] = [
   {
     slug: "predpoved-2026-krysa",
     title: "Krysa - Horoskop 2026",
-    image: "/images/chinese-zodiac/krysa.webp",
+    image: "/images/predictions-2026/krysa-2026.webp",
     metaTitle: "🐀 Krysa horoskop 2026 - Rok Ohnivého Koně | Předpověď",
     metaDescription: "Čínský horoskop Krysa 2026: láska, kariéra, zdraví, finance. Rok Ohnivého Koně přináší výzvy i příležitosti. Kompletní předpověď ✓",
     content: `# 🐀 Krysa - Horoskop 2026
@@ -103,7 +103,7 @@ Zdraví Krysy vyžaduje v roce 2026 **zvýšenou pozornost**. Stres z náročné
   {
     slug: "predpoved-2026-buvol",
     title: "Bůvol - Horoskop 2026",
-    image: "/images/chinese-zodiac/buvol.webp",
+    image: "/images/predictions-2026/buvol-2026.webp",
     metaTitle: "🐂 Bůvol horoskop 2026 - Rok Ohnivého Koně | Předpověď",
     metaDescription: "Čínský horoskop Bůvol 2026: láska, kariéra, zdraví, finance. Rok Ohnivého Koně přináší stabilitu a růst. Kompletní předpověď ✓",
     content: `# 🐂 Bůvol - Horoskop 2026
@@ -192,7 +192,7 @@ Zdraví Bůvola bude v roce 2026 **dobré**, ale vyžaduje pravidelnou péči.
   {
     slug: "predpoved-2026-tygr",
     title: "Tygr - Horoskop 2026",
-    image: "/images/chinese-zodiac/tygr.webp",
+    image: "/images/predictions-2026/tygr-2026.webp",
     metaTitle: "🐅 Tygr horoskop 2026 - Rok Ohnivého Koně | Předpověď",
     metaDescription: "Čínský horoskop Tygr 2026: láska, kariéra, zdraví, finance. Rok Ohnivého Koně přináší energii a dobrodružství. Kompletní předpověď ✓",
     content: `# 🐅 Tygr - Horoskop 2026
@@ -281,7 +281,7 @@ Zdraví Tygra bude v roce 2026 **silné**, ale pozor na přehnanou aktivitu.
   {
     slug: "predpoved-2026-kralik",
     title: "Králík - Horoskop 2026",
-    image: "/images/chinese-zodiac/kralik.webp",
+    image: "/images/predictions-2026/kralik-2026.webp",
     metaTitle: "🐇 Králík horoskop 2026 - Rok Ohnivého Koně | Předpověď",
     metaDescription: "Čínský horoskop Králík 2026: láska, kariéra, zdraví, finance. Rok Ohnivého Koně přináší výzvy i růst. Kompletní předpověď ✓",
     content: `# 🐇 Králík - Horoskop 2026
@@ -370,7 +370,7 @@ Zdraví Králíka vyžaduje v roce 2026 **péči o nervový systém**.
   {
     slug: "predpoved-2026-drak",
     title: "Drak - Horoskop 2026",
-    image: "/images/chinese-zodiac/drak.webp",
+    image: "/images/predictions-2026/drak-2026.webp",
     metaTitle: "🐉 Drak horoskop 2026 - Rok Ohnivého Koně | Předpověď",
     metaDescription: "Čínský horoskop Drak 2026: láska, kariéra, zdraví, finance. Rok Ohnivého Koně přináší sílu a úspěch. Kompletní předpověď ✓",
     content: `# 🐉 Drak - Horoskop 2026
@@ -460,7 +460,7 @@ Zdraví Draka bude v roce 2026 **silné**, ale pozor na přepracování.
   {
     slug: "predpoved-2026-had",
     title: "Had - Horoskop 2026",
-    image: "/images/chinese-zodiac/had.webp",
+    image: "/images/predictions-2026/had-2026.webp",
     metaTitle: "🐍 Had horoskop 2026 - Rok Ohnivého Koně | Předpověď",
     metaDescription: "Čínský horoskop Had 2026: láska, kariéra, zdraví, finance. Po roce Hada 2025 přichází transformace. Kompletní předpověď ✓",
     content: `# 🐍 Had - Horoskop 2026
@@ -549,7 +549,7 @@ Zdraví Hada vyžaduje v roce 2026 **regeneraci** po náročném roce 2025.
   {
     slug: "predpoved-2026-kun",
     title: "Kůň - Horoskop 2026",
-    image: "/images/chinese-zodiac/kun.webp",
+    image: "/images/predictions-2026/kun-2026.webp",
     metaTitle: "🐎 Kůň horoskop 2026 - Rok Ohnivého Koně | Váš rok!",
     metaDescription: "Čínský horoskop Kůň 2026: VÁŠ ROK! Láska, kariéra, zdraví, finance. Rok Ohnivého Koně přináší vrchol energie. Kompletní předpověď ✓",
     content: `# 🐎 Kůň - Horoskop 2026
@@ -646,7 +646,7 @@ Jako Kůň v roce Koně máte **dvojnásobnou energii**. Využijte ji moudře:
   {
     slug: "predpoved-2026-koza",
     title: "Koza - Horoskop 2026",
-    image: "/images/chinese-zodiac/koza.webp",
+    image: "/images/predictions-2026/koza-2026.webp",
     metaTitle: "🐏 Koza horoskop 2026 - Rok Ohnivého Koně | Předpověď",
     metaDescription: "Čínský horoskop Koza 2026: láska, kariéra, zdraví, finance. Rok Ohnivého Koně přináší kreativitu a růst. Kompletní předpověď ✓",
     content: `# 🐏 Koza - Horoskop 2026
@@ -735,7 +735,7 @@ Zdraví Kozy bude v roce 2026 **dobré**, s důrazem na emocionální pohodu.
   {
     slug: "predpoved-2026-opice",
     title: "Opice - Horoskop 2026",
-    image: "/images/chinese-zodiac/opice.webp",
+    image: "/images/predictions-2026/opice-2026.webp",
     metaTitle: "🐒 Opice horoskop 2026 - Rok Ohnivého Koně | Předpověď",
     metaDescription: "Čínský horoskop Opice 2026: láska, kariéra, zdraví, finance. Rok Ohnivého Koně přináší chytrost a příležitosti. Kompletní předpověď ✓",
     content: `# 🐒 Opice - Horoskop 2026
@@ -824,7 +824,7 @@ Zdraví Opice bude v roce 2026 **dobré**, ale vyžaduje pozornost.
   {
     slug: "predpoved-2026-kohout",
     title: "Kohout - Horoskop 2026",
-    image: "/images/chinese-zodiac/kohout.webp",
+    image: "/images/predictions-2026/kohout-2026.webp",
     metaTitle: "🐓 Kohout horoskop 2026 - Rok Ohnivého Koně | Předpověď",
     metaDescription: "Čínský horoskop Kohout 2026: láska, kariéra, zdraví, finance. Rok Ohnivého Koně přináší preciznost a úspěch. Kompletní předpověď ✓",
     content: `# 🐓 Kohout - Horoskop 2026
@@ -913,7 +913,7 @@ Zdraví Kohouta bude v roce 2026 **dobré**, s důrazem na prevenci.
   {
     slug: "predpoved-2026-pes",
     title: "Pes - Horoskop 2026",
-    image: "/images/chinese-zodiac/pes.webp",
+    image: "/images/predictions-2026/pes-2026.webp",
     metaTitle: "🐕 Pes horoskop 2026 - Rok Ohnivého Koně | Předpověď",
     metaDescription: "Čínský horoskop Pes 2026: láska, kariéra, zdraví, finance. Rok Ohnivého Koně přináší loajalitu a růst. Kompletní předpověď ✓",
     content: `# 🐕 Pes - Horoskop 2026
@@ -1002,7 +1002,7 @@ Zdraví Psa bude v roce 2026 **dobré**, s důrazem na emocionální pohodu.
   {
     slug: "predpoved-2026-prase",
     title: "Prase - Horoskop 2026",
-    image: "/images/chinese-zodiac/prase.webp",
+    image: "/images/predictions-2026/prase-2026.webp",
     metaTitle: "🐖 Prase horoskop 2026 - Rok Ohnivého Koně | Předpověď",
     metaDescription: "Čínský horoskop Prase 2026: láska, kariéra, zdraví, finance. Rok Ohnivého Koně přináší štědrost a hojnost. Kompletní předpověď ✓",
     content: `# 🐖 Prase - Horoskop 2026
