@@ -588,3 +588,19 @@
 ## SEO opravy nadpisů (Dec 19, 2025)
 - [x] Opravit H1 nadpis - změněno na "Posvátné symboly a amulety"
 - [x] Opravit H2 nadpis - změněno na "Exkluzivní sleva na amulety"
+
+## Roční předpovědi 2026 - Rok Ohnivého Koně (Dec 19, 2025)
+- [x] Vytvořit stránku předpovědi 2026 pro Krysu
+- [x] Vytvořit stránku předpovědi 2026 pro Bůvola
+- [x] Vytvořit stránku předpovědi 2026 pro Tygra
+- [x] Vytvořit stránku předpovědi 2026 pro Králíka
+- [x] Vytvořit stránku předpovědi 2026 pro Draka
+- [x] Vytvořit stránku předpovědi 2026 pro Hada
+- [x] Vytvořit stránku předpovědi 2026 pro Koně
+- [x] Vytvořit stránku předpovědi 2026 pro Kozu
+- [x] Vytvořit stránku předpovědi 2026 pro Opici
+- [x] Vytvořit stránku předpovědi 2026 pro Kohouta
+- [x] Vytvořit stránku předpovědi 2026 pro Psa
+- [x] Vytvořit stránku předpovědi 2026 pro Prase
+- [x] Aktualizovat sitemap.xml s novými URL
+- [x] Přidat odkazy na předpovědi na stránku čínského horoskopu

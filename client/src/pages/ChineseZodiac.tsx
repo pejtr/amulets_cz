@@ -77,6 +77,66 @@ export default function ChineseZodiac() {
             </p>
           </div>
 
+          {/* Rok 2026 banner */}
+          <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-2xl p-6 md:p-8 mb-8 text-center">
+            <div className="text-4xl mb-2">🐎🔥</div>
+            <h2 className="text-2xl md:text-3xl font-bold mb-2">Rok 2026 - Rok Ohnivého Koně</h2>
+            <p className="text-orange-100 mb-4">
+              Připravte se na rok plný energie, vášně a dobrodružství! Čínský Nový rok začíná 17. února 2026.
+            </p>
+            <Link 
+              href="/predpoved-2026/predpoved-2026-kun"
+              className="inline-block bg-white text-orange-600 px-6 py-2 rounded-full font-semibold hover:bg-orange-100 transition-colors"
+            >
+              Předpověď pro rok Koně →
+            </Link>
+          </div>
+
+          {/* Předpovědi 2026 */}
+          <section id="predpovedi-2026" className="mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
+              🔮 Roční předpovědi 2026
+            </h2>
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Zjistěte, co vám přinese Rok Ohnivého Koně v lásce, kariéře, zdraví a financích.
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {[
+                { name: "Krysa", emoji: "🐀", slug: "predpoved-2026-krysa" },
+                { name: "Bůvol", emoji: "🐂", slug: "predpoved-2026-buvol" },
+                { name: "Tygr", emoji: "🐅", slug: "predpoved-2026-tygr" },
+                { name: "Králík", emoji: "🐇", slug: "predpoved-2026-kralik" },
+                { name: "Drak", emoji: "🐉", slug: "predpoved-2026-drak" },
+                { name: "Had", emoji: "🐍", slug: "predpoved-2026-had" },
+                { name: "Kůň", emoji: "🐎", slug: "predpoved-2026-kun", highlight: true },
+                { name: "Koza", emoji: "🐏", slug: "predpoved-2026-koza" },
+                { name: "Opice", emoji: "🐒", slug: "predpoved-2026-opice" },
+                { name: "Kohout", emoji: "🐓", slug: "predpoved-2026-kohout" },
+                { name: "Pes", emoji: "🐕", slug: "predpoved-2026-pes" },
+                { name: "Prase", emoji: "🐖", slug: "predpoved-2026-prase" },
+              ].map((sign) => (
+                <Link
+                  key={sign.name}
+                  href={`/predpoved-2026/${sign.slug}`}
+                  className={`rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border ${
+                    sign.highlight 
+                      ? "bg-gradient-to-br from-orange-100 to-red-100 border-orange-300" 
+                      : "bg-white border-orange-100"
+                  }`}
+                >
+                  <div className="text-4xl mb-2">{sign.emoji}</div>
+                  <h3 className="font-bold text-foreground">{sign.name}</h3>
+                  <p className="text-xs text-orange-600 mt-1 font-medium">2026</p>
+                  {sign.highlight && (
+                    <span className="inline-block mt-2 text-xs bg-orange-500 text-white px-2 py-0.5 rounded-full">
+                      Váš rok!
+                    </span>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </section>
+
           {/* Rok 2025 banner */}
           <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl p-6 md:p-8 mb-12 text-center">
             <div className="text-4xl mb-2">🐍</div>

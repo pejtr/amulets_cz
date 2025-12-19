@@ -14,6 +14,7 @@ import MagazineArticle from "./pages/MagazineArticle";
 import Quiz from "./pages/Quiz";
 import QuizResult from "./pages/QuizResult";
 import ChineseZodiac from "./pages/ChineseZodiac";
+import Prediction2026 from "./pages/Prediction2026";
 import CookieConsent from "./components/CookieConsent";
 import BackToTop from "./components/BackToTop";
 
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/kviz" component={Quiz} />
       <Route path="/kviz/vysledek/:symbol" component={QuizResult} />
       <Route path="/cinsky-horoskop" component={ChineseZodiac} />
+      <Route path="/predpoved-2026/:slug" component={Prediction2026} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
