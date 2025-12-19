@@ -636,3 +636,7 @@
 - [x] Přidat sdílení konkrétních sekcí (láska, kariéra, zdraví, finance)
 - [x] Přidat LinkedIn a Telegram k sdílecím tlačítkům
 - [x] Implementovat generování sdílecích obrázků pro Instagram
+
+## Email sdílení předpovědí (Dec 19, 2025)
+- [x] Přidat tlačítko pro sdílení předpovědi emailem
+- [x] Přidat email do modálního okna sdílení sekcí
