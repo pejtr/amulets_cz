@@ -102,6 +102,16 @@
   <url><loc>https://amulets.cz/ucel/vnitrni-hlas-a-intuice</loc><lastmod>2025-11-29</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://amulets.cz/ucel/transformace-v-zivote</loc><lastmod>2025-11-29</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   
+  <!-- Čínský horoskop -->
+  <url><loc>https://amulets.cz/cinsky-horoskop</loc><lastmod>2025-12-19</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  
+  <!-- 5 Elementů -->
+  <url><loc>https://amulets.cz/symbol/element-drevo</loc><lastmod>2025-12-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://amulets.cz/symbol/element-ohen</loc><lastmod>2025-12-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://amulets.cz/symbol/element-zeme</loc><lastmod>2025-12-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://amulets.cz/symbol/element-kov</loc><lastmod>2025-12-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://amulets.cz/symbol/element-voda</loc><lastmod>2025-12-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  
   <!-- Magazín -->
   <url><loc>https://amulets.cz/magazin/mysterium-modreho-lotosu</loc><lastmod>2025-11-29</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://amulets.cz/magazin/aromaterapie-esence</loc><lastmod>2025-11-29</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>

@@ -548,3 +548,14 @@
 
 ## Opravy bugů (Dec 19, 2025)
 - [x] Opravit formátování Markdown na stránkách znamení (## a ### se zobrazují jako text)
+
+## Čínský horoskop - rozšíření (Dec 19, 2025)
+- [x] Interaktivní kalkulačka čínského znamení a elementu
+- [x] Tabulka kompatibility čínských znamení
+- [x] Stránka Element Dřevo
+- [x] Stránka Element Oheň
+- [x] Stránka Element Země
+- [x] Stránka Element Kov
+- [x] Stránka Element Voda
+- [x] Vygenerovat ilustrace pro 5 elementů
+- [x] Aktualizovat sitemap.xml

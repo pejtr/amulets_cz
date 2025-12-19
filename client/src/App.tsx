@@ -13,6 +13,7 @@ import Magazine from "./pages/Magazine";
 import MagazineArticle from "./pages/MagazineArticle";
 import Quiz from "./pages/Quiz";
 import QuizResult from "./pages/QuizResult";
+import ChineseZodiac from "./pages/ChineseZodiac";
 import CookieConsent from "./components/CookieConsent";
 import BackToTop from "./components/BackToTop";
 
@@ -34,6 +35,7 @@ function Router() {
       <Route path="/magazin/:slug" component={MagazineArticle} />
       <Route path="/kviz" component={Quiz} />
       <Route path="/kviz/vysledek/:symbol" component={QuizResult} />
+      <Route path="/cinsky-horoskop" component={ChineseZodiac} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

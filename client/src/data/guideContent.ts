@@ -2665,4 +2665,265 @@ Prase exceluje v oborech vyžadujících **péči a kreativitu**: gastronomie, z
 
 ➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
   },
+  // 5 Elementů čínské astrologie
+  {
+    slug: "element-drevo",
+    title: "Element Dřevo",
+    image: "/images/elements/drevo.webp",
+    metaTitle: "🌳 Element Dřevo v čínské astrologii | Vlastnosti a vliv",
+    metaDescription: "Element Dřevo v čínském horoskopu: růst, kreativita, flexibilita. Jak Dřevo ovlivňuje osobnost a jak s ním pracovat ✓",
+    content: `**Element Dřevo** (木 Mù) je prvním z pěti elementů čínské astrologie. Symbolizuje **růst, kreativitu a expanzi**.
+
+## Vlastnosti elementu Dřevo
+
+### Pozitivní vlastnosti
+• **Kreativita** - neustálá touha tvořit a inovovat
+• **Flexibilita** - schopnost přizpůsobit se změnám
+• **Růst** - neustálý osobní rozvoj
+• **Empatie** - hluboké porozumění druhým
+• **Velkorysost** - ochota sdílet a pomáhat
+
+### Negativní vlastnosti
+• Tendence k přílišné expanzi
+• Netrpělivost a impulzivnost
+• Občas přílišná idealismus
+
+## Dřevo a ročníky
+
+Dřevěné roky končí číslicemi **4 a 5**:
+• 1924, 1925, 1934, 1935, 1944, 1945...
+• 1984, 1985, 1994, 1995, 2004, 2005...
+• **2024, 2025** - aktuální Dřevěný cyklus
+
+## Kameny pro element Dřevo
+
+• **Smaragd** - posiluje růst a obnovu
+• **Malachit** - podporuje transformaci
+• **Zelený aventurín** - přitáhuje štěstí
+• **Jadeit** - harmonizuje energii
+
+## Interakce s ostatními elementy
+
+• **Dřevo živí Oheň** - kreativita zapaluje vášeň
+• **Voda živí Dřevo** - moudrost podporuje růst
+• **Dřevo oslabuje Zemi** - kořeny čerpají živiny
+• **Kov řeže Dřevo** - struktura omezuje růst
+
+## Jak posílit element Dřevo
+
+• Obklopte se **zelenými rostlinami**
+• Trávte čas v **přírodě**
+• Používejte **dřevěné materiály** v domácnosti
+• Noste **zelené kameny** a oděvy
+
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
+  {
+    slug: "element-ohen",
+    title: "Element Oheň",
+    image: "/images/elements/ohen.webp",
+    metaTitle: "🔥 Element Oheň v čínské astrologii | Vlastnosti a vliv",
+    metaDescription: "Element Oheň v čínském horoskopu: vášeň, energie, transformace. Jak Oheň ovlivňuje osobnost a jak s ním pracovat ✓",
+    content: `**Element Oheň** (火 Huǒ) je druhým z pěti elementů čínské astrologie. Symbolizuje **vášeň, energii a transformaci**.
+
+## Vlastnosti elementu Oheň
+
+### Pozitivní vlastnosti
+• **Vášeň** - intenzivní emoce a nadšení
+• **Charisma** - přirozená přitažlivost
+• **Odvaha** - nebojí se rizika
+• **Inspirace** - schopnost motivovat ostatní
+• **Dynamika** - neustálý pohyb a akce
+
+### Negativní vlastnosti
+• Impulzivnost a výbuchovost
+• Netrpělivost
+• Tendence k vyhoření
+
+## Oheň a ročníky
+
+Ohnivé roky končí číslicemi **6 a 7**:
+• 1926, 1927, 1936, 1937, 1946, 1947...
+• 1986, 1987, 1996, 1997, 2006, 2007...
+• 2016, 2017, 2026, 2027...
+
+## Kameny pro element Oheň
+
+• **Karneol** - posiluje vášeň a energii
+• **Rubín** - symbol lásky a vitality
+• **Granát** - oživuje životní sílu
+• **Citrín** - přináší radost a optimismus
+
+## Interakce s ostatními elementy
+
+• **Oheň živí Zemi** - vášeň vytváří stabilitu
+• **Dřevo živí Oheň** - kreativita zapaluje vášeň
+• **Oheň oslabuje Kov** - teplo taví strukturu
+• **Voda hasí Oheň** - emoce tlumí vášeň
+
+## Jak posílit element Oheň
+
+• Zapalujte **svíčky** a pracujte s ohněm
+• Noste **červené a oranžové** barvy
+• Praktikujte **aktivní sporty**
+• Vyjadřujte své **emoce** otevřeně
+
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
+  {
+    slug: "element-zeme",
+    title: "Element Země",
+    image: "/images/elements/zeme.webp",
+    metaTitle: "🌍 Element Země v čínské astrologii | Vlastnosti a vliv",
+    metaDescription: "Element Země v čínském horoskopu: stabilita, praktickost, péče. Jak Země ovlivňuje osobnost a jak s ní pracovat ✓",
+    content: `**Element Země** (土 Tǔ) je třetím z pěti elementů čínské astrologie. Symbolizuje **stabilitu, praktickost a péči**.
+
+## Vlastnosti elementu Země
+
+### Pozitivní vlastnosti
+• **Stabilita** - pevný základ pro ostatní
+• **Praktickost** - reálný pohled na svět
+• **Spolehlivost** - vždy dodrží slovo
+• **Trpělivost** - schopnost čekat na výsledky
+• **Péče** - starostlivost o druhé
+
+### Negativní vlastnosti
+• Tvrdohlavost a rigidita
+• Přílišná opatrnost
+• Tendence k pesimismu
+
+## Země a ročníky
+
+Zemské roky končí číslicemi **8 a 9**:
+• 1928, 1929, 1938, 1939, 1948, 1949...
+• 1988, 1989, 1998, 1999, 2008, 2009...
+• 2018, 2019, 2028, 2029...
+
+## Kameny pro element Země
+
+• **Tygří oko** - uzemnění a ochrana
+• **Jaspis** - stabilita a vytrvalost
+• **Obsidián** - očista a transformace
+• **Křemen** - zesilování energie
+
+## Interakce s ostatními elementy
+
+• **Země živí Kov** - stabilita vytváří strukturu
+• **Oheň živí Zemi** - vášeň vytváří stabilitu
+• **Země oslabuje Vodu** - absorbuje tekutost
+• **Dřevo oslabuje Zemi** - kořeny čerpají živiny
+
+## Jak posílit element Země
+
+• Pracujte se **zeminou** - zahradničení, keramika
+• Používejte **hnědé a žluté** barvy
+• Obklopte se **přírodními materiály**
+• Praktikujte **uzemnění** - chůze naboso
+
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
+  {
+    slug: "element-kov",
+    title: "Element Kov",
+    image: "/images/elements/kov.webp",
+    metaTitle: "⚙️ Element Kov v čínské astrologii | Vlastnosti a vliv",
+    metaDescription: "Element Kov v čínském horoskopu: síla, rozhodnost, spravedlnost. Jak Kov ovlivňuje osobnost a jak s ním pracovat ✓",
+    content: `**Element Kov** (金 Jīn) je čtvrtým z pěti elementů čínské astrologie. Symbolizuje **sílu, rozhodnost a spravedlnost**.
+
+## Vlastnosti elementu Kov
+
+### Pozitivní vlastnosti
+• **Síla** - vnitřní i vnější odolnost
+• **Rozhodnost** - jasné a rychlé rozhodování
+• **Spravedlnost** - smysl pro férovost
+• **Disciplína** - schopnost dodržovat pravidla
+• **Organizovanost** - systematický přístup
+
+### Negativní vlastnosti
+• Rigidita a nepřizpůsobivost
+• Kritickost vůči sobě i druhým
+• Emocionální chlad
+
+## Kov a ročníky
+
+Kovové roky končí číslicemi **0 a 1**:
+• 1930, 1931, 1940, 1941, 1950, 1951...
+• 1990, 1991, 2000, 2001, 2010, 2011...
+• 2020, 2021, 2030, 2031...
+
+## Kameny pro element Kov
+
+• **Křišťál** - čistota a jasnost
+• **Pyrit** - hojnost a ochrana
+• **Hematit** - uzemnění a síla
+• **Diamant** - čistota a nezlomnost
+
+## Interakce s ostatními elementy
+
+• **Kov živí Vodu** - struktura podporuje tok
+• **Země živí Kov** - stabilita vytváří strukturu
+• **Kov oslabuje Dřevo** - řeže a omezuje růst
+• **Oheň oslabuje Kov** - teplo taví strukturu
+
+## Jak posílit element Kov
+
+• Obklopte se **kovovými předměty**
+• Používejte **bílé a stříbrité** barvy
+• Praktikujte **disciplínu** a rutinu
+• Noste **kovové šperky** a krystaly
+
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
+  {
+    slug: "element-voda",
+    title: "Element Voda",
+    image: "/images/elements/voda.webp",
+    metaTitle: "💧 Element Voda v čínské astrologii | Vlastnosti a vliv",
+    metaDescription: "Element Voda v čínském horoskopu: moudrost, flexibilita, intuice. Jak Voda ovlivňuje osobnost a jak s ní pracovat ✓",
+    content: `**Element Voda** (水 Shuǐ) je pátým z pěti elementů čínské astrologie. Symbolizuje **moudrost, flexibilitu a intuici**.
+
+## Vlastnosti elementu Voda
+
+### Pozitivní vlastnosti
+• **Moudrost** - hluboké pochopení života
+• **Flexibilita** - schopnost plynout se změnami
+• **Intuice** - silné vnitřní vedení
+• **Empatie** - hluboké porozumění emocím
+• **Komunikace** - schopnost navázat spojení
+
+### Negativní vlastnosti
+• Přílišná citlivost
+• Tendence k úniku od reality
+• Nerozhodnost a pasivita
+
+## Voda a ročníky
+
+Vodní roky končí číslicemi **2 a 3**:
+• 1932, 1933, 1942, 1943, 1952, 1953...
+• 1992, 1993, 2002, 2003, 2012, 2013...
+• 2022, 2023, 2032, 2033...
+
+## Kameny pro element Voda
+
+• **Akvamarín** - klid a jasnost
+• **Měsíční kámen** - intuice a emoce
+• **Lapis lazuli** - moudrost a pravda
+• **Ametyst** - duchovní ochrana
+
+## Interakce s ostatními elementy
+
+• **Voda živí Dřevo** - moudrost podporuje růst
+• **Kov živí Vodu** - struktura podporuje tok
+• **Voda oslabuje Oheň** - hasí vášeň
+• **Země oslabuje Vodu** - absorbuje tekutost
+
+## Jak posílit element Voda
+
+• Trávte čas **u vody** - moře, jezera, řeky
+• Používejte **modré a černé** barvy
+• Praktikujte **meditaci** a introspekci
+• Pijte dostatek **čisté vody**
+
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
 ];
