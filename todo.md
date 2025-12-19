@@ -623,3 +623,6 @@
 
 ## Oprava H1 nadpisu (Dec 19, 2025)
 - [x] Opravit chybějící mezeru v H1 - "Posvátné symbolya amulety" → "Posvátné symboly a amulety"
+
+## Miniatury předpovědí 2026 na stránce čínského horoskopu (Dec 19, 2025)
+- [x] Přidat miniatury ilustrací k odkazům na předpovědi 2026

@@ -102,36 +102,45 @@ export default function ChineseZodiac() {
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {[
-                { name: "Krysa", emoji: "🐀", slug: "predpoved-2026-krysa" },
-                { name: "Bůvol", emoji: "🐂", slug: "predpoved-2026-buvol" },
-                { name: "Tygr", emoji: "🐅", slug: "predpoved-2026-tygr" },
-                { name: "Králík", emoji: "🐇", slug: "predpoved-2026-kralik" },
-                { name: "Drak", emoji: "🐉", slug: "predpoved-2026-drak" },
-                { name: "Had", emoji: "🐍", slug: "predpoved-2026-had" },
-                { name: "Kůň", emoji: "🐎", slug: "predpoved-2026-kun", highlight: true },
-                { name: "Koza", emoji: "🐏", slug: "predpoved-2026-koza" },
-                { name: "Opice", emoji: "🐒", slug: "predpoved-2026-opice" },
-                { name: "Kohout", emoji: "🐓", slug: "predpoved-2026-kohout" },
-                { name: "Pes", emoji: "🐕", slug: "predpoved-2026-pes" },
-                { name: "Prase", emoji: "🐖", slug: "predpoved-2026-prase" },
+                { name: "Krysa", emoji: "🐀", slug: "predpoved-2026-krysa", image: "/images/predictions-2026/krysa-2026.webp" },
+                { name: "Bůvol", emoji: "🐂", slug: "predpoved-2026-buvol", image: "/images/predictions-2026/buvol-2026.webp" },
+                { name: "Tygr", emoji: "🐅", slug: "predpoved-2026-tygr", image: "/images/predictions-2026/tygr-2026.webp" },
+                { name: "Králík", emoji: "🐇", slug: "predpoved-2026-kralik", image: "/images/predictions-2026/kralik-2026.webp" },
+                { name: "Drak", emoji: "🐉", slug: "predpoved-2026-drak", image: "/images/predictions-2026/drak-2026.webp" },
+                { name: "Had", emoji: "🐍", slug: "predpoved-2026-had", image: "/images/predictions-2026/had-2026.webp" },
+                { name: "Kůň", emoji: "🐎", slug: "predpoved-2026-kun", image: "/images/predictions-2026/kun-2026.webp", highlight: true },
+                { name: "Koza", emoji: "🐏", slug: "predpoved-2026-koza", image: "/images/predictions-2026/koza-2026.webp" },
+                { name: "Opice", emoji: "🐒", slug: "predpoved-2026-opice", image: "/images/predictions-2026/opice-2026.webp" },
+                { name: "Kohout", emoji: "🐓", slug: "predpoved-2026-kohout", image: "/images/predictions-2026/kohout-2026.webp" },
+                { name: "Pes", emoji: "🐕", slug: "predpoved-2026-pes", image: "/images/predictions-2026/pes-2026.webp" },
+                { name: "Prase", emoji: "🐖", slug: "predpoved-2026-prase", image: "/images/predictions-2026/prase-2026.webp" },
               ].map((sign) => (
                 <Link
                   key={sign.name}
                   href={`/predpoved-2026/${sign.slug}`}
-                  className={`rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border ${
+                  className={`rounded-xl overflow-hidden text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border ${
                     sign.highlight 
-                      ? "bg-gradient-to-br from-orange-100 to-red-100 border-orange-300" 
+                      ? "bg-gradient-to-br from-orange-100 to-red-100 border-orange-300 ring-2 ring-orange-400" 
                       : "bg-white border-orange-100"
                   }`}
                 >
-                  <div className="text-4xl mb-2">{sign.emoji}</div>
-                  <h3 className="font-bold text-foreground">{sign.name}</h3>
-                  <p className="text-xs text-orange-600 mt-1 font-medium">2026</p>
-                  {sign.highlight && (
-                    <span className="inline-block mt-2 text-xs bg-orange-500 text-white px-2 py-0.5 rounded-full">
-                      Váš rok!
-                    </span>
-                  )}
+                  <div className="relative aspect-square overflow-hidden">
+                    <img 
+                      src={sign.image} 
+                      alt={`${sign.name} - Předpověď 2026`}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                      loading="lazy"
+                    />
+                    {sign.highlight && (
+                      <div className="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-lg">
+                        🔥 Váš rok!
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-3">
+                    <h3 className="font-bold text-foreground">{sign.name}</h3>
+                    <p className="text-xs text-orange-600 font-medium">Horoskop 2026</p>
+                  </div>
                 </Link>
               ))}
             </div>
