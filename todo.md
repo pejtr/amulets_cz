@@ -640,3 +640,8 @@
 ## Email sdílení předpovědí (Dec 19, 2025)
 - [x] Přidat tlačítko pro sdílení předpovědi emailem
 - [x] Přidat email do modálního okna sdílení sekcí
+
+## Oprava markdown parsování v magazínu (Dec 19, 2025)
+- [x] Opravit zobrazení ## nadpisů - zobrazují se jako surový text místo renderovaných nadpisů
+- [x] Přidat podporu pro ### podnadpisy
+- [x] Přidat podporu pro > citace (blockquotes)

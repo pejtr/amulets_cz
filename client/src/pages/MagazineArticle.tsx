@@ -158,7 +158,27 @@ export default function MagazineArticle() {
           <div className="max-w-4xl mx-auto mt-12">
             <div className="prose prose-lg max-w-none">
               {article.content.split('\n\n').map((paragraph, index) => {
-                // Nadpis H2
+                // Nadpis H2 s markdown syntaxí ##
+                if (paragraph.trim().startsWith('## ')) {
+                  const title = paragraph.trim().replace(/^## /, '');
+                  return (
+                    <h2 key={index} className="text-2xl md:text-3xl font-bold mt-12 mb-6 text-foreground">
+                      {title}
+                    </h2>
+                  );
+                }
+
+                // Nadpis H3 s markdown syntaxí ###
+                if (paragraph.trim().startsWith('### ')) {
+                  const title = paragraph.trim().replace(/^### /, '');
+                  return (
+                    <h3 key={index} className="text-xl md:text-2xl font-semibold mt-8 mb-4 text-foreground">
+                      {title}
+                    </h3>
+                  );
+                }
+
+                // Nadpis H2 s ** syntaxí (zpětná kompatibilita)
                 if (paragraph.startsWith('**') && paragraph.endsWith('**') && !paragraph.includes('.')) {
                   const title = paragraph.replace(/\*\*/g, '');
                   return (
@@ -223,6 +243,20 @@ export default function MagazineArticle() {
                         );
                       })}
                     </ol>
+                  );
+                }
+
+                // Citace/blockquote s > syntaxí
+                if (paragraph.trim().startsWith('> ')) {
+                  const quoteText = paragraph.trim().replace(/^> /, '');
+                  return (
+                    <blockquote key={index} className="border-l-4 border-[#D4AF37] pl-6 py-2 my-6 italic text-muted-foreground bg-accent/5 rounded-r-lg">
+                      <p className="text-lg">
+                        {quoteText.split('**').map((part, i) => 
+                          i % 2 === 0 ? part : <strong key={i} className="text-foreground font-semibold">{part}</strong>
+                        )}
+                      </p>
+                    </blockquote>
                   );
                 }
 
