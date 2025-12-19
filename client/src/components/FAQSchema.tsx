@@ -238,6 +238,90 @@ export const symbolFAQs: Record<string, FAQItem[]> = {
       answer: "Triskelion je tvořen třemi spirálami vycházejícími ze středu, zatímco triquetra je tvořena třemi propojenými oblouky. Oba symboly reprezentují trojjedinost, ale triskelion zdůrazňuje pohyb a cyklus, triquetra spíše jednotu."
     }
   ],
+  "kameny-podle-znameni": [
+    {
+      question: "Jaký kámen patří k mému znamení?",
+      answer: "Každé znamení má své kameny: Beran - Karneol, Býk - Růženín, Blíženci - Citrín, Rak - Měsíční kámen, Lev - Sluneční kámen, Panna - Jaspis, Váhy - Růženín, Štír - Obsidián, Střelec - Tyrkys, Kozoroh - Granát, Vodnář - Ametyst, Ryby - Ametyst."
+    },
+    {
+      question: "Jak vybrat kámen podle znamení zvěrokruhu?",
+      answer: "Určete své sluneční znamení podle data narození. Můžete zvážit i ascendent. Nejdůležitější je však intuice - kámen, který vás přitahuje, je pro vás správný."
+    },
+    {
+      question: "Mohu nosit kámen jiného znamení?",
+      answer: "Ano, můžete nosit jakýkoli kámen bez ohledu na znamení. Kameny podle znamení jsou doporučení, ne pravidla. Pokud vás přitahuje kámen jiného znamení, poslechněte svou intuici."
+    }
+  ],
+  "ametyst": [
+    {
+      question: "Jaké jsou účinky ametystu?",
+      answer: "Ametyst má mnoho účinků: duchovní ochrana, podpora meditace, posílení intuice, uklidňující účinky při stresu, zlepšení spánku a transformace negativní energie na pozitivní."
+    },
+    {
+      question: "Pro jaké znamení je ametyst?",
+      answer: "Ametyst je hlavní kámen pro Vodnáře a Ryby. Je také vhodný pro Pannu. Ametyst však může nosit kdokoli - je to univerzální duchovní kámen."
+    },
+    {
+      question: "Jak čistit a nabíjet ametyst?",
+      answer: "Ametyst čistěte pod tekoucí vodou nebo kouřem šalvěje. Nabíjejte měsíčním světlem. Vyhýbejte se přímému slunci - může vybělit fialovou barvu ametystu."
+    }
+  ],
+  "ruzenin": [
+    {
+      question: "Jaké jsou účinky růženínu?",
+      answer: "Růženín je kámen lásky s účinky: otevírá srdeční čakru, podporuje sebelásku, harmonizuje vztahy, léčí emocionální rány, pomáhá při odpuštění a podporuje zdraví pleti."
+    },
+    {
+      question: "Jak nosit růženín?",
+      answer: "Růženín noste jako náramek na levé ruce (blíže k srdci), jako přívěsek na krku blízko srdeční čakry, nebo ho umístěte v ložnici pro harmonii ve vztahu."
+    },
+    {
+      question: "Pro jaké znamení je růženín?",
+      answer: "Růženín je hlavní kámen pro Býka a Váhy. Je také velmi vhodný pro Raka. Růženín však může nosit kdokoli, kdo chce otevřít srdce lásce."
+    }
+  ],
+  "kristal": [
+    {
+      question: "Jaké jsou účinky křišťálu?",
+      answer: "Křišťál je univerzální kámen s účinky: zesiluje energii ostatních kamenů a záměrů, přináší jasnost mysli, čistí energii, prohlubuje meditaci a harmonizuje všechny čakry."
+    },
+    {
+      question: "Jak naprogramovat křišťál?",
+      answer: "Křišťál naprogramujete tak, že ho nejprve očistíte, pak ho držíte v ruce, vizualizujete svůj záměr a 'vložíte' ho do kamene. Křišťál si záměr zapamatuje."
+    },
+    {
+      question: "Jak používat křišťál na krk?",
+      answer: "Křišťál na krk noste jako přívěsek pro každodenní jasnost a ochranu. Umístění blízko srdce harmonizuje energii. Křišťál také zesiluje účinky ostatních kamenů, které nosíte."
+    }
+  ],
+  "tygri-oko": [
+    {
+      question: "Jaké jsou účinky tygrího oka?",
+      answer: "Tygrí oko má účinky: ochrana před negativními energiemi, posílení sebevědomí, podpora odvahy, přináší jasnost mysli, uzemnění a přitahuje prosperitu."
+    },
+    {
+      question: "Jak nosit tygrí oko?",
+      answer: "Tygrí oko noste jako náramek na pravé ruce pro ochranu, jako přívěsek pro sebevědomí, v peněžence pro prosperitu, nebo na pracovním stole pro jasnost a rozhodnost."
+    },
+    {
+      question: "Pro jaké znamení je tygrí oko?",
+      answer: "Tygrí oko je hlavní kámen pro Lva, Blížence a Kozoroha. Je však vhodný pro každého, kdo potřebuje posílit sebevědomí a ochranu."
+    }
+  ],
+  "posvatna-geometrie": [
+    {
+      question: "Co je posvátná geometrie?",
+      answer: "Posvátná geometrie je studium geometrických vzorů, které se opakují v celé přírodě a vesmíru. Tyto vzory jsou považovány za základní stavební kameny reality - od spiraly galaxií po strukturu DNA."
+    },
+    {
+      question: "Jaké jsou hlavní symboly posvátné geometrie?",
+      answer: "Hlavní symboly posvátné geometrie jsou: Květ života (19 překrývajících se kruhů), Metatronova krychle (obsahuje 5 Platonských těles), Vesica Piscis (dva překrývající se kruhy), Sri Yantra (9 propletených trojúhelníků) a Merkaba."
+    },
+    {
+      question: "Jak používat posvátnou geometrii?",
+      answer: "Posvátnou geometrii můžete používat při meditaci (soustředěte se na symbol), nosit jako šperky pro ochranu a harmonii, umístit v domě pro harmonizaci energie, nebo kreslit symboly pro aktivaci intuice."
+    }
+  ],
   "symbol-lasky": [
     {
       question: "Jaký je nejsilnější symbol lásky?",

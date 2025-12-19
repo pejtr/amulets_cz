@@ -564,49 +564,167 @@ Kámen **pomáhá při komunikaci**, podporuje sebevyjádření a odvahu mluvit 
     slug: "ametyst",
     title: "Ametyst",
     image: "/images/stones/ametyst.webp",
-    metaTitle: "Ametyst - Kámen duchovní ochrany | Amulets.cz",
-    metaDescription: "Ametyst je mocný kámen duchovní ochrany a transformace. Podporuje meditaci, intuici a vnitřní klid.",
-    content: `**Ametyst** je kámen **duchovní ochrany a transformace**. Jeho fialová barva je spojena s korunní čakrou a duchovním probuzením.
+    metaTitle: "💜 Ametyst - Význam, účinky a použití kámene | Amulets.cz",
+    metaDescription: "Ametyst význam a účinky: duchovní ochrana, meditace, intuice. Pro jaké znamení je ametyst? Vodnář, Ryby, Panna. Kompletní průvodce ✓",
+    content: `**Ametyst** je jeden z nejpopulárnějších léčivých kamenů. Jeho fialová barva je spojena s **korunní čakrou a duchovním probuzením**.
 
-Tento kámen **chrání před negativními energiemi**, podporuje meditaci a pomáhá při dosahování vyšších stavů vědomí. Ametyst je známý svou schopností **transformovat negativitu na pozitivní energii**.
+## Ametyst význam
 
-Kámen **podporuje intuici**, pomáhá při duchovní práci a přináší vnitřní klid. Je nástrojem pro **očistu mysli**, překonání závislostí a dosažení duchovní rovnováhy.`,
+Ametyst je kámen **duchovní ochrany a transformace**. Název pochází z řeckého "amethystos" - "ne opilý". Staří Řekové věřili, že chrání před opilostí.
+
+## Ametyst účinky
+
+• **Duchovní ochrana** - chrání před negativními energiemi
+• **Meditace** - prohlubuje meditační stavy
+• **Intuice** - posíluje šestý smysl
+• **Klid mysli** - uklidnění při stresu a úzkosti
+• **Spánek** - pomáhá při nespavosti a nočních můrách
+• **Transformace** - přeměněuje negativitu na pozitivní energii
+
+## Ametyst znamení zvěrokruhu
+
+Ametyst je hlavní kámen pro:
+• **Vodnář** - podporuje inovaci a nezávislost
+• **Ryby** - posíluje intuici a duchovnost
+• **Panna** - přináší klid analytické mysli
+
+➡️ [Více o kamenech podle znamení](/symbol/kameny-podle-znameni)
+
+## Jak používat ametyst?
+
+• **Přívěsek na krk** - pro každodenní ochranu
+• **Pod polštář** - pro lepší spánek
+• **Při meditaci** - držte v ruce nebo položte na třetí oko
+• **V místnosti** - pro očistu energie prostoru
+
+## Ametyst čištění a nabíjení
+
+Ametyst čistěte pod tekoucí vodou nebo kouřem šalvěje. Nabíjejte měsíčním světlem - slunce může vybělit jeho barvu.`,
   },
   {
     slug: "ruzenin",
     title: "Růženín",
     image: "/images/stones/ruzenin.webp",
-    metaTitle: "Růženín - Kámen lásky a srdce | Amulets.cz",
-    metaDescription: "Růženín je kámen bezpodmínečné lásky a léčení srdce. Podporuje sebelásku, vztahy a emocionální rovnováhu.",
-    content: `**Růženín** je kámen **bezpodmínečné lásky a léčení srdce**. Jeho jemná růžová barva vyzařuje energii něhy, soucitu a emocionálního uzdravení.
+    metaTitle: "💗 Růženín - Význam, účinky a použití kámene lásky",
+    metaDescription: "Růženín účinky a význam: kámen lásky, srdeční čakra, sebeláska. Růženín náramek, přívěsek, náhrdelník. Kompletní průvodce ✓",
+    content: `**Růženín** je nejznámější **kámen lásky**. Jeho jemná růžová barva vyzařuje energii něhy, soucitu a emocionálního uzdravení.
 
-Tento kámen **otevírá srdeční čakru**, podporuje sebelásku a pomáhá léčit emocionální rány. Růženín učí, že pravá láska začíná u sebe sama.
+## Růženín význam
 
-Kámen **harmonizuje vztahy**, přináší mír do rodiny a podporuje odpuštění. Je nástrojem pro **emocionální rovnováhu**, léčení traumat a otevření srdce lásce.`,
+Růženín je kámen **bezpodmínečné lásky a léčení srdce**. Je spojen se srdeční čakrou a otevírá srdce lásce - k sobě i k druhým.
+
+## Růženín účinky
+
+• **Sebeláska** - učí milovat sebe sama
+• **Vztahy** - harmonizuje partnerské a rodinné vztahy
+• **Emocionální léčení** - léčí staré rány a traumata
+• **Odpuštění** - pomáhá odpustit sobě i druhým
+• **Klid** - přináší vnitřní mír a vyrovnanost
+• **Pleť** - podporuje zdraví a krásu pleti
+
+## Růženín znamení zvěrokruhu
+
+Růženín je hlavní kámen pro:
+• **Býk** - podporuje lásku a stabilitu
+• **Váhy** - přináší harmonii
+• **Rak** - chrání citlivé srdce
+
+➡️ [Více o kamenech podle znamení](/symbol/kameny-podle-znameni)
+
+## Jak používat růženín?
+
+• **Růženín náramek** - noste na levé ruce blíž k srdci
+• **Růženín přívěsek** - na krku blízko srdeční čakry
+• **V ložnici** - pro harmonii ve vztahu
+• **Při meditaci** - položte na srdce
+
+## Růženín čištění
+
+Růženín čistěte pod tekoucí vodou nebo v měsíčním světle. Vyhybejte se přímému slunci - může vybělit barvu.`,
   },
   {
     slug: "tygri-oko",
-    title: "Tygří oko",
+    title: "Tygrí oko",
     image: "/images/stones/tygriooko.webp",
-    metaTitle: "Tygří oko - Kámen síly a ochrany | Amulets.cz",
-    metaDescription: "Tygří oko je mocný ochranný kámen přinášející sílu, odvahu a jasnost mysli. Podporuje sebevědomí a rozhodnost.",
-    content: `**Tygří oko** je kámen **síly, ochrany a odvahy**. Jeho zlatohnědá barva s charakteristickým leskem připomíná oko tygra - symbolu síly a bdělosti.
+    metaTitle: "🐯 Tygrí oko - Význam, účinky a použití kámene",
+    metaDescription: "Tygrí oko účinky a význam: ochrana, síla, odvaha, sebevědomí. Tygrí oko náramek, přívěsek. Kompletní průvodce ✓",
+    content: `**Tygrí oko** je mocný **ochranný kámen**. Jeho zlatohnědá barva s charakteristickým leskem připomíná oko tygra - symbolu síly a bdělosti.
 
-Tento kámen **chrání před negativními energiemi**, posiluje sebevědomí a pomáhá při rozhodování. Tygří oko **uzemnuje a centruje**, přináší jasnost mysli.
+## Tygrí oko význam
 
-Kámen **podporuje odvahu**, pomáhá překonávat strach a posiluje vůli. Je nástrojem pro **ochranu**, manifestaci cílů a dosažení úspěchu.`,
+Tygrí oko je kámen **síly, ochrany a odvahy**. Pomáhá vidět jasně i v těžkých situacích - jako tygr vidí v noci.
+
+## Tygrí oko účinky
+
+• **Ochrana** - chrání před negativními energiemi a závistí
+• **Sebevědomí** - posiluje víru v sebe sama
+• **Odvaha** - pomáhá překonávat strach
+• **Jasnost** - přináší jasné myšlení a rozhodnost
+• **Uzemnění** - stabilizuje energii
+• **Prosperita** - přitahuje hojnost a úspěch
+
+## Tygrí oko znamení zvěrokruhu
+
+Tygrí oko je hlavní kámen pro:
+• **Lev** - posíluje královskou energii
+• **Blíženci** - pomáhá soustředit se
+• **Kozoroh** - podporuje úspěch
+
+➡️ [Více o kamenech podle znamení](/symbol/kameny-podle-znameni)
+
+## Jak používat tygrí oko?
+
+• **Tygrí oko náramek** - na pravé ruce pro ochranu
+• **Tygrí oko přívěsek** - pro každodenní sebevědomí
+• **V peněžence** - pro přitahování prosperity
+• **Na pracovním stole** - pro jasnost a rozhodnost
+
+## Tygrí oko čištění
+
+Tygrí oko čistěte pod tekoucí vodou nebo slunečním světlem. Je odolný a snese i přímé slunce.`,
   },
   {
     slug: "kristal",
     title: "Křišťál",
     image: "/images/stones/kristal.webp",
-    metaTitle: "Křišťál - Univerzální léčivý kámen | Amulets.cz",
-    metaDescription: "Křišťál je univerzální léčivý kámen zesilující energii. Podporuje jasnost, očistu a duchovní růst.",
-    content: `**Křišťál** (čirý křemen) je **univerzální léčivý kámen** a zesilova energií. Jeho čirá průhlednost symbolizuje čistotu a jasnost.
+    metaTitle: "💎 Křišťál - Význam, účinky a použití univerzálního kámene",
+    metaDescription: "Křišťál význam a účinky: univerzální léčivý kámen, zesilovač energie. Křišťál na krk, přívěsek, náhrdelník. Kompletní průvodce ✓",
+    content: `**Křišťál** (čirý křemen) je **nejuniversalnější léčivý kámen**. Jeho čirá průhlednost symbolizuje čistotu, jasnost a neomezený potenciál.
 
-Tento kámen **zesiluje energii** ostatních kamenů, myšlenek a záměrů. Křišťál lze naprogramovat na jakýkoli účel - je to nejuniverzálnější kámen v léčitelství.
+## Křišťál význam
 
-Kámen **podporuje jasnost mysli**, pomáhá při meditaci a duchovní práci. Je nástrojem pro **očistu energie**, harmonizaci čaker a propojení s vyššími dimenzemi.`,
+Křišťál je **mistr mezi kameny** - zesiluje energii všeho, s čím přijde do kontaktu. Lze ho naprogramovat na jakýkoli účel.
+
+## Křišťál účinky
+
+• **Zesilovač energie** - zesiluje energii ostatních kamenů i záměrů
+• **Jasnost mysli** - přináší mentální jasnost a soustředění
+• **Očista** - čistí energii prostoru i aury
+• **Meditace** - prohlubuje meditační stavy
+• **Harmonizace čaker** - vyvažuje všechny čakry
+• **Programování** - lze naprogramovat na konkrétní účel
+
+## Křišťál znamení zvěrokruhu
+
+Křišťál je univerzální a vhodný pro všechna znamení. Zvláště vhodný pro:
+• **Lev** - zesiluje kreativitu
+• **Kozoroh** - podporuje cíle
+• **Vodnář** - posíluje inovace
+
+➡️ [Více o kamenech podle znamení](/symbol/kameny-podle-znameni)
+
+## Jak používat křišťál?
+
+• **Křišťál na krk** - pro každodenní jasnost a ochranu
+• **Křišťál přívěsek** - blízko srdce pro harmonii
+• **Křišťál náhrdelník** - pro zesilení osobní energie
+• **Při meditaci** - držte v ruce nebo položte na čakru
+• **V místnosti** - pro očistu a harmonizaci prostoru
+
+## Křišťál čištění a programování
+
+**Čištění:** Pod tekoucí vodou, měsíčním světlem, kouřem šalvěje.
+**Programování:** Držte křišťál v ruce, vizualizujte svůj záměr a "vložte" ho do kamene.`,
   },
   {
     slug: "obsidian",
@@ -994,7 +1112,13 @@ Každý symbol má svou specifickou energii. Při výběru se řiďte těmito z�
 
 **Metatronova krychle** je považována za nejsilnější ochranný symbol, protože obsahuje všech 5 platónských těles. Pro začátečníky však doporučujeme **Ruku Fatimy** nebo **Horovo oko** - jsou univerzální a účinné pro většinu lidí.
 
-➡️ [Zjistěte více o nejsilnějším ochranném symbolu](/symbol/nejsilnejsi-ochranny-symbol)`,
+➡️ [Zjistěte více o nejsilnějším ochranném symbolu](/symbol/nejsilnejsi-ochranny-symbol)
+
+## Související stránky
+
+➡️ [Symbol lásky](/symbol/symbol-lasky) - symboly lásky a harmonie ve vztazích
+➡️ [Posvátná geometrie](/symbol/posvatna-geometrie) - geometrické vzory vesmíru
+➡️ [Kameny podle znamení](/symbol/kameny-podle-znameni) - ochranné kameny pro vaše znamení`,
   },
   {
     slug: "nejsilnejsi-ochranny-symbol",
@@ -1118,7 +1242,7 @@ Noste je jako **amulety** pro posílení sebevědomí, umístěte je do **pracov
   {
     slug: "symbol-lasky",
     title: "Symbol lásky",
-    image: "/images/symbols/jin-jang.webp",
+    image: "/images/symbols/triquetra.webp",
     metaTitle: "❤️ Symbol lásky - Kompletní průvodce symboly lásky a vztahů",
     metaDescription: "Jaký je nejsilnější symbol lásky? Egyptské, keltské a univerzální symboly lásky. Ankh, Triquetra, Srdce, Jin Jang. Kompletní přehled ✓",
     content: `**Symboly lásky** provázejí lidstvo od pradávna. Každá kultura vytvořila své vlastní znaky reprezentující **lásku, vášeň, oddanost a spojení duší**. Tato stránka je vaším **kompletním průvodcem** světem symbolů lásky.
@@ -1205,6 +1329,452 @@ Každý symbol má svou specifickou energii. Při výběru se řiďte těmito z�
 
 **Ankh** je považován za nejsilnější symbol věčné lásky, protože spojuje život, smrt a znovuzrození. Pro romantickou lásku je nejsilnější **Jin Jang** - symbolizuje dokonalou harmonii mezi partnery.
 
-Pro začátečníky doporučujeme **Triquetra** nebo **Nekonečno** - jsou univerzální a srozumitelné v moderní kultuře.`,
+Pro začátečníky doporučujeme **Triquetra** nebo **Nekonečno** - jsou univerzální a srozumitelné v moderní kultuře.
+
+## Související stránky
+
+➡️ [Symbol ochrany](/symbol/symbol-ochrany) - ochranné symboly pro vás a vaše blízké
+➡️ [Posvátná geometrie](/symbol/posvatna-geometrie) - geometrické vzory vesmíru
+➡️ [Růženín](/symbol/ruzenin) - kámen lásky pro srdeční čakru`,
+  },
+  {
+    slug: "kameny-podle-znameni",
+    title: "Kameny podle znamení",
+    image: "/images/symbols/jin-jang.webp",
+    metaTitle: "🔮 Kameny podle znamení zvěrokruhu - Kompletní průvodce 2025",
+    metaDescription: "Jaký kámen patří k vašemu znamení? Beran, Býk, Blíženci, Rak, Lev, Panna, Váhy, Štír, Střelec, Kozoroh, Vodnář, Ryby. Kompletní přehled ✓",
+    content: `**Kameny podle znamení zvěrokruhu** jsou léčivé krystaly, které rezonují s energií vašeho astrologického znamení. Každé znamení má své **ochranné kameny**, které posílují pozitivní vlastnosti a vyvažují slabiny.
+
+## Kameny pro všechna znamení zvěrokruhu
+
+### ♈ Beran (21.3. - 20.4.)
+**Hlavní kameny:** Karneol, Jaspis, Diamant
+**Vlastnosti:** Posílují odvahu, energii a vůdcovství
+➡️ [Více o kamenech pro Berana](/symbol/beran-kameny)
+
+### ♉ Býk (21.4. - 20.5.)
+**Hlavní kameny:** Růženín, Smaragd, Lapis lazuli
+**Vlastnosti:** Podporují lásku, stabilitu a prosperitu
+➡️ [Více o kamenech pro Býka](/symbol/byk-kameny)
+
+### ♊ Blíženci (21.5. - 21.6.)
+**Hlavní kameny:** Citrín, Tygrí oko, Achát
+**Vlastnosti:** Zlepšují komunikaci a flexibilitu
+➡️ [Více o kamenech pro Blížence](/symbol/blizenci-kameny)
+
+### ♋ Rak (22.6. - 22.7.)
+**Hlavní kameny:** Měsíční kámen, Perla, Smaragd
+**Vlastnosti:** Chrání emoce a podporují intuici
+➡️ [Více o kamenech pro Raka](/symbol/rak-kameny)
+
+### ♌ Lev (23.7. - 22.8.)
+**Hlavní kameny:** Sluneční kámen, Rubín, Citrín
+**Vlastnosti:** Posílují sebevědomí a kreativitu
+➡️ [Více o kamenech pro Lva](/symbol/lev-kameny)
+
+### ♍ Panna (23.8. - 22.9.)
+**Hlavní kameny:** Jaspis, Karneol, Safír
+**Vlastnosti:** Podporují analýzu a zdraví
+➡️ [Více o kamenech pro Pannu](/symbol/panna-kameny)
+
+### ♎ Váhy (23.9. - 23.10.)
+**Hlavní kameny:** Růženín, Opál, Lapis lazuli
+**Vlastnosti:** Přinášejí harmonii a rovnováhu
+➡️ [Více o kamenech pro Váhy](/symbol/vahy-kameny)
+
+### ♏ Štír (24.10. - 22.11.)
+**Hlavní kameny:** Obsidián, Topáz, Malachit
+**Vlastnosti:** Posílují transformaci a intuici
+➡️ [Více o kamenech pro Štíra](/symbol/stir-kameny)
+
+### ♐ Střelec (23.11. - 21.12.)
+**Hlavní kameny:** Tyrkys, Lapis lazuli, Topáz
+**Vlastnosti:** Podporují cestování a moudrost
+➡️ [Více o kamenech pro Střelce](/symbol/strelec-kameny)
+
+### ♑ Kozoroh (22.12. - 20.1.)
+**Hlavní kameny:** Granát, Ony, Obsidián
+**Vlastnosti:** Posílují disciplínu a úspěch
+➡️ [Více o kamenech pro Kozoroha](/symbol/kozoroh-kameny)
+
+### ♒ Vodnář (21.1. - 18.2.)
+**Hlavní kameny:** Ametyst, Akvamarín, Tyrkys
+**Vlastnosti:** Podporují inovaci a nezávislost
+➡️ [Více o kamenech pro Vodnáře](/symbol/vodnar-kameny)
+
+### ♓ Ryby (19.2. - 20.3.)
+**Hlavní kameny:** Ametyst, Akvamarín, Měsíční kámen
+**Vlastnosti:** Posílují intuici a duchovnost
+➡️ [Více o kamenech pro Ryby](/symbol/ryby-kameny)
+
+## Jak vybrat kámen podle znamení?
+
+1. **Určete své sluneční znamení** - podle data narození
+2. **Zvažte ascendent** - může ovlivnit výběr kamene
+3. **Poslechněte intuici** - kámen, který vás přitahuje, je správný
+4. **Kombinujte kameny** - hlavní kámen + podpůrné kameny
+
+## Jak používat kameny podle znamení?
+
+• **Noste jako šperky** - náramky, přívěsky, prsteny
+• **Meditujte s nimi** - držte kámen v ruce při meditaci
+• **Umístěte v prostoru** - na pracovní stůl nebo noční stolek
+• **Nabíjejte pravidelně** - měsíčním světlem nebo sluncem`,
+  },
+  {
+    slug: "panna-kameny",
+    title: "Panna kameny",
+    image: "/images/stones/jaspis.webp",
+    metaTitle: "♍ Panna kameny - Léčivé krystaly pro znamení Panny",
+    metaDescription: "Jaké kameny jsou nejlepší pro znamení Panny? Jaspis, Karneol, Safír. Kompletni přehled kamenů pro Pannu a jejich účinky ✓",
+    content: `**Panna** (23. srpna - 22. září) je zemské znamení ovládané Merkurem. Panny jsou známé svou **analytickou myslí, precizností a smyslem pro detail**.
+
+## Nejlepší kameny pro Pannu
+
+### 1. Jaspis
+**Jaspis** je hlavní kámen Panny. Posíluje **uzemnění, stabilitu a vytrvalost**. Pomáhá Pannám zůstat klidnými a soustreděnými.
+
+### 2. Karneol
+**Karneol** dodava Pannám **energii a motivaci**. Vyvažuje jejich tendenci k přílišné kritickosti a perfekcionismu.
+
+### 3. Safír
+**Safír** podporuje **moudrost a jasné myšlení**. Je ideální pro Panny, které pracují v analytických oborech.
+
+### 4. Amazonit
+**Amazonit** pomáhá Pannám **uvolnit stres** a přestat se příliš starat o detaily.
+
+### 5. Citrín
+**Citrín** přináší **optimismus a radost**, které Panny někdy potřebují.
+
+## Jak Panna používá kameny?
+
+• **Jaspis na pracovní stůl** - pro koncentraci
+• **Karneol jako náramek** - pro energii během dne
+• **Safír při důležitých rozhodnutích** - pro jasnost
+
+➡️ [Zpět na kameny podle znamení](/symbol/kameny-podle-znameni)`,
+  },
+  {
+    slug: "rak-kameny",
+    title: "Rak kameny",
+    image: "/images/stones/mesicni-kamen.webp",
+    metaTitle: "♋ Rak kameny - Léčivé krystaly pro znamení Raka",
+    metaDescription: "Jaké kameny jsou nejlepší pro znamení Raka? Měsíční kámen, Perla, Smaragd. Kompletní přehled kamenů pro Raka a jejich účinky ✓",
+    content: `**Rak** (22. června - 22. července) je vodní znamení ovládané Měsícem. Raci jsou známí svou **emocionální hloubkou, intuicí a pečující povahou**.
+
+## Nejlepší kameny pro Raka
+
+### 1. Měsíční kámen
+**Měsíční kámen** je hlavní kámen Raka. Posíluje **intuici, emocionální rovnováhu a ženské energie**. Perfektně rezonuje s lunární energií Raka.
+
+### 2. Perla
+**Perla** symbolizuje **čistotu a moudrost**. Chrání citlivé Raky před negativními emocemi.
+
+### 3. Smaragd
+**Smaragd** podporuje **lásku a loajalitu** - hodnoty, které jsou pro Raky zásadní.
+
+### 4. Růženín
+**Růženín** otevírá **srdeční čakru** a podporuje bezpodmínečnou lásku.
+
+### 5. Chalcedon
+**Chalcedon** přináší **klid a vyrovnanost** citlivým Rakům.
+
+## Jak Rak používá kameny?
+
+• **Měsíční kámen při úplnku** - pro posílení intuice
+• **Perla jako šperk** - pro každodenní ochranu
+• **Růženín v ložnici** - pro harmonické vztahy
+
+➡️ [Zpět na kameny podle znamení](/symbol/kameny-podle-znameni)`,
+  },
+  {
+    slug: "stir-kameny",
+    title: "Štír kameny",
+    image: "/images/stones/obsidian.webp",
+    metaTitle: "♏ Štír kameny - Léčivé krystaly pro znamení Štíra",
+    metaDescription: "Jaké kameny jsou nejlepší pro znamení Štíra? Obsidián, Topáz, Malachit. Kompletní přehled kamenů pro Štíra a jejich účinky ✓",
+    content: `**Štír** (24. října - 22. listopadu) je vodní znamení ovládané Plutem a Marsem. Štíři jsou známí svou **intenzitou, vášní a transformační silou**.
+
+## Nejlepší kameny pro Štíra
+
+### 1. Obsidián
+**Obsidián** je hlavní kámen Štíra. Posíluje **ochranu, transformaci a odhaluje pravdu**. Pomáhá Štírům zpracovat hluboké emoce.
+
+### 2. Topáz
+**Topáz** přináší **jasnost a moudrost**. Pomáhá Štírům vidět věci z různých úhlů.
+
+### 3. Malachit
+**Malachit** podporuje **transformaci a růst**. Je ideální pro Štíry procházející změnami.
+
+### 4. Labradorit
+**Labradorit** posíluje **intuici a psychické schopnosti** Štírů.
+
+### 5. Granát
+**Granát** dodava **vášeň a energii** pro dosažení cílů.
+
+## Jak Štír používá kameny?
+
+• **Obsidián při meditaci** - pro hlubokou transformaci
+• **Topáz při rozhodování** - pro jasnost
+• **Malachit na srdci** - pro emocionální léčení
+
+➡️ [Zpět na kameny podle znamení](/symbol/kameny-podle-znameni)`,
+  },
+  {
+    slug: "blizenci-kameny",
+    title: "Blíženci kameny",
+    image: "/images/stones/citrin.webp",
+    metaTitle: "♊ Blíženci kameny - Léčivé krystaly pro znamení Blíženců",
+    metaDescription: "Jaké kameny jsou nejlepší pro znamení Blíženců? Citrín, Tygrí oko, Achát. Kompletní přehled kamenů pro Blížence ✓",
+    content: `**Blíženci** (21. května - 21. června) jsou vzdušné znamení ovládané Merkurem. Blíženci jsou známí svou **komunikativností, zvědavostí a adaptabilitou**.
+
+## Nejlepší kameny pro Blížence
+
+### 1. Citrín
+**Citrín** je hlavní kámen Blíženců. Posíluje **optimismus, kreativitu a komunikaci**.
+
+### 2. Tygrí oko
+**Tygrí oko** pomáhá Blížencům **soustředit se** a dokončit rozpočaté projekty.
+
+### 3. Achát
+**Achát** přináší **stabilitu a uzemnění** neklidným Blížencům.
+
+### 4. Akvamarín
+**Akvamarín** podporuje **jasnou komunikaci** a uklidnění mysli.
+
+### 5. Perla
+**Perla** pomáhá Blížencům **vyvažovat emoce** a duální povahu.
+
+## Jak Blíženci používají kameny?
+
+• **Citrín na pracovním stole** - pro kreativitu
+• **Tygrí oko jako náramek** - pro soustředění
+• **Achát v kapse** - pro uzemnění
+
+➡️ [Zpět na kameny podle znamení](/symbol/kameny-podle-znameni)`,
+  },
+  {
+    slug: "ryby-kameny",
+    title: "Ryby kameny",
+    image: "/images/stones/ametyst.webp",
+    metaTitle: "♓ Ryby kameny - Léčivé krystaly pro znamení Ryb",
+    metaDescription: "Jaké kameny jsou nejlepší pro znamení Ryb? Ametyst, Akvamarín, Měsíční kámen. Kompletní přehled kamenů pro Ryby ✓",
+    content: `**Ryby** (19. února - 20. března) jsou vodní znamení ovládané Neptunem. Ryby jsou známé svou **intuicí, empatii a duchovností**.
+
+## Nejlepší kameny pro Ryby
+
+### 1. Ametyst
+**Ametyst** je hlavní kámen Ryb. Posíluje **duchovnost, intuici a ochranu**. Pomáhá Rybám zůstat uzemněné.
+
+### 2. Akvamarín
+**Akvamarín** podporuje **klid, jasnost a komunikaci**. Je ideální pro citlivé Ryby.
+
+### 3. Měsíční kámen
+**Měsíční kámen** posíluje **intuici a emocionální rovnováhu**.
+
+### 4. Fluorit
+**Fluorit** pomáhá Rybám **organizovat myšlenky** a zůstat soustředěné.
+
+### 5. Tyrkys
+**Tyrkys** přináší **ochranu a moudrost** na duchovní cestě.
+
+## Jak Ryby používají kameny?
+
+• **Ametyst při meditaci** - pro duchovní spojení
+• **Akvamarín jako přívěsek** - pro každodenní klid
+• **Měsíční kámen pod polštářem** - pro prorocké sny
+
+➡️ [Zpět na kameny podle znamení](/symbol/kameny-podle-znameni)`,
+  },
+  {
+    slug: "vodnar-kameny",
+    title: "Vodnář kameny",
+    image: "/images/stones/ametyst.webp",
+    metaTitle: "♒ Vodnář kameny - Léčivé krystaly pro znamení Vodnáře",
+    metaDescription: "Jaké kameny jsou nejlepší pro znamení Vodnáře? Ametyst, Akvamarín, Tyrkys. Kompletní přehled kamenů pro Vodnáře ✓",
+    content: `**Vodnář** (21. ledna - 18. února) je vzdušné znamení ovládané Uranem. Vodnáři jsou známí svou **originálností, nezávislostí a humanismí**.
+
+## Nejlepší kameny pro Vodnáře
+
+### 1. Ametyst
+**Ametyst** je hlavní kámen Vodnáře. Posíluje **intuici, duchovnost a jasné myšlení**.
+
+### 2. Akvamarín
+**Akvamarín** podporuje **komunikaci a vyjadřování** inovativních myšlenek.
+
+### 3. Tyrkys
+**Tyrkys** přináší **moudrost a ochranu** na cestě za změnou.
+
+### 4. Labradorit
+**Labradorit** posíluje **kreativitu a transformaci** Vodnářů.
+
+### 5. Hematit
+**Hematit** pomáhá Vodnářům **uzemnění** jejich vizionářských nápadů.
+
+## Jak Vodnář používá kameny?
+
+• **Ametyst při brainstormingu** - pro inovativní nápady
+• **Tyrkys jako ochrana** - při prosazování změn
+• **Hematit pro uzemnění** - když je hlava v oblacích
+
+➡️ [Zpět na kameny podle znamení](/symbol/kameny-podle-znameni)`,
+  },
+  {
+    slug: "lev-kameny",
+    title: "Lev kameny",
+    image: "/images/stones/citrin.webp",
+    metaTitle: "♌ Lev kameny - Léčivé krystaly pro znamení Lva",
+    metaDescription: "Jaké kameny jsou nejlepší pro znamení Lva? Sluneční kámen, Rubín, Citrín. Kompletní přehled kamenů pro Lva ✓",
+    content: `**Lev** (23. července - 22. srpna) je ohně znamení ovládané Sluncem. Lvi jsou známí svou **sebejistotou, kreativitou a vůdcovstvím**.
+
+## Nejlepší kameny pro Lva
+
+### 1. Sluneční kámen
+**Sluneční kámen** je hlavní kámen Lva. Posíluje **radost, vitalitu a sebevědomí**.
+
+### 2. Rubín
+**Rubín** dodava **vášeň, energii a odvahu** královskému Lvu.
+
+### 3. Citrín
+**Citrín** přináší **optimismus a prosperitu**.
+
+### 4. Tygrí oko
+**Tygrí oko** posíluje **odvahu a ochranu** při dosažování cílů.
+
+### 5. Karneol
+**Karneol** dodava **kreativní energii** pro umělecké Lvy.
+
+## Jak Lev používá kameny?
+
+• **Sluneční kámen ráno** - pro energický start dne
+• **Rubín při důležitých událostech** - pro charisma
+• **Citrín v peněžence** - pro prosperitu
+
+➡️ [Zpět na kameny podle znamení](/symbol/kameny-podle-znameni)`,
+  },
+  {
+    slug: "kozoroh-kameny",
+    title: "Kozoroh kameny",
+    image: "/images/stones/obsidian.webp",
+    metaTitle: "♑ Kozoroh kameny - Léčivé krystaly pro znamení Kozoroha",
+    metaDescription: "Jaké kameny jsou nejlepší pro znamení Kozoroha? Granát, Onyx, Obsidián. Kompletní přehled kamenů pro Kozoroha ✓",
+    content: `**Kozoroh** (22. prosince - 20. ledna) je zemské znamení ovládané Saturnem. Kozorozi jsou známí svou **disciplínou, ambicemi a praktickostí**.
+
+## Nejlepší kameny pro Kozoroha
+
+### 1. Granát
+**Granát** je hlavní kámen Kozoroha. Posíluje **vytrvalost, vášeň a úspěch**.
+
+### 2. Onyx
+**Onyx** dodava **sílu a ochranu** při dosažování dlouhodobých cílů.
+
+### 3. Obsidián
+**Obsidián** pomáhá Kozorohům **zpracovat bloky** a transformovat se.
+
+### 4. Malachit
+**Malachit** podporuje **růst a transformaci** v kariéře.
+
+### 5. Tyrkys
+**Tyrkys** přináší **moudrost a ochranu** na cestě k úspěchu.
+
+## Jak Kozoroh používá kameny?
+
+• **Granát při práci** - pro vytrvalost
+• **Onyx jako ochrana** - před negativitou
+• **Malachit při plánování** - pro jasnou vizi
+
+➡️ [Zpět na kameny podle znamení](/symbol/kameny-podle-znameni)`,
+  },
+  {
+    slug: "beran-kameny",
+    title: "Beran kameny",
+    image: "/images/stones/karneol.webp",
+    metaTitle: "♈ Beran kameny - Léčivé krystaly pro znamení Berana",
+    metaDescription: "Jaké kameny jsou nejlepší pro znamení Berana? Karneol, Jaspis, Diamant. Kompletní přehled kamenů pro Berana ✓",
+    content: `**Beran** (21. března - 20. dubna) je ohně znamení ovládané Marsem. Berani jsou známí svou **energií, odvahou a průkopnickým duchem**.
+
+## Nejlepší kameny pro Berana
+
+### 1. Karneol
+**Karneol** je hlavní kámen Berana. Posíluje **odvahu, motivaci a vitalitu**.
+
+### 2. Jaspis
+**Jaspis** dodava **vytrvalost a uzemnění** energickým Beranům.
+
+### 3. Diamant
+**Diamant** symbolizuje **čistotu a sílu** - ideální pro vůdce.
+
+### 4. Hematit
+**Hematit** pomáhá Beranům **uzemnění** a kontrole impulzů.
+
+### 5. Citrín
+**Citrín** přináší **optimismus a prosperitu**.
+
+## Jak Beran používá kameny?
+
+• **Karneol před výzvámi** - pro odvahu
+• **Jaspis při sportu** - pro vytrvalost
+• **Hematit pro klid** - když je příliš energie
+
+➡️ [Zpět na kameny podle znamení](/symbol/kameny-podle-znameni)`,
+  },
+  {
+    slug: "posvatna-geometrie",
+    title: "Posvátná geometrie",
+    image: "/images/symbols/kvet-zivota.webp",
+    metaTitle: "🔯 Posvátná geometrie - Význam, symboly a tajemství",
+    metaDescription: "Posvátná geometrie: Květ života, Metatronova krychle, Vesica Piscis, Sri Yantra. Objevte tajemství geometrických vzorů vesmíru ✓",
+    content: `**Posvátná geometrie** je studium geometrických vzorů, které se opakují v celé přírodě a vesmíru. Tyto vzory jsou považovány za **základní stavební kameny reality**.
+
+## Co je posvátná geometrie?
+
+Posvátná geometrie je více než jen matematika - je to **jazyk vesmíru**. Od spiraly galaxií po strukturu DNA, od sněhových vloček po kvety - všude nacházíme stejné geometrické vzory.
+
+## Hlavní symboly posvátné geometrie
+
+### 1. Květ života
+**Květ života** je nejznámější symbol posvátné geometrie. Je tvořen 19 překrývajícími se kruhy a obsahuje všechny ostatní symboly.
+➡️ [Více o Květu života](/symbol/kvet-zivota)
+
+### 2. Metatronova krychle
+**Metatronova krychle** obsahuje všech 5 Platonských těles. Je to mocný nástroj pro meditaci a ochranu.
+➡️ [Více o Metatronově krychli](/symbol/metatronova-krychle)
+
+### 3. Vesica Piscis
+**Vesica Piscis** je tvořena dvěma překrývajícími se kruhy. Symbolizuje spojení protikladů a je základem pro další symboly.
+➡️ [Více o Vesica Piscis](/symbol/vesica-piscis)
+
+### 4. Sri Yantra
+**Sri Yantra** je nejsložitější symbol posvátné geometrie. Obsahuje 9 propletených trojúhelníků a reprezentuje celý vesmír.
+➡️ [Více o Sri Yantře](/symbol/sri-yantra)
+
+### 5. Merkaba
+**Merkaba** je třírozměrná Davidova hvězda. Symbolizuje spojení duše a těla, nebe a země.
+➡️ [Více o Merkabě](/symbol/merkaba)
+
+### 6. Torus
+**Torus** je základní tvar energie ve vesmíru. Od atomů po galaxie - vše má toroidální pole.
+➡️ [Více o Torusu](/symbol/torus)
+
+## Zlatý řez a Fibonacciho posloupnost
+
+Posvátná geometrie zahrnuje také **Zlatý řez** (φ = 1.618) a **Fibonacciho posloupnost** (1, 1, 2, 3, 5, 8, 13...). Tyto poměry se objevují v:
+
+• **Přírodě** - spiralách ulit, listů, galaxií
+• **Lidském těle** - poměry kostru, obličeje
+• **Architektuře** - pyramidy, chrámy, katedrály
+• **Umění** - renesance, moderní design
+
+## Jak používat posvátnou geometrii?
+
+• **Meditace** - soustředěte se na symbol pro hlubší stavy
+• **Šperky** - noste symboly pro ochranu a harmonii
+• **Prostor** - umístěte v domě pro harmonizaci energie
+• **Tvoření** - kreslite symboly pro aktivaci intuice
+
+## Související symboly
+
+➡️ [Symbol ochrany](/symbol/symbol-ochrany) - ochranné symboly včetně posvátné geometrie
+➡️ [Symbol lásky](/symbol/symbol-lasky) - symboly lásky a harmonie`,
   },
 ];

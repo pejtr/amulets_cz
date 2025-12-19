@@ -496,3 +496,28 @@
 - [x] Přidat FAQ schema (5 otázek)
 - [x] Přidat do sitemap.xml
 - [x] Přidat do RelatedSymbols mapy
+
+## Optimalizace pro klíčová slova z Google Keyword Planner (Dec 19, 2025)
+### Znamení zvěrokruhu (1-10 tis. vyhledávání, nízká konkurence)
+- [x] panny znamení - vytvořit/optimalizovat stránku
+- [x] raci znamení - vytvořit/optimalizovat stránku
+- [x] stír znamení - vytvořit/optimalizovat stránku
+- [x] znamení blíženci - vytvořit/optimalizovat stránku
+- [x] znamení ryb - vytvořit/optimalizovat stránku
+- [x] znamení vodnáře - vytvořit/optimalizovat stránku
+- [x] lev znamení - vytvořit/optimalizovat stránku
+- [x] kozoroh znamení - vytvořit/optimalizovat stránku
+- [x] beran znamení - vytvořit/optimalizovat stránku
+
+### Kameny (1-10 tis. vyhledávání)
+- [x] křišťál - optimalizovat existující stránku
+- [x] kameny podle znamení - hub stránka
+- [x] ametyst význam - rozšířit obsah
+- [x] růženín účinky - rozšířit obsah
+- [x] tygrí oko účinky - rozšířit obsah
+
+## Další SEO vylepšení (Dec 19, 2025)
+- [x] Přidat FAQ schema pro kameny a znamení
+- [x] Vytvořit hub stránku Posvátná geometrie
+- [x] Propojit hub stránky Symbol lásky a Symbol ochrany
+- [x] Změnit obrázek na stránce Symbol lásky (triquetra.webp)
