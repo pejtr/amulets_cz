@@ -891,44 +891,110 @@ Ankh byl používán egyptskými bohy jako **klíč k životu a lásce**. Bohyn�
     image: "/images/symbols/symbol-ochrany.webp",
     metaTitle: "🛡️ Symboly ochrany - Kompletní průvodce ochrannými talismany",
     metaDescription: "Který symbol ochrany je nejsilnější? Ruka Fatimy, Horovo oko, Pentagram, Metatronova krychle. Kompletní přehled ochranných symbolů a jak je používat ✓",
-    content: `**Symboly ochrany** jsou nejstaršími talismany lidstva. Slouží k **ochraně před negativními energiemi**, uhranutím a zlým pohledem.
+    content: `**Symboly ochrany** jsou nejstaršími talismany lidstva. Již naši předkové věřili, že určité znaky a obrazce mají moc **chránit před negativními energiemi**, uhranutím, zlým pohledem a nepříznivými vlivy. Tato stránka je vaším **kompletním průvodcem** světem ochranných symbolů.
 
 ## Nejsilnější ochranné symboly
 
 ### 1. Ruka Fatimy (Hamsa)
-**Ruka Fatimy** je jeden z nejstarších ochranných symbolů. Chrání před **zlým pohledem** (nazar) a přináší štěstí. Používá se v judaismu, islámu i křesťanství.
+**Ruka Fatimy** je jeden z nejstarších a nejrozšířenějších ochranných symbolů. Chrání před **zlým pohledem** (nazar) a přináší štěstí. Používá se v judaismu, islámu i křesťanství. Hamsa s okem uprostřed zesiluje ochranné účinky.
 ➡️ [Více o Ruce Fatimy](/symbol/ruka-fatimy)
+➡️ [Hamsa s okem](/symbol/hamsa-s-okem)
 
 ### 2. Horovo oko (Udjat)
-**Horovo oko** je egyptský symbol **ochrany, zdraví a uzdravení**. Reprezentuje oko boha Hora, které bylo zázračně uzdraveno.
+**Horovo oko** je egyptský symbol **ochrany, zdraví a uzdravení**. Reprezentuje oko boha Hora, které bylo zázračně uzdraveno bohem Thotem. V egyptské mytologii chránilo před zlem a nemocemi.
 ➡️ [Více o Horově oku](/symbol/horovo-oko)
 
-### 3. Pentagram
-**Pentagram** (pěticípá hvězda) je mocný symbol v **magii a okultismu**. Chrání před negativními silami a symbolizuje pět živlů.
-➡️ [Více o Pentagramu](/symbol/pentacle)
+### 3. Pentagram a Pentakl
+**Pentagram** (pěticípá hvězda) je mocný symbol v **magii a okultismu**. Chrání před negativními silami a symbolizuje pět živlů. **Pentakl** je pentagram v kruhu, který zesiluje ochranné vlastnosti.
+➡️ [Více o Pentagramu](/symbol/pentagram)
+➡️ [Více o Pentaklu](/symbol/pentakl)
 
 ### 4. Metatronova krychle
-**Metatronova krychle** obsahuje všech 5 platónských těles a je považována za **nejsilnější ochranný symbol** posvátné geometrie.
+**Metatronova krychle** obsahuje všech 5 platónských těles a je považována za **nejsilnější ochranný symbol** posvátné geometrie. Chrání na všech úrovních existence.
 ➡️ [Více o Metatronově krychli](/symbol/metatronova-krychle)
+➡️ [Nejsilnější ochranný symbol](/symbol/nejsilnejsi-ochranny-symbol)
 
 ### 5. Triquetra
-**Triquetra** je keltský symbol **trojjedinosti a ochrany**. Reprezentuje tělo, mysl a ducha v harmonii.
+**Triquetra** je keltský symbol **trojjedinosti a ochrany**. Reprezentuje tělo, mysl a ducha v harmonii. Keltové věřili, že chrání před zlými duchy.
 ➡️ [Více o Triquetře](/symbol/triquetra)
 
-### 6. Kříž
-**Kříž** je univerzální symbol **víry a ochrany** v křesťanství. Chrání před zlem a přináší požehnání.
+### 6. Kříž a Keltský kříž
+**Kříž** je univerzální symbol **víry a ochrany** v křesťanství. **Keltský kříž** kombinuje křesťanskou a keltskou symboliku pro dvojitou ochranu.
 ➡️ [Více o Kříži](/symbol/kriz)
+➡️ [Více o Keltském kříži](/symbol/keltsky-kriz)
+
+### 7. Ankh - Egyptský symbol života
+**Ankh** je staroegyptský symbol **věčného života a ochrany**. Faraoni ho nosili jako amulet pro ochranu v životě i po smrti.
+➡️ [Více o Ankhu](/symbol/ankh)
+
+### 8. Davidova hvězda (Hexagram)
+**Davidova hvězda** je šesticípá hvězda symbolizující **ochranu a rovnováhu**. V kabale představuje spojení nebe a země.
+➡️ [Více o Davidově hvězdě](/symbol/davidova-hvezda)
+➡️ [Více o Hexagramu](/symbol/hexagram)
+
+### 9. Skarabeus
+**Skarabeus** je egyptský symbol **ochrany a znovuzrození**. Egypané věřili, že chrání před zlem a přináší štěstí.
+➡️ [Více o Skarabeovi](/symbol/skarabeus)
+
+### 10. Choku Rei - Reiki symbol ochrany
+**Choku Rei** je mocný reiki symbol pro **ochranu a zesilující energii**. Používá se pro očistu prostoru a ochranu před negativními vlivy.
+➡️ [Více o Choku Rei](/symbol/choku-rei)
+
+## Ochranné symboly podle kultury
+
+### Egyptské ochranné symboly
+• [Horovo oko](/symbol/horovo-oko) - ochrana a uzdravení
+• [Ankh](/symbol/ankh) - věčný život
+• [Skarabeus](/symbol/skarabeus) - znovuzrození
+• [Egyptský symbol lásky](/symbol/egyptsky-symbol-lasky)
+
+### Keltské ochranné symboly
+• [Triquetra](/symbol/triquetra) - trojjedinost
+• [Triskelion](/symbol/triskelion) - věčný pohyb
+• [Keltský kříž](/symbol/keltsky-kriz) - víra a ochrana
+• [Keltský symbol lásky](/symbol/keltsky-symbol-lasky)
+
+### Posvátná geometrie
+• [Metatronova krychle](/symbol/metatronova-krychle) - nejsilnější ochrana
+• [Květ života](/symbol/kvet-zivota) - univerzální harmonie
+• [Merkaba](/symbol/merkaba) - duchovní ochrana
+• [Sri Yantra](/symbol/sri-yantra) - kosmická energie
+
+### Východní ochranné symboly
+• [Ruka Fatimy](/symbol/ruka-fatimy) - ochrana před zlým pohledem
+• [Om](/symbol/om) - duchovní ochrana
+• [Jin Jang](/symbol/jin-jang) - rovnováha
+• [Choku Rei](/symbol/choku-rei) - reiki ochrana
 
 ## Jak používat ochranné symboly?
 
-• **Noste jako šperky** - náhrdelníky, prsteny, náramky
+• **Noste jako šperky** - náhrdelníky, prsteny, náramky s ochrannými symboly
 • **Umístěte u vchodu** - chrání dům před negativní energií
-• **Používejte při meditaci** - vizualizujte symbol kolem sebe
+• **Používejte při meditaci** - vizualizujte symbol kolem sebe jako štít
 • **Nakreslete na papír** - umístěte pod polštář pro ochranu ve spánku
+• **Orgonitové pyramidy** - kombinují symboly s energií krystalů
 
-## Který symbol ochrany je nejlepší?
+## Jak vybrat správný ochranný symbol?
 
-Každý symbol má svou specifickou energii. Vyberte ten, se kterým **cítíte nejsilnější spojení**. Pokud nevíte, začněte s Rukou Fatimy nebo Horovým okem - jsou univerzální a účinné pro většinu lidí.`,
+Každý symbol má svou specifickou energii. Při výběru se řiďte těmito zásadami:
+
+**1. Intuice** - Vyberte symbol, ke kterému cítíte nejsilnější přitahování.
+
+**2. Účel ochrany:**
+• Ochrana před zlým pohledem → Ruka Fatimy, Horovo oko
+• Duchovní ochrana → Metatronova krychle, Merkaba
+• Ochrana domova → Pentagram, Kříž
+• Osobní ochrana → Ankh, Triquetra
+
+**3. Kulturní spojení** - Pokud máte blízko ke konkrétní kultuře, vyberte symbol z této tradice.
+
+**4. Kombinace symbolů** - Některé symboly lze kombinovat pro silnější účinek (např. Hamsa s Horovým okem).
+
+## Který symbol ochrany je nejsilnější?
+
+**Metatronova krychle** je považována za nejsilnější ochranný symbol, protože obsahuje všech 5 platónských těles. Pro začátečníky však doporučujeme **Ruku Fatimy** nebo **Horovo oko** - jsou univerzální a účinné pro většinu lidí.
+
+➡️ [Zjistěte více o nejsilnějším ochranném symbolu](/symbol/nejsilnejsi-ochranny-symbol)`,
   },
   {
     slug: "nejsilnejsi-ochranny-symbol",

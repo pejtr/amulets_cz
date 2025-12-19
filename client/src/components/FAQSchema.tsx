@@ -74,6 +74,14 @@ export const symbolFAQs: Record<string, FAQItem[]> = {
     {
       question: "Mohu kombinovat více ochranných symbolů?",
       answer: "Ano, kombinace více ochranných symbolů zesiluje jejich účinek. Doporučujeme kombinovat osobní amulet (přívěsek), ochranu domova (pyramida nebo obraz) a ochranu u vchodu. Symboly se navzájem doplňují."
+    },
+    {
+      question: "Jaké jsou nejlepší ochranné symboly pro dům?",
+      answer: "Pro ochranu domova jsou nejlepší: Pentagram nebo Pentakl u vchodu, Ruka Fatimy nad dveřmi, Metatronova krychle v centrální místnosti a Kříž pro křesťany. Orgonitové pyramidy se symboly kombinují ochranu s očistou energie."
+    },
+    {
+      question: "Jaký je rozdíl mezi Rukou Fatimy a Horovým okem?",
+      answer: "Ruka Fatimy (Hamsa) pochází z blízkovýchodní tradice a chrání před zlým pohledem (nazar). Horovo oko je egyptský symbol ochrany a uzdravení. Oba symboly lze kombinovat - Hamsa s okem uprostřed spojuje obě tradice."
     }
   ],
   "nejsilnejsi-ochranny-symbol": [

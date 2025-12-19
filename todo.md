@@ -485,3 +485,8 @@
 - [x] Přidat FAQ pro Vesica Piscis (již existovalo)
 - [x] Přidat FAQ pro Triskelion (3 otázky)
 - [x] Přidat FAQ pro Jin Jang (již existovalo)
+
+## Rozšíření hub stránky Symbol ochrany (Dec 19, 2025)
+- [x] Rozšířit obsah o všechny ochranné symboly (10 symbolů + kategorie podle kultury)
+- [x] Přidat FAQ schema (5 otázek)
+- [x] Přidat sekci "Jak vybrat správný ochranný symbol"
