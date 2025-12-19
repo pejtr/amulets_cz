@@ -227,7 +227,7 @@ export const symbolFAQs: Record<string, FAQItem[]> = {
   "triskelion": [
     {
       question: "Co je triskelion?",
-      answer: "Triskelion (tříramenná spirála) je starověký keltský symbol tvořený třemi propojenými spirálami. Pochází z doby bronzové a byl nalezen na megalitických stavbách jako Newgrange v Irsku."
+      answer: "Triskelion (třírramenná spirála) je starověký keltský symbol tvořený třemi propojenými spirálami. Pochází z doby bronzové a byl nalezen na megalitických stavbách jako Newgrange v Irsku."
     },
     {
       question: "Co symbolizuje triskelion?",
@@ -236,6 +236,28 @@ export const symbolFAQs: Record<string, FAQItem[]> = {
     {
       question: "Jaký je rozdíl mezi triskelionem a triquetrou?",
       answer: "Triskelion je tvořen třemi spirálami vycházejícími ze středu, zatímco triquetra je tvořena třemi propojenými oblouky. Oba symboly reprezentují trojjedinost, ale triskelion zdůrazňuje pohyb a cyklus, triquetra spíše jednotu."
+    }
+  ],
+  "symbol-lasky": [
+    {
+      question: "Jaký je nejsilnější symbol lásky?",
+      answer: "Nejsilnějším symbolem věčné lásky je Ankh - egyptský symbol života a nesmrtelné lásky. Pro romantickou lásku je nejsilnější Jin Jang symbolizující dokonalou harmonii mezi partnery. Triquetra je oblíbená pro manželskou lásku."
+    },
+    {
+      question: "Jaký symbol přitahuje lásku?",
+      answer: "Pro přitahování lásky jsou nejlepší: Růžový křišťál (kámen lásky), Jin Jang (harmonie), Lotosový květ (čistá láska) a Triquetra (věčná láska). Noste je jako šperky nebo umístěte v ložnici."
+    },
+    {
+      question: "Jaký je rozdíl mezi egyptskými a keltskými symboly lásky?",
+      answer: "Egyptské symboly lásky (Ankh, Skarabeus) zdůrazňují věčnost a nesmrtelnost lásky. Keltské symboly (Triquetra, Triskelion) se zaměřují na trojjedinost a cyklickou povahu lásky. Oba přístupy jsou účinné."
+    },
+    {
+      question: "Jak používat symboly lásky pro posílení vztahu?",
+      answer: "Symboly lásky používejte jako společné šperky s partnerem, umístěte je v ložnici pro posílení romantické energie, nebo je používejte při společné meditaci. Jin Jang je ideální pro harmonii, Triquetra pro věčnou oddanost."
+    },
+    {
+      question: "Jaký symbol lásky darovat partnerovi?",
+      answer: "Jako dárek lásky jsou ideální: Nekonečno (nekonečná láska), Triquetra (věčná láska), Jin Jang (harmonie) nebo Ankh (nesmrtelná láska). Skarabeus byl v Egyptě tradičním dárkem lásky."
     }
   ]
 };

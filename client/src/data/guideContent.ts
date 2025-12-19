@@ -1113,6 +1113,98 @@ Noste je jako **amulety** pro posílení sebevědomí, umístěte je do **pracov
 
 **Duchovní význam:**
 
-Skutečná síla nepřichází z vnějšku, ale z **hloubky našeho bytí**. Symboly síly nám pomáhají **připomenout si tuto vnitřní moc** a čerpat z ní v obtížných chvílích.`,
+**Skutečná síla nepřichází z vnějšku, ale z **hloubky našeho bytí**. Symboly síly nám pomáhají **připomenout si tuto vnitřní moc** a čerpat z ní v obtížných chvílích.`,
+  },
+  {
+    slug: "symbol-lasky",
+    title: "Symbol lásky",
+    image: "/images/symbols/jin-jang.webp",
+    metaTitle: "❤️ Symbol lásky - Kompletní průvodce symboly lásky a vztahů",
+    metaDescription: "Jaký je nejsilnější symbol lásky? Egyptské, keltské a univerzální symboly lásky. Ankh, Triquetra, Srdce, Jin Jang. Kompletní přehled ✓",
+    content: `**Symboly lásky** provázejí lidstvo od pradávna. Každá kultura vytvořila své vlastní znaky reprezentující **lásku, vášeň, oddanost a spojení duší**. Tato stránka je vaším **kompletním průvodcem** světem symbolů lásky.
+
+## Nejsilnější symboly lásky
+
+### 1. Ankh - Egyptský symbol věčné lásky
+**Ankh** je staroegyptský symbol **věčného života a nesmrtelné lásky**. Bohyně Isis, patronka lásky a mateřství, byla často zobrazována s Ankh v ruce. Symbolizuje lásku, která přesahuje smrt.
+➡️ [Více o Ankhu](/symbol/ankh)
+➡️ [Egyptský symbol lásky](/symbol/egyptsky-symbol-lasky)
+
+### 2. Triquetra - Keltský symbol věčné lásky
+**Triquetra** je keltský symbol **trojjedinosti a věčné lásky**. Tři propojené oblouky symbolizují tělo, mysl a ducha spojené láskou. Používá se jako symbol manželské lásky.
+➡️ [Více o Triquetře](/symbol/triquetra)
+➡️ [Keltský symbol lásky](/symbol/keltsky-symbol-lasky)
+
+### 3. Jin Jang - Symbol harmonické lásky
+**Jin Jang** reprezentuje **dokonalou rovnováhu mužské a ženské energie**. Ve vztazích symbolizuje harmonii, vzájemné doplňování a rovnováhu mezi partnery.
+➡️ [Více o Jin Jang](/symbol/jin-jang)
+
+### 4. Nekončno - Symbol nekonečné lásky
+**Symbol nekonečna** (∞) představuje **lásku bez hranic a konce**. Je oblíbený jako symbol věčného spojení mezi partnery nebo rodiči a dětmi.
+➡️ [Více o symbolu Nekonečno](/symbol/nekonecno)
+
+### 5. Lotosový květ - Symbol čisté lásky
+**Lotos** je symbol **čisté, duchovní lásky** ve východních tradicích. Roste z bahna, ale květ zůstává nedotčený - symbolizuje lásku, která překonává překážky.
+➡️ [Více o Lotosové mandale](/symbol/lotosova-mandala)
+➡️ [Květ života v lotosu](/symbol/kvet-zivota-v-lotosu)
+
+### 6. Ouroboros - Symbol věčného cyklu lásky
+**Ouroboros** (had požírající svůj ocas) symbolizuje **věčný cyklus lásky** - láska, která nemá začátek ani konec. Reprezentuje jednotu a nerozdělitelnost.
+➡️ [Více o Ouroborovi](/symbol/ouroboros)
+
+## Symboly lásky podle kultury
+
+### Egyptské symboly lásky
+• [Ankh](/symbol/ankh) - věčný život a láska
+• [Egyptský symbol lásky](/symbol/egyptsky-symbol-lasky) - kompletní přehled
+• [Skarabeus](/symbol/skarabeus) - tradiční dárek lásky
+• [Horovo oko](/symbol/horovo-oko) - ochrana milovaných
+
+### Keltské symboly lásky
+• [Triquetra](/symbol/triquetra) - věčná láska
+• [Keltský symbol lásky](/symbol/keltsky-symbol-lasky) - kompletní přehled
+• [Triskelion](/symbol/triskelion) - cyklus lásky
+• [Spirála](/symbol/spirala) - růst lásky
+
+### Východní symboly lásky
+• [Jin Jang](/symbol/jin-jang) - harmonie ve vztahu
+• [Lotosová mandala](/symbol/lotosova-mandala) - čistá láska
+• [Om](/symbol/om) - univerzální láska
+• [Buddha](/symbol/buddha) - soucítná láska
+
+### Univerzální symboly lásky
+• [Nekonečno](/symbol/nekonecno) - nekonečná láska
+• [Květ života](/symbol/kvet-zivota) - posvátná geometrie lásky
+• [Mandala](/symbol/mandala) - celistvost lásky
+• [Strom života](/symbol/strom-zivota) - rodinná láska
+
+## Jak používat symboly lásky?
+
+• **Noste jako šperky** - náhrdelníky, prsteny, náramky pro přitahování lásky
+• **Darujte partnerovi** - symbol lásky jako význačný dárek
+• **Umístěte v ložnici** - posílení romantické energie
+• **Meditujte s nimi** - otevření srdeční čakry
+• **Použijte při ritualu** - posílení záměru lásky
+
+## Jak vybrat správný symbol lásky?
+
+Každý symbol má svou specifickou energii. Při výběru se řiďte těmito zásadami:
+
+**1. Typ lásky:**
+• Romantická láska → Jin Jang, Triquetra
+• Věčná láska → Ankh, Nekonečno
+• Rodinná láska → Strom života, Triquetra
+• Sebelasky → Lotos, Mandala
+• Univerzální láska → Om, Květ života
+
+**2. Kulturní spojení** - Pokud máte blízko ke konkrétní kultuře, vyberte symbol z této tradice.
+
+**3. Intuice** - Vyberte symbol, ke kterému cítíte nejsilnější přitahování.
+
+## Který symbol lásky je nejsilnější?
+
+**Ankh** je považován za nejsilnější symbol věčné lásky, protože spojuje život, smrt a znovuzrození. Pro romantickou lásku je nejsilnější **Jin Jang** - symbolizuje dokonalou harmonii mezi partnery.
+
+Pro začátečníky doporučujeme **Triquetra** nebo **Nekonečno** - jsou univerzální a srozumitelné v moderní kultuře.`,
   },
 ];

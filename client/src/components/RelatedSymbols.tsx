@@ -57,6 +57,7 @@ const relatedSymbolsMap: Record<string, string[]> = {
   "kvet-zivota-v-lotosu": ["kvet-zivota", "lotosova-mandala", "mandala", "symbol-harmonie"],
   "choku-rei": ["om", "symbol-ochrany", "kvet-zivota", "merkaba"],
   "caduceus": ["ankh", "horovo-oko", "symbol-ochrany", "merkaba"],
+  "symbol-lasky": ["egyptsky-symbol-lasky", "keltsky-symbol-lasky", "jin-jang", "triquetra"],
   "hvezda-sjednoceni": ["davidova-hvezda", "merkaba", "kvet-zivota", "symbol-harmonie"],
   "hamsa-s-okem": ["ruka-fatimy", "horovo-oko", "symbol-ochrany", "nejsilnejsi-ochranny-symbol"],
   "kriz": ["keltsky-kriz", "ankh", "symbol-ochrany", "triquetra"],

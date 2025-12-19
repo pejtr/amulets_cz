@@ -490,3 +490,9 @@
 - [x] Rozšířit obsah o všechny ochranné symboly (10 symbolů + kategorie podle kultury)
 - [x] Přidat FAQ schema (5 otázek)
 - [x] Přidat sekci "Jak vybrat správný ochranný symbol"
+
+## Nová hub stránka Symbol lásky (Dec 19, 2025)
+- [x] Vytvořit obsah stránky Symbol lásky (6 hlavních symbolů + 4 kategorie)
+- [x] Přidat FAQ schema (5 otázek)
+- [x] Přidat do sitemap.xml
+- [x] Přidat do RelatedSymbols mapy
