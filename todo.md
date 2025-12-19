@@ -480,3 +480,8 @@
 - [x] Ověřit propojení Symbol ochrany s relevantními symboly (interní odkazy v obsahu)
 - [x] Ověřit implementaci sekce Související symboly na všech stránkách (RelatedSymbols komponenta)
 - [x] Přidat caduceus do relatedSymbolsMap pro lepší prolinkování
+
+## FAQ Schema pro další symboly (Dec 19, 2025)
+- [x] Přidat FAQ pro Vesica Piscis (již existovalo)
+- [x] Přidat FAQ pro Triskelion (3 otázky)
+- [x] Přidat FAQ pro Jin Jang (již existovalo)

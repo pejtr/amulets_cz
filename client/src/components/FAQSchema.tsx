@@ -205,7 +205,7 @@ export const symbolFAQs: Record<string, FAQItem[]> = {
   "ouroboros": [
     {
       question: "Co je ouroboros?",
-      answer: "Ouroboros je starověký symbol hada nebo draka, který požírá svůj vlastní ocas. Tvoří tak dokonale uzavřený kruh. Symbol byl nalezen v egyptských, řeckých i aztéckých kulturách."
+      answer: "Ouroboros je starověký symbol hada nebo draka, který požírá svůj vlastní ocas. Tvoří tak dokonalě uzavřený kruh. Symbol byl nalezen v egyptských, řeckých i aztéckých kulturách."
     },
     {
       question: "Co symbolizuje had požírající svůj ocas?",
@@ -214,6 +214,20 @@ export const symbolFAQs: Record<string, FAQItem[]> = {
     {
       question: "Jaký je význam ourobora v alchymii?",
       answer: "V alchymii ouroboros symbolizuje prima materia - prvotní hmotu, ze které vzniká vše. Reprezentuje alchemickou transmutaci - přeměnu olova ve zlato, ale také duchovní transformaci člověka. Je klíčovým symbolem hermetické tradice."
+    }
+  ],
+  "triskelion": [
+    {
+      question: "Co je triskelion?",
+      answer: "Triskelion (tříramenná spirála) je starověký keltský symbol tvořený třemi propojenými spirálami. Pochází z doby bronzové a byl nalezen na megalitických stavbách jako Newgrange v Irsku."
+    },
+    {
+      question: "Co symbolizuje triskelion?",
+      answer: "Triskelion symbolizuje trojjedinost - tělo, mysl a ducha; minulost, přítomnost a budoucnost; zrození, život a smrt. Reprezentuje věčný pohyb, pokrok a osobní růst. Je také symbolem tří keltských světů."
+    },
+    {
+      question: "Jaký je rozdíl mezi triskelionem a triquetrou?",
+      answer: "Triskelion je tvořen třemi spirálami vycházejícími ze středu, zatímco triquetra je tvořena třemi propojenými oblouky. Oba symboly reprezentují trojjedinost, ale triskelion zdůrazňuje pohyb a cyklus, triquetra spíše jednotu."
     }
   ]
 };
