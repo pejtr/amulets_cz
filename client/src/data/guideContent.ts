@@ -335,13 +335,23 @@ Skarabeus je symbolem **osobní transformace** a překonání překážek. Použ
     slug: "caduceus",
     title: "Caduceus (Hermesova hůl)",
     image: "/images/symbols/caduceus.webp",
-    metaTitle: "Caduceus - Symbol léčení a duchovní rovnováhy | Amulets.cz",
-    metaDescription: "Caduceus je starověký symbol léčení, obchodu a duchovní rovnováhy. Hermesova hůl se dvěma hady.",
-    content: `**Caduceus**, také **Hermesova hůl**, je starověký symbol tvořený **holí se dvěma propletenými hady** a křídly nahoře. Reprezentuje **léčení, rovnováhu** a duchovní transformaci.
+    metaTitle: "Caduceus - Symbol léčení, hojnosti a rovnováhy | Hermesova hůl",
+    metaDescription: "Caduceus je mystický symbol Herma, posla bohů. Dva hadi obtáčející hůl symbolizují jednotu protikladů a přinášejí hojnost a štěstí. ✓ Kompletní průvodce",
+    content: `**Caduceus**, také **Hermesova hůl**, je mystický symbol opředený spoustou bájí. Tvořen **holí se dvěma propletenými hady** a křídly nahoře, reprezentuje **léčení, rovnováhu** a duchovní transformaci.
 
-Dva hadi symbolizují **dualitu** - mužské a ženské, dobro a zlo, hmotu a ducha. Jejich propletení kolem hole představuje **harmonizaci protikladů** a **kundalini energii** stoupající podél páteře. Křídla symbolizují **transcendenci** a duchovní vzestup.
+### Legenda o Hermově holi
 
-Caduceus je **symbolem medicíny** a léčitelství (často zaměňován s Asklépiovou holí). Používá se pro **harmonizaci těla a ducha**, aktivaci čaker a **léčení na všech úrovních**. Je ideální pro léčitele, terapeuty a ty, kteří hledají **vnitřní rovnováhu**.`,
+Podle báje patřila tato hůl **Hermovi, poslovi bohů**, který dal lidstvu spirituální vědění. Byla obtočena dvěma hady, kteří se plazili vzhůru. **Dva hadi jako dva protipóly** - žijící v symbióze a rovnováze, přesto každý jiný. Pokud jednoho oddělíme, nebudeme šťastní ani úplní.
+
+### Symbolika dvou hadů
+
+Dva hadi symbolizují **jednotu protikladů** - mužské a ženské, dobro a zlo, hmotu a ducha. Jejich propletení kolem hole představuje **harmonizaci protikladů** a **kundalini energii** stoupající podél páteře. Křídla symbolizují **transcendenci** a duchovní vzestup.
+
+Z tohoto důvodu je caduceus již dlouho **symbolem zdravotníků a farmaceutů**, ale býval i symbolem obchodníků. Každý, kdo "vládl" touto holí, byl bohatý, neboť mu přinášela **hojnost a štěstí**.
+
+### Použití v moderní době
+
+Caduceus je **symbolem medicíny** a léčitelství (často zaměňován s Asklépiovou holí). Používá se pro **harmonizaci těla a ducha**, aktivaci čaker a **léčení na všech úrovních**. Je ideální pro léčitele, terapeuty a ty, kteří hledají **vnitřní rovnováhu** a **hojnost v životě**.`,
   },
   {
     slug: "pentacle",

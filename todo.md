@@ -440,3 +440,7 @@
 
 ## Vylepšení sitemap.xml (Dec 17, 2025)
 - [x] Zkontrolovat a rozšířit sitemap.xml o všechny důležité stránky webu
+
+## SEO optimalizace Caduceus stránky (Dec 19, 2025)
+- [x] Rozšířit obsah Caduceus o příběh Herma a symboliku
+- [x] Optimalizovat meta tagy pro lepší CTR
