@@ -3,8 +3,8 @@ export const symbolsData = [
     slug: "ruka-fatimy",
     title: "Ruka Fatimy",
     image: "/images/symbols/ruka-fatimy.webp",
-    metaTitle: "Ruka Fatimy - Význam a Symbolika | Amulets.cz",
-    metaDescription: "Objevte význam symbolu Ruka Fatimy. Ženský ochranný talisman napříč kulturami, který chrání před neštěstím a podporuje plodnost.",
+    metaTitle: "🤚 Ruka Fatimy (Hamsa) - Význam, původ a použití",
+    metaDescription: "Ruka Fatimy (Hamsa) - co znamená tento symbol? Chrání před zlým pohledem, přináší štěstí a podporuje plodnost. Význam v judaismu, islámu i křesťanství ✓",
     content: `**Ženský ochranný symbol** užívaný jako **talisman** napříč časem a různými kulturami. Fatima znamená "ta co hovoří s anděly". 
 
 Podle pradávných tradic nás **chrání před neštěstím**, uhranutím a je **nástrojem univerzální životní síly**. Používal se také jako ochrana pro nastávající matky a měl **podporovat plodnost**, kojení a celkové zdraví dítěte.
@@ -89,8 +89,8 @@ Symbol **harmonizuje energii**, podporuje meditaci a pomáhá při duchovním r�
     slug: "metatronova-krychle",
     title: "Metatronova krychle",
     image: "/images/symbols/metatronova-krychle.webp",
-    metaTitle: "Metatronova krychle - Posvátná geometrie | Amulets.cz",
-    metaDescription: "Metatronova krychle obsahuje všech pět platónských těles. Mocný symbol ochrany a duchovní transformace.",
+    metaTitle: "✨ Metatronova krychle - Nejsilnější symbol posvátné geometrie",
+    metaDescription: "Metatronova krychle obsahuje všech 5 platónských těles - základních stavebních kámenů vesmíru. Objevte její tajemství a sílu pro ochranu a transformaci →",
     content: `**Metatronova krychle** je komplexní geometrický vzorec, který obsahuje **všech pět platónských těles** - základních stavebních kamenů vesmíru. Je pojmenována po archandělu Metatronovi, strážci posvátné geometrie.
 
 Tento symbol představuje **dokonalou rovnováhu** a obsahuje vzorce, podle kterých je vytvořena veškerá hmota. Metatronova krychle je považována za jeden z **nejmocnějších ochranných symbolů**.
@@ -101,11 +101,26 @@ Symbol **chrání před negativními energiemi**, podporuje duchovní transforma
     slug: "choku-rei",
     title: "Choku Rei",
     image: "/images/symbols/choku-rei.webp",
-    metaTitle: "Choku Rei - Reiki symbol síly | Amulets.cz",
-    metaDescription: "Choku Rei je mocný Reiki symbol pro zesilování energie a ochranu. Objevte jeho použití a význam.",
-    content: `**Choku Rei** je první a nejzákladnější symbol **Reiki**, systému energetického léčení. Jeho jméno znamená "umísti veškerou sílu vesmíru zde".
+    metaTitle: "Choku Rei - Reiki symbol síly a ochrany | Význam a použití",
+    metaDescription: "Choku Rei znamená 'umísti veškerou sílu vesmíru zde'. První Reiki symbol pro zesilovaní energie, ochranu a léčení. Jak ho správně používat? ✓",
+    content: `**Choku Rei** je první a nejzákladnější symbol **Reiki**, systému energetického léčení. Jeho jméno znamená **"umísti veškerou sílu vesmíru zde"**.
 
-Tento symbol slouží k **zesilování energie** a zvyšování vibrace. Používá se na začátku Reiki sezení pro otevření energetického kanálu a na konci pro uzavření a ochranu.
+### Co je Choku Rei?
+
+Choku Rei je **symbol síly** (Power Symbol) v Reiki. Skládá se ze tří částí:
+• **Horizontální čára** - spojení s vesmírem
+• **Vertikální čára** - tok energie
+• **Spirála** - koncentrace energie do bodu
+
+### Jak používat Choku Rei?
+
+Tento symbol slouží k **zesilovaní energie** a zvyšování vibrace:
+• Na začátku Reiki sezení pro **otevření energetického kanálu**
+• Na konci pro **uzavření a ochranu**
+• Pro **očištění prostoru** od negativních energií
+• Pro **zesílení záměrů** a manifestaci
+
+### Účinky Choku Rei
 
 Choku Rei **chrání před negativními vlivy**, zesiluje pozitivní záměry a pomáhá při manifestaci. Je nástrojem pro **okamžité zvýšení energie** a duchovní ochrany.`,
   },
@@ -125,8 +140,8 @@ Tento symbol **podporuje vnitřní klid**, pomáhá při meditaci a připomíná
     slug: "jin-jang",
     title: "Jin a Jang",
     image: "/images/symbols/jin-jang.webp",
-    metaTitle: "Jin a Jang - Význam symbolu rovnováhy | Amulets.cz",
-    metaDescription: "Jin a Jang (Yin Yang) - co znamená tento symbol? Význam, vlastnosti a jak dosáhnout rovnováhy jin a jang v životě.",
+    metaTitle: "☯ Jin a Jang (Yin Yang) - Význam a symbolika rovnováhy",
+    metaDescription: "Co znamená jin a jang? Černá a bílá část symbolu, vlastnosti jin a jang, jak dosáhnout rovnováhy. Kompletní průvodce čínským symbolem harmonie ✓",
     content: `**Jin a Jang** (také Yin Yang, jin jang) je nejznámější symbol **dokonalé rovnováhy** z čínské filozofie. Představuje harmonii protikladů, které se navzájem doplňují.
 
 ## Co znamená jin a jang?
@@ -155,8 +170,8 @@ Symbol **učí rovnováze** v každodenním životě. Používejte ho při medit
     slug: "horovo-oko",
     title: "Horovo oko",
     image: "/images/symbols/horovo-oko.webp",
-    metaTitle: "Horovo oko - Egyptský symbol ochrany | Amulets.cz",
-    metaDescription: "Horovo oko je starověký egyptský symbol ochrany, zdraví a královské moci. Mocný ochranný talisman.",
+    metaTitle: "👁️ Horovo oko (Udjat) - Egyptský symbol ochrany a uzdravení",
+    metaDescription: "Horovo oko (Udjat, Wadjet) je nejsilnější egyptský ochranný symbol. Chrání před zlem, přináší zdraví a královskou moc. Historie a význam ✓",
     content: `**Horovo oko**, známé také jako **Udjat**, je starověký egyptský symbol **ochrany, zdraví a královské moci**. Reprezentuje oko boha Hora, který ztratil oko v boji se Sethem a poté bylo zázračně uzdraveno.
 
 Symbol je považován za jeden z **nejmocnějších ochranných talismanů** starověkého Egypta. Používal se pro ochranu živých i mrtvých, pro zdraví a prosperitu.
@@ -263,8 +278,8 @@ Meditace na Šrí Jantru **harmonizuje vnitřní a vnější svět**, přináš�
     slug: "triskelion",
     title: "Triskelion (Trojspiralá)",
     image: "/images/symbols/triskelion.webp",
-    metaTitle: "Triskelion - Keltský symbol pohybu a evoluce | Amulets.cz",
-    metaDescription: "Triskelion je starověký keltský symbol trojjedinosti, věčného pohybu a duchovní evoluce.",
+    metaTitle: "Triskelion - Keltský symbol tří spirál | Význam a původ",
+    metaDescription: "Triskelion (trojspirála) je starověký keltský symbol. Tři spirály symbolizují tělo-mysl-ducha a věčný pohyb. Nalezen na Newgrange (3200 př.n.l.) ✓",
     content: `**Triskelion**, také **trojspiralá**, je starověký **keltský symbol** tvořený třemi propojenými spirálami. Reprezentuje **věčný pohyb**, cyklickou povahu života a **duchovní evoluci**.
 
 Tři spirály symbolizují **trojjedinost** - tělo, mysl, ducha; nebo zemi, moře, nebe. Směr spirál naznačuje **neustálý pohyb vpřed**, růst a transformaci. Symbol byl nalezen na megalitických památkách starých přes 5000 let.
@@ -275,13 +290,28 @@ Triskelion je symbolem **osobního růstu** a překonávání překážek. Použ
     slug: "vesica-piscis",
     title: "Vesica Piscis",
     image: "/images/symbols/vesica-piscis.webp",
-    metaTitle: "Vesica Piscis - Symbol stvoření a posvátné geometrie | Amulets.cz",
-    metaDescription: "Vesica Piscis je základní symbol posvátné geometrie, reprezentující stvoření a božskou proporci.",
+    metaTitle: "Vesica Piscis - Posvátná geometrie | Význam a symbolika",
+    metaDescription: "Vesica Piscis je základní tvar posvátné geometrie. Průnik dvou kruhů symbolizuje stvoření, jednotu protikladů a božskou proporci √3. ✓ Kompletní průvodce",
     content: `**Vesica Piscis** (latinsky "rybí měchýř") je základní symbol **posvátné geometrie** tvořený průnikem dvou kruhů stejné velikosti. Vytváří **mandorlu** - mandlový tvar v průsečíku.
 
-Symbol reprezentuje **stvoření** - ze dvou (dualita) vzniká třetí (jednota). Je považován za **bránu mezi světy**, průchod z hmotného do duchovního. Vesica Piscis obsahuje **poměr √3:1**, který se objevuje v přírodě a architektuře.
+### Matematické vlastnosti
 
-V křesťanství byl symbol spojen s **Kristem** a rybou (ICHTHYS). V posvátné geometrii je **základem pro další symboly** jako Květ života. Používá se pro **harmonizaci protikladů**, spojení mužského a ženského principu a **duchovní zrození**.`,
+Vesica Piscis obsahuje unikátní **matematické poměry**, které fascinovaly starověké matematiky:
+
+• **Poměr šířky k výšce** je přesně **√3:1** (1:1,732)
+• Z tohoto tvaru lze odvodit **rovnostranný trojúhelník**
+• Je základem pro konstrukci **Květu života** a dalších posvátných vzorů
+• Poměr √3 se objevuje v **přírodě, architektuře i hudbě**
+
+### Symbolika a význam
+
+Symbol reprezentuje **stvoření** - ze dvou (dualita) vzniká třetí (jednota). Je považován za **bránu mezi světy**, průchod z hmotného do duchovního.
+
+V křesťanství byl symbol spojen s **Kristem** a rybou (ICHTHYS). V posvátné geometrii je **základem pro další symboly** jako Květ života.
+
+### Použití
+
+Vesica Piscis se používá pro **harmonizaci protikladů**, spojení mužského a ženského principu a **duchovní zrození**. Je ideální pro meditaci nad jednotou a dualitou.`,
   },
   {
     slug: "infinity",
@@ -335,8 +365,8 @@ Skarabeus je symbolem **osobní transformace** a překonání překážek. Použ
     slug: "caduceus",
     title: "Caduceus (Hermesova hůl)",
     image: "/images/symbols/caduceus.webp",
-    metaTitle: "Caduceus - Symbol léčení, hojnosti a rovnováhy | Hermesova hůl",
-    metaDescription: "Caduceus je mystický symbol Herma, posla bohů. Dva hadi obtáčející hůl symbolizují jednotu protikladů a přinášejí hojnost a štěstí. ✓ Kompletní průvodce",
+    metaTitle: "Caduceus - Symbol léčení a medicíny | Význam a historie",
+    metaDescription: "Caduceus je starověký řecký symbol s dvěma hady obtáčejícími hůl. Objevte jeho význam, spojení s Hermem a rozdíl od Asklépiovy hole. ✓ Kompletní průvodce",
     content: `**Caduceus**, také **Hermesova hůl**, je mystický symbol opředený spoustou bájí. Tvořen **holí se dvěma propletenými hady** a křídly nahoře, reprezentuje **léčení, rovnováhu** a duchovní transformaci.
 
 ### Legenda o Hermově holi
@@ -351,7 +381,18 @@ Z tohoto důvodu je caduceus již dlouho **symbolem zdravotníků a farmaceutů*
 
 ### Použití v moderní době
 
-Caduceus je **symbolem medicíny** a léčitelství (často zaměňován s Asklépiovou holí). Používá se pro **harmonizaci těla a ducha**, aktivaci čaker a **léčení na všech úrovních**. Je ideální pro léčitele, terapeuty a ty, kteří hledají **vnitřní rovnováhu** a **hojnost v životě**.`,
+Caduceus je **symbolem medicíny** a léčitelství (často zaměňován s Asklépiovou holí). Používá se pro **harmonizaci těla a ducha**, aktivaci čaker a **léčení na všech úrovních**. Je ideální pro léčitele, terapeuty a ty, kteří hledají **vnitřní rovnováhu** a **hojnost v životě**.
+
+### Často kladené otázky (FAQ)
+
+**Co znamená caduceus?**
+Caduceus je starověký řecký symbol tvořený holí se dvěma propletenými hady a křídly. Patřil bohu Hermovi a symbolizuje léčení, rovnováhu a hojnost.
+
+**Jaký je rozdíl mezi caduceem a Asklépiovou holí?**
+Caduceus má **dva hady a křídla**, patřil Hermovi (boh obchodu). Asklépiova hůl má **jednoho hada bez křídel** a patřila Asklépiovi (boh medicíny). Skutečným symbolem medicíny je Asklépiova hůl, ale caduceus je často používán omylem.
+
+**Proč je caduceus symbolem medicíny?**
+Caduceus se stal symbolem medicíny v USA na začátku 20. století, kdy byl omylem použit armádním zdravotnickým sborem. Tradičně je však caduceus symbolem obchodu a komunikace, zatímco Asklépiova hůl je pravým symbolem léčení.`,
   },
   {
     slug: "pentacle",
@@ -405,13 +446,32 @@ Meditace s ensó **uklidňuje mysl**, učí nás **přijmout nedokonalost** a b�
     slug: "ouroboros",
     title: "Ouroboros (Had požírající svůj ocas)",
     image: "/images/symbols/ouroboros.webp",
-    metaTitle: "Ouroboros - Symbol věčného cyklu a transformace | Amulets.cz",
-    metaDescription: "Ouroboros je starověký symbol věčného cyklu, transformace a jednoty protikladů.",
-    content: `**Ouroboros** je starověký symbol **hada nebo draka požírajícího svůj ocas**, reprezentující **věčný cyklus** života, smrti a znovuzrození. Symbol byl nalezen v egyptských, řeckých i aztéckých kulturách.
+    metaTitle: "Ouroboros - Had požírající svůj ocas | Význam symbolu",
+    metaDescription: "Ouroboros (had požírající svůj ocas) je starověký symbol věčného cyklu, transformace a nesmrtelnosti. Egyptský, řecký i alchemický význam ✓",
+    content: `**Ouroboros** (také **had požírající svůj ocas**) je starověký symbol reprezentující **věčný cyklus** života, smrti a znovuzrození.
 
-Kruhový tvar symbolizuje **nekonečnost** a **jednotu všeho**. Had požírající svůj ocas představuje **sebeobnovení**, transformaci a **alchemickou transmutaci**. V alchymii symbolizuje **prima materia** - prvotní hmotu, ze které vzniká vše.
+### Co je ouroboros?
 
-Ouroboros učí, že **konec je zároveň začátkem**, smrt je znovuzrozením. Používá se pro **meditaci o cykličnosti života**, překonání strachu ze smrti a **pochopení jednoty protikladů**. Je ideální pro ty, kteří procházejí **velkými životními transformacemi** a hledají hlubší smysl.`,
+Ouroboros je obraz **hada nebo draka, který požírá svůj vlastní ocas**. Tvoří tak dokonale uzavřený kruh. Symbol byl nalezen v egyptských, řeckých i aztéckých kulturách.
+
+### Symbolika hada požírajícího svůj ocas
+
+Kruhový tvar symbolizuje **nekonečnost** a **jednotu všeho**. Had požírající svůj ocas představuje:
+• **Sebeobnoveni** a regeneraci
+• **Alchemickou transmutaci** - přeměnu olova ve zlato
+• **Prima materia** - prvotní hmotu, ze které vzniká vše
+• **Cykličnost života** - konec je zároveň začátkem
+
+### Význam v různých kulturách
+
+• **Egypt** - symbol Ra a věčného života
+• **Řecko** - spojen s Aionem, bohem věčnosti
+• **Alchymie** - klíčový symbol transformace
+• **Gnosticismus** - jednota všeho bytí
+
+### Použití
+
+Ouroboros učí, že **konec je zároveň začátkem**, smrt je znovuzrozením. Používá se pro **meditaci o cykličnosti života**, překonání strachu ze smrti a **pochopení jednoty protikladů**. Je ideální pro ty, kteří procházejí **velkými životními transformacemi**.`,
   },
   {
     slug: "celtic-cross",
@@ -465,8 +525,8 @@ Spirálu používali **keltové, Mayové** i domorodé kultury jako symbol **duc
     slug: "hexagram",
     title: "Hexagram (Davidova hvězda)",
     image: "/images/symbols/hexagram.webp",
-    metaTitle: "Hexagram - Symbol harmonie protikladů | Amulets.cz",
-    metaDescription: "Hexagram (Davidova hvězda) je symbol harmonie protikladů, spojení nebe a země, mužského a ženského.",
+    metaTitle: "✡ Hexagram - Šesticípá hvězda | Význam a symbolika",
+    metaDescription: "Hexagram (šesticípá hvězda, Davidova hvězda) - dva propojené trojúhelníky symbolizují harmonii protikladů. Význam v kabale, alchymii a hinduismu ✓",
     content: `**Hexagram**, známý jako **Davidova hvězda** (Magen David), je šesticípá hvězda tvořená **dvěma propojenými trojúhelníky**. Trojúhelník směřující nahoru symbolizuje **oheň, nebe, mužské**, dolů **vodu, zemi, ženské**.
 
 V židovské tradici je hexagram **symbolem ochrany** a spojení s Bohem. V alchymii reprezentuje **harmonii protikladů** - spojení čtyř živlů (oheň, voda, vzduch, země). V hinduismu je spojen s **anáhata čakrou** (srdečním centrem).
@@ -829,20 +889,46 @@ Ankh byl používán egyptskými bohy jako **klíč k životu a lásce**. Bohyn�
     slug: "symbol-ochrany",
     title: "Symbol ochrany",
     image: "/images/symbols/symbol-ochrany.webp",
-    metaTitle: "Nejsilnější symboly ochrany - Přehled | Amulets.cz",
-    metaDescription: "Kompletni průvodce ochrannými symboly. Ruka Fatimy, Horovo oko, Pentagram a další mocné talismany pro ochranu.",
+    metaTitle: "🛡️ Symboly ochrany - Kompletní průvodce ochrannými talismany",
+    metaDescription: "Který symbol ochrany je nejsilnější? Ruka Fatimy, Horovo oko, Pentagram, Metatronova krychle. Kompletní přehled ochranných symbolů a jak je používat ✓",
     content: `**Symboly ochrany** jsou nejstaršími talismany lidstva. Slouží k **ochraně před negativními energiemi**, uhranutím a zlým pohledem.
 
-**Nejsilnější ochranné symboly:**
+## Nejsilnější ochranné symboly
 
-• **Ruka Fatimy (Hamsa)** - chrání před zlým pohledem a přináší štěstí
-• **Horovo oko** - egyptský symbol ochrany a uzdravení
-• **Pentagram** - mocný ochranný symbol v magii
-• **Kříž** - univerzální symbol ochrany a víry
-• **Triquetra** - keltský symbol ochrany a jednoty
+### 1. Ruka Fatimy (Hamsa)
+**Ruka Fatimy** je jeden z nejstarších ochranných symbolů. Chrání před **zlým pohledem** (nazar) a přináší štěstí. Používá se v judaismu, islámu i křesťanství.
+➡️ [Více o Ruce Fatimy](/symbol/ruka-fatimy)
 
-**Jak používat ochranné symboly:**
-Nosíte je jako **šperky nebo amulety**, umístěte je u vchodu do domu, nebo je používejte při **meditaci a vizualizaci**. Každý symbol má svou specifickou energii a účel.`,
+### 2. Horovo oko (Udjat)
+**Horovo oko** je egyptský symbol **ochrany, zdraví a uzdravení**. Reprezentuje oko boha Hora, které bylo zázračně uzdraveno.
+➡️ [Více o Horově oku](/symbol/horovo-oko)
+
+### 3. Pentagram
+**Pentagram** (pěticípá hvězda) je mocný symbol v **magii a okultismu**. Chrání před negativními silami a symbolizuje pět živlů.
+➡️ [Více o Pentagramu](/symbol/pentacle)
+
+### 4. Metatronova krychle
+**Metatronova krychle** obsahuje všech 5 platónských těles a je považována za **nejsilnější ochranný symbol** posvátné geometrie.
+➡️ [Více o Metatronově krychli](/symbol/metatronova-krychle)
+
+### 5. Triquetra
+**Triquetra** je keltský symbol **trojjedinosti a ochrany**. Reprezentuje tělo, mysl a ducha v harmonii.
+➡️ [Více o Triquetře](/symbol/triquetra)
+
+### 6. Kříž
+**Kříž** je univerzální symbol **víry a ochrany** v křesťanství. Chrání před zlem a přináší požehnání.
+➡️ [Více o Kříži](/symbol/kriz)
+
+## Jak používat ochranné symboly?
+
+• **Noste jako šperky** - náhrdelníky, prsteny, náramky
+• **Umístěte u vchodu** - chrání dům před negativní energií
+• **Používejte při meditaci** - vizualizujte symbol kolem sebe
+• **Nakreslete na papír** - umístěte pod polštář pro ochranu ve spánku
+
+## Který symbol ochrany je nejlepší?
+
+Každý symbol má svou specifickou energii. Vyberte ten, se kterým **cítíte nejsilnější spojení**. Pokud nevíte, začněte s Rukou Fatimy nebo Horovým okem - jsou univerzální a účinné pro většinu lidí.`,
   },
   {
     slug: "nejsilnejsi-ochranny-symbol",

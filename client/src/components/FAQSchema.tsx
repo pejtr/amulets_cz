@@ -149,7 +149,7 @@ export const symbolFAQs: Record<string, FAQItem[]> = {
   "jin-jang": [
     {
       question: "Co znamená jin a jang?",
-      answer: "Jin a Jang (Yin Yang) je symbol dokonalé rovnováhy z čínské filozofie. Jin (černá) představuje ženskou energii, tmu, chlad a pasivitu. Jang (bílá) představuje mužskou energii, světlo, teplo a aktivitu. Obě síly se navzájem doplňují."
+      answer: "Jin a Jang (Yin Yang) je symbol dokonale rovnováhy z čínské filozofie. Jin (černá) představuje ženskou energii, tmu, chlad a pasivitu. Jang (bílá) představuje mužskou energii, světlo, teplo a aktivitu. Obě síly se navzájem doplňují."
     },
     {
       question: "Jaké jsou vlastnosti jin a jang?",
@@ -158,6 +158,62 @@ export const symbolFAQs: Record<string, FAQItem[]> = {
     {
       question: "Jak dosáhnout rovnováhy jin a jang v životě?",
       answer: "Rovnováhy dosáhnete vyvážením aktivity a odpočinku, práce a relaxace, dávání a přijímání. Symbol jin a jang používejte při meditaci, umístěte ho do prostoru pro harmonizaci energie, nebo ho noste jako připomínku rovnováhy."
+    }
+  ],
+  "caduceus": [
+    {
+      question: "Co znamená caduceus?",
+      answer: "Caduceus je starověký řecký symbol tvořený holí se dvěma propletenými hady a křídly. Patřil bohu Hermovi, poslovi bohů, a symbolizuje léčení, rovnováhu, hojnost a duchovní transformaci."
+    },
+    {
+      question: "Jaký je rozdíl mezi caduceem a Asklépiovou holí?",
+      answer: "Caduceus má dva hady a křídla, patřil Hermovi (boh obchodu a komunikace). Asklépiova hůl má jednoho hada bez křídel a patřila Asklépiovi (boh medicíny). Skutečným symbolem medicíny je Asklépiova hůl, ale caduceus je často používán omylem."
+    },
+    {
+      question: "Proč je caduceus symbolem medicíny?",
+      answer: "Caduceus se stal symbolem medicíny v USA na začátku 20. století, kdy byl omylem použit armádním zdravotnickým sborem. Tradičně je caduceus symbolem obchodu a komunikace, zatímco Asklépiova hůl je pravým symbolem léčení."
+    }
+  ],
+  "vesica-piscis": [
+    {
+      question: "Co je vesica piscis?",
+      answer: "Vesica Piscis (latinsky 'rybí měchýř') je základní tvar posvátné geometrie tvořený průnikem dvou kruhů stejné velikosti. Vytváří mandorlu - mandlový tvar v průsečíku."
+    },
+    {
+      question: "Jaký je matematický význam vesica piscis?",
+      answer: "Vesica Piscis obsahuje unikátní poměr √3:1 (1:1,732). Z tohoto tvaru lze odvodit rovnostranný trojúhelník a je základem pro konstrukci Květu života. Poměr √3 se objevuje v přírodě, architektuře i hudbě."
+    },
+    {
+      question: "Jaký je duchovní význam vesica piscis?",
+      answer: "Vesica Piscis symbolizuje stvoření - ze dvou (dualita) vzniká třetí (jednota). Je považována za bránu mezi světy. V křesťanství byla spojena s Kristem a rybou (ICHTHYS). Používá se pro harmonizaci protikladů."
+    }
+  ],
+  "metatronova-krychle": [
+    {
+      question: "Co je Metatronova krychle?",
+      answer: "Metatronova krychle je komplexní geometrický vzorec posvátné geometrie, který obsahuje všech pět platónských těles - základních stavebních kámenů vesmíru. Je pojmenována po archandělu Metatronovi."
+    },
+    {
+      question: "Proč je Metatronova krychle tak silná?",
+      answer: "Metatronova krychle obsahuje všech 5 platónských těles (tetraedr, hexaedr, oktaedr, dodekaedr, ikosaedr), což jsou základní tvary, ze kterých je vytvořena veškerá hmota. Proto chrání na všech úrovních existence."
+    },
+    {
+      question: "Jak používat Metatronovu krychli pro ochranu?",
+      answer: "Metatronovu krychli používejte při meditaci - vizualizujte ji kolem sebe jako ochranný štít. Umístěte ji v domě pro harmonizaci energie, nebo ji noste jako amulet. Je ideální pro duchovní transformaci a ochranu před negativními energiemi."
+    }
+  ],
+  "ouroboros": [
+    {
+      question: "Co je ouroboros?",
+      answer: "Ouroboros je starověký symbol hada nebo draka, který požírá svůj vlastní ocas. Tvoří tak dokonale uzavřený kruh. Symbol byl nalezen v egyptských, řeckých i aztéckých kulturách."
+    },
+    {
+      question: "Co symbolizuje had požírající svůj ocas?",
+      answer: "Had požírající svůj ocas (ouroboros) symbolizuje věčný cyklus života, smrti a znovuzrození. Reprezentuje nekonečnost, sebeobnoveni, alchemickou transmutaci a jednotu všeho. Učí, že konec je zároveň začátkem."
+    },
+    {
+      question: "Jaký je význam ourobora v alchymii?",
+      answer: "V alchymii ouroboros symbolizuje prima materia - prvotní hmotu, ze které vzniká vše. Reprezentuje alchemickou transmutaci - přeměnu olova ve zlato, ale také duchovní transformaci člověka. Je klíčovým symbolem hermetické tradice."
     }
   ]
 };

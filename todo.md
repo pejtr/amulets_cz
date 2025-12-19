@@ -444,3 +444,28 @@
 ## SEO optimalizace Caduceus stránky (Dec 19, 2025)
 - [x] Rozšířit obsah Caduceus o příběh Herma a symboliku
 - [x] Optimalizovat meta tagy pro lepší CTR
+
+
+## SEO Optimalizace dle GSC dat (Dec 19, 2025)
+
+### Vysoký potenciál (pozice 1-10, nízký CTR)
+- [x] Caduceus - nový title "Symbol léčení a medicíny", FAQ sekce
+- [x] Vesica Piscis - nový title/meta, rozšířit obsah o matematické vlastnosti
+- [x] Metatronova krychle - emoji v title, CTA v meta description
+- [x] Triskelion - optimalizovat meta description
+- [x] Choku Rei - optimalizovat obsah
+- [x] Yin Yang symbolika - zlepšit CTR (TOP pozice!)
+- [ ] Posvátná geometrie květ života - vytvořit dedikovanou stránku
+
+### Střední potenciál (pozice 10-25)
+- [x] Had požírající svůj ocas - přidat H2 sekci do Ouroboros stránky
+- [x] Hexagram - optimalizovat obsah
+- [x] Ruka Fatimy význam - rozšířit obsah
+- [x] Horovo oko - zlepšit pozici
+
+### Nové stránky
+- [x] Vytvořit hub stránku "Symbol ochrany" (propojit ochranné symboly)
+
+### Technické SEO
+- [x] Přidat FAQ schema pro klíčové stránky (Caduceus, Vesica Piscis, Metatronova krychle, Ouroboros)
+- [x] Aktualizovat sitemap.xml s novými stránkami
