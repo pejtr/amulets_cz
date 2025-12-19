@@ -545,3 +545,6 @@
 - [x] Prase - vytvořit detailní stránku
 - [x] Vygenerovat ilustrace pro 12 čínských znamení
 - [x] Aktualizovat sitemap.xml
+
+## Opravy bugů (Dec 19, 2025)
+- [x] Opravit formátování Markdown na stránkách znamení (## a ### se zobrazují jako text)

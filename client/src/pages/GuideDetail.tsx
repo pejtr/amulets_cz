@@ -194,7 +194,27 @@ export default function GuideDetail() {
               <div className="lg:col-span-2">
                 <div className="prose prose-lg max-w-none">
                   {content.content.split('\n\n').map((paragraph, index) => {
-                    // Pokud odstavec začíná **text**, je to nadpis
+                    // H2 nadpis (## text)
+                    if (paragraph.startsWith('## ')) {
+                      const title = paragraph.replace(/^## /, '');
+                      return (
+                        <h2 key={index} className="text-2xl font-bold mt-8 mb-4 text-foreground">
+                          {title}
+                        </h2>
+                      );
+                    }
+                    
+                    // H3 nadpis (### text)
+                    if (paragraph.startsWith('### ')) {
+                      const title = paragraph.replace(/^### /, '').replace(/\*\*/g, '');
+                      return (
+                        <h3 key={index} className="text-xl font-semibold mt-6 mb-3 text-foreground">
+                          {title}
+                        </h3>
+                      );
+                    }
+                    
+                    // Pokud odstavec začíná **text**, je to nadpis (starý formát)
                     if (paragraph.startsWith('**') && paragraph.includes(':**')) {
                       const title = paragraph.replace(/\*\*/g, '').replace(':', '');
                       return (
@@ -281,12 +301,73 @@ export default function GuideDetail() {
                       );
                     }
 
+                    // Odkaz se šipkou (➡️ [text](url))
+                    if (paragraph.startsWith('➡️')) {
+                      const linkMatch = paragraph.match(/\[([^\]]+)\]\(([^)]+)\)/);
+                      if (linkMatch) {
+                        return (
+                          <p key={index} className="text-muted-foreground leading-relaxed mb-4">
+                            ➡️ <Link href={linkMatch[2]} className="text-[#D4AF37] hover:underline">{linkMatch[1]}</Link>
+                          </p>
+                        );
+                      }
+                    }
+                    
+                    // Odrážky s •
+                    if (paragraph.startsWith('• ') || paragraph.includes('\n• ')) {
+                      const items = paragraph.split('\n').filter(line => line.trim().startsWith('•'));
+                      return (
+                        <ul key={index} className="list-none space-y-2 mb-4">
+                          {items.map((item, i) => {
+                            const text = item.replace(/^•\s*/, '');
+                            // Parse bold text and links
+                            const parts = text.split(/\*\*/);
+                            return (
+                              <li key={i} className="flex items-start gap-2 text-muted-foreground">
+                                <span className="text-[#D4AF37] mt-0.5 flex-shrink-0">•</span>
+                                <span>
+                                  {parts.map((part, j) => 
+                                    j % 2 === 0 ? part : <strong key={j} className="text-foreground font-semibold">{part}</strong>
+                                  )}
+                                </span>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      );
+                    }
+                    
                     // Normální odstavec
+                    // Parse links in format [text](url)
+                    const renderParagraphWithLinks = (text: string) => {
+                      const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+                      const parts = [];
+                      let lastIndex = 0;
+                      let match;
+                      
+                      while ((match = linkRegex.exec(text)) !== null) {
+                        if (match.index > lastIndex) {
+                          parts.push(text.slice(lastIndex, match.index));
+                        }
+                        parts.push(
+                          <Link key={match.index} href={match[2]} className="text-[#D4AF37] hover:underline">
+                            {match[1]}
+                          </Link>
+                        );
+                        lastIndex = match.index + match[0].length;
+                      }
+                      if (lastIndex < text.length) {
+                        parts.push(text.slice(lastIndex));
+                      }
+                      return parts.length > 0 ? parts : text;
+                    };
+                    
                     return (
                       <p key={index} className="text-muted-foreground leading-relaxed mb-4">
-                        {paragraph.split('**').map((part, i) => 
-                          i % 2 === 0 ? part : <strong key={i} className="text-foreground font-semibold">{part}</strong>
-                        )}
+                        {paragraph.split('**').map((part, i) => {
+                          const content = renderParagraphWithLinks(part);
+                          return i % 2 === 0 ? content : <strong key={i} className="text-foreground font-semibold">{content}</strong>;
+                        })}
                       </p>
                     );
                   })}
