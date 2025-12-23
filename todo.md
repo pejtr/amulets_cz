@@ -666,3 +666,8 @@
 - [x] Aktualizovat meta title pro Jin Jang stránku
 - [x] Aktualizovat meta description pro Jin Jang stránku
 - [x] Otestovat změny
+
+## SEO optimalizace meta tagů Caduceus (Dec 23, 2025)
+- [x] Aktualizovat meta title pro Caduceus stránku
+- [x] Aktualizovat meta description pro Caduceus stránku
+- [x] Otestovat změny

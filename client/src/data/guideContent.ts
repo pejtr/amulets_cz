@@ -365,8 +365,8 @@ Skarabeus je symbolem **osobní transformace** a překonání překážek. Použ
     slug: "caduceus",
     title: "Caduceus (Hermesova hůl)",
     image: "/images/symbols/caduceus.webp",
-    metaTitle: "Caduceus - Symbol léčení a medicíny | Význam a historie",
-    metaDescription: "Caduceus je starověký řecký symbol s dvěma hady obtáčejícími hůl. Objevte jeho význam, spojení s Hermem a rozdíl od Asklépiovy hole. ✓ Kompletní průvodce",
+    metaTitle: "⚕️ Caduceus - Hermesova hůl | Význam symbolu dvou hadů",
+    metaDescription: "Caduceus (Hermesova hůl) - starověký symbol léčení a rovnováhy. Dva hadi obtáčející hůl, význam pro medicínu a duchovní transformaci. Historie a symbolika ✓",
     content: `**Caduceus**, také **Hermesova hůl**, je mystický symbol opředený spoustou bájí. Tvořen **holí se dvěma propletenými hady** a křídly nahoře, reprezentuje **léčení, rovnováhu** a duchovní transformaci.
 
 ### Legenda o Hermově holi
