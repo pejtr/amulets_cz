@@ -671,3 +671,11 @@
 - [x] Aktualizovat meta title pro Caduceus stránku
 - [x] Aktualizovat meta description pro Caduceus stránku
 - [x] Otestovat změny
+
+## SEO vylepšení - Vesica Piscis, Schema.org, Interní odkazy (Dec 23, 2025)
+- [x] Aktualizovat meta tagy pro Vesica Piscis stránku
+- [x] Implementovat Schema.org strukturovaná data pro Caduceus
+- [x] Přidat interní odkazy na Caduceus stránku (Ouroboros, Ankh, Jin Jang)
+
+## Úprava H1 nadpisu v hero sekci (Dec 23, 2025)
+- [x] Vrátit původní H1 nadpis v hero sekci

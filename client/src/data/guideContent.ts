@@ -290,8 +290,8 @@ Triskelion je symbolem **osobního růstu** a překonávání překážek. Použ
     slug: "vesica-piscis",
     title: "Vesica Piscis",
     image: "/images/symbols/vesica-piscis.webp",
-    metaTitle: "Vesica Piscis - Posvátná geometrie | Význam a symbolika",
-    metaDescription: "Vesica Piscis je základní tvar posvátné geometrie. Průnik dvou kruhů symbolizuje stvoření, jednotu protikladů a božskou proporci √3. ✓ Kompletní průvodce",
+    metaTitle: "◎ Vesica Piscis - Posvátná geometrie | Význam průniku dvou kruhů",
+    metaDescription: "Vesica Piscis - základní symbol posvátné geometrie. Průnik dvou kruhů, mandorla, božská proporce √3. Význam pro stvoření a jednotu protikladů ✓",
     content: `**Vesica Piscis** (latinsky "rybí měchýř") je základní symbol **posvátné geometrie** tvořený průnikem dvou kruhů stejné velikosti. Vytváří **mandorlu** - mandlový tvar v průsečíku.
 
 ### Matematické vlastnosti
@@ -392,7 +392,16 @@ Caduceus je starověký řecký symbol tvořený holí se dvěma propletenými h
 Caduceus má **dva hady a křídla**, patřil Hermovi (boh obchodu). Asklépiova hůl má **jednoho hada bez křídel** a patřila Asklépiovi (boh medicíny). Skutečným symbolem medicíny je Asklépiova hůl, ale caduceus je často používán omylem.
 
 **Proč je caduceus symbolem medicíny?**
-Caduceus se stal symbolem medicíny v USA na začátku 20. století, kdy byl omylem použit armádním zdravotnickým sborem. Tradičně je však caduceus symbolem obchodu a komunikace, zatímco Asklépiova hůl je pravým symbolem léčení.`,
+Caduceus se stal symbolem medicíny v USA na začátku 20. století, kdy byl omylem použit armádním zdravotnickým sborem. Tradičně je však caduceus symbolem obchodu a komunikace, zatímco Asklépiova hůl je pravým symbolem léčení.
+
+### Související symboly
+
+Caduceus sdílí symboliku s dalšími mocnými amulety:
+
+• **[Ouroboros](/symbol/ouroboros)** - had požírající svůj ocas symbolizuje věčnost a cyklus života, podobně jako hadi na caduceu reprezentují neustálou transformaci
+• **[Ankh](/symbol/ankh)** - egyptský symbol života a nesmrtelnosti, sdílí s caduceem téma léčení a duchovní síly
+• **[Jin Jang](/symbol/jin-jang)** - symbol rovnováhy protikladů, stejně jako dva hadi na caduceu reprezentují harmonii mužské a ženské energie
+• **[Merkaba](/symbol/merkaba)** - symbol duchovní transformace a vzestupu, podobně jako křídla caducea symbolizují transcendenci`,
   },
   {
     slug: "pentacle",
