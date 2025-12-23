@@ -661,3 +661,8 @@
 - [x] Odstranit "Startovací balíčky" z menu
 - [x] Přidat "Čínská znamení" do menu místo startovacích balíčků
 - [x] Odstranit "Esence" z menu
+
+## SEO optimalizace meta popisků (Dec 23, 2025)
+- [x] Aktualizovat meta title pro Jin Jang stránku
+- [x] Aktualizovat meta description pro Jin Jang stránku
+- [x] Otestovat změny

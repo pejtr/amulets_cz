@@ -140,8 +140,8 @@ Tento symbol **podporuje vnitřní klid**, pomáhá při meditaci a připomíná
     slug: "jin-jang",
     title: "Jin a Jang",
     image: "/images/symbols/jin-jang.webp",
-    metaTitle: "☯ Jin a Jang (Yin Yang) - Význam a symbolika rovnováhy",
-    metaDescription: "Co znamená jin a jang? Černá a bílá část symbolu, vlastnosti jin a jang, jak dosáhnout rovnováhy. Kompletní průvodce čínským symbolem harmonie ✓",
+    metaTitle: "☯ Jin a Jang - Význam symbolu Yin Yang | Co znamená jin jang?",
+    metaDescription: "Jin a jang (yin yang) - symbol harmonie a rovnováhy. Význam černé a bílé části, jak dosáhnout rovnováhy v životě. Čínská filozofie protikladů ✓",
     content: `**Jin a Jang** (také Yin Yang, jin jang) je nejznámější symbol **dokonalé rovnováhy** z čínské filozofie. Představuje harmonii protikladů, které se navzájem doplňují.
 
 ## Co znamená jin a jang?
