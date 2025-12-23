@@ -685,3 +685,11 @@
 - [x] Přidat datePublished, dateModified, author informace
 - [x] Integrovat schema do GuideDetail stránky
 - [x] Otestovat v Google Rich Results Test (ověřeno v konzoli - Article, FAQ, BreadcrumbList schema přítomny)
+
+## SEO vylepšení - HowTo, Související symboly, Sitemap (Dec 23, 2025)
+- [x] Implementovat HowTo schema pro návody (čištění amuletů, používání pyramid)
+- [x] Přidat sekci Související symboly na Jin Jang stránku
+- [x] Přidat sekci Související symboly na Ouroboros stránku
+- [x] Přidat sekci Související symboly na Strom života stránku
+- [x] Vygenerovat sitemap.xml se všemi stránkami (aktualizovány lastmod datumy)
+- [x] Otestovat implementaci

@@ -205,3 +205,65 @@ export function createProductSchema(data: {
 
   return schema;
 }
+
+
+export function createHowToSchema(data: {
+  name: string;
+  description: string;
+  image?: string;
+  totalTime?: string; // ISO 8601 duration format, e.g., "PT30M" for 30 minutes
+  estimatedCost?: { currency: string; value: string };
+  supply?: string[];
+  tool?: string[];
+  steps: { name: string; text: string; image?: string; url?: string }[];
+}) {
+  const schema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": data.name,
+    "description": data.description,
+    "step": data.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      "position": index + 1,
+      "name": step.name,
+      "text": step.text,
+      ...(step.image && { "image": step.image }),
+      ...(step.url && { "url": step.url })
+    }))
+  };
+
+  if (data.image) {
+    schema.image = {
+      "@type": "ImageObject",
+      "url": data.image
+    };
+  }
+
+  if (data.totalTime) {
+    schema.totalTime = data.totalTime;
+  }
+
+  if (data.estimatedCost) {
+    schema.estimatedCost = {
+      "@type": "MonetaryAmount",
+      "currency": data.estimatedCost.currency,
+      "value": data.estimatedCost.value
+    };
+  }
+
+  if (data.supply && data.supply.length > 0) {
+    schema.supply = data.supply.map(item => ({
+      "@type": "HowToSupply",
+      "name": item
+    }));
+  }
+
+  if (data.tool && data.tool.length > 0) {
+    schema.tool = data.tool.map(item => ({
+      "@type": "HowToTool",
+      "name": item
+    }));
+  }
+
+  return schema;
+}

@@ -59,7 +59,16 @@ V kabale Davidova hvězda představuje **spojení božského a pozemského**, du
 
 Tento mocný symbol reprezentuje **růst, sílu a regeneraci**. Strom života nám připomíná, že vše je propojeno - každá větev, každý list, každý kořen je součástí většího celku.
 
-Symbol **podporuje osobní růst**, pomáhá při hledání životní cesty a připomíná nám naše kořeny a předky. Je to talisman **stability, vytrvalosti a věčného života**.`,
+Symbol **podporuje osobní růst**, pomáhá při hledání životní cesty a připomíná nám naše kořeny a předky. Je to talisman **stability, vytrvalosti a věčného života**.
+
+### Související symboly
+
+Strom života sdílí symboliku růstu a propojení s dalšími mocnými amulety:
+
+• **[Květ života](/symbol/kvet-zivota)** - posvátná geometrie obsahující vzorce růstu a harmonie přítomné v celé přírodě
+• **[Jin Jang](/symbol/jin-jang)** - symbol rovnováhy protikladů, podobně jako strom spojuje nebe a zemi
+• **[Ankh](/symbol/ankh)** - egyptský symbol života a nesmrtelnosti, sdílí téma věčného života
+• **[Metatronova krychle](/symbol/metatronova-krychle)** - obsahuje všechny platónská tělesa a vzorce stvoření jako strom života`,
   },
   {
     slug: "hvezda-sjednoceni",
@@ -164,7 +173,16 @@ Každá část obsahuje **malé semínko té druhé** (tečka opačné barvy), c
 
 ## Jak dosáhnout rovnováhy jin a jang?
 
-Symbol **učí rovnováze** v každodenním životě. Používejte ho při meditaci, umístěte ho do prostoru pro harmonizaci energie, nebo ho noste jako připomínku, že **protiklady se navzájem doplňují**.`,
+Symbol **učí rovnováze** v každodenním životě. Používejte ho při meditaci, umístěte ho do prostoru pro harmonizaci energie, nebo ho noste jako připomínku, že **protiklady se navzájem doplňují**.
+
+### Související symboly
+
+Jin a Jang sdílí symboliku rovnováhy s dalšími mocnými amulety:
+
+• **[Caduceus](/symbol/caduceus)** - dva hadi obtocení kolem hole symbolizují stejnou harmonii mužské a ženské energie jako jin a jang
+• **[Květ života](/symbol/kvet-zivota)** - posvátná geometrie obsahující principy rovnováhy a harmonie v celém vesmíru
+• **[Merkaba](/symbol/merkaba)** - dva propojené tetraedry reprezentují mužskou a ženskou energii v dokonale harmonii
+• **[Strom života](/symbol/strom-zivota)** - symbol propojení nebe a země, duchovního a hmotného světa`,
   },
   {
     slug: "horovo-oko",
@@ -480,7 +498,16 @@ Kruhový tvar symbolizuje **nekonečnost** a **jednotu všeho**. Had požírají
 
 ### Použití
 
-Ouroboros učí, že **konec je zároveň začátkem**, smrt je znovuzrozením. Používá se pro **meditaci o cykličnosti života**, překonání strachu ze smrti a **pochopení jednoty protikladů**. Je ideální pro ty, kteří procházejí **velkými životními transformacemi**.`,
+Ouroboros učí, že **konec je zároveň začátkem**, smrt je znovuzrozením. Používá se pro **meditaci o cykličnosti života**, překonání strachu ze smrti a **pochopení jednoty protikladů**. Je ideální pro ty, kteří procházejí **velkými životními transformacemi**.
+
+### Související symboly
+
+Ouroboros sdílí symboliku transformace a věčnosti s dalšími mocnými amulety:
+
+• **[Caduceus](/symbol/caduceus)** - dva hadi na Hermově holi symbolizují podobnou transformaci a léčení jako ouroboros
+• **[Ankh](/symbol/ankh)** - egyptský symbol věčného života a nesmrtelnosti, sdílí téma překonání smrti
+• **[Trojítý měsíc](/symbol/trojity-mesic)** - cyklus panny, matky a stařeny symbolizuje stejnou cykličnost jako ouroboros
+• **[Jin Jang](/symbol/jin-jang)** - symbol rovnováhy protikladů, kde konec jedné energie je začátkem druhé`,
   },
   {
     slug: "celtic-cross",

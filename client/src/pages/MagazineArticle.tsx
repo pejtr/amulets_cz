@@ -13,7 +13,7 @@ import { getMixedRelatedArticles } from "@/lib/relatedArticles";
 import { useEffect } from "react";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
-import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
+import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema, createHowToSchema } from "@/lib/schema";
 import { MarkdownContent } from "@/lib/markdownParser";
 
 export default function MagazineArticle() {
@@ -61,9 +61,53 @@ export default function MagazineArticle() {
         datePublished: article.datePublished || "2024-11-01",
         dateModified: article.dateModified || article.datePublished || "2024-11-01",
         image: article.image,
+        articleType: 'BlogPosting',
+        articleSection: 'Magazín',
+        keywords: [article.title, 'amulet', 'duchovní', 'energie', 'magazín']
       });
 
-      setSchemaMarkup([breadcrumbs, articleSchema]);
+      // Check if article contains HowTo steps (cleaning/charging amulets)
+      const schemas: object[] = [breadcrumbs, articleSchema];
+      
+      // Add HowTo schema for specific articles with step-by-step instructions
+      if (slug === '10-nejsilnejsich-amuletu-pro-ochranu-2025') {
+        const howToClean = createHowToSchema({
+          name: 'Jak čistit a nabíjet amulety',
+          description: 'Návod jak správně čistit a nabíjet amulety a ochranné symboly pro maximální účinnost.',
+          image: 'https://amulets.cz/images/magazine/amulety-ochrana.webp',
+          totalTime: 'PT30M',
+          supply: ['Šalvěj nebo pálo santo', 'Křišťál', 'Čistá voda'],
+          steps: [
+            { name: 'Čištění kouřem šalvěje', text: 'Zapaľte šalvěj a nechte kouř oblévat amulet ze všech stran. Toto je nejjednodušší metoda čištění.' },
+            { name: 'Čištění měsíčním světlem', text: 'Nechte amulet přes noc na okně, kde na něj dopadá měsíční světlo.' },
+            { name: 'Čištění tekoucí vodou', text: 'Opláchněte amulet pod studenou tekoucí vodou.' },
+            { name: 'Čištění krystalem', text: 'Položte amulet na velký křišťál nebo selenitovou desku.' },
+            { name: 'Nabíjení slunečním světlem', text: 'Nechte amulet 1-2 hodiny na slunečním světle (pozor u citlivých kamenů jako ametyst).' },
+            { name: 'Nabíjení měsíčním světlem', text: 'Nechte amulet celou noc na měsíčním světle, ideálně při úplněku.' },
+            { name: 'Nabíjení záměrem', text: 'Držte amulet v rukou a nastavte svůj záměr - co má amulet pro vás dělat.' },
+            { name: 'Nabíjení meditací', text: 'Meditujte s amuletem v rukou a vizualizujte, jak se plní energií.' }
+          ]
+        });
+        schemas.push(howToClean);
+      }
+      
+      if (slug === 'modry-lotos') {
+        const howToUsePyramid = createHowToSchema({
+          name: 'Jak používat orgonitovou pyramidu s modrým lotosem',
+          description: 'Návod jak správně používat orgonitovou pyramidu s modrým lotosem pro maximální duchovní účinky.',
+          image: 'https://amulets.cz/images/magazine/modry-lotos.webp',
+          totalTime: 'PT20M',
+          steps: [
+            { name: 'Umístěte pyramidu', text: 'Umístěte pyramidu na místo, kde meditujete nebo odpočíváte.' },
+            { name: 'Nastavte záměr', text: 'Při prvním použití sdělte pyramidě svůj záměr - co od ní očekáváte.' },
+            { name: 'Pravidelně čistěte', text: 'Pyramidu lze čistit kouřem šalvěje nebo na měsíčním světle.' },
+            { name: 'Meditujte s pyramidou', text: 'Držte pyramidu v rukou nebo ji umístěte před sebe během meditace.' }
+          ]
+        });
+        schemas.push(howToUsePyramid);
+      }
+
+      setSchemaMarkup(schemas);
     }
   }, [article, slug]);
 
