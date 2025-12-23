@@ -50,6 +50,10 @@ export default function GuideDetail() {
 
   if (type === "symbol") {
     content = symbolsData.find((item) => item.slug === slug);
+    // Also check purposesData for Chinese zodiac signs and elements
+    if (!content) {
+      content = purposesData.find((item) => item.slug === slug);
+    }
     backLink = "/";
     backText = "Zpět na Průvodce amulety";
   } else if (type === "kamen") {

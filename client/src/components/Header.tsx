@@ -15,10 +15,9 @@ import GoogleTranslate from "@/components/GoogleTranslate";
 const navItems = [
   { label: "🎁 Průvodce amulety", hasDropdown: false, url: "/#pruvodce-amulety", isInternal: true },
   { label: "✨ Kvíz: Tvůj symbol", hasDropdown: false, url: "/kviz", isInternal: true },
+  { label: "🐍 Čínský horoskop 2025", hasDropdown: false, url: "/cinsky-horoskop", isInternal: true },
   { label: "Orgonitové pyramidy", hasDropdown: false, url: "https://www.ohorai.cz/autorske-tvorba/" },
   { label: "Aromaterapie", hasDropdown: true, url: "https://www.ohorai.cz/aromaterapie/" },
-  { label: "Esence", hasDropdown: false, url: "https://www.ohorai.cz/esence/" },
-  { label: "Startovací balíčky", hasDropdown: false, url: "https://www.ohorai.cz/" },
   { label: "O nás", hasDropdown: false, url: "https://www.ohorai.cz/o-projektu/" },
   { label: "Magazín", hasDropdown: false, url: "/#magazin", isInternal: true },
   { label: "Kontakt", hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },

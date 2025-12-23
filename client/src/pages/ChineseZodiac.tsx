@@ -10,26 +10,26 @@ import { setSchemaMarkup, createBreadcrumbSchema } from "@/lib/schema";
 
 export default function ChineseZodiac() {
   useEffect(() => {
-    document.title = "🐉 Čínský horoskop - Kalkulačka znamení a kompatibilita | Amulets.cz";
+    document.title = "🐍 Čínský horoskop 2025 - Rok Hada | Kalkulačka a kompatibilita | Amulets.cz";
     
     const metaDesc = document.querySelector('meta[name="description"]') || document.createElement('meta');
     metaDesc.setAttribute('name', 'description');
-    metaDesc.setAttribute('content', 'Zjistěte své čínské znamení, element a kompatibilitu s ostatními znameními. Interaktivní kalkulačka čínského horoskopu podle data narození.');
+    metaDesc.setAttribute('content', 'Čínský horoskop 2025 - Rok Dřevěného Hada začíná 29. ledna 2025. Zjistěte své čínské znamení, element a kompatibilitu. Interaktivní kalkulačka podle data narození.');
     if (!document.querySelector('meta[name="description"]')) {
       document.head.appendChild(metaDesc);
     }
 
     setOpenGraphTags({
-      title: "🐉 Čínský horoskop - Kalkulačka znamení a kompatibilita",
-      description: "Zjistěte své čínské znamení, element a kompatibilitu s ostatními znameními. Interaktivní kalkulačka čínského horoskopu.",
+      title: "🐍 Čínský horoskop 2025 - Rok Hada | Kalkulačka a kompatibilita",
+      description: "Rok Dřevěného Hada 2025 začíná 29. ledna. Zjistěte své čínské znamení, element a kompatibilitu s ostatními znameními.",
       url: "https://amulets.cz/cinsky-horoskop",
       type: "website",
-      image: "https://amulets.cz/images/symbols/cinsky-kalendar.webp",
+      image: "https://amulets.cz/images/chinese-zodiac/had.webp",
     });
 
     const breadcrumbs = createBreadcrumbSchema([
       { name: "Domů", url: "https://amulets.cz/" },
-      { name: "Čínský horoskop", url: "https://amulets.cz/cinsky-horoskop" },
+      { name: "Čínský horoskop 2025", url: "https://amulets.cz/cinsky-horoskop" },
     ]);
 
     setSchemaMarkup([breadcrumbs]);
@@ -41,7 +41,7 @@ export default function ChineseZodiac() {
     { name: "Tygr", emoji: "🐅", slug: "cinsky-horoskop-tygr", years: "2022, 2010, 1998, 1986" },
     { name: "Králík", emoji: "🐇", slug: "cinsky-horoskop-kralik", years: "2023, 2011, 1999, 1987" },
     { name: "Drak", emoji: "🐉", slug: "cinsky-horoskop-drak", years: "2024, 2012, 2000, 1988" },
-    { name: "Had", emoji: "🐍", slug: "cinsky-horoskop-had", years: "2025, 2013, 2001, 1989" },
+    { name: "Had", emoji: "🐍", slug: "cinsky-horoskop-had", years: "2025, 2013, 2001, 1989", highlight: true },
     { name: "Kůň", emoji: "🐎", slug: "cinsky-horoskop-kun", years: "2026, 2014, 2002, 1990" },
     { name: "Koza", emoji: "🐏", slug: "cinsky-horoskop-koza", years: "2027, 2015, 2003, 1991" },
     { name: "Opice", emoji: "🐒", slug: "cinsky-horoskop-opice", years: "2028, 2016, 2004, 1992" },
@@ -65,101 +65,103 @@ export default function ChineseZodiac() {
         <div className="container py-8 md:py-16">
           <Breadcrumbs items={[
             { label: "Domů", href: "/" },
-            { label: "Čínský horoskop" }
+            { label: "Čínský horoskop 2025" }
           ]} />
 
           <div className="text-center mb-12">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              🐉 Čínský horoskop
+              🐍 Čínský horoskop 2025
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Objevte tajemství čínské astrologie. Zjistěte své znamení, element a kompatibilitu s ostatními.
+              Rok Dřevěného Hada - období moudrosti, intuice a transformace. Zjistěte své znamení a co vám rok 2025 přinese.
             </p>
           </div>
 
-          {/* Rok 2026 banner */}
-          <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-2xl p-6 md:p-8 mb-8 text-center">
-            <div className="text-4xl mb-2">🐎🔥</div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-2">Rok 2026 - Rok Ohnivého Koně</h2>
-            <p className="text-orange-100 mb-4">
-              Připravte se na rok plný energie, vášně a dobrodružství! Čínský Nový rok začíná 17. února 2026.
-            </p>
-            <Link 
-              href="/predpoved-2026/predpoved-2026-kun"
-              className="inline-block bg-white text-orange-600 px-6 py-2 rounded-full font-semibold hover:bg-orange-100 transition-colors"
-            >
-              Předpověď pro rok Koně →
-            </Link>
-          </div>
-
-          {/* Předpovědi 2026 */}
-          <section id="predpovedi-2026" className="mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
-              🔮 Roční předpovědi 2026
-            </h2>
-            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Zjistěte, co vám přinese Rok Ohnivého Koně v lásce, kariéře, zdraví a financích.
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {[
-                { name: "Krysa", emoji: "🐀", slug: "predpoved-2026-krysa", image: "/images/predictions-2026/krysa-2026.webp" },
-                { name: "Bůvol", emoji: "🐂", slug: "predpoved-2026-buvol", image: "/images/predictions-2026/buvol-2026.webp" },
-                { name: "Tygr", emoji: "🐅", slug: "predpoved-2026-tygr", image: "/images/predictions-2026/tygr-2026.webp" },
-                { name: "Králík", emoji: "🐇", slug: "predpoved-2026-kralik", image: "/images/predictions-2026/kralik-2026.webp" },
-                { name: "Drak", emoji: "🐉", slug: "predpoved-2026-drak", image: "/images/predictions-2026/drak-2026.webp" },
-                { name: "Had", emoji: "🐍", slug: "predpoved-2026-had", image: "/images/predictions-2026/had-2026.webp" },
-                { name: "Kůň", emoji: "🐎", slug: "predpoved-2026-kun", image: "/images/predictions-2026/kun-2026.webp", highlight: true },
-                { name: "Koza", emoji: "🐏", slug: "predpoved-2026-koza", image: "/images/predictions-2026/koza-2026.webp" },
-                { name: "Opice", emoji: "🐒", slug: "predpoved-2026-opice", image: "/images/predictions-2026/opice-2026.webp" },
-                { name: "Kohout", emoji: "🐓", slug: "predpoved-2026-kohout", image: "/images/predictions-2026/kohout-2026.webp" },
-                { name: "Pes", emoji: "🐕", slug: "predpoved-2026-pes", image: "/images/predictions-2026/pes-2026.webp" },
-                { name: "Prase", emoji: "🐖", slug: "predpoved-2026-prase", image: "/images/predictions-2026/prase-2026.webp" },
-              ].map((sign) => (
-                <Link
-                  key={sign.name}
-                  href={`/predpoved-2026/${sign.slug}`}
-                  className={`rounded-xl overflow-hidden text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border ${
-                    sign.highlight 
-                      ? "bg-gradient-to-br from-orange-100 to-red-100 border-orange-300 ring-2 ring-orange-400" 
-                      : "bg-white border-orange-100"
-                  }`}
+          {/* Rok 2025 - hlavní banner */}
+          <div className="bg-gradient-to-r from-emerald-600 via-teal-600 to-green-700 text-white rounded-2xl p-6 md:p-8 mb-8 text-center relative overflow-hidden">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 left-0 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 right-0 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+            </div>
+            <div className="relative z-10">
+              <div className="text-5xl md:text-6xl mb-4">🐍🌳</div>
+              <h2 className="text-2xl md:text-4xl font-bold mb-3">Rok Dřevěného Hada 2025</h2>
+              <p className="text-emerald-100 mb-2 text-lg">
+                Čínský Nový rok začíná <strong>29. ledna 2025</strong>
+              </p>
+              <p className="text-emerald-200 mb-6 max-w-xl mx-auto">
+                Had symbolizuje moudrost, intuici a transformaci. Rok 2025 přinese příležitosti pro duchovní růst, 
+                hlubší pochopení sebe sama a strategické plánování budoucnosti.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link 
+                  href="/symbol/cinsky-horoskop-had"
+                  className="inline-block bg-white text-emerald-700 px-6 py-3 rounded-full font-semibold hover:bg-emerald-100 transition-colors shadow-lg"
                 >
-                  <div className="relative aspect-square overflow-hidden">
-                    <img 
-                      src={sign.image} 
-                      alt={`${sign.name} - Předpověď 2026`}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                      loading="lazy"
-                    />
-                    {sign.highlight && (
-                      <div className="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-lg">
-                        🔥 Váš rok!
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-3">
-                    <h3 className="font-bold text-foreground">{sign.name}</h3>
-                    <p className="text-xs text-orange-600 font-medium">Horoskop 2026</p>
-                  </div>
+                  🐍 Více o roku Hada 2025 →
                 </Link>
+                <Link 
+                  href="#kalkulacka"
+                  className="inline-block bg-emerald-800/50 text-white px-6 py-3 rounded-full font-semibold hover:bg-emerald-800 transition-colors border border-emerald-400/30"
+                >
+                  🔮 Zjistit své znamení
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Co přinese rok 2025 */}
+          <section className="mb-12 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-6 md:p-8 border border-emerald-200">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-emerald-800">
+              🌟 Co přinese Rok Hada 2025?
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { icon: "🧠", title: "Moudrost", desc: "Čas pro hlubší poznání a studium" },
+                { icon: "🔮", title: "Intuice", desc: "Důvěřujte svému vnitřnímu hlasu" },
+                { icon: "🦋", title: "Transformace", desc: "Příležitost pro osobní proměnu" },
+                { icon: "💰", title: "Finance", desc: "Strategické investice a úspory" },
+              ].map((item) => (
+                <div key={item.title} className="bg-white rounded-xl p-5 shadow-md text-center">
+                  <div className="text-3xl mb-2">{item.icon}</div>
+                  <h3 className="font-bold text-emerald-800 mb-1">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
               ))}
             </div>
           </section>
 
-          {/* Rok 2025 banner */}
-          <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl p-6 md:p-8 mb-12 text-center">
-            <div className="text-4xl mb-2">🐍</div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-2">Rok 2025 - Rok Dřevěného Hada</h2>
-            <p className="text-purple-100 mb-4">
-              Čínský Nový rok začíná 29. ledna 2025. Had symbolizuje moudrost, intuici a transformaci.
+          {/* Předpovědi 2025 pro jednotlivá znamení */}
+          <section id="predpovedi-2025" className="mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
+              🔮 Předpovědi pro rok 2025
+            </h2>
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Klikněte na své znamení a zjistěte, co vám Rok Hada přinese v lásce, kariéře a zdraví.
             </p>
-            <Link 
-              href="/symbol/cinsky-horoskop-had"
-              className="inline-block bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-purple-100 transition-colors"
-            >
-              Více o roku Hada →
-            </Link>
-          </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {chineseZodiacSigns.map((sign) => (
+                <Link
+                  key={sign.name}
+                  href={`/symbol/${sign.slug}`}
+                  className={`rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border ${
+                    sign.highlight 
+                      ? "bg-gradient-to-br from-emerald-100 to-teal-100 border-emerald-300 ring-2 ring-emerald-400" 
+                      : "bg-white border-emerald-100"
+                  }`}
+                >
+                  <div className="text-4xl mb-2">{sign.emoji}</div>
+                  <h3 className="font-bold text-foreground">{sign.name}</h3>
+                  <p className="text-xs text-muted-foreground mt-1">{sign.years}</p>
+                  {sign.highlight && (
+                    <span className="inline-block mt-2 bg-emerald-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                      🐍 Váš rok!
+                    </span>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </section>
 
           {/* Kalkulačka */}
           <section id="kalkulacka" className="mb-16">
@@ -171,42 +173,47 @@ export default function ChineseZodiac() {
             <ChineseZodiacCompatibility />
           </section>
 
-          {/* 12 znamení */}
-          <section id="znameni" className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
-              12 Čínských znamení
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {chineseZodiacSigns.map((sign) => (
-                <Link
-                  key={sign.name}
-                  href={`/symbol/${sign.slug}`}
-                  className="bg-white rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-red-100"
-                >
-                  <div className="text-4xl mb-2">{sign.emoji}</div>
-                  <h3 className="font-bold text-foreground">{sign.name}</h3>
-                  <p className="text-xs text-muted-foreground mt-1">{sign.years}</p>
-                </Link>
-              ))}
-            </div>
-          </section>
-
           {/* 5 elementů */}
           <section id="elementy" className="mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
-              5 Elementů čínské astrologie
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
+              🌳 5 Elementů čínské astrologie
             </h2>
+            <p className="text-center text-muted-foreground mb-8 max-w-xl mx-auto">
+              Rok 2025 je rokem <strong>Dřevěného</strong> Hada. Element Dřevo přináší růst, kreativitu a expanzi.
+            </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
               {elements.map((element) => (
                 <Link
                   key={element.name}
                   href={`/symbol/${element.slug}`}
-                  className={`bg-gradient-to-br ${element.color} rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1`}
+                  className={`bg-gradient-to-br ${element.color} rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 ${
+                    element.name === "Dřevo" ? "ring-2 ring-green-500" : ""
+                  }`}
                 >
                   <div className="text-4xl mb-2">{element.emoji}</div>
                   <h3 className="font-bold text-foreground">{element.name}</h3>
+                  {element.name === "Dřevo" && (
+                    <span className="text-xs text-green-700 font-medium">Element 2025</span>
+                  )}
                 </Link>
               ))}
+            </div>
+          </section>
+
+          {/* Rok 2026 - menší sekce */}
+          <section className="mb-12">
+            <div className="bg-gradient-to-r from-orange-100 to-red-100 rounded-2xl p-6 text-center border border-orange-200">
+              <div className="text-3xl mb-2">🐎🔥</div>
+              <h3 className="text-xl font-bold text-orange-800 mb-2">Připravte se na rok 2026</h3>
+              <p className="text-orange-700 mb-4 text-sm">
+                Rok Ohnivého Koně začíná 17. února 2026 - rok energie, vášně a dobrodružství.
+              </p>
+              <Link 
+                href="/symbol/cinsky-horoskop-kun"
+                className="inline-block bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-orange-600 transition-colors"
+              >
+                Více o roku Koně →
+              </Link>
             </div>
           </section>
 
@@ -214,7 +221,7 @@ export default function ChineseZodiac() {
           <div className="text-center">
             <Link 
               href="/symbol/cinsky-kalendar"
-              className="inline-block bg-red-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-red-700 transition-colors"
+              className="inline-block bg-emerald-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-emerald-700 transition-colors"
             >
               📅 Čínský kalendář - Kompletní přehled
             </Link>

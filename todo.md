@@ -650,3 +650,14 @@
 - [x] Přidat podporu pro obrázky v textu - ![alt](url) syntaxe
 - [x] Přidat podporu pro odkazy - [text](url) syntaxe
 - [x] Přidat automatický obsah článku (TOC) - navigace z nadpisů
+
+## Rozšíření Čínského horoskopu (Dec 23, 2025)
+- [ ] Přidat kalkulačku "Zjisti své čínské znamení" podle data narození
+- [ ] Vytvořit stránky pro 12 čínských znamení (Krysa, Buvol, Tygr, Králík, Drak, Had, Kůň, Koza, Opice, Kohout, Pes, Vepř)
+- [ ] Přidat sekci kompatibility mezi znameními
+- [ ] Aktualizovat na rok 2025 (Rok Hada začíná 29.1.2025)
+
+## Úprava navigačního menu (Dec 23, 2025)
+- [x] Odstranit "Startovací balíčky" z menu
+- [x] Přidat "Čínská znamení" do menu místo startovacích balíčků
+- [x] Odstranit "Esence" z menu
