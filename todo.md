@@ -693,3 +693,12 @@
 - [x] Přidat sekci Související symboly na Strom života stránku
 - [x] Vygenerovat sitemap.xml se všemi stránkami (aktualizovány lastmod datumy)
 - [x] Otestovat implementaci
+
+## Strategie zpětných odkazů (Dec 23, 2025)
+- [x] Analyzovat nejdůležitější stránky pro backlink kampaň
+- [x] Prozkoumat možnosti získávání backlinků v českém prostředí
+- [x] Vytvořit strategický dokument s konkrétními taktikami
+- [x] Připravit šablony pro outreach emaily
+
+## Aktualizace Facebook odkazu (Dec 23, 2025)
+- [x] Aktualizovat Facebook odkaz na správnou stránku

@@ -70,7 +70,9 @@ export default function Footer() {
             </h3>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61584549954925"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
               >
                 <Facebook className="h-5 w-5 text-primary" />
