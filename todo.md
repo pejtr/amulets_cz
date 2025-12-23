@@ -679,3 +679,9 @@
 
 ## Úprava H1 nadpisu v hero sekci (Dec 23, 2025)
 - [x] Vrátit původní H1 nadpis v hero sekci
+
+## Schema.org Article markup pro symboly (Dec 23, 2025)
+- [x] Vytvořit SymbolArticleSchema komponentu s JSON-LD
+- [x] Přidat datePublished, dateModified, author informace
+- [x] Integrovat schema do GuideDetail stránky
+- [x] Otestovat v Google Rich Results Test (ověřeno v konzoli - Article, FAQ, BreadcrumbList schema přítomny)

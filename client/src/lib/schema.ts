@@ -34,11 +34,15 @@ export function createArticleSchema(data: {
   articleSection?: string;
   keywords?: string[];
   wordCount?: number;
+  articleType?: 'Article' | 'BlogPosting' | 'NewsArticle';
+  about?: string;
+  mentions?: string[];
 }) {
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": data.title,
+    "@type": data.articleType || "Article",
+    "headline": data.title.substring(0, 110), // Google recommends max 110 chars
+    "name": data.title,
     "description": data.description,
     "url": data.url,
     "datePublished": data.datePublished,
@@ -52,7 +56,11 @@ export function createArticleSchema(data: {
     "author": {
       "@type": "Person",
       "name": "Natálie Ohorai",
-      "url": "https://amulets.cz"
+      "url": "https://amulets.cz/o-nas",
+      "jobTitle": "Zakladatelka Amulets.cz",
+      "sameAs": [
+        "https://www.ohorai.cz"
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -69,7 +77,13 @@ export function createArticleSchema(data: {
       "@type": "WebPage",
       "@id": data.url
     },
-    "inLanguage": "cs-CZ"
+    "inLanguage": "cs-CZ",
+    "isAccessibleForFree": true,
+    "copyrightYear": new Date().getFullYear(),
+    "copyrightHolder": {
+      "@type": "Organization",
+      "name": "Amulets.cz"
+    }
   };
 
   // Add optional fields if provided
@@ -81,6 +95,18 @@ export function createArticleSchema(data: {
   }
   if (data.wordCount) {
     schema.wordCount = data.wordCount;
+  }
+  if (data.about) {
+    schema.about = {
+      "@type": "Thing",
+      "name": data.about
+    };
+  }
+  if (data.mentions && data.mentions.length > 0) {
+    schema.mentions = data.mentions.map(mention => ({
+      "@type": "Thing",
+      "name": mention
+    }));
   }
 
   return schema;

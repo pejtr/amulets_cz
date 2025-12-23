@@ -105,23 +105,41 @@ export default function GuideDetail() {
       // Determine article section and keywords based on type
       const articleSection = type === 'symbol' ? 'Symboly a amulety' : type === 'kamen' ? 'Drahé kameny' : 'Účely amuletů';
       
-      // Extract keywords from title and content
-      const keywords = [
+      // Extract keywords from title and content - more specific for SEO
+      const baseKeywords = [
         content.title,
         type === 'symbol' ? 'symbol' : type === 'kamen' ? 'kámen' : 'účel',
         'amulet',
         'talisman',
         'duchovní',
         'energie',
-        'ochrana'
+        'ochrana',
+        'význam',
+        'symbolika'
       ];
+      
+      // Add type-specific keywords
+      const typeKeywords = type === 'symbol' 
+        ? ['posvátný symbol', 'duchovní symbol', 'ochranný symbol']
+        : type === 'kamen' 
+        ? ['léčivý kámen', 'krystal', 'minerál']
+        : ['duchovní účel', 'energie amuletu'];
+      
+      const keywords = [...baseKeywords, ...typeKeywords];
 
       // Calculate word count from content
       const wordCount = content.content ? content.content.split(/\s+/).length : 0;
 
       // Get modification date - use today for recently updated pages
       const recentlyUpdatedSlugs = ['caduceus', 'vesica-piscis', 'metatronova-krychle', 'triskelion', 'choku-rei', 'jin-jang', 'ouroboros', 'hexagram', 'ruka-fatimy', 'horovo-oko', 'symbol-ochrany'];
-      const dateModified = recentlyUpdatedSlugs.includes(slug) ? '2025-12-19' : '2025-11-28';
+      const dateModified = recentlyUpdatedSlugs.includes(slug) ? '2025-12-23' : '2025-11-28';
+
+      // Extract mentions from content (linked symbols)
+      const mentionMatches = content.content.match(/\[([^\]]+)\]\(\/symbol\/[^)]+\)/g) || [];
+      const mentions = mentionMatches.map(match => {
+        const nameMatch = match.match(/\[([^\]]+)\]/);
+        return nameMatch ? nameMatch[1] : '';
+      }).filter(Boolean);
 
       const article = createArticleSchema({
         title: content.metaTitle,
@@ -132,7 +150,9 @@ export default function GuideDetail() {
         image: content.image ? `https://amulets.cz${content.image}` : undefined,
         articleSection: articleSection,
         keywords: keywords,
-        wordCount: wordCount
+        wordCount: wordCount,
+        about: content.title,
+        mentions: mentions.length > 0 ? mentions : undefined
       });
 
       setSchemaMarkup([breadcrumbs, article]);
