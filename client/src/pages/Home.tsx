@@ -8,7 +8,6 @@ import GuideSection from "@/components/GuideSection";
 import MagazineSection from "@/components/MagazineSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 
-import { GuideCTA } from "@/components/GuideCTA";
 import QuizCTA from "@/components/QuizCTA";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
@@ -49,7 +48,6 @@ export default function Home() {
       <main>
         <HeroSection />
         <USPSection />
-        <GuideCTA />
         <ProductsSection />
         <TestimonialsSection />
         <GuideSection />

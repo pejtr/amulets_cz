@@ -10,7 +10,7 @@ export function GuideCTA() {
   };
 
   return (
-    <section className="py-12 bg-gradient-to-b from-white to-pink-50">
+    <section className="hidden md:block py-12 bg-gradient-to-b from-white to-pink-50">
       <div className="container">
         <div className="flex justify-center">
           <Button

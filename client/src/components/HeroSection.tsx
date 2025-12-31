@@ -7,49 +7,56 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-full overflow-hidden bg-white">
-      {/* Mobile: hero section only - Natalie with magical background and text */}
+      {/* Mobile: cropped hero image (without buttons) + functional buttons below */}
       <div className="md:hidden">
         <img
-          src="/hero-mobile-hero-only.jpg"
+          src="/hero-mobile-cropped.jpg"
           alt="Natálie Ohorai - Zakladatelka Amulets.cz"
           className="w-full h-auto"
         />
         
-        {/* Positioning text */}
-        <div className="px-4 pt-4 pb-2 bg-gradient-to-b from-white/80 to-white text-center">
-          <p className="text-sm text-muted-foreground">
-            📍 Oficiální katalog produktů <span className="font-semibold text-[#D4AF37]">OHORAI</span>
-          </p>
-          <p className="text-xs text-muted-foreground mt-1">
-            Vyberte si svůj amulet a pokračujte na OHORAI.cz pro nákup
-          </p>
-        </div>
-        
-        {/* Buttons below the image on mobile */}
-        <div className="px-4 pb-6 space-y-3 bg-gradient-to-b from-white/80 to-white">
+        {/* Functional buttons below the image on mobile */}
+        <div className="px-4 py-4 space-y-3 bg-gradient-to-b from-[#1a1a2e] to-white">
+          <div className="flex gap-3">
+            <Button
+              size="lg"
+              className="flex-1 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold text-sm rounded-lg shadow-lg h-14 flex items-center justify-center"
+              onClick={() => {
+                track.ctaClicked('PROCHÁZET', 'Hero Section', '#produkty');
+                const produktySection = document.getElementById('produkty');
+                if (produktySection) {
+                  produktySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+            >
+              PROCHÁZET
+            </Button>
+            <Button
+              size="lg"
+              className="flex-1 bg-gradient-to-r from-[#FDF8E8] to-[#F5ECD0] hover:from-[#D4AF37] hover:to-[#F0D060] text-black font-bold text-sm flex items-center justify-center gap-2 rounded-lg shadow-lg border-2 border-[#D4AF37] h-14"
+              onClick={() => {
+                track.ohoraiButtonClicked('Hero Section');
+                window.open('https://www.ohorai.cz', '_blank');
+              }}
+            >
+              <span>Přejít na</span>
+              <img src="/ohorai-logo.webp" alt="OHORAI" className="h-6 w-auto brightness-0" />
+            </Button>
+          </div>
+          
+          {/* Kvíz zdarma button - below the two buttons */}
           <Button
             size="lg"
-            className="w-full bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold py-6 text-base rounded-lg shadow-lg"
+            className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-6 text-base rounded-full shadow-xl relative overflow-hidden group"
             onClick={() => {
-              track.ctaClicked('PROHLÉDNOUT PRODUKTY', 'Hero Section', '#produkty');
-              const produktySection = document.getElementById('produkty');
-              if (produktySection) {
-                produktySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
+              track.ctaClicked('Kvíz zdarma', 'Hero Section', '/kviz');
+              setLocation('/kviz');
             }}
           >
-            PROHLÉDNOUT PRODUKTY
-          </Button>
-          <Button
-            size="lg"
-            className="w-full bg-[#D4AF37] hover:bg-[#C19B2E] text-black font-bold py-6 text-base flex items-center justify-center gap-2 rounded-lg shadow-lg"
-            onClick={() => {
-              track.ohoraiButtonClicked('Hero Section');
-              window.open('https://www.ohorai.cz', '_blank');
-            }}
-          >
-            <span>Přejít na</span>
-            <img src="/ohorai-logo.webp" alt="OHORAI" className="h-10 w-auto brightness-0" />
+            <span className="relative z-10"><span className="text-3xl mr-2">☥</span>Kvíz zdarma</span>
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 text-2xl group-hover:translate-x-1 transition-transform">
+              →
+            </div>
           </Button>
         </div>
       </div>
@@ -104,24 +111,25 @@ export default function HeroSection() {
                   </div>
                 </div>
 
+                {/* Two main buttons */}
                 <div className="flex flex-row gap-1.5 animate-fade-in-up animation-delay-400">
                   <Button
                     size="lg"
-                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-4 sm:px-8 py-3 sm:py-6 text-xs sm:text-base whitespace-nowrap"
+                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-4 sm:px-6 text-xs sm:text-base whitespace-nowrap h-[52px] sm:h-[60px] flex items-center justify-center"
                     onClick={() => {
-                      track.ctaClicked('PROHLÉDNOUT PRODUKTY', 'Hero Section', '#produkty');
+                      track.ctaClicked('PROCHÁZET', 'Hero Section', '#produkty');
                       const produktySection = document.getElementById('produkty');
                       if (produktySection) {
                         produktySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }
                     }}
-                  >
-                    PROHLÉDNOUT PRODUKTY
+                >
+                    PROCHÁZET
                   </Button>
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-[#D4AF37] bg-white hover:bg-[#D4AF37] hover:border-[#D4AF37] font-semibold px-3 sm:px-6 py-3 sm:py-6 text-xs sm:text-base flex items-center justify-center gap-1.5 transition-all duration-300 group whitespace-nowrap"
+                    className="border-2 border-[#D4AF37] bg-gradient-to-r from-[#FDF8E8] to-[#F5ECD0] hover:from-[#D4AF37] hover:to-[#F0D060] font-semibold px-3 sm:px-6 text-xs sm:text-base flex items-center justify-center gap-1.5 transition-all duration-300 group whitespace-nowrap shadow-md h-[52px] sm:h-[60px]"
                     onClick={() => {
                       track.ohoraiButtonClicked('Hero Section');
                       window.open('https://www.ohorai.cz', '_blank');
@@ -129,6 +137,23 @@ export default function HeroSection() {
                   >
                     <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
                     <img src="/ohorai-logo.webp" alt="OHORAI" className="h-10 sm:h-12 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
+                  </Button>
+                </div>
+
+                {/* Kvíz zdarma button - below the two buttons on desktop */}
+                <div className="animate-fade-in-up animation-delay-600">
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold px-8 py-5 text-base rounded-full shadow-xl relative overflow-hidden group"
+                    onClick={() => {
+                      track.ctaClicked('Kvíz zdarma', 'Hero Section', '/kviz');
+                      setLocation('/kviz');
+                    }}
+                  >
+                    <span className="relative z-10"><span className="text-3xl mr-2">☥</span>Kvíz zdarma</span>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-xl group-hover:translate-x-1 transition-transform">
+                      →
+                    </div>
                   </Button>
                 </div>
               </div>

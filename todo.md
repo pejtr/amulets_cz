@@ -702,3 +702,15 @@
 
 ## Aktualizace Facebook odkazu (Dec 23, 2025)
 - [x] Aktualizovat Facebook odkaz na správnou stránku
+
+## SEO opravy - chybějící alt texty (Dec 31, 2025)
+- [ ] Najít 4 obrázky bez alt textu na homepage
+- [ ] Přidat popisné alt texty ke všem obrázkům
+
+## Oprava hero sekce na mobilu (Dec 31, 2025)
+- [ ] Odstranit duplicitní tlačítka z mobilní hero sekce
+- [ ] Upravit pozadí obrázku aby nebyla useknutá hlava Natálie
+- [ ] Odstranit duplicitní 'Doprava zdarma' z USP sekce na mobilu (je už v obrázku)
+- [ ] Upravit ořez hero obrázku - méně ořezat nahoře (hlava)
+- [ ] Změnit text tlačítka z 'ZÍSKAT VÍCE' na 'PROHLÉDNOUT'
+- [ ] Opravit překrývání promo banneru s headerem při scrollování na mobilu
