@@ -22,14 +22,14 @@ export default function HeroSection() {
               size="lg"
               className="flex-1 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold text-sm rounded-lg shadow-lg h-14 flex items-center justify-center"
               onClick={() => {
-                track.ctaClicked('PROCHÁZET', 'Hero Section', '#produkty');
+                track.ctaClicked('PROHLÉDNOUT', 'Hero Section', '#produkty');
                 const produktySection = document.getElementById('produkty');
                 if (produktySection) {
                   produktySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
             >
-              PROCHÁZET
+              PROHLÉDNOUT
             </Button>
             <Button
               size="lg"
@@ -44,16 +44,16 @@ export default function HeroSection() {
             </Button>
           </div>
           
-          {/* Kvíz zdarma button - below the two buttons */}
+          {/* Zjisti svůj amulet button - below the two buttons */}
           <Button
             size="lg"
             className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-6 text-base rounded-full shadow-xl relative overflow-hidden group"
             onClick={() => {
-              track.ctaClicked('Kvíz zdarma', 'Hero Section', '/kviz');
+              track.ctaClicked('Zjisti svůj amulet', 'Hero Section', '/kviz');
               setLocation('/kviz');
             }}
           >
-            <span className="relative z-10"><span className="text-3xl mr-2">☥</span>Kvíz zdarma</span>
+            <span className="relative z-10"><span className="text-3xl mr-2">☥</span>Zjisti svůj amulet</span>
             <div className="absolute right-4 top-1/2 -translate-y-1/2 text-2xl group-hover:translate-x-1 transition-transform">
               →
             </div>
@@ -117,14 +117,14 @@ export default function HeroSection() {
                     size="lg"
                     className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-4 sm:px-6 text-xs sm:text-base whitespace-nowrap h-[52px] sm:h-[60px] flex items-center justify-center"
                     onClick={() => {
-                      track.ctaClicked('PROCHÁZET', 'Hero Section', '#produkty');
+                      track.ctaClicked('PROHLÉDNOUT', 'Hero Section', '#produkty');
                       const produktySection = document.getElementById('produkty');
                       if (produktySection) {
                         produktySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }
                     }}
                 >
-                    PROCHÁZET
+                    PROHLÉDNOUT
                   </Button>
                   <Button
                     size="lg"
@@ -140,18 +140,18 @@ export default function HeroSection() {
                   </Button>
                 </div>
 
-                {/* Kvíz zdarma button - below the two buttons on desktop */}
+                {/* Zjisti svůj amulet button - below the two buttons on desktop */}
                 <div className="animate-fade-in-up animation-delay-600">
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold px-8 py-5 text-base rounded-full shadow-xl relative overflow-hidden group"
+                    className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold pl-10 pr-14 py-6 text-lg rounded-full shadow-xl relative overflow-hidden group"
                     onClick={() => {
-                      track.ctaClicked('Kvíz zdarma', 'Hero Section', '/kviz');
+                      track.ctaClicked('Zjisti svůj amulet', 'Hero Section', '/kviz');
                       setLocation('/kviz');
                     }}
                   >
-                    <span className="relative z-10"><span className="text-3xl mr-2">☥</span>Kvíz zdarma</span>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-xl group-hover:translate-x-1 transition-transform">
+                    <span className="relative z-10"><span className="text-4xl mr-2">☥</span>Zjisti svůj amulet</span>
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-2xl group-hover:translate-x-1 transition-transform">
                       →
                     </div>
                   </Button>
