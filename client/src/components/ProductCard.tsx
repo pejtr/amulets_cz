@@ -53,12 +53,18 @@ export default function ProductCard({
     return 'Limitovaná edice';
   };
   const handleClick = () => {
+    // Open QuickView popup instead of direct link
+    if (onQuickView) {
+      onQuickView();
+    }
+  };
+
+  const handleBuyClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (url) {
       // Track product click
       const priceNum = parseInt(price.replace(/\D/g, ''));
-      const category = name.includes('Pyramida') ? 'Pyramidy' : 'Esence';
       track.buyButtonClicked(name, priceNum, url);
-      
       window.open(url, '_blank');
     }
   };
@@ -195,6 +201,7 @@ export default function ProductCard({
             className="gap-1.5 bg-gradient-to-r from-[#D4AF37] to-[#F4CF47] hover:from-[#C19B2E] hover:to-[#D4AF37] text-black font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             disabled={!available}
             title="Přesměrování na obchod OHORAI.cz"
+            onClick={handleBuyClick}
           >
             <ShoppingCart className="h-4 w-4" />
             <span>KOUPIT NYNÍ</span>

@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, ArrowRight, Star, ShoppingCart, Users, Truck } from "lucide-react";
 import { Link } from "wouter";
 import { track } from "@/lib/tracking";
+import { useState } from "react";
+import ProductQuickView from "@/components/ProductQuickView";
 
 const essences = [
   {
@@ -11,7 +13,7 @@ const essences = [
     rating: 4.9,
     reviewCount: 22,
     url: "https://www.ohorai.cz/esence-ohorai-modry-lotos/",
-    description: "Ikonická, vámi oblíbená esence Ohorai snoubící vůni omamného modrého leknínu, růže, gerania a lípy...",
+    description: "Ikonická, vámi oblíbená esence OHORAI snoubící vůni omamného modrého leknínu, růže, gerania a lípy. Podporuje meditaci, relaxaci a duchovní probuzení. Obsahuje 24k zlato a křišťál. Obsah: 10 ml.",
   },
   {
     name: "Esence ~ OhoRÁJ lotos",
@@ -20,7 +22,7 @@ const essences = [
     rating: 5.0,
     reviewCount: 9,
     url: "https://www.ohorai.cz/esence-ohoraj/",
-    description: "Silná esence snoubící Bulharskou růži, lípu, jasmín. Esence, která tvoří dokonalou kombinaci síly a jemnosti...",
+    description: "Silná esence snoubící Bulharskou růži, lípu a jasmín. Tvoří dokonalou kombinaci síly a jemnosti. Obsahuje velké množství pravého plátkového 24k zlata od vyhlášené italské značky a křišťál. Obsah: 5 ml.",
   },
   {
     name: "Esence ~ MUŽ 10ml",
@@ -29,7 +31,7 @@ const essences = [
     rating: 4.7,
     reviewCount: 14,
     url: "https://www.ohorai.cz/esence-muz/",
-    description: "Velmi silná esence snoubící vůně dřevin - santalu, ylang ylang, borovice až po velmi silnou esenci vetiver...",
+    description: "Velmi silná esence snoubící vůně dřevin - santalu, ylang ylang, borovice a vetiveru. Podporuje mužskou energii, sílu a sebevědomí. Obsahuje 24k zlato a křišťál. Obsah: 10 ml.",
   },
   {
     name: "Esence ~ Žena - mateřská 10ml",
@@ -38,7 +40,7 @@ const essences = [
     rating: 4.8,
     reviewCount: 17,
     url: "https://www.ohorai.cz/esence-zena-materska/",
-    description: "Jemná esence snoubící růži a jasmín podporující naladění na nejjemnější vibrace něžnosti, lehkosti, přijetí...",
+    description: "Jemná esence snoubící růži a jasmín podporující naladění na nejjemnější vibrace něžnosti, lehkosti a přijetí. Ideální pro ženy a matky. Obsahuje 24k zlato a křišťál. Obsah: 10 ml.",
   },
 ];
 
@@ -50,7 +52,7 @@ const pyramids = [
     rating: 4.9,
     reviewCount: 13,
     url: "https://www.ohorai.cz/pyramida-ohorai-hojnost/",
-    description: "Ručně vyráběná pyramida s drahými krystaly a vzácnou bylinou pro přitahování hojnosti",
+    description: "Ručně vyráběná orgonitová pyramida s drahými krystaly a vzácnou bylinou modrého lotosu pro přitahování hojnosti. Obsahuje citrín, ametyst a 24k zlato. Vyrobena v meditativním stavu s láskou.",
   },
   {
     name: "Pyramida OHORAI ~ Světlo univerza",
@@ -59,7 +61,7 @@ const pyramids = [
     rating: 4.8,
     reviewCount: 9,
     url: "https://www.ohorai.cz/pyramida-ohorai-hojnost-2/",
-    description: "Vesmír ukrytý v pyramidě ❤️ ručně vyrobená pyramida v meditativním stavu",
+    description: "Vesmír ukrytý v pyramidě ❤️ Ručně vyrobená orgonitová pyramida v meditativním stavu. Obsahuje vzácné krystaly, modrý lotos a 24k zlato pro duchovní transformaci.",
   },
   {
     name: "Pyramida OHORAI ~ Kristovo světlo",
@@ -68,7 +70,7 @@ const pyramids = [
     rating: 4.9,
     reviewCount: 10,
     url: "https://www.ohorai.cz/pyramida-ohorai-pevnost-vule/",
-    description: "Pyramida nesoucí energii Kristova světla pro duchovní růst",
+    description: "Orgonitová pyramida nesoucí energii Kristova světla pro duchovní růst a vnitřní transformaci. Ručně vyráběná s drahými krystaly, modrým lotosem a 24k zlatem.",
   },
   {
     name: "Pyramida OHORAI ~ Kundalíní",
@@ -77,7 +79,7 @@ const pyramids = [
     rating: 4.7,
     reviewCount: 8,
     url: "https://www.ohorai.cz/pyramida-ohorai-kundalini/",
-    description: "Pyramida pro probuzení a harmonizaci kundalíní energie",
+    description: "Orgonitová pyramida pro probuzení a harmonizaci kundalíní energie. Ručně vyráběná s drahými krystaly a 24k zlatem pro práci s čakrami.",
   },
 ];
 
@@ -105,7 +107,26 @@ function StarRating({ rating, reviewCount }: { rating: number; reviewCount: numb
   );
 }
 
+interface Product {
+  name: string;
+  price: string;
+  image: string;
+  rating: number;
+  reviewCount: number;
+  url: string;
+  description: string;
+}
+
 export default function ProductsStrip() {
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
+
+  const handleProductClick = (product: Product) => {
+    track.ctaClicked(product.name, 'ProductsStrip QuickView', product.url);
+    setSelectedProduct(product);
+    setIsQuickViewOpen(true);
+  };
+
   return (
     <section className="w-full bg-white py-12 border-t">
       <div className="container">
@@ -146,10 +167,7 @@ export default function ProductsStrip() {
               {/* Image container */}
               <div 
                 className="relative aspect-square overflow-hidden cursor-pointer"
-                onClick={() => {
-                  track.ctaClicked(product.name, 'ProductsStrip Image', product.url);
-                  window.open(product.url, '_blank');
-                }}
+                onClick={() => handleProductClick(product)}
               >
                 <img
                   src={product.image}
@@ -172,7 +190,10 @@ export default function ProductsStrip() {
 
               {/* Content */}
               <div className="p-4 space-y-3">
-                <h3 className="font-bold text-foreground line-clamp-2 min-h-[2.5rem]">
+                <h3 
+                  className="font-bold text-foreground line-clamp-2 min-h-[2.5rem] cursor-pointer hover:text-[#D4AF37] transition-colors"
+                  onClick={() => handleProductClick(product)}
+                >
                   {product.name}
                 </h3>
                 <p className="text-xs text-muted-foreground line-clamp-2">
@@ -256,10 +277,7 @@ export default function ProductsStrip() {
               {/* Image container */}
               <div 
                 className="relative aspect-square overflow-hidden cursor-pointer"
-                onClick={() => {
-                  track.ctaClicked(product.name, 'ProductsStrip Image', product.url);
-                  window.open(product.url, '_blank');
-                }}
+                onClick={() => handleProductClick(product)}
               >
                 <img
                   src={product.image}
@@ -277,7 +295,10 @@ export default function ProductsStrip() {
 
               {/* Content */}
               <div className="p-4 space-y-3">
-                <h3 className="font-bold text-foreground line-clamp-2 min-h-[2.5rem]">
+                <h3 
+                  className="font-bold text-foreground line-clamp-2 min-h-[2.5rem] cursor-pointer hover:text-[#D4AF37] transition-colors"
+                  onClick={() => handleProductClick(product)}
+                >
                   {product.name}
                 </h3>
                 <p className="text-xs text-muted-foreground line-clamp-2">
@@ -323,6 +344,13 @@ export default function ProductsStrip() {
           ))}
         </div>
       </div>
+
+      {/* Product Quick View Modal */}
+      <ProductQuickView
+        product={selectedProduct}
+        isOpen={isQuickViewOpen}
+        onClose={() => setIsQuickViewOpen(false)}
+      />
     </section>
   );
 }

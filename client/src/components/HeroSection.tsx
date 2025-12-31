@@ -119,7 +119,7 @@ export default function HeroSection() {
                     size="lg"
                     className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-4 sm:px-6 text-xs sm:text-base whitespace-nowrap h-[52px] sm:h-[60px] flex items-center justify-center gap-2"
                     onClick={() => {
-                      track.ctaClicked('Prohlédnout produkty', 'Hero Section', '#produkty');
+                      track.ctaClicked('Zobrazit produkty', 'Hero Section', '#produkty');
                       const produktySection = document.getElementById('produkty');
                       if (produktySection) {
                         produktySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -127,7 +127,7 @@ export default function HeroSection() {
                     }}
                 >
                     <Eye className="w-5 h-5" />
-                    Prohlédnout produkty
+                    Zobrazit produkty
                   </Button>
                   <Button
                     size="lg"
