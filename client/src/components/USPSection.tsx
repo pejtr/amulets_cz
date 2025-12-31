@@ -1,4 +1,4 @@
-import { Truck, Sparkles, Mail, Gift } from "lucide-react";
+import { Truck, Sparkles, Hand, Gift } from "lucide-react";
 
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -16,7 +16,7 @@ const uspItems = [
     showOnMobile: true,
   },
   {
-    icon: Mail,
+    icon: Hand,
     title: "Ruční výroba",
     description: "Šperky a pyramidy pro vás s láskou vyrábíme",
     showOnMobile: true,

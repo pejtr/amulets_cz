@@ -7,7 +7,6 @@ import ProductsSection from "@/components/ProductsSection";
 import GuideSection from "@/components/GuideSection";
 import MagazineSection from "@/components/MagazineSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-
 import QuizCTA from "@/components/QuizCTA";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
@@ -48,10 +47,10 @@ export default function Home() {
       <main>
         <HeroSection />
         <USPSection />
-        <ProductsSection />
-        <TestimonialsSection />
         <GuideSection />
         <QuizCTA />
+        <ProductsSection />
+        <TestimonialsSection />
         <MagazineSection />
         <FAQSection />
       </main>

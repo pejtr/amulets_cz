@@ -5,6 +5,7 @@ import GuideSection from "@/components/GuideSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { ShareButtons } from "@/components/ShareButtons";
 import RelatedArticles from "@/components/RelatedArticles";
+import ProductsStrip from "@/components/ProductsStrip";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import { magazineArticles } from "@/data/magazineContent";
@@ -228,6 +229,7 @@ export default function MagazineArticle() {
       </main>
       <RelatedArticles articles={getMixedRelatedArticles(slug, 'magazine', 3)} />
       <GuideSection />
+      <ProductsStrip />
       <Footer />
       
       {/* Lightbox pro zvětšení obrázku */}

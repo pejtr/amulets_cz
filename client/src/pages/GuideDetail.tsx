@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { ShareButtons } from "@/components/ShareButtons";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import RelatedArticles from "@/components/RelatedArticles";
+import ProductsStrip from "@/components/ProductsStrip";
 import RelatedSymbols from "@/components/RelatedSymbols";
 import { FAQSchema, symbolFAQs } from "@/components/FAQSchema";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
@@ -231,9 +232,49 @@ export default function GuideDetail() {
                       );
                     }
                     
-                    // H3 nadpis (### text)
+                    // H3 nadpis (### text) - může obsahovat více řádků s odkazy
                     if (trimmedParagraph.startsWith('### ')) {
-                      const title = trimmedParagraph.replace(/^### /, '').replace(/\*\*/g, '');
+                      // Check if this H3 block contains multiple lines (zodiac format)
+                      const lines = trimmedParagraph.split('\n');
+                      const title = lines[0].replace(/^### /, '').replace(/\*\*/g, '');
+                      
+                      // If there are more lines after the title, render them as content
+                      if (lines.length > 1) {
+                        const contentLines = lines.slice(1);
+                        return (
+                          <div key={index} className="mb-6">
+                            <h3 className="text-xl font-semibold mt-6 mb-3 text-foreground">
+                              {title}
+                            </h3>
+                            {contentLines.map((line, lineIndex) => {
+                              const trimmedLine = line.trim();
+                              if (!trimmedLine) return null;
+                              
+                              // Check for arrow link (➡️ [text](url))
+                              if (trimmedLine.startsWith('➡️')) {
+                                const linkMatch = trimmedLine.match(/\[([^\]]+)\]\(([^)]+)\)/);
+                                if (linkMatch) {
+                                  return (
+                                    <p key={lineIndex} className="text-muted-foreground leading-relaxed mb-2">
+                                      ➡️ <Link href={linkMatch[2]} className="text-[#D4AF37] hover:underline font-medium">{linkMatch[1]}</Link>
+                                    </p>
+                                  );
+                                }
+                              }
+                              
+                              // Regular line with bold text
+                              return (
+                                <p key={lineIndex} className="text-muted-foreground leading-relaxed mb-1">
+                                  {trimmedLine.split('**').map((part, i) => 
+                                    i % 2 === 0 ? part : <strong key={i} className="text-foreground font-semibold">{part}</strong>
+                                  )}
+                                </p>
+                              );
+                            })}
+                          </div>
+                        );
+                      }
+                      
                       return (
                         <h3 key={index} className="text-xl font-semibold mt-6 mb-3 text-foreground">
                           {title}
@@ -479,6 +520,7 @@ export default function GuideDetail() {
       </main>
       <RelatedArticles articles={getMixedRelatedArticles(params.slug || '', 'guide', 3)} />
       <GuideSection />
+      <ProductsStrip />
       <Footer />
 
       {/* Lightbox pro zvětšení obrázku */}

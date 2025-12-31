@@ -401,7 +401,7 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 - Posiluje **vztahy a věrnost**
 - Otevírá **srdeční čakru**
 
-**2. Růženín**
+**2. [Růženín](/kamen/ruzenin)**
 - Kámen **jemné lásky**
 - Podporuje **sebepřijetí**
 - Uklidnuje **emoce**
@@ -413,7 +413,7 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 - Chrání před **negativní energií**
 - Posiluje **intuici**
 
-**Jak používat:** Růženín noste blízko srdce. Smaragd je ideální jako prsten nebo náušnice.
+**Jak používat:** [Růženín](/kamen/ruzenin) noste blízko srdce. Smaragd je ideální jako prsten nebo náušnice.
 
 ## Bliženci (21. 5. - 20. 6.)
 
@@ -435,7 +435,7 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 - Podporuje **stabilitu**
 - Pomahá **sůstředit se**
 
-**3. Tygří oko**
+**3. [Tygrí oko](/kamen/tygri-oko)**
 - Posiluje **rozhodnost**
 - Chrání před **manipulací**
 - Podporuje **praktické myšlení**
@@ -463,13 +463,13 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 - Posiluje **intuici**
 - Podporuje **rodinné vazby**
 
-**3. Ametyst**
+**3. [Ametyst](/kamen/ametyst)**
 - Uklidnuje **přecitlivělost**
 - Chrání před **negativními emocemi**
 - Podporuje **duchovní růst**
 - Pomahá při **spánku**
 
-**Jak používat:** Měsíční kámen noste jako přívěsek. Ametyst položte pod polštář.
+**Jak používat:** Měsíční kámen noste jako přívěsek. [Ametyst](/kamen/ametyst) položte pod polštář.
 
 ## Lev (23. 7. - 22. 8.)
 
@@ -485,7 +485,7 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 - Přináší **úspěch**
 - Podporuje **kreativitu**
 
-**2. Tygrí oko**
+**2. [Tygrí oko](/kamen/tygri-oko)**
 - Posiluje **osobní sílu**
 - Chrání před **závistí**
 - Podporuje **odvahu**
@@ -497,7 +497,7 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 - Podporuje **vedení**
 - Přináší **vášeň a energii**
 
-**Jak používat:** Citřín nebo tygrí oko noste jako prsten na ukazováčku (prst Jupitera - vedení).
+**Jak používat:** Citřín nebo [tygrí oko](/kamen/tygri-oko) noste jako prsten na ukazováčku (prst Jupitera - vedení).
 
 ## Panna (23. 8. - 22. 9.)
 
@@ -535,13 +535,13 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 
 ### Hlavní kameny pro Váhy:
 
-**1. Lapis lazuli**
+**1. [Lapis lazuli](/kamen/lapis-lazuli)**
 - Kámen **pravdy a harmonie**
 - Podporuje **komunikaci**
 - Posiluje **intuici**
 - Pomahá **najít rovnováhu**
 
-**2. Růženín**
+**2. [Růženín](/kamen/ruzenin)**
 - Kámen **lásky**
 - Podporuje **vztahy**
 - Uklidnuje **emoce**
@@ -553,7 +553,7 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 - Posiluje **emocionální rovnováhu**
 - Pomahá **rozhodovat se**
 
-**Jak používat:** Lapis lazuli noste jako náhrdelnik. Růženín umístěte v ložnici.
+**Jak používat:** [Lapis lazuli](/kamen/lapis-lazuli) noste jako náhrdelník. [Růženín](/kamen/ruzenin) umístěte v ložnici.
 
 ## Štír (23. 10. - 21. 11.)
 
@@ -563,7 +563,7 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 
 ### Hlavní kameny pro Štíra:
 
-**1. Obsidián**
+**1. [Obsidián](/kamen/obsidian)**
 - Kámen **transformace**
 - Chrání před **negativitou**
 - Pomahá **čelit stínům**
@@ -581,7 +581,7 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 - Chrání před **psychickými útoky**
 - Posiluje **intuici**
 
-**Jak používat:** Obsidián noste při duchovní práci. Granat jako přívěsek pro osobní sílu.
+**Jak používat:** [Obsidián](/kamen/obsidian) noste při duchovní práci. Granát jako přívěsek pro osobní sílu.
 
 ## Střelec (22. 11. - 21. 12.)
 
@@ -591,8 +591,8 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 
 ### Hlavní kameny pro Střelce:
 
-**1. Turmalín**
-- Kámen **ochrany a uzeměnění**
+**1. [Turmalín](/kamen/turmalin)**
+- Kámen **ochrany a uzemění**
 - Pomahá **sůstředit energii**
 - Chrání při **cestování**
 - Vyvazuje **všechny čakry**
@@ -609,7 +609,7 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 - Přináší **úspěch**
 - Posiluje **sebevědomí**
 
-**Jak používat:** Turmalín noste při cestování. Lapis lazuli při studiu nebo meditaci.
+**Jak používat:** [Turmalín](/kamen/turmalin) noste při cestování. [Lapis lazuli](/kamen/lapis-lazuli) při studiu nebo meditaci.
 
 ## Kozoroh (22. 12. - 19. 1.)
 
@@ -631,13 +631,13 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 - Chrání před **negativitou**
 - Pomahá **dokončit projekty**
 
-**3. Křišťál**
-- Univerzální **zesilovač**
+**3. [Křišťál](/kamen/kristal)**
+- Univerzální **zesilováč**
 - Podporuje **jasnost cílů**
 - Posiluje **všechny záměry**
 - Přináší **úspěch**
 
-**Jak používat:** Granat nebo onyx noste jako prsten. Křišťál umístěte na pracovní stůl.
+**Jak používat:** Granát nebo onyx noste jako prsten. [Křišťál](/kamen/kristal) umístěte na pracovní stůl.
 
 ## Vodnář (20. 1. - 18. 2.)
 
@@ -647,8 +647,8 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 
 ### Hlavní kameny pro Vodnáře:
 
-**1. Ametyst**
-- Kámen **duchovního probouzení**
+**1. [Ametyst](/kamen/ametyst)**
+- Kámen **duchovního probouzéní**
 - Podporuje **intuici**
 - Posiluje **originální myšlení**
 - Chrání **auru**
@@ -665,7 +665,7 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 - Posiluje **intuici**
 - Chrání **auru**
 
-**Jak používat:** Ametyst noste jako přívěsek. Akvamarín při veřejném vystupování.
+**Jak používat:** [Ametyst](/kamen/ametyst) noste jako přívěsek. Akvamarín při veřejném vystupování.
 
 ## Ryby (19. 2. - 20. 3.)
 
@@ -675,7 +675,7 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 
 ### Hlavní kameny pro Ryby:
 
-**1. Ametyst**
+**1. [Ametyst](/kamen/ametyst)**
 - Kámen **duchovnosti**
 - Podporuje **meditaci**
 - Chrání před **přecitlivělostí**
@@ -693,7 +693,7 @@ V tomto kompletním průvodci objevte **ideální kameny pro vaše znamení** a 
 - Vyvazuje **emoce**
 - Posiluje **psychické schopnosti**
 
-**Jak používat:** Ametyst při meditaci. Akvamarín nebo měsíční kámen jako přívěsek.
+**Jak používat:** [Ametyst](/kamen/ametyst) při meditaci. Akvamarín nebo měsíční kámen jako přívěsek.
 
 ## Jak vybrat správný kámen
 
@@ -731,16 +731,16 @@ Kamen, který vás **přitahuje**, je právě ten, který potřebujete.
 Kameny lze **kombinovat** pro silnější účinek:
 
 **Pro ochranu:**
-- Černý turmalín + obsidián + tygrí oko
+- Černý [turmalín](/kamen/turmalin) + [obsidián](/kamen/obsidian) + [tygrí oko](/kamen/tygri-oko)
 
 **Pro lásku:**
-- Růženín + růžový kvarc + granat
+- [Růženín](/kamen/ruzenin) + růžový kvarc + granat
 
 **Pro prosperitu:**
-- Citřín + nefrit + tygrí oko
+- Citřín + nefrit + [tygrí oko](/kamen/tygri-oko)
 
 **Pro duchovnost:**
-- Ametyst + lapis lazuli + křišťál
+- [Ametyst](/kamen/ametyst) + [lapis lazuli](/kamen/lapis-lazuli) + [křišťál](/kamen/kristal)
 
 **Pro zdravi:**
 - Nefrit + karnelían + křišťál

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { track } from "@/lib/tracking";
+import { Eye } from "lucide-react";
 import { useLocation } from "wouter";
 
 export default function HeroSection() {
@@ -20,16 +21,17 @@ export default function HeroSection() {
           <div className="flex gap-3">
             <Button
               size="lg"
-              className="flex-1 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold text-sm rounded-lg shadow-lg h-14 flex items-center justify-center"
+              className="flex-1 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold text-sm rounded-lg shadow-lg h-14 flex items-center justify-center gap-2 py-2 border-2 border-[#D4AF37]"
               onClick={() => {
-                track.ctaClicked('PROHLÉDNOUT', 'Hero Section', '#produkty');
+                track.ctaClicked('Zobrazit produkty', 'Hero Section', '#produkty');
                 const produktySection = document.getElementById('produkty');
                 if (produktySection) {
                   produktySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
             >
-              PROHLÉDNOUT
+              <Eye className="w-5 h-5 text-white" />
+              <span className="flex flex-col leading-tight"><span>Zobrazit</span><span>produkty</span></span>
             </Button>
             <Button
               size="lg"
@@ -115,16 +117,17 @@ export default function HeroSection() {
                 <div className="flex flex-row gap-1.5 animate-fade-in-up animation-delay-400">
                   <Button
                     size="lg"
-                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-4 sm:px-6 text-xs sm:text-base whitespace-nowrap h-[52px] sm:h-[60px] flex items-center justify-center"
+                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-4 sm:px-6 text-xs sm:text-base whitespace-nowrap h-[52px] sm:h-[60px] flex items-center justify-center gap-2"
                     onClick={() => {
-                      track.ctaClicked('PROHLÉDNOUT', 'Hero Section', '#produkty');
+                      track.ctaClicked('Prohlédnout produkty', 'Hero Section', '#produkty');
                       const produktySection = document.getElementById('produkty');
                       if (produktySection) {
                         produktySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }
                     }}
                 >
-                    PROHLÉDNOUT
+                    <Eye className="w-5 h-5" />
+                    Prohlédnout produkty
                   </Button>
                   <Button
                     size="lg"
