@@ -714,3 +714,27 @@
 - [ ] Upravit ořez hero obrázku - méně ořezat nahoře (hlava)
 - [ ] Změnit text tlačítka z 'ZÍSKAT VÍCE' na 'PROHLÉDNOUT'
 - [ ] Opravit překrývání promo banneru s headerem při scrollování na mobilu
+
+## Rozšíření obsahu pro SEO (Jan 2026)
+
+### Nové kameny v průvodci
+- [ ] Akvamarín
+- [ ] Měsíční kámen
+- [ ] Granát
+- [ ] Citrín
+- [ ] Karneol
+
+### Články o čakrách
+- [ ] Průvodce čakrami a jejich propojení s kameny
+
+### Aromaterapie a esence
+- [ ] Články o jednotlivých esenciálních olejích
+- [ ] Průvodce "Jak vybrat správnou esenci"
+
+### Orgonit
+- [ ] Články o orgonitu a jeho účincích
+
+## Nové náhledové obrázky pro články (Jan 1, 2026)
+- [x] Replace thumbnail for "Aromaterapie: Základy a účinky esenciálních olejů" article
+- [x] Replace thumbnail for "Jak vybrat správnou esenci pro vaše potřeby" article
+

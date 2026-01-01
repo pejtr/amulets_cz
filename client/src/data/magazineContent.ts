@@ -902,4 +902,341 @@ Když používáte produkty s modrým lotosem, **spojujete se s tisíciletou tra
 
 Objevte naši **esenci s modrým lotosem** a další produkty inspirované starověkou moudrostí na [OHORAI.cz](https://www.ohorai.cz).`,
   },
+  // Nové články pro SEO (Jan 2026)
+  {
+    slug: "7-caker-pruvodce",
+    title: "7 čaker: Kompletní průvodce energetickými centry",
+    metaTitle: "🔮 7 čaker - Kompletní průvodce energetickými centry | Amulets.cz",
+    metaDescription: "Poznejte 7 hlavních čaker, jejich význam, barvy a kameny. Jak harmonizovat čakry pro zdraví a duchovní růst.",
+    excerpt: "Poznejte 7 hlavních čaker, jejich význam, barvy a kameny pro harmonizaci.",
+    image: "/images/magazine/chakry.webp",
+    datePublished: "2026-01-01",
+    dateModified: "2026-01-01",
+    content: `**Čakry** jsou energetická centra v našem těle, která řídí tok **životní energie** (prány). Existuje **7 hlavních čaker**, každá s vlastní barvou, významem a propojením s konkrétními kameny.
+
+## 1. Kořenová čakra (Muladhara)
+
+**Barva:** Červená\n**Umístění:** Báze páteře\n**Význam:** Uzemnění, bezpečí, přežití
+
+**Kameny pro kořenovou čakru:**
+• [Granát](/kamen/granat) - vitalita a ochrana
+• [Obsidián](/kamen/obsidian) - uzemnění a očista
+• [Karneol](/kamen/karneol) - energie a odvaha
+
+## 2. Sakrální čakra (Svadhisthana)
+
+**Barva:** Oranžová\n**Umístění:** Pod pupkem\n**Význam:** Kreativita, sexualita, emoce
+
+**Kameny pro sakrální čakru:**
+• [Karneol](/kamen/karneol) - kreativita a vášeň
+• [Měsíční kámen](/kamen/mesicni-kamen) - emocionální rovnováha
+• [Citrín](/kamen/citrin) - radost a energie
+
+## 3. Solar plexus čakra (Manipura)
+
+**Barva:** Žlutá\n**Umístění:** Břicho\n**Význam:** Osobní síla, sebevědomí, vůle
+
+**Kameny pro solar plexus:**
+• [Citrín](/kamen/citrin) - sebevědomí a hojnost
+• [Tygří oko](/kamen/tygri-oko) - ochrana a síla
+
+## 4. Srdeční čakra (Anahata)
+
+**Barva:** Zelená/růžová\n**Umístění:** Střed hrudníku\n**Význam:** Láska, soucit, léčení
+
+**Kameny pro srdeční čakru:**
+• [Růženín](/kamen/ruzenin) - bezpodmínečná láska
+• [Akvamarín](/kamen/akvamarin) - klid a komunikace
+
+## 5. Krční čakra (Višuddha)
+
+**Barva:** Modrá\n**Umístění:** Hrdlo\n**Význam:** Komunikace, sebevyjádření, pravda
+
+**Kameny pro krční čakru:**
+• [Akvamarín](/kamen/akvamarin) - jasná komunikace
+• [Lapis lazuli](/kamen/lapis-lazuli) - pravda a moudrost
+
+## 6. Třetí oko (Ajna)
+
+**Barva:** Indigová\n**Umístění:** Čelo mezi obrvami\n**Význam:** Intuice, jasnovidnost, moudrost
+
+**Kameny pro třetí oko:**
+• [Ametyst](/kamen/ametyst) - duchovní vhled
+• [Lapis lazuli](/kamen/lapis-lazuli) - intuice
+
+## 7. Korunní čakra (Sahasrara)
+
+**Barva:** Fialová/bílá\n**Umístění:** Temeno hlavy\n**Význam:** Duchovní spojení, osvícení
+
+**Kameny pro korunní čakru:**
+• [Ametyst](/kamen/ametyst) - duchovní probuzení
+• [Křišťál](/kamen/kristal) - čistota a zesílení
+
+## Jak harmonizovat čakry?
+
+1. **Meditace** - pravidelná meditace s vizualizací barev
+2. **Kameny** - položte odpovídající kámen na čakru
+3. **Aromaterapie** - použijte esenciální oleje
+4. **Jóga** - specifické pozice pro každou čakru
+
+➡️ [Objevte kameny pro vaše čakry](/pruvodce-amulety)`,
+  },
+  {
+    slug: "aromaterapie-zaklady",
+    title: "Aromaterapie: Základy a účinky esenciálních olejů",
+    metaTitle: "🌿 Aromaterapie - Základy a účinky esenciálních olejů | Amulets.cz",
+    metaDescription: "Co je aromaterapie a jak funguje? Poznejte účinky esenciálních olejů na tělo i mysl. Kompletní průvodce.",
+    excerpt: "Poznejte základy aromaterapie a jak esenciální oleje ovlivňují tělo i mysl.",
+    image: "/images/magazine/aromaterapie-zaklady.webp",
+    datePublished: "2026-01-01",
+    dateModified: "2026-01-01",
+    content: `**Aromaterapie** je starobylá léčebná metoda využívající **esenciální oleje** z rostlin pro podporu fyzického, emocionálního a duchovního zdraví.
+
+## Co jsou esenciální oleje?
+
+Esenciální oleje jsou **vysoce koncentrované extrakty** z rostlin - květů, listů, kůry, kořenů a plodů. Získávají se destilací nebo lisováním za studena.
+
+## Jak aromaterapie funguje?
+
+Esenciální oleje působí třemi způsoby:
+
+1. **Inhalace** - molekuly olejů stimulují čichové receptory a ovlivňují limbický systém (centrum emocí)
+2. **Absorpce kůží** - oleje pronikají do krevního oběhu
+3. **Energetické působení** - každý olej má svou vibrační frekvenci
+
+## Nejpopulárnější esenciální oleje
+
+### Levandule
+• **Účinky:** Uklidňuje, podporuje spánek, zmírňuje stres
+• **Použití:** Před spaním, při úzkosti
+
+### Růže
+• **Účinky:** Otevírá srdce, podporuje lásku, harmonizuje emoce
+• **Použití:** Meditace, romantika, emocionální léčení
+
+### Jasmín
+• **Účinky:** Zvedá náladu, podporuje sebevědomí, afrodiziakum
+• **Použití:** Deprese, únava, romantika
+
+### Santal
+• **Účinky:** Uzemnění, meditace, duchovní práce
+• **Použití:** Meditace, jóga, relaxace
+
+### Ylang ylang
+• **Účinky:** Uklidňuje, snižuje krevní tlak, afrodiziakum
+• **Použití:** Stres, úzkost, romantika
+
+## Jak používat esenciální oleje?
+
+1. **Difuzér** - rozptýlení vůně v prostoru
+2. **Masáž** - zředěné v nosném oleji
+3. **Koupel** - pár kapek do vody
+4. **Inhalace** - přímá inhalace z lahvičky
+5. **Esence na pulzní body** - zápěstí, krční jamka
+
+## Bezpečnost při používání
+
+• **Nikdy nepoužívejte neředěné** na kůži
+• **Proveďte test citlivosti** před prvním použitím
+• **Konzultujte s lékařem** při těhotenství nebo zdravotních problémech
+
+➡️ [Objevte naše aromaterapeutické esence](/aromaterapie)`,
+  },
+  {
+    slug: "jak-vybrat-esenci",
+    title: "Jak vybrat správnou esenci pro vaše potřeby",
+    metaTitle: "🌸 Jak vybrat správnou esenci - Průvodce výběrem | Amulets.cz",
+    metaDescription: "Nevíte, kterou esenci zvolit? Průvodce výběrem esence podle vašich potřeb - relaxace, energie, meditace.",
+    excerpt: "Průvodce výběrem správné esence podle vašich potřeb a cílů.",
+    image: "/images/magazine/vyber-esence.webp",
+    datePublished: "2026-01-01",
+    dateModified: "2026-01-01",
+    content: `Výběr správné **esence** závisí na vašich aktuálních potřebách a cílech. Každá esence má své specifické vlastnosti a účinky.
+
+## Esence pro relaxaci a spánek
+
+Pokud potřebujete **zklidnit mysl** a zlepšit spánek:
+
+• **Levandule** - klasika pro uklidňující účinky
+• **Modrý lotos** - hluboká relaxace a meditace
+• **Santal** - uzemnění a vnitřní klid
+
+## Esence pro energii a motivaci
+
+Když potřebujete **nakopnout energii**:
+
+• **Citrusy** - pomeranč, citron, grep
+• **Máta** - osvěžuje a probouzí
+• **Rozmarýn** - podporuje soustředění
+
+## Esence pro meditaci a duchovní práci
+
+Pro **prohlubování meditace** a duchovní rozvoj:
+
+• **Modrý lotos** - otevírá třetí oko
+• **Kadidlo** - posvátná vůně pro rituály
+• **Santal** - uzemnění a koncentrace
+
+## Esence pro lásku a vztahy
+
+Pro **posílení lásky** a otevření srdce:
+
+• **Růže** - královna květin pro lásku
+• **Jasmín** - smyslnost a romantika
+• **Ylang ylang** - afrodiziakum
+
+## Esence pro ženy
+
+Pro **harmonizaci ženské energie**:
+
+• **Růže** - ženská krása a láska
+• **Jasmín** - ženskost a sebevědomí
+• **Geranium** - hormonální rovnováha
+
+## Esence pro muže
+
+Pro **posílení mužské energie**:
+
+• **Santal** - mužská síla a uzemnění
+• **Vetiver** - stabilita a sebevědomí
+• **Cedr** - ochrana a síla
+
+## Naše doporučení
+
+| Potřeba | Doporučená esence |
+|---------|--------------------|
+| Relaxace | OHORAI modrý lotos |
+| Láska | OhoRÁJ lotos |
+| Mužská energie | Esence MUŽ |
+| Ženská energie | Esence Žena |
+
+➡️ [Prohlédněte si naše esence](/aromaterapie)`,
+  },
+  {
+    slug: "orgonit-co-to-je",
+    title: "Orgonit: Co to je a jak funguje?",
+    metaTitle: "🔮 Orgonit - Co to je a jak funguje? | Amulets.cz",
+    metaDescription: "Co je orgonit a jak působí na energii? Poznejte historii, složení a účinky orgonitových pyramid.",
+    excerpt: "Poznejte, co je orgonit, jak funguje a jak může zlepšit energii ve vašem životě.",
+    image: "/images/magazine/orgonit.webp",
+    datePublished: "2026-01-01",
+    dateModified: "2026-01-01",
+    content: `**Orgonit** je materiál, který transformuje **negativní energii na pozitivní**. Skládá se z pryskyřice, kovových pilin a krystalů.
+
+## Historie orgonitu
+
+Orgonit vychází z výzkumu **Dr. Wilhelma Reicha** (1897-1957), který objevil **orgonovou energii** - základní životní sílu prostupující vším živým.
+
+Reich vyvinul **orgonové akumulátory** pro shromažďování této energie. Později Karl Welz a Don Croft zdokonalili technologii a vytvořili moderní orgonit.
+
+## Jak orgonit funguje?
+
+Orgonit pracuje na principu **transformace energie**:
+
+1. **Kovové částice** přitahují energii
+2. **Pryskyřice** vytváří tlak na krystaly
+3. **Krystaly** transformují energii na pozitivní frekvenci
+4. **Výsledek** - čistá, harmonizovaná energie
+
+## Složení našich orgonitových pyramid
+
+Naše pyramidy obsahují:
+
+• **Pryskyřice** - základ pro transformaci
+• **Kovové piliny** - měď, hliník, mosaz
+• **Drahé krystaly** - citrín, ametyst, křišťál
+• **24k zlato** - nejvyšší vibrace
+• **Modrý lotos** - duchovní síla
+
+## Účinky orgonitu
+
+### Na prostor
+• **Harmonizuje energii** v místnosti
+• **Neutralizuje elektrosmog** z elektroniky
+• **Zlepšuje spánek** v ložnici
+• **Očišťuje atmosféru**
+
+### Na člověka
+• **Zvyšuje energii** a vitalitu
+• **Podporuje meditaci** a soustředění
+• **Harmonizuje emoce**
+• **Chrání před negativitou**
+
+## Proč tvar pyramidy?
+
+Tvar pyramidy **zesiluje energii** díky své geometrii. Energie vstupuje základnou a je koncentrována ve špičce, odkud vyzářuje do prostoru.
+
+## Jak používat orgonitovou pyramidu?
+
+1. **Umístěte** na místo, kde trávíte čas
+2. **Nastavte záměr** - co chcete dosáhnout
+3. **Meditujte** s pyramidou pro hlubší spojení
+4. **Čistěte** pravidelně měsíčním světlem
+
+➡️ [Prohlédněte si naše orgonitové pyramidy](/orgonitove-pyramidy)`,
+  },
+  {
+    slug: "ucinky-orgonitovych-pyramid",
+    title: "Účinky orgonitových pyramid na zdraví a energii",
+    metaTitle: "✨ Účinky orgonitových pyramid na zdraví | Amulets.cz",
+    metaDescription: "Jak orgonitové pyramidy ovlivňují zdraví, spánek a energii? Zkušenosti uživatelů a vědecké poznatky.",
+    excerpt: "Jak orgonitové pyramidy ovlivňují zdraví, spánek a celkovou energii.",
+    image: "/images/magazine/pyramidy-ucinky.webp",
+    datePublished: "2026-01-01",
+    dateModified: "2026-01-01",
+    content: `**Orgonitové pyramidy** mají široké spektrum **pozitivních účinků** na lidské zdraví, energii a pohodu.
+
+## Účinky na spánek
+
+Mnozí uživatelé hlásí **výrazné zlepšení spánku**:
+
+• **Rychlejší usnutí** - zklidnění mysli před spaním
+• **Hlubší spánek** - méně probouzéní v noci
+• **Živější sny** - častější lucidita
+• **Lepší regenerace** - probuzení s více energie
+
+**Tip:** Umístěte pyramidu na noční stolek nebo pod postel.
+
+## Účinky na energii
+
+Orgonitové pyramidy **zvyšují životní energii**:
+
+• **Více vitality** během dne
+• **Lepší soustředění** při práci
+• **Snížení únavy** a vyhoření
+• **Stabilnější nálada** během dne
+
+## Účinky na prostor
+
+Pyramidy **transformují energii prostoru**:
+
+• **Neutralizace elektrosmogu** z WiFi, telefonů, PC
+• **Očista negativní energie** po hádkách nebo nemoci
+• **Harmonizace atmosféry** v domácnosti
+• **Podpora růstu rostlin** v blízkosti pyramidy
+
+## Účinky na meditaci
+
+Pro **duchovní praktiky** jsou pyramidy ideální:
+
+• **Prohlubování meditace** - snadnější dosažení klidu
+• **Posílení intuice** - jasnější vnitřní vedení
+• **Otevření třetího oka** - zejména s modrým lotosem
+• **Spojení s vyšším já** - duchovní růst
+
+## Zkušenosti našich zákazníků
+
+> "Od té doby, co mám pyramidu v ložnici, spím jako mimino. Sny jsou živější a probouzím se odpocatejší." - *Petra, Praha*
+
+> "Pyramida mi pomohla při meditaci. Soustředění je mnohem snadnější a cítím hlubší klid." - *Martin, Brno*
+
+## Jak maximalizovat účinky?
+
+1. **Pravidelně čistěte** pyramidu měsíčním světlem
+2. **Nastavte jasný záměr** při prvním použití
+3. **Meditujte** s pyramidou pro hlubší spojení
+4. **Umístěte strategicky** - ložnice, pracovna, obývací pokoj
+
+➡️ [Vyberte si svou pyramidu](/orgonitove-pyramidy)`,
+  },
 ];

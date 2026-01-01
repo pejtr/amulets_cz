@@ -56,6 +56,12 @@ const stones = [
   { name: "Obsidián", url: "/kamen/obsidian", image: "/images/stones/thumbs/obsidian-thumb.jpg" },
   { name: "Čaroit", url: "/kamen/caroit", image: "/images/stones/thumbs/caroit-thumb.jpg" },
   { name: "Turmalín", url: "/kamen/turmalin", image: "/images/stones/thumbs/turmalin-thumb.jpg" },
+  // Nové kameny
+  { name: "Akvamarín", url: "/kamen/akvamarin", image: "/images/stones/thumbs/akvamarin-thumb.jpg" },
+  { name: "Měsíční kámen", url: "/kamen/mesicni-kamen", image: "/images/stones/thumbs/mesicni-kamen-thumb.jpg" },
+  { name: "Granát", url: "/kamen/granat", image: "/images/stones/thumbs/granat-thumb.jpg" },
+  { name: "Citrín", url: "/kamen/citrin", image: "/images/stones/thumbs/citrin-thumb.png" },
+  { name: "Karneol", url: "/kamen/karneol", image: "/images/stones/thumbs/karneol-thumb.png" },
 ];
 
 const purposes = [
@@ -67,7 +73,9 @@ const purposes = [
 
 export default function GuideSection() {
   const [showAllSymbols, setShowAllSymbols] = useState(false);
+  const [showAllStones, setShowAllStones] = useState(false);
   const displayedSymbols = showAllSymbols ? symbols : symbols.slice(0, 12);
+  const displayedStones = showAllStones ? stones : stones.slice(0, 8);
 
   return (
     <section id="pruvodce-amulety" className="w-full bg-accent/20 py-16">
@@ -181,7 +189,7 @@ export default function GuideSection() {
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
-            {stones.map((stone, index) => (
+            {displayedStones.map((stone, index) => (
               <Link
                 key={index}
                 href={stone.url}
@@ -201,6 +209,16 @@ export default function GuideSection() {
               </Link>
             ))}
           </div>
+          {stones.length > 8 && (
+            <div className="mt-6 text-center">
+              <button
+                onClick={() => setShowAllStones(!showAllStones)}
+                className="px-6 py-3 bg-gradient-to-r from-[#E85A9F] to-[#9B59B6] text-white rounded-full font-medium hover:shadow-lg transition-all hover:scale-105"
+              >
+                {showAllStones ? "Zobrazit méně" : `Zobrazit další (${stones.length - 8})`}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>

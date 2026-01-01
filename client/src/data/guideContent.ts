@@ -798,6 +798,223 @@ Tento kámen **chrání před elektrosmogem**, negativními energiemi a psychick
 
 Kámen **transformuje negativní energii** na pozitivní, čistí auru a posiluje energetické pole. Je nástrojem pro **ochranu**, uzemnění a harmonizaci energie.`,
   },
+  // Nové kameny pro SEO (Jan 2026)
+  {
+    slug: "akvamarin",
+    title: "Akvamarín",
+    image: "/images/stones/akvamarin.webp",
+    metaTitle: "💧 Akvamarín - Význam, účinky a použití kámene | Amulets.cz",
+    metaDescription: "Akvamarín význam a účinky: klid, komunikace, odvaha. Kámen moře pro cestování a meditaci. Kompletní průvodce ✓",
+    content: `**Akvamarín** je nádherný modrý kámen, jehož název pochází z latinského "aqua marina" - **mořská voda**. Jeho průzračná modrozelená barva evokuje klid a hloubku oceánu.
+
+## Akvamarín význam
+
+Akvamarín je kámen **klidu, odvahy a komunikace**. Ve starověku byl považován za poklad mořských panen a námořníci jej nosili jako talisman pro bezpečné cesty.
+
+## Akvamarín účinky
+
+• **Klid mysli** - uklidňuje rozbouřené emoce
+• **Komunikace** - podporuje jasné vyjadřování
+• **Odvaha** - pomáhá překonávat strach
+• **Intuice** - prohlubuje vnitřní moudrost
+• **Meditace** - usnadňuje hluboké meditační stavy
+• **Cestování** - chrání při cestách, zejména po vodě
+
+## Akvamarín a čakry
+
+Akvamarín je spojen s **krční čakrou** (Višuddha), kterou harmonizuje a podporuje autentickou komunikaci.
+
+## Akvamarín znamení zvěrokruhu
+
+Akvamarín je hlavní kámen pro:
+• **Ryby** - posiluje intuici a duchovnost
+• **Vodnář** - podporuje nezávislost a inovaci
+• **Blíženci** - harmonizuje komunikaci
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat akvamarín?
+
+• **Přívěsek na krk** - blízko krční čakry pro komunikaci
+• **Při meditaci** - držte v ruce pro zklidnění
+• **Na cestách** - jako ochranný talisman
+
+## Akvamarín čištění a nabíjení
+
+Akvamarín čistěte pod tekoucí vodou nebo v mořské soli. Nabíjejte měsíčním světlem.`,
+  },
+  {
+    slug: "mesicni-kamen",
+    title: "Měsíční kámen",
+    image: "/images/stones/mesicni-kamen.webp",
+    metaTitle: "🌙 Měsíční kámen - Význam, účinky a použití | Amulets.cz",
+    metaDescription: "Měsíční kámen význam a účinky: intuice, ženská energie, nové začátky. Kámen bohyně pro vnitřní rovnováhu.",
+    content: `**Měsíční kámen** je mystický drahokam s charakteristickým **adularescentním leskem**. Je to kámen **intuice, ženské energie a nových začátků**.
+
+## Měsíční kámen význam
+
+Měsíční kámen je spojen s **lunární energií** a cykly přírody. Ve starověku byl považován za dar bohyně Měsíce.
+
+## Měsíční kámen účinky
+
+• **Intuice** - prohlubuje vnitřní vedení a šestý smysl
+• **Ženská energie** - harmonizuje ženské cykly a hormony
+• **Nové začátky** - podporuje změny a transformaci
+• **Emocionální rovnováha** - stabilizuje nálady
+• **Plodnost** - tradičně používán pro podporu početí
+
+## Měsíční kámen a čakry
+
+Měsíční kámen pracuje především se **sakrální čakrou** a **třetím okem**.
+
+## Měsíční kámen znamení zvěrokruhu
+
+Měsíční kámen je hlavní kámen pro:
+• **Rak** - posiluje citlivost a intuici
+• **Váhy** - přináší emocionální rovnováhu
+• **Štír** - podporuje transformaci
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat měsíční kámen?
+
+• **Při úplňku** - meditujte s kamenem pro posílení intuice
+• **Přívěsek** - noste blízko srdce
+• **Pod polštář** - pro prorocké sny
+
+## Měsíční kámen čištění a nabíjení
+
+Měsíční kámen čistěte pod tekoucí vodou. Nabíjejte výhradně **měsíčním světlem**.`,
+  },
+  {
+    slug: "granat",
+    title: "Granát",
+    image: "/images/stones/granat.webp",
+    metaTitle: "❤️ Granát - Význam, účinky a použití kámene | Amulets.cz",
+    metaDescription: "Granát význam a účinky: vitalita, vášeň, ochrana. Kámen života pro energii a lásku.",
+    content: `**Granát** je ohnivě červený kámen, který symbolizuje **vitalitu, vášeň a životní sílu**.
+
+## Granát význam
+
+Granát je kámen **života, lásky a odvahy**. Ve středověku byl považován za kámen válečníků.
+
+## Granát účinky
+
+• **Vitalita** - dodává energii a životní sílu
+• **Vášeň** - probouzí lásku a sexuální energii
+• **Ochrana** - chrání před negativními vlivy
+• **Odvaha** - posiluje sebevědomí a rozhodnost
+• **Regenerace** - podporuje fyzické uzdravení
+
+## Granát a čakry
+
+Granát je spojen s **kořenovou čakrou** a **sakrální čakrou**.
+
+## Granát znamení zvěrokruhu
+
+Granát je hlavní kámen pro:
+• **Kozoroh** - posiluje vytrvalost a ambice
+• **Lev** - podporuje vášeň a kreativitu
+• **Beran** - dodává energii a odvahu
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat granát?
+
+• **Náramek** - noste na pravé ruce pro aktivaci energie
+• **Přívěsek** - blízko srdce pro lásku
+• **V kapse** - pro ochranu během dne
+
+## Granát čištění a nabíjení
+
+Granát čistěte pod tekoucí vodou. Nabíjejte slunečním světlem.`,
+  },
+  {
+    slug: "citrin",
+    title: "Citrín",
+    image: "/images/stones/citrin.webp",
+    metaTitle: "☀️ Citrín - Význam, účinky a použití kámene | Amulets.cz",
+    metaDescription: "Citrín význam a účinky: hojnost, radost, sebevědomí. Kámen slunce pro prosperitu.",
+    content: `**Citrín** je zářivě žlutý kámen, který vyzařuje energii **slunce, radosti a hojnosti**.
+
+## Citrín význam
+
+Citrín je kámen **prosperity, optimismu a manifestace**. Ve starověku byl nazýván "kupeckým kamenem".
+
+## Citrín účinky
+
+• **Hojnost** - přitahuje prosperitu a úspěch
+• **Radost** - zvedá náladu a přináší optimismus
+• **Sebevědomí** - posiluje víru v sebe sama
+• **Kreativita** - inspiruje nové nápady
+• **Energie** - dodává vitalitu bez přetížení
+
+## Citrín a čakry
+
+Citrín je spojen se **solar plexus čakrou**, centrem osobní síly.
+
+## Citrín znamení zvěrokruhu
+
+Citrín je hlavní kámen pro:
+• **Blíženci** - podporuje komunikaci a kreativitu
+• **Lev** - posiluje sebevědomí a vůdcovství
+• **Panna** - přináší optimismus a radost
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat citrín?
+
+• **V peněžence** - pro přitažení hojnosti
+• **Na pracovním stole** - pro kreativitu a úspěch
+• **Přívěsek** - pro každodenní pozitivitu
+
+## Citrín čištění a nabíjení
+
+Citrín je **samočisticí kámen**. Nabíjejte slunečním světlem.`,
+  },
+  {
+    slug: "karneol",
+    title: "Karneol",
+    image: "/images/stones/karneol.webp",
+    metaTitle: "🔥 Karneol - Význam, účinky a použití kámene | Amulets.cz",
+    metaDescription: "Karneol význam a účinky: kreativita, odvaha, vitalita. Kámen motivace pro energii.",
+    content: `**Karneol** je oranžovo-červený kámen plný **životní energie, kreativity a odvahy**.
+
+## Karneol význam
+
+Karneol je kámen **akce, motivace a odvahy**. Pomáhá překonat strach a prokrastinaci.
+
+## Karneol účinky
+
+• **Kreativita** - inspiruje umělecké vyjádření
+• **Odvaha** - překonává strach a pochybnosti
+• **Vitalita** - dodává fyzickou energii
+• **Motivace** - podporuje akci a rozhodnost
+• **Sebevědomí** - posiluje víru v sebe sama
+
+## Karneol a čakry
+
+Karneol je spojen se **sakrální čakrou**, centrem kreativity a emocí.
+
+## Karneol znamení zvěrokruhu
+
+Karneol je hlavní kámen pro:
+• **Beran** - posiluje odvahu a iniciativu
+• **Lev** - podporuje kreativitu a sebevyjádření
+• **Panna** - přináší vitalitu a motivaci
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat karneol?
+
+• **Náramek** - pro každodenní energii
+• **V kapse** - pro odvahu při důležitých situacích
+• **Při tvorbě** - pro inspiraci a kreativitu
+
+## Karneol čištění a nabíjení
+
+Karneol čistěte pod tekoucí vodou. Nabíjejte slunečním světlem.`,
+  },
 ];
 
 export const purposesData = [

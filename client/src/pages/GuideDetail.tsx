@@ -30,7 +30,7 @@ function nameToSlug(name: string): string {
 
 // Mapování názvů na typy URL
 const symbolNames = ["Ruka Fatimy", "Květ života v lotosu", "Čínský drak", "Davidova hvězda", "Strom života", "Hvězda sjednocení", "Květ života", "Metatronova krychle", "Choku Rei", "Buddha", "Jin Jang", "Horovo oko"];
-const stoneNames = ["Lapis Lazuli", "Ametyst", "Růženín", "Tygří oko", "Křišťál", "Obsidián", "Čaroit", "Turmalín"];
+const stoneNames = ["Lapis Lazuli", "Ametyst", "Růženín", "Tygří oko", "Křišťál", "Obsidián", "Čaroit", "Turmalín", "Akvamarín", "Měsíční kámen", "Granát", "Citrín", "Karneol"];
 
 export default function GuideDetail() {
   const params = useParams();
