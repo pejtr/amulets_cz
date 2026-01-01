@@ -54,10 +54,10 @@ export default function ChineseZodiacCompatibility() {
     <Card className="w-full bg-gradient-to-br from-pink-50 to-purple-50 border-pink-200">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl md:text-3xl text-purple-800 flex items-center justify-center gap-2">
-          💕 Kompatibilita čínských znamení
+          💕 Partnerský čínský horoskop - Kompatibilita znamení
         </CardTitle>
         <CardDescription className="text-purple-700">
-          Zjistěte, jak se k sobě hodí jednotlivá čínská znamení
+          Zjistěte kompatibilitu čínských znamení zvěrokruhu - jak se k sobě hodí jednotlivá čínská znamení v lásce a partnerském vztahu
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">

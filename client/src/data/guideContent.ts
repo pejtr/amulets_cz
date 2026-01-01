@@ -1482,13 +1482,15 @@ Každý symbol má svou specifickou energii. Při výběru se řiďte těmito z�
     slug: "cinsky-kalendar",
     title: "Čínský kalendář",
     image: "/images/symbols/cinsky-kalendar.webp",
-    metaTitle: "🐉 Čínský kalendář 2025 - Rok Hada | Znamení a význam",
-    metaDescription: "Čínský kalendář 2025: Rok Dřevěného Hada. Všech 12 čínských znamení, jejich vlastnosti a kompatibilita. Zjistěte své čínské znamení ✓",
+    metaTitle: "🐎 Čínský kalendář 2026 - Rok Ohnivého Koně | Čínská znamení zvěrokruhu",
+    metaDescription: "Čínský kalendář 2026: Rok Ohnivého Koně začíná 17. února. Všech 12 čínských znamení zvěrokruhu, jejich vlastnosti a kompatibilita. Zjistěte své čínské znamení podle data narození ✓",
     content: `**Čínský kalendář** je lunisolární kalendář s 12letovým cyklem, kde každý rok je spojen s jedním z **12 zvířecích znamení**.
 
-## Rok 2025 - Rok Dřevěného Hada
+## Rok 2026 - Rok Ohnivého Koně
 
-Rok 2025 začíná **29. ledna 2025** a je rokem **Dřevěného Hada**. Had symbolizuje **moudrost, intuici a transformaci**.
+Rok 2026 začíná **17. února 2026** a je rokem **Ohnivého Koně**. Kůň symbolizuje **energii, svobodu a dobrodružství**. Ohnivý element přináší vášeň a dynamiku.
+
+➡️ [Předpovědi pro rok 2026](/cinsky-horoskop)
 
 ## 12 Čínských znamení
 
@@ -1518,12 +1520,12 @@ Rok 2025 začíná **29. ledna 2025** a je rokem **Dřevěného Hada**. Had symb
 ➡️ [Více o Drakovi](/symbol/cinsky-horoskop-drak)
 
 ### 🐍 Had (1953, 1965, 1977, 1989, 2001, 2013, 2025)
-**Vlastnosti:** Moudrý, intuitivní, tajemný - **ROK 2025!**
+**Vlastnosti:** Moudrý, intuitivní, tajemný
 **Kameny:** Ametyst, Obsidián
 ➡️ [Více o Hadovi](/symbol/cinsky-horoskop-had)
 
 ### 🐎 Kůň (1954, 1966, 1978, 1990, 2002, 2014, 2026)
-**Vlastnosti:** Energický, nezávislý, dobrodružný
+**Vlastnosti:** Energický, nezávislý, dobrodružný - **ROK 2026!**
 **Kameny:** Citrín, Karneol
 ➡️ [Více o Koni](/symbol/cinsky-horoskop-kun)
 
@@ -2580,13 +2582,17 @@ Rok Dřevěného Hada 2025 začíná **29. ledna 2025**. Je to rok **transformac
     slug: "cinsky-horoskop-kun",
     title: "Čínský horoskop Kůň",
     image: "/images/chinese-zodiac/kun.webp",
-    metaTitle: "🐎 Čínský horoskop Kůň - Vlastnosti, kompatibilita, kameny",
-    metaDescription: "Čínské znamení Kůň: roky narození, osobnostní rysy, láska a kompatibilita. Kameny pro Koně: Citrín, Karneol ✓",
+    metaTitle: "🐎 Čínský horoskop Kůň 2026 - Rok Ohnivého Koně | Vlastnosti a kompatibilita",
+    metaDescription: "Čínský horoskop Kůň 2026 - Rok Ohnivého Koně začíná 17. února. Roky narození: 1954, 1966, 1978, 1990, 2002, 2014, 2026. Osobnost, láska, partnerský horoskop ✓",
     content: `**Kůň** je sedmé znamení čínského zvěrokruhu. Lidé narození v roce Koně jsou **energickí, nezávislí a dobrodružní**.
+
+## 🔥 Rok 2026 - Rok Ohnivého Koně
+
+**Rok Ohnivého Koně 2026** začíná **17. února 2026** a končí 5. února 2027. Ohnivý element zesiluje energii, vášeň a odvahu. Je to rok příležitostí pro odvážné činy a nové začátky.
 
 ## Roky Koně
 
-1930, 1942, 1954, 1966, 1978, 1990, 2002, 2014, 2026, 2038
+**1930, 1942, 1954, 1966, 1978, 1990, 2002, 2014, 2026**, 2038
 
 ## Osobnostní rysy Koně
 
@@ -3177,6 +3183,295 @@ Vodní roky končí číslicemi **2 a 3**:
 • Praktikujte **meditaci** a introspekci
 • Pijte dostatek **čisté vody**
 
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
+  // Rok-specifické stránky pro SEO
+  {
+    slug: "cinsky-horoskop-1976",
+    title: "Čínský horoskop 1976 - Rok Ohnivého Draka",
+    image: "/images/chinese-zodiac/drak.webp",
+    metaTitle: "🐉 Čínský horoskop 1976 - Rok Ohnivého Draka | Vlastnosti a osud",
+    metaDescription: "Čínský horoskop pro narozené v roce 1976 - Rok Ohnivého Draka. Osobnostní rysy, láska, kariéra a šťastné kameny pro Draky narozené v roce 1976 ✓",
+    content: `**Rok 1976** v čínském horoskopu je rokem **Ohnivého Draka**. Lidé narození v tomto roce jsou obdařeni mimořádnou silou, charismatem a ambicemi.
+
+## 🐉 Ohnivý Drak 1976
+
+**Čínský Nový rok 1976** začal **31. ledna 1976** a skončil **17. února 1977**. Pokud jste se narodili před 31. lednem 1976, vaše znamení je Králík (1975).
+
+## Osobnost Ohnivého Draka
+
+### Silné stránky
+• **Vůdcovství** - přirození lídri
+• **Charisma** - magnetická osobnost
+• **Ambice** - vysoké cíle
+• **Odvaha** - nebojí se výzev
+• **Energie** - nevyčerpatelná vitalita
+
+### Výzvy
+• Dominance
+• Netrpělivost
+• Perfekcionismus
+
+## Láska a vztahy
+
+Ohnivý Drak je **vášnivý a romantický** partner. Potřebuje partnera, který dokáže držet krok s jeho energií.
+
+### Nejlepší kompatibilita
+• **Krysa** - intelektuální spojení
+• **Opice** - dynamický vztah
+• **Kohout** - vzájemný obdiv
+
+## Kariéra
+
+Ohniví Draci excelují v pozicích vyžadujících **vedení a kreativitu**: management, podnikání, umění, politika.
+
+## Šťastné kameny
+
+• **Ametyst** - duchovní ochrana
+• **Smaragd** - prosperita
+• **Rubín** - vášeň a energie
+
+➡️ [Více o znamení Drak](/symbol/cinsky-horoskop-drak)
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
+  {
+    slug: "cinsky-horoskop-1978",
+    title: "Čínský horoskop 1978 - Rok Zemského Koně",
+    image: "/images/chinese-zodiac/kun.webp",
+    metaTitle: "🐎 Čínský horoskop 1978 - Rok Zemského Koně | Vlastnosti a osud",
+    metaDescription: "Čínský horoskop pro narozené v roce 1978 - Rok Zemského Koně. Osobnostní rysy, láska, kariéra a šťastné kameny pro Koně narozené v roce 1978 ✓",
+    content: `**Rok 1978** v čínském horoskopu je rokem **Zemského Koně**. Lidé narození v tomto roce kombinují energii Koně se stabilitou elementu Země.
+
+## 🐎 Zemský Kůň 1978
+
+**Čínský Nový rok 1978** začal **7. února 1978** a skončil **27. ledna 1979**. Pokud jste se narodili před 7. únorem 1978, vaše znamení je Had (1977).
+
+## Osobnost Zemského Koně
+
+### Silné stránky
+• **Stabilita** - vyváženější než jiní Koně
+• **Praktickost** - realističtí snílci
+• **Loajalita** - spolehliví přátelé
+• **Vytrvalost** - dotahují věci do konce
+• **Optimismus** - pozitivní přístup
+
+### Výzvy
+• Tvrdohlavost
+• Občasná nerozhodnost
+• Přílišná opatrnost
+
+## Láska a vztahy
+
+Zemský Kůň je **věrný a starostlivý** partner. Hledá stabilní vztah s prostorem pro svobodu.
+
+### Nejlepší kompatibilita
+• **Tygr** - dobrodružné spojení
+• **Koza** - harmonický vztah
+• **Pes** - lojální partnerství
+
+## Kariéra
+
+Zemští Koně excelují v oborech vyžadujících **kombinaci kreativity a stability**: architektura, design, management, sport.
+
+## Šťastné kameny
+
+• **Citrín** - optimismus a energie
+• **Karneol** - odvaha a vitalita
+• **Tygrí oko** - ochrana a síla
+
+➡️ [Více o znamení Kůň](/symbol/cinsky-horoskop-kun)
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
+  {
+    slug: "cinsky-horoskop-1981",
+    title: "Čínský horoskop 1981 - Rok Kovového Kohouta",
+    image: "/images/chinese-zodiac/kohout.webp",
+    metaTitle: "🐓 Čínský horoskop 1981 - Rok Kovového Kohouta | Vlastnosti a osud",
+    metaDescription: "Čínský horoskop pro narozené v roce 1981 - Rok Kovového Kohouta. Osobnostní rysy, láska, kariéra a šťastné kameny pro Kohouty narozené v roce 1981 ✓",
+    content: `**Rok 1981** v čínském horoskopu je rokem **Kovového Kohouta**. Lidé narození v tomto roce jsou precizní, pracovití a sebevědomí.
+
+## 🐓 Kovový Kohout 1981
+
+**Čínský Nový rok 1981** začal **5. února 1981** a skončil **24. ledna 1982**. Pokud jste se narodili před 5. únorem 1981, vaše znamení je Opice (1980).
+
+## Osobnost Kovového Kohouta
+
+### Silné stránky
+• **Preciznost** - pozornost k detailům
+• **Pracovitost** - neustálé úsilí
+• **Čestnost** - přímá komunikace
+• **Organizovanost** - systémový přístup
+• **Sebevědomí** - víra ve vlastní schopnosti
+
+### Výzvy
+• Kritickost
+• Perfekcionismus
+• Tvrdohlavost
+
+## Láska a vztahy
+
+Kovový Kohout je **věrný a ochranitelský** partner. Hledá partnera, který ocení jeho péči.
+
+### Nejlepší kompatibilita
+• **Bůvol** - stabilní spojení
+• **Had** - intelektuální harmonie
+• **Drak** - vzájemný respekt
+
+## Kariéra
+
+Kovoví Kohouti excelují v oborech vyžadujících **přesnost a organizaci**: finance, právo, medicína, věda.
+
+## Šťastné kameny
+
+• **Citrín** - optimismus
+• **Karneol** - energie
+• **Křišťál** - jasnost mysli
+
+➡️ [Více o znamení Kohout](/symbol/cinsky-horoskop-kohout)
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
+  {
+    slug: "cinsky-horoskop-2002",
+    title: "Čínský horoskop 2002 - Rok Vodního Koně",
+    image: "/images/chinese-zodiac/kun.webp",
+    metaTitle: "🐎 Čínský horoskop 2002 - Rok Vodního Koně | Vlastnosti a osud",
+    metaDescription: "Čínský horoskop pro narozené v roce 2002 - Rok Vodního Koně. Osobnostní rysy, láska, kariéra a šťastné kameny pro Koně narozené v roce 2002 ✓",
+    content: `**Rok 2002** v čínském horoskopu je rokem **Vodního Koně**. Lidé narození v tomto roce kombinují energii Koně s intuicí a přizpůsobivostí elementu Voda.
+
+## 🐎 Vodní Kůň 2002
+
+**Čínský Nový rok 2002** začal **12. února 2002** a skončil **31. ledna 2003**. Pokud jste se narodili před 12. únorem 2002, vaše znamení je Had (2001).
+
+## Osobnost Vodního Koně
+
+### Silné stránky
+• **Přizpůsobivost** - flexibilní přístup
+• **Intuice** - silný šestý smysl
+• **Komunikace** - výborní řečníci
+• **Empatie** - chápou ostatní
+• **Kreativita** - originální nápady
+
+### Výzvy
+• Nerozhodnost
+• Přílišná citlivost
+• Nestabilita
+
+## Láska a vztahy
+
+Vodní Kůň je **romantický a empatický** partner. Potřebuje hluboké emocionální spojení.
+
+### Nejlepší kompatibilita
+• **Tygr** - vášnivé spojení
+• **Koza** - duchovní harmonie
+• **Pes** - věrné partnerství
+
+## Kariéra
+
+Vodní Koně excelují v oborech vyžadujících **kreativitu a komunikaci**: marketing, umění, psychologie, cestovní ruch.
+
+## Šťastné kameny
+
+• **Akvamarín** - klid a jasnost
+• **Měsíční kámen** - intuice
+• **Lapis lazuli** - moudrost
+
+➡️ [Více o znamení Kůň](/symbol/cinsky-horoskop-kun)
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
+  {
+    slug: "cinsky-horoskop-1974",
+    title: "Čínský horoskop 1974 - Rok Dřevěného Tygra",
+    image: "/images/chinese-zodiac/tygr.webp",
+    metaTitle: "🐅 Čínský horoskop 1974 - Rok Dřevěného Tygra | Vlastnosti a osud",
+    metaDescription: "Čínský horoskop pro narozené v roce 1974 - Rok Dřevěného Tygra. Osobnostní rysy, láska, kariéra a šťastné kameny pro Tygry narozené v roce 1974 ✓",
+    content: `**Rok 1974** v čínském horoskopu je rokem **Dřevěného Tygra**. Lidé narození v tomto roce jsou odvážní, charismatickí a kreativní.
+
+## 🐅 Dřevěný Tygr 1974
+
+**Čínský Nový rok 1974** začal **23. ledna 1974** a skončil **10. února 1975**. Pokud jste se narodili před 23. lednem 1974, vaše znamení je Bůvol (1973).
+
+## Osobnost Dřevěného Tygra
+
+### Silné stránky
+• **Odvaha** - nebojí se výzev
+• **Charisma** - přirození lídri
+• **Kreativita** - originální myšlení
+• **Štědrost** - pomáhají ostatním
+• **Optimismus** - pozitivní přístup
+
+### Výzvy
+• Impulzivnost
+• Netrpělivost
+• Dominance
+
+## Láska a vztahy
+
+Dřevěný Tygr je **vášnivý a romantický** partner. Potřebuje partnera, který respektuje jeho nezávislost.
+
+### Nejlepší kompatibilita
+• **Kůň** - dobrodružné spojení
+• **Pes** - lojální partnerství
+• **Prase** - harmonický vztah
+
+## Kariéra
+
+Dřevění Tygři excelují v oborech vyžadujících **vedení a kreativitu**: podnikání, umění, sport, politika.
+
+## Šťastné kameny
+
+• **Karneol** - odvaha a energie
+• **Citrín** - optimismus
+• **Tygrí oko** - ochrana a síla
+
+➡️ [Více o znamení Tygr](/symbol/cinsky-horoskop-tygr)
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
+  {
+    slug: "cinsky-horoskop-1977",
+    title: "Čínský horoskop 1977 - Rok Ohnivého Hada",
+    image: "/images/chinese-zodiac/had.webp",
+    metaTitle: "🐍 Čínský horoskop 1977 - Rok Ohnivého Hada | Vlastnosti a osud",
+    metaDescription: "Čínský horoskop pro narozené v roce 1977 - Rok Ohnivého Hada. Osobnostní rysy, láska, kariéra a šťastné kameny pro Hady narozené v roce 1977 ✓",
+    content: `**Rok 1977** v čínském horoskopu je rokem **Ohnivého Hada**. Lidé narození v tomto roce jsou moudří, intuitivní a charismatickí.
+
+## 🐍 Ohnivý Had 1977
+
+**Čínský Nový rok 1977** začal **18. února 1977** a skončil **6. února 1978**. Pokud jste se narodili před 18. únorem 1977, vaše znamení je Drak (1976).
+
+## Osobnost Ohnivého Hada
+
+### Silné stránky
+• **Moudrost** - hluboké porozumění
+• **Intuice** - silný šestý smysl
+• **Charisma** - magnetická osobnost
+• **Ambice** - vysoké cíle
+• **Elegance** - přirozený styl
+
+### Výzvy
+• Žárlivost
+• Tajnůstkářství
+• Manipulativnost
+
+## Láska a vztahy
+
+Ohnivý Had je **vášnivý a intenzivní** partner. Hledá hluboké a transformativní vztahy.
+
+### Nejlepší kompatibilita
+• **Bůvol** - stabilní spojení
+• **Kohout** - intelektuální harmonie
+• **Opice** - dynamický vztah
+
+## Kariéra
+
+Ohniví Hadi excelují v oborech vyžadujících **strategii a intuici**: finance, psychologie, výzkum, umění.
+
+## Šťastné kameny
+
+• **Ametyst** - duchovní ochrana
+• **Obsidián** - transformace
+• **Granát** - vášeň a energie
+
+➡️ [Více o znamení Had](/symbol/cinsky-horoskop-had)
 ➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
   },
 ];

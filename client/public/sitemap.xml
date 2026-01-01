@@ -132,4 +132,12 @@
   <url><loc>https://amulets.cz/magazin/10-nejsilnejsich-amuletu-pro-ochranu-2025</loc><lastmod>2025-12-11</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://amulets.cz/magazin/jak-vybrat-kamen-podle-znameni-zverokruhu</loc><lastmod>2025-12-11</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://amulets.cz/magazin/modry-lotos-egyptska-historie</loc><lastmod>2025-12-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  
+  <!-- Čínský horoskop - rok-specifické stránky -->
+  <url><loc>https://amulets.cz/symbol/cinsky-horoskop-1974</loc><lastmod>2026-01-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://amulets.cz/symbol/cinsky-horoskop-1976</loc><lastmod>2026-01-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://amulets.cz/symbol/cinsky-horoskop-1977</loc><lastmod>2026-01-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://amulets.cz/symbol/cinsky-horoskop-1978</loc><lastmod>2026-01-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://amulets.cz/symbol/cinsky-horoskop-1981</loc><lastmod>2026-01-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://amulets.cz/symbol/cinsky-horoskop-2002</loc><lastmod>2026-01-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

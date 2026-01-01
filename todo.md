@@ -763,3 +763,12 @@
 - [x] Aktualizovat datum začátku čínského nového roku (17. února 2026)
 - [x] Aktualizovat obsah pro všechna znamení
 
+
+## SEO Optimalizace - Čínský horoskop (klíčová slova z Google Keyword Planner)
+
+- [x] Optimalizovat meta tagy hlavní stránky čínského horoskopu
+- [x] Přidat sekci "Čínská znamení zvěrokruhu" s 12 znameními
+- [x] Vytvořit stránky pro jednotlivé roky (1974, 1976, 1977, 1978, 1981, 2002)
+- [x] Optimalizovat kalkulačku pro klíčová slova "podle data narození"
+- [x] Rozšířit stránku kompatibility pro "partnerský čínský horoskop"
+- [x] Přidat alternativní texty pro synonyma (čínské znamení, čínská znamení)

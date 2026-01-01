@@ -10,18 +10,18 @@ import { setSchemaMarkup, createBreadcrumbSchema } from "@/lib/schema";
 
 export default function ChineseZodiac() {
   useEffect(() => {
-    document.title = "🐎 Čínský horoskop 2026 - Rok Ohnivého Koně | Kalkulačka a kompatibilita | Amulets.cz";
+    document.title = "🐎 Čínský horoskop 2026 | Čínská znamení a kalendář | Kalkulačka podle data narození";
     
     const metaDesc = document.querySelector('meta[name="description"]') || document.createElement('meta');
     metaDesc.setAttribute('name', 'description');
-    metaDesc.setAttribute('content', 'Čínský horoskop 2026 - Rok Ohnivého Koně začíná 17. února 2026. Zjistěte své čínské znamení, element a kompatibilitu. Interaktivní kalkulačka podle data narození.');
+    metaDesc.setAttribute('content', 'Čínský horoskop 2026 - Rok Ohnivého Koně. Zjistěte své čínské znamení podle data narození. Čínský kalendář, kompatibilita znamení, partnerský horoskop. Kalkulačka zdarma ✓');
     if (!document.querySelector('meta[name="description"]')) {
       document.head.appendChild(metaDesc);
     }
 
     setOpenGraphTags({
-      title: "🐎 Čínský horoskop 2026 - Rok Ohnivého Koně | Kalkulačka a kompatibilita",
-      description: "Rok Ohnivého Koně 2026 začíná 17. února. Zjistěte své čínské znamení, element a kompatibilitu s ostatními znameními.",
+      title: "🐎 Čínský horoskop 2026 | Čínská znamení podle data narození | Kalkulačka",
+      description: "Čínský horoskop 2026 - Rok Ohnivého Koně. Zjistěte své čínské znamení podle data narození. Čínský kalendář, partnerský horoskop, kompatibilita.",
       url: "https://amulets.cz/cinsky-horoskop",
       type: "website",
       image: "https://amulets.cz/images/chinese-zodiac/kun.webp",
@@ -131,13 +131,23 @@ export default function ChineseZodiac() {
             </div>
           </section>
 
+          {/* Čínská znamení zvěrokruhu - SEO sekce */}
+          <section id="cinska-znameni" className="mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
+              🌟 Čínská znamení zvěrokruhu
+            </h2>
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Čínský horoskop obsahuje 12 znamení zvěrokruhu. Každé čínské znamení má své jedinečné vlastnosti, element a kompatibilitu s ostatními znameními. Zjistěte své čínské znamení podle data narození a roku.
+            </p>
+          </section>
+
           {/* Předpovědi 2026 pro jednotlivá znamení */}
           <section id="predpovedi-2026" className="mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
-              🔮 Předpovědi pro rok 2026
+              🔮 Předpovědi pro rok 2026 - Všechna čínská znamení
             </h2>
             <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Klikněte na své znamení a zjistěte, co vám Rok Koně přinese v lásce, kariéře a zdraví.
+              Klikněte na své čínské znamení a zjistěte, co vám Rok Koně přinese v lásce, kariéře a zdraví.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {chineseZodiacSigns.map((sign) => (

@@ -131,10 +131,10 @@ export default function ChineseZodiacCalculator() {
     <Card className="w-full max-w-2xl mx-auto bg-gradient-to-br from-red-50 to-amber-50 border-red-200">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl md:text-3xl text-red-800 flex items-center justify-center gap-2">
-          🐉 Kalkulačka čínského horoskopu
+          🐉 Zjistěte své čínské znamení podle data narození
         </CardTitle>
         <CardDescription className="text-red-700">
-          Zjistěte své čínské znamení, element a polaritu Yin/Yang
+          Kalkulačka čínského horoskopu - určení znamení podle čínského kalendáře, element a polarita Yin/Yang
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
