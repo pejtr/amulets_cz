@@ -752,3 +752,8 @@
 ## Tlačítka pro sdílení na sociálních sítích (Jan 1, 2026)
 - [x] Přidat tlačítko pro sdílení na Instagram do článků
 
+
+## Oprava článku 10 nejsilnějších amuletů pro ochranu 2025 (Jan 1, 2026)
+- [x] Opravit nefunkční odkazy v obsahu článku (Ochranné vlastnosti)
+- [x] Přidat ilustrační obrázky do článku
+

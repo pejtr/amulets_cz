@@ -177,47 +177,56 @@ Aromaterapie je **mocný nástroj** pro harmonizaci těla, mysli a duše. Esenci
 Objevte **sílu aromaterapie** v našich ručně vyráběných esencích a aroma špercích. Každá kapka obsahuje **léčivou sílu přírody**.`,
   },
   {
-    slug: "10-nejsilnejsich-amuletu-pro-ochranu-2025",
-    title: "10 nejsilnějších amuletů pro ochranu 2025",
-    metaTitle: "10 nejsilnějších amuletů pro ochranu 2025 | Amulets.cz",
-    metaDescription: "Objevte 10 nejsilnějších ochraných amuletů pro rok 2025. Ruka Fatimy, Květ života, Davidova hvězda a další posvátné symboly pro ochranu a harmonii.",
-    excerpt: "Ochrana před negativní energií je v dnešní době důležitější než kdy jindy. Objevte 10 nejsilnějších amuletů, které vás ochrání v roce 2025.",
+    slug: "10-nejsilnejsich-amuletu-pro-ochranu-2026",
+    title: "10 nejsilnějších amuletů pro ochranu 2026",
+    metaTitle: "10 nejsilnějších amuletů pro ochranu 2026 | Amulets.cz",
+    metaDescription: "Objevte 10 nejsilnějších ochraných amuletů pro rok 2026. Ruka Fatimy, Květ života, Davidova hvězda a další posvátné symboly pro ochranu a harmonii.",
+    excerpt: "Ochrana před negativní energií je v dnešní době důležitější než kdy jindy. Objevte 10 nejsilnějších amuletů, které vás ochrání v roce 2026.",
     image: "/images/magazine/10-amuletu-ochrana.webp",
     datePublished: "2024-12-10",
     dateModified: "2024-12-10",
-    content: `V dnešní době, kdy jsme neustále vystaveni **stresu, negativní energii a elektromagnetickému záření**, je ochrana naší aury a energetického pole důležitější než kdy předtm. Amulety jsou **starobylé nástroje ochrany**, které lidé používají již tisíce let.
+    content: `V dnešní době, kdy jsme neustále vystaveni **stresu, negativní energii a elektromagnetickému záření**, je ochrana naší aury a energetického pole důležitější než kdy předtím. Amulety jsou **starobylé nástroje ochrany**, které lidé používají již tisíce let.
 
-V tomto článku objevte **10 nejsilnějších ochraných amuletů** pro rok 2025, jejich význam a jak je správně používat.
+V tomto článku objevte **10 nejsilnějších ochraných amuletů** pro rok 2026, jejich význam a jak je správně používat.
 
 ## 1. Ruka Fatimy (Hamsa)
 
+![Ruka Fatimy - Hamsa](/images/magazine/amulet-ruka-fatimy.webp)
+
 **Ruka Fatimy** je jedním z **nejstarších ochraných symbolů** na světě. Pochází z Blízkého východu a je učtívána v islámu, judaismu i křesťanství.
 
-**Ochrané vlastnosti:**
+### Ochranné vlastnosti:
+
 - Chrání před **závistným okem** (evil eye)
 - Odraží negativní energii zpět k odesílateli
-- Přináší **štěstí, zdravi a prosperitu**
-- Posiluje intuici a duchovní vedeni
+- Přináší **štěstí, zdraví a prosperitu**
+- Posiluje intuici a duchovní vedení
 
 **Jak používat:** Noste jako přívěsek nebo umístěte nad vchodové dveře. Oko uprostřed ruky sleduje a odraží všechny negativní vlivy.
 
 ## 2. Květ života v lotosu
 
+![Květ života v lotosu](/images/magazine/amulet-kvet-zivota.webp)
+
 **Květ života** je posvátná geometrie, která obsahuje **všechny vzorce stvoření**. V kombinaci s lotosem vytváří mimojiňádně silný ochraný symbol.
 
-**Ochrané vlastnosti:**
+### Ochranné vlastnosti:
+
 - Harmonizuje **energetické pole** kolem vašeho těla
 - Chrání před **elektromagnetickým zářením**
-- Podporuje **duchovní růst a probouzení**
+- Podporuje **duchovní růst a probouzéní**
 - Vytváří **ochrannou bariéru** kolem domova
 
 **Jak používat:** Ideální v orgonitových pyramidách nebo jako nástěnná dekorace. Umístěte do místnosti, kde trávíte nejvice času.
 
 ## 3. Davidova hvězda
 
+![Davidova hvězda](/images/magazine/amulet-davidova-hvezda.webp)
+
 **Davidova hvězda** (Magen David) je **šesticípá hvězda**, která symbolizuje spojení nebe a země, duchovního a materiálního světa.
 
-**Ochrané vlastnosti:**
+### Ochranné vlastnosti:
+
 - Vytváří **energetický štít** kolem nositele
 - Vyvažuje **mužskou a ženskou energii**
 - Chrání před **psychickými útoky**
@@ -227,9 +236,12 @@ V tomto článku objevte **10 nejsilnějších ochraných amuletů** pro rok 202
 
 ## 4. Strom života
 
+![Strom života](/images/magazine/amulet-strom-zivota.webp)
+
 **Strom života** je univerzální symbol, který se vyskytuje v **mnoha kulturách po celém světě**. Představuje propojení všeho živého.
 
-**Ochrané vlastnosti:**
+### Ochranné vlastnosti:
+
 - **Uzemňuje** a stabilizuje energii
 - Chrání před **energetickým vysáváním**
 - Posiluje **rodinné vazby** a ochranu
@@ -239,11 +251,14 @@ V tomto článku objevte **10 nejsilnějších ochraných amuletů** pro rok 202
 
 ## 5. Metatronova krychle
 
+![Metatronova krychle](/images/magazine/amulet-metatron.webp)
+
 **Metatronova krychle** je jeden z **nejsilnějších geometrických symbolů**. Obsahuje všech pět Platonských těles a reprezentuje **dokonalou harmonii vesmíru**.
 
-**Ochrané vlastnosti:**
+### Ochranné vlastnosti:
+
 - Odstraňuje **negativní energie** z prostoru
-- Chrání před **duchovními entity**
+- Chrání před **duchovními entitami**
 - Čistí a **harmonizuje čakry**
 - Posiluje **duchovní ochranu** při meditaci
 
@@ -251,9 +266,12 @@ V tomto článku objevte **10 nejsilnějších ochraných amuletů** pro rok 202
 
 ## 6. Choku Rei (Reiki symbol)
 
+![Choku Rei - Reiki symbol](/images/magazine/amulet-choku-rei.webp)
+
 **Choku Rei** je **silový symbol** z Reiki systému. Jeho jméno znamená "umísti všechnu sílu vesmíru sem".
 
-**Ochrané vlastnosti:**
+### Ochranné vlastnosti:
+
 - **Zesiluje energii** jakéhokoli jiného amuletu
 - Chrání před **negativními vlivy**
 - Čistí **prostor a předměty**
@@ -263,10 +281,13 @@ V tomto článku objevte **10 nejsilnějších ochraných amuletů** pro rok 202
 
 ## 7. Jin Jang
 
+![Jin Jang](/images/magazine/amulet-jin-jang.webp)
+
 **Jin Jang** je starobylý čínský symbol **rovnováhy a harmonie**. Představuje dualitu vesmíru - světlo a tmu, mužské a ženské.
 
-**Ochrané vlastnosti:**
-- Vyvazuje **protikladné energie**
+### Ochranné vlastnosti:
+
+- Vyvažuje **protikladné energie**
 - Chrání před **energetickým nevyvážením**
 - Harmonizuje **vztahy**
 - Podporuje **vnitřní klid**
@@ -275,9 +296,12 @@ V tomto článku objevte **10 nejsilnějších ochraných amuletů** pro rok 202
 
 ## 8. Horovo oko
 
+![Horovo oko](/images/magazine/amulet-horovo-oko.webp)
+
 **Horovo oko** (Udjat) je staroegyptský symbol **ochrany, zdravi a obnovy**. Představuje oko boha Hora, které bylo zraněno a pak vyíléčeno.
 
-**Ochrané vlastnosti:**
+### Ochranné vlastnosti:
+
 - Chrání před **závistným okem**
 - Podporuje **fyzické zdraví**
 - Posiluje **jasnovidnost**
@@ -287,12 +311,15 @@ V tomto článku objevte **10 nejsilnějších ochraných amuletů** pro rok 202
 
 ## 9. Pentagram
 
+![Pentagram](/images/magazine/amulet-pentagram.webp)
+
 **Pentagram** (pěticipá hvězda) je jeden z **nejstarších ochraných symbolů**. Představuje pět elementů - zemi, vodu, oheň, vzduch a ducha.
 
-**Ochrané vlastnosti:**
-- Vytváří **silný ochraný kruh**
-- Chrání před **negativními entity**
-- Vyvazuje **všechny elementy**
+### Ochranné vlastnosti:
+
+- Vytváří **silný ochranný kruh**
+- Chrání před **negativními entitami**
+- Vyvažuje **všechny elementy**
 - Posiluje **magickou ochranu**
 
 **Jak používat:** Noste s hrotem nahoru (ochrana). Nikdy s hrotem dolů (to je invertovaný pentagram).
@@ -301,7 +328,8 @@ V tomto článku objevte **10 nejsilnějších ochraných amuletů** pro rok 202
 
 **Orgonitové pyramidy** jsou moderní **energetické nástroje**, které kombinují **drahé krystaly, kovy a organické materiály** pro maximální ochranu.
 
-**Ochrané vlastnosti:**
+### Ochranné vlastnosti:
+
 - Transformují **negativní energii na pozitivní**
 - Chrání před **elektromagnetickým zářením** (5G, WiFi)
 - Harmonizují **prostor a auru**
@@ -313,18 +341,21 @@ V tomto článku objevte **10 nejsilnějších ochraných amuletů** pro rok 202
 
 Pro **nejsilnější ochranu** doporučujeme kombinovat více amuletů:
 
-**Základní ochrana:**
+### Základní ochrana:
+
 - Orgonitová pyramida v domě (Květ života)
 - Osobní přívěsek (Ruka Fatimy nebo Horovo oko)
 - Ochrana u dveří (Metatronova krychle)
 
-**Rozšířená ochrana:**
+### Rozšířená ochrana:
+
 - Pyramidy v každé místnosti
 - Přívěsek + prsten
 - Symboly na stěnách
 - Krystaly pod polštářem
 
-**Maximální ochrana:**
+### Maximální ochrana:
+
 - Více pyramid různých symbolů
 - Osobní amulety na těle
 - Ochrana v autě
@@ -334,15 +365,17 @@ Pro **nejsilnější ochranu** doporučujeme kombinovat více amuletů:
 
 Amulety je důležité **pravidelně čistit a nabíjet**:
 
-**Čištění:**
+### Čištění:
+
 1. **Kouř šalvěje** - nejjednodušší metoda
 2. **Měsíční světlo** - nechte přes noc na okně
 3. **Tečoucí voda** - opláchněte pod studenou vodou
 4. **Krystal** - položte na velký křišťál
 
-**Nabíjení:**
+### Nabíjení:
+
 1. **Sluneční světlo** - 1-2 hodiny (ne všechny kameny!)
-2. **Měsíční světlo** - celá noc při úplnku
+2. **Měsíční světlo** - celá noc při úplněku
 3. **Záměr** - držte v rukou a nastavte záměr
 4. **Meditace** - meditujte s amuletem
 
@@ -350,7 +383,7 @@ Amulety je důležité **pravidelně čistit a nabíjet**:
 
 ## Závěr
 
-V roce 2025 je **energetická ochrana** důležitější než kdy předtm. Těchto **10 amuletů** představuje nejsilnější ochrané nástroje, které lidé používají již tisíce let.
+V roce 2026 je **energetická ochrana** důležitější než kdy předtím. Těchto **10 amuletů** představuje nejsilnější ochrané nástroje, které lidé používají již tisíce let.
 
 Každý amulet má **své unikátní vlastnosti** a nejlepších výsledků dosáhnete jejich **kombinací**. Poslechněte si svou intuici - amulet, který vás přitahuje, je právě ten správný pro vás.
 
