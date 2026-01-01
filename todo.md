@@ -772,3 +772,19 @@
 - [x] Optimalizovat kalkulačku pro klíčová slova "podle data narození"
 - [x] Rozšířit stránku kompatibility pro "partnerský čínský horoskop"
 - [x] Přidat alternativní texty pro synonyma (čínské znamení, čínská znamení)
+
+## SEO Rozšíření - Čínský horoskop (Jan 2026)
+
+- [x] Přidat FAQ sekci na stránku čínského horoskopu s rich snippets
+- [x] Vytvořit stránku pro rok 1967 (Ohnivá Koza)
+- [x] Vytvořit stránku pro rok 1984 (Dřevěná Krysa)
+- [x] Vytvořit stránku pro rok 1990 (Kovový Kůň)
+- [x] Přidat interní prolinkování mezi rok-specifickými stránkami a hlavními stránkami znamení
+
+## SEO Rozšíření - Čínský horoskop (Jan 2026)
+
+- [x] Přidat FAQ sekci na stránku čínského horoskopu s rich snippets
+- [x] Vytvořit stránku pro rok 1967 (Ohnivá Koza)
+- [x] Vytvořit stránku pro rok 1984 (Dřevěná Krysa)
+- [x] Vytvořit stránku pro rok 1990 (Kovový Kůň)
+- [x] Přidat interní prolinkování mezi rok-specifickými stránkami a hlavními stránkami znamení

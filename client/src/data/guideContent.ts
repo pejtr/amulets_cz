@@ -2240,7 +2240,7 @@ Posvátná geometrie zahrnuje také **Zlatý řez** (φ = 1.618) a **Fibonacciho
 
 ## Roky Krysy
 
-1924, 1936, 1948, 1960, 1972, 1984, 1996, 2008, 2020, 2032
+1924, 1936, 1948, 1960, 1972, [1984](/symbol/cinsky-horoskop-1984), 1996, 2008, 2020, 2032
 
 ## Osobnostní rysy Krysy
 
@@ -2285,7 +2285,15 @@ Krysa je **romantická a loajální** partnerka. Hledá intelektuální spojení
 
 Krysa exceluje v oborech vyžadujících **analytické myšlení**: finance, právo, věda, podnikání.
 
-➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+## Roky Krysy podle elementu
+
+• [1984 - Dřevěná Krysa](/symbol/cinsky-horoskop-1984) - kreativita a růst
+• 1996 - Ohnivá Krysa - vášeň a energie
+• 2008 - Zemská Krysa - stabilita a praktickost
+• 2020 - Kovová Krysa - síla a rozhodnost
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
   },
   {
     slug: "cinsky-horoskop-buvol",
@@ -2592,7 +2600,7 @@ Rok Dřevěného Hada 2025 začíná **29. ledna 2025**. Je to rok **transformac
 
 ## Roky Koně
 
-**1930, 1942, 1954, 1966, 1978, 1990, 2002, 2014, 2026**, 2038
+1930, 1942, 1954, 1966, [1978](/symbol/cinsky-horoskop-1978), [1990](/symbol/cinsky-horoskop-1990), [2002](/symbol/cinsky-horoskop-2002), 2014, **2026** (aktuální rok!), 2038
 
 ## Osobnostní rysy Koně
 
@@ -2636,7 +2644,15 @@ Kůň je **vášnivý a romantický** partner. Potřebuje svobodu a dobrodružst
 
 Kůň exceluje v oborech vyžadujících **svobodu a pohyb**: sport, cestování, prodej, zábavní průmysl.
 
-➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+## Roky Koně podle elementu
+
+• [1978 - Zemský Kůň](/symbol/cinsky-horoskop-1978) - stabilita a praktickost
+• [1990 - Kovový Kůň](/symbol/cinsky-horoskop-1990) - síla a rozhodnost
+• [2002 - Vodní Kůň](/symbol/cinsky-horoskop-2002) - intuice a přizpůsobivost
+• **2026 - Ohnivý Kůň** - vášeň a energie (aktuální rok!)
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
   },
   {
     slug: "cinsky-horoskop-koza",
@@ -2648,7 +2664,7 @@ Kůň exceluje v oborech vyžadujících **svobodu a pohyb**: sport, cestování
 
 ## Roky Kozy
 
-1931, 1943, 1955, 1967, 1979, 1991, 2003, 2015, 2027, 2039
+1931, 1943, 1955, [1967](/symbol/cinsky-horoskop-1967), 1979, 1991, 2003, 2015, 2027, 2039
 
 ## Osobnostní rysy Kozy
 
@@ -2693,7 +2709,16 @@ Koza je **romantická a pečující** partnerka. Hledá bezpečný, harmonický 
 
 Koza exceluje v oborech vyžadujících **kreativitu**: umění, design, hudba, literatura, péče o druhé.
 
-➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)`,
+## Roky Kozy podle elementu
+
+• [1967 - Ohnivá Koza](/symbol/cinsky-horoskop-1967) - vášeň a kreativita
+• 1979 - Zemská Koza - stabilita a praktickost
+• 1991 - Kovová Koza - síla a rozhodnost
+• 2003 - Vodní Koza - intuice a empatie
+• 2015 - Dřevěná Koza - růst a kreativita
+
+➡️ [Zpět na Čínský kalendář](/symbol/cinsky-kalendar)
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
   },
   {
     slug: "cinsky-horoskop-opice",
@@ -3472,6 +3497,175 @@ Ohniví Hadi excelují v oborech vyžadujících **strategii a intuici**: financ
 • **Granát** - vášeň a energie
 
 ➡️ [Více o znamení Had](/symbol/cinsky-horoskop-had)
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
+  {
+    slug: "cinsky-horoskop-1967",
+    title: "Čínský horoskop 1967 - Rok Ohnivé Kozy",
+    image: "/images/chinese-zodiac/koza.webp",
+    metaTitle: "🐏 Čínský horoskop 1967 - Rok Ohnivé Kozy | Vlastnosti a osud",
+    metaDescription: "Čínský horoskop pro narozené v roce 1967 - Rok Ohnivé Kozy. Osobnostní rysy, láska, kariéra a šťastné kameny pro Kozy narozené v roce 1967 ✓",
+    content: `**Rok 1967** v čínském horoskopu je rokem **Ohnivé Kozy**. Lidé narození v tomto roce jsou kreativní, empatickí a umělecky nadaní.
+
+## 🐏 Ohnivá Koza 1967
+
+**Čínský Nový rok 1967** začal **9. února 1967** a skončil **29. ledna 1968**. Pokud jste se narodili před 9. únorem 1967, vaše znamení je Kůň (1966).
+
+## Osobnost Ohnivé Kozy
+
+### Silné stránky
+• **Kreativita** - umělecká duše
+• **Empatie** - hluboké porozumění ostatním
+• **Jemnost** - citlivý přístup
+• **Vášeň** - ohnivý element přidává energii
+• **Intuice** - silný šestý smysl
+
+### Výzvy
+• Citlivost na kritiku
+• Nerozhodnost
+• Tendence k úzkosti
+
+## Láska a vztahy
+
+Ohnivá Koza je **romantická a vášnivá** partnerka. Hledá hluboké emocionální spojení a harmonii.
+
+### Nejlepší kompatibilita
+• **Králík** - jemné a harmonické spojení
+• **Kůň** - vzájemné doplňování
+• **Prase** - stabilní a láskyplnný vztah
+
+## Kariéra
+
+Ohnivé Kozy excelují v oborech vyžadujících **kreativitu a empatii**: umění, design, psychologie, péče o druhé.
+
+## Šťastné kameny
+
+• **Růženín** - láska a harmonie
+• **Měsíční kámen** - intuice
+• **Karneol** - energie a vášeň
+
+## Související roky Kozy
+
+• [1955](/symbol/cinsky-horoskop-koza) - Dřevěná Koza
+• **1967** - Ohnivá Koza (tato stránka)
+• [1979](/symbol/cinsky-horoskop-koza) - Zemská Koza
+• [1991](/symbol/cinsky-horoskop-koza) - Kovová Koza
+• [2003](/symbol/cinsky-horoskop-koza) - Vodní Koza
+• [2015](/symbol/cinsky-horoskop-koza) - Dřevěná Koza
+
+➡️ [Více o znamení Koza](/symbol/cinsky-horoskop-koza)
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
+  {
+    slug: "cinsky-horoskop-1984",
+    title: "Čínský horoskop 1984 - Rok Dřevěné Krysy",
+    image: "/images/chinese-zodiac/krysa.webp",
+    metaTitle: "🐀 Čínský horoskop 1984 - Rok Dřevěné Krysy | Vlastnosti a osud",
+    metaDescription: "Čínský horoskop pro narozené v roce 1984 - Rok Dřevěné Krysy. Osobnostní rysy, láska, kariéra a šťastné kameny pro Krysy narozené v roce 1984 ✓",
+    content: `**Rok 1984** v čínském horoskopu je rokem **Dřevěné Krysy**. Lidé narození v tomto roce jsou chytří, přizpůsobiví a kreativní.
+
+## 🐀 Dřevěná Krysa 1984
+
+**Čínský Nový rok 1984** začal **2. února 1984** a skončil **19. února 1985**. Pokud jste se narodili před 2. únorem 1984, vaše znamení je Prase (1983).
+
+## Osobnost Dřevěné Krysy
+
+### Silné stránky
+• **Inteligence** - rychlé myšlení
+• **Přizpůsobivost** - flexibilní přístup
+• **Kreativita** - dřevěný element podporuje růst
+• **Společenskost** - přirození komunikatéři
+• **Ambice** - vysoké cíle
+
+### Výzvy
+• Nervozita
+• Tendence k manipulaci
+• Přílišná opatrnost
+
+## Láska a vztahy
+
+Dřevěná Krysa je **věrná a starostlivá** partnerka. Hledá stabilní vztah s intelektuálním spojením.
+
+### Nejlepší kompatibilita
+• **Bůvol** - stabilní a spolehlivý vztah
+• **Drak** - dynamické a inspirativní spojení
+• **Opice** - intelektuální harmonie
+
+## Kariéra
+
+Dřevěné Krysy excelují v oborech vyžadujících **inteligenci a kreativitu**: IT, finance, marketing, věda.
+
+## Šťastné kameny
+
+• **Granát** - energie a ochrana
+• **Ametyst** - moudrost
+• **Citrín** - optimismus a úspěch
+
+## Související roky Krysy
+
+• [1972](/symbol/cinsky-horoskop-krysa) - Vodní Krysa
+• **1984** - Dřevěná Krysa (tato stránka)
+• [1996](/symbol/cinsky-horoskop-krysa) - Ohnivá Krysa
+• [2008](/symbol/cinsky-horoskop-krysa) - Zemská Krysa
+• [2020](/symbol/cinsky-horoskop-krysa) - Kovová Krysa
+
+➡️ [Více o znamení Krysa](/symbol/cinsky-horoskop-krysa)
+➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
+  },
+  {
+    slug: "cinsky-horoskop-1990",
+    title: "Čínský horoskop 1990 - Rok Kovového Koně",
+    image: "/images/chinese-zodiac/kun.webp",
+    metaTitle: "🐎 Čínský horoskop 1990 - Rok Kovového Koně | Vlastnosti a osud",
+    metaDescription: "Čínský horoskop pro narozené v roce 1990 - Rok Kovového Koně. Osobnostní rysy, láska, kariéra a šťastné kameny pro Koně narozené v roce 1990 ✓",
+    content: `**Rok 1990** v čínském horoskopu je rokem **Kovového Koně**. Lidé narození v tomto roce jsou energickí, nezávislí a rozhodní.
+
+## 🐎 Kovový Kůň 1990
+
+**Čínský Nový rok 1990** začal **27. ledna 1990** a skončil **14. února 1991**. Pokud jste se narodili před 27. lednem 1990, vaše znamení je Had (1989).
+
+## Osobnost Kovového Koně
+
+### Silné stránky
+• **Energie** - nevšední vitalita
+• **Nezávislost** - svobodný duch
+• **Rozhodnost** - kovový element přidává sílu
+• **Odvaha** - nebojí se výzev
+• **Čestnost** - přímá komunikace
+
+### Výzvy
+• Tvrdohlavost
+• Netrpělivost
+• Impulzivnost
+
+## Láska a vztahy
+
+Kovový Kůň je **vášnivý a lojální** partner. Potřebuje svobodu, ale je věrný těm, které miluje.
+
+### Nejlepší kompatibilita
+• **Tygr** - dobrodružné a vzrušující spojení
+• **Koza** - vzájemné doplňování
+• **Pes** - lojální a stabilní vztah
+
+## Kariéra
+
+Kovoví Koně excelují v oborech vyžadujících **energii a nezávislost**: sport, podnikání, prodej, cestovní ruch.
+
+## Šťastné kameny
+
+• **Citrín** - optimismus a energie
+• **Karneol** - odvaha a vitalita
+• **Tygrí oko** - ochrana a síla
+
+## Související roky Koně
+
+• [1978](/symbol/cinsky-horoskop-1978) - Zemský Kůň
+• **1990** - Kovový Kůň (tato stránka)
+• [2002](/symbol/cinsky-horoskop-2002) - Vodní Kůň
+• [2014](/symbol/cinsky-horoskop-kun) - Dřevěný Kůň
+• [2026](/symbol/cinsky-horoskop-kun) - Ohnivý Kůň (aktuální rok!)
+
+➡️ [Více o znamení Kůň](/symbol/cinsky-horoskop-kun)
 ➡️ [Zpět na Čínský horoskop](/cinsky-horoskop)`,
   },
 ];

@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ChineseZodiacCalculator from "@/components/ChineseZodiacCalculator";
 import ChineseZodiacCompatibility from "@/components/ChineseZodiacCompatibility";
+import ChineseZodiacFAQ from "@/components/ChineseZodiacFAQ";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createBreadcrumbSchema } from "@/lib/schema";
 
@@ -209,6 +210,9 @@ export default function ChineseZodiac() {
               ))}
             </div>
           </section>
+
+          {/* FAQ sekce */}
+          <ChineseZodiacFAQ />
 
           {/* Rok 2027 - menší sekce */}
           <section className="mb-12">
