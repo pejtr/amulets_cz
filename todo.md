@@ -738,3 +738,13 @@
 - [x] Replace thumbnail for "Aromaterapie: Základy a účinky esenciálních olejů" article
 - [x] Replace thumbnail for "Jak vybrat správnou esenci pro vaše potřeby" article
 
+
+## Úprava článku Aromaterapie & esence (Jan 1, 2026)
+- [x] Vygenerovat nový náhledový obrázek pro článek "Aromaterapie & esence"
+- [x] Vygenerovat ilustrační obrázky do obsahu článku (historie, použití, esence KORUNA)
+- [x] Aktualizovat obsah článku s novými obrázky
+
+
+## Oprava odkazů v obsahu článku Aromaterapie & esence (Jan 1, 2026)
+- [x] Opravit nefunkční prokliky v obsahu článku (Relaxace, Energie, Léčení, Duchovní růst)
+

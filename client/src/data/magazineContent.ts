@@ -60,12 +60,14 @@ Objevte **sílu modrého lotosu** v našich ručně vyráběných pyramidách a 
     metaTitle: "Aromaterapie a esenciální oleje - Použití a účinky | Amulets.cz",
     metaDescription: "Objevte sílu aromaterapie a esenciálních olejů. Jak používat esence pro zdraví, relaxaci a duchovní růst.",
     excerpt: "Aromaterapie je starobylá metoda léčení pomocí esenciálních olejů, která harmonizuje tělo, mysl i duši.",
-    image: "/images/magazine/aromaterapie.webp",
+    image: "/images/magazine/aromaterapie-hero.webp",
     datePublished: "2024-11-20",
     dateModified: "2024-12-05",
     content: `**Aromaterapie** je starobylá metoda **holistického léčení**, která využívá sílu esenciálních olejů k harmonizaci těla, mysli a duše. Esenciální oleje jsou vysoce koncentrované látky získané z rostlin, které obsahují jejich **léčivou esenci**.
 
 **Historie aromaterapie**
+
+![Historie aromaterapie - starověký Egypt](/images/magazine/aromaterapie-historie.webp)
 
 Použití vonných látek pro léčení sahá **tisíce let zpět**. Starověké civilizace - Egypťané, Řekové, Římané i Číňané - používaly aromatické rostliny pro:
 
@@ -93,27 +95,33 @@ Esenciální oleje působí na tělo **dvěma hlavními způsoby**:
 
 **Hlavní účinky esenciálních olejů**
 
-**Relaxace a uklidnění:**
+### Relaxace a uklidnění:
+
 - **Levandule** - nejlepší pro relaxaci a spánek
 - **Heřmánek** - uklidňuje nervový systém
 - **Ylang-ylang** - snižuje stres a úzkost
 
-**Energie a koncentrace:**
+### Energie a koncentrace:
+
 - **Máta peprná** - osvěžuje a zlepšuje koncentraci
 - **Rozmarýn** - stimuluje paměť a mentální jasnost
 - **Citrusy** (citrón, grep, pomeranč) - dodávají energii
 
-**Léčení a imunita:**
+### Léčení a imunita:
+
 - **Tea tree** - silné antiseptikum
 - **Eukalyptus** - pomáhá při nachlazení
 - **Tymián** - posiluje imunitu
 
-**Duchovní růst:**
+### Duchovní růst:
+
 - **Kadidlo** - meditace a duchovní propojení
 - **Santalové dřevo** - uzemnění a vnitřní klid
 - **Pačuli** - propojení s přírodou
 
 **Jak používat esenciální oleje**
+
+![Difuzér s esenciálními oleji](/images/magazine/aromaterapie-pouziti.webp)
 
 **1. Difuzér**
 - Nejběžnější způsob použití
@@ -140,6 +148,8 @@ Esenciální oleje působí na tělo **dvěma hlavními způsoby**:
 - Diskrétní a elegantní
 
 **Naše řada KORUNA**
+
+![Esence KORUNA s krystaly a 24k zlatem](/images/magazine/esence-koruna.webp)
 
 Vytvořili jsme speciální řadu esencí **KORUNA**, která představuje vrchol aromaterapie:
 
