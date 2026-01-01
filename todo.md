@@ -748,3 +748,7 @@
 ## Oprava odkazů v obsahu článku Aromaterapie & esence (Jan 1, 2026)
 - [x] Opravit nefunkční prokliky v obsahu článku (Relaxace, Energie, Léčení, Duchovní růst)
 
+
+## Tlačítka pro sdílení na sociálních sítích (Jan 1, 2026)
+- [x] Přidat tlačítko pro sdílení na Instagram do článků
+

@@ -1,4 +1,4 @@
-import { Share2, Facebook, MessageCircle, Copy, Check } from 'lucide-react';
+import { Share2, Facebook, MessageCircle, Copy, Check, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 
@@ -30,6 +30,7 @@ export function ShareButtons({ url, title, description }: ShareButtonsProps) {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
     whatsapp: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
     twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+    instagram: `https://www.instagram.com/`, // Instagram doesn't support direct URL sharing, opens profile
   };
 
   return (
@@ -60,6 +61,23 @@ export function ShareButtons({ url, title, description }: ShareButtonsProps) {
         >
           <MessageCircle className="w-4 h-4" />
           <span className="hidden sm:inline">WhatsApp</span>
+        </Button>
+
+        {/* Instagram */}
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-2"
+          onClick={() => {
+            // Instagram doesn't support direct URL sharing via web
+            // Copy link to clipboard and show toast to share via Instagram app
+            navigator.clipboard.writeText(fullUrl).then(() => {
+              alert('Odkaz byl zkopírován! Otevřete Instagram a vložte odkaz do příběhu nebo příspěvku.');
+            });
+          }}
+        >
+          <Instagram className="w-4 h-4" />
+          <span className="hidden sm:inline">Instagram</span>
         </Button>
 
         {/* Copy Link */}
