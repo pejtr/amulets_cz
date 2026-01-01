@@ -1146,12 +1146,12 @@ Pro **posílení mužské energie**:
 
 ## Naše doporučení
 
-| Potřeba | Doporučená esence |
-|---------|--------------------|
-| Relaxace | OHORAI modrý lotos |
-| Láska | OhoRÁJ lotos |
-| Mužská energie | Esence MUŽ |
-| Ženská energie | Esence Žena |
+**Doporučené esence podle potřeby:**
+
+• **Relaxace** → OHORAI modrý lotos
+• **Láska** → OhoRÁJ lotos
+• **Mužská energie** → Esence MUŽ
+• **Ženská energie** → Esence Žena
 
 ➡️ [Prohlédněte si naše esence](/aromaterapie)`,
   },
