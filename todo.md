@@ -757,3 +757,9 @@
 - [x] Opravit nefunkční odkazy v obsahu článku (Ochranné vlastnosti)
 - [x] Přidat ilustrační obrázky do článku
 
+
+## Aktualizace čínského horoskopu na rok 2026 (Jan 1, 2026)
+- [x] Přepsat čínský horoskop z roku 2025 (Had) na rok 2026 (Ohnivý Kůň)
+- [x] Aktualizovat datum začátku čínského nového roku (17. února 2026)
+- [x] Aktualizovat obsah pro všechna znamení
+
