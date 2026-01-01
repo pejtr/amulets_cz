@@ -127,18 +127,46 @@ export function createOrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Amulets.cz",
+    "alternateName": "Amulets",
     "url": "https://amulets.cz",
-    "logo": "https://amulets.cz/logo.png",
-    "description": "Ručně vyráběné orgonitové pyramidy a aromaterapeutické esence",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://amulets.cz/android-chrome-512x512.png",
+      "width": 512,
+      "height": 512,
+      "caption": "Amulets.cz - Ankh symbol"
+    },
+    "image": "https://amulets.cz/android-chrome-512x512.png",
+    "description": "Ručně vyráběné orgonitové pyramidy s drahými krystaly a modrým lotosem. Aromaterapeutické esence ze 100% esenciálních olejů nejvyšší kvality.",
+    "foundingDate": "2020",
+    "founder": {
+      "@type": "Person",
+      "name": "Natálie Ohorai",
+      "jobTitle": "Zakladatelka",
+      "url": "https://amulets.cz/o-nas"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "CZ",
+      "addressLocality": "Praha"
+    },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+420-774-091-740",
+      "telephone": "+420-776-041-740",
       "contactType": "Customer Service",
       "email": "info@amulets.cz",
+      "availableLanguage": ["Czech", "English"],
+      "hoursAvailable": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "19:00"
+      }
     },
     "sameAs": [
       "https://instagram.com/amulets.cz",
-    ],
+      "https://www.facebook.com/amulets.cz"
+    ]
   };
 }
 

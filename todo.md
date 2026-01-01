@@ -578,7 +578,7 @@
 - [ ] Prase 2026 - roční předpověď
 - [ ] Sekce denní/týdenní horoskopy
 - [ ] Tabulka kompatibility západních znamení
-- [ ] Aktualizovat sitemap.xml
+- [x] Aktualizovat sitemap.xml
 
 ## SEO opravy (Dec 19, 2025)
 - [x] Opravit title na hlavní stránce (max 60 znaků) - 42 znaků
@@ -788,3 +788,9 @@
 - [x] Vytvořit stránku pro rok 1984 (Dřevěná Krysa)
 - [x] Vytvořit stránku pro rok 1990 (Kovový Kůň)
 - [x] Přidat interní prolinkování mezi rok-specifickými stránkami a hlavními stránkami znamení
+
+## SEO Technické vylepšení (Jan 2026)
+
+- [x] Přidat Organization schema s novým favicon jako logo
+- [x] Vytvořit robots.txt pro povolení indexace
+- [x] Aktualizovat sitemap.xml

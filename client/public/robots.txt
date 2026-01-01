@@ -1,10 +1,42 @@
-# robots.txt for Amulets.cz
+# robots.txt for https://amulets.cz
+# Allow all search engines to crawl the entire site
 
 User-agent: *
 Allow: /
 
-# Sitemaps
+# Sitemap location
 Sitemap: https://amulets.cz/sitemap.xml
 
-# Crawl-delay
+# Crawl-delay for polite crawling
 Crawl-delay: 1
+
+# Specific rules for Google (faster crawling)
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Specific rules for Google Images
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /
+
+# Block access to admin/private areas
+User-agent: *
+Disallow: /api/admin/
+Disallow: /_internal/
+
+# Allow access to important resources
+User-agent: *
+Allow: /sitemap.xml
+Allow: /favicon.ico
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.webp
+Allow: /*.svg
