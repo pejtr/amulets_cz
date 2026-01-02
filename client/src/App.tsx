@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch, useLocation } from "wouter";
+import { Route, Switch, useLocation, Redirect } from "wouter";
 import { useEffect } from "react";
 import { initFacebookPixel, initGoogleAnalytics } from "@/lib/tracking";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
@@ -38,6 +38,8 @@ function Router() {
       <Route path="/kviz/vysledek/:symbol" component={QuizResult} />
       <Route path="/cinsky-horoskop" component={ChineseZodiac} />
       <Route path="/predpoved-2026/:slug" component={Prediction2026} />
+      {/* Redirects for old/removed pages */}
+      <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
