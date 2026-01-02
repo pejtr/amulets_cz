@@ -33,23 +33,29 @@ async function startServer() {
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
-  // Redirect old URLs to ohorai.cz (SEO fix for 404, 403, and redirect errors from GSC)
+  // Redirect old e-shop URLs to ohorai.cz (301 for SEO - from GSC 404 errors)
   const redirectToOhoraiPatterns = [
+    // Product pages
     '/product/*',
     '/product-category/*',
     '/product-tag/*',
-    '/uncategorized/*',
-    '/aroma-nahrdelnik-love-ruzerin/*',
+    // Shop pages
     '/shop',
     '/shop/*',
+    // Blog pages
     '/blog',
     '/blog/*',
     '/blog-2',
     '/blog-2/*',
+    '/uncategorized/*',
+    // Contact pages
     '/contact',
     '/contact/*',
     '/contact-2',
     '/contact-2/*',
+    '/contact-3',
+    '/contact-3/*',
+    // Layout/template pages
     '/brand/*',
     '/2-columns',
     '/2-columns/*',
@@ -59,8 +65,16 @@ async function startServer() {
     '/3-columns-2/*',
     '/page',
     '/page/*',
+    '/page-2',
+    '/page-2/*',
+    // WordPress/PHP pages
     '/index.php/*',
     '/wpcontent_category/*',
+    // Specific old product URLs from GSC
+    '/aroma-nahrdelnik-love-ruzenin',
+    '/aroma-nahrdelnik-love-ruzenin/*',
+    '/aroma-nahrdelnik-love-ruzerin',
+    '/aroma-nahrdelnik-love-ruzerin/*',
   ];
   
   redirectToOhoraiPatterns.forEach(pattern => {
@@ -72,6 +86,8 @@ async function startServer() {
   // Redirect old/removed pages to homepage (301 for SEO)
   const redirectToHomepagePatterns = [
     '/darujte-lasku',
+    '/kameny-podle-znameni-zverokruhu',
+    '/kameny-podle-znameni-zverokruhu/*',
   ];
   
   redirectToHomepagePatterns.forEach(pattern => {
