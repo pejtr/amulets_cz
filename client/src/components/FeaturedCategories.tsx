@@ -3,7 +3,7 @@ import { Flower2, Music, User, Sparkles } from "lucide-react";
 const categories = [
   {
     icon: Flower2,
-    title: "Mysterium modrého lotosu",
+    title: "Modrý lotos - Posvátná květina",
     description: "Autorská tvorba s modrým lotosem",
     url: "https://www.ohorai.cz/modry-lotos/",
   },

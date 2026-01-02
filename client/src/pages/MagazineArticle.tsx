@@ -156,10 +156,10 @@ export default function MagazineArticle() {
                 {article.excerpt}
               </p>
 
-              {article.externalUrl && (
+              {('externalUrl' in article && (article as any).externalUrl) && (
                 <div className="mt-6">
                   <a
-                    href={article.externalUrl}
+                    href={(article as any).externalUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-[#E85A9F] text-white font-medium rounded-md hover:bg-[#E85A9F]/90 transition-colors"

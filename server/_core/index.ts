@@ -89,6 +89,11 @@ async function startServer() {
     '/kameny-podle-znameni-zverokruhu',
     '/kameny-podle-znameni-zverokruhu/*',
   ];
+
+  // Redirect old article URLs to new ones (301 for SEO)
+  app.get('/magazin/mysterium-modreho-lotosu', (_req, res) => {
+    res.redirect(301, '/magazin/modry-lotos-egyptska-historie');
+  });
   
   redirectToHomepagePatterns.forEach(pattern => {
     app.get(pattern, (_req, res) => {

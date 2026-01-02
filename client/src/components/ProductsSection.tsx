@@ -170,10 +170,10 @@ export default function ProductsSection() {
               <div className="text-sm mt-2">
                 <span className="text-muted-foreground">Přečtěte si: </span>
                 <Link 
-                  href="/magazin/mysterium-modreho-lotosu"
+                  href="/magazin/modry-lotos-egyptska-historie"
                   className="text-[#D4AF37] hover:underline font-semibold"
                 >
-                  Mystérium modrého lotosu
+                  Modrý lotos - Posvátná květina
                 </Link>
               </div>
             </div>
