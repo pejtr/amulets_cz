@@ -62,6 +62,17 @@ const stones = [
   { name: "Granát", url: "/kamen/granat", image: "/images/stones/thumbs/granat-thumb.jpg" },
   { name: "Citrín", url: "/kamen/citrin", image: "/images/stones/thumbs/citrin-thumb.png" },
   { name: "Karneol", url: "/kamen/karneol", image: "/images/stones/thumbs/karneol-thumb.png" },
+  // Nové kameny - Leden 2026
+  { name: "Jadeit", url: "/kamen/jadeit", image: "/images/stones/thumbs/jadeit-thumb.webp" },
+  { name: "Malachit", url: "/kamen/malachit", image: "/images/stones/thumbs/malachit-thumb.webp" },
+  { name: "Onyx", url: "/kamen/onyx", image: "/images/stones/thumbs/onyx-thumb.webp" },
+  { name: "Sodalit", url: "/kamen/sodalit", image: "/images/stones/thumbs/sodalit-thumb.webp" },
+  { name: "Jaspis", url: "/kamen/jaspis", image: "/images/stones/thumbs/jaspis-thumb.webp" },
+  { name: "Labradorit", url: "/kamen/labradorit", image: "/images/stones/thumbs/labradorit-thumb.webp" },
+  { name: "Perleť", url: "/kamen/perlet", image: "/images/stones/thumbs/perlet-thumb.webp" },
+  { name: "Sluneční kámen", url: "/kamen/slunecni-kamen", image: "/images/stones/thumbs/slunecni-kamen-thumb.webp" },
+  { name: "Fluorit", url: "/kamen/fluorit", image: "/images/stones/thumbs/fluorit-thumb.webp" },
+  { name: "Amazonit", url: "/kamen/amazonit", image: "/images/stones/thumbs/amazonit-thumb.webp" },
 ];
 
 const purposes = [
