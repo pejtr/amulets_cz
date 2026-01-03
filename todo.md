@@ -805,3 +805,8 @@
 
 ## Úprava hero sekce - přesun jména (Jan 3, 2026)
 - [ ] Přesunout "Natálie Ohorai - Zakladatelka Amulets.cz" pod tlačítko "Zjisti svůj amulet"
+
+## Čínský horoskop 2026 - Obrázky a obsah
+- [x] Regenerate Rabbit thumbnail for Chinese horoscope 2026
+- [x] Create content pages for all 12 Chinese zodiac signs (Krysa, Bůvol, Tygr, Králík, Drak, Had, Kůň, Koza, Opice, Kohout, Pes, Vepř)
+

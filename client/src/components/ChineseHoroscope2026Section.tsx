@@ -4,18 +4,18 @@ import { useState } from "react";
 import LazyImage from "@/components/LazyImage";
 
 const chineseZodiac2026 = [
-  { name: "Krysa", url: "/symbol/cinsky-horoskop-krysa-2026", image: "/images/predictions-2026/krysa-2026.webp" },
-  { name: "Bůvol", url: "/symbol/cinsky-horoskop-buvol-2026", image: "/images/predictions-2026/buvol-2026.webp" },
-  { name: "Tygr", url: "/symbol/cinsky-horoskop-tygr-2026", image: "/images/predictions-2026/tygr-2026.webp" },
-  { name: "Králík", url: "/symbol/cinsky-horoskop-kralik-2026", image: "/images/predictions-2026/kralik-2026.webp" },
-  { name: "Drak", url: "/symbol/cinsky-horoskop-drak-2026", image: "/images/predictions-2026/drak-2026.webp" },
-  { name: "Had", url: "/symbol/cinsky-horoskop-had-2026", image: "/images/predictions-2026/had-2026.webp" },
-  { name: "Kůň", url: "/symbol/cinsky-horoskop-kun-2026", image: "/images/predictions-2026/kun-2026.webp", highlight: true },
-  { name: "Koza", url: "/symbol/cinsky-horoskop-koza-2026", image: "/images/predictions-2026/koza-2026.webp" },
-  { name: "Opice", url: "/symbol/cinsky-horoskop-opice-2026", image: "/images/predictions-2026/opice-2026.webp" },
-  { name: "Kohout", url: "/symbol/cinsky-horoskop-kohout-2026", image: "/images/predictions-2026/kohout-2026.webp" },
-  { name: "Pes", url: "/symbol/cinsky-horoskop-pes-2026", image: "/images/predictions-2026/pes-2026.webp" },
-  { name: "Prase", url: "/symbol/cinsky-horoskop-prase-2026", image: "/images/predictions-2026/prase-2026.webp" },
+  { name: "Krysa", url: "/predpoved-2026/predpoved-2026-krysa", image: "/images/predictions-2026/krysa-2026.webp" },
+  { name: "Bůvol", url: "/predpoved-2026/predpoved-2026-buvol", image: "/images/predictions-2026/buvol-2026.webp" },
+  { name: "Tygr", url: "/predpoved-2026/predpoved-2026-tygr", image: "/images/predictions-2026/tygr-2026.webp" },
+  { name: "Králík", url: "/predpoved-2026/predpoved-2026-kralik", image: "/images/predictions-2026/kralik-2026.webp" },
+  { name: "Drak", url: "/predpoved-2026/predpoved-2026-drak", image: "/images/predictions-2026/drak-2026.webp" },
+  { name: "Had", url: "/predpoved-2026/predpoved-2026-had", image: "/images/predictions-2026/had-2026.webp" },
+  { name: "Kůň", url: "/predpoved-2026/predpoved-2026-kun", image: "/images/predictions-2026/kun-2026.webp", highlight: true },
+  { name: "Koza", url: "/predpoved-2026/predpoved-2026-koza", image: "/images/predictions-2026/koza-2026.webp" },
+  { name: "Opice", url: "/predpoved-2026/predpoved-2026-opice", image: "/images/predictions-2026/opice-2026.webp" },
+  { name: "Kohout", url: "/predpoved-2026/predpoved-2026-kohout", image: "/images/predictions-2026/kohout-2026.webp" },
+  { name: "Pes", url: "/predpoved-2026/predpoved-2026-pes", image: "/images/predictions-2026/pes-2026.webp" },
+  { name: "Prase", url: "/predpoved-2026/predpoved-2026-prase", image: "/images/predictions-2026/prase-2026.webp" },
 ];
 
 export default function ChineseHoroscope2026Section() {
