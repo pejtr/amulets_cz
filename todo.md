@@ -794,3 +794,14 @@
 - [x] Přidat Organization schema s novým favicon jako logo
 - [x] Vytvořit robots.txt pro povolení indexace
 - [x] Aktualizovat sitemap.xml
+
+## Registrace zpětných odkazů a vyhledávačů (Jan 3, 2026)
+- [ ] Registrace do Google Search Console (sitemap)
+- [ ] Registrace do Bing Webmaster Tools
+- [ ] Registrace do Seznam Webmaster
+- [ ] Registrace do Yandex Webmaster
+- [ ] Registrace do webových katalogů (Firmy.cz, Najisto.cz, atd.)
+- [ ] Vytvoření dokumentace s přehledem registrací
+
+## Úprava hero sekce - přesun jména (Jan 3, 2026)
+- [ ] Přesunout "Natálie Ohorai - Zakladatelka Amulets.cz" pod tlačítko "Zjisti svůj amulet"
