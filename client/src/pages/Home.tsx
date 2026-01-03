@@ -5,6 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import USPSection from "@/components/USPSection";
 import ProductsSection from "@/components/ProductsSection";
 import GuideSection from "@/components/GuideSection";
+import ChineseHoroscope2026Section from "@/components/ChineseHoroscope2026Section";
 import MagazineSection from "@/components/MagazineSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import QuizCTA from "@/components/QuizCTA";
@@ -47,6 +48,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <USPSection />
+        <ChineseHoroscope2026Section />
         <GuideSection />
         <QuizCTA />
         <ProductsSection />
