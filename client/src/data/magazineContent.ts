@@ -769,6 +769,8 @@ Objevte **sílu drahých kamenů** v našich ručně vyráběných orgonitových
 
 ## Původ a botanika
 
+![Stvoření světa - modrý lotos vynářející se z prvotních vod](/images/magazine/modry-lotos/stvoreni-sveta.webp)
+
 Modrý lotos je vodní rostlina původem z **údolí Nílu** a dalších oblastí východní Afriky. Roste v mělkých vodách, kde jeho kořeny jsou ukotveny v bahnitm dnu, zatímco **nádherné modré květy** se tyjí nad hladinou.
 
 **Unikátní vlastnost modrého lotosu:**
@@ -788,6 +790,8 @@ Tato legenda vysvětluje, proč byl modrý lotos **symbolem slunce a stvoření*
 
 ### Bůh Nefertem
 
+![Bůh Nefertem s lotosovým květem na hlavě](/images/magazine/modry-lotos/nefertem-buh.webp)
+
 **Nefertem** byl egyptský bůh spojený s modrým lotosem. Byl zobrazován jako:
 - Mladý muž s **lotosovým květem na hlavě**
 - Syn bohyně Sekhmet a boha Ptaha
@@ -806,6 +810,8 @@ Egypťané věřili, že:
 
 ## Použití v chrámových rituálech
 
+![Posvátné rituály s modrým lotosem v egyptském chrámu](/images/magazine/modry-lotos/chramy-ritualy.webp)
+
 ### Posvátné ceremonie
 
 Modrý lotos byl nedílnou součástí **egyptských náboženských rituálů**:
@@ -816,7 +822,10 @@ Modrý lotos byl nedílnou součástí **egyptských náboženských rituálů**
 - Věřilo se, že vůně **přitahuje božskou přítomnost**
 
 **2. Pohřební rituály**
-- Modré lotosy byly kladeny do **hrobek faraonů**
+
+![Modré lotosy v hrobce Tutanchamona](/images/magazine/modry-lotos/tutanchamon-hrobka.webp)
+
+- Modré lotosy byly kládeny do **hrobek faraonů**
 - Nalezeny v hrobce **Tutanchamona**
 - Symbolizovaly **znovuzrození v posmrném životě**
 
@@ -838,6 +847,8 @@ Egyptskí kněží používali modrý lotos pro **dosažení transů** a komunik
 ## Symbolika v egyptském umění
 
 ### Architektura a sochařství
+
+![Lotosové sloupy v chrámu Karnak](/images/magazine/modry-lotos/lotosove-sloupy.webp)
 
 Modrý lotos je všudypřítomný v **egyptském umění**:
 

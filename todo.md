@@ -830,3 +830,10 @@
 ## Magazín - opravy (Jan 3, 2026)
 - [x] Změnit odkaz tlačítka Magazín v menu na /magazin
 - [x] Optimalizovat velikost obrázků pro rychlejší načítání
+
+## Magazín - kategorie (Jan 3, 2026)
+- [ ] Rozdělit stránku Magazín do sekcí podle kategorií článků
+
+## Modrý lotos článek - více fotek (Jan 3, 2026)
+- [x] Vygenerovat ilustrační obrázky pro článek Modrý lotos
+- [x] Přidat obrázky do obsahu článku
