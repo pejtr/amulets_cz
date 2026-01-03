@@ -108,76 +108,7 @@ export default function Magazine() {
           </section>
         )}
 
-        {/* Tantra & Láska Section */}
-        <section className="py-16 bg-gradient-to-b from-pink-900/10 to-background">
-          <div className="container">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="h-1 w-12 bg-gradient-to-r from-pink-500 to-red-500 rounded-full" />
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Tantra, Láska & Milování
-              </h2>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {tantraArticles.slice(0, tantraVisible).map((article) => (
-                <Link
-                  key={article.slug}
-                  href={`/magazin/${article.slug}`}
-                  className="group"
-                >
-                  <article className="bg-card rounded-lg overflow-hidden border border-pink-500/20 hover:border-pink-500/50 hover:shadow-lg hover:shadow-pink-500/10 transition-all duration-300">
-                    {/* Image */}
-                    <div className="aspect-video bg-gradient-to-br from-pink-500/20 to-red-500/10 overflow-hidden">
-                      {article.image ? (
-                        <img
-                          src={article.image}
-                          alt={article.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-6xl">
-                          💕
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-card-foreground mb-3 group-hover:text-pink-500 transition-colors">
-                        {article.title}
-                      </h3>
-                      
-                      <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                        {article.excerpt}
-                      </p>
-
-                      <div className="flex items-center text-pink-500 font-semibold text-sm group-hover:gap-2 transition-all">
-                        Číst článek
-                        <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </article>
-                </Link>
-              ))}
-            </div>
-
-            {/* Show More Button - Tantra */}
-            {tantraVisible < tantraArticles.length && (
-              <div className="flex justify-center mt-10">
-                <button
-                  onClick={showMoreTantra}
-                  className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-pink-500 to-red-500 text-white font-semibold rounded-full hover:from-pink-600 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-pink-500/20"
-                >
-                  Zobrazit další
-                  <ChevronDown className="h-5 w-5" />
-                </button>
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* All Other Articles Grid */}
+        {/* All Other Articles Grid - FIRST after featured */}
         <section className="py-16 md:py-24">
           <div className="container">
             <div className="flex items-center gap-3 mb-8">
@@ -254,6 +185,75 @@ export default function Magazine() {
                 <p className="text-muted-foreground">
                   Brzy přidáme zajímavý obsah o amuletoch a duchovním růstu.
                 </p>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Tantra & Láska Section - SECOND */}
+        <section className="py-16 bg-gradient-to-b from-pink-900/10 to-background">
+          <div className="container">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="h-1 w-12 bg-gradient-to-r from-pink-500 to-red-500 rounded-full" />
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Tantra, Láska & Milování
+              </h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {tantraArticles.slice(0, tantraVisible).map((article) => (
+                <Link
+                  key={article.slug}
+                  href={`/magazin/${article.slug}`}
+                  className="group"
+                >
+                  <article className="bg-card rounded-lg overflow-hidden border border-pink-500/20 hover:border-pink-500/50 hover:shadow-lg hover:shadow-pink-500/10 transition-all duration-300">
+                    {/* Image */}
+                    <div className="aspect-video bg-gradient-to-br from-pink-500/20 to-red-500/10 overflow-hidden">
+                      {article.image ? (
+                        <img
+                          src={article.image}
+                          alt={article.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-6xl">
+                          💕
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-card-foreground mb-3 group-hover:text-pink-500 transition-colors">
+                        {article.title}
+                      </h3>
+                      
+                      <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+                        {article.excerpt}
+                      </p>
+
+                      <div className="flex items-center text-pink-500 font-semibold text-sm group-hover:gap-2 transition-all">
+                        Číst článek
+                        <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              ))}
+            </div>
+
+            {/* Show More Button - Tantra */}
+            {tantraVisible < tantraArticles.length && (
+              <div className="flex justify-center mt-10">
+                <button
+                  onClick={showMoreTantra}
+                  className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-pink-500 to-red-500 text-white font-semibold rounded-full hover:from-pink-600 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-pink-500/20"
+                >
+                  Zobrazit další
+                  <ChevronDown className="h-5 w-5" />
+                </button>
               </div>
             )}
           </div>

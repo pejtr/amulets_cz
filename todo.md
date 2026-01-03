@@ -837,3 +837,5 @@
 ## Modrý lotos článek - více fotek (Jan 3, 2026)
 - [x] Vygenerovat ilustrační obrázky pro článek Modrý lotos
 - [x] Přidat obrázky do obsahu článku
+- [x] Přesunout sekci "Všechny články" na první místo pod doporučený článek na stránce magazínu
+- [x] Přidat obsahové fotografie do článku "Symboly lásky a jejich význam"

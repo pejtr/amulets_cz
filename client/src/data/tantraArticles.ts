@@ -771,6 +771,8 @@ Objevte naše [esence pro intimitu](/aromaterapie) a vytvořte posvátný prosto
 
 ### Srdce ❤️
 
+![Symbol srdce - univerzální symbol lásky](/images/magazine/tantra/symboly-lasky-srdce.webp)
+
 Nejrozšířenější symbol lásky na světě.
 
 **Historie:**
@@ -787,6 +789,8 @@ Nejrozšířenější symbol lásky na světě.
 **Jak používat:** Noste jako přívěsek, darujte milované osobě, vizualizujte při meditaci na lásku.
 
 ### Ankh – Egyptský klíč života
+
+![Ankh - egyptský klíč života a věčné lásky](/images/magazine/tantra/symboly-lasky-ankh.webp)
 
 **Ankh** je staroegyptský symbol, který představuje **věčnou lásku a život**.
 
@@ -807,6 +811,8 @@ Nejrozšířenější symbol lásky na světě.
 
 ### Triquetra – Keltský symbol
 
+![Triquetra - keltský symbol věčné lásky](/images/magazine/tantra/symboly-lasky-triquetra.webp)
+
 **Triquetra** je keltský symbol tří propojených oblouků.
 
 **Historie:**
@@ -825,6 +831,8 @@ Nejrozšířenější symbol lásky na světě.
 ➡️ [Více o Triquetra](/symbol/triquetra)
 
 ### Jin Jang – Harmonie protikladů
+
+![Jin Jang - symbol harmonie a rovnováhy v lásce](/images/magazine/tantra/symboly-lasky-jin-jang.webp)
 
 **Jin Jang** symbolizuje **dokonalou rovnováhu** mužské a ženské energie.
 
@@ -901,6 +909,8 @@ Zdvojený znak pro štěstí.
 ## Zvířecí symboly lásky
 
 ### Labutě
+
+![Labutě - symbol věčné lásky a věrnosti](/images/magazine/tantra/symboly-lasky-labute.webp)
 
 Labutě se páří na celý život a tvoří srdce svými krky.
 
