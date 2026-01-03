@@ -1015,6 +1015,470 @@ Karneol je hlavní kámen pro:
 
 Karneol čistěte pod tekoucí vodou. Nabíjejte slunečním světlem.`,
   },
+  // Nové kameny - Leden 2026
+  {
+    slug: "jadeit",
+    title: "Jadeit",
+    image: "/images/stones/jadeit.webp",
+    metaTitle: "💚 Jadeit - Význam, účinky a použití kámene | Amulets.cz",
+    metaDescription: "Jadeit význam a účinky: štěstí, harmonie, ochrana. Posvátný kámen Asie pro zdraví a prosperitu.",
+    content: `**Jadeit** je posvátný zelený kámen, který byl po tisíciletí ceněn v **Číně a Mezoamerice** jako symbol **štěstí, harmonie a dlouhověkosti**.
+
+## Jadeit význam
+
+Jadeit je kámen **čistoty a moudrosti**. V čínské kultuře je považován za nejcennější kámen, symbolizující pět ctností: moudrost, spravedlnost, soucit, skromnost a odvahu.
+
+## Jadeit účinky
+
+• **Štěstí** - přitahuje prosperitu a úspěch
+• **Harmonie** - vyvažuje emoce a vztahy
+• **Ochrana** - chrání před negativními vlivy
+• **Zdraví** - podporuje ledviny a nadledvinky
+• **Klid** - přináší vnitřní mír a vyrovnanost
+• **Moudrost** - podporuje správné rozhodování
+
+## Jadeit a čakry
+
+Jadeit je spojen se **srdeční čakrou**, kterou harmonizuje a otevírá pro lásku.
+
+## Jadeit znamení zvěrokruhu
+
+Jadeit je hlavní kámen pro:
+• **Býk** - podporuje stabilitu a prosperitu
+• **Váhy** - přináší harmonii a rovnováhu
+• **Ryby** - posiluje intuici a duchovnost
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat jadeit?
+
+• **Náramek** - pro každodenní štěstí a ochranu
+• **Přívěsek** - blízko srdce pro harmonii
+• **V kapse** - jako talisman prosperity
+• **Při meditaci** - pro vnitřní klid
+
+## Jadeit čištění a nabíjení
+
+Jadeit čistěte pod tekoucí vodou nebo v měsíčním světle. Vyhýbejte se přímému slunci.`,
+  },
+  {
+    slug: "malachit",
+    title: "Malachit",
+    image: "/images/stones/malachit.webp",
+    metaTitle: "💚 Malachit - Význam, účinky a použití kámene | Amulets.cz",
+    metaDescription: "Malachit význam a účinky: transformace, ochrana, léčení. Kámen změny pro odvahu a růst.",
+    content: `**Malachit** je nádherný zelený kámen s charakteristickými pruhy, který symbolizuje **transformaci, ochranu a léčení**.
+
+## Malachit význam
+
+Malachit je kámen **změny a transformace**. Jeho spirálovité vzory připomínají cestu růstu a evoluce.
+
+## Malachit účinky
+
+• **Transformace** - podporuje pozitivní změny v životě
+• **Ochrana** - absorbuje negativní energie
+• **Léčení** - podporuje fyzické i emocionální uzdravení
+• **Odvaha** - pomáhá překonávat strach
+• **Intuice** - zesiluje vnitřní vedení
+• **Detoxikace** - čistí tělo i mysl
+
+## Malachit a čakry
+
+Malachit pracuje se **srdeční čakrou** a **solar plexus čakrou**.
+
+## Malachit znamení zvěrokruhu
+
+Malachit je hlavní kámen pro:
+• **Štír** - podporuje transformaci a regeneraci
+• **Kozoroh** - posiluje vytrvalost a ambice
+• **Býk** - přináší stabilitu při změnách
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat malachit?
+
+• **Přívěsek** - pro ochranu a transformaci
+• **Na solar plexus** - při meditaci pro odvahu
+• **V místnosti** - pro absorpci negativních energií
+
+## Malachit čištění a nabíjení
+
+**Pozor:** Malachit je citlivý na vodu! Čistěte pouze suchým hadříkem nebo kouřem šalvěje. Nabíjejte na křišťálové drúze.`,
+  },
+  {
+    slug: "onyx",
+    title: "Onyx",
+    image: "/images/stones/onyx.webp",
+    metaTitle: "🖤 Onyx - Význam, účinky a použití kámene | Amulets.cz",
+    metaDescription: "Onyx význam a účinky: síla, ochrana, uzemnění. Černý kámen pro sebedisciplínu a odvahu.",
+    content: `**Onyx** je elegantní černý kámen, který symbolizuje **sílu, ochranu a sebedisciplínu**.
+
+## Onyx význam
+
+Onyx je kámen **vnitřní síly a odhodlání**. Ve starověku byl nošen válečníky pro odvahu v bitvě.
+
+## Onyx účinky
+
+• **Síla** - posiluje vůli a odhodlání
+• **Ochrana** - vytváří energetický štít
+• **Uzemnění** - stabilizuje a centruje
+• **Sebedisciplína** - podporuje sebekontrolu
+• **Odvaha** - pomáhá překonávat strach
+• **Koncentrace** - zlepšuje soustředění
+
+## Onyx a čakry
+
+Onyx je spojen s **kořenovou čakrou**, kterou uzemnuje a stabilizuje.
+
+## Onyx znamení zvěrokruhu
+
+Onyx je hlavní kámen pro:
+• **Lev** - posiluje sebevědomí a vůdcovství
+• **Kozoroh** - podporuje disciplínu a ambice
+• **Štír** - zesiluje vnitřní sílu
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat onyx?
+
+• **Náramek** - na pravé ruce pro sílu
+• **Přívěsek** - pro každodenní ochranu
+• **Na pracovním stole** - pro koncentraci
+• **Při meditaci** - pro uzemnění
+
+## Onyx čištění a nabíjení
+
+Onyx čistěte pod tekoucí vodou nebo v měsíčním světle. Nabíjejte na černém turmalínu.`,
+  },
+  {
+    slug: "sodalit",
+    title: "Sodalit",
+    image: "/images/stones/sodalit.webp",
+    metaTitle: "💙 Sodalit - Význam, účinky a použití kámene | Amulets.cz",
+    metaDescription: "Sodalit význam a účinky: logika, pravda, komunikace. Modrý kámen pro jasné myšlení.",
+    content: `**Sodalit** je hluboce modrý kámen s bílými žilkami, který podporuje **logické myšlení, pravdu a komunikaci**.
+
+## Sodalit význam
+
+Sodalit je kámen **rozumu a pravdy**. Pomáhá vidět věci jasně a komunikovat autenticky.
+
+## Sodalit účinky
+
+• **Logika** - podporuje racionální myšlení
+• **Pravda** - pomáhá rozpoznat a mluvit pravdu
+• **Komunikace** - zlepšuje vyjadřování
+• **Intuice** - vyvažuje logiku s intuicí
+• **Klid** - uklidňuje mysl při stresu
+• **Sebevědomí** - posiluje víru v sebe sama
+
+## Sodalit a čakry
+
+Sodalit pracuje s **krční čakrou** a **třetím okem**.
+
+## Sodalit znamení zvěrokruhu
+
+Sodalit je hlavní kámen pro:
+• **Střelec** - podporuje hledání pravdy
+• **Panna** - posiluje analytické myšlení
+• **Vodnář** - inspiruje inovativní myšlenky
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat sodalit?
+
+• **Přívěsek na krk** - blízko krční čakry
+• **Na třetí oko** - při meditaci pro jasnost
+• **V kanceláři** - pro logické myšlení
+• **Při učení** - pro lepší pochopení
+
+## Sodalit čištění a nabíjení
+
+Sodalit čistěte pod tekoucí vodou. Nabíjejte měsíčním světlem.`,
+  },
+  {
+    slug: "jaspis",
+    title: "Jaspis",
+    image: "/images/stones/jaspis.webp",
+    metaTitle: "🔴 Jaspis - Význam, účinky a použití kámene | Amulets.cz",
+    metaDescription: "Jaspis význam a účinky: uzemnění, stabilita, vytrvalost. Kámen země pro sílu a ochranu.",
+    content: `**Jaspis** je starověký kámen země, který existuje v mnoha barvách a symbolizuje **uzemnění, stabilitu a vytrvalost**.
+
+## Jaspis význam
+
+Jaspis je kámen **stability a vytrvalosti**. Je to "nejvyšší živitel" mezi kameny, poskytující podporu v těžkých časech.
+
+## Jaspis účinky
+
+• **Uzemnění** - silně spojuje se zemí
+• **Stabilita** - přináší emocionální rovnováhu
+• **Vytrvalost** - podporuje dlouhodobé úsilí
+• **Ochrana** - chrání před negativními vlivy
+• **Energie** - dodává pomalou, stabilní energii
+• **Odvaha** - posiluje v těžkých situacích
+
+## Druhy jaspisu
+
+• **Červený jaspis** - energie, vitalita, vášeň
+• **Žlutý jaspis** - optimismus, sebevědomí
+• **Zelený jaspis** - léčení, rovnováha
+• **Obrázkový jaspis** - kreativita, vizualizace
+
+## Jaspis a čakry
+
+Jaspis pracuje především s **kořenovou čakrou** a **sakrální čakrou**.
+
+## Jaspis znamení zvěrokruhu
+
+Jaspis je hlavní kámen pro:
+• **Beran** - červený jaspis pro energii
+• **Panna** - zelený jaspis pro rovnováhu
+• **Lev** - žlutý jaspis pro sebevědomí
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat jaspis?
+
+• **V kapse** - pro uzemnění během dne
+• **Náramek** - pro stabilní energii
+• **Při meditaci** - položte na kořenovou čakru
+• **Pod polštář** - pro klidný spánek
+
+## Jaspis čištění a nabíjení
+
+Jaspis čistěte pod tekoucí vodou nebo v zemi. Nabíjejte slunečním světlem.`,
+  },
+  {
+    slug: "labradorit",
+    title: "Labradorit",
+    image: "/images/stones/labradorit.webp",
+    metaTitle: "🌈 Labradorit - Význam, účinky a použití kámene | Amulets.cz",
+    metaDescription: "Labradorit význam a účinky: magie, intuice, transformace. Kámen světla pro duchovní probuzení.",
+    content: `**Labradorit** je mystický kámen s úchvatnou hrou barev (labradorescencí), který symbolizuje **magii, intuici a transformaci**.
+
+## Labradorit význam
+
+Labradorit je kámen **magie a duchovního probuzení**. Jeho duhové záblesky připomínají polární záři a brány do jiných dimenzí.
+
+## Labradorit účinky
+
+• **Magie** - zesiluje magické schopnosti
+• **Intuice** - prohlubuje šestý smysl
+• **Transformace** - podporuje duchovní růst
+• **Ochrana** - vytváří energetický štít
+• **Kreativita** - inspiruje umělecké vyjádření
+• **Synchronicita** - přitahuje "náhody"
+
+## Labradorit a čakry
+
+Labradorit pracuje se **třetím okem** a **korunní čakrou**.
+
+## Labradorit znamení zvěrokruhu
+
+Labradorit je hlavní kámen pro:
+• **Lev** - posiluje kreativitu a charisma
+• **Štír** - podporuje transformaci
+• **Střelec** - inspiruje duchovní hledání
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat labradorit?
+
+• **Přívěsek** - pro každodenní magii
+• **Při meditaci** - na třetí oko pro vize
+• **V ložnici** - pro prorocké sny
+• **Při tvorbě** - pro inspiraci
+
+## Labradorit čištění a nabíjení
+
+Labradorit čistěte pod tekoucí vodou. Nabíjejte měsíčním světlem, zejména při úplňku.`,
+  },
+  {
+    slug: "perlet",
+    title: "Perleť",
+    image: "/images/stones/perlet.webp",
+    metaTitle: "🐚 Perleť - Význam, účinky a použití | Amulets.cz",
+    metaDescription: "Perleť význam a účinky: klid, intuice, ženská energie. Dar moře pro harmonii a ochranu.",
+    content: `**Perleť** (Mother of Pearl) je duhově lesklá vnitřní vrstva mušlí, která symbolizuje **klid, intuici a ženskou energii**.
+
+## Perleť význam
+
+Perleť je dar **mořské bohyně**, symbol mateřské lásky a ochrany. Její jemný lesk evokuje měsíční světlo na vodní hladině.
+
+## Perleť účinky
+
+• **Klid** - uklidňuje rozbouřené emoce
+• **Intuice** - posiluje vnitřní vedení
+• **Ženská energie** - harmonizuje ženské cykly
+• **Ochrana** - chrání citlivé duše
+• **Kreativita** - inspiruje umělecké vyjádření
+• **Prosperita** - přitahuje hojnost
+
+## Perleť a čakry
+
+Perleť pracuje se **sakrální čakrou** a **srdeční čakrou**.
+
+## Perleť znamení zvěrokruhu
+
+Perleť je hlavní kámen pro:
+• **Rak** - posiluje intuici a citlivost
+• **Ryby** - podporuje duchovnost
+• **Váhy** - přináší harmonii
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat perleť?
+
+• **Šperky** - náušnice, přívěsky, náramky
+• **Při meditaci** - pro spojení s vodním elementem
+• **V ložnici** - pro klidný spánek
+• **Při tvorbě** - pro inspiraci
+
+## Perleť čištění a nabíjení
+
+Perleť čistěte jemně vlhkým hadříkem. Nabíjejte měsíčním světlem. **Pozor:** Vyhýbejte se chemikáliím a parfémům!`,
+  },
+  {
+    slug: "slunecni-kamen",
+    title: "Sluneční kámen",
+    image: "/images/stones/slunecni-kamen.webp",
+    metaTitle: "☀️ Sluneční kámen - Význam, účinky a použití | Amulets.cz",
+    metaDescription: "Sluneční kámen význam a účinky: radost, vitalita, optimismus. Kámen slunce pro energii a štěstí.",
+    content: `**Sluneční kámen** je zářivý oranžovo-zlatý kámen s třpytivými inkluzemi, který symbolizuje **radost, vitalitu a optimismus**.
+
+## Sluneční kámen význam
+
+Sluneční kámen je **kámen radosti a života**. Nese v sobě energii slunce - teplo, světlo a životní sílu.
+
+## Sluneční kámen účinky
+
+• **Radost** - zvedá náladu a přináší optimismus
+• **Vitalita** - dodává energii a životní sílu
+• **Sebevědomí** - posiluje víru v sebe sama
+• **Kreativita** - inspiruje nové nápady
+• **Nezávislost** - podporuje samostatnost
+• **Štěstí** - přitahuje pozitivní události
+
+## Sluneční kámen a čakry
+
+Sluneční kámen pracuje se **sakrální čakrou** a **solar plexus čakrou**.
+
+## Sluneční kámen znamení zvěrokruhu
+
+Sluneční kámen je hlavní kámen pro:
+• **Lev** - zesiluje sluneční energii
+• **Střelec** - podporuje optimismus a dobrodružství
+• **Beran** - dodává energii a odvahu
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat sluneční kámen?
+
+• **Přívěsek** - pro každodenní radost
+• **Náramek** - na pravé ruce pro energii
+• **Na pracovním stole** - pro kreativitu
+• **Ráno** - držte v ruce pro pozitivní start dne
+
+## Sluneční kámen čištění a nabíjení
+
+Sluneční kámen čistěte pod tekoucí vodou. Nabíjejte **slunečním světlem** - je to jeho přirozený zdroj energie.`,
+  },
+  {
+    slug: "fluorit",
+    title: "Fluorit",
+    image: "/images/stones/fluorit.webp",
+    metaTitle: "🌈 Fluorit - Význam, účinky a použití kámene | Amulets.cz",
+    metaDescription: "Fluorit význam a účinky: jasnost, soustředění, ochrana. Duhový kámen pro mentální sílu.",
+    content: `**Fluorit** je nádherný kámen, který existuje v mnoha barvách (fialová, zelená, modrá, žlutá), a symbolizuje **jasnost, soustředění a mentální sílu**.
+
+## Fluorit význam
+
+Fluorit je kámen **mentální jasnosti a organizace**. Je nazýván "géniovým kamenem" pro svou schopnost zlepšovat koncentraci.
+
+## Fluorit účinky
+
+• **Jasnost** - čistí mentální mlhu
+• **Soustředění** - zlepšuje koncentraci
+• **Učení** - podporuje vstřebávání informací
+• **Ochrana** - absorbuje negativní energie
+• **Intuice** - vyvažuje logiku s intuicí
+• **Rozhodování** - pomáhá při složitých volbách
+
+## Druhy fluoritu
+
+• **Fialový fluorit** - duchovnost, intuice
+• **Zelený fluorit** - léčení, srdeční čakra
+• **Modrý fluorit** - komunikace, klid
+• **Duhový fluorit** - všechny vlastnosti kombinované
+
+## Fluorit a čakry
+
+Fluorit pracuje se **třetím okem** a odpovídající čakrou podle barvy.
+
+## Fluorit znamení zvěrokruhu
+
+Fluorit je hlavní kámen pro:
+• **Ryby** - fialový fluorit pro intuici
+• **Kozoroh** - zelený fluorit pro úspěch
+• **Vodnář** - modrý fluorit pro inovace
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat fluorit?
+
+• **Na pracovním stole** - pro soustředění
+• **Při učení** - pro lepší paměť
+• **Při meditaci** - na třetí oko
+• **V kanceláři** - pro jasné myšlení
+
+## Fluorit čištění a nabíjení
+
+Fluorit čistěte pod tekoucí vodou nebo kouřem šalvěje. Nabíjejte měsíčním světlem. **Pozor:** Fluorit je křehký, zacházejte opatrně!`,
+  },
+  {
+    slug: "amazonit",
+    title: "Amazonit",
+    image: "/images/stones/amazonit.webp",
+    metaTitle: "💚 Amazonit - Význam, účinky a použití kámene | Amulets.cz",
+    metaDescription: "Amazonit význam a účinky: pravda, harmonie, komunikace. Kámen Amazonek pro odvahu a rovnováhu.",
+    content: `**Amazonit** je nádherný tyrkysově-zelený kámen, pojmenovaný po řece Amazonka, který symbolizuje **pravdu, harmonii a odvahu**.
+
+## Amazonit význam
+
+Amazonit je kámen **bojovnic Amazonek** - žen, které se nebály mluvit pravdu a bojovat za své hodnoty.
+
+## Amazonit účinky
+
+• **Pravda** - pomáhá mluvit a slyšet pravdu
+• **Harmonie** - vyvažuje mužskou a ženskou energii
+• **Komunikace** - zlepšuje vyjadřování
+• **Odvaha** - posiluje v konfrontacích
+• **Klid** - uklidňuje nervový systém
+• **Ochrana** - chrání před elektrosmogem
+
+## Amazonit a čakry
+
+Amazonit pracuje se **srdeční čakrou** a **krční čakrou**.
+
+## Amazonit znamení zvěrokruhu
+
+Amazonit je hlavní kámen pro:
+• **Panna** - podporuje jasnou komunikaci
+• **Vodnář** - posiluje nezávislost
+• **Beran** - dodává odvahu mluvit pravdu
+
+➡️ [Více o kamenech podle znamení](/magazin/jak-vybrat-kamen-podle-znameni)
+
+## Jak používat amazonit?
+
+• **Přívěsek na krk** - blízko krční čakry
+• **Náramek** - pro každodenní harmonii
+• **U počítače** - ochrana před elektrosmogem
+• **Při důležitých rozhovorech** - pro odvahu
+
+## Amazonit čištění a nabíjení
+
+Amazonit čistěte pod tekoucí vodou. Nabíjejte měsíčním světlem nebo na křišťálové drúze.`,
+  },
 ];
 
 export const purposesData = [

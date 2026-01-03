@@ -810,3 +810,9 @@
 - [x] Regenerate Rabbit thumbnail for Chinese horoscope 2026
 - [x] Create content pages for all 12 Chinese zodiac signs (Krysa, Bůvol, Tygr, Králík, Drak, Had, Kůň, Koza, Opice, Kohout, Pes, Vepř)
 
+
+## Přidání nových kamenů (Jan 2026)
+- [x] Přidat nové kameny: Jadeit, Malachit, Onyx, Sodalit, Jaspis, Labradorit, Perleť, Sluneční kámen, Fluorit, Amazonit
+- [x] Vygenerovat obrázky pro nové kameny
+- [x] Aktualizovat sitemap.xml s novými kameny
+- [x] Aktualizovat GuideSection pro zobrazení nových kamenů
