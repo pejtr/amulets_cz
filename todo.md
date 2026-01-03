@@ -816,3 +816,17 @@
 - [x] Vygenerovat obrázky pro nové kameny
 - [x] Aktualizovat sitemap.xml s novými kameny
 - [x] Aktualizovat GuideSection pro zobrazení nových kamenů
+
+## Tantra & Láska články (Jan 3, 2026)
+- [x] Přidat 10 nových článků o Tantře, Lásce a Milování do magazínu
+- [x] Zvýraznit článek "Modrý lotos" jako připnutý/oblíbený nahoře
+- [x] Vygenerovat ilustrační obrázky pro nové články
+- [x] Aktualizovat sitemap.xml s novými URL
+
+## Magazín - omezení článků na 6 (Jan 3, 2026)
+- [x] Zobrazit pouze 6 článků v každé sekci Magazínu
+- [x] Přidat tlačítko "Zobrazit další" pro načtení více článků
+
+## Magazín - opravy (Jan 3, 2026)
+- [x] Změnit odkaz tlačítka Magazín v menu na /magazin
+- [x] Optimalizovat velikost obrázků pro rychlejší načítání

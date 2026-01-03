@@ -9,6 +9,10 @@ import ProductsStrip from "@/components/ProductsStrip";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import { magazineArticles } from "@/data/magazineContent";
+import { tantraArticles } from "@/data/tantraArticles";
+
+// Kombinovat všechny články
+const allArticles = [...magazineArticles, ...tantraArticles];
 import { useState } from "react";
 import { getMixedRelatedArticles } from "@/lib/relatedArticles";
 import { useEffect } from "react";
@@ -22,7 +26,7 @@ export default function MagazineArticle() {
   const slug = params.slug || "";
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  const article = magazineArticles.find((item) => item.slug === slug);
+  const article = allArticles.find((item) => item.slug === slug);
 
   // SEO meta tagy
   useEffect(() => {

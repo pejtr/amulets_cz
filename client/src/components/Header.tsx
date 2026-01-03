@@ -19,7 +19,7 @@ const navItems = [
   { label: "Orgonitové pyramidy", hasDropdown: false, url: "https://www.ohorai.cz/autorske-tvorba/" },
   { label: "Aromaterapie", hasDropdown: true, url: "https://www.ohorai.cz/esence/" },
   { label: "O nás", hasDropdown: false, url: "https://www.ohorai.cz/o-projektu/" },
-  { label: "Magazín", hasDropdown: false, url: "/#magazin", isInternal: true },
+  { label: "Magazín", hasDropdown: false, url: "/magazin", isInternal: true },
   { label: "Kontakt", hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },
 ];
 
