@@ -230,7 +230,7 @@ export default function ProductsStrip() {
                     }}
                   >
                     <ShoppingCart className="w-3 h-3" />
-                    KOUPIT NYNÍ
+                    Koupit na OHORAI
                     <ExternalLink className="w-3 h-3" />
                   </Button>
                 </div>
@@ -335,7 +335,7 @@ export default function ProductsStrip() {
                     }}
                   >
                     <ShoppingCart className="w-3 h-3" />
-                    KOUPIT NYNÍ
+                    Koupit na OHORAI
                     <ExternalLink className="w-3 h-3" />
                   </Button>
                 </div>
