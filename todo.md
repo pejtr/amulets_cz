@@ -839,4 +839,3 @@
 - [x] Přidat obrázky do obsahu článku
 - [x] Přesunout sekci "Všechny články" na první místo pod doporučený článek na stránce magazínu
 - [x] Přidat obsahové fotografie do článku "Symboly lásky a jejich význam"
-- [x] Změnit text tlačítka z "KOUPIT NYNÍ" na "Koupit na OHORAI"
