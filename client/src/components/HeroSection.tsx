@@ -11,7 +11,7 @@ export default function HeroSection() {
       {/* Mobile: cropped hero image (without buttons) + functional buttons below */}
       <div className="md:hidden">
         <img
-          src="/hero-mobile-cropped.jpg"
+          src="/hero-mobile-cropped.webp"
           alt="Natálie Ohorai - Zakladatelka Amulets.cz"
           className="w-full h-auto"
         />

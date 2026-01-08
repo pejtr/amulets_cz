@@ -839,3 +839,19 @@
 - [x] Přidat obrázky do obsahu článku
 - [x] Přesunout sekci "Všechny články" na první místo pod doporučený článek na stránce magazínu
 - [x] Přidat obsahové fotografie do článku "Symboly lásky a jejich význam"
+- [x] Změnit text tlačítka z "KOUPIT NYNÍ" na "Koupit na OHORAI"
+
+## Optimalizace mobilní performance podle PageSpeed Insights (Jan 8, 2026)
+- [x] Analyzovat PageSpeed Insights report pro identifikaci problémů
+- [x] Optimalizovat načítání obrázků (lazy loading, compression)
+- [x] Převést hero-mobile-cropped.jpg na WebP (51KB → 23KB, -55%)
+- [x] Převést logo.png na WebP (11KB → 2KB, -82%)
+- [x] Převést všechny thumbnail obrázky na WebP (~40KB úspora)
+- [x] Vytvořit responsive verze čínského horoskopu (800x800 → 263x263)
+- [x] Implementovat OptimizedImage komponentu s srcset
+- [x] Aktualizovat GuideSection.tsx - použít WebP thumbnails
+- [x] Optimalizovat Google Fonts načítání (defer + preload)
+- [x] Lazy load Facebook Pixel (delay 3s po page load)
+- [x] Aktualizovat preload odkazy v index.html na WebP
+- [x] Testovat změny na produkčním buildu
+- [ ] Uložit checkpoint

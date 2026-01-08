@@ -54,18 +54,23 @@
       gtag('config', 'G-NSFK0CWT89');
     </script>
     
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code - Lazy loaded for performance -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '2015838995869855');
-    fbq('track', 'PageView');
+    // Delay Facebook Pixel loading to improve TBT
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '2015838995869855');
+        fbq('track', 'PageView');
+      }, 3000); // Load after 3 seconds
+    });
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=2015838995869855&ev=PageView&noscript=1"
@@ -74,20 +79,23 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <!-- Optimized font loading with font-display swap -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" /></noscript>
     
     <!-- Preload critical images for faster LCP -->
     <!-- Desktop hero - highest priority -->
     <link rel="preload" as="image" href="/hero-natalie-bg.jpg" fetchpriority="high" media="(min-width: 768px)" />
     <!-- Mobile hero - highest priority on mobile -->
-    <link rel="preload" as="image" href="/hero-mobile-hero-only.jpg" fetchpriority="high" media="(max-width: 767px)" />
+    <link rel="preload" as="image" href="/hero-mobile-cropped.webp" fetchpriority="high" media="(max-width: 767px)" />
     <!-- Logo -->
-    <link rel="preload" as="image" href="/images/logo-amulets-new.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/logo.webp" fetchpriority="high" />
     <!-- First visible symbols (above fold) -->
-    <link rel="preload" as="image" href="/images/symbols/thumbs/ruka-fatimy-thumb.jpg" />
-    <link rel="preload" as="image" href="/images/symbols/thumbs/kvet-zivota-thumb.jpg" />
-    <link rel="preload" as="image" href="/images/symbols/thumbs/cinsky-drak-thumb.jpg" />
-    <link rel="preload" as="image" href="/images/symbols/thumbs/davidova-hvezda-thumb.jpg" />
+    <link rel="preload" as="image" href="/images/symbols/thumbs/ruka-fatimy-thumb.webp" />
+    <link rel="preload" as="image" href="/images/symbols/thumbs/kvet-zivota-thumb.webp" />
+    <link rel="preload" as="image" href="/images/symbols/thumbs/cinsky-drak-thumb.webp" />
+    <link rel="preload" as="image" href="/images/symbols/thumbs/davidova-hvezda-thumb.webp" />
   </head>
 
   <body>
