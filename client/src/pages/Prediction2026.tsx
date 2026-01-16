@@ -11,6 +11,8 @@ import { ShareButtons } from "@/components/ShareButtons";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import { SectionShareModal } from "@/components/SectionShareModal";
+import EmailCaptureModal from "@/components/EmailCaptureModal";
+import InlineEmailForm from "@/components/InlineEmailForm";
 
 interface SectionData {
   title: string;
@@ -593,9 +595,23 @@ export default function Prediction2026() {
           </div>
         </article>
 
+        {/* Email Capture - Inline Form */}
+        <InlineEmailForm 
+          zodiacSign={slug || ""}
+          zodiacName={prediction.title.split(" - ")[0]}
+        />
+
         <GuideSection />
       </main>
       <Footer />
+
+      {/* Email Capture - Modal Popup (time-based trigger) */}
+      <EmailCaptureModal
+        zodiacSign={slug || ""}
+        zodiacName={prediction.title.split(" - ")[0]}
+        trigger="time"
+        delaySeconds={30}
+      />
 
       <ImageLightbox
         isOpen={lightboxOpen}

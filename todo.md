@@ -855,3 +855,17 @@
 - [x] Aktualizovat preload odkazy v index.html na WebP
 - [x] Testovat změny na produkčním buildu
 - [ ] Uložit checkpoint
+
+## Lead Magnet pro čínský horoskop - Email capture (Jan 8, 2026)
+- [x] Navrhnout lead magnet strategii (3 varianty)
+- [x] Vytvořit EmailCaptureModal komponentu
+- [x] Vytvořit InlineEmailForm komponentu
+- [x] Přidat email capture do stránek čínského horoskopu
+- [x] Přidat newsletter.subscribe endpoint do routers.ts
+- [x] Vytvořit welcome email template (sendHoroscopePDFEmail)
+- [x] Integrovat s Brevo API pro ukládání kontaktů
+- [x] Testovat InlineEmailForm - funguje ✅
+- [x] Testovat EmailCaptureModal - funguje ✅
+- [ ] Vytvořit skutečný PDF horoskop (aktuálně placeholder)
+- [ ] Implementovat exit-intent popup
+- [x] Uložit checkpoint

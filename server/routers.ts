@@ -4,6 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import { addBrevoContact, sendDiscountWelcomeEmail } from "./brevo";
+import { sendHoroscopePDFEmail } from "./sendHoroscopePDF";
 import { sendLeadEvent } from "./meta-conversions";
 
 export const appRouter = router({
@@ -18,6 +19,63 @@ export const appRouter = router({
         success: true,
       } as const;
     }),
+  }),
+
+  // Newsletter subscription for lead magnets
+  newsletter: router({
+    subscribe: publicProcedure
+      .input(z.object({
+        email: z.string().email(),
+        source: z.string(), // e.g., "horoskop-krysa"
+        tags: z.array(z.string()).optional(),
+        fbc: z.string().optional(),
+        fbp: z.string().optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        const { email, source, tags = [] } = input;
+        
+        // Add contact to Brevo
+        const contactAdded = await addBrevoContact({
+          email,
+          attributes: {
+            SOURCE: source,
+            SIGNUP_DATE: new Date().toISOString(),
+          },
+          listIds: [3], // Brevo list ID for newsletter
+        });
+        
+        if (!contactAdded) {
+          throw new Error("Nepodařilo se přidat email do databáze. Zkuste to prosím znovu.");
+        }
+        
+        // Send PDF horoskop email if source is horoskop
+        if (source.startsWith("horoskop-")) {
+          const zodiacSign = source.replace("horoskop-", "").replace("-inline", "");
+          const zodiacNameMap: Record<string, string> = {
+            "krysa": "Krysa", "buvol": "Bůvol", "tygr": "Tygr", "kralik": "Králík",
+            "drak": "Drak", "had": "Had", "kun": "Kůň", "koza": "Koza",
+            "opice": "Opice", "kohout": "Kohout", "pes": "Pes", "prase": "Prase"
+          };
+          const zodiacName = zodiacNameMap[zodiacSign] || "Vaše znamení";
+          await sendHoroscopePDFEmail(email, zodiacSign, zodiacName);
+        }
+        
+        // Send Lead event to Meta Conversions API
+        const clientIp = ctx.req.ip || ctx.req.headers['x-forwarded-for'] as string || ctx.req.socket.remoteAddress;
+        const userAgent = ctx.req.headers['user-agent'];
+        const referer = ctx.req.headers['referer'] || 'https://amulets.cz';
+        
+        await sendLeadEvent({
+          email,
+          eventSourceUrl: referer,
+          clientIp,
+          userAgent,
+          fbc: input.fbc,
+          fbp: input.fbp,
+        });
+        
+        return { success: true };
+      }),
   }),
 
   // Email marketing
