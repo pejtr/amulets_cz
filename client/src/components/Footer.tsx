@@ -41,6 +41,11 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
+                <a href="/o-nas" className="hover:text-primary transition-colors">
+                  O Natálii
+                </a>
+              </li>
+              <li>
                 <a href="#" className="hover:text-primary transition-colors">
                   Doprava a platba
                 </a>

@@ -963,4 +963,10 @@
 - [x] UloĹžit checkpoint
 ## Aktualizace popisu Donuterie (Jan 17, 2026)
 - [x] Upravit popis Donuterie - přidat info o showroom a výdejně OHORAI
+- [x] Uložit checkpoint
+
+## Stránka "O Natálii" s video rozhovorem (Jan 17, 2026)
+- [x] Vytvořit stránku /o-nas s video z rostecky.cz
+- [x] Přidat odkaz do navigace
+- [x] Přidat odkaz do footeru
 - [ ] Uložit checkpoint
