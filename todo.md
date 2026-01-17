@@ -932,3 +932,7 @@
 - [x] Testovat email flow
 - [x] Uložit checkpoint
 - [x] Předat výsledky uživateli
+
+## Úprava hero CTA textu (Jan 17, 2026)
+- [x] Změnit text z "Prémiové šperky s symbolikou" na "má kompletní autorská tvorba"
+- [ ] Uložit checkpoint

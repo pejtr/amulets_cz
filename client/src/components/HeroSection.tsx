@@ -122,7 +122,7 @@ export default function HeroSection() {
                       window.open('https://www.ohorai.cz?utm_source=amulets&utm_medium=hero_cta&utm_campaign=cross_promotion&utm_content=desktop', '_blank');
                     }}
                   >
-                    <span className="text-[9px] sm:text-[10px] text-black/70 group-hover:text-white/90 transition-colors duration-300 leading-none">Prémiové šperky s symbolikou</span>
+                    <span className="text-[9px] sm:text-[10px] text-black/70 group-hover:text-white/90 transition-colors duration-300 leading-none">má kompletní autorská tvorba</span>
                     <div className="flex items-center gap-1.5">
                       <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
                       <img src="/ohorai-logo.webp" alt="OHORAI" className="h-10 sm:h-12 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
