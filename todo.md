@@ -896,5 +896,18 @@
 - [x] Odstranit ProductsSection z Home.tsx
 - [x] Zachovat hero odkaz na Ohorai (už existuje v HeroSection)
 - [x] Testovat homepage - build úspěšný ✅
+- [x] Uložit checkpoint
+- [x] Předat výsledky uživateli
+
+## Integrace affiliate produktů Irisimo.cz (přívěšky AMEN) (Jan 17, 2026)
+- [x] Analyzovat Heureka XML feed z Irisimo.cz
+- [x] Analyzovat Affial kampaň a affiliate linky (4,5% provize, 30 dní cookie)
+- [x] Vytvořit parser pro Heureka XML feed (irisimoFeed.ts)
+- [x] Filtrovat pouze přívěšky AMEN
+- [x] Implementovat affiliate tracking (Affial)
+- [x] Vytvořit tRPC endpoint (irisimo.getAmenPendants)
+- [x] Vytvořit sekci s affiliate produkty na webu (AmenPendantsSection)
+- [x] Přidat sekci na homepage
+- [x] Testovat affiliate linky - build úspěšný ✅
 - [ ] Uložit checkpoint
 - [ ] Předat výsledky uživateli

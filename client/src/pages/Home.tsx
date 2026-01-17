@@ -8,6 +8,7 @@ import GuideSection from "@/components/GuideSection";
 import ChineseHoroscope2026Section from "@/components/ChineseHoroscope2026Section";
 import MagazineSection from "@/components/MagazineSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import AmenPendantsSection from "@/components/AmenPendantsSection";
 import QuizCTA from "@/components/QuizCTA";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
@@ -53,6 +54,7 @@ export default function Home() {
         <QuizCTA />
 
         <TestimonialsSection />
+        <AmenPendantsSection />
         <MagazineSection />
         <FAQSection />
       </main>

@@ -6,6 +6,8 @@ import { z } from "zod";
 import { addBrevoContact, sendDiscountWelcomeEmail } from "./brevo";
 import { sendHoroscopePDFEmail } from "./sendHoroscopePDF";
 import { sendLeadEvent } from "./meta-conversions";
+import { getAmenPendants, type IrisimoProduct } from "./irisimoFeed";
+import { TRPCError } from "@trpc/server";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -76,6 +78,22 @@ export const appRouter = router({
         
         return { success: true };
       }),
+  }),
+
+  // Irisimo affiliate products
+  irisimo: router({
+    getAmenPendants: publicProcedure.query(async (): Promise<IrisimoProduct[]> => {
+      try {
+        const pendants = await getAmenPendants();
+        return pendants;
+      } catch (error) {
+        console.error('Error fetching AMEN pendants:', error);
+        throw new TRPCError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'Failed to fetch AMEN pendants',
+        });
+      }
+    }),
   }),
 
   // Email marketing
