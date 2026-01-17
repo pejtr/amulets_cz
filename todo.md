@@ -869,3 +869,11 @@
 - [ ] Vytvořit skutečný PDF horoskop (aktuálně placeholder)
 - [ ] Implementovat exit-intent popup
 - [x] Uložit checkpoint
+
+## Email capture na čínský kalendář a další stránky (Jan 8, 2026)
+- [x] Identifikovat všechny relevantní stránky pro email capture
+- [x] Přidat email capture na /symbol/cinsky-kalendar
+- [ ] Přidat email capture na /cinsky-horoskop (přehledová stránka)
+- [x] Testovat na desktopu
+- [x] Testovat na mobilu
+- [x] Uložit checkpoint

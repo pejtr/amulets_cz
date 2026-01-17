@@ -17,6 +17,8 @@ import { ArrowLeft } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
 import { track } from "@/lib/tracking";
+import EmailCaptureModal from "@/components/EmailCaptureModal";
+import InlineEmailForm from "@/components/InlineEmailForm";
 
 // Funkce pro převod názvu na slug
 function nameToSlug(name: string): string {
@@ -517,11 +519,29 @@ export default function GuideDetail() {
             </div>
           </div>
         </article>
+
+        {/* Email Capture - pouze pro čínský kalendář */}
+        {slug === "cinsky-kalendar" && (
+          <InlineEmailForm 
+            zodiacSign="cinsky-kalendar"
+            zodiacName="Čínský horoskop 2026"
+          />
+        )}
       </main>
       <RelatedArticles articles={getMixedRelatedArticles(params.slug || '', 'guide', 3)} />
       <GuideSection />
       <ProductsStrip />
       <Footer />
+
+      {/* Email Capture Modal - pouze pro čínský kalendář */}
+      {slug === "cinsky-kalendar" && (
+        <EmailCaptureModal
+          zodiacSign="cinsky-kalendar"
+          zodiacName="Čínský horoskop 2026"
+          trigger="time"
+          delaySeconds={30}
+        />
+      )}
 
       {/* Lightbox pro zvětšení obrázku */}
       {content.image && (
