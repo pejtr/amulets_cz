@@ -8,6 +8,7 @@ import { sendHoroscopePDFEmail } from "./sendHoroscopePDF";
 import { sendLeadEvent } from "./meta-conversions";
 import { getAmenPendants, type IrisimoProduct } from "./irisimoFeed";
 import { TRPCError } from "@trpc/server";
+import { invokeLLM } from "./_core/llm";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -21,6 +22,102 @@ export const appRouter = router({
         success: true,
       } as const;
     }),
+  }),
+
+  // AI Chat Assistant
+  chat: router({
+    sendMessage: publicProcedure
+      .input(z.object({
+        message: z.string(),
+        context: z.object({
+          currentPage: z.string(),
+          referrer: z.string(),
+          timeOnSite: z.number(),
+          browsingHistory: z.string().optional(),
+        }).optional(),
+        email: z.string().email().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { message, context, email } = input;
+
+        // Build knowledge base context
+        const knowledgeBase = `
+Jsi Natálie Ohorai, založitelka Amulets.cz a OHORAI. Jsi přívětivá, empatická a zná prodejkyně, která pomáhá zákazníkům najít správné spirituální produkty.
+
+**Produkty Amulets.cz:**
+- **Amulety a talismany**: 33 posvaćtných symbolů (Květ života, Merkaba, Om, Hamsa, atd.)
+- **Orgonit pyramidy**: Ručně výráběné, kombinace krystálů a kovů pro harmonizaci energie
+- **Aromaterapie**: Esenciální oleje, difuzéry, aroma šperky
+- **Drahokamy**: Ametyst, růžový květ, čitrín, lápis lazuli, obsidián
+- **Čínský horoskop**: Personalizované PDF s výkladem znamení
+
+**Klíčové informace:**
+- Doprava zdarma nad 1500 Kč
+- Ruční výroba v Česku
+- 30 dní na vrácení
+- Kontakt: 776 041 740, info@amulets.cz
+
+**Tvuj styl:**
+- Pouzivej emoji 💜✨🔮
+- Bud' osobní a empatická
+- Ptej se na potreby zakaznika
+- Doporucuj konkretni produkty
+- Pokud nevis odpoved', nabidni WhatsApp kontakt
+
+**Aktualni kontext:**
+${context ? `- Stranka: ${context.currentPage}\n- Cas na webu: ${context.timeOnSite}s\n- Historie: ${context.browsingHistory || 'Nový návštěvník'}` : ''}
+${email ? `- Email: ${email}` : ''}
+`;
+
+        try {
+          const response = await invokeLLM({
+            messages: [
+              { role: "system", content: knowledgeBase },
+              { role: "user", content: message },
+            ],
+          });
+
+          const content = response.choices[0].message.content;
+          const responseText = typeof content === 'string' ? content : "Omlouvám se, nemohu odpovědět. Zkuste to prosím znovu.";
+          
+          return {
+            response: responseText,
+          };
+        } catch (error) {
+          console.error("Chat LLM error:", error);
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Omlouváme se, došlo k chybě. Zkuste to prosím znovu.",
+          });
+        }
+      }),
+
+    captureEmail: publicProcedure
+      .input(z.object({
+        email: z.string().email(),
+      }))
+      .mutation(async ({ input }) => {
+        const { email } = input;
+
+        // Add to Brevo with chat_engaged tag
+        const contactAdded = await addBrevoContact({
+          email,
+          attributes: {
+            SOURCE: "chat_widget",
+            SIGNUP_DATE: new Date().toISOString(),
+          },
+          listIds: [3],
+        });
+
+        if (!contactAdded) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Nepodařilo se uložit email. Zkuste to prosím znovu.",
+          });
+        }
+
+        return { success: true };
+      }),
   }),
 
   // Newsletter subscription for lead magnets

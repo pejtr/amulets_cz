@@ -89,8 +89,58 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Partners */}
+        <div className="mt-8 pt-8 border-t border-border">
+          <div className="text-center mb-4">
+            <h4 className="text-sm font-semibold text-foreground mb-3">✨ Naši přátelé ✨</h4>
+          </div>
+          <div className="flex flex-wrap justify-center gap-6 text-sm">
+            {/* Dobrá čajovna Praha */}
+            <div className="flex flex-col items-center gap-2">
+              <a
+                href="https://www.dobracajovnapraha.cz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors font-medium"
+              >
+                Dobrá čajovna Praha
+              </a>
+              <a
+                href="https://instagram.com/dobracajovnapraha"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Instagram className="h-3 w-3" />
+                @dobracajovnapraha
+              </a>
+            </div>
+
+            {/* Donuterie */}
+            <div className="flex flex-col items-center gap-2">
+              <a
+                href="https://www.donuterie.eu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors font-medium"
+              >
+                Donuterie Prague
+              </a>
+              <a
+                href="https://instagram.com/DonuteriePrague"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Instagram className="h-3 w-3" />
+                @DonuteriePrague
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
+        <div className="mt-6 pt-6 border-t border-border text-center text-sm text-muted-foreground">
           <p>2020 - 2025 © Amulets.cz, všechna práva vyhrazena</p>
         </div>
       </div>

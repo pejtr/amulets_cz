@@ -7,6 +7,7 @@ import { initFacebookPixel, initGoogleAnalytics } from "@/lib/tracking";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { BrowsingProvider } from "./contexts/BrowsingContext";
 import Home from "./pages/Home";
 import GuideDetail from "./pages/GuideDetail";
 import Magazine from "./pages/Magazine";
@@ -17,6 +18,7 @@ import ChineseZodiac from "./pages/ChineseZodiac";
 import Prediction2026 from "./pages/Prediction2026";
 import CookieConsent from "./components/CookieConsent";
 import BackToTop from "./components/BackToTop";
+import AIChatAssistant from "./components/AIChatAssistant";
 
 function Router() {
   const [location] = useLocation();
@@ -73,13 +75,16 @@ function App() {
         defaultTheme="light"
         // switchable
       >
-        <ExitIntentPopup />
+        <BrowsingProvider>
+          <ExitIntentPopup />
         <TooltipProvider>
           <Toaster />
           <Router />
           <CookieConsent />
           <BackToTop />
+          <AIChatAssistant />
         </TooltipProvider>
+        </BrowsingProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

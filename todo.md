@@ -939,4 +939,25 @@
 
 ## Odstranění benefit textu z OHORAI buttonu (Jan 17, 2026)
 - [x] Odstranit text "má kompletní autorská tvorba" z OHORAI buttonu
+- [x] Uložit checkpoint
+
+## AI Chatbot "Natálie" - Kompletní Implementace (Jan 17, 2026)
+- [x] Připravit avatar Natálie (optimalizovat obrázek)
+- [x] Vytvořit AIChatAssistant komponentu s chat UI
+- [x] Implementovat AI backend (tRPC procedure s LLM)
+- [x] Vytvořit knowledge base o produktech Amulets.cz
+- [x] Přidat browsing tracking (produkty, kategorie, čas na stránce)
+- [x] Implementovat personalizované odpovědi podle historie
+- [x] Vytvořit email capture formulář v chatu
+- [x] Integrovat s Brevo (automatické tagging kontaktů)
+- [x] Přidat text-to-speech (hlasové odpovědi)
+- [ ] Implementovat video avatar (animovaný)
+- [x] Přidat WhatsApp eskaláci pro složité dotazy
+- [ ] Vytvořit multi-channel routing (Messenger integrace)
+- [x] Testovat kompletní flow
+- [x] Uložit checkpoint
+
+## Optimalizace projektu a partnerské odkazy (Jan 17, 2026)
+- [x] Vyčistit dočasné soubory a cache (opatrně)
+- [x] Přidat odkazy na partnery do footeru (Dobrá čajovna + Donuterie)
 - [ ] Uložit checkpoint
