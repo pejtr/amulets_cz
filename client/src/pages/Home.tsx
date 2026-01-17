@@ -3,7 +3,7 @@ import PromoBanner from "@/components/PromoBanner";
 import PurchaseNotification from "@/components/PurchaseNotification";
 import HeroSection from "@/components/HeroSection";
 import USPSection from "@/components/USPSection";
-import ProductsSection from "@/components/ProductsSection";
+
 import GuideSection from "@/components/GuideSection";
 import ChineseHoroscope2026Section from "@/components/ChineseHoroscope2026Section";
 import MagazineSection from "@/components/MagazineSection";
@@ -51,7 +51,7 @@ export default function Home() {
         <ChineseHoroscope2026Section />
         <GuideSection />
         <QuizCTA />
-        <ProductsSection />
+
         <TestimonialsSection />
         <MagazineSection />
         <FAQSection />

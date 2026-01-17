@@ -889,5 +889,12 @@
 - [x] Optimalizovat velikosti náhledových obrázků (5-7 MB → 9-63 KB, 99% redukce)
 - [x] Přidat loading="lazy" atribut pro featured článek
 - [x] Testovat rychlost načítání - build úspěšný
+- [x] Uložit checkpoint
+- [x] Předat výsledky uživateli
+
+## Odstranění Aromaterapeutické esence sekce z homepage (Jan 17, 2026)
+- [x] Odstranit ProductsSection z Home.tsx
+- [x] Zachovat hero odkaz na Ohorai (už existuje v HeroSection)
+- [x] Testovat homepage - build úspěšný ✅
 - [ ] Uložit checkpoint
 - [ ] Předat výsledky uživateli
