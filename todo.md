@@ -877,3 +877,55 @@
 - [x] Testovat na desktopu
 - [x] Testovat na mobilu
 - [x] Uložit checkpoint
+
+## Email capture na všechny stránky předpovědí 2026 (Jan 8, 2026)
+- [x] Zkontrolovat aktuální stav Prediction2026.tsx
+- [x] Ověřit, že email capture už JE implementován! ✅
+- [x] Email capture už funguje na všech stránkách /predpoved-2026/*
+- [x] Testovat na produkčním webu (www.amulets.cz) - funguje ✅
+- [x] Potvrdit uživateli, že je vše hotovo
+
+## Segmentace a automatizovaná email strategie pro čínský horoskop (Jan 8, 2026)
+- [x] Navrhnout 2 segmenty odběratelů (měsíční vs týenní)
+- [x] Vytvořit personalizovanou welcome sekvenci (6 emailů)
+- [x] Navrhnout automatizované prodejní kampaně (3 kampaně)
+- [x] Připravit konkrétní email šablony
+- [x] Vytvořit implementační plán pro Brevo
+- [x] Vypracovat roční projekci příjmů (134,400 Kč)
+- [x] Předat strategii uživateli
+
+## Pokročilá dynamická segmentace a behavior tracking (Jan 8, 2026)
+- [x] Navrhnout 5+ segmentů podle chování a zájmů
+- [x] Vytvořit 3 VIP tiery (Gold, Platinum, Diamond)
+- [x] Navrhnout behavior tracking systém (klikání, nákupy, kategorie)
+- [x] Připravit automatické přesuny mezi segmenty
+- [x] Vytvořit high-ticket produktové kampaně
+- [x] Implementační plán pro Brevo (12 měsíců)
+- [x] Vypracovat roční projekci příjmů (1,532,400 Kč)
+- [x] Předat strategii uživateli
+
+## Technická implementace behavior tracking a high-ticket produkty (Jan 8, 2026)
+- [x] Vytvořit behavior tracking systém (webhooky, Brevo API)
+- [x] Implementovat tracking kliků na produkty
+- [x] Implementovat tracking zobrazení kategorií
+- [x] Vytvořit automatické přesuny mezi segmenty
+- [x] Vytvořit tRPC endpoints pro tracking
+- [x] Vytvořit React hooks pro frontend tracking
+- [x] Připravit deployment checklist
+- [x] Navrhnout konkrétní high-ticket produkty pro každý VIP segment (9 produktů)
+- [x] Vytvořit marketingové kampaně pro high-ticket produkty
+- [x] Vypracovat projekci příjmů z high-ticket (1,008,144 Kč/rok)
+- [ ] Připravit prezentaci pro obchodní tým
+- [ ] Uložit checkpoint
+- [ ] Předat výsledky uživateli
+
+## Integrace Ohorai.cz produktů jako skryté high-ticket nabídky (Jan 8, 2026)
+- [x] Analyzovat produkty z www.ohorai.cz
+- [x] Přepracovat high-ticket strategii s Ohorai produkty
+- [x] Navrhnout email nurturing sekvenci pro odhalení Ohorai (5 úrovní)
+- [x] Vypracovat projekci příjmů z Ohorai (628,800 Kč/rok)
+- [x] Zkontrolovat umístění ProductsSection - je pouze na homepage ✅
+- [x] Hero odkaz na Ohorai.cz už existuje v HeroSection ✅
+- [x] Vytvořit finální prezentaci
+- [ ] Uložit checkpoint
+- [ ] Předat výsledky uživateli
