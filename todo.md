@@ -911,3 +911,24 @@
 - [x] Testovat affiliate linky - build úspěšný ✅
 - [ ] Uložit checkpoint
 - [ ] Předat výsledky uživateli
+
+## Synergické propojení Amulets.cz a OHORAI-MARKETPLACE (Jan 17, 2026)
+- [x] Analyzovat oba projekty
+- [x] Navrhnout cross-promotion strategii (email sequences, hero CTA)
+- [x] Navrhnout sdílenou zákaznickou databázi (Brevo unification)
+- [x] Navrhnout content marketing synergy (Amulets content hub, Ohorai conversion hub)
+- [x] Navrhnout technické propojení (SSO, sdílený košík, cross-domain tracking)
+- [x] Vytvořit implementační plány (7 fází, 12-16 týdnů)
+- [x] Vypracovat ROI projekci (+6-8M Kč za 3 roky)
+- [x] Předat výsledky uživateli
+
+## Implementace Fáze 1-2: Email Database Unification + Cross-Promotion (Jan 17, 2026)
+- [x] Vytvořit Brevo custom fields (source, project_engagement, first_touch, last_purchase_project)
+- [x] Vytvořit Brevo segmenty (Amulets Leads, Ohorai Customers, Cross-Engaged, VIP → Ohorai)
+- [x] Vytvořit email šablonu: "Objevte Prémiovou Kolekci OHORAI" (5 emailů)
+- [x] Vytvořit email šablonu: "Objevte Symboliku Vašich Produktů" (3 emaily)
+- [x] Optimalizovat hero CTA na Amulets.cz (A/B test, benefit text, tracking)
+- [x] Implementovat UTM tracking parametry
+- [x] Testovat email flow
+- [x] Uložit checkpoint
+- [x] Předat výsledky uživateli

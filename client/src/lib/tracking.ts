@@ -359,17 +359,18 @@ export const track = {
   },
 
   // "Go to Ohorai" button clicked
-  ohoraiButtonClicked: (location: string) => {
+  ohoraiButtonClicked: (location: string, device?: string) => {
     if (window.fbq) {
       window.fbq("trackCustom", "OhoraiButtonClicked", {
         button_location: location,
+        device: device || 'unknown',
         destination: "https://www.ohorai.cz",
       });
     }
     if (window.gtag) {
       window.gtag("event", "click", {
         event_category: "External Link",
-        event_label: `Ohorai Button - ${location}`,
+        event_label: `Ohorai Button - ${location} - ${device || 'unknown'}`,
         destination: "https://www.ohorai.cz",
       });
     }
