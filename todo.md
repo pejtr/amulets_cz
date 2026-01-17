@@ -957,7 +957,10 @@
 - [x] Testovat kompletní flow
 - [x] Uložit checkpoint
 
-## Optimalizace projektu a partnerské odkazy (Jan 17, 2026)
-- [x] Vyčistit dočasné soubory a cache (opatrně)
-- [x] Přidat odkazy na partnery do footeru (Dobrá čajovna + Donuterie)
+## Optimalizace projektu a partnerskĂ© odkazy (Jan 17, 2026)
+- [x] VyÄistit doÄasnĂ© soubory a cache (opatrnÄ)
+- [x] PĹidat odkazy na partnery do footeru (DobrĂˇ Äajovna + Donuterie)
+- [x] UloĹžit checkpoint
+## Aktualizace popisu Donuterie (Jan 17, 2026)
+- [x] Upravit popis Donuterie - přidat info o showroom a výdejně OHORAI
 - [ ] Uložit checkpoint

@@ -126,6 +126,9 @@ export default function Footer() {
               >
                 Donuterie Prague
               </a>
+              <p className="text-xs text-muted-foreground text-center">
+                Showroom & výdejna OHORAI
+              </p>
               <a
                 href="https://instagram.com/DonuteriePrague"
                 target="_blank"
