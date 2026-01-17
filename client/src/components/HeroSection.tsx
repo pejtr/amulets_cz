@@ -116,17 +116,14 @@ export default function HeroSection() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-[#D4AF37] bg-gradient-to-r from-[#FDF8E8] to-[#F5ECD0] hover:from-[#D4AF37] hover:to-[#F0D060] font-semibold px-3 sm:px-6 text-xs sm:text-base flex flex-col items-center justify-center gap-0.5 transition-all duration-300 group whitespace-nowrap shadow-md h-[52px] sm:h-[60px]"
+                    className="border-2 border-[#D4AF37] bg-gradient-to-r from-[#FDF8E8] to-[#F5ECD0] hover:from-[#D4AF37] hover:to-[#F0D060] font-semibold px-3 sm:px-6 text-xs sm:text-base flex items-center justify-center gap-1.5 transition-all duration-300 group whitespace-nowrap shadow-md h-[52px] sm:h-[60px]"
                     onClick={() => {
                       track.ohoraiButtonClicked('Hero Section', 'desktop');
                       window.open('https://www.ohorai.cz?utm_source=amulets&utm_medium=hero_cta&utm_campaign=cross_promotion&utm_content=desktop', '_blank');
                     }}
                   >
-                    <span className="text-[9px] sm:text-[10px] text-black/70 group-hover:text-white/90 transition-colors duration-300 leading-none">má kompletní autorská tvorba</span>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
-                      <img src="/ohorai-logo.webp" alt="OHORAI" className="h-10 sm:h-12 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
-                    </div>
+                    <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
+                    <img src="/ohorai-logo.webp" alt="OHORAI" className="h-10 sm:h-12 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
                   </Button>
                 </div>
 

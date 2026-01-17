@@ -935,4 +935,8 @@
 
 ## Úprava hero CTA textu (Jan 17, 2026)
 - [x] Změnit text z "Prémiové šperky s symbolikou" na "má kompletní autorská tvorba"
+- [x] Uložit checkpoint
+
+## Odstranění benefit textu z OHORAI buttonu (Jan 17, 2026)
+- [x] Odstranit text "má kompletní autorská tvorba" z OHORAI buttonu
 - [ ] Uložit checkpoint
