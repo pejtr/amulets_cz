@@ -53,10 +53,10 @@ export default function AmenPendantsSection() {
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   />
-                  {/* Affiliate Badge */}
+                  {/* Affiliate Badge - Hidden on mobile */}
                   <Badge
                     variant="secondary"
-                    className="absolute top-2 right-2 text-xs"
+                    className="absolute top-2 right-2 text-xs hidden sm:flex"
                   >
                     <ShoppingBag className="h-3 w-3 mr-1" />
                     Irisimo.cz
@@ -93,7 +93,8 @@ export default function AmenPendantsSection() {
                       rel="noopener noreferrer nofollow sponsored"
                       className="flex items-center justify-center gap-2"
                     >
-                      Zobrazit na Irisimo.cz
+                      <span className="hidden sm:inline">Zobrazit na Irisimo.cz</span>
+                      <span className="sm:hidden">Koupit</span>
                       <ExternalLink className="h-4 w-4" />
                     </a>
                   </Button>

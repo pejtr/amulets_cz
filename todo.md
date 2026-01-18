@@ -1354,3 +1354,13 @@
 - [x] Scroll nahoru přes limit → automaticky vysunout všechny projekty
 - [x] Přidat haptickou odezvu (vibrace) při vysunutí
 - [x] Scroll dolů → schovat zpět na jen OHORAI.cz
+
+## Mobilní AMEN produkty optimalizace (Jan 18, 2026)
+- [x] Odebrat badge "Irisimo.cz" přes obrázek produktu na mobilu
+- [x] Zkrátit text tlačítka (místo "Zobrazit na Irisimo.cz" -> "Koupit")
+
+## Cross-link banner text (Jan 18, 2026)
+- [x] Změnit text v rozbaleném stavu z "Všechny naše projekty" na "Spřízněné projekty"
+
+## Chat ikony - Nilský kříž (Jan 18, 2026)
+- [x] Změnit irský kříž ✝️ na nilský egyptský kříž (Ankh) ☥

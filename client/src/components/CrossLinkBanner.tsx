@@ -155,7 +155,7 @@ export default function CrossLinkBanner() {
         {isMobileExpanded && (
           <div className="container py-3 px-4 max-h-[70vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-semibold">🌟 Všechny naše projekty</span>
+              <span className="text-sm font-semibold">🌟 Spřízněné projekty</span>
               <button
                 onClick={() => setIsMobileExpanded(false)}
                 className="p-1 hover:bg-white/20 rounded-full transition-colors"
@@ -304,7 +304,7 @@ export default function CrossLinkBanner() {
         {isExpanded && (
           <div className="container py-4 px-4">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-sm font-semibold">🌟 Všechny naše projekty</span>
+              <span className="text-sm font-semibold">🌟 Spřízněné projekty</span>
               <div className="flex items-center gap-2">
                 <button
                   onClick={toggleExpanded}

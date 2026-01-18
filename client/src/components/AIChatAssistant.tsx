@@ -19,7 +19,7 @@ const SUGGESTED_CATEGORIES = [
     id: "material",
     stream: "hmotne", // pro tracking - produkty, prodej
     category: "Amulety & Produkty",
-    icon: "✝️", // Irský kříž (jako v hero sekci)
+    icon: "☥", // Nilský egyptský kříž (Ankh) - symbol života
     description: "Najdi svůj amulet nebo kámen",
     questions: [
       "Jaký amulet je vhodný pro mě?",

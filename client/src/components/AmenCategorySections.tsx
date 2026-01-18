@@ -269,7 +269,8 @@ function ProductCard({ product }: ProductCardProps) {
             className="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             size="sm"
           >
-            Koupit na Irisimo
+            <span className="hidden sm:inline">Koupit na Irisimo</span>
+            <span className="sm:hidden">Koupit</span>
             <ExternalLink className="ml-2 w-4 h-4" />
           </Button>
         </a>
