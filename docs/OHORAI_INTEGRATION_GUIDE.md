@@ -127,9 +127,9 @@ Pomáháš zákazníkům s krystaly a drahými kameny.
 }
 ```
 
-## Krok 4: Synchronizace denních statistik
+## Krok 4: Hodinová synchronizace statistik
 
-Přidejte cron job pro půlnoční synchronizaci:
+Přidejte interval pro hodinovou synchronizaci (pro aktuální reporty):
 
 ```typescript
 // ohorai-marketplace/server/sync.ts
@@ -158,10 +158,10 @@ async function syncDailyStats(): Promise<boolean> {
   
   // Získat včerejší statistiky z OHORAI databáze
   const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-  const dateStr = yesterday.toISOString().split('T')[0];
+  // Používáme dnešní datum pro aktuální data
+  const dateStr = new Date().toISOString().split('T')[0];
   
-  const stats = await getOhoraiDailyStats(dateStr);
+  const stats = await getOhoraiCurrentStats(); // Aktuální statistiky, ne včerejší
   
   try {
     const response = await fetch(`${apiUrl}/api/trpc/shared.syncStats`, {
@@ -190,10 +190,11 @@ async function syncDailyStats(): Promise<boolean> {
   return false;
 }
 
-// Spustit každý den v 00:05
+// Spustit každou hodinu pro aktuální reporty
 // V server/_core/index.ts přidejte:
-// import { syncDailyStats } from '../sync';
-// setInterval(syncDailyStats, 24 * 60 * 60 * 1000);
+// import { syncStats } from '../sync';
+// setInterval(syncStats, 60 * 60 * 1000); // Každou hodinu
+// syncStats(); // Spustit ihned při startu
 ```
 
 ## Krok 5: Tři proudy vědomí v chatbotu

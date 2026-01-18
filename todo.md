@@ -1230,3 +1230,7 @@
 
 ## SEO optimalizace H1 (Jan 18, 2026)
 - [x] Změnit H1 z "Otevřete své srdce zázrakům" na SEO optimalizovaný text s klíčovými slovy
+
+## Telegram /report příkaz (Jan 18, 2026)
+- [x] Přidat příkaz /report pro agregovaný denní report z obou webů
+- [x] Nastavit hodinovou synchronizaci statistik mezi weby (místo půlnoční)

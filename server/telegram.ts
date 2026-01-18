@@ -361,9 +361,25 @@ export async function processIncomingMessage(update: TelegramUpdate): Promise<bo
   // Check for special commands
   const lowerMessage = userMessage.toLowerCase();
   
+  // Příkaz /report - agregovaný report z obou webů (propojené nádoby)
+  if (lowerMessage === '/report' || lowerMessage.startsWith('/report ')) {
+    // Send combined daily report from both platforms
+    const report = await generateCombinedDailyReport();
+    await sendTelegramMessageToChat(chatId.toString(), report, 'HTML');
+    
+    history.push({
+      role: 'assistant',
+      content: '[Odeslán agregovaný report z obou webů]',
+      timestamp: Date.now(),
+    });
+    conversationHistory.set(userId, history);
+    return true;
+  }
+  
+  // Starý příkaz pro report (zpětná kompatibilita)
   if (lowerMessage.includes('report') || lowerMessage.includes('jak to jde') || lowerMessage.includes('statistiky')) {
-    // Send daily report
-    const report = await generateDailyReport();
+    // Send combined daily report
+    const report = await generateCombinedDailyReport();
     await sendTelegramMessageToChat(chatId.toString(), report, 'HTML');
     
     history.push({

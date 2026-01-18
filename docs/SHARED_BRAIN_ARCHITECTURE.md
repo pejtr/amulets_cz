@@ -178,33 +178,32 @@ Telegram bot slouží jako **centrála** pro:
 S láskou, tvoje Natálie 💜
 ```
 
-## Půlnoční synchronizace
+## Hodinová synchronizace
 
-Každý den o půlnoci (00:00 CET):
+Každou hodinu se weby synchronizují pro aktuální data:
 
-1. **OHORAI** odešle denní statistiky na Amulets.cz API
+1. **OHORAI** odešle aktuální statistiky na Amulets.cz API
 2. **Amulets.cz** agreguje data z obou platforem
-3. **Telegram bot** obdrží agregovaný report
-4. **Telegram bot** odešle report Králi
+3. **Příkaz /report** v Telegramu vrátí vždy aktuální data
 
 ```typescript
-// Cron job na Amulets.cz (00:05 CET)
-async function midnightSync() {
-  // 1. Počkat na data z OHORAI (max 5 min)
-  const ohoraiStats = await waitForOhoraiStats();
+// Cron job na OHORAI (každou hodinu)
+async function hourlySync() {
+  const stats = await getOhoraiStats();
   
-  // 2. Získat vlastní statistiky
-  const amuletsStats = await getAmuletsStats();
-  
-  // 3. Agregovat
-  const combined = aggregateStats(amuletsStats, ohoraiStats);
-  
-  // 4. Vytvořit report
-  const report = formatDailyReport(combined);
-  
-  // 5. Odeslat do Telegram fronty
-  await queueTelegramReport(report);
+  await fetch('https://amulets.cz/api/trpc/shared.syncStats', {
+    method: 'POST',
+    body: JSON.stringify({
+      platform: 'ohorai',
+      apiKey: process.env.SHARED_BRAIN_API_KEY,
+      date: new Date().toISOString().split('T')[0],
+      stats
+    })
+  });
 }
+
+// Spustit každou hodinu
+setInterval(hourlySync, 60 * 60 * 1000);
 ```
 
 ## Implementační kroky
