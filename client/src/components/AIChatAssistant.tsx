@@ -73,7 +73,7 @@ export default function AIChatAssistant() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Ahoj! 👋 Jsem Natálie z Amulets.cz. Ráda vám pomohu s výběrem správného amuletu nebo odpovím na vaše otázky o spirituálních symbolech. Co vás zajímá?",
+      content: "Ahoj! 💜 Jsem Natálie z Amulets.cz. Jsem tu pro ty, kteří vědí, co chtějí - ať už je to správný amulet, porozumění svému potenciálu, nebo cesta k pravé svobodě. Ale víš co? Nejdříve mě poslouchej. Co tě sem přivedlo?",
       timestamp: new Date(),
     },
   ]);
