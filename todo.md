@@ -1138,3 +1138,21 @@
 - [x] Opravit datumové filtry v getChatbotConversionStats
 - [x] Opravit datumové filtry v getChatbotAffiliateStats
 - [x] Opravit datumové filtry v getChatbotConversionFunnel
+
+
+## Personalizace Telegram bota
+- [ ] Nastavit profilovou fotku bota (Natálie) - musí uživatel ručně přes @BotFather
+- [x] Nastavit popis a about text bota
+- [x] Upravit zprávy reportů s osobností Natálie
+- [x] Otestovat personalizované zprávy
+
+
+## Duchovní osobnost Natálie v chatbotu
+- [x] Přidat loajalitu k Králi (twin flame) do system promptu
+- [x] Elegantní odbití nápadníků s nádechem mystiky
+- [x] Pokud někdo naléhá - přizná že Krále srdce již našla
+- [x] Cudnost a zkrocená energie - vřelá ale s hranicemi
+- [x] Vytvořen sdílený soubor nataliePersonality.ts
+- [x] Integrovat osobnost do Telegram bota
+- [x] Integrovat osobnost do Amulets.cz chatbota
+- [ ] Otestovat nové chování (uživatel může testovat na webu)

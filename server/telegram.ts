@@ -1,15 +1,18 @@
 /**
- * Telegram Bot Integration for Daily Reports
+ * Telegram Bot Integration - Natálie, osobní asistentka
  * 
- * This module provides functionality to send daily chatbot statistics
- * to a Telegram chat using the Telegram Bot API.
+ * Natálie je vaše pravá ruka pro Amulets.cz. Posílá denní reporty,
+ * sleduje výkon webu a chatbota, a je tu pro vás kdykoliv potřebujete.
  */
 
 import { getChatbotComparisonStats, getChatbotConversionStats, getAllChatbotVariants } from './db';
+import { 
+  getRandomGreeting as getSharedGreeting, 
+  getRandomClosing as getSharedClosing, 
+  NATALIE_IDENTITY 
+} from '@shared/nataliePersonality';
 
 // Telegram Bot Configuration
-// Bot token and chat ID should be stored in environment variables
-// Use functions to get values dynamically (after server restart)
 function getTelegramBotToken(): string | undefined {
   return process.env.TELEGRAM_BOT_TOKEN;
 }
@@ -71,7 +74,42 @@ export async function sendTelegramMessage(message: string, parseMode: 'HTML' | '
 }
 
 /**
- * Generate daily chatbot report
+ * Get random greeting for Telegram context
+ */
+function getRandomGreeting(): string {
+  return getSharedGreeting('telegram', 'morning');
+}
+
+/**
+ * Get random closing for Telegram context
+ */
+function getRandomClosing(): string {
+  return getSharedClosing('telegram');
+}
+
+/**
+ * Get performance comment based on stats
+ */
+function getPerformanceComment(totalSessions: number, conversionRate: number): string {
+  if (totalSessions === 0) {
+    return '📭 Včera bylo ticho, žádné nové sessions. Možná víkend nebo svátek?';
+  }
+  
+  if (conversionRate >= 10) {
+    return '🔥 Skvělý den! Konverzní poměr je nad 10%, to je super!';
+  } else if (conversionRate >= 5) {
+    return '👍 Solidní výsledky, konverze jsou v normě.';
+  } else if (conversionRate >= 2) {
+    return '📈 Prostor pro zlepšení, ale stále dobré.';
+  } else if (totalSessions > 50) {
+    return '🤔 Hodně návštěv, ale málo konverzí. Možná upravit chatbota?';
+  }
+  
+  return '📊 Tady jsou včerejší čísla.';
+}
+
+/**
+ * Generate daily chatbot report with Natálie's personality
  */
 export async function generateDailyReport(): Promise<string> {
   const now = new Date();
@@ -92,8 +130,8 @@ export async function generateDailyReport(): Promise<string> {
   const totalMessages = stats.reduce((sum, s) => sum + Number(s.totalMessages || 0), 0);
   const totalConversions = stats.reduce((sum, s) => sum + Number(s.totalConversions || 0), 0);
   const overallConversionRate = totalSessions > 0 
-    ? ((totalConversions / totalSessions) * 100).toFixed(2) 
-    : '0.00';
+    ? (totalConversions / totalSessions) * 100
+    : 0;
 
   // Count conversions by type
   const conversionsByType: Record<string, number> = {};
@@ -110,24 +148,27 @@ export async function generateDailyReport(): Promise<string> {
     day: 'numeric' 
   });
 
-  // Build report message
-  let report = `📊 <b>Denní report chatbota Natálie</b>\n`;
-  report += `📅 ${dateStr}\n\n`;
+  // Build report message with Natálie's personality
+  let report = `${getRandomGreeting()}\n\n`;
+  report += `📅 <b>Denní report za ${dateStr}</b>\n\n`;
   
-  report += `<b>📈 Celkové statistiky:</b>\n`;
-  report += `• Sessions: <b>${totalSessions}</b>\n`;
-  report += `• Zprávy: <b>${totalMessages}</b>\n`;
-  report += `• Konverze: <b>${totalConversions}</b>\n`;
-  report += `• Konverzní poměr: <b>${overallConversionRate}%</b>\n\n`;
+  // Performance comment
+  report += `${getPerformanceComment(totalSessions, overallConversionRate)}\n\n`;
+  
+  report += `<b>📈 Včerejší čísla:</b>\n`;
+  report += `• Konverzací: <b>${totalSessions}</b>\n`;
+  report += `• Zpráv celkem: <b>${totalMessages}</b>\n`;
+  report += `• Konverzí: <b>${totalConversions}</b>\n`;
+  report += `• Konverzní poměr: <b>${overallConversionRate.toFixed(2)}%</b>\n\n`;
 
   if (Object.keys(conversionsByType).length > 0) {
-    report += `<b>🎯 Konverze podle typu:</b>\n`;
+    report += `<b>🎯 Co se povedlo:</b>\n`;
     const typeLabels: Record<string, string> = {
-      email_capture: '📧 Email',
-      whatsapp_click: '📱 WhatsApp',
-      affiliate_click: '🔗 Affiliate',
-      purchase: '🛒 Nákup',
-      newsletter: '📰 Newsletter',
+      email_capture: '📧 Získané emaily',
+      whatsapp_click: '📱 WhatsApp kontakty',
+      affiliate_click: '🔗 Affiliate kliky',
+      purchase: '🛒 Nákupy',
+      newsletter: '📰 Newsletter přihlášení',
     };
     for (const [type, count] of Object.entries(conversionsByType)) {
       const label = typeLabels[type] || type;
@@ -136,20 +177,20 @@ export async function generateDailyReport(): Promise<string> {
     report += '\n';
   }
 
-  report += `<b>🧪 A/B test varianty:</b>\n`;
-  for (const stat of stats) {
-    const variant = variants.find(v => v.id === stat.variantId);
-    const variantName = variant?.name || stat.variantKey;
-    const sessions = Number(stat.totalSessions || 0);
-    const convRate = Number(stat.conversionRate || 0).toFixed(2);
-    const emoji = getVariantEmoji(stat.variantKey as string);
-    
-    report += `${emoji} <b>${variantName}</b>\n`;
-    report += `   Sessions: ${sessions} | Konverze: ${convRate}%\n`;
-  }
-
-  // Find winner
+  // A/B test results
   if (stats.length > 0) {
+    report += `<b>🧪 Jak si vedou moje verze:</b>\n`;
+    for (const stat of stats) {
+      const variant = variants.find(v => v.id === stat.variantId);
+      const variantName = variant?.name || stat.variantKey;
+      const sessions = Number(stat.totalSessions || 0);
+      const convRate = Number(stat.conversionRate || 0).toFixed(2);
+      const emoji = getVariantEmoji(stat.variantKey as string);
+      
+      report += `${emoji} ${variantName}: ${sessions} sessions, ${convRate}% konverze\n`;
+    }
+
+    // Find winner
     const winner = stats.reduce((best, current) => {
       const bestRate = Number(best.conversionRate || 0);
       const currentRate = Number(current.conversionRate || 0);
@@ -158,11 +199,11 @@ export async function generateDailyReport(): Promise<string> {
     
     if (Number(winner.conversionRate || 0) > 0) {
       const winnerVariant = variants.find(v => v.id === winner.variantId);
-      report += `\n🏆 <b>Nejlepší varianta:</b> ${winnerVariant?.name || winner.variantKey}`;
+      report += `\n🏆 Nejlepší včera: <b>${winnerVariant?.name || winner.variantKey}</b>`;
     }
   }
 
-  report += `\n\n💜 Amulets.cz`;
+  report += `\n\n${getRandomClosing()}`;
 
   return report;
 }
@@ -197,6 +238,29 @@ export async function sendDailyReport(): Promise<boolean> {
  * Send test message to verify Telegram configuration
  */
 export async function sendTestMessage(): Promise<boolean> {
-  const testMessage = `🔔 <b>Test zprávy z Amulets.cz</b>\n\nTelegram integrace funguje správně! 🎉\n\n💜 Natálie`;
+  const testMessage = `Ahoj, šéfe! 👋\n\nJsem Natálie, tvoje osobní asistentka pro Amulets.cz.\n\nVšechno funguje správně! ✅\n\nKdyby cokoliv potřeboval, jsem tu pro tebe. 💜\n\nTvoje Natálie`;
   return await sendTelegramMessage(testMessage, 'HTML');
+}
+
+/**
+ * Send custom message from Natálie
+ */
+export async function sendCustomMessage(message: string): Promise<boolean> {
+  return await sendTelegramMessage(message, 'HTML');
+}
+
+/**
+ * Send alert message (for important notifications)
+ */
+export async function sendAlert(title: string, message: string): Promise<boolean> {
+  const alertMessage = `🚨 <b>${title}</b>\n\nŠéfe, něco důležitého!\n\n${message}\n\n💜 Natálie`;
+  return await sendTelegramMessage(alertMessage, 'HTML');
+}
+
+/**
+ * Send success notification
+ */
+export async function sendSuccess(title: string, message: string): Promise<boolean> {
+  const successMessage = `✅ <b>${title}</b>\n\n${message}\n\n💜 Natálie`;
+  return await sendTelegramMessage(successMessage, 'HTML');
 }

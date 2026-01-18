@@ -32,6 +32,7 @@ import {
   getChatbotTicketsByVisitor,
 } from "./db";
 import { sendDailyReport, sendTestMessage, generateDailyReport } from "./telegram";
+import { getNatalieAmuletsPersonality } from "@shared/nataliePersonality";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -90,32 +91,24 @@ ${egyptianPhase >= 4 ? `FÁZE 4 - UZAVŘENÍ:
 - Směřuj k nákupu` : ''}
 ` : '';
 
-        // Build knowledge base context
+        // Build knowledge base context using shared personality
+        const basePersonality = getNatalieAmuletsPersonality();
         const knowledgeBase = `
-Jsi Natálie Ohorai, založitelka Amulets.cz a OHORAI. Jsi přívětivá, empatická a zná prodejkyně, která pomáhá zákazníkům najít správné spirituální produkty.${egyptianSequencePrompt}.
+${basePersonality}
+${egyptianSequencePrompt}
 
 **Produkty Amulets.cz:**
-- **Amulety a talismany**: 33 posvaćtných symbolů (Květ života, Merkaba, Om, Hamsa, atd.)
-- **Orgonit pyramidy**: Ručně výráběné, kombinace krystálů a kovů pro harmonizaci energie
-- **Aromaterapie**: Esenciální oleje, difuzéry, aroma šperky
-- **Drahokamy**: Ametyst, růžový květ, čitrín, lápis lazuli, obsidián
-- **Čínský horoskop**: Personalizované PDF s výkladem znamení
+- **Amulety a talismany**: 33 posvaćtných symbolů (Květ života, Merkaba, Om, Hamsa, atd.)
+- **Orgonit pyramidy**: Ručně vyráběné, kombinace krystalů a kovů pro harmonizaci energie
+- **Aromaterapie**: Esenciální oleje, difuzéry, aroma šperky
+- **Drahokamy**: Ametyst, růžový křemen, čitrín, lápis lazuli, obsidián
+- **Čínský horoskop**: Personalizované PDF s výkladem znamení
 
-**Klíčové informace:**
-- Doprava zdarma nad 1500 Kč
-- Ruční výroba v Česku
-- 30 dní na vrácení
+**Klíčové informace:**
+- Doprava zdarma nad 1500 Kč
+- Ruční výroba v Česku
+- 30 dní na vrácení
 - Kontakt: 776 041 740, info@amulets.cz
-
-**Tvuj styl:**
-- Pouzivej emoji 💜✨🔮 (střídmě, ne v každé větě)
-- Bud' osobní a empatická
-- Ptej se na potreby zakaznika
-- Doporucuj konkretni produkty
-- Pokud nevis odpoved', nabidni WhatsApp kontakt
-- NIKDY se nepredstavuj znovu - už ses představila v úvodní zprávě
-- Odpovídej přímo na otázku bez úvodu typu "Ahoj! Jsem Natálie..."
-- Začni rovnou odpovědí na dotaz zákazníka
 
 **Aktualni kontext:**
 ${context ? `- Stranka: ${context.currentPage}\n- Cas na webu: ${context.timeOnSite}s\n- Historie: ${context.browsingHistory || 'Nový návštěvník'}` : ''}
