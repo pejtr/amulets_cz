@@ -345,19 +345,20 @@ export default function AIChatAssistant() {
 
             {/* Suggested Questions - Categories or Questions */}
             {messages.length === 1 && (
-              <div className="border-t bg-white overflow-y-auto p-4 max-h-48">
+              <div className="border-t bg-white overflow-y-auto p-3 max-h-48">
                 {!selectedCategory ? (
                   <>
-                    <p className="text-xs font-semibold text-gray-600 mb-3 uppercase">Vyberte téma:</p>
-                    <div className="grid grid-cols-2 gap-2">
+                    <p className="text-xs font-semibold text-gray-600 mb-2 uppercase">Vyberte téma:</p>
+                    <div className="grid grid-cols-5 gap-1">
                       {SUGGESTED_CATEGORIES.map((cat) => (
                         <button
                           key={cat.id}
                           onClick={() => setSelectedCategory(cat.id)}
-                          className="p-3 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-purple-200 transition-all text-center"
+                          className="p-2 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-purple-200 transition-all text-center flex flex-col items-center justify-center"
+                          title={cat.category}
                         >
-                          <div className="text-2xl mb-1">{cat.icon}</div>
-                          <p className="text-xs font-medium text-gray-700">{cat.category}</p>
+                          <div className="text-lg mb-0.5">{cat.icon}</div>
+                          <p className="text-xs font-medium text-gray-700 line-clamp-2">{cat.category}</p>
                         </button>
                       ))}
                     </div>
@@ -366,14 +367,14 @@ export default function AIChatAssistant() {
                   <>
                     <button
                       onClick={() => setSelectedCategory(null)}
-                      className="text-xs text-purple-600 hover:text-purple-700 mb-3 flex items-center gap-1"
+                      className="text-xs text-purple-600 hover:text-purple-700 mb-2 flex items-center gap-1"
                     >
-                      ← Zpět na témata
+                      ← Zpět
                     </button>
-                    <p className="text-xs font-semibold text-gray-600 mb-3 uppercase">
+                    <p className="text-xs font-semibold text-gray-600 mb-2 uppercase">
                       {SUGGESTED_CATEGORIES.find((c) => c.id === selectedCategory)?.category}
                     </p>
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                       {SUGGESTED_CATEGORIES.find((c) => c.id === selectedCategory)?.questions.map(
                         (question, qIdx) => (
                           <button
@@ -404,7 +405,7 @@ export default function AIChatAssistant() {
                                 });
                               }, 100);
                             }}
-                            className="w-full text-left text-xs p-2 rounded bg-gray-100 hover:bg-purple-100 text-gray-700 hover:text-purple-700 transition-colors"
+                            className="w-full text-left text-xs p-1.5 rounded bg-gray-100 hover:bg-purple-100 text-gray-700 hover:text-purple-700 transition-colors line-clamp-2"
                           >
                             {question}
                           </button>

@@ -1020,3 +1020,8 @@
 - [x] Vytvořit admin panel (/admin/campaigns) pro testování emailů
 - [x] Vytvořit Brevo automation workflows dokumentaci
 - [ ] Uložit checkpoint
+
+## Optimalizace chatbotu - velikost tlačíteč (Jan 18, 2026)
+- [x] Zmenšit tlačítša s otázkami aby byla vidět všechny 5 kategorii
+- [x] Přesunout tlačítša hned pod text otázky v chat bubline
+- [x] Testovat na mobilu a desktopu
