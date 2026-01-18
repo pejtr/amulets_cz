@@ -246,25 +246,33 @@ ${email ? `- Email: ${email}` : ''}
       return getAmenCatalogStats();
     }),
     
-    // Legacy endpoint - fallback na statický katalog
-    getAmenPendants: publicProcedure.query(async (): Promise<IrisimoProduct[]> => {
-      // Používáme statický katalog místo XML feedu
-      const amenProducts = getAmenProducts();
-      
-      // Konvertovat na IrisimoProduct formát pro zpětnou kompatibilitu
-      return amenProducts.map(p => ({
-        id: p.id,
-        name: p.name,
-        description: p.description,
-        url: p.url,
-        imageUrl: p.imageUrl,
-        price: p.price.toString(),
-        priceVat: p.price.toString(),
-        manufacturer: 'AMEN',
-        category: p.category,
-        availability: p.availability === 'skladem' ? 'Skladem' : 'Na objednávku',
-      }));
-    }),
+    // Get AMEN products with filters
+    getAmenPendants: publicProcedure
+      .input(z.object({
+        category: z.enum(['nahrdelnik', 'naramek', 'prsten', 'nausnice', 'privesek']).optional(),
+        collection: z.string().optional(),
+        featuredOnly: z.boolean().optional(),
+        limit: z.number().optional(),
+      }).optional())
+      .query(async ({ input }): Promise<AmenProduct[]> => {
+        let products = getAmenProducts();
+        
+        // Apply filters
+        if (input?.category) {
+          products = products.filter(p => p.category === input.category);
+        }
+        if (input?.collection) {
+          products = products.filter(p => p.collection.toLowerCase() === input.collection!.toLowerCase());
+        }
+        if (input?.featuredOnly) {
+          products = products.filter(p => p.featured);
+        }
+        if (input?.limit) {
+          products = products.slice(0, input.limit);
+        }
+        
+        return products;
+      }),
   }),
 
   // Email marketing

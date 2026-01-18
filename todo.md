@@ -1269,3 +1269,32 @@
 - [x] Uložit všechny affiliate kampaně do databáze (30+ kampaní)
 - [x] Implementovat jemná doporučení do chatbota (související produkty)
 - [ ] Otestovat všechny affiliate odkazy
+
+## Rozšíření AMEN katalogu (Jan 18, 2026)
+- [x] Projít kompletní nabídku AMEN na Irisimo
+- [x] Srovnat aktuální odkazy s reálnými produkty
+- [x] Přidat další zajímavé AMEN produkty do katalogu (30+ produktů)
+- [ ] Otestovat všechny odkazy
+
+## Dynamické rotující bannery AMEN (Jan 18, 2026)
+- [ ] Vytvořit komponentu rotujícího banneru
+- [ ] Implementovat automatickou rotaci produktů
+- [ ] Přidat bannery na Home page
+- [ ] Přidat bannery na produktové stránky
+- [ ] Tracking kliků na bannery
+
+## Rozšíření AMEN katalogu o rozmanité designy (Jan 18, 2026)
+- [x] Přidat náušnice AMEN (různé kolekce)
+- [x] Přidat prsteny AMEN (různé kolekce)
+- [x] Přidat náramky z kolekce Rosary
+- [x] Přidat náramky z kolekce Love
+- [x] Přidat náramky z kolekce Tennis
+- [x] Přidat náramky z kolekce Vita Christi et Mariae
+- [x] Přidat další zajímavé kolekce
+- [x] Rozdělit produkty do samostatných sekcí podle kategorie na landing page
+- [x] Vytvořit sekci "Náušnice AMEN"
+- [x] Vytvořit sekci "Prsteny AMEN"
+- [x] Vytvořit sekci "Náramky Rosary"
+- [x] Vytvořit sekci "Náramky Love"
+- [x] Vytvořit sekci "Náramky Tennis"
+- [x] Implementovat rotující banner pro každou sekci

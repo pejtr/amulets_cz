@@ -32,7 +32,7 @@ export default function AmenPendantsSection() {
             Affiliate Partner
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Přívěšky AMEN
+            Italské šperky AMEN
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Objevte kolekci elegantních přívěšků AMEN - italský design spojený s duchovní symbolikou.
@@ -72,7 +72,7 @@ export default function AmenPendantsSection() {
                   {/* Price */}
                   <div className="flex items-baseline gap-2">
                     <span className="text-2xl font-bold text-primary">
-                      {pendant.priceVat} Kč
+                      {pendant.price.toLocaleString('cs-CZ')} Kč
                     </span>
                   </div>
 
