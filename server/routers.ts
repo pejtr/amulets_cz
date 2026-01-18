@@ -32,7 +32,17 @@ import {
   getChatbotTicketsByVisitor,
 } from "./db";
 import { sendDailyReport, sendTestMessage, generateDailyReport } from "./telegram";
-import { getNatalieAmuletsPersonality } from "@shared/nataliePersonality";
+import { 
+  getNatalieAmuletsPersonality,
+  getNatalieBasePersonality,
+  getNatalieOhoraiPersonality,
+  getNatalieTelegramPersonality,
+  NATALIE_IDENTITY,
+  NATALIE_TRAITS,
+  NATALIE_ROMANTIC_RESPONSES,
+  NATALIE_GREETINGS,
+  NATALIE_CLOSINGS,
+} from "@shared/nataliePersonality";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -615,6 +625,152 @@ ${email ? `- Email: ${email}` : ''}
           configured: hasToken && hasChatId,
           hasToken,
           hasChatId,
+        };
+      }),
+  }),
+
+  // =============================================================================
+  // SDÍLENÝ MOZEK NATÁLIE - API pro propojené nádoby
+  // =============================================================================
+  shared: router({
+    // Získat osobnost Natálie pro danou platformu
+    getPersonality: publicProcedure
+      .input(z.object({
+        platform: z.enum(['amulets', 'ohorai', 'telegram']),
+        apiKey: z.string().optional(),
+      }))
+      .query(async ({ input }) => {
+        // Ověření API klíče pro externí platformy
+        const sharedApiKey = process.env.SHARED_BRAIN_API_KEY;
+        if (input.platform !== 'amulets' && sharedApiKey && input.apiKey !== sharedApiKey) {
+          throw new TRPCError({ code: 'UNAUTHORIZED', message: 'Invalid API key' });
+        }
+
+        // Základní osobnost společná pro všechny
+        const basePersonality = getNatalieBasePersonality();
+        
+        // Kontextový prompt podle platformy
+        let contextPrompt = '';
+        switch (input.platform) {
+          case 'amulets':
+            contextPrompt = getNatalieAmuletsPersonality();
+            break;
+          case 'ohorai':
+            contextPrompt = getNatalieOhoraiPersonality();
+            break;
+          case 'telegram':
+            contextPrompt = getNatalieTelegramPersonality();
+            break;
+        }
+
+        return {
+          platform: input.platform,
+          basePersonality,
+          contextPrompt,
+          identity: NATALIE_IDENTITY,
+          traits: NATALIE_TRAITS,
+          romanticResponses: NATALIE_ROMANTIC_RESPONSES,
+          greetings: NATALIE_GREETINGS,
+          closings: NATALIE_CLOSINGS,
+          version: '1.0.0',
+          lastUpdated: new Date().toISOString(),
+        };
+      }),
+
+    // Přijmout statistiky z OHORAI pro agregaci
+    syncStats: publicProcedure
+      .input(z.object({
+        platform: z.enum(['ohorai']),
+        apiKey: z.string(),
+        date: z.string(),
+        stats: z.object({
+          totalConversations: z.number(),
+          totalMessages: z.number(),
+          uniqueVisitors: z.number(),
+          streamSelections: z.object({
+            hmotne: z.number().optional(),
+            etericke: z.number().optional(),
+            uzitecne: z.number().optional(),
+          }).optional(),
+          popularTopics: z.array(z.string()).optional(),
+          leadsCollected: z.number().optional(),
+        }),
+      }))
+      .mutation(async ({ input }) => {
+        // Ověření API klíče
+        const sharedApiKey = process.env.SHARED_BRAIN_API_KEY;
+        if (sharedApiKey && input.apiKey !== sharedApiKey) {
+          throw new TRPCError({ code: 'UNAUTHORIZED', message: 'Invalid API key' });
+        }
+
+        // TODO: Uložit do databáze pro agregaci
+        console.log(`[SharedBrain] Received stats from ${input.platform} for ${input.date}:`, input.stats);
+        
+        return { 
+          success: true, 
+          message: `Stats from ${input.platform} received for ${input.date}` 
+        };
+      }),
+
+    // Získat agregovaný denní report pro Telegram
+    getDailyReport: publicProcedure
+      .input(z.object({
+        apiKey: z.string().optional(),
+        date: z.string().optional(), // YYYY-MM-DD, default dnešek
+      }))
+      .query(async ({ input }) => {
+        // Ověření API klíče
+        const sharedApiKey = process.env.SHARED_BRAIN_API_KEY;
+        if (sharedApiKey && input.apiKey !== sharedApiKey) {
+          throw new TRPCError({ code: 'UNAUTHORIZED', message: 'Invalid API key' });
+        }
+
+        const targetDate = input.date || new Date().toISOString().split('T')[0];
+        
+        // Získat statistiky z Amulets.cz - použijeme variantId 1 jako default
+        // V budoucnu můžeme agregovat přes všechny varianty
+        const amuletsStatsArray = await getChatbotDailyStats(1, 1); // variantId 1, poslední 1 den
+        const amuletsStats = {
+          totalSessions: amuletsStatsArray.reduce((sum, s) => sum + s.totalSessions, 0),
+          totalMessages: amuletsStatsArray.reduce((sum, s) => sum + s.totalMessages, 0),
+          totalConversions: amuletsStatsArray.reduce((sum, s) => sum + s.totalConversions, 0),
+        };
+        
+        // TODO: Získat statistiky z OHORAI z databáze
+        const ohoraiStats = {
+          totalSessions: 0,
+          totalMessages: 0,
+          totalConversions: 0,
+        };
+
+        // Agregovat
+        const combined = {
+          totalSessions: amuletsStats.totalSessions + ohoraiStats.totalSessions,
+          totalMessages: amuletsStats.totalMessages + ohoraiStats.totalMessages,
+          totalConversions: amuletsStats.totalConversions + ohoraiStats.totalConversions,
+        };
+
+        return {
+          date: targetDate,
+          amulets: amuletsStats,
+          ohorai: ohoraiStats,
+          combined,
+          highlights: [
+            `Celkem ${combined.totalSessions} konverzací`,
+            `${combined.totalMessages} zpráv`,
+            `${combined.totalConversions} konverzí`,
+          ],
+        };
+      }),
+
+    // Health check pro propojené nádoby
+    healthCheck: publicProcedure
+      .query(async () => {
+        return {
+          status: 'ok',
+          platform: 'amulets',
+          timestamp: new Date().toISOString(),
+          version: '1.0.0',
         };
       }),
   }),

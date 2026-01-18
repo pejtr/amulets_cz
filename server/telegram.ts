@@ -556,3 +556,114 @@ export async function getTelegramWebhookInfo(): Promise<any> {
     return null;
   }
 }
+
+// ============================================
+// PROPOJENÉ NÁDOBY - AGREGOVANÉ REPORTY
+// ============================================
+
+/**
+ * Generate combined daily report from both Amulets.cz and OHORAI
+ * Toto je centrální report pro "propojené nádoby"
+ */
+export async function generateCombinedDailyReport(): Promise<string> {
+  const now = new Date();
+  const yesterday = new Date(now);
+  yesterday.setDate(yesterday.getDate() - 1);
+  yesterday.setHours(0, 0, 0, 0);
+  
+  const today = new Date(now);
+  today.setHours(0, 0, 0, 0);
+
+  // Get Amulets.cz stats
+  const amuletsStats = await getChatbotComparisonStats(yesterday, today);
+  const amuletsConversions = await getChatbotConversionStats(yesterday, today);
+  
+  // Calculate Amulets totals
+  const amuletsTotalSessions = amuletsStats.reduce((sum, s) => sum + Number(s.totalSessions || 0), 0);
+  const amuletsTotalMessages = amuletsStats.reduce((sum, s) => sum + Number(s.totalMessages || 0), 0);
+  const amuletsTotalConversions = amuletsStats.reduce((sum, s) => sum + Number(s.totalConversions || 0), 0);
+  const amuletsConversionRate = amuletsTotalSessions > 0 
+    ? (amuletsTotalConversions / amuletsTotalSessions) * 100
+    : 0;
+
+  // TODO: Fetch OHORAI stats from shared API or database
+  // For now, placeholder - will be populated when OHORAI syncs
+  const ohoraiTotalSessions = 0;
+  const ohoraiTotalMessages = 0;
+  const ohoraiTotalConversions = 0;
+  const ohoraiConversionRate = 0;
+
+  // Combined totals
+  const combinedSessions = amuletsTotalSessions + ohoraiTotalSessions;
+  const combinedMessages = amuletsTotalMessages + ohoraiTotalMessages;
+  const combinedConversions = amuletsTotalConversions + ohoraiTotalConversions;
+  const combinedConversionRate = combinedSessions > 0
+    ? (combinedConversions / combinedSessions) * 100
+    : 0;
+
+  // Format date
+  const dateStr = yesterday.toLocaleDateString('cs-CZ', { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+
+  // Build combined report
+  let report = `${getRandomGreeting()}\n\n`;
+  report += `📊 <b>DENNÍ REPORT - PROPOJENÉ NÁDOBY</b>\n`;
+  report += `📅 ${dateStr}\n\n`;
+
+  // Amulets.cz section
+  report += `💜 <b>AMULETS.CZ</b>\n`;
+  report += `├─ Konverzací: <b>${amuletsTotalSessions}</b>\n`;
+  report += `├─ Zpráv: <b>${amuletsTotalMessages}</b>\n`;
+  report += `├─ Konverzí: <b>${amuletsTotalConversions}</b>\n`;
+  report += `└─ Konverzní poměr: <b>${amuletsConversionRate.toFixed(2)}%</b>\n\n`;
+
+  // OHORAI section
+  report += `💎 <b>OHORAI MARKETPLACE</b>\n`;
+  if (ohoraiTotalSessions > 0) {
+    report += `├─ Konverzací: <b>${ohoraiTotalSessions}</b>\n`;
+    report += `├─ Zpráv: <b>${ohoraiTotalMessages}</b>\n`;
+    report += `├─ Konverzí: <b>${ohoraiTotalConversions}</b>\n`;
+    report += `└─ Konverzní poměr: <b>${ohoraiConversionRate.toFixed(2)}%</b>\n\n`;
+  } else {
+    report += `└─ <i>Čekám na synchronizaci dat...</i>\n\n`;
+  }
+
+  // Combined totals
+  report += `🔮 <b>CELKEM (OBĚ PLATFORMY)</b>\n`;
+  report += `├─ Konverzací: <b>${combinedSessions}</b>\n`;
+  report += `├─ Zpráv: <b>${combinedMessages}</b>\n`;
+  report += `├─ Konverzí: <b>${combinedConversions}</b>\n`;
+  report += `└─ Konverzní poměr: <b>${combinedConversionRate.toFixed(2)}%</b>\n\n`;
+
+  // Performance comment
+  if (combinedSessions === 0) {
+    report += `📭 Včera bylo ticho na obou platformách.\n\n`;
+  } else if (combinedConversionRate >= 10) {
+    report += `🔥 Skvělý den! Obě platformy fungují výborně!\n\n`;
+  } else if (combinedConversionRate >= 5) {
+    report += `👍 Solidní výsledky na obou platformách.\n\n`;
+  } else {
+    report += `📈 Prostor pro zlepšení, ale jdeme dál!\n\n`;
+  }
+
+  report += `${getRandomClosing()}`;
+
+  return report;
+}
+
+/**
+ * Send combined daily report to Telegram
+ */
+export async function sendCombinedDailyReport(): Promise<boolean> {
+  try {
+    const report = await generateCombinedDailyReport();
+    return await sendTelegramMessage(report, 'HTML');
+  } catch (error) {
+    console.error('[Telegram] Error generating combined daily report:', error);
+    return false;
+  }
+}

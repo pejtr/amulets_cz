@@ -1215,3 +1215,18 @@
 - [ ] Produktová stránka kurzů na e-shopu
 - [x] Aktualizace chatbota - třetí proud "užitečné" zahrnuje kurzy
 - [x] Tracking volby proudu v analytice
+
+## Sdílený mozek Natálie - Propojené nádoby (Jan 18, 2026)
+- [ ] Návrh architektury sdíleného mozku pro 3 platformy
+- [ ] API endpointy pro sdílení osobnosti
+- [ ] Synchronizační mechanismus pro denní data
+- [ ] Agregované reporty do Telegramu z obou webů
+- [ ] Dokumentace pro implementaci do OHORAI
+
+## Oprava AMEN XML feedu (Jan 18, 2026)
+- [ ] Diagnostikovat proč nefunguje Irisimo feed
+- [ ] Opravit načítání produktů AMEN
+- [ ] Otestovat zobrazení na webu
+
+## SEO optimalizace H1 (Jan 18, 2026)
+- [x] Změnit H1 z "Otevřete své srdce zázrakům" na SEO optimalizovaný text s klíčovými slovy

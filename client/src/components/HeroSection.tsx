@@ -164,13 +164,13 @@ export default function HeroSection() {
                         textShadow: '2px 2px 4px rgba(255, 255, 255, 1), -2px -2px 4px rgba(255, 255, 255, 1), 0 0 15px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.8)'
                       }}
                     >
-                      Otevřete své srdce<br />zázrakům
+                      Posvátné symboly<br />a amulety
                     </h1>
                     <p className="text-sm md:text-lg lg:text-xl text-[#2C3E50] font-semibold animate-fade-in-up animation-delay-200"
                        style={{
                          textShadow: '1px 1px 3px rgba(255, 255, 255, 1), -1px -1px 3px rgba(255, 255, 255, 1), 0 0 10px rgba(255, 255, 255, 0.9)'
                        }}>
-                      ...začněte s tím právě teď
+                      Objevte sílu drahých kamenů a talismanů
                     </p>
                   </div>
                 </div>
