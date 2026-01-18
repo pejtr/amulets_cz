@@ -41,8 +41,8 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="https://rostecky.cz/natalie-ohorai-amulets-t45227" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                  O nás
+                <a href="/o-nas" className="hover:text-primary transition-colors">
+                  O Natálii
                 </a>
               </li>
               <li>

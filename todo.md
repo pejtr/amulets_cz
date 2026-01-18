@@ -975,4 +975,24 @@
 - [x] Odstranit stránku AboutNatalie
 - [x] Změnit "O nás" na přímý odkaz na rostecky.cz video
 - [x] Aktualizovat Header a Footer
+- [x] Uložit checkpoint
+
+## Úprava stránky O Natálii - thumbnail videa (Jan 17, 2026)
+- [x] Vrátit stránku AboutNatalie
+- [x] Přidat thumbnail videa do hero sekce
+- [x] Přidat proklik na rostecky.cz video
+- [x] Vrátit odkaz "O nás" v Header
+- [x] Uložit checkpoint
+
+## Přednastavené otázky v chatbotu (Jan 17, 2026)
+- [x] Přidat přednastavené otázky podle témat (Amulets, Kameny, Spiritualita, Produkty, Horoskop)
+- [x] Implementovat UI s tematickými okruhy
+- [x] Přidat proklik na otázky v chatbotu
+
+## SEO Optimalizace - Amulets jako hlavní klíčové slovo (Jan 17, 2026)
+- [x] Optimalizovat AboutNatalie - přidat "amulets" do title a description
+- [x] Optimalizovat Home stránku - přidat "amulets" do SEO
+- [ ] Aktualizovat ostatní stránky
 - [ ] Uložit checkpoint
+
+## Úprava navigace - video rozhovor z rostecky.cz (Jan 17, 2026)

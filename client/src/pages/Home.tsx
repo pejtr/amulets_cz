@@ -20,11 +20,11 @@ import { faqData } from "@/data/faqData";
 
 export default function Home() {
   useEffect(() => {
-    document.title = "Amulets.cz - Posvátné symboly a amulety";
+    document.title = "Amulets - Posvátné symboly a amulety | Amulets.cz";
     
     setOpenGraphTags({
-      title: "Amulets.cz - Posvátné symboly a amulety",
-      description: "Objevte význam posvátných symbolů, drahých kamenů a amuletů. Průvodce ezoterickými symboly a jejich léčivou silou.",
+      title: "Amulets - Posvátné symboly a amulety | Amulets.cz",
+      description: "Amulets.cz - Objevte výnam posvátných symbolů, druhých kamenů a amule tů. Průvodce ezoterickými symboly a jejich léčivou silou.",
       url: "https://amulets.cz/",
       type: "website",
       image: "https://amulets.cz/og-image.jpg",

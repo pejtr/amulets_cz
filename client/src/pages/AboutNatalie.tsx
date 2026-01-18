@@ -5,11 +5,11 @@ import { setOpenGraphTags } from "@/lib/seo";
 
 export default function AboutNatalie() {
   useEffect(() => {
-    document.title = "O Natálii | Amulets.cz";
+    document.title = "O Nátálii - Zakladatelka Amulets.cz | Amulets";
     
     setOpenGraphTags({
-      title: "O Natálii Ohorai - Zakladatelka Amulets.cz",
-      description: "Poznejte příběh Natálie Ohorai, zakladatelky Amulets.cz a OHORAI. Rozhovor o spiritualitě, ručně vyráběných špercích a cestě k harmonii.",
+      title: "O Nátálii - Zakladatelka Amulets | Amulets.cz",
+      description: "Poznejte Nátálii Ohorai, zakladatelku Amulets.cz. Rozhovor o spiritualitě, amuľtech, ručně vyráběných špercích a cestě k harmonïi. Amulets - posvaté symboly.",
       url: "https://amulets.cz/o-nas",
       type: "website",
     });
@@ -25,10 +25,10 @@ export default function AboutNatalie() {
           <div className="container">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                O Natálii Ohorai
+                O Nátálii - Zakladatelka Amulets
               </h1>
               <p className="text-lg text-muted-foreground">
-                Zakladatelka Amulets.cz a OHORAI, tvůrkyně ručně vyráběných spirituálních šperků
+                Tvůrkyně Amulets.cz - ručně vyráběné amulets, posvátné symboly a spirituální šperky
               </p>
             </div>
           </div>
@@ -50,7 +50,7 @@ export default function AboutNatalie() {
                 </div>
                 <div className="p-6">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
-                    Rozhovor pro Rostečky.cz
+                    Rozhovor o Amulets - Rozhovor pro Rostečky.cz
                   </h2>
                   <p className="text-muted-foreground">
                     Poslechněte si rozhovor s Natálií o její cestě k tvorbě spirituálních šperků, 

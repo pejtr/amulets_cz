@@ -19,7 +19,7 @@ const navItems = [
   { label: "🐎 Čínský horoskop 2026", hasDropdown: false, url: "/cinsky-horoskop", isInternal: true },
   { label: "Orgonitové pyramidy", hasDropdown: false, url: "https://www.ohorai.cz/autorske-tvorba/" },
   { label: "Aromaterapie", hasDropdown: true, url: "https://www.ohorai.cz/esence/" },
-  { label: "O nás", hasDropdown: false, url: "https://rostecky.cz/natalie-ohorai-amulets-t45227" },
+  { label: "O nás", hasDropdown: false, url: "/o-nas", isInternal: true },
   { label: "Magazín", hasDropdown: false, url: "/magazin", isInternal: true },
   { label: "Kontakt", hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },
 ];

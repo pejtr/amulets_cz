@@ -19,6 +19,7 @@ import Prediction2026 from "./pages/Prediction2026";
 import CookieConsent from "./components/CookieConsent";
 import BackToTop from "./components/BackToTop";
 import AIChatAssistant from "./components/AIChatAssistant";
+import AboutNatalie from "./pages/AboutNatalie";
 
 
 function Router() {
@@ -41,6 +42,7 @@ function Router() {
       <Route path="/kviz/vysledek/:symbol" component={QuizResult} />
       <Route path="/cinsky-horoskop" component={ChineseZodiac} />
       <Route path="/predpoved-2026/:slug" component={Prediction2026} />
+      <Route path="/o-nas" component={AboutNatalie} />
       {/* Redirects for old/removed pages */}
       <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>
       <Route path={"/404"} component={NotFound} />

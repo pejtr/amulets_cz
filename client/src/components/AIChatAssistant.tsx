@@ -1,4 +1,47 @@
 import { useState, useRef, useEffect } from "react";
+
+const SUGGESTED_QUESTIONS = [
+  {
+    category: "Amulets & Symboly",
+    questions: [
+      "Jaký amulet je vhodný pro ochranu?",
+      "Co znamená Květina života?",
+      "Jak vybrat správný symbol?",
+    ],
+  },
+  {
+    category: "Drahé kameny",
+    questions: [
+      "Jaké jsou léčivé účinky ametysty?",
+      "Který kámen pomáhá na stres?",
+      "Jak se péčuje o drahé kameny?",
+    ],
+  },
+  {
+    category: "Spiritualita",
+    questions: [
+      "Jak začít s meditací?",
+      "Co je to chakra?",
+      "Jak se zvýšit spirituální vědomí?",
+    ],
+  },
+  {
+    category: "Produkty",
+    questions: [
+      "Jaké máte šperky?",
+      "Co jsou orgonitové pyramidy?",
+      "Jak se používá aromaterapie?",
+    ],
+  },
+  {
+    category: "Čínský horoskop",
+    questions: [
+      "Jaké je moje zvířátko v čínském horoskopu?",
+      "Jaká je má předpověď na rok 2026?",
+      "Jak se počítá čínský horoskop?",
+    ],
+  },
+];
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -288,6 +331,53 @@ export default function AIChatAssistant() {
 
             <div ref={messagesEndRef} />
           </div>
+
+          {/* Suggested Questions */}
+          {messages.length === 1 && (
+            <div className="p-4 border-t bg-white">
+              <p className="text-xs font-semibold text-gray-600 mb-3 uppercase">Doporučené otázky:</p>
+              <div className="space-y-2">
+                {SUGGESTED_QUESTIONS.map((group, idx) => (
+                  <div key={idx}>
+                    <p className="text-xs text-gray-500 font-medium mb-1">{group.category}</p>
+                    <div className="space-y-1">
+                      {group.questions.map((question, qIdx) => (
+                        <button
+                          key={qIdx}
+                          onClick={() => {
+                            setInput(question);
+                            setTimeout(() => {
+                              const userMessage: Message = {
+                                role: "user",
+                                content: question,
+                                timestamp: new Date(),
+                              };
+                              setMessages((prev) => [...prev, userMessage]);
+                              const browsingContextText = getBrowsingContext();
+                              const browsingContext = {
+                                currentPage: window.location.pathname,
+                                referrer: document.referrer,
+                                timeOnSite: Math.floor((Date.now() - performance.timing.navigationStart) / 1000),
+                                browsingHistory: browsingContextText,
+                              };
+                              chatMutation.mutate({
+                                message: question,
+                                context: browsingContext,
+                                email: email || undefined,
+                              });
+                            }, 100);
+                          }}
+                          className="w-full text-left text-xs p-2 rounded bg-gray-100 hover:bg-purple-100 text-gray-700 hover:text-purple-700 transition-colors"
+                        >
+                          {question}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Input */}
           <div className="p-4 border-t bg-white rounded-b-lg">
