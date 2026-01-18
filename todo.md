@@ -1234,3 +1234,7 @@
 ## Telegram /report příkaz (Jan 18, 2026)
 - [x] Přidat příkaz /report pro agregovaný denní report z obou webů
 - [x] Nastavit hodinovou synchronizaci statistik mezi weby (místo půlnoční)
+
+## Telegram rozšíření (Jan 18, 2026)
+- [x] Přidat /stats příkaz pro detailní statistiky jednotlivé platformy
+- [x] Nastavit automatický denní report v 8:00 ráno

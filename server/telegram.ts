@@ -361,6 +361,29 @@ export async function processIncomingMessage(update: TelegramUpdate): Promise<bo
   // Check for special commands
   const lowerMessage = userMessage.toLowerCase();
   
+  // Příkaz /stats - detailní statistiky pro konkrétní platformu
+  if (lowerMessage === '/stats' || lowerMessage.startsWith('/stats ')) {
+    const parts = userMessage.split(' ');
+    const platform = parts[1]?.toLowerCase() || 'amulets';
+    
+    let statsReport = '';
+    if (platform === 'ohorai') {
+      statsReport = await generatePlatformStats('ohorai');
+    } else {
+      statsReport = await generatePlatformStats('amulets');
+    }
+    
+    await sendTelegramMessageToChat(chatId.toString(), statsReport, 'HTML');
+    
+    history.push({
+      role: 'assistant',
+      content: `[Odeslány detailní statistiky pro ${platform}]`,
+      timestamp: Date.now(),
+    });
+    conversationHistory.set(userId, history);
+    return true;
+  }
+  
   // Příkaz /report - agregovaný report z obou webů (propojené nádoby)
   if (lowerMessage === '/report' || lowerMessage.startsWith('/report ')) {
     // Send combined daily report from both platforms
@@ -683,3 +706,121 @@ export async function sendCombinedDailyReport(): Promise<boolean> {
     return false;
   }
 }
+
+/**
+ * Generate detailed platform-specific stats
+ * Použití: /stats amulets nebo /stats ohorai
+ */
+export async function generatePlatformStats(platform: 'amulets' | 'ohorai'): Promise<string> {
+  const now = new Date();
+  const yesterday = new Date(now);
+  yesterday.setDate(yesterday.getDate() - 1);
+  yesterday.setHours(0, 0, 0, 0);
+  
+  const today = new Date(now);
+  today.setHours(0, 0, 0, 0);
+
+  // Format date
+  const dateStr = yesterday.toLocaleDateString('cs-CZ', { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+
+  let report = `${getRandomGreeting()}\n\n`;
+  
+  if (platform === 'amulets') {
+    // Get Amulets.cz detailed stats
+    const stats = await getChatbotComparisonStats(yesterday, today);
+    const conversionStats = await getChatbotConversionStats(yesterday, today);
+    const variants = await getAllChatbotVariants();
+
+    const totalSessions = stats.reduce((sum, s) => sum + Number(s.totalSessions || 0), 0);
+    const totalMessages = stats.reduce((sum, s) => sum + Number(s.totalMessages || 0), 0);
+    const totalConversions = stats.reduce((sum, s) => sum + Number(s.totalConversions || 0), 0);
+    const conversionRate = totalSessions > 0 ? (totalConversions / totalSessions) * 100 : 0;
+
+    report += `💜 <b>AMULETS.CZ - DETAILNÍ STATISTIKY</b>\n`;
+    report += `📅 ${dateStr}\n\n`;
+    
+    report += `<b>📊 Základní metriky:</b>\n`;
+    report += `├─ Konverzací: <b>${totalSessions}</b>\n`;
+    report += `├─ Zpráv celkem: <b>${totalMessages}</b>\n`;
+    report += `├─ Konverzí: <b>${totalConversions}</b>\n`;
+    report += `└─ Konverzní poměr: <b>${conversionRate.toFixed(2)}%</b>\n\n`;
+
+    // Conversion breakdown
+    if (conversionStats.length > 0) {
+      report += `<b>🎯 Konverze podle typu:</b>\n`;
+      const typeLabels: Record<string, string> = {
+        email_capture: '📧 Emaily',
+        whatsapp_click: '📱 WhatsApp',
+        affiliate_click: '🔗 Affiliate',
+        purchase: '🛒 Nákupy',
+        newsletter: '📰 Newsletter',
+      };
+      for (const conv of conversionStats) {
+        const label = typeLabels[conv.conversionType as string] || conv.conversionType;
+        report += `├─ ${label}: <b>${conv.totalConversions}</b>\n`;
+      }
+      report += `\n`;
+    }
+
+    // A/B test variants
+    if (stats.length > 0) {
+      report += `<b>🧪 A/B Test varianty:</b>\n`;
+      for (const stat of stats) {
+        const variant = variants.find(v => v.id === stat.variantId);
+        const variantName = variant?.name || stat.variantKey;
+        const sessions = Number(stat.totalSessions || 0);
+        const convRate = Number(stat.conversionRate || 0).toFixed(2);
+        report += `├─ ${variantName}: ${sessions} sessions, ${convRate}% konverze\n`;
+      }
+    }
+
+  } else {
+    // OHORAI stats (placeholder - bude naplněno po synchronizaci)
+    report += `💎 <b>OHORAI - DETAILNÍ STATISTIKY</b>\n`;
+    report += `📅 ${dateStr}\n\n`;
+    report += `<i>Čekám na synchronizaci dat z OHORAI...</i>\n\n`;
+    report += `Pro aktivaci synchronizace implementuj hodinový sync v OHORAI projektu.\n`;
+  }
+
+  report += `\n${getRandomClosing()}`;
+  return report;
+}
+
+// ============================================
+// AUTOMATICKÝ DENNÍ REPORT V 8:00
+// ============================================
+
+let dailyReportScheduled = false;
+
+/**
+ * Schedule automatic daily report at 8:00 AM CET
+ */
+export function scheduleDailyReport(): void {
+  if (dailyReportScheduled) return;
+  dailyReportScheduled = true;
+  
+  const checkAndSendReport = async () => {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    
+    // Send at 8:00 AM (with 5 minute window)
+    if (hours === 8 && minutes >= 0 && minutes < 5) {
+      console.log('[Telegram] Sending scheduled daily report...');
+      await sendCombinedDailyReport();
+    }
+  };
+  
+  // Check every 5 minutes
+  setInterval(checkAndSendReport, 5 * 60 * 1000);
+  
+  console.log('[Telegram] Daily report scheduled for 8:00 AM');
+}
+
+// Auto-start scheduler when module loads
+scheduleDailyReport();
