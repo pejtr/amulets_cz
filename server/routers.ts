@@ -57,13 +57,40 @@ export const appRouter = router({
           browsingHistory: z.string().optional(),
         }).optional(),
         email: z.string().email().optional(),
+        isReturningCustomer: z.boolean().optional(),
+        egyptianPhase: z.number().optional(),
+        variantKey: z.string().optional(),
       }))
       .mutation(async ({ input }) => {
-        const { message, context, email } = input;
+        const { message, context, email, isReturningCustomer, egyptianPhase, variantKey } = input;
+
+        // Egyptian mystery sales sequence for returning customers
+        const egyptianSequencePrompt = isReturningCustomer && egyptianPhase && egyptianPhase > 0 ? `
+
+**EGYPTSKÁ PRODEJNÍ SEKVENCE (FÁZE ${egyptianPhase}):**
+Jsi v egyptské prodejní sekvenci. Jemně směřuj konverzaci k egyptským mystériím a modrému lotosu.
+
+${egyptianPhase === 1 ? `FÁZE 1 - PROBOUZENÍ ZÁJMU:
+- Zmíň egyptskou symboliku a její sílu
+- Napič: "Víš, že starí Egypťané věřili, že amulety chrání duši na cestě do posmrtného života?"
+- Zmíň Horovo oko, Ankh, nebo skarabea` : ''}
+${egyptianPhase === 2 ? `FÁZE 2 - MODRÝ LOTOS:
+- Představ modrý lotos jako posvátnou květinu faraonů
+- Napiš: "Modrý lotos byl nejposvátnější květinou starověkého Egypta... Kněží ho používali pro spojení s vyššími dimenzemi."
+- Zmíň jeho relaxační a meditativní účinky` : ''}
+${egyptianPhase === 3 ? `FÁZE 3 - PRODUKTY:
+- Doporuč konkrétní produkty s modrým lotosem
+- Zmíň OHORAI esenciální oleje s modrým lotosem
+- Napiš: "Máme něco speciálního - esenciální olej z modrého lotosu, který pomáhá při meditaci a relaxaci..."` : ''}
+${egyptianPhase >= 4 ? `FÁZE 4 - UZAVŘENÍ:
+- Nabídni speciální slevu nebo dárek
+- Napiš: "Pro tebe mám něco speciálního - sleva 10% na první nákup s kódem LOTOS10"
+- Směřuj k nákupu` : ''}
+` : '';
 
         // Build knowledge base context
         const knowledgeBase = `
-Jsi Natálie Ohorai, založitelka Amulets.cz a OHORAI. Jsi přívětivá, empatická a zná prodejkyně, která pomáhá zákazníkům najít správné spirituální produkty.
+Jsi Natálie Ohorai, založitelka Amulets.cz a OHORAI. Jsi přívětivá, empatická a zná prodejkyně, která pomáhá zákazníkům najít správné spirituální produkty.${egyptianSequencePrompt}.
 
 **Produkty Amulets.cz:**
 - **Amulety a talismany**: 33 posvaćtných symbolů (Květ života, Merkaba, Om, Hamsa, atd.)

@@ -86,12 +86,12 @@ function isOfflineHours(): boolean {
   return hours >= 0 && hours < 9;
 }
 
-// Helper function to check if it's time for goodnight message (23:45 - 23:59)
+// Helper function to check if it's time for goodnight message (23:55 - 23:59)
 function isGoodnightTime(): boolean {
   const now = new Date();
   const hours = now.getHours();
   const minutes = now.getMinutes();
-  return hours === 23 && minutes >= 45;
+  return hours === 23 && minutes >= 55;
 }
 
 // Goodnight message
@@ -128,17 +128,36 @@ export default function AIChatAssistant() {
     localStorage.setItem('amulets_visitor_id', newId);
     return newId;
   });
+
+  // Track visit count for returning customer detection
+  const [visitCount] = useState(() => {
+    const stored = localStorage.getItem('amulets_visit_count');
+    const count = stored ? parseInt(stored, 10) + 1 : 1;
+    localStorage.setItem('amulets_visit_count', count.toString());
+    return count;
+  });
+
+  // Egyptian sales sequence phase (0 = not started, 1-4 = sequence phases)
+  const [egyptianPhase, setEgyptianPhase] = useState(() => {
+    const stored = localStorage.getItem('amulets_egyptian_phase');
+    return stored ? parseInt(stored, 10) : 0;
+  });
+
+  // Check if this is a returning customer (2nd+ visit)
+  const isReturningCustomer = visitCount >= 2;
   
-  // Default initial message (will be replaced by variant)
-  const defaultInitialMessage = "Ahoj! 💜 Jsem Natálie z Amulets.cz. Jsem tu pro ty, kteří vědí, co chtějí - ať už je to správný amulet, porozumění svému potenciálu, nebo cesta k pravé svobodě. Ale víš co? Nejdříve mě poslouchej. Co tě sem přivedlo?";
+  // Default initial message - shown immediately without waiting for API
+  const DEFAULT_INITIAL_MESSAGE = "Ahoj! 💜 Jsem Natálie z Amulets.cz. Jsem tu pro ty, kteří vědí, co chtějí - ať už je to správný amulet, porozumění svému potenciálu, nebo cesta k pravé svobodě. Co tě sem přivedlo?";
   
+  // Messages state - starts with default message immediately
   const [messages, setMessages] = useState<Message[]>([
     {
-      role: "assistant",
-      content: defaultInitialMessage,
+      role: "assistant" as const,
+      content: DEFAULT_INITIAL_MESSAGE,
       timestamp: new Date(),
     },
   ]);
+  const [isVariantLoaded, setIsVariantLoaded] = useState(false);
   const [input, setInput] = useState("");
   const [email, setEmail] = useState("");
   const [showEmailCapture, setShowEmailCapture] = useState(false);
@@ -181,19 +200,47 @@ export default function AIChatAssistant() {
     },
   });
 
+  // Egyptian mystery welcome message for returning customers
+  const EGYPTIAN_WELCOME_MESSAGE = `Vítej zpět, krásná duše! 🌙✨
+
+Cítím, že tě sem něco přitahuje... Možná je to volání starověkého Egypta, které rezonuje s tvou duší.
+
+Víš, že **modrý lotos** byl nejposvátnější květinou faraonů? 🪻 Kněží ho používali při posvátných rituálech pro spojení s vyššími dimenzemi...
+
+Co tě dnes přivádí?`;
+
   // Update variant and initial message when assigned
   useEffect(() => {
-    if (assignedVariant && !variant) {
+    if (assignedVariant && !isVariantLoaded) {
       setVariant(assignedVariant);
+      setIsVariantLoaded(true);
       
-      // Update initial message with variant's message
-      if (assignedVariant.initialMessage) {
+      // For returning customers, use Egyptian mystery welcome
+      // For new customers, only update if variant has different message
+      let newInitialMessage: string;
+      
+      if (isReturningCustomer && assignedVariant.variantKey === 'young_mystic') {
+        // Egyptian sequence for returning customers with mystic variant
+        newInitialMessage = EGYPTIAN_WELCOME_MESSAGE;
+        if (egyptianPhase === 0) {
+          setEgyptianPhase(1);
+          localStorage.setItem('amulets_egyptian_phase', '1');
+        }
+        // Update message for Egyptian sequence
+        setMessages([{
+          role: "assistant",
+          content: newInitialMessage,
+          timestamp: new Date(),
+        }]);
+      } else if (assignedVariant.initialMessage && assignedVariant.initialMessage !== DEFAULT_INITIAL_MESSAGE) {
+        // Only update if variant has a different message than default
         setMessages([{
           role: "assistant",
           content: assignedVariant.initialMessage,
           timestamp: new Date(),
         }]);
       }
+      // If variant message is same as default, keep the already displayed message
 
       // Start session
       startSessionMutation.mutate({
@@ -311,7 +358,17 @@ export default function AIChatAssistant() {
       message: input,
       context: browsingContext,
       email: email || undefined,
+      isReturningCustomer,
+      egyptianPhase,
+      variantKey: variant?.variantKey,
     });
+
+    // Advance Egyptian phase after each message (max 4)
+    if (isReturningCustomer && variant?.variantKey === 'young_mystic' && egyptianPhase < 4) {
+      const newPhase = egyptianPhase + 1;
+      setEgyptianPhase(newPhase);
+      localStorage.setItem('amulets_egyptian_phase', newPhase.toString());
+    }
 
     setTimeout(scrollToBottom, 100);
   };

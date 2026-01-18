@@ -1082,3 +1082,21 @@
 - [x] Personalizovat odpověď na základě historie konverzace (LLM)
 - [x] Uložit kopii odpovědi do historie chatbota
 - [x] Uložit checkpoint
+
+## Automatická zpráva "Dobrou noc" v 23:45 (Jan 18, 2026)
+- [ ] Přidat detekci času 23:45-23:59 v chatbotu
+- [ ] Zobrazit automatickou zprávu "Dobrou noc" před přechodem do offline režimu
+- [ ] Uložit checkpoint
+
+## A/B Test: Egyptská mystéria a prodejní sekvence modrého lotosu (Jan 18, 2026)
+- [ ] Navrhnout prodejní sekvenci pro vracející se zákazníky
+- [x] Přidat sledování počtu návštěv (visitCount) do localStorage
+- [x] Rozpoznat vracejícího se zákazníka (2+ návštěva)
+- [x] Implementovat egyptskou prodejní sekvenci (4 fáze)
+- [x] Aktualizovat LLM prompt pro egyptskou tématiku
+- [x] Přidat egyptskou uvítací zprávu pro vracející se zákazníky
+- [x] Opravit TypeScript chyby
+- [x] Uložit checkpointava blikání úvodní zprávy chatbota (Jan 18, 2026)
+- [x] Opravit blikání úvodní zprávy - zpráva se mění před očima uživatele
+- [x] Zobrazit zprávu až po načtení varianty z API
+- [x] Přidat loading animaci (3 tečky) během načítání
