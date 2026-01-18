@@ -1,0 +1,23 @@
+CREATE TABLE `coaching_leads` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`name` varchar(255),
+	`email` varchar(320),
+	`phone` varchar(50),
+	`situation` text,
+	`goals` text,
+	`whyCoaching` text,
+	`expectations` text,
+	`conversationSummary` text,
+	`sessionId` varchar(100),
+	`status` enum('new','contacted','scheduled','completed','declined','not_qualified') NOT NULL DEFAULT 'new',
+	`interestedInPackage` boolean DEFAULT false,
+	`packageType` varchar(50),
+	`preferredContactMethod` enum('phone','email','whatsapp') DEFAULT 'phone',
+	`preferredSessionType` enum('in_person','phone','video') DEFAULT 'phone',
+	`natalieNotes` text,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	`contactedAt` timestamp,
+	`scheduledAt` timestamp,
+	CONSTRAINT `coaching_leads_id` PRIMARY KEY(`id`)
+);

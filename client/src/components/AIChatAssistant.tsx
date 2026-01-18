@@ -275,6 +275,24 @@ Co tě dnes přivádí?`;
     }
   }, [isOpen, variant]);
 
+  // Listen for openChat event from CoachingSection
+  useEffect(() => {
+    const handleOpenChat = (event: CustomEvent<{ message?: string }>) => {
+      setIsOpen(true);
+      // If a message was provided, add it as user message after a short delay
+      if (event.detail?.message) {
+        setTimeout(() => {
+          setInput(event.detail.message || '');
+        }, 500);
+      }
+    };
+
+    window.addEventListener('openChat', handleOpenChat as EventListener);
+    return () => {
+      window.removeEventListener('openChat', handleOpenChat as EventListener);
+    };
+  }, []);
+
   const chatMutation = trpc.chat.sendMessage.useMutation({
     onSuccess: (data: { response: string }) => {
       setMessages((prev) => [
@@ -337,8 +355,15 @@ Co tě dnes přivádí?`;
       browsingHistory: browsingContextText,
     };
 
+    // Build conversation history for context (last 10 messages)
+    const conversationHistory = messages.slice(-10).map(msg => ({
+      role: msg.role as 'user' | 'assistant',
+      content: typeof msg.content === 'string' ? msg.content : '',
+    }));
+
     chatMutation.mutate({
       message: input,
+      conversationHistory,
       context: browsingContext,
       email: email || undefined,
       isReturningCustomer,

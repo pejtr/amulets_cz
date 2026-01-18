@@ -1364,3 +1364,34 @@
 
 ## Chat ikony - Nilský kříž (Jan 18, 2026)
 - [x] Změnit irský kříž ✝️ na nilský egyptský kříž (Ankh) ☥
+
+## Natálie - Ušlechtilá Královna Váhy & Premium Koučing (Jan 18, 2026)
+
+### Osobnost AI Natálie
+- [ ] Upravit system prompt - vlídná, ušlechtilá Královna
+- [ ] Přidat znamení Váhy - nejlepší kamarádka, empatie, rovnováha
+- [ ] Zmínit minulost jako executive coach pro vrcholový management
+- [ ] Přátelské ale autoritativní působení
+
+### Premium Koučing Nabídka
+- [ ] Vytvořit sekci "Osobní koučing s Natálií" na webu
+- [ ] Cena: 4000 Kč / 2 hodiny
+- [ ] Balíček: 5+1 ZDARMA
+- [ ] Možnost telefonicky i osobně
+- [ ] Pouze pro vážné zájemce a dlouhodobé spolupráce
+
+### Kvalifikační Flow v Chatu
+- [ ] AI Natálie zjistí potřeby klienta (co řeší, jaké cíle, očekávání)
+- [ ] Nabídne osobní koučing pokud je to relevantní
+- [ ] Pokud klient souhlasí → kvalifikační otázky (jméno, email, telefon, situace)
+- [ ] Shrnutí a přeposlání reálné Natálii
+
+### Telegram Notifikace
+- [ ] Při zájmu o koučing → odeslat notifikaci reálné Natálii
+- [ ] Obsahuje: jméno, kontakt, situace, potřeby, shrnutí konverzace
+- [ ] Reálná Natálie může kontaktovat klienta
+
+## Oprava chatbota - Pamatovat kontext konverzace (Jan 18, 2026)
+- [x] Přidat historii konverzace do API volání (posledních 10 zpráv)
+- [x] Natálie nebude opakovat úvod při návratu uživatele
+- [x] Přirozenější reakce - žádné "Ahoj" během probíhající konverzace

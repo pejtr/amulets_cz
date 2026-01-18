@@ -12,6 +12,7 @@ import MagazineSection from "@/components/MagazineSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import AmenPendantsSection from "@/components/AmenPendantsSection";
 import AmenCategorySections from "@/components/AmenCategorySections";
+import CoachingSection from "@/components/CoachingSection";
 import { trpc } from "@/lib/trpc";
 import QuizCTA from "@/components/QuizCTA";
 import FAQSection from "@/components/FAQSection";
@@ -79,6 +80,7 @@ export default function Home() {
         <QuizCTA />
 
         <TestimonialsSection />
+        <CoachingSection />
         <AmenPendantsSection />
         <AmenCategorySectionsWrapper />
         <MagazineSection />

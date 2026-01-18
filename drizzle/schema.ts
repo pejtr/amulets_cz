@@ -546,3 +546,65 @@ export const projectStatsAggregated = mysqlTable("project_stats_aggregated", {
 
 export type ProjectStatsAggregated = typeof projectStatsAggregated.$inferSelect;
 export type InsertProjectStatsAggregated = typeof projectStatsAggregated.$inferInsert;
+
+
+// =============================================================================
+// COACHING LEADS - Zájemci o osobní koučing s Natálií
+// =============================================================================
+
+export const coachingLeads = mysqlTable("coaching_leads", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  // Kontaktní údaje
+  name: varchar("name", { length: 255 }),
+  email: varchar("email", { length: 320 }),
+  phone: varchar("phone", { length: 50 }),
+  
+  // Kvalifikační informace
+  situation: text("situation"), // Co konkrétně řeší
+  goals: text("goals"), // Jaké má cíle
+  whyCoaching: text("whyCoaching"), // Proč hledá kouče
+  expectations: text("expectations"), // Co očekává od koučingu
+  
+  // Konverzace
+  conversationSummary: text("conversationSummary"), // Shrnutí konverzace z chatu
+  sessionId: varchar("sessionId", { length: 100 }), // ID chatbot session
+  
+  // Stav
+  status: mysqlEnum("status", [
+    "new",           // Nový lead
+    "contacted",     // Natálie kontaktovala
+    "scheduled",     // Naplánované sezení
+    "completed",     // Proběhlo sezení
+    "declined",      // Odmítnuto (klientem nebo Natálií)
+    "not_qualified"  // Nekvalifikovaný lead
+  ]).default("new").notNull(),
+  
+  // Balíček
+  interestedInPackage: boolean("interestedInPackage").default(false),
+  packageType: varchar("packageType", { length: 50 }), // "single" | "package_5plus1"
+  
+  // Preference
+  preferredContactMethod: mysqlEnum("preferredContactMethod", [
+    "phone",
+    "email", 
+    "whatsapp"
+  ]).default("phone"),
+  preferredSessionType: mysqlEnum("preferredSessionType", [
+    "in_person",
+    "phone",
+    "video"
+  ]).default("phone"),
+  
+  // Natálie poznámky
+  natalieNotes: text("natalieNotes"),
+  
+  // Timestamps
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  contactedAt: timestamp("contactedAt"),
+  scheduledAt: timestamp("scheduledAt"),
+});
+
+export type CoachingLead = typeof coachingLeads.$inferSelect;
+export type InsertCoachingLead = typeof coachingLeads.$inferInsert;

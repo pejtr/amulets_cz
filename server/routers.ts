@@ -32,7 +32,8 @@ import {
   getAllChatbotTickets,
   getChatbotTicketsByVisitor,
 } from "./db";
-import { sendDailyReport, sendTestMessage, generateDailyReport } from "./telegram";
+import { sendDailyReport, sendTestMessage, generateDailyReport, sendTelegramMessage } from "./telegram";
+import { createCoachingLead, formatLeadForTelegram } from "./coachingDb";
 import { 
   getNatalieAmuletsPersonality,
   getNatalieBasePersonality,
@@ -64,6 +65,10 @@ export const appRouter = router({
     sendMessage: publicProcedure
       .input(z.object({
         message: z.string(),
+        conversationHistory: z.array(z.object({
+          role: z.enum(['user', 'assistant']),
+          content: z.string(),
+        })).optional(),
         context: z.object({
           currentPage: z.string(),
           referrer: z.string(),
@@ -76,7 +81,7 @@ export const appRouter = router({
         variantKey: z.string().optional(),
       }))
       .mutation(async ({ input }) => {
-        const { message, context, email, isReturningCustomer, egyptianPhase, variantKey } = input;
+        const { message, conversationHistory, context, email, isReturningCustomer, egyptianPhase, variantKey } = input;
 
         // Egyptian mystery sales sequence for returning customers
         const egyptianSequencePrompt = isReturningCustomer && egyptianPhase && egyptianPhase > 0 ? `
@@ -124,12 +129,28 @@ ${egyptianSequencePrompt}
 **Aktualni kontext:**
 ${context ? `- Stranka: ${context.currentPage}\n- Cas na webu: ${context.timeOnSite}s\n- Historie: ${context.browsingHistory || 'Nový návštěvník'}` : ''}
 ${email ? `- Email: ${email}` : ''}
+
+**DůLEŽITÉ - PŘIROZENÁ KONVERZACE:**
+- NIKDY se znovu nepředstavuj během otevřené konverzace
+- NIKDY neříkej "Ahoj" nebo "Vítej" v každé zprávě - konverzace už běží!
+- Odpovídej přímo na otázku bez pozdravu (jako když si píšeš s kamarádkou)
+- Pamatuj si co uživatel říkal a navazuj na to
+- Buď jako skutečná kamarádka v probíhajícím rozhovoru
+- Pokud je to PRVNÍ zpráva po delší době (nová session), můžeš říct "Ráda tě zase vidím! Psali jsme si..."
+- Ale během konverzace NIKDY neříkej Ahoj/Vítej/Zdravím
 `;
+
+        // Build conversation messages with history
+        const historyMessages = conversationHistory?.map(msg => ({
+          role: msg.role as 'user' | 'assistant',
+          content: msg.content,
+        })) || [];
 
         try {
           const response = await invokeLLM({
             messages: [
               { role: "system", content: knowledgeBase },
+              ...historyMessages,
               { role: "user", content: message },
             ],
           });
@@ -836,6 +857,70 @@ ${email ? `- Email: ${email}` : ''}
           timestamp: new Date().toISOString(),
           version: '1.0.0',
         };
+      }),
+  }),
+
+  // =============================================================================
+  // COACHING - Osobní koučing s Natálií
+  // =============================================================================
+  coaching: router({
+    // Vytvořit nový coaching lead
+    submitLead: publicProcedure
+      .input(z.object({
+        name: z.string().optional(),
+        email: z.string().email().optional(),
+        phone: z.string().optional(),
+        situation: z.string().optional(),
+        goals: z.string().optional(),
+        whyCoaching: z.string().optional(),
+        expectations: z.string().optional(),
+        conversationSummary: z.string().optional(),
+        sessionId: z.string().optional(),
+        interestedInPackage: z.boolean().optional(),
+        preferredContactMethod: z.enum(["phone", "email", "whatsapp"]).optional(),
+        preferredSessionType: z.enum(["in_person", "phone", "video"]).optional(),
+      }))
+      .mutation(async ({ input }) => {
+        try {
+          // Vytvořit lead v databázi
+          const lead = await createCoachingLead({
+            name: input.name || null,
+            email: input.email || null,
+            phone: input.phone || null,
+            situation: input.situation || null,
+            goals: input.goals || null,
+            whyCoaching: input.whyCoaching || null,
+            expectations: input.expectations || null,
+            conversationSummary: input.conversationSummary || null,
+            sessionId: input.sessionId || null,
+            interestedInPackage: input.interestedInPackage || false,
+            preferredContactMethod: input.preferredContactMethod || "phone",
+            preferredSessionType: input.preferredSessionType || "phone",
+          });
+
+          if (!lead) {
+            throw new TRPCError({
+              code: "INTERNAL_SERVER_ERROR",
+              message: "Nepodařilo se uložit zájem o koučing",
+            });
+          }
+
+          // Poslat Telegram notifikaci reálné Natálii
+          const telegramMessage = formatLeadForTelegram(lead);
+          await sendTelegramMessage(telegramMessage);
+
+          return {
+            success: true,
+            leadId: lead.id,
+            message: "Děkuji za zájem! Natálie se ti ozve do 24 hodin. 💜",
+          };
+        } catch (error) {
+          console.error("[Coaching] Error creating lead:", error);
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Nepodařilo se odeslat zájem o koučing",
+          });
+        }
       }),
   }),
 });
