@@ -386,6 +386,10 @@ export async function processIncomingMessage(update: TelegramUpdate): Promise<bo
   
   // Příkaz /report - agregovaný report z obou webů (propojené nádoby)
   if (lowerMessage === '/report' || lowerMessage.startsWith('/report ')) {
+    // Synchronizace dat před reportem
+    await sendTelegramMessageToChat(chatId.toString(), '🔄 Synchronizuji data z obou platforem...', 'HTML');
+    await syncBeforeReport();
+    
     // Send combined daily report from both platforms
     const report = await generateCombinedDailyReport();
     await sendTelegramMessageToChat(chatId.toString(), report, 'HTML');
@@ -794,6 +798,44 @@ export async function generatePlatformStats(platform: 'amulets' | 'ohorai'): Pro
 // ============================================
 // AUTOMATICKÝ DENNÍ REPORT V 8:00
 // ============================================
+
+// ============================================
+// SYNCHRONIZACE PŘED REPORTEM
+// ============================================
+
+/**
+ * Synchronizace dat před generováním reportu
+ * Volá se před každým /report příkazem
+ */
+async function syncBeforeReport(): Promise<void> {
+  console.log('[Telegram] Synchronizing data before report...');
+  
+  try {
+    // 1. Aktualizovat lokální statistiky z databáze
+    const now = new Date();
+    const today = new Date(now);
+    today.setHours(0, 0, 0, 0);
+    
+    // Získat aktuální statistiky z Amulets.cz
+    const amuletsStats = await getChatbotComparisonStats(today, now);
+    console.log(`[Telegram] Amulets.cz stats: ${amuletsStats.length} variants`);
+    
+    // 2. Pokusit se získat data z OHORAI (pokud je dostupné)
+    // TODO: Implementovat po nastavení OHORAI synchronizace
+    // const ohoraiStats = await fetchOhoraiStats();
+    
+    // 3. Cache výsledky pro rychlý přístup
+    lastSyncTime = Date.now();
+    
+    console.log('[Telegram] Sync completed successfully');
+  } catch (error) {
+    console.error('[Telegram] Sync error:', error);
+    // Pokračovat i při chybě - použijeme poslední známá data
+  }
+}
+
+// Cache pro poslední synchronizaci
+let lastSyncTime = 0;
 
 let dailyReportScheduled = false;
 

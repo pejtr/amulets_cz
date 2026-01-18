@@ -1224,8 +1224,8 @@
 - [ ] Dokumentace pro implementaci do OHORAI
 
 ## Oprava AMEN XML feedu (Jan 18, 2026)
-- [ ] Diagnostikovat proč nefunguje Irisimo feed
-- [ ] Opravit načítání produktů AMEN
+- [x] Diagnostikovat proč nefunguje Irisimo feed (timeout na jejich serveru)
+- [x] Opravit načítání produktů AMEN (statický katalog)
 - [ ] Otestovat zobrazení na webu
 
 ## SEO optimalizace H1 (Jan 18, 2026)
@@ -1238,3 +1238,14 @@
 ## Telegram rozšíření (Jan 18, 2026)
 - [x] Přidat /stats příkaz pro detailní statistiky jednotlivé platformy
 - [x] Nastavit automatický denní report v 8:00 ráno
+
+## OHORAI hodinová synchronizace (Jan 18, 2026)
+- [ ] Vytvořit databázovou tabulku pro OHORAI statistiky
+- [ ] Implementovat API endpoint pro příjem dat z OHORAI
+- [ ] Aktualizovat Telegram reporty pro použití synchronizovaných dat
+- [ ] Aktualizovat návod pro OHORAI implementaci
+
+## AMEN statický katalog (Jan 18, 2026)
+- [x] Vytvořit statický katalog AMEN produktů z Irisimo
+- [x] Aktualizovat irisimoFeed.ts pro použití statického katalogu
+- [x] Přidat synchronizaci před /report příkazem

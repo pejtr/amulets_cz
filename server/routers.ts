@@ -7,6 +7,7 @@ import { addBrevoContact, sendDiscountWelcomeEmail } from "./brevo";
 import { sendHoroscopePDFEmail } from "./sendHoroscopePDF";
 import { sendLeadEvent } from "./meta-conversions";
 import { getAmenPendants, type IrisimoProduct } from "./irisimoFeed";
+import { getAmenProducts, getAmenCatalogStats, type AmenProduct } from "./amenCatalog";
 import { TRPCError } from "@trpc/server";
 import { invokeLLM } from "./_core/llm";
 import { 
@@ -233,19 +234,36 @@ ${email ? `- Email: ${email}` : ''}
       }),
   }),
 
-  // Irisimo affiliate products
+  // Irisimo affiliate products - používá statický katalog
   irisimo: router({
+    // Statický katalog AMEN produktů (rychlé, spolehlivé)
+    getAmenProducts: publicProcedure.query((): AmenProduct[] => {
+      return getAmenProducts();
+    }),
+    
+    // Statistiky katalogu
+    getCatalogStats: publicProcedure.query(() => {
+      return getAmenCatalogStats();
+    }),
+    
+    // Legacy endpoint - fallback na statický katalog
     getAmenPendants: publicProcedure.query(async (): Promise<IrisimoProduct[]> => {
-      try {
-        const pendants = await getAmenPendants();
-        return pendants;
-      } catch (error) {
-        console.error('Error fetching AMEN pendants:', error);
-        throw new TRPCError({
-          code: 'INTERNAL_SERVER_ERROR',
-          message: 'Failed to fetch AMEN pendants',
-        });
-      }
+      // Používáme statický katalog místo XML feedu
+      const amenProducts = getAmenProducts();
+      
+      // Konvertovat na IrisimoProduct formát pro zpětnou kompatibilitu
+      return amenProducts.map(p => ({
+        id: p.id,
+        name: p.name,
+        description: p.description,
+        url: p.url,
+        imageUrl: p.imageUrl,
+        price: p.price.toString(),
+        priceVat: p.price.toString(),
+        manufacturer: 'AMEN',
+        category: p.category,
+        availability: p.availability === 'skladem' ? 'Skladem' : 'Na objednávku',
+      }));
     }),
   }),
 
