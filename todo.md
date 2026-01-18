@@ -1156,3 +1156,19 @@
 - [x] Integrovat osobnost do Telegram bota
 - [x] Integrovat osobnost do Amulets.cz chatbota
 - [ ] Otestovat nové chování (uživatel může testovat na webu)
+
+
+## Interaktivní Telegram chat s Natálií
+- [ ] Nastavit Telegram webhook pro příjem zpráv
+- [ ] Implementovat AI odpovědi s osobností Natálie
+- [ ] Přidat kontext konverzace (paměť)
+- [ ] Otestovat interaktivní chat
+
+
+## Systém úrovní přístupu k informacím
+- [x] Definovat úrovně: Veřejné, Interní, Důvěrné, Tajné, Přísně tajné
+- [x] Definovat role: Zákazník, Operátor, Admin
+- [x] Implementovat kontrolu přístupu v chatbotech
+- [x] Zákazník: Veřejné + občas Interní
+- [x] Operátor: Veřejné + Interní + Důvěrné
+- [x] Admin (Telegram): Všechny úrovně

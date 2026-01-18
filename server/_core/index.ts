@@ -7,6 +7,7 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+import { processIncomingMessage } from "../telegram";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -101,6 +102,19 @@ async function startServer() {
     });
   });
   
+  // Telegram webhook endpoint
+  app.post('/api/telegram/webhook', async (req, res) => {
+    try {
+      const update = req.body;
+      console.log('[Telegram Webhook] Received update:', JSON.stringify(update).substring(0, 200));
+      await processIncomingMessage(update);
+      res.status(200).json({ ok: true });
+    } catch (error) {
+      console.error('[Telegram Webhook] Error:', error);
+      res.status(200).json({ ok: true }); // Always return 200 to Telegram
+    }
+  });
+
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
   // tRPC API
