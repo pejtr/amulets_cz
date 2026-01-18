@@ -721,13 +721,51 @@ ${email ? `- Email: ${email}` : ''}
           throw new TRPCError({ code: 'UNAUTHORIZED', message: 'Invalid API key' });
         }
 
-        // TODO: Uložit do databáze pro agregaci
+        // Uložit do databáze pro agregaci
         console.log(`[SharedBrain] Received stats from ${input.platform} for ${input.date}:`, input.stats);
         
-        return { 
-          success: true, 
-          message: `Stats from ${input.platform} received for ${input.date}` 
-        };
+        const { saveOhoraiStats, logOhoraiSync } = await import('./db');
+        const startTime = Date.now();
+        
+        try {
+          const date = new Date(input.date);
+          const hour = new Date().getHours();
+          
+          await saveOhoraiStats({
+            date,
+            hour,
+            totalConversations: input.stats.totalConversations,
+            totalMessages: input.stats.totalMessages,
+            uniqueVisitors: input.stats.uniqueVisitors,
+            emailCaptures: input.stats.leadsCollected || 0,
+            topTopics: input.stats.popularTopics,
+            sourceVersion: '1.0.0',
+          });
+          
+          await logOhoraiSync({
+            syncType: 'hourly',
+            status: 'success',
+            recordsReceived: 1,
+            recordsProcessed: 1,
+            duration: Date.now() - startTime,
+          });
+          
+          return { 
+            success: true, 
+            message: `Stats from ${input.platform} saved for ${input.date}` 
+          };
+        } catch (error) {
+          await logOhoraiSync({
+            syncType: 'hourly',
+            status: 'failed',
+            recordsReceived: 1,
+            recordsProcessed: 0,
+            errorMessage: error instanceof Error ? error.message : 'Unknown error',
+            duration: Date.now() - startTime,
+          });
+          
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to save stats' });
+        }
       }),
 
     // Získat agregovaný denní report pro Telegram

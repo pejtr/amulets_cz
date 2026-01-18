@@ -1,6 +1,6 @@
 import { eq, and, gte, lte, sql, desc, sum, avg, count } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, chatbotVariants, chatbotSessions, chatbotMessages, chatbotEvents, chatbotDailyStats, chatbotConversions, chatbotTickets, chatbotTicketResponses, topicCategories, detectedTopics, demandReports, contentSuggestions } from "../drizzle/schema";
+import { InsertUser, users, chatbotVariants, chatbotSessions, chatbotMessages, chatbotEvents, chatbotDailyStats, chatbotConversions, chatbotTickets, chatbotTicketResponses, topicCategories, detectedTopics, demandReports, contentSuggestions, ohoraiStats, ohoraiSyncLog, type InsertOhoraiStats, type InsertOhoraiSyncLog } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -646,4 +646,156 @@ export async function markTicketEmailSent(responseId: number) {
     .where(eq(chatbotTicketResponses.id, responseId));
   
   return result;
+}
+
+// ============================================
+// OHORAI SYNCHRONIZACE - Propojené nádoby
+// ============================================
+
+/**
+ * Uložit statistiky z OHORAI
+ */
+export async function saveOhoraiStats(stats: {
+  date: Date;
+  hour: number;
+  totalConversations: number;
+  totalMessages: number;
+  uniqueVisitors: number;
+  emailCaptures?: number;
+  affiliateClicks?: number;
+  productViews?: number;
+  avgSessionDuration?: number;
+  avgMessagesPerSession?: number;
+  topTopics?: string[];
+  sourceVersion?: string;
+}) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot save OHORAI stats: database not available");
+    return null;
+  }
+
+  try {
+    const [result] = await db.insert(ohoraiStats).values({
+      date: stats.date,
+      hour: stats.hour,
+      totalConversations: stats.totalConversations,
+      totalMessages: stats.totalMessages,
+      uniqueVisitors: stats.uniqueVisitors,
+      emailCaptures: stats.emailCaptures || 0,
+      affiliateClicks: stats.affiliateClicks || 0,
+      productViews: stats.productViews || 0,
+      avgSessionDuration: stats.avgSessionDuration || 0,
+      avgMessagesPerSession: stats.avgMessagesPerSession || 0,
+      topTopics: stats.topTopics ? JSON.stringify(stats.topTopics) : null,
+      sourceVersion: stats.sourceVersion || '1.0.0',
+    });
+    
+    console.log(`[OHORAI] Stats saved for ${stats.date.toISOString()} hour ${stats.hour}`);
+    return result;
+  } catch (error) {
+    console.error("[OHORAI] Error saving stats:", error);
+    return null;
+  }
+}
+
+/**
+ * Získat OHORAI statistiky pro daný den
+ */
+export async function getOhoraiDailyStats(date: Date) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const startOfDay = new Date(date);
+  startOfDay.setHours(0, 0, 0, 0);
+  
+  const endOfDay = new Date(date);
+  endOfDay.setHours(23, 59, 59, 999);
+
+  return db.select()
+    .from(ohoraiStats)
+    .where(and(
+      gte(ohoraiStats.date, startOfDay),
+      lte(ohoraiStats.date, endOfDay)
+    ))
+    .orderBy(ohoraiStats.hour);
+}
+
+/**
+ * Získat agregované OHORAI statistiky pro report
+ */
+export async function getOhoraiAggregatedStats(date: Date) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const startOfDay = new Date(date);
+  startOfDay.setHours(0, 0, 0, 0);
+  
+  const endOfDay = new Date(date);
+  endOfDay.setHours(23, 59, 59, 999);
+
+  const [result] = await db.select({
+    totalConversations: sum(ohoraiStats.totalConversations),
+    totalMessages: sum(ohoraiStats.totalMessages),
+    uniqueVisitors: sum(ohoraiStats.uniqueVisitors),
+    emailCaptures: sum(ohoraiStats.emailCaptures),
+    affiliateClicks: sum(ohoraiStats.affiliateClicks),
+    productViews: sum(ohoraiStats.productViews),
+    avgSessionDuration: avg(ohoraiStats.avgSessionDuration),
+    avgMessagesPerSession: avg(ohoraiStats.avgMessagesPerSession),
+  })
+    .from(ohoraiStats)
+    .where(and(
+      gte(ohoraiStats.date, startOfDay),
+      lte(ohoraiStats.date, endOfDay)
+    ));
+
+  return result;
+}
+
+/**
+ * Zalogovat synchronizaci
+ */
+export async function logOhoraiSync(log: {
+  syncType: 'hourly' | 'daily' | 'manual';
+  status: 'success' | 'failed' | 'partial';
+  recordsReceived: number;
+  recordsProcessed: number;
+  errorMessage?: string;
+  duration: number;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    const [result] = await db.insert(ohoraiSyncLog).values({
+      syncType: log.syncType,
+      status: log.status,
+      recordsReceived: log.recordsReceived,
+      recordsProcessed: log.recordsProcessed,
+      errorMessage: log.errorMessage || null,
+      duration: log.duration,
+    });
+    
+    return result;
+  } catch (error) {
+    console.error("[OHORAI] Error logging sync:", error);
+    return null;
+  }
+}
+
+/**
+ * Získat poslední úspěšnou synchronizaci
+ */
+export async function getLastSuccessfulOhoraiSync() {
+  const db = await getDb();
+  if (!db) return null;
+
+  const [result] = await db.select()
+    .from(ohoraiSyncLog)
+    .where(eq(ohoraiSyncLog.status, 'success'))
+    .orderBy(desc(ohoraiSyncLog.syncedAt))
+    .limit(1);
+
+  return result || null;
 }

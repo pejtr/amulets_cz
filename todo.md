@@ -1240,8 +1240,8 @@
 - [x] Nastavit automatický denní report v 8:00 ráno
 
 ## OHORAI hodinová synchronizace (Jan 18, 2026)
-- [ ] Vytvořit databázovou tabulku pro OHORAI statistiky
-- [ ] Implementovat API endpoint pro příjem dat z OHORAI
+- [x] Vytvořit databázovou tabulku pro OHORAI statistiky (ohorai_stats, ohorai_sync_log)
+- [x] Implementovat API endpoint pro příjem dat z OHORAI (shared.syncStats)
 - [ ] Aktualizovat Telegram reporty pro použití synchronizovaných dat
 - [ ] Aktualizovat návod pro OHORAI implementaci
 
@@ -1249,3 +1249,7 @@
 - [x] Vytvořit statický katalog AMEN produktů z Irisimo
 - [x] Aktualizovat irisimoFeed.ts pro použití statického katalogu
 - [x] Přidat synchronizaci před /report příkazem
+
+## Oprava AMEN obrázků a OHORAI sync (Jan 18, 2026)
+- [x] Opravit URL obrázků AMEN produktů (lokální obrázky)
+- [x] Implementovat hodinovou synchronizaci pro OHORAI (databáze + API)

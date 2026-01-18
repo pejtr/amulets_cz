@@ -375,3 +375,61 @@ export const contentSuggestions = mysqlTable("content_suggestions", {
 
 export type ContentSuggestion = typeof contentSuggestions.$inferSelect;
 export type InsertContentSuggestion = typeof contentSuggestions.$inferInsert;
+
+// ============================================
+// OHORAI SYNCHRONIZACE - Propojené nádoby
+// ============================================
+
+// OHORAI Platform Statistics - hodinová synchronizace
+export const ohoraiStats = mysqlTable("ohorai_stats", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  // Časové období
+  date: timestamp("date").notNull(),
+  hour: int("hour").notNull(), // 0-23
+  
+  // Statistiky chatbota
+  totalConversations: int("totalConversations").default(0),
+  totalMessages: int("totalMessages").default(0),
+  uniqueVisitors: int("uniqueVisitors").default(0),
+  
+  // Konverze
+  emailCaptures: int("emailCaptures").default(0),
+  affiliateClicks: int("affiliateClicks").default(0),
+  productViews: int("productViews").default(0),
+  
+  // Engagement
+  avgSessionDuration: int("avgSessionDuration").default(0), // v sekundách
+  avgMessagesPerSession: int("avgMessagesPerSession").default(0),
+  
+  // Top témata (JSON)
+  topTopics: text("topTopics"),
+  
+  // Metadata synchronizace
+  syncedAt: timestamp("syncedAt").defaultNow().notNull(),
+  sourceVersion: varchar("sourceVersion", { length: 50 }),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type OhoraiStats = typeof ohoraiStats.$inferSelect;
+export type InsertOhoraiStats = typeof ohoraiStats.$inferInsert;
+
+// OHORAI Sync Log - historie synchronizací
+export const ohoraiSyncLog = mysqlTable("ohorai_sync_log", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  syncType: mysqlEnum("syncType", ["hourly", "daily", "manual"]).notNull(),
+  status: mysqlEnum("status", ["success", "failed", "partial"]).notNull(),
+  
+  recordsReceived: int("recordsReceived").default(0),
+  recordsProcessed: int("recordsProcessed").default(0),
+  
+  errorMessage: text("errorMessage"),
+  duration: int("duration"), // v ms
+  
+  syncedAt: timestamp("syncedAt").defaultNow().notNull(),
+});
+
+export type OhoraiSyncLog = typeof ohoraiSyncLog.$inferSelect;
+export type InsertOhoraiSyncLog = typeof ohoraiSyncLog.$inferInsert;
