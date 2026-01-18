@@ -592,6 +592,31 @@ export async function getChatbotTicketsByVisitor(visitorId: string) {
     .orderBy(desc(chatbotTickets.createdAt));
 }
 
+// Get all tickets with filters (admin)
+export async function getAllChatbotTickets(status: 'pending' | 'answered' | 'all' = 'all', limit: number = 50, offset: number = 0) {
+  const db = await getDb();
+  if (!db) return { tickets: [], total: 0 };
+  
+  let query = db.select().from(chatbotTickets);
+  
+  if (status !== 'all') {
+    query = query.where(eq(chatbotTickets.status, status)) as typeof query;
+  }
+  
+  const tickets = await query
+    .orderBy(desc(chatbotTickets.createdAt))
+    .limit(limit)
+    .offset(offset);
+  
+  // Get total count
+  const countQuery = status !== 'all' 
+    ? db.select().from(chatbotTickets).where(eq(chatbotTickets.status, status))
+    : db.select().from(chatbotTickets);
+  const allTickets = await countQuery;
+  
+  return { tickets, total: allTickets.length };
+}
+
 // Mark email as sent
 export async function markTicketEmailSent(responseId: number) {
   const db = await getDb();

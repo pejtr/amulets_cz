@@ -1100,3 +1100,11 @@
 - [x] Opravit blikání úvodní zprávy - zpráva se mění před očima uživatele
 - [x] Zobrazit zprávu až po načtení varianty z API
 - [x] Přidat loading animaci (3 tečky) během načítání
+
+## Admin Panel pro Tickety (Jan 18, 2026)
+- [x] Vytvořit API endpointy pro správu ticketů (seznam, detail, odpověď)
+- [x] Vytvořit admin stránku /admin/tickets
+- [x] Zobrazit seznam nevyřízených dotazů s historií konverzace
+- [x] Přidat možnost ruční odpovědi
+- [x] Přidat navigaci do admin menu (/admin/tickets)
+- [x] Uložit checkpoint

@@ -23,6 +23,7 @@ import AboutNatalie from "./pages/AboutNatalie";
 import AmenPendants from "./pages/AmenPendants";
 import AdminCampaigns from "./pages/AdminCampaigns";
 import AdminChatbotAB from "./pages/AdminChatbotAB";
+import AdminTickets from "./pages/AdminTickets";
 
 
 function Router() {
@@ -49,6 +50,7 @@ function Router() {
       <Route path="/privěsky-amen" component={AmenPendants} />
       <Route path="/admin/campaigns" component={AdminCampaigns} />
       <Route path="/admin/chatbot-ab" component={AdminChatbotAB} />
+      <Route path="/admin/tickets" component={AdminTickets} />
       {/* Redirects for old/removed pages */}
       <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>
       <Route path={"/404"} component={NotFound} />

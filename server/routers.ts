@@ -28,7 +28,8 @@ import {
   getChatbotTicketById,
   getPendingChatbotTickets,
   answerChatbotTicket,
-  getChatbotTicketsByVisitor
+  getAllChatbotTickets,
+  getChatbotTicketsByVisitor,
 } from "./db";
 
 export const appRouter = router({
@@ -545,6 +546,17 @@ ${email ? `- Email: ${email}` : ''}
     getPendingTickets: publicProcedure
       .query(async () => {
         return getPendingChatbotTickets();
+      }),
+
+    // Get all tickets with filters (admin)
+    getAllTickets: publicProcedure
+      .input(z.object({
+        status: z.enum(['pending', 'answered', 'all']).default('all'),
+        limit: z.number().default(50),
+        offset: z.number().default(0),
+      }))
+      .query(async ({ input }) => {
+        return getAllChatbotTickets(input.status, input.limit, input.offset);
       }),
 
     // Answer a ticket (admin or AI)
