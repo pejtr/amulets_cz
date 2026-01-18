@@ -345,7 +345,7 @@ export default function AIChatAssistant() {
 
             {/* Suggested Questions - Categories or Questions */}
             {messages.length === 1 && (
-              <div className="border-t bg-white overflow-y-auto p-3 max-h-48">
+              <div className="border-t bg-white overflow-y-auto p-3 max-h-64">
                 {!selectedCategory ? (
                   <>
                     <p className="text-xs font-semibold text-gray-600 mb-2 uppercase">Vyberte téma:</p>
