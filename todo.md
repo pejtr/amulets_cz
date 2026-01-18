@@ -1395,3 +1395,8 @@
 - [x] Přidat historii konverzace do API volání (posledních 10 zpráv)
 - [x] Natálie nebude opakovat úvod při návratu uživatele
 - [x] Přirozenější reakce - žádné "Ahoj" během probíhající konverzace
+
+## Chat UI - Zredukovat spodní část (Jan 18, 2026)
+- [x] Zmenšit/zredukovat spodní část chatu (tlačítka, WhatsApp) aby byl vidět celý text zprávy
+- [x] Kompaktnější layout pro offline stav
+- [x] Zmenšit 3 tlačítka kategorií

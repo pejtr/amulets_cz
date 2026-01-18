@@ -657,11 +657,11 @@ Co tě dnes přivádí?`;
 
             {/* Suggested Questions - Categories or Questions */}
             {messages.length === 1 && (
-              <div className="border-t bg-white overflow-y-auto p-3 max-h-64">
+              <div className="border-t bg-white overflow-y-auto p-2 max-h-48">
                 {!selectedCategory ? (
                   <>
-                    <p className="text-xs font-semibold text-gray-600 mb-2 uppercase">Jak ti mohu pomoci?</p>
-                    <div className="grid grid-cols-3 gap-2">
+                    <p className="text-[10px] font-semibold text-gray-500 mb-1.5 uppercase">Jak ti mohu pomoci?</p>
+                    <div className="grid grid-cols-3 gap-1.5">
                       {SUGGESTED_CATEGORIES.map((cat) => (
                         <button
                           key={cat.id}
@@ -678,12 +678,11 @@ Co tě dnes přivádí?`;
                               });
                             }
                           }}
-                          className="p-3 rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-purple-200 hover:border-purple-300 transition-all text-center flex flex-col items-center justify-center shadow-sm hover:shadow-md"
+                          className="p-2 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-purple-200 hover:border-purple-300 transition-all text-center flex flex-col items-center justify-center shadow-sm hover:shadow-md"
                           title={cat.category}
                         >
-                          <div className="text-2xl mb-1">{cat.icon}</div>
-                          <p className="text-sm font-semibold text-gray-800">{cat.category}</p>
-                          <p className="text-xs text-gray-500 mt-0.5">{cat.description}</p>
+                          <div className="text-2xl">{cat.icon}</div>
+                          <p className="text-xs font-semibold text-gray-800 leading-tight">{cat.category}</p>
                         </button>
                       ))}
                     </div>
@@ -816,26 +815,29 @@ Co tě dnes přivádí?`;
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center space-y-3">
-                    <p className="text-sm text-gray-600">
+                  <div className="text-center space-y-2">
+                    <p className="text-xs text-gray-500">
                       🌙 Natálie teď odpočívá.
                     </p>
-                    <Button
-                      onClick={() => setShowTicketForm(true)}
-                      className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
-                    >
-                      📝 Zanechat dotaz
-                    </Button>
-                    <div className="text-xs text-gray-500">nebo</div>
-                    <Button
-                      variant="outline"
-                      onClick={handleWhatsAppEscalation}
-                      className="w-full border-green-500 text-green-600 hover:bg-green-50"
-                    >
-                      <Phone className="h-4 w-4 mr-2" />
-                      Napsat na WhatsApp
-                    </Button>
-                    <p className="text-xs text-gray-500">
+                    <div className="flex gap-2">
+                      <Button
+                        onClick={() => setShowTicketForm(true)}
+                        size="sm"
+                        className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-xs"
+                      >
+                        📝 Zanechat dotaz
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleWhatsAppEscalation}
+                        className="flex-1 border-green-500 text-green-600 hover:bg-green-50 text-xs"
+                      >
+                        <Phone className="h-3 w-3 mr-1" />
+                        WhatsApp
+                      </Button>
+                    </div>
+                    <p className="text-xs text-gray-400">
                       K dispozici každý den od 9:00 do 24:00
                     </p>
                   </div>
