@@ -1,6 +1,6 @@
 import { Truck, Sparkles, Hand, Gift } from "lucide-react";
-
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useEffect, useState } from "react";
 
 const uspItems = [
   {
@@ -32,6 +32,54 @@ const uspItems = [
 // Mobile order: Dárek pro každého first, then Úpravy na míru, then Ruční výroba
 const mobileOrder = [3, 1, 2]; // indices: Gift, Sparkles, Mail
 
+// Desktop animated item component
+function DesktopUSPItem({ item, index }: { item: typeof uspItems[0]; index: number }) {
+  const [isAnimated, setIsAnimated] = useState(false);
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.3 });
+  
+  useEffect(() => {
+    if (isVisible && !isAnimated) {
+      const timer = setTimeout(() => {
+        setIsAnimated(true);
+      }, index * 150); // Staggered delay
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, isAnimated, index]);
+
+  const Icon = item.icon;
+  
+  return (
+    <div 
+      ref={ref}
+      className={`flex items-start gap-4 transition-all duration-700 ease-out ${
+        isAnimated 
+          ? 'opacity-100 scale-100 translate-y-0' 
+          : 'opacity-0 scale-110 translate-y-4'
+      }`}
+      style={{ 
+        transitionDelay: `${index * 150}ms`,
+        transformOrigin: 'center center'
+      }}
+    >
+      <div className={`w-14 h-14 rounded-full bg-[#E85A9F]/20 flex items-center justify-center flex-shrink-0 transition-transform duration-500 ${
+        isAnimated ? 'scale-100' : 'scale-125'
+      }`}
+      style={{ transitionDelay: `${index * 150 + 100}ms` }}
+      >
+        <Icon className="w-7 h-7 text-[#E85A9F]" strokeWidth={1.5} />
+      </div>
+      <div className="flex-1">
+        <h3 className="font-bold text-foreground text-sm mb-1 leading-tight">
+          {item.title}
+        </h3>
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          {item.description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function USPSection() {
   // Filter items for mobile (exclude those with showOnMobile: false) and reorder
   const mobileItems = mobileOrder
@@ -41,26 +89,11 @@ export default function USPSection() {
   return (
     <section className="w-full bg-gradient-to-b from-white/80 to-white py-8 md:py-12">
       <div className="container">
-        {/* Desktop - 4 columns horizontal (show all items) */}
+        {/* Desktop - 4 columns horizontal with zoom-in animation */}
         <div className="hidden md:grid md:grid-cols-4 gap-8">
-          {uspItems.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <div key={index} className="flex items-start gap-4">
-                <div className="w-14 h-14 rounded-full bg-[#E85A9F]/20 flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-7 h-7 text-[#E85A9F]" strokeWidth={1.5} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-bold text-foreground text-sm mb-1 leading-tight">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+          {uspItems.map((item, index) => (
+            <DesktopUSPItem key={index} item={item} index={index} />
+          ))}
         </div>
 
         {/* Mobile - white cards with golden icons (reordered: Dárek first) */}
@@ -73,11 +106,15 @@ export default function USPSection() {
                 <div 
                   ref={ref}
                   className={`flex items-start gap-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-sm transition-all duration-700 ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-110'
                   }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#F4D03F] flex items-center justify-center flex-shrink-0 shadow-md">
+                <div className={`w-16 h-16 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#F4D03F] flex items-center justify-center flex-shrink-0 shadow-md transition-transform duration-500 ${
+                  isVisible ? 'scale-100' : 'scale-125'
+                }`}
+                style={{ transitionDelay: `${index * 100 + 100}ms` }}
+                >
                   <Icon className="w-8 h-8 text-black" strokeWidth={2} />
                 </div>
                 <div className="flex-1">

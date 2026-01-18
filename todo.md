@@ -1406,3 +1406,9 @@
 - [x] Zkrátit offline zprávu aby byla celá viditelná
 - [x] Offline stav na jeden řádek (kompaktní)
 - [x] Menší tlačítka kategorií
+
+## USP sekce - Animace při načtení (Jan 18, 2026)
+- [x] Přidat postupnou animaci přiblížení (scale + fade) pro USP prvky
+- [x] Každý prvek se postupně přiblíží a ustálí
+- [x] Staggered delay 150ms mezi prvky
+- [x] Ikona se také zmenší z 125% na 100%
