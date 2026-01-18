@@ -1,8 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
-const SUGGESTED_QUESTIONS = [
+const SUGGESTED_CATEGORIES = [
   {
+    id: "amulets",
     category: "Amulets & Symboly",
+    icon: "💜",
     questions: [
       "Jaký amulet je vhodný pro ochranu?",
       "Co znamená Květina života?",
@@ -10,7 +12,9 @@ const SUGGESTED_QUESTIONS = [
     ],
   },
   {
+    id: "stones",
     category: "Drahé kameny",
+    icon: "💎",
     questions: [
       "Jaké jsou léčivé účinky ametysty?",
       "Který kámen pomáhá na stres?",
@@ -18,7 +22,9 @@ const SUGGESTED_QUESTIONS = [
     ],
   },
   {
+    id: "spirituality",
     category: "Spiritualita",
+    icon: "✨",
     questions: [
       "Jak začít s meditací?",
       "Co je to chakra?",
@@ -26,7 +32,9 @@ const SUGGESTED_QUESTIONS = [
     ],
   },
   {
+    id: "products",
     category: "Produkty",
+    icon: "🔮",
     questions: [
       "Jaké máte šperky?",
       "Co jsou orgonitové pyramidy?",
@@ -34,7 +42,9 @@ const SUGGESTED_QUESTIONS = [
     ],
   },
   {
+    id: "horoscope",
     category: "Čínský horoskop",
+    icon: "🐉",
     questions: [
       "Jaké je moje zvířátko v čínském horoskopu?",
       "Jaká je má předpověď na rok 2026?",
@@ -42,6 +52,7 @@ const SUGGESTED_QUESTIONS = [
     ],
   },
 ];
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -70,6 +81,7 @@ export default function AIChatAssistant() {
   const [email, setEmail] = useState("");
   const [showEmailCapture, setShowEmailCapture] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { getBrowsingContext } = useBrowsing();
 
@@ -102,18 +114,18 @@ export default function AIChatAssistant() {
 
   const emailCaptureMutation = trpc.chat.captureEmail.useMutation({
     onSuccess: () => {
-      toast.success("Děkujeme! Budeme vás informovat o novinkách.");
+      setEmail("");
       setShowEmailCapture(false);
+      toast.success("Děkujeme! Budeme vám psát 💌");
+    },
+    onError: () => {
+      toast.error("Nepodařilo se uložit email. Zkuste to prosím znovu.");
     },
   });
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -127,7 +139,6 @@ export default function AIChatAssistant() {
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
 
-    // Get browsing context
     const browsingContextText = getBrowsingContext();
     const browsingContext = {
       currentPage: window.location.pathname,
@@ -141,14 +152,12 @@ export default function AIChatAssistant() {
       context: browsingContext,
       email: email || undefined,
     });
+
+    setTimeout(scrollToBottom, 100);
   };
 
   const handleEmailCapture = () => {
-    if (!email || !email.includes("@")) {
-      toast.error("Prosím zadejte platný email");
-      return;
-    }
-
+    if (!email.trim()) return;
     emailCaptureMutation.mutate({ email });
   };
 
@@ -210,7 +219,7 @@ export default function AIChatAssistant() {
       {isOpen && (
         <Card className="fixed bottom-6 right-6 w-96 h-[600px] shadow-2xl z-50 flex flex-col">
           {/* Header */}
-          <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-t-lg flex items-center justify-between">
+          <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-t-lg flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="relative">
                 <img
@@ -255,132 +264,161 @@ export default function AIChatAssistant() {
             </div>
           </div>
 
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-purple-50/30 to-pink-50/30">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
-              >
+          {/* Messages & Questions Container */}
+          <div className="flex-1 overflow-hidden flex flex-col">
+            {/* Messages */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-purple-50/30 to-pink-50/30">
+              {messages.map((message, index) => (
                 <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-2 ${
-                    message.role === "user"
-                      ? "bg-gradient-to-br from-purple-600 to-pink-600 text-white"
-                      : "bg-white shadow-md text-gray-800"
-                  }`}
+                  key={index}
+                  className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
                 >
-                  {message.role === "assistant" ? (
-                    <Streamdown className="text-sm prose prose-sm max-w-none">
-                      {message.content}
-                    </Streamdown>
-                  ) : (
-                    <p className="text-sm">{message.content}</p>
-                  )}
-                  <p
-                    className={`text-xs mt-1 ${
-                      message.role === "user" ? "text-white/70" : "text-gray-500"
+                  <div
+                    className={`max-w-[80%] rounded-2xl px-4 py-2 ${
+                      message.role === "user"
+                        ? "bg-gradient-to-br from-purple-600 to-pink-600 text-white"
+                        : "bg-white shadow-md text-gray-800"
                     }`}
                   >
-                    {message.timestamp.toLocaleTimeString("cs-CZ", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </p>
-                </div>
-              </div>
-            ))}
-
-            {/* Email Capture */}
-            {showEmailCapture && !email && (
-              <Card className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200">
-                <p className="text-sm font-medium text-gray-800 mb-2">
-                  💌 Chcete dostávat tipy a novinky o spirituálních symbolech?
-                </p>
-                <div className="flex gap-2">
-                  <Input
-                    type="email"
-                    placeholder="vas@email.cz"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleEmailCapture()}
-                    className="text-sm"
-                  />
-                  <Button
-                    onClick={handleEmailCapture}
-                    size="sm"
-                    disabled={emailCaptureMutation.isPending}
-                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-                  >
-                    {emailCaptureMutation.isPending ? "..." : "Odeslat"}
-                  </Button>
-                </div>
-              </Card>
-            )}
-
-            {chatMutation.isPending && (
-              <div className="flex justify-start">
-                <div className="bg-white shadow-md rounded-2xl px-4 py-3">
-                  <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: "0ms" }}></div>
-                    <div className="w-2 h-2 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: "150ms" }}></div>
-                    <div className="w-2 h-2 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: "300ms" }}></div>
+                    {message.role === "assistant" ? (
+                      <Streamdown className="text-sm prose prose-sm max-w-none">
+                        {message.content}
+                      </Streamdown>
+                    ) : (
+                      <p className="text-sm">{message.content}</p>
+                    )}
+                    <p
+                      className={`text-xs mt-1 ${
+                        message.role === "user" ? "text-white/70" : "text-gray-500"
+                      }`}
+                    >
+                      {message.timestamp.toLocaleTimeString("cs-CZ", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </p>
                   </div>
                 </div>
-              </div>
-            )}
+              ))}
 
-            <div ref={messagesEndRef} />
-          </div>
+              {/* Email Capture */}
+              {showEmailCapture && !email && (
+                <Card className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200">
+                  <p className="text-sm font-medium text-gray-800 mb-2">
+                    💌 Chcete dostávat tipy a novinky o spirituálních symbolech?
+                  </p>
+                  <div className="flex gap-2">
+                    <Input
+                      type="email"
+                      placeholder="vas@email.cz"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && handleEmailCapture()}
+                      className="text-sm"
+                    />
+                    <Button
+                      onClick={handleEmailCapture}
+                      size="sm"
+                      disabled={emailCaptureMutation.isPending}
+                      className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                    >
+                      {emailCaptureMutation.isPending ? "..." : "Odeslat"}
+                    </Button>
+                  </div>
+                </Card>
+              )}
 
-          {/* Suggested Questions */}
-          {messages.length === 1 && (
-            <div className="p-4 border-t bg-white">
-              <p className="text-xs font-semibold text-gray-600 mb-3 uppercase">Doporučené otázky:</p>
-              <div className="space-y-2">
-                {SUGGESTED_QUESTIONS.map((group, idx) => (
-                  <div key={idx}>
-                    <p className="text-xs text-gray-500 font-medium mb-1">{group.category}</p>
-                    <div className="space-y-1">
-                      {group.questions.map((question, qIdx) => (
+              {chatMutation.isPending && (
+                <div className="flex justify-start">
+                  <div className="bg-white shadow-md rounded-2xl px-4 py-3">
+                    <div className="flex gap-1">
+                      <div className="w-2 h-2 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: "0ms" }}></div>
+                      <div className="w-2 h-2 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: "150ms" }}></div>
+                      <div className="w-2 h-2 bg-purple-600 rounded-full animate-bounce" style={{ animationDelay: "300ms" }}></div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Suggested Questions - Categories or Questions */}
+            {messages.length === 1 && (
+              <div className="border-t bg-white overflow-y-auto p-4 max-h-48">
+                {!selectedCategory ? (
+                  <>
+                    <p className="text-xs font-semibold text-gray-600 mb-3 uppercase">Vyberte téma:</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {SUGGESTED_CATEGORIES.map((cat) => (
                         <button
-                          key={qIdx}
-                          onClick={() => {
-                            setInput(question);
-                            setTimeout(() => {
-                              const userMessage: Message = {
-                                role: "user",
-                                content: question,
-                                timestamp: new Date(),
-                              };
-                              setMessages((prev) => [...prev, userMessage]);
-                              const browsingContextText = getBrowsingContext();
-                              const browsingContext = {
-                                currentPage: window.location.pathname,
-                                referrer: document.referrer,
-                                timeOnSite: Math.floor((Date.now() - performance.timing.navigationStart) / 1000),
-                                browsingHistory: browsingContextText,
-                              };
-                              chatMutation.mutate({
-                                message: question,
-                                context: browsingContext,
-                                email: email || undefined,
-                              });
-                            }, 100);
-                          }}
-                          className="w-full text-left text-xs p-2 rounded bg-gray-100 hover:bg-purple-100 text-gray-700 hover:text-purple-700 transition-colors"
+                          key={cat.id}
+                          onClick={() => setSelectedCategory(cat.id)}
+                          className="p-3 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-purple-200 transition-all text-center"
                         >
-                          {question}
+                          <div className="text-2xl mb-1">{cat.icon}</div>
+                          <p className="text-xs font-medium text-gray-700">{cat.category}</p>
                         </button>
                       ))}
                     </div>
-                  </div>
-                ))}
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => setSelectedCategory(null)}
+                      className="text-xs text-purple-600 hover:text-purple-700 mb-3 flex items-center gap-1"
+                    >
+                      ← Zpět na témata
+                    </button>
+                    <p className="text-xs font-semibold text-gray-600 mb-3 uppercase">
+                      {SUGGESTED_CATEGORIES.find((c) => c.id === selectedCategory)?.category}
+                    </p>
+                    <div className="space-y-2">
+                      {SUGGESTED_CATEGORIES.find((c) => c.id === selectedCategory)?.questions.map(
+                        (question, qIdx) => (
+                          <button
+                            key={qIdx}
+                            onClick={() => {
+                              setInput(question);
+                              setTimeout(() => {
+                                const userMessage: Message = {
+                                  role: "user",
+                                  content: question,
+                                  timestamp: new Date(),
+                                };
+                                setMessages((prev) => [...prev, userMessage]);
+                                setSelectedCategory(null);
+                                const browsingContextText = getBrowsingContext();
+                                const browsingContext = {
+                                  currentPage: window.location.pathname,
+                                  referrer: document.referrer,
+                                  timeOnSite: Math.floor(
+                                    (Date.now() - performance.timing.navigationStart) / 1000
+                                  ),
+                                  browsingHistory: browsingContextText,
+                                };
+                                chatMutation.mutate({
+                                  message: question,
+                                  context: browsingContext,
+                                  email: email || undefined,
+                                });
+                              }, 100);
+                            }}
+                            className="w-full text-left text-xs p-2 rounded bg-gray-100 hover:bg-purple-100 text-gray-700 hover:text-purple-700 transition-colors"
+                          >
+                            {question}
+                          </button>
+                        )
+                      )}
+                    </div>
+                  </>
+                )}
               </div>
-            </div>
-          )}
+            )}
+          </div>
 
           {/* Input */}
-          <div className="p-4 border-t bg-white rounded-b-lg">
+          <div className="p-4 border-t bg-white rounded-b-lg flex-shrink-0">
             <div className="flex gap-2">
               <Input
                 value={input}

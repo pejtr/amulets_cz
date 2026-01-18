@@ -996,3 +996,17 @@
 - [ ] Uložit checkpoint
 
 ## Úprava navigace - video rozhovor z rostecky.cz (Jan 17, 2026)
+## Centrální User Database - Sdílení profilů mezi chatboty (Jan 17, 2026)
+- [x] Vytvořit tabulku shared_user_profiles v databázi
+- [x] Vytvořit tabulku user_interactions pro historii
+- [x] Implementovat API endpoint pro synchronizaci (sharedProfiles.ts)
+- [x] Integrovat chatbot s centrální databází
+- [x] Přidat psychologickou analýzu uživatele
+- [ ] Testovat sdílení dat mezi projekty
+- [ ] Uložit checkpoint
+
+## Chatbot Design - Inspirace z OHORAI (Jan 17, 2026)
+- [x] Aktualizovat AIChatAssistant - tlačítka s ikonami místo seznamu
+- [x] Přidat ikonky pro tematické okruhy
+- [x] Opravit scrollování - hierarchické otázky
+- [x] Uložit checkpoint
