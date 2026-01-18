@@ -1,9 +1,9 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const SUGGESTED_CATEGORIES = [
   {
     id: "amulets",
-    category: "Amulets & Symboly",
+    category: "Amulety & Symboly",
     icon: "💜",
     questions: [
       "Jaký amulet je vhodný pro ochranu?",
@@ -68,12 +68,36 @@ interface Message {
   timestamp: Date;
 }
 
+// A/B Testing variant type
+interface ChatbotVariant {
+  id: number;
+  variantKey: string;
+  name: string;
+  avatarUrl: string | null;
+  initialMessage: string | null;
+  personalityPrompt: string | null;
+  colorScheme: string | null;
+}
+
 export default function AIChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
+  const [variant, setVariant] = useState<ChatbotVariant | null>(null);
+  const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
+  const [visitorId] = useState(() => {
+    const stored = localStorage.getItem('amulets_visitor_id');
+    if (stored) return stored;
+    const newId = `visitor_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    localStorage.setItem('amulets_visitor_id', newId);
+    return newId;
+  });
+  
+  // Default initial message (will be replaced by variant)
+  const defaultInitialMessage = "Ahoj! 💜 Jsem Natálie z Amulets.cz. Jsem tu pro ty, kteří vědí, co chtějí - ať už je to správný amulet, porozumění svému potenciálu, nebo cesta k pravé svobodě. Ale víš co? Nejdříve mě poslouchej. Co tě sem přivedlo?";
+  
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Ahoj! 💜 Jsem Natálie z Amulets.cz. Jsem tu pro ty, kteří vědí, co chtějí - ať už je to správný amulet, porozumění svému potenciálu, nebo cesta k pravé svobodě. Ale víš co? Nejdříve mě poslouchej. Co tě sem přivedlo?",
+      content: defaultInitialMessage,
       timestamp: new Date(),
     },
   ]);
@@ -84,6 +108,57 @@ export default function AIChatAssistant() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { getBrowsingContext } = useBrowsing();
+
+  // A/B Testing - get random variant on mount
+  const { data: assignedVariant } = trpc.chatbotAB.getVariant.useQuery({ visitorId }, {
+    staleTime: Infinity, // Don't refetch
+    refetchOnWindowFocus: false,
+  });
+
+  // Start session mutation
+  const startSessionMutation = trpc.chatbotAB.startSession.useMutation();
+
+  // Log event mutation
+  const logEventMutation = trpc.chatbotAB.logEvent.useMutation();
+
+  // Update variant and initial message when assigned
+  useEffect(() => {
+    if (assignedVariant && !variant) {
+      setVariant(assignedVariant);
+      
+      // Update initial message with variant's message
+      if (assignedVariant.initialMessage) {
+        setMessages([{
+          role: "assistant",
+          content: assignedVariant.initialMessage,
+          timestamp: new Date(),
+        }]);
+      }
+
+      // Start session
+      startSessionMutation.mutate({
+        sessionId,
+        visitorId,
+        variantId: assignedVariant.id,
+        sourcePage: window.location.pathname,
+        referrer: document.referrer,
+        device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'mobile' : 'desktop',
+        browser: navigator.userAgent.split(' ').pop() || 'unknown',
+      });
+    }
+  }, [assignedVariant]);
+
+  // Log chat open event
+  useEffect(() => {
+    if (isOpen && variant) {
+      logEventMutation.mutate({
+        visitorId,
+        eventType: 'chat_opened',
+        variantId: variant.id,
+        page: window.location.pathname,
+      });
+    }
+  }, [isOpen, variant]);
 
   const chatMutation = trpc.chat.sendMessage.useMutation({
     onSuccess: (data: { response: string }) => {
@@ -190,29 +265,39 @@ export default function AIChatAssistant() {
 
   return (
     <>
-      {/* Chat Button */}
+      {/* Chat Button - Větší a pulzující */}
       {!isOpen && (
-        <Button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-2xl bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 z-50 p-0 overflow-hidden group"
-          aria-label="Otevřít chat s Natálií"
-        >
-          <div className="absolute inset-0 flex items-center justify-center">
-            <img
-              src="/natalie-avatar.png"
-              alt="Natálie"
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-600/80 to-pink-600/80 group-hover:from-purple-700/80 group-hover:to-pink-700/80 transition-colors duration-300" />
-          <MessageCircle className="relative z-10 h-8 w-8 text-white" />
+        <div className="fixed bottom-6 right-6 z-50">
+          {/* Pulzující kruhy pro urgenci */}
+          <span className="absolute inset-0 rounded-full animate-ping bg-purple-400 opacity-30" style={{ animationDuration: '2s' }}></span>
+          <span className="absolute inset-0 rounded-full animate-ping bg-pink-400 opacity-20" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }}></span>
           
-          {/* Pulsing indicator */}
-          <span className="absolute top-0 right-0 flex h-4 w-4">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-4 w-4 bg-green-500"></span>
-          </span>
-        </Button>
+          <Button
+            onClick={() => setIsOpen(true)}
+            className="relative h-20 w-20 rounded-full shadow-2xl bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 p-0 overflow-hidden group hover:scale-110 transition-transform duration-300"
+            aria-label="Otevřít chat s Natálií"
+          >
+            {/* Fotka Natálie - větší a viditelnější */}
+            <div className="absolute inset-1 rounded-full overflow-hidden border-2 border-white/50">
+              <img
+                src="/natalie-avatar.png"
+                alt="Natálie"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            
+            {/* Online indikátor - větší a pulzující */}
+            <span className="absolute top-0 right-0 flex h-5 w-5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-5 w-5 bg-green-500 border-2 border-white"></span>
+            </span>
+            
+            {/* Chat ikona - menší a v rohu */}
+            <span className="absolute bottom-0 left-0 bg-white rounded-full p-1 shadow-lg">
+              <MessageCircle className="h-4 w-4 text-purple-600" />
+            </span>
+          </Button>
+        </div>
       )}
 
       {/* Chat Window */}

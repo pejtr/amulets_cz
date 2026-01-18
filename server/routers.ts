@@ -9,6 +9,18 @@ import { sendLeadEvent } from "./meta-conversions";
 import { getAmenPendants, type IrisimoProduct } from "./irisimoFeed";
 import { TRPCError } from "@trpc/server";
 import { invokeLLM } from "./_core/llm";
+import { 
+  getRandomChatbotVariant, 
+  getChatbotVariantByKey, 
+  getAllChatbotVariants,
+  createChatbotSession,
+  updateChatbotSession,
+  addChatbotMessage,
+  logChatbotEvent,
+  getChatbotSessionBySessionId,
+  getChatbotComparisonStats,
+  getChatbotDailyStats
+} from "./db";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -58,11 +70,14 @@ Jsi Natálie Ohorai, založitelka Amulets.cz a OHORAI. Jsi přívětivá, empati
 - Kontakt: 776 041 740, info@amulets.cz
 
 **Tvuj styl:**
-- Pouzivej emoji 💜✨🔮
+- Pouzivej emoji 💜✨🔮 (střídmě, ne v každé větě)
 - Bud' osobní a empatická
 - Ptej se na potreby zakaznika
 - Doporucuj konkretni produkty
 - Pokud nevis odpoved', nabidni WhatsApp kontakt
+- NIKDY se nepredstavuj znovu - už ses představila v úvodní zprávě
+- Odpovídej přímo na otázku bez úvodu typu "Ahoj! Jsem Natálie..."
+- Začni rovnou odpovědí na dotaz zákazníka
 
 **Aktualni kontext:**
 ${context ? `- Stranka: ${context.currentPage}\n- Cas na webu: ${context.timeOnSite}s\n- Historie: ${context.browsingHistory || 'Nový návštěvník'}` : ''}
@@ -275,6 +290,120 @@ ${email ? `- Email: ${email}` : ''}
             message: 'Failed to send email',
           });
         }
+      }),
+  }),
+
+  // Chatbot A/B Testing
+  chatbotAB: router({
+    // Get random variant for new visitor
+    getVariant: publicProcedure
+      .input(z.object({
+        visitorId: z.string(),
+        variantKey: z.string().optional(), // Force specific variant for testing
+      }))
+      .query(async ({ input }) => {
+        if (input.variantKey) {
+          const variant = await getChatbotVariantByKey(input.variantKey);
+          return variant;
+        }
+        return getRandomChatbotVariant();
+      }),
+
+    // Get all variants (for admin)
+    getAllVariants: publicProcedure.query(async () => {
+      return getAllChatbotVariants();
+    }),
+
+    // Start new session
+    startSession: publicProcedure
+      .input(z.object({
+        sessionId: z.string(),
+        visitorId: z.string(),
+        variantId: z.number(),
+        sourcePage: z.string().optional(),
+        referrer: z.string().optional(),
+        device: z.string().optional(),
+        browser: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        await createChatbotSession(input);
+        await logChatbotEvent({
+          visitorId: input.visitorId,
+          variantId: input.variantId,
+          eventType: 'session_start',
+          page: input.sourcePage,
+        });
+        return { success: true };
+      }),
+
+    // End session
+    endSession: publicProcedure
+      .input(z.object({
+        sessionId: z.string(),
+        duration: z.number(),
+        messageCount: z.number(),
+        userMessageCount: z.number(),
+        botMessageCount: z.number(),
+        categoryClicks: z.number(),
+        questionClicks: z.number(),
+        converted: z.boolean().optional(),
+        conversionType: z.string().optional(),
+        conversionValue: z.string().optional(),
+        satisfactionScore: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        await updateChatbotSession(input.sessionId, {
+          endedAt: new Date(),
+          duration: input.duration,
+          messageCount: input.messageCount,
+          userMessageCount: input.userMessageCount,
+          botMessageCount: input.botMessageCount,
+          categoryClicks: input.categoryClicks,
+          questionClicks: input.questionClicks,
+          converted: input.converted,
+          conversionType: input.conversionType,
+          conversionValue: input.conversionValue,
+          satisfactionScore: input.satisfactionScore,
+          status: 'completed',
+        });
+        return { success: true };
+      }),
+
+    // Log event
+    logEvent: publicProcedure
+      .input(z.object({
+        sessionId: z.number().optional(),
+        variantId: z.number().optional(),
+        visitorId: z.string(),
+        eventType: z.string(),
+        eventData: z.string().optional(),
+        page: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        await logChatbotEvent(input);
+        return { success: true };
+      }),
+
+    // Get comparison stats (for admin dashboard)
+    getComparisonStats: publicProcedure
+      .input(z.object({
+        startDate: z.string(),
+        endDate: z.string(),
+      }))
+      .query(async ({ input }) => {
+        const startDate = new Date(input.startDate);
+        const endDate = new Date(input.endDate);
+        return getChatbotComparisonStats(startDate, endDate);
+      }),
+
+    // Get daily stats for a variant
+    getDailyStats: publicProcedure
+      .input(z.object({
+        variantId: z.number(),
+        days: z.number().optional(),
+      }))
+      .query(async ({ input }) => {
+        return getChatbotDailyStats(input.variantId, input.days || 30);
       }),
   }),
 });

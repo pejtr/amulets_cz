@@ -15,6 +15,13 @@
       "when": 1768695149013,
       "tag": "0001_shocking_stellaris",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1768698243250,
+      "tag": "0002_new_risque",
+      "breakpoints": true
     }
   ]
 }

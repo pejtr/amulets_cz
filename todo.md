@@ -1025,3 +1025,14 @@
 - [x] Zmenšit tlačítša s otázkami aby byla vidět všechny 5 kategorii
 - [x] Přesunout tlačítša hned pod text otázky v chat bubline
 - [x] Testovat na mobilu a desktopu
+
+
+## A/B Testování Chatbota Natálie - 4 verze (Jan 18, 2026)
+- [x] Vytvořit databázové schéma pro chatbot varianty a tracking
+- [x] Implementovat 4 verze osobnosti chatbota (Mladší Elegance, Mladší Mystická, Současná Vášeň, Současná Královna)
+- [x] Vytvořit systém automatického přiřazování verzí
+- [x] Implementovat tracking všech interakcí (sessions, messages, events)
+- [x] Vytvořit real-time performance dashboard (/admin/chatbot-ab)
+- [x] Přidat denní/týdenní reporty
+- [x] Integrovat do AIChatAssistant komponenty
+- [ ] Uložit checkpoint
