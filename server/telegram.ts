@@ -629,12 +629,18 @@ export async function generateCombinedDailyReport(): Promise<string> {
     ? (amuletsTotalConversions / amuletsTotalSessions) * 100
     : 0;
 
-  // TODO: Fetch OHORAI stats from shared API or database
-  // For now, placeholder - will be populated when OHORAI syncs
-  const ohoraiTotalSessions = 0;
-  const ohoraiTotalMessages = 0;
-  const ohoraiTotalConversions = 0;
-  const ohoraiConversionRate = 0;
+  // Fetch OHORAI stats from database
+  const { getOhoraiAggregatedStats, getLastSuccessfulOhoraiSync } = await import('./db');
+  const ohoraiStats = await getOhoraiAggregatedStats(yesterday);
+  const lastSync = await getLastSuccessfulOhoraiSync();
+  
+  const ohoraiTotalSessions = Number(ohoraiStats?.totalConversations || 0);
+  const ohoraiTotalMessages = Number(ohoraiStats?.totalMessages || 0);
+  const ohoraiTotalConversions = Number(ohoraiStats?.emailCaptures || 0) + Number(ohoraiStats?.affiliateClicks || 0);
+  const ohoraiConversionRate = ohoraiTotalSessions > 0 
+    ? (ohoraiTotalConversions / ohoraiTotalSessions) * 100
+    : 0;
+  const ohoraiHasData = ohoraiTotalSessions > 0 || lastSync !== null;
 
   // Combined totals
   const combinedSessions = amuletsTotalSessions + ohoraiTotalSessions;
@@ -666,13 +672,19 @@ export async function generateCombinedDailyReport(): Promise<string> {
 
   // OHORAI section
   report += `💎 <b>OHORAI MARKETPLACE</b>\n`;
-  if (ohoraiTotalSessions > 0) {
+  if (ohoraiHasData) {
     report += `├─ Konverzací: <b>${ohoraiTotalSessions}</b>\n`;
     report += `├─ Zpráv: <b>${ohoraiTotalMessages}</b>\n`;
     report += `├─ Konverzí: <b>${ohoraiTotalConversions}</b>\n`;
-    report += `└─ Konverzní poměr: <b>${ohoraiConversionRate.toFixed(2)}%</b>\n\n`;
+    report += `└─ Konverzní poměr: <b>${ohoraiConversionRate.toFixed(2)}%</b>\n`;
+    if (lastSync) {
+      const syncTime = new Date(lastSync.syncedAt).toLocaleTimeString('cs-CZ', { hour: '2-digit', minute: '2-digit' });
+      report += `    <i>🔄 Poslední sync: ${syncTime}</i>\n\n`;
+    } else {
+      report += `\n`;
+    }
   } else {
-    report += `└─ <i>Čekám na synchronizaci dat...</i>\n\n`;
+    report += `└─ <i>Čekám na první synchronizaci dat z OHORAI...</i>\n\n`;
   }
 
   // Combined totals

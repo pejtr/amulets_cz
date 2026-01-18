@@ -1242,8 +1242,8 @@
 ## OHORAI hodinová synchronizace (Jan 18, 2026)
 - [x] Vytvořit databázovou tabulku pro OHORAI statistiky (ohorai_stats, ohorai_sync_log)
 - [x] Implementovat API endpoint pro příjem dat z OHORAI (shared.syncStats)
-- [ ] Aktualizovat Telegram reporty pro použití synchronizovaných dat
-- [ ] Aktualizovat návod pro OHORAI implementaci
+- [x] Aktualizovat Telegram reporty pro použití synchronizovaných dat
+- [x] Aktualizovat návod pro OHORAI implementaci
 
 ## AMEN statický katalog (Jan 18, 2026)
 - [x] Vytvořit statický katalog AMEN produktů z Irisimo
@@ -1253,3 +1253,8 @@
 ## Oprava AMEN obrázků a OHORAI sync (Jan 18, 2026)
 - [x] Opravit URL obrázků AMEN produktů (lokální obrázky)
 - [x] Implementovat hodinovou synchronizaci pro OHORAI (databáze + API)
+
+## Finalizace OHORAI integrace (Jan 18, 2026)
+- [x] Aktualizovat /report v Telegramu pro reálná OHORAI data z databáze
+- [x] Připravit kompletní implementaci pro OHORAI stranu s cron jobem
+- [x] Stáhnout skutečné produktové obrázky AMEN z webu Irisimo
