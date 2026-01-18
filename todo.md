@@ -1108,3 +1108,11 @@
 - [x] Přidat možnost ruční odpovědi
 - [x] Přidat navigaci do admin menu (/admin/tickets)
 - [x] Uložit checkpoint
+
+## Vylepšení Admin Panelu Ticketů (Jan 18, 2026)
+- [x] Přidat filtrování ticketů podle data (od-do)
+- [x] Přidat vyhledávání podle klíčových slov v konverzaci
+- [x] Implementovat export ticketů do CSV souboru
+- [x] Vytvořit systém automatických odpovědí (FAQ šablony)
+- [x] Přidat FAQ panel do dialogu odpovědi
+- [x] Uložit checkpoint

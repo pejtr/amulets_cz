@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { 
   RefreshCw, 
@@ -17,7 +19,13 @@ import {
   CheckCircle,
   AlertCircle,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Download,
+  Search,
+  Calendar,
+  FileText,
+  Sparkles,
+  X
 } from "lucide-react";
 
 interface Ticket {
@@ -35,17 +43,130 @@ interface Ticket {
   createdAt: Date;
 }
 
+// FAQ šablony pro automatické odpovědi
+const FAQ_TEMPLATES = [
+  {
+    id: 'shipping',
+    title: '📦 Doprava a doručení',
+    response: `Dobrý den,
+
+děkuji za váš dotaz ohledně dopravy.
+
+**Možnosti doručení:**
+- Zásilkovna (výdejní místa): 79 Kč
+- Kurýr na adresu: 119 Kč
+- **Doprava zdarma** při objednávce nad 1 500 Kč
+
+**Doba doručení:**
+- Objednávky do 14:00 odesíláme tentýž den
+- Standardní doba doručení: 1-3 pracovní dny
+
+Pokud máte další dotazy, neváhejte se ozvat.
+
+S láskou,
+Natálie z Amulets.cz 💜`
+  },
+  {
+    id: 'returns',
+    title: '↩️ Vrácení a reklamace',
+    response: `Dobrý den,
+
+děkuji za váš dotaz.
+
+**Vrácení zboží:**
+- Máte 14 dní na vrácení bez udání důvodu
+- Zboží musí být nepoužité a v původním obalu
+- Peníze vracíme do 14 dnů od přijetí zásilky
+
+**Reklamace:**
+- Záruka 24 měsíců na všechny produkty
+- Kontaktujte nás na info@amulets.cz s popisem závady
+- Reklamaci vyřídíme do 30 dnů
+
+Jsem tu pro vás, pokud potřebujete pomoct.
+
+S láskou,
+Natálie z Amulets.cz 💜`
+  },
+  {
+    id: 'symbol_meaning',
+    title: '✨ Význam symbolů',
+    response: `Dobrý den,
+
+děkuji za váš zájem o spirituální symboly!
+
+Každý symbol má svůj jedinečný význam a energie. Doporučuji vám projít náš **Průvodce amulety** na webu, kde najdete detailní popis 33 posvátných symbolů.
+
+Můžete také zkusit náš **Kvíz: Tvůj symbol** - pomůže vám najít symbol, který rezonuje s vaší duší.
+
+Pokud hledáte konkrétní symbol pro specifický účel (ochrana, láska, prosperita...), ráda vám poradím osobně.
+
+S láskou,
+Natálie z Amulets.cz 💜`
+  },
+  {
+    id: 'blue_lotus',
+    title: '🪷 Modrý lotos',
+    response: `Dobrý den,
+
+děkuji za váš zájem o modrý lotos - posvátnou květinu egyptských mystérií!
+
+**Modrý lotos (Nymphaea caerulea)** byl v starověkém Egyptě považován za bránu k vyššímu vědomí. Používal se při meditacích a rituálech pro:
+- Hlubokou relaxaci a uvolnění
+- Posílení intuice a snů
+- Spojení s vyšším já
+
+**Naše produkty s modrým lotosem:**
+- Esenciální olej Blue Lotus
+- Aromaterapeutické směsi
+- Meditační svíčky
+
+Použijte kód **LOTOS10** pro 10% slevu na první nákup.
+
+S láskou,
+Natálie z Amulets.cz 💜`
+  },
+  {
+    id: 'custom_order',
+    title: '🎁 Zakázková výroba',
+    response: `Dobrý den,
+
+děkuji za váš zájem o zakázkovou výrobu!
+
+**Nabízíme:**
+- Personalizované orgonitové pyramidy
+- Amulety s vlastním výběrem kamenů
+- Gravírování symbolů na přání
+
+**Postup:**
+1. Napište mi vaše představy a přání
+2. Připravím návrh a cenovou kalkulaci
+3. Po schválení začneme s výrobou (7-14 dní)
+
+Ráda s vámi proberu všechny možnosti. Můžeme se spojit na WhatsApp: 776 041 740
+
+S láskou,
+Natálie z Amulets.cz 💜`
+  }
+];
+
 export default function AdminTickets() {
   const [activeTab, setActiveTab] = useState<'pending' | 'answered' | 'all'>('pending');
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
   const [responseText, setResponseText] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [expandedHistory, setExpandedHistory] = useState<number | null>(null);
+  
+  // Filtrování
+  const [searchQuery, setSearchQuery] = useState("");
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
+  const [showFaqPanel, setShowFaqPanel] = useState(false);
 
   // Fetch tickets
   const { data: ticketsData, isLoading, refetch } = trpc.chatbotAB.getAllTickets.useQuery({
     status: activeTab,
-    limit: 50,
+    limit: 100,
     offset: 0,
   });
 
@@ -63,9 +184,48 @@ export default function AdminTickets() {
     },
   });
 
+  // Filtrované tickety
+  const filteredTickets = useMemo(() => {
+    if (!ticketsData?.tickets) return [];
+    
+    return ticketsData.tickets.filter((ticket: Ticket) => {
+      // Filtr podle klíčových slov
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        const matchesName = ticket.name.toLowerCase().includes(query);
+        const matchesEmail = ticket.email.toLowerCase().includes(query);
+        const matchesMessage = ticket.message.toLowerCase().includes(query);
+        const matchesHistory = ticket.conversationHistory?.toLowerCase().includes(query);
+        
+        if (!matchesName && !matchesEmail && !matchesMessage && !matchesHistory) {
+          return false;
+        }
+      }
+      
+      // Filtr podle data od
+      if (dateFrom) {
+        const ticketDate = new Date(ticket.createdAt);
+        const fromDate = new Date(dateFrom);
+        fromDate.setHours(0, 0, 0, 0);
+        if (ticketDate < fromDate) return false;
+      }
+      
+      // Filtr podle data do
+      if (dateTo) {
+        const ticketDate = new Date(ticket.createdAt);
+        const toDate = new Date(dateTo);
+        toDate.setHours(23, 59, 59, 999);
+        if (ticketDate > toDate) return false;
+      }
+      
+      return true;
+    });
+  }, [ticketsData?.tickets, searchQuery, dateFrom, dateTo]);
+
   const handleOpenResponse = (ticket: Ticket) => {
     setSelectedTicket(ticket);
     setResponseText("");
+    setShowFaqPanel(false);
     setIsDialogOpen(true);
   };
 
@@ -77,6 +237,52 @@ export default function AdminTickets() {
       response: responseText,
       respondedBy: "admin",
     });
+  };
+
+  const handleUseFaqTemplate = (template: typeof FAQ_TEMPLATES[0]) => {
+    setResponseText(template.response);
+    setShowFaqPanel(false);
+    toast.success(`Šablona "${template.title}" byla vložena`);
+  };
+
+  const handleExportCSV = () => {
+    if (!filteredTickets.length) {
+      toast.error("Žádné tickety k exportu");
+      return;
+    }
+
+    // Připravit CSV data
+    const headers = ['ID', 'Datum', 'Jméno', 'Email', 'Dotaz', 'Status', 'Odpověď', 'Datum odpovědi'];
+    const rows = filteredTickets.map((ticket: Ticket) => [
+      ticket.id,
+      formatDate(ticket.createdAt),
+      ticket.name,
+      ticket.email,
+      `"${ticket.message.replace(/"/g, '""')}"`,
+      ticket.status,
+      ticket.response ? `"${ticket.response.replace(/"/g, '""')}"` : '',
+      ticket.respondedAt ? formatDate(ticket.respondedAt) : ''
+    ]);
+
+    const csvContent = [
+      headers.join(';'),
+      ...rows.map((row: (string | number)[]) => row.join(';'))
+    ].join('\n');
+
+    // Stáhnout soubor
+    const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `tickety_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+    
+    toast.success(`Exportováno ${filteredTickets.length} ticketů`);
+  };
+
+  const clearFilters = () => {
+    setSearchQuery("");
+    setDateFrom("");
+    setDateTo("");
   };
 
   const formatDate = (date: Date | string) => {
@@ -112,6 +318,8 @@ export default function AdminTickets() {
     }
   };
 
+  const hasActiveFilters = searchQuery || dateFrom || dateTo;
+
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="flex justify-between items-center mb-6">
@@ -119,11 +327,72 @@ export default function AdminTickets() {
           <h1 className="text-3xl font-bold">Správa Ticketů</h1>
           <p className="text-muted-foreground">Offline dotazy z chatbota</p>
         </div>
-        <Button onClick={() => refetch()} variant="outline" className="gap-2">
-          <RefreshCw className="w-4 h-4" />
-          Obnovit
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={handleExportCSV} variant="outline" className="gap-2">
+            <Download className="w-4 h-4" />
+            Export CSV
+          </Button>
+          <Button onClick={() => refetch()} variant="outline" className="gap-2">
+            <RefreshCw className="w-4 h-4" />
+            Obnovit
+          </Button>
+        </div>
       </div>
+
+      {/* Filtrování */}
+      <Card className="mb-6">
+        <CardContent className="pt-4">
+          <div className="flex flex-wrap gap-4 items-end">
+            <div className="flex-1 min-w-[200px]">
+              <label className="text-sm font-medium mb-1 block">Hledat</label>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  placeholder="Jméno, email, text dotazu..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-9"
+                />
+              </div>
+            </div>
+            <div className="w-[160px]">
+              <label className="text-sm font-medium mb-1 block">Od data</label>
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  type="date"
+                  value={dateFrom}
+                  onChange={(e) => setDateFrom(e.target.value)}
+                  className="pl-9"
+                />
+              </div>
+            </div>
+            <div className="w-[160px]">
+              <label className="text-sm font-medium mb-1 block">Do data</label>
+              <div className="relative">
+                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  type="date"
+                  value={dateTo}
+                  onChange={(e) => setDateTo(e.target.value)}
+                  className="pl-9"
+                />
+              </div>
+            </div>
+            {hasActiveFilters && (
+              <Button variant="ghost" onClick={clearFilters} className="gap-1">
+                <X className="w-4 h-4" />
+                Zrušit filtry
+              </Button>
+            )}
+          </div>
+          {hasActiveFilters && (
+            <p className="text-sm text-muted-foreground mt-2">
+              Nalezeno {filteredTickets.length} ticketů
+            </p>
+          )}
+        </CardContent>
+      </Card>
 
       <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as typeof activeTab)}>
         <TabsList className="mb-4">
@@ -149,16 +418,18 @@ export default function AdminTickets() {
             <div className="flex justify-center py-12">
               <RefreshCw className="w-8 h-8 animate-spin text-muted-foreground" />
             </div>
-          ) : !ticketsData?.tickets?.length ? (
+          ) : !filteredTickets.length ? (
             <Card>
               <CardContent className="py-12 text-center">
                 <MessageSquare className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-                <p className="text-muted-foreground">Žádné tickety k zobrazení</p>
+                <p className="text-muted-foreground">
+                  {hasActiveFilters ? 'Žádné tickety odpovídající filtrům' : 'Žádné tickety k zobrazení'}
+                </p>
               </CardContent>
             </Card>
           ) : (
             <div className="space-y-4">
-              {ticketsData.tickets.map((ticket: Ticket) => (
+              {filteredTickets.map((ticket: Ticket) => (
                 <Card key={ticket.id} className={ticket.status === 'pending' ? 'border-red-200 bg-red-50/50' : ''}>
                   <CardHeader className="pb-2">
                     <div className="flex justify-between items-start">
@@ -247,29 +518,62 @@ export default function AdminTickets() {
 
       {/* Response Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Odpovědět na dotaz</DialogTitle>
           </DialogHeader>
           
           {selectedTicket && (
-            <div className="space-y-4">
-              <div className="bg-muted/50 rounded-lg p-4">
-                <p className="font-medium text-sm mb-1">Od: {selectedTicket.name} ({selectedTicket.email})</p>
-                <p className="text-sm text-muted-foreground mb-2">{formatDate(selectedTicket.createdAt)}</p>
-                <p className="whitespace-pre-wrap">{selectedTicket.message}</p>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              {/* Hlavní obsah */}
+              <div className="lg:col-span-2 space-y-4">
+                <div className="bg-muted/50 rounded-lg p-4">
+                  <p className="font-medium text-sm mb-1">Od: {selectedTicket.name} ({selectedTicket.email})</p>
+                  <p className="text-sm text-muted-foreground mb-2">{formatDate(selectedTicket.createdAt)}</p>
+                  <p className="whitespace-pre-wrap">{selectedTicket.message}</p>
+                </div>
+
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <label className="text-sm font-medium">Vaše odpověď:</label>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      onClick={() => setShowFaqPanel(!showFaqPanel)}
+                      className="gap-1"
+                    >
+                      <Sparkles className="w-4 h-4" />
+                      {showFaqPanel ? 'Skrýt šablony' : 'FAQ šablony'}
+                    </Button>
+                  </div>
+                  <Textarea
+                    value={responseText}
+                    onChange={(e) => setResponseText(e.target.value)}
+                    placeholder="Napište odpověď zákazníkovi..."
+                    rows={10}
+                    className="resize-none"
+                  />
+                </div>
               </div>
 
-              <div>
-                <label className="text-sm font-medium mb-2 block">Vaše odpověď:</label>
-                <Textarea
-                  value={responseText}
-                  onChange={(e) => setResponseText(e.target.value)}
-                  placeholder="Napište odpověď zákazníkovi..."
-                  rows={6}
-                  className="resize-none"
-                />
-              </div>
+              {/* FAQ Panel */}
+              {showFaqPanel && (
+                <div className="lg:col-span-1 space-y-2">
+                  <p className="text-sm font-medium text-muted-foreground">Rychlé odpovědi:</p>
+                  {FAQ_TEMPLATES.map((template) => (
+                    <button
+                      key={template.id}
+                      onClick={() => handleUseFaqTemplate(template)}
+                      className="w-full text-left p-3 rounded-lg border hover:bg-muted/50 transition-colors"
+                    >
+                      <p className="font-medium text-sm">{template.title}</p>
+                      <p className="text-xs text-muted-foreground line-clamp-2 mt-1">
+                        {template.response.substring(0, 80)}...
+                      </p>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
