@@ -197,3 +197,69 @@ export const chatbotConversions = mysqlTable("chatbot_conversions", {
 
 export type ChatbotConversion = typeof chatbotConversions.$inferSelect;
 export type InsertChatbotConversion = typeof chatbotConversions.$inferInsert;
+
+// ============================================
+// OFFLINE TICKET SYSTEM
+// ============================================
+
+// Offline Tickets - dotazy zanechané mimo pracovní dobu
+export const chatbotTickets = mysqlTable("chatbot_tickets", {
+  id: int("id").autoincrement().primaryKey(),
+  visitorId: varchar("visitorId", { length: 64 }).notNull(),
+  variantId: int("variantId").references(() => chatbotVariants.id),
+  sessionId: int("sessionId").references(() => chatbotSessions.id),
+  
+  // Kontaktní údaje
+  name: varchar("name", { length: 100 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  phone: varchar("phone", { length: 20 }),
+  
+  // Dotaz
+  message: text("message").notNull(),
+  conversationHistory: text("conversationHistory"), // JSON string s historií konverzace
+  
+  // Status
+  status: mysqlEnum("status", ["pending", "processing", "answered", "closed"]).default("pending").notNull(),
+  priority: mysqlEnum("priority", ["low", "normal", "high", "urgent"]).default("normal").notNull(),
+  
+  // Odpověď
+  response: text("response"),
+  respondedAt: timestamp("respondedAt"),
+  respondedBy: varchar("respondedBy", { length: 100 }), // 'ai' nebo jméno operátora
+  
+  // Metadata
+  sourcePage: varchar("sourcePage", { length: 500 }),
+  device: varchar("device", { length: 20 }),
+  browser: varchar("browser", { length: 100 }),
+  
+  // Timestamps
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ChatbotTicket = typeof chatbotTickets.$inferSelect;
+export type InsertChatbotTicket = typeof chatbotTickets.$inferInsert;
+
+// Ticket Responses - historie odpovědí na ticket
+export const chatbotTicketResponses = mysqlTable("chatbot_ticket_responses", {
+  id: int("id").autoincrement().primaryKey(),
+  ticketId: int("ticketId").notNull().references(() => chatbotTickets.id, { onDelete: "cascade" }),
+  
+  // Odpověď
+  responseType: mysqlEnum("responseType", ["email", "chat", "internal_note"]).notNull(),
+  content: text("content").notNull(),
+  
+  // Odesílatel
+  senderType: mysqlEnum("senderType", ["ai", "operator", "customer"]).notNull(),
+  senderName: varchar("senderName", { length: 100 }),
+  
+  // Email tracking
+  emailSent: boolean("emailSent").default(false),
+  emailSentAt: timestamp("emailSentAt"),
+  emailOpenedAt: timestamp("emailOpenedAt"),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ChatbotTicketResponse = typeof chatbotTicketResponses.$inferSelect;
+export type InsertChatbotTicketResponse = typeof chatbotTicketResponses.$inferInsert;

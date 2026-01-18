@@ -79,8 +79,46 @@ interface ChatbotVariant {
   colorScheme: string | null;
 }
 
+// Helper function to check if chatbot is in offline hours (00:00 - 09:00 CET)
+function isOfflineHours(): boolean {
+  const now = new Date();
+  const hours = now.getHours();
+  return hours >= 0 && hours < 9;
+}
+
+// Helper function to check if it's time for goodnight message (23:45 - 23:59)
+function isGoodnightTime(): boolean {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  return hours === 23 && minutes >= 45;
+}
+
+// Goodnight message
+const GOODNIGHT_MESSAGE = `Milá duše, blíží se půlnoc a já se jdu nabíjet novými silami 🌙✨
+
+Děkuji ti za dnešní rozhovor. Až se probudim v 9:00 ráno, budu tu zase pro tebe.
+
+Přeji ti krásné sny plné světla a lásky. Dobrou noc! 💫💜
+
+~ Natálie`;
+
+// Offline message
+const OFFLINE_MESSAGE = `Dobrý den! 🌟
+
+Právě teď odpočívám a nabírám energii pro nový den.
+
+**Jsem tu pro vás každý den od 9:00 do 24:00.**
+
+Mezitím si můžete prohlédnout naše produkty nebo mi napsat na WhatsApp 📱
+
+Těším se na vás!
+~ Natálie`;
+
 export default function AIChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOffline, setIsOffline] = useState(isOfflineHours());
+  const [showGoodnightMessage, setShowGoodnightMessage] = useState(false);
   const [variant, setVariant] = useState<ChatbotVariant | null>(null);
   const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   const [visitorId] = useState(() => {
@@ -109,6 +147,13 @@ export default function AIChatAssistant() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { getBrowsingContext } = useBrowsing();
 
+  // Offline ticket form state
+  const [showTicketForm, setShowTicketForm] = useState(false);
+  const [ticketName, setTicketName] = useState("");
+  const [ticketEmail, setTicketEmail] = useState("");
+  const [ticketMessage, setTicketMessage] = useState("");
+  const [ticketSubmitted, setTicketSubmitted] = useState(false);
+
   // A/B Testing - get random variant on mount
   const { data: assignedVariant } = trpc.chatbotAB.getVariant.useQuery({ visitorId }, {
     staleTime: Infinity, // Don't refetch
@@ -123,6 +168,18 @@ export default function AIChatAssistant() {
 
   // Track conversion mutation
   const trackConversionMutation = trpc.chatbotAB.trackConversion.useMutation();
+
+  // Create ticket mutation
+  const createTicketMutation = trpc.chatbotAB.createTicket.useMutation({
+    onSuccess: () => {
+      setTicketSubmitted(true);
+      setShowTicketForm(false);
+      toast.success("Děkujeme! Natálie vám odpoví hned, jak bude k dispozici.");
+    },
+    onError: () => {
+      toast.error("Nepodařilo se odeslat dotaz. Zkuste to prosím znovu.");
+    },
+  });
 
   // Update variant and initial message when assigned
   useEffect(() => {
@@ -150,6 +207,31 @@ export default function AIChatAssistant() {
       });
     }
   }, [assignedVariant]);
+
+  // Check offline hours and goodnight time every minute
+  useEffect(() => {
+    const checkTime = () => {
+      setIsOffline(isOfflineHours());
+      
+      // Check for goodnight time
+      if (isGoodnightTime() && isOpen && !showGoodnightMessage) {
+        setShowGoodnightMessage(true);
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "assistant",
+            content: GOODNIGHT_MESSAGE,
+            timestamp: new Date(),
+          },
+        ]);
+      }
+    };
+    
+    checkTime(); // Check immediately
+    const interval = setInterval(checkTime, 60000); // Check every minute
+    
+    return () => clearInterval(interval);
+  }, [isOpen, showGoodnightMessage]);
 
   // Log chat open event
   useEffect(() => {
@@ -327,10 +409,10 @@ export default function AIChatAssistant() {
               />
             </div>
             
-            {/* Online indikátor - větší a pulzující */}
+            {/* Online/Offline indikátor */}
             <span className="absolute top-0 right-0 flex h-5 w-5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-5 w-5 bg-green-500 border-2 border-white"></span>
+              {!isOffline && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>}
+              <span className={`relative inline-flex rounded-full h-5 w-5 border-2 border-white ${isOffline ? 'bg-gray-400' : 'bg-green-500'}`}></span>
             </span>
             
             {/* Chat ikona - menší a v rohu */}
@@ -343,7 +425,7 @@ export default function AIChatAssistant() {
 
       {/* Chat Window */}
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-96 h-[600px] shadow-2xl z-50 flex flex-col">
+        <Card className="fixed bottom-6 right-6 w-[420px] h-[680px] shadow-2xl z-50 flex flex-col">
           {/* Header */}
           <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-t-lg flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
@@ -351,14 +433,16 @@ export default function AIChatAssistant() {
                 <img
                   src="/natalie-avatar.png"
                   alt="Natálie"
-                  className="w-12 h-12 rounded-full border-2 border-white object-cover"
+                  className="w-16 h-16 rounded-full border-2 border-white object-cover"
                 />
-                <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></span>
+                <span className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${isOffline ? 'bg-gray-400' : 'bg-green-400'}`}></span>
               </div>
               <div>
                 <h3 className="font-semibold text-lg">Natálie Ohorai</h3>
                 <p className="text-xs text-white/90 font-medium">Průvodkyně procesem</p>
-                <p className="text-xs text-white/70">Online • Odpovídám do 1 minuty</p>
+                <p className="text-xs text-white/70">
+                  {isOffline ? 'Offline • K dispozici od 9:00' : 'Online • Odpovídám do 1 minuty'}
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -395,7 +479,24 @@ export default function AIChatAssistant() {
           <div className="flex-1 overflow-hidden flex flex-col">
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-purple-50/30 to-pink-50/30">
-              {messages.map((message, index) => (
+              {/* Offline message */}
+              {isOffline && (
+                <div className="flex justify-start">
+                  <div className="max-w-[80%] rounded-2xl px-4 py-2 bg-white shadow-md text-gray-800">
+                    <Streamdown className="text-sm prose prose-sm max-w-none">
+                      {OFFLINE_MESSAGE}
+                    </Streamdown>
+                    <p className="text-xs mt-1 text-gray-500">
+                      {new Date().toLocaleTimeString("cs-CZ", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </p>
+                  </div>
+                </div>
+              )}
+              
+              {!isOffline && messages.map((message, index) => (
                 <div
                   key={index}
                   className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
@@ -547,26 +648,126 @@ export default function AIChatAssistant() {
 
           {/* Input */}
           <div className="p-4 border-t bg-white rounded-b-lg flex-shrink-0">
-            <div className="flex gap-2">
-              <Input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                placeholder="Napište zprávu..."
-                disabled={chatMutation.isPending}
-                className="flex-1"
-              />
-              <Button
-                onClick={handleSend}
-                disabled={!input.trim() || chatMutation.isPending}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-              >
-                <Send className="h-4 w-4" />
-              </Button>
-            </div>
-            <p className="text-xs text-gray-500 mt-2 text-center">
-              Powered by AI • Odpovědi mohou obsahovat chyby
-            </p>
+            {isOffline ? (
+              <div className="space-y-3">
+                {ticketSubmitted ? (
+                  <div className="text-center py-4">
+                    <div className="text-4xl mb-2">✅</div>
+                    <p className="text-sm font-medium text-gray-800">Děkujeme za váš dotaz!</p>
+                    <p className="text-xs text-gray-600 mt-1">
+                      Natálie vám odpoví emailem hned, jak bude k dispozici (9:00-24:00).
+                    </p>
+                  </div>
+                ) : showTicketForm ? (
+                  <div className="space-y-2">
+                    <p className="text-xs font-medium text-gray-700 text-center">
+                      📝 Zanechte svůj dotaz a Natálie vám odpoví emailem
+                    </p>
+                    <Input
+                      type="text"
+                      placeholder="Vaše jméno"
+                      value={ticketName}
+                      onChange={(e) => setTicketName(e.target.value)}
+                      className="text-sm"
+                    />
+                    <Input
+                      type="email"
+                      placeholder="Váš email"
+                      value={ticketEmail}
+                      onChange={(e) => setTicketEmail(e.target.value)}
+                      className="text-sm"
+                    />
+                    <textarea
+                      placeholder="Váš dotaz..."
+                      value={ticketMessage}
+                      onChange={(e) => setTicketMessage(e.target.value)}
+                      className="w-full text-sm p-2 border rounded-md resize-none h-20 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    />
+                    <div className="flex gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setShowTicketForm(false)}
+                        className="flex-1"
+                      >
+                        Zpět
+                      </Button>
+                      <Button
+                        size="sm"
+                        onClick={() => {
+                          if (!ticketName.trim() || !ticketEmail.trim() || !ticketMessage.trim()) {
+                            toast.error("Vyplňte prosím všechna pole");
+                            return;
+                          }
+                          createTicketMutation.mutate({
+                            visitorId,
+                            variantId: variant?.id,
+                            name: ticketName,
+                            email: ticketEmail,
+                            message: ticketMessage,
+                            conversationHistory: JSON.stringify(messages),
+                            sourcePage: window.location.pathname,
+                            device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'mobile' : 'desktop',
+                            browser: navigator.userAgent.split(' ').pop() || 'unknown',
+                          });
+                        }}
+                        disabled={createTicketMutation.isPending}
+                        className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                      >
+                        {createTicketMutation.isPending ? "Odesílám..." : "Odeslat dotaz"}
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center space-y-3">
+                    <p className="text-sm text-gray-600">
+                      🌙 Natálie teď odpočívá.
+                    </p>
+                    <Button
+                      onClick={() => setShowTicketForm(true)}
+                      className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+                    >
+                      📝 Zanechat dotaz
+                    </Button>
+                    <div className="text-xs text-gray-500">nebo</div>
+                    <Button
+                      variant="outline"
+                      onClick={handleWhatsAppEscalation}
+                      className="w-full border-green-500 text-green-600 hover:bg-green-50"
+                    >
+                      <Phone className="h-4 w-4 mr-2" />
+                      Napsat na WhatsApp
+                    </Button>
+                    <p className="text-xs text-gray-500">
+                      K dispozici každý den od 9:00 do 24:00
+                    </p>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <div className="flex gap-2">
+                  <Input
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                    placeholder="Napište zprávu..."
+                    disabled={chatMutation.isPending}
+                    className="flex-1"
+                  />
+                  <Button
+                    onClick={handleSend}
+                    disabled={!input.trim() || chatMutation.isPending}
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                  >
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </div>
+                <p className="text-xs text-gray-500 mt-2 text-center">
+                  Powered by AI • Odpovědi mohou obsahovat chyby
+                </p>
+              </>
+            )}
           </div>
         </Card>
       )}

@@ -1,6 +1,6 @@
 import { eq, and, gte, lte, sql, desc, sum, avg, count } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, chatbotVariants, chatbotSessions, chatbotMessages, chatbotEvents, chatbotDailyStats, chatbotConversions } from "../drizzle/schema";
+import { InsertUser, users, chatbotVariants, chatbotSessions, chatbotMessages, chatbotEvents, chatbotDailyStats, chatbotConversions, chatbotTickets, chatbotTicketResponses } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -445,4 +445,164 @@ export async function getChatbotConversionFunnel(variantId: number, startDate: D
     engagedSessions: engagedResult?.total || 0,
     conversions: conversionsByType,
   };
+}
+
+
+// ============================================
+// OFFLINE TICKET SYSTEM HELPERS
+// ============================================
+
+// Create a new ticket
+export async function createChatbotTicket(data: {
+  visitorId: string;
+  variantId?: number;
+  sessionId?: number;
+  name: string;
+  email: string;
+  phone?: string;
+  message: string;
+  conversationHistory?: string;
+  sourcePage?: string;
+  device?: string;
+  browser?: string;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db.insert(chatbotTickets).values({
+    visitorId: data.visitorId,
+    variantId: data.variantId,
+    sessionId: data.sessionId,
+    name: data.name,
+    email: data.email,
+    phone: data.phone,
+    message: data.message,
+    conversationHistory: data.conversationHistory,
+    sourcePage: data.sourcePage,
+    device: data.device,
+    browser: data.browser,
+    status: 'pending',
+    priority: 'normal',
+  });
+  
+  return result;
+}
+
+// Get ticket by ID
+export async function getChatbotTicketById(ticketId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [ticket] = await db.select().from(chatbotTickets).where(eq(chatbotTickets.id, ticketId));
+  return ticket;
+}
+
+// Get pending tickets
+export async function getPendingChatbotTickets() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select()
+    .from(chatbotTickets)
+    .where(eq(chatbotTickets.status, 'pending'))
+    .orderBy(desc(chatbotTickets.createdAt));
+}
+
+// Update ticket status
+export async function updateChatbotTicketStatus(ticketId: number, status: 'pending' | 'processing' | 'answered' | 'closed') {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db.update(chatbotTickets)
+    .set({ status })
+    .where(eq(chatbotTickets.id, ticketId));
+  
+  return result;
+}
+
+// Add response to ticket
+export async function addChatbotTicketResponse(data: {
+  ticketId: number;
+  responseType: 'email' | 'chat' | 'internal_note';
+  content: string;
+  senderType: 'ai' | 'operator' | 'customer';
+  senderName?: string;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db.insert(chatbotTicketResponses).values({
+    ticketId: data.ticketId,
+    responseType: data.responseType,
+    content: data.content,
+    senderType: data.senderType,
+    senderName: data.senderName,
+    emailSent: false,
+  });
+  
+  return result;
+}
+
+// Mark ticket as answered with response
+export async function answerChatbotTicket(ticketId: number, response: string, respondedBy: string = 'ai') {
+  const db = await getDb();
+  if (!db) return null;
+  
+  // Update ticket
+  await db.update(chatbotTickets)
+    .set({
+      status: 'answered',
+      response,
+      respondedAt: new Date(),
+      respondedBy,
+    })
+    .where(eq(chatbotTickets.id, ticketId));
+  
+  // Add response record
+  await addChatbotTicketResponse({
+    ticketId,
+    responseType: 'email',
+    content: response,
+    senderType: respondedBy === 'ai' ? 'ai' : 'operator',
+    senderName: respondedBy,
+  });
+  
+  return true;
+}
+
+// Get ticket responses
+export async function getChatbotTicketResponses(ticketId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select()
+    .from(chatbotTicketResponses)
+    .where(eq(chatbotTicketResponses.ticketId, ticketId))
+    .orderBy(chatbotTicketResponses.createdAt);
+}
+
+// Get tickets by visitor
+export async function getChatbotTicketsByVisitor(visitorId: string) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select()
+    .from(chatbotTickets)
+    .where(eq(chatbotTickets.visitorId, visitorId))
+    .orderBy(desc(chatbotTickets.createdAt));
+}
+
+// Mark email as sent
+export async function markTicketEmailSent(responseId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db.update(chatbotTicketResponses)
+    .set({
+      emailSent: true,
+      emailSentAt: new Date(),
+    })
+    .where(eq(chatbotTicketResponses.id, responseId));
+  
+  return result;
 }

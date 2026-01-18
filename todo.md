@@ -1065,3 +1065,20 @@
 ## Oprava genderově neutrálního textu v chatbotu (Jan 18, 2026)
 - [x] Změnit "k sobě samé" na "k sobě" v úvodní zprávě chatbota
 - [x] Přidat titul "Průvodkyně procesem" pod jméno Natálie Ohorai
+
+## Offline režim chatbota (Jan 18, 2026)
+- [x] Přidat rozloučení před půlnocí (23:45-23:59)
+- [x] Nastavit offline režim od 00:00 do 09:00
+- [x] Zobrazit informaci o pracovní době v offline režimu
+- [x] Přidat WhatsApp tlačítko v offline režimu
+- [x] Změnit online indikátor na šedý v offline režimu
+
+## Offline Ticket Systém pro Chatbota (Jan 18, 2026)
+- [x] Vytvořit databázové schéma pro tickety (chatbot_tickets tabulka)
+- [x] Implementovat API endpoint pro vytvoření ticketu
+- [x] Vytvořit formulář pro zanechání dotazu (jméno, email, zpráva)
+- [x] Uložit historii konverzace k ticketu
+- [x] Implementovat automatickou emailovou odpověď v pracovní době (9:00-24:00)
+- [x] Personalizovat odpověď na základě historie konverzace (LLM)
+- [x] Uložit kopii odpovědi do historie chatbota
+- [x] Uložit checkpoint

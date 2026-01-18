@@ -23,7 +23,12 @@ import {
   trackChatbotConversion,
   getChatbotConversionStats,
   getChatbotAffiliateStats,
-  getChatbotConversionFunnel
+  getChatbotConversionFunnel,
+  createChatbotTicket,
+  getChatbotTicketById,
+  getPendingChatbotTickets,
+  answerChatbotTicket,
+  getChatbotTicketsByVisitor
 } from "./db";
 
 export const appRouter = router({
@@ -466,6 +471,68 @@ ${email ? `- Email: ${email}` : ''}
         const startDate = new Date(input.startDate);
         const endDate = new Date(input.endDate);
         return getChatbotConversionFunnel(input.variantId, startDate, endDate);
+      }),
+
+    // ============================================
+    // OFFLINE TICKET SYSTEM
+    // ============================================
+
+    // Create a new ticket (for offline hours)
+    createTicket: publicProcedure
+      .input(z.object({
+        visitorId: z.string(),
+        variantId: z.number().optional(),
+        sessionId: z.number().optional(),
+        name: z.string().min(1),
+        email: z.string().email(),
+        phone: z.string().optional(),
+        message: z.string().min(1),
+        conversationHistory: z.string().optional(),
+        sourcePage: z.string().optional(),
+        device: z.string().optional(),
+        browser: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const result = await createChatbotTicket(input);
+        if (!result) {
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to create ticket' });
+        }
+        return { success: true, ticketId: result.insertId };
+      }),
+
+    // Get ticket by ID
+    getTicket: publicProcedure
+      .input(z.object({ ticketId: z.number() }))
+      .query(async ({ input }) => {
+        return getChatbotTicketById(input.ticketId);
+      }),
+
+    // Get tickets by visitor
+    getVisitorTickets: publicProcedure
+      .input(z.object({ visitorId: z.string() }))
+      .query(async ({ input }) => {
+        return getChatbotTicketsByVisitor(input.visitorId);
+      }),
+
+    // Get pending tickets (admin)
+    getPendingTickets: publicProcedure
+      .query(async () => {
+        return getPendingChatbotTickets();
+      }),
+
+    // Answer a ticket (admin or AI)
+    answerTicket: publicProcedure
+      .input(z.object({
+        ticketId: z.number(),
+        response: z.string().min(1),
+        respondedBy: z.string().default('ai'),
+      }))
+      .mutation(async ({ input }) => {
+        const result = await answerChatbotTicket(input.ticketId, input.response, input.respondedBy);
+        if (!result) {
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to answer ticket' });
+        }
+        return { success: true };
       }),
   }),
 });
