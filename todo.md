@@ -1190,3 +1190,7 @@
 - [x] Přidat jemné třpytky/hvězdičky plovoucí přes obrázek
 - [x] Přidat pulzující záři nebo světelné efekty
 - [x] Přidat světelné paprsky na desktopu
+
+
+## Zelený gradient notifikace
+- [x] Přidat jemný zelený nádech do notifikace Nedávno zakoupeno

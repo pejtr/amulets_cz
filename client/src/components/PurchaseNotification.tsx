@@ -70,9 +70,9 @@ export default function PurchaseNotification() {
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
     >
-      <div className="bg-white rounded-lg shadow-2xl border border-border p-4 max-w-sm flex items-start gap-3">
+      <div className="bg-gradient-to-br from-white via-white to-emerald-50/60 rounded-lg shadow-2xl border border-emerald-100/50 p-4 max-w-sm flex items-start gap-3">
         {/* Product Image */}
-        <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-gradient-to-br from-primary/10 to-primary/5">
+        <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-gradient-to-br from-emerald-50 to-emerald-100/50">
           <img
             src={currentPurchase.productImage}
             alt={currentPurchase.product}
@@ -85,7 +85,7 @@ export default function PurchaseNotification() {
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2 mb-1">
             <div className="flex items-center gap-1.5">
-              <ShoppingBag className="h-4 w-4 text-[#D4AF37] flex-shrink-0" />
+              <ShoppingBag className="h-4 w-4 text-emerald-600 flex-shrink-0" />
               <p className="text-sm font-semibold text-foreground">
                 Nedávno zakoupeno
               </p>
