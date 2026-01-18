@@ -354,11 +354,11 @@ export default function AIChatAssistant() {
                         <button
                           key={cat.id}
                           onClick={() => setSelectedCategory(cat.id)}
-                          className="p-2 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-purple-200 transition-all text-center flex flex-col items-center justify-center"
+                          className="p-2 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-purple-200 transition-all text-center flex flex-col items-center justify-center h-20"
                           title={cat.category}
                         >
                           <div className="text-lg mb-0.5">{cat.icon}</div>
-                          <p className="text-xs font-medium text-gray-700 line-clamp-2">{cat.category}</p>
+                          <p className="text-xs font-medium text-gray-700 break-words">{cat.category}</p>
                         </button>
                       ))}
                     </div>
