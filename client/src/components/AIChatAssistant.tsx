@@ -426,6 +426,25 @@ Co tě dnes přivádí?`;
     }
   };
 
+  // Emit chat open/close events for PromoBanner
+  useEffect(() => {
+    if (isOpen) {
+      window.dispatchEvent(new Event('chatOpen'));
+    } else {
+      window.dispatchEvent(new Event('chatClose'));
+    }
+  }, [isOpen]);
+
+  // Scroll to bottom when messages change, but ensure first message is fully visible
+  useEffect(() => {
+    if (messages.length > 0) {
+      // Use setTimeout to ensure DOM is updated
+      setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 100);
+    }
+  }, [messages]);
+
   return (
     <>
       {/* Chat Button - Větší a pulzující */}

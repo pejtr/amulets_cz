@@ -1298,3 +1298,14 @@
 - [x] Vytvořit sekci "Náramky Love"
 - [x] Vytvořit sekci "Náramky Tennis"
 - [x] Implementovat rotující banner pro každou sekci
+
+## Mobilní UX opravy - Chat a Sticky reklama (Jan 18, 2026)
+- [x] Opravit sticky reklamu na mobilu - nesmí překrývat chat s Natálií
+- [x] Přidat padding-bottom když je chat otevřený
+- [x] Opravit scroll pozici první zprávy v chatu - musí být celá viditelná ve viewportu
+- [x] Otestovat na mobilu
+## Telegram /report - Empatická analýza duší (Jan 18, 2026)
+- [x] Přidat emoce do /report zprávy (radost, soucit, nadšení)
+- [x] Přidat lidské shrnutí na konec - co to znamená pro duše návštěvníků
+- [x] Přidat hlubší ponor do zajímavých případů - proč lidé hledají symboly, po čem touží
+- [x] Natálie jako spirituaální psycholožka - čísla vidí, ale zajímá ji duše za nimi
