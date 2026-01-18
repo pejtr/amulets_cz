@@ -19,7 +19,7 @@ const SUGGESTED_CATEGORIES = [
     id: "material",
     stream: "hmotne", // pro tracking - produkty, prodej
     category: "Amulety & Produkty",
-    icon: "💜",
+    icon: "✝️", // Irský kříž (jako v hero sekci)
     description: "Najdi svůj amulet nebo kámen",
     questions: [
       "Jaký amulet je vhodný pro mě?",
@@ -31,7 +31,7 @@ const SUGGESTED_CATEGORIES = [
     id: "useful",
     stream: "uzitecne", // pro tracking - služby, kurzy, horoskop
     category: "Služby & Kurzy",
-    icon: "🌟",
+    icon: "💜", // Fialové srdce (přesunuto z prostřední pozice)
     description: "Horoskop, kurzy, konzultace",
     questions: [
       "Jaké je moje zvířátko v čínském horoskopu?",

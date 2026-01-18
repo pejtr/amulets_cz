@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, boolean, decimal } from "drizzle-orm/mysql-core";
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, boolean, decimal, date } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -481,3 +481,68 @@ export const affiliateClicks = mysqlTable("affiliate_clicks", {
 
 export type AffiliateClick = typeof affiliateClicks.$inferSelect;
 export type InsertAffiliateClick = typeof affiliateClicks.$inferInsert;
+
+// ============================================================================
+// Centralized Reporting System
+// ============================================================================
+
+// Project Stats - denní statistiky z jednotlivých projektů
+export const projectStats = mysqlTable("project_stats", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  projectId: varchar("projectId", { length: 50 }).notNull(),
+  projectName: varchar("projectName", { length: 100 }).notNull(),
+  date: date("date").notNull(),
+  
+  // Traffic metrics
+  pageViews: int("pageViews").default(0).notNull(),
+  uniqueVisitors: int("uniqueVisitors").default(0).notNull(),
+  sessions: int("sessions").default(0).notNull(),
+  avgSessionDuration: int("avgSessionDuration").default(0).notNull(), // seconds
+  bounceRate: int("bounceRate").default(0).notNull(), // percentage * 100
+  
+  // Chatbot metrics
+  chatSessions: int("chatSessions").default(0),
+  chatMessages: int("chatMessages").default(0),
+  chatConversions: int("chatConversions").default(0),
+  
+  // Conversion metrics
+  emailCaptures: int("emailCaptures").default(0),
+  affiliateClicks: int("affiliateClicks").default(0),
+  purchases: int("purchases").default(0),
+  revenue: int("revenue").default(0), // in CZK * 100 (haléře)
+  
+  // JSON data
+  topPages: text("topPages"), // JSON array
+  topCountries: text("topCountries"), // JSON array
+  customEvents: text("customEvents"), // JSON object
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ProjectStats = typeof projectStats.$inferSelect;
+export type InsertProjectStats = typeof projectStats.$inferInsert;
+
+// Project Stats Aggregated - agregované denní statistiky (cache)
+export const projectStatsAggregated = mysqlTable("project_stats_aggregated", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  date: date("date").notNull(),
+  
+  // Aggregated totals
+  totalPageViews: int("totalPageViews").default(0).notNull(),
+  totalUniqueVisitors: int("totalUniqueVisitors").default(0).notNull(),
+  totalSessions: int("totalSessions").default(0).notNull(),
+  totalChatSessions: int("totalChatSessions").default(0).notNull(),
+  totalChatMessages: int("totalChatMessages").default(0).notNull(),
+  totalConversions: int("totalConversions").default(0).notNull(),
+  totalRevenue: int("totalRevenue").default(0).notNull(), // in CZK * 100
+  
+  // Projects data (JSON)
+  projectsData: text("projectsData").notNull(), // JSON array of ProjectStats
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ProjectStatsAggregated = typeof projectStatsAggregated.$inferSelect;
+export type InsertProjectStatsAggregated = typeof projectStatsAggregated.$inferInsert;

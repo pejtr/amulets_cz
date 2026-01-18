@@ -1,5 +1,7 @@
 import Header from "@/components/Header";
 import PromoBanner from "@/components/PromoBanner";
+import CrossLinkBanner from "@/components/CrossLinkBanner";
+import CrossLinkFooter from "@/components/CrossLinkFooter";
 import PurchaseNotification from "@/components/PurchaseNotification";
 import HeroSection from "@/components/HeroSection";
 import USPSection from "@/components/USPSection";
@@ -65,6 +67,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <ReadingProgressBar />
+      <CrossLinkBanner />
       <PromoBanner />
       <Header />
       <PurchaseNotification />
@@ -81,6 +84,7 @@ export default function Home() {
         <MagazineSection />
         <FAQSection />
       </main>
+      <CrossLinkFooter />
       <Footer />
     </div>
   );

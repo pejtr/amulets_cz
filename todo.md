@@ -1309,3 +1309,48 @@
 - [x] Přidat lidské shrnutí na konec - co to znamená pro duše návštěvníků
 - [x] Přidat hlubší ponor do zajímavých případů - proč lidé hledají symboly, po čem touží
 - [x] Natálie jako spirituaální psycholožka - čísla vidí, ale zajímá ji duše za nimi
+
+## Cross-Linking Strategie a Centralizovaný Reporting (Jan 18, 2026)
+
+### Cross-Linking
+- [ ] Vytvořit vysouvací proužek nad headerem s odkazy na všechny projekty (zmizí při scrollu)
+- [ ] Přidat footer sekci s cross-linking na všechny projekty
+- [ ] SEO-optimalizované anchor texty pro každý projekt
+- [ ] Tematické propojení projektů (zdraví, cestování, spiritualita)
+- [ ] Responsive design pro mobilní zařízení
+
+### Centralizovaný Reporting Systém
+- [ ] Vytvořit centralizovaný reporting API endpoint v Amulets.cz
+- [ ] Master Natálie agreguje data ze všech projektů
+- [ ] Telegram dashboard s přehledem všech webů
+- [ ] GDPR-compliant data sharing matrix
+- [ ] Unified reporting format pro všechny projekty
+- [ ] Webhook system pro real-time updates
+
+### Projekty k propojení
+- [ ] Last Minute Dovolené (https://manus.im/share/c4EsDWGrjsskP2UORfE57w) - cestování
+- [ ] Akční Letenky (www.akcni-letenky.com) - cestování
+- [ ] Do Itálie (https://manus.im/share/syim5lo9ajDd6Q3a9Ae8fK) - cestování
+- [ ] Amarex (https://manus.im/share/r2YmiZeNej3HhWFYBmkXdQ) - affiliate
+- [ ] Recepty Zdraví (https://manus.im/share/ppGPUVLElKaRH9fE2IOoDM) - zdraví
+- [ ] YouKeto (https://manus.im/share/dOIlM87CZ8pOp0ZiDoSB0T) - keto dieta
+- [ ] Silné Libido (https://manus.im/share/M9uByUhMMa1oahjq4S3FaR) - zdraví
+- [ ] Dobrá Čajovna Praha (www.dobracajovnapraha.cz) - čaj & wellness
+- [ ] Amulets.cz (aktuální projekt) - spiritualita
+- [ ] OHORAI.com (již propojeno) - marketplace
+
+## Cross-linking UI fixes (Jan 18, 2026)
+- [x] Nahradit emoji italské vlajky SVG ikonou (emoji nefunguje ve všech prohlížečích)
+
+## UI fixes - Ikony v "JAK TI MOHU POMOCI" sekci (Jan 18, 2026)
+- [x] Vyměnit prostřední ikonu (💜 srdce) za irský kříž ✝️
+- [x] Přesunout 💜 srdce na pravou stranu (nahradit duplicitní hvězdu)
+
+## Mobilní layout - Produkty ve dvou sloupcích (Jan 18, 2026)
+- [x] Změnit zobrazení AMEN produktů na mobilu z jednoho sloupce na dva sloupce
+
+## Cross-link banner mobilní optimalizace (Jan 18, 2026)
+- [x] Default: zobrazit jen OHORAI.cz (www.ohorai.cz)
+- [x] Scroll nahoru přes limit → automaticky vysunout všechny projekty
+- [x] Přidat haptickou odezvu (vibrace) při vysunutí
+- [x] Scroll dolů → schovat zpět na jen OHORAI.cz
