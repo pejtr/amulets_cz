@@ -1010,3 +1010,13 @@
 - [x] Přidat ikonky pro tematické okruhy
 - [x] Opravit scrollování - hierarchické otázky
 - [x] Uložit checkpoint
+
+## Brevo Email Kampaňě + Stránka Privěsky (Jan 17, 2026)
+- [x] Vytvořit stránku /privěsky-amen s affiliate produkty z Irisimo.cz
+- [x] Přidat filtry (druh, cena, účel) a detailní popisy
+- [x] Implementovat Brevo API pro email kampaně
+- [x] Vytvořit email šablony pro cross-promotion (Amulets → OHORAI, OHORAI → Amulets)
+- [x] Vytvořit tRPC mutation (email.sendCampaignEmail)
+- [x] Vytvořit admin panel (/admin/campaigns) pro testování emailů
+- [x] Vytvořit Brevo automation workflows dokumentaci
+- [ ] Uložit checkpoint

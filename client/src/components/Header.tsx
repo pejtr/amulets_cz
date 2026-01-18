@@ -21,6 +21,7 @@ const navItems = [
   { label: "Aromaterapie", hasDropdown: true, url: "https://www.ohorai.cz/esence/" },
   { label: "O nás", hasDropdown: false, url: "/o-nas", isInternal: true },
   { label: "Magazín", hasDropdown: false, url: "/magazin", isInternal: true },
+  { label: "Privěsky AMEN", hasDropdown: false, url: "/privěsky-amen", isInternal: true },
   { label: "Kontakt", hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },
 ];
 

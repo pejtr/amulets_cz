@@ -106,6 +106,90 @@ export async function sendBrevoEmail(params: BrevoEmailParams): Promise<boolean>
 /**
  * Send welcome email with discount code
  */
+/**
+ * Email templates for cross-promotion
+ */
+export const emailTemplates = {
+  // Amulets → OHORAI
+  amuletToOhorai: {
+    subject: "Objevte Prémiovou Kolekci OHORAI - Exkluzivní Nabídka",
+    htmlContent: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h1 style="color: #8B4789; text-align: center;">Objevte OHORAI</h1>
+        <p>Milá {{firstName}},</p>
+        <p>Jako milovnice spirituálních symbolů a přírodních energií, budeme vás zajímat naše partnerská kolekce <strong>OHORAI</strong>.</p>
+        <p>OHORAI nabízí:</p>
+        <ul>
+          <li>🔮 Autentické krystaly a drahé kameny</li>
+          <li>✨ Energetické pyramidy a orgonity</li>
+          <li>🌿 Aromaterapeutické esence</li>
+          <li>💎 Prémiové šperky s symbolikou</li>
+        </ul>
+        <p style="text-align: center; margin-top: 30px;">
+          <a href="https://www.ohorai.cz/?utm_source=amulets&utm_medium=email&utm_campaign=cross_promo" style="background-color: #8B4789; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; display: inline-block;">
+            Prozkoumat OHORAI
+          </a>
+        </p>
+        <p style="color: #666; font-size: 12px; text-align: center; margin-top: 30px;">
+          Sleva 15% na první nákup: <strong>AMULETS15</strong>
+        </p>
+      </div>
+    `,
+  },
+
+  // OHORAI → Amulets
+  ohoraiToAmulets: {
+    subject: "Objevte Spirituální Symboly - Nová Kolekce Amulets.cz",
+    htmlContent: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h1 style="color: #E91E63; text-align: center;">Amulets.cz - Vaše Spirituální Průvodce</h1>
+        <p>Milá {{firstName}},</p>
+        <p>Jako znalkyně energií a spirituálních praktik, vás zveme do světa <strong>Amulets.cz</strong>.</p>
+        <p>Objevte:</p>
+        <ul>
+          <li>🎁 33 posvátných symbolů s detailními průvodci</li>
+          <li>💎 Průvodce drahými kameny a jejich účinky</li>
+          <li>🔮 Čínský horoskop a předpovědi</li>
+          <li>📚 Magazín o ezoterice a spiritualitě</li>
+        </ul>
+        <p style="text-align: center; margin-top: 30px;">
+          <a href="https://www.amulets.cz/?utm_source=ohorai&utm_medium=email&utm_campaign=cross_promo" style="background-color: #E91E63; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; display: inline-block;">
+            Prozkoumat Amulets.cz
+          </a>
+        </p>
+        <p style="color: #666; font-size: 12px; text-align: center; margin-top: 30px;">
+          Sleva 20% na privěsky AMEN: <strong>OHORAI20</strong>
+        </p>
+      </div>
+    `,
+  },
+
+  // VIP customers special offer
+  vipOffer: {
+    subject: "Exkluzivní Nabídka pro VIP Zákazníky - Amulets & OHORAI",
+    htmlContent: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h1 style="color: #FFD700; text-align: center;">🌟 VIP Exkluzivní Nabídka 🌟</h1>
+        <p>Milá {{firstName}},</p>
+        <p>Jako náš VIP zákazník, máte přístup k exkluzivní nabídce:</p>
+        <p style="background-color: #f5f5f5; padding: 15px; border-left: 4px solid #FFD700;">
+          <strong>30% sleva</strong> na všechny produkty Amulets.cz a OHORAI<br>
+          <strong>Bezplatná doprava</strong> na objednávky nad 500 Kč<br>
+          <strong>Prioritní zákaznický servis</strong>
+        </p>
+        <p style="text-align: center; margin-top: 30px;">
+          <a href="https://www.amulets.cz/privěsky-amen?utm_source=vip&utm_medium=email&utm_campaign=vip_offer" style="background-color: #FFD700; color: #333; padding: 12px 30px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
+            Koupit Nyní
+          </a>
+        </p>
+        <p style="color: #666; font-size: 12px; text-align: center; margin-top: 30px;">
+          Kód: <strong>VIP30</strong> (Platnost do {{expiryDate}})
+        </p>
+      </div>
+    `,
+  },
+};
+
 export async function sendDiscountWelcomeEmail(
   email: string,
   discountCode: string = "OHORAI11"

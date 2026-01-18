@@ -241,6 +241,41 @@ ${email ? `- Email: ${email}` : ''}
         
         return { success: true };
       }),
+
+    sendCampaignEmail: publicProcedure
+      .input(z.object({
+        email: z.string().email(),
+        campaignType: z.enum(['amuletToOhorai', 'ohoraiToAmulets', 'vipOffer']),
+        firstName: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        try {
+          const { sendBrevoEmail, emailTemplates } = await import('./brevo');
+          const template = emailTemplates[input.campaignType as keyof typeof emailTemplates];
+          
+          if (!template) {
+            throw new Error('Invalid campaign type');
+          }
+
+          const htmlContent = template.htmlContent
+            .replace('{{firstName}}', input.firstName || 'Milá')
+            .replace('{{expiryDate}}', new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toLocaleDateString('cs-CZ'));
+
+          const success = await sendBrevoEmail({
+            to: [{ email: input.email }],
+            subject: template.subject,
+            htmlContent,
+          });
+
+          return { success, message: success ? 'Email sent successfully' : 'Failed to send email' };
+        } catch (error) {
+          console.error('Error sending campaign email:', error);
+          throw new TRPCError({
+            code: 'INTERNAL_SERVER_ERROR',
+            message: 'Failed to send email',
+          });
+        }
+      }),
   }),
 });
 

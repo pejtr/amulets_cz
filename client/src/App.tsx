@@ -20,6 +20,8 @@ import CookieConsent from "./components/CookieConsent";
 import BackToTop from "./components/BackToTop";
 import AIChatAssistant from "./components/AIChatAssistant";
 import AboutNatalie from "./pages/AboutNatalie";
+import AmenPendants from "./pages/AmenPendants";
+import AdminCampaigns from "./pages/AdminCampaigns";
 
 
 function Router() {
@@ -43,6 +45,8 @@ function Router() {
       <Route path="/cinsky-horoskop" component={ChineseZodiac} />
       <Route path="/predpoved-2026/:slug" component={Prediction2026} />
       <Route path="/o-nas" component={AboutNatalie} />
+      <Route path="/privěsky-amen" component={AmenPendants} />
+      <Route path="/admin/campaigns" component={AdminCampaigns} />
       {/* Redirects for old/removed pages */}
       <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>
       <Route path={"/404"} component={NotFound} />
