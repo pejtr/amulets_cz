@@ -1203,3 +1203,15 @@
 
 ## Oprava úvodní zprávy chatbota
 - [x] Stabilizovat úvodní zprávu - nesmí se měnit při každém načtení
+
+
+## Tři proudy v úvodní zprávě chatbota
+- [ ] Upravit úvodní zprávu na tři konkrétní proudy (hmotné, éterické, užitečné)
+- [ ] Přidat tracking volby proudu pro analýzu
+
+## Skupinové kurzy pro tvůrčí duše (Jan 18, 2026)
+- [ ] Návrh struktury 3 kurzů (tvorba amuletů, míchání esencí, práce s krystaly)
+- [ ] Cenová strategie a balíčky
+- [ ] Produktová stránka kurzů na e-shopu
+- [ ] Aktualizace chatbota - třetí proud "užitečné" zahrnuje kurzy
+- [ ] Tracking volby proudu v analytice

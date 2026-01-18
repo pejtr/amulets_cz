@@ -1,54 +1,42 @@
 import { useState, useRef, useEffect } from "react";
 
+// Tři proudy vědomí: hmotné (produkty), éterické (duchovní), užitečné (služba)
+// Každý proud reprezentuje jiný směr zájmu zákazníka
 const SUGGESTED_CATEGORIES = [
   {
-    id: "amulets",
-    category: "Amulety & Symboly",
-    icon: "💜",
-    questions: [
-      "Jaký amulet je vhodný pro ochranu?",
-      "Co znamená Květina života?",
-      "Jak vybrat správný symbol?",
-    ],
-  },
-  {
-    id: "stones",
-    category: "Drahé kameny",
-    icon: "💎",
-    questions: [
-      "Jaké jsou léčivé účinky ametysty?",
-      "Který kámen pomáhá na stres?",
-      "Jak se péčuje o drahé kameny?",
-    ],
-  },
-  {
-    id: "spirituality",
+    id: "ethereal",
+    stream: "etericke", // pro tracking - duchovní rozvoj
     category: "Spiritualita",
     icon: "✨",
+    description: "Pochop, co tvá duše hledá",
     questions: [
-      "Jak začít s meditací?",
-      "Co je to chakra?",
-      "Jak se zvýšit spirituální vědomí?",
+      "Co má duše hledá?",
+      "Jaký symbol rezonuje s mou energií?",
+      "Jak posílit svou intuici?",
     ],
   },
   {
-    id: "products",
-    category: "Produkty",
-    icon: "🔮",
+    id: "material",
+    stream: "hmotne", // pro tracking - produkty, prodej
+    category: "Amulety & Produkty",
+    icon: "💜",
+    description: "Najdi svůj amulet nebo kámen",
     questions: [
-      "Jaké máte šperky?",
+      "Jaký amulet je vhodný pro mě?",
+      "Jaké máte drahé kameny?",
       "Co jsou orgonitové pyramidy?",
-      "Jak se používá aromaterapie?",
     ],
   },
   {
-    id: "horoscope",
-    category: "Čínský horoskop",
-    icon: "🐉",
+    id: "useful",
+    stream: "uzitecne", // pro tracking - služby, kurzy, horoskop
+    category: "Služby & Kurzy",
+    icon: "🌟",
+    description: "Horoskop, kurzy, konzultace",
     questions: [
       "Jaké je moje zvířátko v čínském horoskopu?",
-      "Jaká je má předpověď na rok 2026?",
-      "Jak se počítá čínský horoskop?",
+      "Jaké kurzy nabízíte?",
+      "Chci se naučit tvořit amulety",
     ],
   },
 ];
@@ -147,7 +135,8 @@ export default function AIChatAssistant() {
   const isReturningCustomer = visitCount >= 2;
   
   // Default initial message - shown immediately without waiting for API
-  const DEFAULT_INITIAL_MESSAGE = "Ahoj! 💜 Jsem Natálie z Amulets.cz. Jsem tu pro ty, kteří vědí, co chtějí - ať už je to správný amulet, porozumění svému potenciálu, nebo cesta k pravé svobodě. Co tě sem přivedlo?";
+  // Tři proudy: hmotné (produkty), éterické (duchovní), užitečné (služba)
+  const DEFAULT_INITIAL_MESSAGE = "Ahoj! 💜 Jsem Natálie z Amulets.cz. Ráda ti pomohu najít ten správný amulet nebo odpovím na tvé otázky. Co tě zajímá?";
   
   // Messages state - starts with default message immediately
   const [messages, setMessages] = useState<Message[]>([
@@ -627,17 +616,30 @@ Co tě dnes přivádí?`;
               <div className="border-t bg-white overflow-y-auto p-3 max-h-64">
                 {!selectedCategory ? (
                   <>
-                    <p className="text-xs font-semibold text-gray-600 mb-2 uppercase">Vyberte téma:</p>
-                    <div className="grid grid-cols-5 gap-1">
+                    <p className="text-xs font-semibold text-gray-600 mb-2 uppercase">Jak ti mohu pomoci?</p>
+                    <div className="grid grid-cols-3 gap-2">
                       {SUGGESTED_CATEGORIES.map((cat) => (
                         <button
                           key={cat.id}
-                          onClick={() => setSelectedCategory(cat.id)}
-                          className="p-2 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-purple-200 transition-all text-center flex flex-col items-center justify-center h-20"
+                          onClick={() => {
+                            setSelectedCategory(cat.id);
+                            // Track stream selection for analytics
+                            if (variant && cat.stream) {
+                              logEventMutation.mutate({
+                                visitorId,
+                                eventType: 'stream_selected',
+                                variantId: variant.id,
+                                page: window.location.pathname,
+                                eventData: JSON.stringify({ stream: cat.stream, categoryId: cat.id }),
+                              });
+                            }
+                          }}
+                          className="p-3 rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-purple-200 hover:border-purple-300 transition-all text-center flex flex-col items-center justify-center shadow-sm hover:shadow-md"
                           title={cat.category}
                         >
-                          <div className="text-lg mb-0.5">{cat.icon}</div>
-                          <p className="text-xs font-medium text-gray-700 break-words">{cat.category}</p>
+                          <div className="text-2xl mb-1">{cat.icon}</div>
+                          <p className="text-sm font-semibold text-gray-800">{cat.category}</p>
+                          <p className="text-xs text-gray-500 mt-0.5">{cat.description}</p>
                         </button>
                       ))}
                     </div>
