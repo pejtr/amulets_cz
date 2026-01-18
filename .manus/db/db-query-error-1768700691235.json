@@ -1,0 +1,8 @@
+{
+  "query": "SELECT \n  cv.variant_key,\n  cv.variant_name,\n  cv.is_active,\n  COUNT(DISTINCT cs.id) as total_sessions,\n  COUNT(DISTINCT cm.id) as total_messages,\n  COUNT(DISTINCT ce.id) as total_events\nFROM chatbot_variants cv\nLEFT JOIN chatbot_sessions cs ON cv.variant_key = cs.variant_key\nLEFT JOIN chatbot_messages cm ON cs.id = cm.session_id\nLEFT JOIN chatbot_events ce ON cs.id = ce.session_id\nGROUP BY cv.variant_key, cv.variant_name, cv.is_active\nORDER BY cv.variant_key;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute SELECT \n  cv.variant_key,\n  cv.variant_name,\n  cv.is_active,\n  COUNT(DISTINCT cs.id) as total_sessions,\n  COUNT(DISTINCT cm.id) as total_messages,\n  COUNT(DISTINCT ce.id) as total_events\nFROM chatbot_variants cv\nLEFT JOIN chatbot_sessions cs ON cv.variant_key = cs.variant_key\nLEFT JOIN chatbot_messages cm ON cs.id = cm.session_id\nLEFT JOIN chatbot_events ce ON cs.id = ce.session_id\nGROUP BY cv.variant_key, cv.variant_name, cv.is_active\nORDER BY cv.variant_key;",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1054 (42S22) at line 1: Unknown column 'cv.variant_key' in 'on clause'"
+  ]
+}

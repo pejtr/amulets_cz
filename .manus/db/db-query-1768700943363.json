@@ -1,0 +1,50 @@
+{
+  "query": "SELECT \n  cv.id,\n  cv.variantKey,\n  cv.name,\n  cv.isActive,\n  cv.weight,\n  COUNT(DISTINCT cs.id) as total_sessions,\n  COUNT(DISTINCT cm.id) as total_messages,\n  SUM(CASE WHEN cs.converted = 1 THEN 1 ELSE 0 END) as conversions\nFROM chatbot_variants cv\nLEFT JOIN chatbot_sessions cs ON cv.id = cs.variantId\nLEFT JOIN chatbot_messages cm ON cs.id = cm.sessionId\nGROUP BY cv.id, cv.variantKey, cv.name, cv.isActive, cv.weight\nORDER BY cv.id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute SELECT \n  cv.id,\n  cv.variantKey,\n  cv.name,\n  cv.isActive,\n  cv.weight,\n  COUNT(DISTINCT cs.id) as total_sessions,\n  COUNT(DISTINCT cm.id) as total_messages,\n  SUM(CASE WHEN cs.converted = 1 THEN 1 ELSE 0 END) as conversions\nFROM chatbot_variants cv\nLEFT JOIN chatbot_sessions cs ON cv.id = cs.variantId\nLEFT JOIN chatbot_messages cm ON cs.id = cm.sessionId\nGROUP BY cv.id, cv.variantKey, cv.name, cv.isActive, cv.weight\nORDER BY cv.id;",
+  "rows": [
+    {
+      "id": "1",
+      "variantKey": "young_elegant",
+      "name": "Mladší Elegance",
+      "isActive": "1",
+      "weight": "25",
+      "total_sessions": "7",
+      "total_messages": "0",
+      "conversions": "0"
+    },
+    {
+      "id": "2",
+      "variantKey": "young_mystic",
+      "name": "Mladší Mystická",
+      "isActive": "1",
+      "weight": "25",
+      "total_sessions": "12",
+      "total_messages": "0",
+      "conversions": "0"
+    },
+    {
+      "id": "3",
+      "variantKey": "current_passion",
+      "name": "Současná Vášeň",
+      "isActive": "1",
+      "weight": "25",
+      "total_sessions": "3",
+      "total_messages": "0",
+      "conversions": "0"
+    },
+    {
+      "id": "4",
+      "variantKey": "current_queen",
+      "name": "Současná Královna",
+      "isActive": "1",
+      "weight": "25",
+      "total_sessions": "12",
+      "total_messages": "0",
+      "conversions": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tvariantKey\tname\tisActive\tweight\ttotal_sessions\ttotal_messages\tconversions\n1\tyoung_elegant\tMladší Elegance\t1\t25\t7\t0\t0\n2\tyoung_mystic\tMladší Mystická\t1\t25\t12\t0\t0\n3\tcurrent_passion\tSoučasná Vášeň\t1\t25\t3\t0\t0\n4\tcurrent_queen\tSoučasná Královna\t1\t25\t12\t0\t0\n",
+  "stderr": "",
+  "execution_time_ms": 65
+}

@@ -1052,3 +1052,16 @@
 - [x] Přidat preload pro prvních 8 obrázků symbolů
 - [x] Zvýšit počet eager-loaded obrázků z 4 na 8
 - [x] Uložit checkpoint
+
+## Spuštění 7denního A/B testu chatbota (Jan 18, 2026)
+- [x] Zkontrolovat aktuální stav A/B testu a databáze
+- [x] Nastavit 7denní testovací období (18.1. - 25.1.2026)
+- [x] Vytvořit automatický denní report (server/jobs/generateDailyReport.ts)
+- [x] Nastavit notifikace pro vlastníka
+- [x] Vytvořit skript pro agregaci denních statistik (server/jobs/aggregateDailyStats.ts)
+- [x] Nastavit denní report na 8:00 ráno (do 26.1.2026)
+- [x] Uložit checkpoint
+
+## Oprava genderově neutrálního textu v chatbotu (Jan 18, 2026)
+- [x] Změnit "k sobě samé" na "k sobě" v úvodní zprávě chatbota
+- [x] Přidat titul "Průvodkyně procesem" pod jméno Natálie Ohorai

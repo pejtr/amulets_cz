@@ -357,7 +357,8 @@ export default function AIChatAssistant() {
               </div>
               <div>
                 <h3 className="font-semibold text-lg">Natálie Ohorai</h3>
-                <p className="text-xs text-white/80">Online • Odpovídám do 1 minuty</p>
+                <p className="text-xs text-white/90 font-medium">Průvodkyně procesem</p>
+                <p className="text-xs text-white/70">Online • Odpovídám do 1 minuty</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
