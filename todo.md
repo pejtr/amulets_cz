@@ -1258,3 +1258,14 @@
 - [x] Aktualizovat /report v Telegramu pro reálná OHORAI data z databáze
 - [x] Připravit kompletní implementaci pro OHORAI stranu s cron jobem
 - [x] Stáhnout skutečné produktové obrázky AMEN z webu Irisimo
+
+## Oprava AMEN affiliate odkazů (Jan 18, 2026)
+- [x] Najít správné URL pro AMEN produkty na Irisimo
+- [x] Aktualizovat amenCatalog.ts se správnými odkazy
+- [ ] Otestovat všechny odkazy
+
+## Affiliate kampaně - kompletní implementace (Jan 18, 2026)
+- [x] Aktualizovat Irisimo affiliate parametry (správné a_aid a a_bid)
+- [x] Uložit všechny affiliate kampaně do databáze (30+ kampaní)
+- [x] Implementovat jemná doporučení do chatbota (související produkty)
+- [ ] Otestovat všechny affiliate odkazy

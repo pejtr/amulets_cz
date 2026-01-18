@@ -433,3 +433,51 @@ export const ohoraiSyncLog = mysqlTable("ohorai_sync_log", {
 
 export type OhoraiSyncLog = typeof ohoraiSyncLog.$inferSelect;
 export type InsertOhoraiSyncLog = typeof ohoraiSyncLog.$inferInsert;
+
+// Affiliate Campaigns - všechny affiliate kampaně
+export const affiliateCampaigns = mysqlTable("affiliate_campaigns", {
+  id: varchar("id", { length: 50 }).primaryKey(), // např. 'irisimo', 'cajovnacerny'
+  
+  name: varchar("name", { length: 100 }).notNull(),
+  baseUrl: varchar("baseUrl", { length: 255 }).notNull(),
+  aAid: varchar("aAid", { length: 50 }).notNull(),
+  aBid: varchar("aBid", { length: 50 }).notNull(),
+  
+  category: mysqlEnum("category", ["fashion", "jewelry", "lifestyle", "wellness", "food", "other"]).notNull(),
+  relevance: mysqlEnum("relevance", ["high", "medium", "low"]).notNull(),
+  
+  description: text("description"),
+  isActive: boolean("isActive").default(true).notNull(),
+  
+  // Statistiky
+  totalClicks: int("totalClicks").default(0),
+  totalConversions: int("totalConversions").default(0),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type AffiliateCampaign = typeof affiliateCampaigns.$inferSelect;
+export type InsertAffiliateCampaign = typeof affiliateCampaigns.$inferInsert;
+
+// Affiliate Clicks - tracking kliků na affiliate odkazy
+export const affiliateClicks = mysqlTable("affiliate_clicks", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  campaignId: varchar("campaignId", { length: 50 }).notNull(),
+  targetUrl: varchar("targetUrl", { length: 500 }).notNull(),
+  
+  // Kontext
+  source: mysqlEnum("source", ["chatbot", "product_page", "recommendation", "email"]).notNull(),
+  sessionId: varchar("sessionId", { length: 100 }),
+  userId: int("userId"),
+  
+  // Metadata
+  userAgent: text("userAgent"),
+  ipAddress: varchar("ipAddress", { length: 45 }),
+  
+  clickedAt: timestamp("clickedAt").defaultNow().notNull(),
+});
+
+export type AffiliateClick = typeof affiliateClicks.$inferSelect;
+export type InsertAffiliateClick = typeof affiliateClicks.$inferInsert;
