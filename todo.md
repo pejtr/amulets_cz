@@ -1425,3 +1425,21 @@
 - [x] Nahradit korunku ikonou váh (královský styl)
 - [x] Přidat kultivovanější tooltip při hover/click
 - [x] Otestovat na desktopu i mobilu
+
+## Skrýt cenu koučingu (Jan 19, 2026)
+- [x] Odstranit cenu "4000 Kč za 2 hodiny"
+- [x] Odstranit speciální balíček "5 sezení + 1 ZDARMA"
+- [x] Nahradit textem "Cena na vyžádání"
+
+## BUG: WhatsApp tlačítko nefunkční když offline (Jan 19, 2026)
+- [ ] WhatsApp tlačítko musí být vždy klikatelné
+- [ ] Odstranit disabled stav pro WhatsApp když je Natálie offline
+
+## Přesunout Back to Top nad chat bublinu (Jan 19, 2026)
+- [ ] Změnit pozici Back to Top tlačítka nad chat avatar Natálie
+- [ ] Upravit z-index aby se nepřekrývaly
+
+## UI Vylepšení (Jan 19, 2026)
+- [x] Skrýt cenu koučingu - nahrazeno "Cena na vyžádání"
+- [x] Přesunout Back to Top tlačítko nad chat bublinu (bottom-28, z-40)
+- [x] WhatsApp tlačítko - změněno na zelené výrazné (bg-green-500) s textem "WhatsApp"

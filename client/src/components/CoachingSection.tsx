@@ -157,10 +157,10 @@ export default function CoachingSection() {
             <Card className="border-2 border-pink-200 shadow-xl">
               <CardContent className="p-8">
                 <div className="text-center mb-6">
-                  <div className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full text-3xl font-bold mb-2">
-                    4000 Kč
+                  <div className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full text-xl font-semibold mb-2">
+                    ✨ Cena na vyžádání
                   </div>
-                  <p className="text-muted-foreground">za 2 hodiny</p>
+                  <p className="text-muted-foreground">Individuální kalkulace dle vašich potřeb</p>
                 </div>
 
                 <div className="space-y-4 mb-6">
@@ -190,12 +190,11 @@ export default function CoachingSection() {
                 </div>
 
                 <div className="bg-gradient-to-r from-pink-100 to-purple-100 p-4 rounded-lg mb-6">
-                  <p className="font-bold text-center text-lg mb-2">🎁 Speciální balíček</p>
-                  <p className="text-center text-2xl font-bold text-purple-600">
-                    5 sezení + 1 ZDARMA
+                  <p className="font-semibold text-center text-purple-700">
+                    💜 Exkluzivní přístup pro vybrané klienty
                   </p>
                   <p className="text-center text-sm text-muted-foreground mt-2">
-                    Ušetříš 4000 Kč
+                    Napište mi a probereme vaše potřeby osobně
                   </p>
                 </div>
 

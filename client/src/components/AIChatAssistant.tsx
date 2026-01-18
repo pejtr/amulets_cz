@@ -816,12 +816,12 @@ Co tě dnes přivádí?`;
                       📝 Dotaz
                     </Button>
                     <Button
-                      variant="outline"
                       size="sm"
                       onClick={handleWhatsAppEscalation}
-                      className="h-7 px-2 border-green-500 text-green-600 hover:bg-green-50 text-[10px]"
+                      className="h-7 px-3 bg-green-500 hover:bg-green-600 text-white text-[10px] shadow-sm"
                     >
-                      <Phone className="h-3 w-3" />
+                      <Phone className="h-3 w-3 mr-1" />
+                      WhatsApp
                     </Button>
                   </div>
                 )}
