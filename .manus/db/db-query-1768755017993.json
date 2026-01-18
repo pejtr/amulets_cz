@@ -1,0 +1,34 @@
+{
+  "query": "SELECT id, variantKey, name, initialMessage FROM chatbot_variants WHERE isActive = 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute SELECT id, variantKey, name, initialMessage FROM chatbot_variants WHERE isActive = 1;",
+  "rows": [
+    {
+      "id": "1",
+      "variantKey": "young_elegant",
+      "name": "Mladší Elegance",
+      "initialMessage": "Ahoj! 💜 Jsem Natálie z Amulets.cz. Ráda ti pomohu najít ten správný amulet nebo odpovím na tvé otázky. Co tě zajímá?"
+    },
+    {
+      "id": "2",
+      "variantKey": "young_mystic",
+      "name": "Mladší Mystická",
+      "initialMessage": "Vítej, duše hledající... ✨ Jsem Natálie a cítím, že tě sem přivedla tvá intuice. Co hledáš? Ochranu, lásku, nebo cestu k sobě?"
+    },
+    {
+      "id": "3",
+      "variantKey": "current_passion",
+      "name": "Současná Vášeň",
+      "initialMessage": "Ahoj! ❤️‍🔥 Jsem Natálie a mám pro tebe něco speciálního. Řekni mi, co hledáš - a já ti ukážu cestu k tomu, co opravdu potřebuješ!"
+    },
+    {
+      "id": "4",
+      "variantKey": "current_queen",
+      "name": "Současná Královna",
+      "initialMessage": "Dobrý den. 👑 Jsem Natálie Ohorai. Vím, že tvůj čas je cenný - stejně jako ten můj. Řekni mi, co hledáš, a já ti ukážu to nejlepší, co mám."
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tvariantKey\tname\tinitialMessage\n1\tyoung_elegant\tMladší Elegance\tAhoj! 💜 Jsem Natálie z Amulets.cz. Ráda ti pomohu najít ten správný amulet nebo odpovím na tvé otázky. Co tě zajímá?\n2\tyoung_mystic\tMladší Mystická\tVítej, duše hledající... ✨ Jsem Natálie a cítím, že tě sem přivedla tvá intuice. Co hledáš? Ochranu, lásku, nebo cestu k sobě?\n3\tcurrent_passion\tSoučasná Vášeň\tAhoj! ❤️‍🔥 Jsem Natálie a mám pro tebe něco speciálního. Řekni mi, co hledáš - a já ti ukážu cestu k tomu, co opravdu potřebuješ!\n4\tcurrent_queen\tSoučasná Královna\tDobrý den. 👑 Jsem Natálie Ohorai. Vím, že tvůj čas je cenný - stejně jako ten můj. Řekni mi, co hledáš, a já ti ukážu to nejlepší, co mám.\n",
+  "stderr": "",
+  "execution_time_ms": 390
+}

@@ -232,15 +232,9 @@ Co tě dnes přivádí?`;
           content: newInitialMessage,
           timestamp: new Date(),
         }]);
-      } else if (assignedVariant.initialMessage && assignedVariant.initialMessage !== DEFAULT_INITIAL_MESSAGE) {
-        // Only update if variant has a different message than default
-        setMessages([{
-          role: "assistant",
-          content: assignedVariant.initialMessage,
-          timestamp: new Date(),
-        }]);
       }
-      // If variant message is same as default, keep the already displayed message
+      // Keep the default initial message for all variants - don't change it based on variant
+      // This ensures consistent user experience
 
       // Start session
       startSessionMutation.mutate({

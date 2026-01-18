@@ -1194,3 +1194,12 @@
 
 ## Zelený gradient notifikace
 - [x] Přidat jemný zelený nádech do notifikace Nedávno zakoupeno
+
+
+## Oprava XML feedu produktů
+- [ ] Diagnostikovat problém s načítáním Irisimo feedu
+- [ ] Opravit načítání produktů
+
+
+## Oprava úvodní zprávy chatbota
+- [x] Stabilizovat úvodní zprávu - nesmí se měnit při každém načtení
