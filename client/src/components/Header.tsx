@@ -15,11 +15,11 @@ import GoogleTranslate from "@/components/GoogleTranslate";
 const navItems = [
   { label: "🎁 Průvodce amulety", hasDropdown: false, url: "/#pruvodce-amulety", isInternal: true },
   { label: "✨ Kvíz: Tvůj symbol", hasDropdown: false, url: "/kviz", isInternal: true },
-  { label: "💫 O Natálii", hasDropdown: false, url: "/o-nas", isInternal: true },
+
   { label: "🐎 Čínský horoskop 2026", hasDropdown: false, url: "/cinsky-horoskop", isInternal: true },
   { label: "Orgonitové pyramidy", hasDropdown: false, url: "https://www.ohorai.cz/autorske-tvorba/" },
   { label: "Aromaterapie", hasDropdown: true, url: "https://www.ohorai.cz/esence/" },
-  { label: "O nás", hasDropdown: false, url: "https://www.ohorai.cz/o-projektu/" },
+  { label: "O nás", hasDropdown: false, url: "https://rostecky.cz/natalie-ohorai-amulets-t45227" },
   { label: "Magazín", hasDropdown: false, url: "/magazin", isInternal: true },
   { label: "Kontakt", hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },
 ];

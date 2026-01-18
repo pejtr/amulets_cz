@@ -969,4 +969,10 @@
 - [x] Vytvořit stránku /o-nas s video z rostecky.cz
 - [x] Přidat odkaz do navigace
 - [x] Přidat odkaz do footeru
+- [x] Uložit checkpoint
+
+## Úprava navigace - video rozhovor z rostecky.cz (Jan 17, 2026)
+- [x] Odstranit stránku AboutNatalie
+- [x] Změnit "O nás" na přímý odkaz na rostecky.cz video
+- [x] Aktualizovat Header a Footer
 - [ ] Uložit checkpoint
