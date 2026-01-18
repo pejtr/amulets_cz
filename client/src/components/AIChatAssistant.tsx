@@ -482,9 +482,9 @@ Co tě dnes přivádí?`;
 
       {/* Chat Window */}
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-[420px] h-[680px] shadow-2xl z-50 flex flex-col">
+        <Card className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 w-full sm:w-[420px] h-[100dvh] sm:h-[680px] shadow-2xl z-50 flex flex-col sm:rounded-lg rounded-none">
           {/* Header */}
-          <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-t-lg flex items-center justify-between flex-shrink-0">
+          <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 sm:rounded-t-lg flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="relative">
                 <img

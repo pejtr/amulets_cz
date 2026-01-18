@@ -1172,3 +1172,7 @@
 - [x] Zákazník: Veřejné + občas Interní
 - [x] Operátor: Veřejné + Interní + Důvěrné
 - [x] Admin (Telegram): Všechny úrovně
+
+
+## Oprava mobilní responzivity chatbota
+- [x] Opravit oříznutí chatbot okna na levé straně na mobilu - nyní fullscreen na mobilu
