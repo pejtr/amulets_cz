@@ -1,0 +1,19 @@
+{
+  "query": "SELECT COUNT(*) as total_sessions FROM chatbot_sessions; SELECT COUNT(*) as total_messages FROM chatbot_messages;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute SELECT COUNT(*) as total_sessions FROM chatbot_sessions; SELECT COUNT(*) as total_messages FROM chatbot_messages;",
+  "rows": [
+    {
+      "total_sessions": "156"
+    },
+    {
+      "total_sessions": "total_messages"
+    },
+    {
+      "total_sessions": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "total_sessions\n156\ntotal_messages\n0\n",
+  "stderr": "",
+  "execution_time_ms": 416
+}

@@ -24,6 +24,7 @@ import AmenPendants from "./pages/AmenPendants";
 import AdminCampaigns from "./pages/AdminCampaigns";
 import AdminChatbotAB from "./pages/AdminChatbotAB";
 import AdminTickets from "./pages/AdminTickets";
+import AdminTelegram from "./pages/AdminTelegram";
 
 
 function Router() {
@@ -51,6 +52,7 @@ function Router() {
       <Route path="/admin/campaigns" component={AdminCampaigns} />
       <Route path="/admin/chatbot-ab" component={AdminChatbotAB} />
       <Route path="/admin/tickets" component={AdminTickets} />
+      <Route path="/admin/telegram" component={AdminTelegram} />
       {/* Redirects for old/removed pages */}
       <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>
       <Route path={"/404"} component={NotFound} />

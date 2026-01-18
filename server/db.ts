@@ -246,6 +246,10 @@ export async function getChatbotComparisonStats(startDate: Date, endDate: Date) 
   const db = await getDb();
   if (!db) return [];
   
+  // Extend endDate to include the entire day (add 1 day)
+  const endDateExtended = new Date(endDate);
+  endDateExtended.setDate(endDateExtended.getDate() + 1);
+  
   const stats = await db.select({
     variantId: chatbotSessions.variantId,
     variantKey: chatbotVariants.variantKey,
@@ -262,7 +266,7 @@ export async function getChatbotComparisonStats(startDate: Date, endDate: Date) 
   .innerJoin(chatbotVariants, eq(chatbotSessions.variantId, chatbotVariants.id))
   .where(and(
     gte(chatbotSessions.startedAt, startDate),
-    lte(chatbotSessions.startedAt, endDate)
+    lte(chatbotSessions.startedAt, endDateExtended)
   ))
   .groupBy(chatbotSessions.variantId, chatbotVariants.variantKey, chatbotVariants.name);
   
@@ -344,6 +348,10 @@ export async function getChatbotConversionStats(startDate: Date, endDate: Date) 
   const db = await getDb();
   if (!db) return [];
   
+  // Extend endDate to include the entire day (add 1 day)
+  const endDateExtended = new Date(endDate);
+  endDateExtended.setDate(endDateExtended.getDate() + 1);
+  
   const stats = await db.select({
     variantId: chatbotConversions.variantId,
     variantKey: chatbotVariants.variantKey,
@@ -356,7 +364,7 @@ export async function getChatbotConversionStats(startDate: Date, endDate: Date) 
   .innerJoin(chatbotVariants, eq(chatbotConversions.variantId, chatbotVariants.id))
   .where(and(
     gte(chatbotConversions.createdAt, startDate),
-    lte(chatbotConversions.createdAt, endDate)
+    lte(chatbotConversions.createdAt, endDateExtended)
   ))
   .groupBy(chatbotConversions.variantId, chatbotVariants.variantKey, chatbotVariants.name, chatbotConversions.conversionType);
   
@@ -367,6 +375,10 @@ export async function getChatbotConversionStats(startDate: Date, endDate: Date) 
 export async function getChatbotAffiliateStats(startDate: Date, endDate: Date) {
   const db = await getDb();
   if (!db) return [];
+  
+  // Extend endDate to include the entire day (add 1 day)
+  const endDateExtended = new Date(endDate);
+  endDateExtended.setDate(endDateExtended.getDate() + 1);
   
   const stats = await db.select({
     variantId: chatbotConversions.variantId,
@@ -381,7 +393,7 @@ export async function getChatbotAffiliateStats(startDate: Date, endDate: Date) {
   .where(and(
     eq(chatbotConversions.conversionType, 'affiliate_click'),
     gte(chatbotConversions.createdAt, startDate),
-    lte(chatbotConversions.createdAt, endDate)
+    lte(chatbotConversions.createdAt, endDateExtended)
   ))
   .groupBy(chatbotConversions.variantId, chatbotVariants.variantKey, chatbotVariants.name, chatbotConversions.affiliatePartner);
   
@@ -404,6 +416,10 @@ export async function getChatbotConversionFunnel(variantId: number, startDate: D
   const db = await getDb();
   if (!db) return null;
   
+  // Extend endDate to include the entire day (add 1 day)
+  const endDateExtended = new Date(endDate);
+  endDateExtended.setDate(endDateExtended.getDate() + 1);
+  
   // Get total sessions
   const [sessionsResult] = await db.select({
     total: count(chatbotSessions.id),
@@ -412,7 +428,7 @@ export async function getChatbotConversionFunnel(variantId: number, startDate: D
   .where(and(
     eq(chatbotSessions.variantId, variantId),
     gte(chatbotSessions.startedAt, startDate),
-    lte(chatbotSessions.startedAt, endDate)
+    lte(chatbotSessions.startedAt, endDateExtended)
   ));
   
   // Get sessions with messages
@@ -423,7 +439,7 @@ export async function getChatbotConversionFunnel(variantId: number, startDate: D
   .where(and(
     eq(chatbotSessions.variantId, variantId),
     gte(chatbotSessions.startedAt, startDate),
-    lte(chatbotSessions.startedAt, endDate),
+    lte(chatbotSessions.startedAt, endDateExtended),
     gte(chatbotSessions.userMessageCount, 1)
   ));
   
@@ -436,7 +452,7 @@ export async function getChatbotConversionFunnel(variantId: number, startDate: D
   .where(and(
     eq(chatbotConversions.variantId, variantId),
     gte(chatbotConversions.createdAt, startDate),
-    lte(chatbotConversions.createdAt, endDate)
+    lte(chatbotConversions.createdAt, endDateExtended)
   ))
   .groupBy(chatbotConversions.conversionType);
   

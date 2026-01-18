@@ -31,6 +31,7 @@ import {
   getAllChatbotTickets,
   getChatbotTicketsByVisitor,
 } from "./db";
+import { sendDailyReport, sendTestMessage, generateDailyReport } from "./telegram";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -572,6 +573,56 @@ ${email ? `- Email: ${email}` : ''}
           throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to answer ticket' });
         }
         return { success: true };
+      }),
+  }),
+
+  // Telegram Integration
+  telegram: router({
+    // Send daily report manually
+    sendDailyReport: publicProcedure
+      .mutation(async () => {
+        const success = await sendDailyReport();
+        if (!success) {
+          throw new TRPCError({ 
+            code: 'INTERNAL_SERVER_ERROR', 
+            message: 'Failed to send daily report. Check Telegram configuration.' 
+          });
+        }
+        return { success: true, message: 'Daily report sent to Telegram' };
+      }),
+
+    // Send test message
+    sendTestMessage: publicProcedure
+      .mutation(async () => {
+        const success = await sendTestMessage();
+        if (!success) {
+          throw new TRPCError({ 
+            code: 'INTERNAL_SERVER_ERROR', 
+            message: 'Failed to send test message. Check Telegram configuration.' 
+          });
+        }
+        return { success: true, message: 'Test message sent to Telegram' };
+      }),
+
+    // Preview report (without sending)
+    previewReport: publicProcedure
+      .query(async () => {
+        const report = await generateDailyReport();
+        return { report };
+      }),
+
+    // Check configuration status
+    checkConfig: publicProcedure
+      .query(async () => {
+        // Import dynamically to get fresh env values
+        const hasToken = !!process.env.TELEGRAM_BOT_TOKEN;
+        const hasChatId = !!process.env.TELEGRAM_CHAT_ID;
+        console.log('[Telegram] Config check - Token:', hasToken, 'ChatId:', hasChatId);
+        return {
+          configured: hasToken && hasChatId,
+          hasToken,
+          hasChatId,
+        };
       }),
   }),
 });

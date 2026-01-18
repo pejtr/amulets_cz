@@ -1116,3 +1116,25 @@
 - [x] Vytvořit systém automatických odpovědí (FAQ šablony)
 - [x] Přidat FAQ panel do dialogu odpovědi
 - [x] Uložit checkpoint
+
+## Oprava zápisu sessions a Telegram integrace (Jan 18, 2026)
+- [ ] Diagnostikovat proč se nezapisují sessions do databáze
+- [ ] Opravit problém se zápisem sessions
+- [ ] Implementovat Telegram Bot pro denní reporty
+- [ ] Nastavit automatické odesílání reportů
+- [ ] Uložit checkpoint
+
+
+## Telegram integrace pro denní reporty
+- [x] Vytvořit Telegram bot helper pro odesílání zpráv
+- [x] Implementovat denní report funkci pro chatbot statistiky
+- [ ] Nastavit automatické odesílání reportů v 8:00 ráno (vyžaduje externí cron)
+- [x] Přidat tRPC endpoint pro ruční odeslání reportu
+- [x] Vytvořit admin stránku pro Telegram integraci
+- [x] Testovat Telegram integraci - funguje!
+
+## Opravy A/B testování
+- [x] Opravit datumové filtry v getChatbotComparisonStats (zahrnout celý den)
+- [x] Opravit datumové filtry v getChatbotConversionStats
+- [x] Opravit datumové filtry v getChatbotAffiliateStats
+- [x] Opravit datumové filtry v getChatbotConversionFunnel
