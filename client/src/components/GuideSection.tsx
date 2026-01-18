@@ -159,10 +159,11 @@ export default function GuideSection() {
                 <LazyImage
                   src={symbol.image}
                   alt={symbol.name}
-                  loading={index < 4 ? "eager" : "lazy"}
+                  loading={index < 8 ? "eager" : "lazy"}
                   aspectRatio="square"
                   containerClassName="w-full rounded-lg overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50"
                   showSkeleton={true}
+                  rootMargin="400px"
                 />
                 <p className="text-sm font-medium text-foreground text-center">
                   {symbol.name}

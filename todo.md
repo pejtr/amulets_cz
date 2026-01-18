@@ -1036,3 +1036,19 @@
 - [x] Přidat denní/týdenní reporty
 - [x] Integrovat do AIChatAssistant komponenty
 - [ ] Uložit checkpoint
+
+## Konverzní Tracking pro A/B Testování Chatbota (Jan 18, 2026)
+- [x] Přidat konverzní tracking (nákupy, email capture, WhatsApp eskalace)
+- [x] Implementovat tracking affiliate kliků (OHORAI, Irisimo)
+- [x] Přidat konverzní hodnotu do dashboardu
+- [x] Vytvořit plán optimalizace vítězné verze
+- [x] Navrhnout další 2 A/B testovací scénáře
+- [x] Uložit checkpoint
+
+## Oprava pomalého načítání obrázků v sekci Průvodce amulety (Jan 18, 2026)
+- [x] Analyzovat příčinu pomalého načítání obrázků symbolů
+- [x] Implementovat skeleton loading placeholder (již existuje)
+- [x] Optimalizovat lazy loading pro rychlejší zobrazení (zvýšen rootMargin na 400px)
+- [x] Přidat preload pro prvních 8 obrázků symbolů
+- [x] Zvýšit počet eager-loaded obrázků z 4 na 8
+- [x] Uložit checkpoint

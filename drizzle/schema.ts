@@ -172,3 +172,28 @@ export const chatbotDailyStats = mysqlTable("chatbot_daily_stats", {
 
 export type ChatbotDailyStat = typeof chatbotDailyStats.$inferSelect;
 export type InsertChatbotDailyStat = typeof chatbotDailyStats.$inferInsert;
+
+// ============================================
+// CHATBOT CONVERSION TYPES
+// ============================================
+
+// Chatbot Conversions - Detailed tracking of conversion events
+export const chatbotConversions = mysqlTable("chatbot_conversions", {
+  id: int("id").autoincrement().primaryKey(),
+  sessionId: int("sessionId").references(() => chatbotSessions.id, { onDelete: "cascade" }),
+  variantId: int("variantId").notNull().references(() => chatbotVariants.id),
+  visitorId: varchar("visitorId", { length: 64 }).notNull(),
+  conversionType: varchar("conversionType", { length: 50 }).notNull(), // email_capture, whatsapp_click, affiliate_click, purchase
+  conversionSubtype: varchar("conversionSubtype", { length: 100 }), // e.g., 'ohorai_affiliate', 'irisimo_affiliate', 'newsletter'
+  conversionValue: decimal("conversionValue", { precision: 10, scale: 2 }),
+  currency: varchar("currency", { length: 3 }).default("CZK"),
+  productId: varchar("productId", { length: 100 }),
+  productName: varchar("productName", { length: 255 }),
+  affiliatePartner: varchar("affiliatePartner", { length: 50 }), // 'ohorai', 'irisimo', 'donuterie'
+  referralUrl: varchar("referralUrl", { length: 500 }),
+  metadata: text("metadata"), // JSON string for additional data
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ChatbotConversion = typeof chatbotConversions.$inferSelect;
+export type InsertChatbotConversion = typeof chatbotConversions.$inferInsert;

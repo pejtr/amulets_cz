@@ -1,6 +1,6 @@
 import { eq, and, gte, lte, sql, desc, sum, avg, count } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, chatbotVariants, chatbotSessions, chatbotMessages, chatbotEvents, chatbotDailyStats } from "../drizzle/schema";
+import { InsertUser, users, chatbotVariants, chatbotSessions, chatbotMessages, chatbotEvents, chatbotDailyStats, chatbotConversions } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -284,4 +284,165 @@ export async function getChatbotDailyStats(variantId: number, days: number = 30)
       gte(chatbotDailyStats.date, startDate)
     ))
     .orderBy(desc(chatbotDailyStats.date));
+}
+
+
+// ============================================
+// CHATBOT CONVERSION TRACKING HELPERS
+// ============================================
+
+// Track a conversion event
+export async function trackChatbotConversion(data: {
+  sessionId?: number;
+  variantId: number;
+  visitorId: string;
+  conversionType: 'email_capture' | 'whatsapp_click' | 'affiliate_click' | 'purchase' | 'newsletter';
+  conversionSubtype?: string;
+  conversionValue?: string;
+  currency?: string;
+  productId?: string;
+  productName?: string;
+  affiliatePartner?: string;
+  referralUrl?: string;
+  metadata?: Record<string, unknown>;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db.insert(chatbotConversions).values({
+    sessionId: data.sessionId,
+    variantId: data.variantId,
+    visitorId: data.visitorId,
+    conversionType: data.conversionType,
+    conversionSubtype: data.conversionSubtype,
+    conversionValue: data.conversionValue,
+    currency: data.currency || 'CZK',
+    productId: data.productId,
+    productName: data.productName,
+    affiliatePartner: data.affiliatePartner,
+    referralUrl: data.referralUrl,
+    metadata: data.metadata ? JSON.stringify(data.metadata) : undefined,
+  });
+  
+  // Also update session converted flag
+  if (data.sessionId) {
+    const session = await db.select().from(chatbotSessions).where(eq(chatbotSessions.id, data.sessionId)).limit(1);
+    if (session.length > 0) {
+      await db.update(chatbotSessions).set({
+        converted: true,
+        conversionType: data.conversionType,
+        conversionValue: data.conversionValue,
+      }).where(eq(chatbotSessions.id, data.sessionId));
+    }
+  }
+  
+  return result;
+}
+
+// Get conversion stats by variant
+export async function getChatbotConversionStats(startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  const stats = await db.select({
+    variantId: chatbotConversions.variantId,
+    variantKey: chatbotVariants.variantKey,
+    variantName: chatbotVariants.name,
+    conversionType: chatbotConversions.conversionType,
+    totalConversions: count(chatbotConversions.id),
+    totalValue: sum(chatbotConversions.conversionValue),
+  })
+  .from(chatbotConversions)
+  .innerJoin(chatbotVariants, eq(chatbotConversions.variantId, chatbotVariants.id))
+  .where(and(
+    gte(chatbotConversions.createdAt, startDate),
+    lte(chatbotConversions.createdAt, endDate)
+  ))
+  .groupBy(chatbotConversions.variantId, chatbotVariants.variantKey, chatbotVariants.name, chatbotConversions.conversionType);
+  
+  return stats;
+}
+
+// Get affiliate click stats
+export async function getChatbotAffiliateStats(startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  const stats = await db.select({
+    variantId: chatbotConversions.variantId,
+    variantKey: chatbotVariants.variantKey,
+    variantName: chatbotVariants.name,
+    affiliatePartner: chatbotConversions.affiliatePartner,
+    totalClicks: count(chatbotConversions.id),
+    totalValue: sum(chatbotConversions.conversionValue),
+  })
+  .from(chatbotConversions)
+  .innerJoin(chatbotVariants, eq(chatbotConversions.variantId, chatbotVariants.id))
+  .where(and(
+    eq(chatbotConversions.conversionType, 'affiliate_click'),
+    gte(chatbotConversions.createdAt, startDate),
+    lte(chatbotConversions.createdAt, endDate)
+  ))
+  .groupBy(chatbotConversions.variantId, chatbotVariants.variantKey, chatbotVariants.name, chatbotConversions.affiliatePartner);
+  
+  return stats;
+}
+
+// Get all conversions for a session
+export async function getChatbotSessionConversions(sessionId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select()
+    .from(chatbotConversions)
+    .where(eq(chatbotConversions.sessionId, sessionId))
+    .orderBy(desc(chatbotConversions.createdAt));
+}
+
+// Get conversion funnel data
+export async function getChatbotConversionFunnel(variantId: number, startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  // Get total sessions
+  const [sessionsResult] = await db.select({
+    total: count(chatbotSessions.id),
+  })
+  .from(chatbotSessions)
+  .where(and(
+    eq(chatbotSessions.variantId, variantId),
+    gte(chatbotSessions.startedAt, startDate),
+    lte(chatbotSessions.startedAt, endDate)
+  ));
+  
+  // Get sessions with messages
+  const [engagedResult] = await db.select({
+    total: count(chatbotSessions.id),
+  })
+  .from(chatbotSessions)
+  .where(and(
+    eq(chatbotSessions.variantId, variantId),
+    gte(chatbotSessions.startedAt, startDate),
+    lte(chatbotSessions.startedAt, endDate),
+    gte(chatbotSessions.userMessageCount, 1)
+  ));
+  
+  // Get conversions by type
+  const conversionsByType = await db.select({
+    conversionType: chatbotConversions.conversionType,
+    total: count(chatbotConversions.id),
+  })
+  .from(chatbotConversions)
+  .where(and(
+    eq(chatbotConversions.variantId, variantId),
+    gte(chatbotConversions.createdAt, startDate),
+    lte(chatbotConversions.createdAt, endDate)
+  ))
+  .groupBy(chatbotConversions.conversionType);
+  
+  return {
+    totalSessions: sessionsResult?.total || 0,
+    engagedSessions: engagedResult?.total || 0,
+    conversions: conversionsByType,
+  };
 }

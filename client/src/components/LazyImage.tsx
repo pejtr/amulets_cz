@@ -28,7 +28,7 @@ export default function LazyImage({
   className,
   containerClassName,
   loading = "lazy",
-  rootMargin = "100px",
+  rootMargin = "300px", // Increased for earlier loading
   showSkeleton = true,
   aspectRatio = "auto",
   objectFit = "cover",

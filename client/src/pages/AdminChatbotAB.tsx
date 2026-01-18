@@ -15,7 +15,12 @@ import {
   Sparkles,
   Heart,
   Flame,
-  RefreshCw
+  RefreshCw,
+  Mail,
+  Phone,
+  ExternalLink,
+  ShoppingCart,
+  DollarSign
 } from "lucide-react";
 
 // Variant icons mapping
@@ -34,6 +39,24 @@ const variantColors: Record<string, string> = {
   current_queen: "bg-pink-100 border-pink-300 text-pink-800",
 };
 
+// Conversion type icons
+const conversionIcons: Record<string, React.ReactNode> = {
+  email_capture: <Mail className="w-4 h-4 text-blue-500" />,
+  whatsapp_click: <Phone className="w-4 h-4 text-green-500" />,
+  affiliate_click: <ExternalLink className="w-4 h-4 text-orange-500" />,
+  purchase: <ShoppingCart className="w-4 h-4 text-purple-500" />,
+  newsletter: <Mail className="w-4 h-4 text-indigo-500" />,
+};
+
+// Conversion type labels (Czech)
+const conversionLabels: Record<string, string> = {
+  email_capture: "Email zachycen",
+  whatsapp_click: "WhatsApp klik",
+  affiliate_click: "Affiliate klik",
+  purchase: "Nákup",
+  newsletter: "Newsletter",
+};
+
 export default function AdminChatbotAB() {
   const [dateRange, setDateRange] = useState({
     startDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
@@ -49,9 +72,23 @@ export default function AdminChatbotAB() {
     endDate: dateRange.endDate,
   });
 
+  // Fetch conversion stats
+  const { data: conversionStats, isLoading: conversionLoading, refetch: refetchConversions } = trpc.chatbotAB.getConversionStats.useQuery({
+    startDate: dateRange.startDate,
+    endDate: dateRange.endDate,
+  });
+
+  // Fetch affiliate stats
+  const { data: affiliateStats, isLoading: affiliateLoading, refetch: refetchAffiliates } = trpc.chatbotAB.getAffiliateStats.useQuery({
+    startDate: dateRange.startDate,
+    endDate: dateRange.endDate,
+  });
+
   const handleRefresh = () => {
     refetchVariants();
     refetchStats();
+    refetchConversions();
+    refetchAffiliates();
   };
 
   // Calculate totals
@@ -60,6 +97,19 @@ export default function AdminChatbotAB() {
     messages: acc.messages + Number(s.totalMessages || 0),
     conversions: acc.conversions + Number(s.totalConversions || 0),
   }), { sessions: 0, messages: 0, conversions: 0 }) || { sessions: 0, messages: 0, conversions: 0 };
+
+  // Calculate conversion totals by type
+  const conversionTotals = conversionStats?.reduce((acc: Record<string, { count: number; value: number }>, c: any) => {
+    const type = c.conversionType;
+    if (!acc[type]) {
+      acc[type] = { count: 0, value: 0 };
+    }
+    acc[type].count += Number(c.totalConversions || 0);
+    acc[type].value += Number(c.totalValue || 0);
+    return acc;
+  }, {} as Record<string, { count: number; value: number }>) || {};
+
+  const totalConversionValue = (Object.values(conversionTotals) as { count: number; value: number }[]).reduce((sum, t) => sum + t.value, 0);
 
   const overallConversionRate = totals.sessions > 0 
     ? ((totals.conversions / totals.sessions) * 100).toFixed(2) 
@@ -75,7 +125,7 @@ export default function AdminChatbotAB() {
               🧪 Chatbot A/B Testing Dashboard
             </h1>
             <p className="text-gray-600 mt-1">
-              Porovnání 4 verzí chatbota Natálie Ohorai
+              Porovnání 4 verzí chatbota Natálie Ohorai s konverzním trackingem
             </p>
           </div>
           <Button onClick={handleRefresh} variant="outline" className="gap-2">
@@ -111,7 +161,7 @@ export default function AdminChatbotAB() {
         </Card>
 
         {/* Overall Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
@@ -164,12 +214,61 @@ export default function AdminChatbotAB() {
               </div>
             </CardContent>
           </Card>
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-3">
+                <div className="p-3 bg-emerald-100 rounded-lg">
+                  <DollarSign className="w-6 h-6 text-emerald-600" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Hodnota konverzí</p>
+                  <p className="text-2xl font-bold">{totalConversionValue.toLocaleString()} Kč</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
+
+        {/* Conversion Types Summary */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Target className="w-5 h-5" />
+              Konverze podle typu
+            </CardTitle>
+            <CardDescription>
+              Přehled všech typů konverzí za vybrané období
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {Object.entries(conversionLabels).map(([type, label]) => {
+                const data = conversionTotals[type] || { count: 0, value: 0 };
+                return (
+                  <div key={type} className="p-4 bg-gray-50 rounded-lg text-center">
+                    <div className="flex justify-center mb-2">
+                      {conversionIcons[type]}
+                    </div>
+                    <p className="text-2xl font-bold">{data.count}</p>
+                    <p className="text-xs text-gray-600">{label}</p>
+                    {data.value > 0 && (
+                      <p className="text-sm text-green-600 font-medium mt-1">
+                        {data.value.toLocaleString()} Kč
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Variants Comparison */}
         <Tabs defaultValue="overview" className="space-y-4">
           <TabsList>
             <TabsTrigger value="overview">Přehled variant</TabsTrigger>
+            <TabsTrigger value="conversions">Konverze</TabsTrigger>
+            <TabsTrigger value="affiliates">Affiliate</TabsTrigger>
             <TabsTrigger value="details">Detailní statistiky</TabsTrigger>
             <TabsTrigger value="variants">Konfigurace variant</TabsTrigger>
           </TabsList>
@@ -183,6 +282,12 @@ export default function AdminChatbotAB() {
                 const convRate = sessions > 0 ? ((conversions / sessions) * 100).toFixed(2) : "0.00";
                 const avgDuration = Number(variantStats?.avgDuration || 0);
                 const avgMessages = Number(variantStats?.avgMessages || 0);
+
+                // Get conversion breakdown for this variant
+                const variantConversions = conversionStats?.filter((c: any) => c.variantKey === variant.variantKey) || [];
+                const emailCaptures = variantConversions.find((c: any) => c.conversionType === 'email_capture');
+                const whatsappClicks = variantConversions.find((c: any) => c.conversionType === 'whatsapp_click');
+                const affiliateClicks = variantConversions.find((c: any) => c.conversionType === 'affiliate_click');
 
                 return (
                   <Card key={variant.id} className={`border-2 ${variantColors[variant.variantKey] || ''}`}>
@@ -201,7 +306,7 @@ export default function AdminChatbotAB() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-2 gap-4 mb-4">
                         <div className="text-center p-3 bg-white/50 rounded-lg">
                           <p className="text-2xl font-bold">{sessions}</p>
                           <p className="text-xs text-gray-600">Sessions</p>
@@ -219,6 +324,26 @@ export default function AdminChatbotAB() {
                           <p className="text-xs text-gray-600">Ø délka</p>
                         </div>
                       </div>
+
+                      {/* Conversion breakdown */}
+                      <div className="border-t pt-3 mt-3">
+                        <p className="text-xs font-semibold text-gray-600 mb-2">Konverze:</p>
+                        <div className="flex gap-3 text-xs">
+                          <div className="flex items-center gap-1">
+                            <Mail className="w-3 h-3 text-blue-500" />
+                            <span>{emailCaptures?.totalConversions || 0} emails</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Phone className="w-3 h-3 text-green-500" />
+                            <span>{whatsappClicks?.totalConversions || 0} WA</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <ExternalLink className="w-3 h-3 text-orange-500" />
+                            <span>{affiliateClicks?.totalConversions || 0} affiliate</span>
+                          </div>
+                        </div>
+                      </div>
+
                       <div className="mt-4 flex items-center gap-2">
                         <img 
                           src={variant.avatarUrl || ''} 
@@ -234,6 +359,111 @@ export default function AdminChatbotAB() {
                 );
               })}
             </div>
+          </TabsContent>
+
+          <TabsContent value="conversions">
+            <Card>
+              <CardHeader>
+                <CardTitle>Konverze podle varianty a typu</CardTitle>
+                <CardDescription>
+                  Detailní přehled všech konverzí
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left py-3 px-4">Varianta</th>
+                        <th className="text-left py-3 px-4">Typ konverze</th>
+                        <th className="text-right py-3 px-4">Počet</th>
+                        <th className="text-right py-3 px-4">Hodnota</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {conversionStats?.map((c: any, idx: number) => (
+                        <tr key={idx} className="border-b hover:bg-gray-50">
+                          <td className="py-3 px-4">
+                            <div className="flex items-center gap-2">
+                              {variantIcons[c.variantKey]}
+                              <span className="font-medium">{c.variantName}</span>
+                            </div>
+                          </td>
+                          <td className="py-3 px-4">
+                            <div className="flex items-center gap-2">
+                              {conversionIcons[c.conversionType]}
+                              <span>{conversionLabels[c.conversionType] || c.conversionType}</span>
+                            </div>
+                          </td>
+                          <td className="text-right py-3 px-4 font-medium">{c.totalConversions}</td>
+                          <td className="text-right py-3 px-4">
+                            {Number(c.totalValue || 0).toLocaleString()} Kč
+                          </td>
+                        </tr>
+                      ))}
+                      {(!conversionStats || conversionStats.length === 0) && (
+                        <tr>
+                          <td colSpan={4} className="py-8 text-center text-gray-500">
+                            Zatím žádné konverze
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="affiliates">
+            <Card>
+              <CardHeader>
+                <CardTitle>Affiliate kliky podle partnera</CardTitle>
+                <CardDescription>
+                  Přehled affiliate kliků na OHORAI, Irisimo a další partnery
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left py-3 px-4">Varianta</th>
+                        <th className="text-left py-3 px-4">Partner</th>
+                        <th className="text-right py-3 px-4">Kliky</th>
+                        <th className="text-right py-3 px-4">Hodnota</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {affiliateStats?.map((a: any, idx: number) => (
+                        <tr key={idx} className="border-b hover:bg-gray-50">
+                          <td className="py-3 px-4">
+                            <div className="flex items-center gap-2">
+                              {variantIcons[a.variantKey]}
+                              <span className="font-medium">{a.variantName}</span>
+                            </div>
+                          </td>
+                          <td className="py-3 px-4">
+                            <Badge variant="outline">{a.affiliatePartner || 'Neznámý'}</Badge>
+                          </td>
+                          <td className="text-right py-3 px-4 font-medium">{a.totalClicks}</td>
+                          <td className="text-right py-3 px-4">
+                            {Number(a.totalValue || 0).toLocaleString()} Kč
+                          </td>
+                        </tr>
+                      ))}
+                      {(!affiliateStats || affiliateStats.length === 0) && (
+                        <tr>
+                          <td colSpan={4} className="py-8 text-center text-gray-500">
+                            Zatím žádné affiliate kliky
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           <TabsContent value="details">
@@ -264,7 +494,7 @@ export default function AdminChatbotAB() {
                         <tr key={s.variantKey} className="border-b hover:bg-gray-50">
                           <td className="py-3 px-4">
                             <div className="flex items-center gap-2">
-                              {variantIcons[s.variantKey || '']}
+                              {variantIcons[s.variantKey]}
                               <span className="font-medium">{s.variantName}</span>
                             </div>
                           </td>
@@ -336,7 +566,7 @@ export default function AdminChatbotAB() {
         </Tabs>
 
         {/* Loading states */}
-        {(variantsLoading || statsLoading) && (
+        {(variantsLoading || statsLoading || conversionLoading || affiliateLoading) && (
           <div className="fixed inset-0 bg-black/20 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-xl">
               <RefreshCw className="w-8 h-8 animate-spin text-purple-600 mx-auto" />

@@ -19,7 +19,11 @@ import {
   logChatbotEvent,
   getChatbotSessionBySessionId,
   getChatbotComparisonStats,
-  getChatbotDailyStats
+  getChatbotDailyStats,
+  trackChatbotConversion,
+  getChatbotConversionStats,
+  getChatbotAffiliateStats,
+  getChatbotConversionFunnel
 } from "./db";
 
 export const appRouter = router({
@@ -404,6 +408,64 @@ ${email ? `- Email: ${email}` : ''}
       }))
       .query(async ({ input }) => {
         return getChatbotDailyStats(input.variantId, input.days || 30);
+      }),
+
+    // Track conversion event
+    trackConversion: publicProcedure
+      .input(z.object({
+        sessionId: z.number().optional(),
+        variantId: z.number(),
+        visitorId: z.string(),
+        conversionType: z.enum(['email_capture', 'whatsapp_click', 'affiliate_click', 'purchase', 'newsletter']),
+        conversionSubtype: z.string().optional(),
+        conversionValue: z.string().optional(),
+        currency: z.string().optional(),
+        productId: z.string().optional(),
+        productName: z.string().optional(),
+        affiliatePartner: z.string().optional(),
+        referralUrl: z.string().optional(),
+        metadata: z.record(z.string(), z.unknown()).optional(),
+      }))
+      .mutation(async ({ input }) => {
+        await trackChatbotConversion(input);
+        return { success: true };
+      }),
+
+    // Get conversion stats by variant and type
+    getConversionStats: publicProcedure
+      .input(z.object({
+        startDate: z.string(),
+        endDate: z.string(),
+      }))
+      .query(async ({ input }) => {
+        const startDate = new Date(input.startDate);
+        const endDate = new Date(input.endDate);
+        return getChatbotConversionStats(startDate, endDate);
+      }),
+
+    // Get affiliate click stats
+    getAffiliateStats: publicProcedure
+      .input(z.object({
+        startDate: z.string(),
+        endDate: z.string(),
+      }))
+      .query(async ({ input }) => {
+        const startDate = new Date(input.startDate);
+        const endDate = new Date(input.endDate);
+        return getChatbotAffiliateStats(startDate, endDate);
+      }),
+
+    // Get conversion funnel for a variant
+    getConversionFunnel: publicProcedure
+      .input(z.object({
+        variantId: z.number(),
+        startDate: z.string(),
+        endDate: z.string(),
+      }))
+      .query(async ({ input }) => {
+        const startDate = new Date(input.startDate);
+        const endDate = new Date(input.endDate);
+        return getChatbotConversionFunnel(input.variantId, startDate, endDate);
       }),
   }),
 });

@@ -121,6 +121,9 @@ export default function AIChatAssistant() {
   // Log event mutation
   const logEventMutation = trpc.chatbotAB.logEvent.useMutation();
 
+  // Track conversion mutation
+  const trackConversionMutation = trpc.chatbotAB.trackConversion.useMutation();
+
   // Update variant and initial message when assigned
   useEffect(() => {
     if (assignedVariant && !variant) {
@@ -234,6 +237,17 @@ export default function AIChatAssistant() {
   const handleEmailCapture = () => {
     if (!email.trim()) return;
     emailCaptureMutation.mutate({ email });
+    
+    // Track email capture conversion
+    if (variant) {
+      trackConversionMutation.mutate({
+        variantId: variant.id,
+        visitorId,
+        conversionType: 'email_capture',
+        conversionSubtype: 'chat_email_capture',
+        metadata: { email },
+      });
+    }
   };
 
   const handleWhatsAppEscalation = () => {
@@ -241,6 +255,33 @@ export default function AIChatAssistant() {
       `Ahoj Natálie, potřebuji pomoc s produkty na Amulets.cz`
     );
     window.open(`https://wa.me/420776041740?text=${message}`, "_blank");
+    
+    // Track WhatsApp conversion
+    if (variant) {
+      trackConversionMutation.mutate({
+        variantId: variant.id,
+        visitorId,
+        conversionType: 'whatsapp_click',
+        conversionSubtype: 'chat_escalation',
+        referralUrl: window.location.href,
+      });
+    }
+  };
+
+  // Track affiliate click
+  const trackAffiliateClick = (partner: string, url: string, productId?: string, productName?: string) => {
+    if (variant) {
+      trackConversionMutation.mutate({
+        variantId: variant.id,
+        visitorId,
+        conversionType: 'affiliate_click',
+        conversionSubtype: `${partner}_affiliate`,
+        affiliatePartner: partner,
+        referralUrl: url,
+        productId,
+        productName,
+      });
+    }
   };
 
   const speakText = (text: string | any) => {
