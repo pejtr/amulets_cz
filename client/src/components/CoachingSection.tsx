@@ -79,7 +79,7 @@ export default function CoachingSection() {
                     <div>
                       <p className="font-semibold">Executive Coaching</p>
                       <p className="text-sm text-muted-foreground">
-                        Koučovala jsem CEO a top management. Teď se vracím k osobnímu koučingu
+                        Koučovala jsem CEO a top management. A teď jsem zpět v plné síle ✨
                       </p>
                     </div>
                   </div>
