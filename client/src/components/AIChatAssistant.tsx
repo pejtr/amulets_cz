@@ -91,17 +91,8 @@ Přeji ti krásné sny plné světla a lásky. Dobrou noc! 💫💜
 
 ~ Natálie`;
 
-// Offline message
-const OFFLINE_MESSAGE = `Dobrý den! 🌟
-
-Právě teď odpočívám a nabírám energii pro nový den.
-
-**Jsem tu pro vás každý den od 9:00 do 24:00.**
-
-Mezitím si můžete prohlédnout naše produkty nebo mi napsat na WhatsApp 📱
-
-Těším se na vás!
-~ Natálie`;
+// Offline message - zkrácená verze
+const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpočívám. Jsem tu denně 9:00-24:00. Napište mi na WhatsApp nebo zanechte dotaz! ~ Natálie 💜`;
 
 export default function AIChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
@@ -657,10 +648,10 @@ Co tě dnes přivádí?`;
 
             {/* Suggested Questions - Categories or Questions */}
             {messages.length === 1 && (
-              <div className="border-t bg-white overflow-y-auto p-2 max-h-48">
+              <div className="border-t bg-white overflow-y-auto p-1.5 max-h-36">
                 {!selectedCategory ? (
                   <>
-                    <p className="text-[10px] font-semibold text-gray-500 mb-1.5 uppercase">Jak ti mohu pomoci?</p>
+                    <p className="text-[9px] font-semibold text-gray-400 mb-1 uppercase">Jak ti mohu pomoci?</p>
                     <div className="grid grid-cols-3 gap-1.5">
                       {SUGGESTED_CATEGORIES.map((cat) => (
                         <button
@@ -678,11 +669,11 @@ Co tě dnes přivádí?`;
                               });
                             }
                           }}
-                          className="p-2 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-purple-200 hover:border-purple-300 transition-all text-center flex flex-col items-center justify-center shadow-sm hover:shadow-md"
+                          className="p-1.5 rounded-md bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-purple-200 hover:border-purple-300 transition-all text-center flex flex-col items-center justify-center"
                           title={cat.category}
                         >
-                          <div className="text-2xl">{cat.icon}</div>
-                          <p className="text-xs font-semibold text-gray-800 leading-tight">{cat.category}</p>
+                          <div className="text-lg leading-none">{cat.icon}</div>
+                          <p className="text-[10px] font-medium text-gray-700 leading-tight mt-0.5">{cat.category}</p>
                         </button>
                       ))}
                     </div>
@@ -815,31 +806,23 @@ Co tě dnes přivádí?`;
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center space-y-2">
-                    <p className="text-xs text-gray-500">
-                      🌙 Natálie teď odpočívá.
-                    </p>
-                    <div className="flex gap-2">
-                      <Button
-                        onClick={() => setShowTicketForm(true)}
-                        size="sm"
-                        className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-xs"
-                      >
-                        📝 Zanechat dotaz
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={handleWhatsAppEscalation}
-                        className="flex-1 border-green-500 text-green-600 hover:bg-green-50 text-xs"
-                      >
-                        <Phone className="h-3 w-3 mr-1" />
-                        WhatsApp
-                      </Button>
-                    </div>
-                    <p className="text-xs text-gray-400">
-                      K dispozici každý den od 9:00 do 24:00
-                    </p>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] text-gray-400 whitespace-nowrap">🌙 Odpočívá (9-24h)</span>
+                    <Button
+                      onClick={() => setShowTicketForm(true)}
+                      size="sm"
+                      className="h-7 px-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-[10px]"
+                    >
+                      📝 Dotaz
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleWhatsAppEscalation}
+                      className="h-7 px-2 border-green-500 text-green-600 hover:bg-green-50 text-[10px]"
+                    >
+                      <Phone className="h-3 w-3" />
+                    </Button>
                   </div>
                 )}
               </div>

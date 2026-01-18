@@ -1400,3 +1400,9 @@
 - [x] Zmenšit/zredukovat spodní část chatu (tlačítka, WhatsApp) aby byl vidět celý text zprávy
 - [x] Kompaktnější layout pro offline stav
 - [x] Zmenšit 3 tlačítka kategorií
+
+## Chat UI - Další redukce spodní části (Jan 18, 2026)
+- [x] Ještě více zredukovat spodní část chatu (kategorie, offline stav)
+- [x] Zkrátit offline zprávu aby byla celá viditelná
+- [x] Offline stav na jeden řádek (kompaktní)
+- [x] Menší tlačítka kategorií
