@@ -1412,3 +1412,16 @@
 - [x] Každý prvek se postupně přiblíží a ustálí
 - [x] Staggered delay 150ms mezi prvky
 - [x] Ikona se také zmenší z 125% na 100%
+
+## BUG: AMEN sekce zobrazují špatné produkty (Jan 18, 2026)
+- [x] Opravit sekci Náušnice AMEN - obrázky neodpovídají náušnicím
+- [x] Opravit sekci Prsteny AMEN - zkontrolovat obrázky
+- [x] Stáhnout správné obrázky náušnic z Irisimo.cz
+- [x] Stáhnout správné obrázky prstenů z Irisimo.cz
+- [x] Aktualizovat amenCatalog.ts se správnými cestami k obrázkům
+- [x] Otestovat všechny AMEN sekce před releasem
+
+## Vylepšení profilu Natálie Ohorai (Jan 19, 2026)
+- [x] Nahradit korunku ikonou váh (královský styl)
+- [x] Přidat kultivovanější tooltip při hover/click
+- [x] Otestovat na desktopu i mobilu

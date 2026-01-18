@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Elegant Libra Scales - Royal Style -->
+  <defs>
+    <!-- Gold gradient -->
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700"/>
+      <stop offset="50%" style="stop-color:#FFA500"/>
+      <stop offset="100%" style="stop-color:#DAA520"/>
+    </linearGradient>
+    <!-- Purple gradient for royal accent -->
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9333EA"/>
+      <stop offset="100%" style="stop-color:#7C3AED"/>
+    </linearGradient>
+    <!-- Shine effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Central pillar with ornament -->
+  <rect x="47" y="25" width="6" height="55" rx="2" fill="url(#goldGradient)" filter="url(#glow)"/>
+  
+  <!-- Top ornament (crown-like) -->
+  <path d="M50 12 L54 20 L58 16 L56 24 L50 22 L44 24 L42 16 L46 20 Z" fill="url(#goldGradient)" filter="url(#glow)"/>
+  <circle cx="50" cy="10" r="3" fill="url(#purpleGradient)"/>
+  
+  <!-- Horizontal beam -->
+  <rect x="15" y="28" width="70" height="4" rx="2" fill="url(#goldGradient)" filter="url(#glow)"/>
+  
+  <!-- Left chain -->
+  <path d="M20 32 Q18 40 20 48" stroke="url(#goldGradient)" stroke-width="2" fill="none"/>
+  <path d="M20 48 Q22 56 20 64" stroke="url(#goldGradient)" stroke-width="2" fill="none"/>
+  
+  <!-- Right chain -->
+  <path d="M80 32 Q82 40 80 48" stroke="url(#goldGradient)" stroke-width="2" fill="none"/>
+  <path d="M80 48 Q78 56 80 64" stroke="url(#goldGradient)" stroke-width="2" fill="none"/>
+  
+  <!-- Left scale plate -->
+  <ellipse cx="20" cy="68" rx="15" ry="5" fill="url(#goldGradient)" filter="url(#glow)"/>
+  <ellipse cx="20" cy="66" rx="12" ry="3" fill="#FFF8DC" opacity="0.3"/>
+  
+  <!-- Right scale plate -->
+  <ellipse cx="80" cy="68" rx="15" ry="5" fill="url(#goldGradient)" filter="url(#glow)"/>
+  <ellipse cx="80" cy="66" rx="12" ry="3" fill="#FFF8DC" opacity="0.3"/>
+  
+  <!-- Base with royal design -->
+  <path d="M35 80 Q50 75 65 80 L62 88 Q50 92 38 88 Z" fill="url(#goldGradient)" filter="url(#glow)"/>
+  <ellipse cx="50" cy="88" rx="8" ry="2" fill="url(#purpleGradient)" opacity="0.5"/>
+  
+  <!-- Decorative gems on beam -->
+  <circle cx="30" cy="30" r="2" fill="url(#purpleGradient)"/>
+  <circle cx="70" cy="30" r="2" fill="url(#purpleGradient)"/>
+  
+  <!-- Small stars for sparkle -->
+  <circle cx="25" cy="55" r="1" fill="#FFD700" opacity="0.8"/>
+  <circle cx="75" cy="55" r="1" fill="#FFD700" opacity="0.8"/>
+</svg>

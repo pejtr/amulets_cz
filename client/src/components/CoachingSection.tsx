@@ -2,12 +2,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Crown, Heart, Scale, Sparkles, Check } from "lucide-react";
+import { useState } from "react";
 
 /**
  * Coaching Section - Premium osobní koučing s Natálií
  * Ušlechtilá Královna Váhy, bývalá executive coach
  */
 export default function CoachingSection() {
+  const [showTooltip, setShowTooltip] = useState(false);
+
   const handleOpenChat = () => {
     // Trigger chat open with coaching interest
     const event = new CustomEvent('openChat', { 
@@ -42,13 +45,66 @@ export default function CoachingSection() {
             <Card className="border-2 border-purple-200 shadow-lg">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white text-2xl">
-                    👑
+                  {/* Libra Scales Icon with Tooltip */}
+                  <div 
+                    className="relative cursor-pointer"
+                    onMouseEnter={() => setShowTooltip(true)}
+                    onMouseLeave={() => setShowTooltip(false)}
+                    onClick={() => setShowTooltip(!showTooltip)}
+                  >
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                      <img 
+                        src="/images/libra-scales.svg" 
+                        alt="Znamení Váhy" 
+                        className="w-10 h-10"
+                      />
+                    </div>
+                    
+                    {/* Elegant Tooltip */}
+                    {showTooltip && (
+                      <div className="absolute left-0 top-full mt-3 z-50 w-80 animate-in fade-in slide-in-from-top-2 duration-300">
+                        <div className="bg-gradient-to-br from-purple-900 via-purple-800 to-pink-900 text-white p-5 rounded-xl shadow-2xl border border-purple-400/30">
+                          {/* Decorative top line */}
+                          <div className="absolute -top-2 left-8 w-4 h-4 bg-purple-800 rotate-45 border-l border-t border-purple-400/30"></div>
+                          
+                          <div className="flex items-center gap-3 mb-3">
+                            <Scale className="w-5 h-5 text-amber-400" />
+                            <h4 className="font-bold text-lg text-amber-300">Královna Váhy</h4>
+                          </div>
+                          
+                          <p className="text-sm leading-relaxed text-purple-100 mb-3">
+                            Natálie se narodila ve znamení <span className="text-amber-300 font-semibold">Váhy</span> — 
+                            symbolu rovnováhy, harmonie a spravedlnosti. Jako pravá Váha přináší do každého 
+                            setkání diplomatický nadhled a schopnost vidět obě strany mince.
+                          </p>
+                          
+                          <div className="border-t border-purple-500/30 pt-3 mt-3">
+                            <p className="text-xs text-purple-200 italic flex items-center gap-2">
+                              <Heart className="w-3 h-3 text-pink-400" />
+                              Její dar? Být nejlepší kamárádkou, která vždy naslouchá bez odsuzování.
+                            </p>
+                          </div>
+                          
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            <span className="text-xs bg-purple-700/50 px-2 py-1 rounded-full">✨ Empatie</span>
+                            <span className="text-xs bg-purple-700/50 px-2 py-1 rounded-full">⚖️ Rovnováha</span>
+                            <span className="text-xs bg-purple-700/50 px-2 py-1 rounded-full">💜 Harmonie</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
+                  
                   <div>
                     <h3 className="text-2xl font-bold mb-2">Natálie Ohorai</h3>
                     <p className="text-muted-foreground">
-                      Znamení Váhy • Nejlepší kamárádka • Spirituální průvodkyně
+                      <span 
+                        className="cursor-pointer hover:text-purple-600 transition-colors"
+                        onClick={() => setShowTooltip(!showTooltip)}
+                      >
+                        Znamení Váhy
+                      </span>
+                      {" • "}Nejlepší kamárádka • Spirituální průvodkyně
                     </p>
                   </div>
                 </div>
