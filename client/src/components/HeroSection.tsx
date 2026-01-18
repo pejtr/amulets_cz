@@ -9,12 +9,46 @@ export default function HeroSection() {
   return (
     <section className="relative w-full overflow-hidden bg-white">
       {/* Mobile: cropped hero image (without buttons) + functional buttons below */}
-      <div className="md:hidden">
+      <div className="md:hidden relative">
         <img
           src="/hero-mobile-cropped.webp"
           alt="Natálie Ohorai - Zakladatelka Amulets.cz"
           className="w-full h-auto"
         />
+        
+        {/* Animated sparkles overlay */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Floating sparkles */}
+          {[...Array(15)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full animate-sparkle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${2 + Math.random() * 3}s`,
+                opacity: 0.6 + Math.random() * 0.4,
+              }}
+            />
+          ))}
+          
+          {/* Larger glowing orbs */}
+          {[...Array(5)].map((_, i) => (
+            <div
+              key={`orb-${i}`}
+              className="absolute w-2 h-2 bg-gradient-to-r from-yellow-200 to-amber-300 rounded-full animate-float-glow"
+              style={{
+                left: `${20 + Math.random() * 60}%`,
+                top: `${20 + Math.random() * 60}%`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${4 + Math.random() * 3}s`,
+                filter: 'blur(1px)',
+                boxShadow: '0 0 10px 2px rgba(255, 215, 0, 0.5)',
+              }}
+            />
+          ))}
+        </div>
         
         {/* Functional buttons below the image on mobile */}
         <div className="px-4 py-4 space-y-3 bg-gradient-to-b from-[#1a1a2e] to-white">
@@ -70,6 +104,50 @@ export default function HeroSection() {
           alt="Natálie Ohorai - Zakladatelka Amulets.cz"
           className="w-full h-full object-cover"
         />
+        
+        {/* Animated sparkles overlay - Desktop */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Floating sparkles */}
+          {[...Array(25)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1.5 h-1.5 bg-white rounded-full animate-sparkle"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${2 + Math.random() * 3}s`,
+                opacity: 0.5 + Math.random() * 0.5,
+              }}
+            />
+          ))}
+          
+          {/* Larger glowing orbs */}
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={`orb-${i}`}
+              className="absolute w-3 h-3 bg-gradient-to-r from-yellow-200 to-amber-300 rounded-full animate-float-glow"
+              style={{
+                left: `${15 + Math.random() * 70}%`,
+                top: `${15 + Math.random() * 70}%`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${4 + Math.random() * 3}s`,
+                filter: 'blur(1px)',
+                boxShadow: '0 0 15px 3px rgba(255, 215, 0, 0.4)',
+              }}
+            />
+          ))}
+          
+          {/* Subtle light rays */}
+          <div 
+            className="absolute top-0 right-1/4 w-32 h-full bg-gradient-to-b from-yellow-100/20 via-transparent to-transparent animate-pulse-slow"
+            style={{ transform: 'rotate(15deg)', transformOrigin: 'top center' }}
+          />
+          <div 
+            className="absolute top-0 right-1/3 w-24 h-full bg-gradient-to-b from-amber-100/15 via-transparent to-transparent animate-pulse-slow"
+            style={{ transform: 'rotate(-10deg)', transformOrigin: 'top center', animationDelay: '1s' }}
+          />
+        </div>
 
         {/* Content overlay - positioned on the LEFT */}
         <div className="absolute inset-0 flex items-end md:items-center">

@@ -1176,3 +1176,17 @@
 
 ## Oprava mobilní responzivity chatbota
 - [x] Opravit oříznutí chatbot okna na levé straně na mobilu - nyní fullscreen na mobilu
+
+
+## Systém analýzy poptávky návštěvníků
+- [ ] Navrhnout databázové schéma pro analýzu témat
+- [ ] Implementovat sběr a kategorizaci témat z chatbota
+- [ ] Vytvořit report generování s doporučeními na rozšíření obsahu
+- [ ] Přidat týdenní/měsíční report do Telegramu
+- [ ] Natálie bude posílat doporučení na základě dat
+
+
+## Animované efekty v hero sekci
+- [x] Přidat jemné třpytky/hvězdičky plovoucí přes obrázek
+- [x] Přidat pulzující záři nebo světelné efekty
+- [x] Přidat světelné paprsky na desktopu

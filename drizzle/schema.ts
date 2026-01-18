@@ -263,3 +263,115 @@ export const chatbotTicketResponses = mysqlTable("chatbot_ticket_responses", {
 
 export type ChatbotTicketResponse = typeof chatbotTicketResponses.$inferSelect;
 export type InsertChatbotTicketResponse = typeof chatbotTicketResponses.$inferInsert;
+
+
+// ============================================
+// DEMAND ANALYSIS & CONTENT INSIGHTS
+// ============================================
+
+// Topic Categories - hlavní kategorie témat
+export const topicCategories = mysqlTable("topic_categories", {
+  id: int("id").autoincrement().primaryKey(),
+  name: varchar("name", { length: 100 }).notNull().unique(),
+  description: text("description"),
+  parentId: int("parentId"), // pro hierarchii kategorií
+  icon: varchar("icon", { length: 10 }), // emoji
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type TopicCategory = typeof topicCategories.$inferSelect;
+export type InsertTopicCategory = typeof topicCategories.$inferInsert;
+
+// Detected Topics - témata extrahovaná z konverzací
+export const detectedTopics = mysqlTable("detected_topics", {
+  id: int("id").autoincrement().primaryKey(),
+  sessionId: int("sessionId").references(() => chatbotSessions.id),
+  messageId: int("messageId").references(() => chatbotMessages.id),
+  
+  // Téma
+  topic: varchar("topic", { length: 200 }).notNull(),
+  categoryId: int("categoryId").references(() => topicCategories.id),
+  
+  // Analýza
+  sentiment: mysqlEnum("sentiment", ["positive", "neutral", "negative"]).default("neutral"),
+  intent: mysqlEnum("intent", ["question", "purchase", "complaint", "feedback", "other"]).default("question"),
+  urgency: mysqlEnum("urgency", ["low", "medium", "high"]).default("medium"),
+  
+  // Produkt/obsah
+  relatedProduct: varchar("relatedProduct", { length: 200 }),
+  contentGap: boolean("contentGap").default(false), // true pokud nemáme odpověď
+  suggestedContent: text("suggestedContent"), // AI návrh na obsah
+  
+  // Metadata
+  confidence: decimal("confidence", { precision: 5, scale: 2 }), // 0.00 - 1.00
+  extractedKeywords: text("extractedKeywords"), // JSON array
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type DetectedTopic = typeof detectedTopics.$inferSelect;
+export type InsertDetectedTopic = typeof detectedTopics.$inferInsert;
+
+// Weekly Demand Reports - týdenní reporty poptávky
+export const demandReports = mysqlTable("demand_reports", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  // Období
+  reportType: mysqlEnum("reportType", ["daily", "weekly", "monthly"]).notNull(),
+  periodStart: timestamp("periodStart").notNull(),
+  periodEnd: timestamp("periodEnd").notNull(),
+  
+  // Statistiky
+  totalConversations: int("totalConversations").default(0),
+  totalMessages: int("totalMessages").default(0),
+  uniqueTopics: int("uniqueTopics").default(0),
+  contentGaps: int("contentGaps").default(0),
+  
+  // Top témata (JSON)
+  topTopics: text("topTopics"), // JSON: [{topic, count, trend}]
+  topProducts: text("topProducts"), // JSON: [{product, mentions, sentiment}]
+  topQuestions: text("topQuestions"), // JSON: [{question, count}]
+  
+  // Doporučení (AI generované)
+  recommendations: text("recommendations"), // JSON: [{priority, type, suggestion, reason}]
+  contentSuggestions: text("contentSuggestions"), // JSON: [{title, type, keywords, priority}]
+  
+  // Status
+  status: mysqlEnum("status", ["generating", "ready", "sent", "archived"]).default("generating"),
+  sentToTelegram: boolean("sentToTelegram").default(false),
+  sentAt: timestamp("sentAt"),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type DemandReport = typeof demandReports.$inferSelect;
+export type InsertDemandReport = typeof demandReports.$inferInsert;
+
+// Content Suggestions - návrhy na nový obsah
+export const contentSuggestions = mysqlTable("content_suggestions", {
+  id: int("id").autoincrement().primaryKey(),
+  reportId: int("reportId").references(() => demandReports.id),
+  
+  // Návrh
+  title: varchar("title", { length: 200 }).notNull(),
+  contentType: mysqlEnum("contentType", ["article", "product", "guide", "faq", "video"]).notNull(),
+  description: text("description"),
+  keywords: text("keywords"), // JSON array
+  
+  // Priorita a důvod
+  priority: mysqlEnum("priority", ["low", "medium", "high", "critical"]).default("medium"),
+  demandScore: int("demandScore").default(0), // počet dotazů na toto téma
+  reason: text("reason"), // proč to doporučujeme
+  
+  // Status implementace
+  status: mysqlEnum("status", ["suggested", "approved", "in_progress", "completed", "rejected"]).default("suggested"),
+  implementedAt: timestamp("implementedAt"),
+  implementedUrl: varchar("implementedUrl", { length: 500 }),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ContentSuggestion = typeof contentSuggestions.$inferSelect;
+export type InsertContentSuggestion = typeof contentSuggestions.$inferInsert;
