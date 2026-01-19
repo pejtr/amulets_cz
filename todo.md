@@ -1443,3 +1443,14 @@
 - [x] Skrýt cenu koučingu - nahrazeno "Cena na vyžádání"
 - [x] Přesunout Back to Top tlačítko nad chat bublinu (bottom-28, z-40)
 - [x] WhatsApp tlačítko - změněno na zelené výrazné (bg-green-500) s textem "WhatsApp"
+
+## WhatsApp exkluzivita - pouze pro vážné zájemce (Jan 19, 2026)
+- [ ] Skrýt WhatsApp tlačítko z běžného zobrazení chatu
+- [ ] Zobrazit WhatsApp pouze po kvalifikaci zájemce (koučing, koncerty, kurzy, OHORAI tvorba)
+- [ ] Přidat výběr důvodu kontaktu před zobrazením WhatsApp
+
+## Telegram chatbot integrace (Jan 19, 2026)
+- [x] Přidat Telegram bot token do env (TELEGRAM_SUPPORT_BOT_TOKEN)
+- [x] Přidat Telegram tlačítko do chat widgetu (veřejně dostupné)
+- [x] WhatsApp zůstává exkluzivní pro vážné zájemce (VIP tlačítko s kvalifikací)
+- [x] Telegram bot: @Natalie_Amulets_bot

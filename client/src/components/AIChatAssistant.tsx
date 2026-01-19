@@ -44,7 +44,7 @@ const SUGGESTED_CATEGORIES = [
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { MessageCircle, X, Send, Phone, Volume2, VolumeX } from "lucide-react";
+import { MessageCircle, X, Send, Phone, Volume2, VolumeX, MessageSquare } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { Streamdown } from "streamdown";
 import { toast } from "sonner";
@@ -152,6 +152,19 @@ export default function AIChatAssistant() {
   const [ticketEmail, setTicketEmail] = useState("");
   const [ticketMessage, setTicketMessage] = useState("");
   const [ticketSubmitted, setTicketSubmitted] = useState(false);
+
+  // WhatsApp qualification state - pouze pro vážné zájemce
+  const [showWhatsAppQualification, setShowWhatsAppQualification] = useState(false);
+  const [whatsAppQualified, setWhatsAppQualified] = useState(false);
+  const [selectedWhatsAppReason, setSelectedWhatsAppReason] = useState<string | null>(null);
+
+  // WhatsApp qualification reasons - pouze tyto důvody oprávňují k přímému kontaktu
+  const WHATSAPP_REASONS = [
+    { id: 'coaching', label: '💜 Osobní koučing s Natálií', icon: '✨' },
+    { id: 'concert', label: '🔮 Koncert křišťálových mís', icon: '🎶' },
+    { id: 'course', label: '🎨 Kreativní kurzy posvátné tvorby', icon: '📚' },
+    { id: 'ohorai', label: '☆ Autorská tvorba OHORAI', icon: '🌟' },
+  ];
 
   // A/B Testing - get random variant on mount
   const { data: assignedVariant } = trpc.chatbotAB.getVariant.useQuery({ visitorId }, {
@@ -388,10 +401,26 @@ Co tě dnes přivádí?`;
     }
   };
 
-  const handleWhatsAppEscalation = () => {
-    const message = encodeURIComponent(
-      `Ahoj Natálie, potřebuji pomoc s produkty na Amulets.cz`
-    );
+  const handleWhatsAppEscalation = (reason?: string) => {
+    // Vytvořit personalizovanou zprávu podle důvodu
+    let messageText = 'Ahoj Natálie';
+    switch (reason) {
+      case 'coaching':
+        messageText = 'Ahoj Natálie, mám zájem o osobní koučing s tebou 💜';
+        break;
+      case 'concert':
+        messageText = 'Ahoj Natálie, zajímá mě koncert křišťálových mís 🔮';
+        break;
+      case 'course':
+        messageText = 'Ahoj Natálie, mám zájem o kreativní kurzy posvátné tvorby 🎨';
+        break;
+      case 'ohorai':
+        messageText = 'Ahoj Natálie, mám dotaz k autorské tvorbě OHORAI ✨';
+        break;
+      default:
+        messageText = 'Ahoj Natálie, potřebuji pomoc';
+    }
+    const message = encodeURIComponent(messageText);
     window.open(`https://wa.me/420776041740?text=${message}`, "_blank");
     
     // Track WhatsApp conversion
@@ -400,10 +429,26 @@ Co tě dnes přivádí?`;
         variantId: variant.id,
         visitorId,
         conversionType: 'whatsapp_click',
-        conversionSubtype: 'chat_escalation',
+        conversionSubtype: reason ? `qualified_${reason}` : 'chat_escalation',
         referralUrl: window.location.href,
       });
     }
+    
+    // Reset qualification state
+    setShowWhatsAppQualification(false);
+    setWhatsAppQualified(false);
+    setSelectedWhatsAppReason(null);
+  };
+
+  // Zobrazit kvalifikační flow pro WhatsApp
+  const handleWhatsAppRequest = () => {
+    setShowWhatsAppQualification(true);
+  };
+
+  // Potvrdit kvalifikaci a zobrazit WhatsApp
+  const handleWhatsAppQualify = (reasonId: string) => {
+    setSelectedWhatsAppReason(reasonId);
+    setWhatsAppQualified(true);
   };
 
   // Track affiliate click
@@ -533,9 +578,9 @@ Co tě dnes přivádí?`;
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={handleWhatsAppEscalation}
+                onClick={() => handleWhatsAppRequest()}
                 className="text-white hover:bg-white/20 h-8 w-8"
-                title="Pokračovat na WhatsApp"
+                title="Přímý kontakt s Natálií"
               >
                 <Phone className="h-4 w-4" />
               </Button>
@@ -805,24 +850,103 @@ Co tě dnes přivádí?`;
                       </Button>
                     </div>
                   </div>
+                ) : showWhatsAppQualification ? (
+                  // WhatsApp kvalifikační flow - exkluzivní přístup
+                  <div className="space-y-2">
+                    {!whatsAppQualified ? (
+                      <>
+                        <p className="text-xs font-medium text-gray-700 text-center">
+                          💜 WhatsApp je exkluzivní kontakt pro vážné zájemce
+                        </p>
+                        <p className="text-[10px] text-gray-500 text-center mb-2">
+                          Vyberte důvod vašeho zájmu:
+                        </p>
+                        <div className="grid grid-cols-2 gap-1.5">
+                          {WHATSAPP_REASONS.map((reason) => (
+                            <button
+                              key={reason.id}
+                              onClick={() => handleWhatsAppQualify(reason.id)}
+                              className="text-[10px] p-2 rounded-lg border border-purple-200 hover:border-purple-400 hover:bg-purple-50 transition-all text-left"
+                            >
+                              <span className="block font-medium text-purple-700">{reason.label}</span>
+                            </button>
+                          ))}
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setShowWhatsAppQualification(false)}
+                          className="w-full text-[10px] text-gray-500 mt-1"
+                        >
+                          ← Zpět
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <div className="text-center py-2">
+                          <div className="text-2xl mb-1">✨</div>
+                          <p className="text-xs font-medium text-purple-700">Děkujeme za váš zájem!</p>
+                          <p className="text-[10px] text-gray-600 mt-1">
+                            Natálie se těší na váš kontakt
+                          </p>
+                        </div>
+                        <Button
+                          size="sm"
+                          onClick={() => handleWhatsAppEscalation(selectedWhatsAppReason || undefined)}
+                          className="w-full h-9 bg-green-500 hover:bg-green-600 text-white text-sm shadow-md"
+                        >
+                          <Phone className="h-4 w-4 mr-2" />
+                          Otevřít WhatsApp
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            setWhatsAppQualified(false);
+                            setSelectedWhatsAppReason(null);
+                          }}
+                          className="w-full text-[10px] text-gray-500"
+                        >
+                          ← Změnit důvod
+                        </Button>
+                      </>
+                    )}
+                  </div>
                 ) : (
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] text-gray-400 whitespace-nowrap">🌙 Odpočívá (9-24h)</span>
-                    <Button
-                      onClick={() => setShowTicketForm(true)}
-                      size="sm"
-                      className="h-7 px-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-[10px]"
-                    >
-                      📝 Dotaz
-                    </Button>
-                    <Button
-                      size="sm"
-                      onClick={handleWhatsAppEscalation}
-                      className="h-7 px-3 bg-green-500 hover:bg-green-600 text-white text-[10px] shadow-sm"
-                    >
-                      <Phone className="h-3 w-3 mr-1" />
-                      WhatsApp
-                    </Button>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] text-gray-400 whitespace-nowrap">🌙 Odpočívá (9-24h)</span>
+                      <Button
+                        onClick={() => setShowTicketForm(true)}
+                        size="sm"
+                        className="h-7 px-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-[10px]"
+                      >
+                        📝 Dotaz
+                      </Button>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href="https://t.me/Natalie_Amulets_bot"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 h-7 px-3 inline-flex items-center justify-center rounded-md text-[10px] bg-[#0088cc] hover:bg-[#006699] text-white transition-colors"
+                      >
+                        <svg className="h-3 w-3 mr-1" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                        </svg>
+                        Telegram Bot
+                      </a>
+                      <Button
+                        size="sm"
+                        onClick={handleWhatsAppRequest}
+                        variant="outline"
+                        className="h-7 px-2 text-[10px] border-gray-300 text-gray-600 hover:border-purple-400 hover:text-purple-600"
+                        title="Exkluzivní kontakt pro vážné zájemce"
+                      >
+                        <Phone className="h-3 w-3 mr-1" />
+                        VIP
+                      </Button>
+                    </div>
                   </div>
                 )}
               </div>
