@@ -1664,3 +1664,8 @@
 - [x] Zvětšit tlačítko chatbota pro lepší viditelnost (20px → 24px)
 - [x] Otestovat na webu
 - [ ] Uložit checkpoint
+
+## Zvětšení nilského kříže v chatbotu (Jan 19, 2026)
+- [x] Zvětšit nilský kříž ☥ vedle jména Natálie Ohorai (text-xl → text-2xl)
+- [x] Otestovat na webu
+- [ ] Uložit checkpoint

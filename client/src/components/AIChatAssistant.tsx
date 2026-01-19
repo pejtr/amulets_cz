@@ -740,7 +740,7 @@ Co tě dnes přivádí?`;
                 <div className="flex items-center gap-2">
                   <h3 className="font-semibold text-lg">Natálie Ohorai</h3>
                   {/* Zlatý Ankh symbol - posvátný egyptský znak */}
-                  <span className="text-amber-300 text-xl animate-pulse drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" title="Ankh - symbol věčného života">☥</span>
+                  <span className="text-amber-300 text-2xl animate-pulse drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" title="Ankh - symbol věčného života">☥</span>
                 </div>
                 <p className="text-xs text-white/90 font-medium">Průvodkyně procesem</p>
                 <p className="text-xs text-white/70">
