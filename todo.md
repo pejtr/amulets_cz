@@ -1512,3 +1512,16 @@
 - [x] Přidat rychlé tlačítko "Ukázat esence OHORAI" do chatbotu
 - [x] Přidat rychlé tlačítko "Ukázat pyramidy OHORAI" do chatbotu
 - [x] Propojit tlačítka s novou stránkou OHORAI
+- [x] Přesunout Amarex do sekce Zdraví & Wellness (přírodní produkt na podporu erekce)
+
+## Automatická detekce jazyka a překlad do angličtiny (Jan 19, 2026)
+- [ ] Implementovat automatickou detekci jazyka (navigator.language)
+- [ ] Vytvořit LanguageContext pro správu jazyka
+- [ ] Přeložit Header komponentu do angličtiny
+- [ ] Přeložit Footer komponentu do angličtiny
+- [ ] Přeložit Homepage do angličtiny
+- [ ] Přeložit chatbota (system prompt + UI) do angličtiny
+- [ ] Přidat přepínač jazyka do headeru
+
+## Oprava cross-promo banneru (Jan 19, 2026)
+- [x] Přidat logo OHORAI do cross-promo banneru před text

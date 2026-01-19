@@ -22,8 +22,17 @@ export default function CoachingSection() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-white">
-      <div className="container">
+    <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-white relative overflow-hidden">
+      {/* Lotus Background Silhouette */}
+      <div 
+        className="absolute inset-0 opacity-20 bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url(/images/lotus-silhouette-purple.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <div className="container relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <Badge className="mb-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white">
@@ -42,6 +51,16 @@ export default function CoachingSection() {
         <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
           {/* Left: About Natálie */}
           <div className="space-y-6">
+            {/* Profile Photo */}
+            <div className="flex justify-center mb-6">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white ring-4 ring-purple-200 max-w-md">
+                <img 
+                  src="/natalie-coaching-full.jpg" 
+                  alt="Natálie Ohorai - Osobní kouč" 
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
             <Card className="border-2 border-purple-200 shadow-lg">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4 mb-4">
@@ -104,7 +123,7 @@ export default function CoachingSection() {
                       >
                         Znamení Váhy
                       </span>
-                      {" • "}Nejlepší kamárádka • Spirituální průvodkyně
+                      {" • "}Spirituální průvodkyně
                     </p>
                   </div>
                 </div>
@@ -139,17 +158,19 @@ export default function CoachingSection() {
                       </p>
                     </div>
                   </div>
+
+                  <div className="flex items-start gap-3">
+                    <Sparkles className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold">Zakladatelka úspěšných značek</p>
+                      <p className="text-sm text-muted-foreground">
+                        Lavaliere, Amulets, OHORAI - vím, jak budovat značku od nuly
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
-
-            <div className="bg-purple-100 border-l-4 border-purple-600 p-4 rounded-r-lg">
-              <p className="text-sm text-purple-900">
-                <strong>💜 Proč jsem přestala koučovat?</strong><br />
-                Musela jsem to ukončit kvůli časovému vytížení. Ale teď přemýšlím, že se k tomu vrátím - 
-                pro ty, kteří to opravdu potřebují a jsou připraveni na dlouhodobou spolupráci.
-              </p>
-            </div>
           </div>
 
           {/* Right: Pricing & Details */}
@@ -204,20 +225,29 @@ export default function CoachingSection() {
                   size="lg"
                 >
                   <Crown className="w-5 h-5 mr-2" />
-                  Mám zájem o koučing
+                  Mám zájem o konzultaci
                 </Button>
 
                 <p className="text-xs text-center text-muted-foreground mt-4">
-                  Natálie se ti ozve do 24 hodin
+                  Domluvme si termín prvního setkání a vyjasňme společná očekávání
                 </p>
               </CardContent>
             </Card>
 
-            <div className="text-center">
+            <div className="text-center space-y-3">
               <p className="text-sm text-muted-foreground italic">
                 "Nejsem jen koučka - jsem tvá nejlepší kamárádka na cestě k tvým cílům" 💜
               </p>
-              <p className="text-sm font-semibold mt-2">- Natálie Ohorai</p>
+              <p className="text-sm font-semibold">- Natálie Ohorai</p>
+              
+              <a
+                href="https://rostecky.cz/natalie-ohorai-amulets-t45227"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+              >
+                🎥 Shlédněte video rozhovor s Natálií na Rostecky.cz
+              </a>
             </div>
           </div>
         </div>

@@ -8,6 +8,7 @@ import ExitIntentPopup from "@/components/ExitIntentPopup";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { BrowsingProvider } from "./contexts/BrowsingContext";
+import { LanguageProvider } from "./contexts/LanguageContext";
 import Home from "./pages/Home";
 import GuideDetail from "./pages/GuideDetail";
 import Magazine from "./pages/Magazine";
@@ -20,6 +21,7 @@ import CookieConsent from "./components/CookieConsent";
 import BackToTop from "./components/BackToTop";
 
 import AIChatAssistant from "./components/AIChatAssistant";
+import StickyEsenceBanner from "./components/StickyEsenceBanner";
 import AboutNatalie from "./pages/AboutNatalie";
 import AmenPendants from "./pages/AmenPendants";
 import AdminCampaigns from "./pages/AdminCampaigns";
@@ -27,6 +29,8 @@ import AdminChatbotAB from "./pages/AdminChatbotAB";
 import AdminTickets from "./pages/AdminTickets";
 import AdminTelegram from "./pages/AdminTelegram";
 import OHORAI from "./pages/OHORAI";
+import Team from "./pages/Team";
+import LunarReading from "./pages/LunarReading";
 
 
 function Router() {
@@ -50,6 +54,8 @@ function Router() {
       <Route path="/cinsky-horoskop" component={ChineseZodiac} />
       <Route path="/predpoved-2026/:slug" component={Prediction2026} />
       <Route path="/ohorai" component={OHORAI} />
+      <Route path="/tym" component={Team} />
+      <Route path="/lunarni-reading" component={LunarReading} />
       <Route path="/o-nas" component={AboutNatalie} />
       <Route path="/privěsky-amen" component={AmenPendants} />
       <Route path="/admin/campaigns" component={AdminCampaigns} />
@@ -87,11 +93,12 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
-        <BrowsingProvider>
+      <LanguageProvider>
+        <ThemeProvider
+          defaultTheme="light"
+          // switchable
+        >
+          <BrowsingProvider>
           <ExitIntentPopup />
         <TooltipProvider>
           <Toaster />
@@ -99,9 +106,11 @@ function App() {
           <CookieConsent />
           <BackToTop />
           <AIChatAssistant />
+          <StickyEsenceBanner />
         </TooltipProvider>
-        </BrowsingProvider>
-      </ThemeProvider>
+          </BrowsingProvider>
+        </ThemeProvider>
+      </LanguageProvider>
     </ErrorBoundary>
   );
 }

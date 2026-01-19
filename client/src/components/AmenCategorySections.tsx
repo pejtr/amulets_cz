@@ -1,4 +1,4 @@
-import { ExternalLink, Heart, Sparkles } from "lucide-react";
+import { ExternalLink, Heart, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 
@@ -21,6 +21,19 @@ interface AmenCategorySectionsProps {
 }
 
 export default function AmenCategorySections({ products }: AmenCategorySectionsProps) {
+  // State pro expandování sekcí
+  const [expandedSections, setExpandedSections] = useState<{ [key: string]: boolean }>({
+    rosaryBracelets: false,
+    rosaryNecklaces: false,
+  });
+
+  const toggleSection = (sectionKey: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [sectionKey]: !prev[sectionKey]
+    }));
+  };
+
   // Rozdělení produktů podle kategorií a kolekcí
   const rosaryBracelets = products.filter(p => p.collection === 'Rosary' && p.category === 'naramek');
   const rosaryNecklaces = products.filter(p => p.collection === 'Rosary' && p.category === 'nahrdelnik');
@@ -34,24 +47,72 @@ export default function AmenCategorySections({ products }: AmenCategorySectionsP
 
   return (
     <div className="space-y-16">
-      {/* Rosary Náramky */}
+      {/* Rosary Náramky - Expandovatelné */}
       {rosaryBracelets.length > 0 && (
-        <CategorySection
-          title="Náramky Rosary"
-          subtitle="Růžencové náramky s duchovním významem"
-          products={rosaryBracelets}
-          icon={<Sparkles className="w-6 h-6" />}
-        />
+        <div className="border border-gray-200 rounded-lg overflow-hidden">
+          <button
+            onClick={() => toggleSection('rosaryBracelets')}
+            className="w-full px-6 py-4 bg-gradient-to-r from-pink-50 to-purple-50 hover:from-pink-100 hover:to-purple-100 transition-colors flex items-center justify-between"
+          >
+            <div className="flex items-center gap-3">
+              <Sparkles className="w-6 h-6 text-pink-500" />
+              <div className="text-left">
+                <h2 className="text-2xl font-bold text-gray-900">Náramky Rosary</h2>
+                <p className="text-sm text-gray-600">Růžencové náramky s duchovním významem ({rosaryBracelets.length} produktů)</p>
+              </div>
+            </div>
+            {expandedSections.rosaryBracelets ? (
+              <ChevronUp className="w-6 h-6 text-gray-600" />
+            ) : (
+              <ChevronDown className="w-6 h-6 text-gray-600" />
+            )}
+          </button>
+          {expandedSections.rosaryBracelets && (
+            <div className="p-6 bg-white">
+              <CategorySection
+                title=""
+                subtitle=""
+                products={rosaryBracelets}
+                icon={<Sparkles className="w-6 h-6" />}
+                hideHeader={true}
+              />
+            </div>
+          )}
+        </div>
       )}
 
-      {/* Rosary Náhrdelníky */}
+      {/* Rosary Náhrdelníky - Expandovatelné */}
       {rosaryNecklaces.length > 0 && (
-        <CategorySection
-          title="Náhrdelníky Rosary"
-          subtitle="Elegantní růžencové náhrdelníky"
-          products={rosaryNecklaces}
-          icon={<Sparkles className="w-6 h-6" />}
-        />
+        <div className="border border-gray-200 rounded-lg overflow-hidden">
+          <button
+            onClick={() => toggleSection('rosaryNecklaces')}
+            className="w-full px-6 py-4 bg-gradient-to-r from-pink-50 to-purple-50 hover:from-pink-100 hover:to-purple-100 transition-colors flex items-center justify-between"
+          >
+            <div className="flex items-center gap-3">
+              <Sparkles className="w-6 h-6 text-pink-500" />
+              <div className="text-left">
+                <h2 className="text-2xl font-bold text-gray-900">Náhrdelníky Rosary</h2>
+                <p className="text-sm text-gray-600">Elegantní růžencové náhrdelníky ({rosaryNecklaces.length} produktů)</p>
+              </div>
+            </div>
+            {expandedSections.rosaryNecklaces ? (
+              <ChevronUp className="w-6 h-6 text-gray-600" />
+            ) : (
+              <ChevronDown className="w-6 h-6 text-gray-600" />
+            )}
+          </button>
+          {expandedSections.rosaryNecklaces && (
+            <div className="p-6 bg-white">
+              <CategorySection
+                title=""
+                subtitle=""
+                products={rosaryNecklaces}
+                icon={<Sparkles className="w-6 h-6" />}
+                hideHeader={true}
+              />
+            </div>
+          )}
+        </div>
       )}
 
       {/* Love Kolekce */}
@@ -132,9 +193,10 @@ interface CategorySectionProps {
   subtitle: string;
   products: AmenProduct[];
   icon: React.ReactNode;
+  hideHeader?: boolean;
 }
 
-function CategorySection({ title, subtitle, products, icon }: CategorySectionProps) {
+function CategorySection({ title, subtitle, products, icon, hideHeader = false }: CategorySectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const productsPerPage = 4;
   const totalPages = Math.ceil(products.length / productsPerPage);
@@ -153,21 +215,23 @@ function CategorySection({ title, subtitle, products, icon }: CategorySectionPro
   };
 
   return (
-    <section className="py-12 bg-gradient-to-br from-pink-50 via-white to-purple-50">
-      <div className="container">
+    <section className={hideHeader ? "" : "py-12 bg-gradient-to-br from-pink-50 via-white to-purple-50"}>
+      <div className={hideHeader ? "" : "container"}>
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="text-pink-500">{icon}</div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              {title}
-            </h2>
-            <div className="text-pink-500">{icon}</div>
+        {!hideHeader && (
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <div className="text-pink-500">{icon}</div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                {title}
+              </h2>
+              <div className="text-pink-500">{icon}</div>
+            </div>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              {subtitle}
+            </p>
           </div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            {subtitle}
-          </p>
-        </div>
+        )}
 
         {/* Products Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
@@ -219,6 +283,11 @@ function ProductCard({ product }: ProductCardProps) {
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           loading="lazy"
+          onError={(e) => {
+            // Fallback pokud obrázek nelze načíst
+            const target = e.target as HTMLImageElement;
+            target.src = 'https://via.placeholder.com/400x400?text=' + encodeURIComponent(product.name);
+          }}
         />
         {product.featured && (
           <div className="absolute top-3 right-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">

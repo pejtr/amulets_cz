@@ -78,6 +78,13 @@
       "when": 1768782399001,
       "tag": "0010_common_alice",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1768791399639,
+      "tag": "0011_noisy_wilson_fisk",
+      "breakpoints": true
     }
   ]
 }

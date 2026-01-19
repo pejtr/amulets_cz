@@ -14,6 +14,26 @@ export interface Project {
 }
 
 export const PROJECTS: Project[] = [
+  // Spiritualita & E-commerce (PRIORITY)
+  {
+    id: 'ohorai',
+    name: 'OHORAI',
+    url: 'https://www.ohorai.cz',
+    category: 'ecommerce',
+    description: 'Autorská tvorba - esence a pyramidy',
+    icon: '🪷',
+    color: 'purple',
+  },
+  {
+    id: 'amulets',
+    name: 'Amulets.cz',
+    url: 'https://amulets.cz',
+    category: 'spirituality',
+    description: 'Posvátné symboly a amulety',
+    icon: '🔮',
+    color: 'purple',
+  },
+  
   // Cestování
   {
     id: 'last-minute',
@@ -80,34 +100,14 @@ export const PROJECTS: Project[] = [
     icon: '🍵',
     color: 'amber',
   },
-  
-  // Spiritualita & E-commerce
-  {
-    id: 'amulets',
-    name: 'Amulets.cz',
-    url: 'https://amulets.cz',
-    category: 'spirituality',
-    description: 'Posvátné symboly a amulety',
-    icon: '🔮',
-    color: 'purple',
-  },
-  {
-    id: 'ohorai',
-    name: 'OHORAI.cz',
-    url: 'https://www.ohorai.cz',
-    category: 'ecommerce',
-    description: 'Marketplace pro ručně vyráběné šperky',
-    icon: '💎',
-    color: 'purple',
-  },
   {
     id: 'amarex',
     name: 'Amarex',
     url: 'https://amarex.cz',
-    category: 'affiliate',
-    description: 'Affiliate marketing a produkty',
-    icon: '🎯',
-    color: 'indigo',
+    category: 'health',
+    description: 'Přírodní produkt na podporu erekce',
+    icon: '💊',
+    color: 'red',
   },
 ];
 

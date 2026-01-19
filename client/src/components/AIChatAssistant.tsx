@@ -169,6 +169,7 @@ export default function AIChatAssistant() {
     { id: 'ohorai', label: '🪷 Autorská tvorba OHORAI', icon: '🪷', subtitle: '(esence a pyramidy)' },
     { id: 'ohorai-esence', label: '🧪 Esence OHORAI', icon: '✨', subtitle: '(aromaterapie)' },
     { id: 'ohorai-pyramidy', label: '🔺 Pyramidy OHORAI', icon: '🔺', subtitle: '(orgonitové)' },
+    { id: 'lunar-reading', label: '🌙 Lunární Reading', icon: '🌙', subtitle: '(měsíční profil)' },
   ];
 
   // Feedback state - sbírání zpětné vazby od návštěvníků
@@ -448,6 +449,9 @@ Co tě dnes přivádí?`;
         break;
       case 'ohorai-pyramidy':
         messageText = 'Ahoj Natálie, mám zájem o orgonitové pyramidy OHORAI 🔺';
+        break;
+      case 'lunar-reading':
+        messageText = 'Ahoj Natálie, zajímá mě Lunární Reading - měsíční profil 🌙';
         break;
       default:
         messageText = 'Ahoj Natálie, potřebuji pomoc';

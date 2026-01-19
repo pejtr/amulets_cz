@@ -37,16 +37,44 @@ export default function Magazine() {
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary/10 via-background to-primary/5 py-16 md:py-24">
-          <div className="container">
+        {/* Hero Section with Egyptian Background */}
+        <section 
+          className="relative py-16 md:py-24 overflow-hidden"
+          style={{
+            background: 'linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%)',
+          }}
+        >
+          {/* Egyptian Background Overlay */}
+          <div 
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: 'url(/images/egyptian-background.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }}
+          />
+          
+          {/* Golden Scarab Silhouette */}
+          <div 
+            className="absolute inset-0 opacity-15 bg-center bg-no-repeat"
+            style={{
+              backgroundImage: 'url(/images/scarab-gold-silhouette.png)',
+              backgroundSize: '50%',
+              backgroundPosition: 'center',
+            }}
+          />
+          
+          {/* Gradient Overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/30" />
+          
+          <div className="container relative z-10">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
                 Magazín
               </h1>
-              <p className="text-lg text-muted-foreground">
-                Objevte tajemství amuletů, drahých kamenů a duchovního růstu. 
-                Praktické rady a hluboké znalosti pro vaši cestu k harmonii.
+              <p className="text-lg text-white/90 drop-shadow-md">
+                Objevte zajímavé články o duchovnosti, léčivých rostlinách a aromaterapii
               </p>
             </div>
           </div>
@@ -54,17 +82,42 @@ export default function Magazine() {
 
         {/* Featured Article - Modrý lotos */}
         {featuredArticle && (
-          <section className="py-12 bg-gradient-to-r from-blue-900/20 via-purple-900/20 to-pink-900/20">
-            <div className="container">
+          <section 
+            className="py-12 relative overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%)',
+            }}
+          >
+            {/* Egyptian Background Overlay */}
+            <div 
+              className="absolute inset-0 opacity-15"
+              style={{
+                backgroundImage: 'url(/images/egyptian-background.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+            
+            {/* Golden Scarab Silhouette - Larger */}
+            <div 
+              className="absolute inset-0 opacity-10 bg-center bg-no-repeat"
+              style={{
+                backgroundImage: 'url(/images/scarab-gold-silhouette.png)',
+                backgroundSize: '60%',
+                backgroundPosition: 'center',
+              }}
+            />
+            
+            <div className="container relative z-10">
               <div className="flex items-center gap-2 mb-6">
-                <Star className="h-5 w-5 text-yellow-500 fill-yellow-500" />
-                <span className="text-sm font-semibold text-yellow-600 uppercase tracking-wider">
+                <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
+                <span className="text-sm font-semibold text-yellow-300 uppercase tracking-wider">
                   Doporučený článek
                 </span>
               </div>
               
               <Link href={`/magazin/${featuredArticle.slug}`} className="group block">
-                <article className="grid md:grid-cols-2 gap-8 bg-card/80 backdrop-blur-sm rounded-2xl overflow-hidden border-2 border-yellow-500/30 hover:border-yellow-500/60 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                <article className="grid md:grid-cols-2 gap-8 bg-white/95 backdrop-blur-sm rounded-2xl overflow-hidden border-2 border-yellow-500/50 hover:border-yellow-500 transition-all duration-300 shadow-2xl hover:shadow-3xl">
                   {/* Image */}
                   <div className="aspect-video md:aspect-auto md:h-full bg-gradient-to-br from-blue-600/30 to-purple-600/30 overflow-hidden">
                     {featuredArticle.image ? (
@@ -83,21 +136,21 @@ export default function Magazine() {
                   {/* Content */}
                   <div className="p-8 md:p-10 flex flex-col justify-center">
                     <div className="flex items-center gap-2 mb-4">
-                      <Sparkles className="h-5 w-5 text-blue-400" />
-                      <span className="text-sm text-blue-400 font-medium">
+                      <Sparkles className="h-5 w-5 text-amber-600" />
+                      <span className="text-sm text-amber-600 font-medium">
                         Egyptská mytologie
                       </span>
                     </div>
                     
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-card-foreground mb-4 group-hover:text-primary transition-colors">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 group-hover:text-amber-700 transition-colors">
                       {featuredArticle.title}
                     </h2>
                     
-                    <p className="text-muted-foreground text-lg mb-6 line-clamp-3">
+                    <p className="text-gray-700 text-lg mb-6 line-clamp-3">
                       {featuredArticle.excerpt}
                     </p>
 
-                    <div className="flex items-center text-primary font-semibold text-lg group-hover:gap-3 transition-all">
+                    <div className="flex items-center text-amber-700 font-semibold text-lg group-hover:gap-3 transition-all">
                       Číst článek
                       <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-2 transition-transform" />
                     </div>
@@ -153,7 +206,7 @@ export default function Magazine() {
                       </p>
 
                       <div className="flex items-center text-primary font-semibold text-sm group-hover:gap-2 transition-all">
-                        Číst článek
+                        Číst více
                         <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
@@ -235,7 +288,7 @@ export default function Magazine() {
                       </p>
 
                       <div className="flex items-center text-pink-500 font-semibold text-sm group-hover:gap-2 transition-all">
-                        Číst článek
+                        Číst více
                         <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>

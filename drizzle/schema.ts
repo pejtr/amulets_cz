@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, boolean, decimal, date } from "drizzle-orm/mysql-core";
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, boolean, decimal, date, time } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -669,3 +669,116 @@ export const visitorFeedback = mysqlTable("visitor_feedback", {
 
 export type VisitorFeedback = typeof visitorFeedback.$inferSelect;
 export type InsertVisitorFeedback = typeof visitorFeedback.$inferInsert;
+
+
+// ============================================
+// PREMIUM MEMBERSHIP & LUNAR READING
+// ============================================
+
+// Premium Subscriptions - měsíční předplatné
+export const premiumSubscriptions = mysqlTable("premium_subscriptions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
+  
+  // Subscription details
+  status: mysqlEnum("status", ["active", "cancelled", "expired", "trial"]).default("trial").notNull(),
+  plan: mysqlEnum("plan", ["monthly", "yearly"]).default("monthly").notNull(),
+  priceAmount: int("priceAmount").notNull(), // v haléřích (Kč * 100)
+  currency: varchar("currency", { length: 3 }).default("CZK").notNull(),
+  
+  // Billing
+  currentPeriodStart: timestamp("currentPeriodStart").notNull(),
+  currentPeriodEnd: timestamp("currentPeriodEnd").notNull(),
+  cancelAtPeriodEnd: boolean("cancelAtPeriodEnd").default(false).notNull(),
+  cancelledAt: timestamp("cancelledAt"),
+  
+  // Payment
+  paymentMethod: varchar("paymentMethod", { length: 50 }), // 'card', 'bank_transfer', etc.
+  lastPaymentAt: timestamp("lastPaymentAt"),
+  nextPaymentAt: timestamp("nextPaymentAt"),
+  
+  // Metadata
+  trialEndsAt: timestamp("trialEndsAt"),
+  metadata: text("metadata"), // JSON pro další data
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type PremiumSubscription = typeof premiumSubscriptions.$inferSelect;
+export type InsertPremiumSubscription = typeof premiumSubscriptions.$inferInsert;
+
+// Lunar Profiles - uložené lunární profily uživatelů
+export const lunarProfiles = mysqlTable("lunar_profiles", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").references(() => users.id, { onDelete: "cascade" }),
+  visitorId: varchar("visitorId", { length: 64 }), // pro nepřihlášené uživatele
+  
+  // Birth data
+  birthDate: date("birthDate").notNull(),
+  birthTime: time("birthTime"), // volitelný čas narození pro přesnější výpočet
+  birthPlace: varchar("birthPlace", { length: 200 }), // volitelné místo narození
+  
+  // Calculated data
+  moonPhase: varchar("moonPhase", { length: 50 }).notNull(),
+  moonPhaseEmoji: varchar("moonPhaseEmoji", { length: 10 }).notNull(),
+  lifePathNumber: int("lifePathNumber").notNull(),
+  
+  // Profile data (JSON)
+  profileData: text("profileData").notNull(), // JSON s kompletním profilem
+  
+  // Premium features
+  isPremium: boolean("isPremium").default(false).notNull(),
+  premiumProfileData: text("premiumProfileData"), // JSON s rozšířeným profilem
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type LunarProfile = typeof lunarProfiles.$inferSelect;
+export type InsertLunarProfile = typeof lunarProfiles.$inferInsert;
+
+// Monthly Forecasts - měsíční předpovědi pro PREMIUM členy
+export const monthlyForecasts = mysqlTable("monthly_forecasts", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
+  lunarProfileId: int("lunarProfileId").notNull().references(() => lunarProfiles.id, { onDelete: "cascade" }),
+  
+  // Forecast period
+  forecastMonth: int("forecastMonth").notNull(), // 1-12
+  forecastYear: int("forecastYear").notNull(),
+  
+  // Forecast data (JSON)
+  forecastData: text("forecastData").notNull(), // JSON s předpovědí
+  
+  // Engagement
+  viewed: boolean("viewed").default(false).notNull(),
+  viewedAt: timestamp("viewedAt"),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type MonthlyForecast = typeof monthlyForecasts.$inferSelect;
+export type InsertMonthlyForecast = typeof monthlyForecasts.$inferInsert;
+
+// Ritual Completions - sledování dokončených rituálů
+export const ritualCompletions = mysqlTable("ritual_completions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
+  lunarProfileId: int("lunarProfileId").notNull().references(() => lunarProfiles.id, { onDelete: "cascade" }),
+  
+  // Ritual details
+  ritualType: varchar("ritualType", { length: 100 }).notNull(), // 'new_moon', 'full_moon', 'daily', etc.
+  ritualName: varchar("ritualName", { length: 200 }).notNull(),
+  
+  // Completion
+  completedAt: timestamp("completedAt").defaultNow().notNull(),
+  notes: text("notes"), // uživatelské poznámky
+  mood: mysqlEnum("mood", ["very_bad", "bad", "neutral", "good", "very_good"]),
+  
+  // Metadata
+  moonPhaseAtCompletion: varchar("moonPhaseAtCompletion", { length: 50 }),
+});
+
+export type RitualCompletion = typeof ritualCompletions.$inferSelect;
+export type InsertRitualCompletion = typeof ritualCompletions.$inferInsert;

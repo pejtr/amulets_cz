@@ -17,6 +17,7 @@ const navItems = [
   { label: "✨ Kvíz: Tvůj symbol", hasDropdown: false, url: "/kviz", isInternal: true },
 
   { label: "🐎 Čínský horoskop 2026", hasDropdown: false, url: "/cinsky-horoskop", isInternal: true },
+  { label: "🌙 Lunární Reading", hasDropdown: false, url: "/lunarni-reading", isInternal: true },
   { label: "Orgonitové pyramidy", hasDropdown: false, url: "https://www.ohorai.cz/autorske-tvorba/" },
   { label: "Aromaterapie", hasDropdown: true, url: "https://www.ohorai.cz/esence/" },
   { label: "O nás", hasDropdown: false, url: "/o-nas", isInternal: true },
