@@ -559,7 +559,7 @@ Co tě dnes přivádí?`;
             {/* Fotka Natálie - větší a viditelnější */}
             <div className="absolute inset-1 rounded-full overflow-hidden border-2 border-white/50">
               <img
-                src="/natalie-avatar.png"
+                src={isOffline ? "/natalie-avatar.png" : "/images/natalie-valtova-ohorai.webp"}
                 alt="Natálie"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
               />
@@ -587,7 +587,7 @@ Co tě dnes přivádí?`;
             <div className="flex items-center gap-3">
               <div className="relative">
                 <img
-                  src="/natalie-avatar.png"
+                  src={isOffline ? "/natalie-avatar.png" : "/images/natalie-valtova-ohorai.webp"}
                   alt="Natálie"
                   className="w-16 h-16 rounded-full border-2 border-white object-cover"
                 />

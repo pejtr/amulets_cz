@@ -1525,3 +1525,9 @@
 
 ## Oprava cross-promo banneru (Jan 19, 2026)
 - [x] Přidat logo OHORAI do cross-promo banneru před text
+
+## Dynamická fotka chatbota (Jan 19, 2026)
+- [x] Zkopírovat novou profesionální fotku Natálie do projektu
+- [x] Přidat logiku pro změnu fotky podle online/offline statusu
+- [x] Offline: placeholder nebo současná fotka
+- [x] Online: nová profesionální fotka
