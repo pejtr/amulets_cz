@@ -1494,3 +1494,10 @@
 
 ## Telegram tlačítko - skrýt při otevřeném chatu (Jan 19, 2026)
 - [x] Skrýt Telegram tlačítko když je chat otevřený (aby nepřekrývalo hlavu Natálie)
+
+## Telegram vylepšení (Jan 19, 2026)
+- [x] Odstranit floating Telegram tlačítko vlevo nahoru (úplně)
+- [ ] Přidat tooltip na Telegram badge v chatbotu - "Napište mi na Telegram"
+- [ ] Vložit Telegram widget přímo do webu jako alternativu k externí aplikaci
+- [ ] Doplnit Telegram CTA do automatické offline zprávy v chatbotu
+- [x] Odstranit ikonu zpráv (message badge) z oběžné soustavy kolem hlavy Natálie

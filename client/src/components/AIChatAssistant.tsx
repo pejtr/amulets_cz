@@ -44,7 +44,7 @@ const SUGGESTED_CATEGORIES = [
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { MessageCircle, X, Send, Phone, Volume2, VolumeX, MessageSquare } from "lucide-react";
+import { MessageCircle, X, Send, Phone, Volume2, VolumeX } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { Streamdown } from "streamdown";
 import { toast } from "sonner";
@@ -579,16 +579,6 @@ Co tě dnes přivádí?`;
                   alt="Natálie"
                   className="w-16 h-16 rounded-full border-2 border-white object-cover"
                 />
-                {/* Telegram badge - horní pozice */}
-                <a
-                  href="https://t.me/Natalie_Amulets_bot"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute -top-1 left-1/2 -translate-x-1/2 w-6 h-6 bg-[#0088cc] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform border-2 border-white"
-                  title="Telegram @Natalie_Amulets_bot"
-                >
-                  <MessageSquare className="h-3.5 w-3.5 text-white" />
-                </a>
                 {/* Online/Offline status badge - pravá spodní pozice */}
                 <span className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${isOffline ? 'bg-gray-400' : 'bg-green-400'}`}></span>
               </div>
