@@ -1630,3 +1630,11 @@
 - [x] Implementovat persistence pro uživatele (localStorage)
 - [x] Každý uživatel vždy mluví se stejnou verzí (fotka + osobnost)
 - [x] Offline režim: fotka sešedne + ztmaví (grayscale + brightness)
+
+## Síla Tří - Charmed osobnosti (Jan 19, 2026)
+- [x] Nahrát třetí fotku Natálie (profile3.webp - close-up s mandalou)
+- [x] Vytvořit tři osobnosti: Phoebe (mladá energetická), Piper (bílý rolák), Prue (červená halenka)
+- [x] Implementovat A/B/C testing (33/33/33 split)
+- [x] Přidat osobnostní rysy z Charmed seriálu
+- [x] Persistence - každý uživatel si pamatuje svou "sestru"
+- [ ] Aktivovat Amaru pro Moon Reading předpovědi (postupně)

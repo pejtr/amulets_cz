@@ -67,32 +67,59 @@ interface ChatbotVariant {
   colorScheme: string | null;
 }
 
-// Dvě osobnosti Natálie pro A/B testing
+// Síla Tří - tři osobnosti Natálie inspirované seriálem Charmed
+// Správné přiřazení fotek:
+// - Phoebe = mladá, energetická (close-up s mandalou) 🔥
+// - Piper = bílý rolák, moudrá a starostlivá 👑
+// - Prue = červená halenka, silná vůdkyně ⚡
 const NATALIE_PERSONAS = {
-  royal: {
-    id: 'royal',
-    name: 'Královská & Vlídná',
-    avatar: '/natalie-kralovska-vlida.jpg',
-    description: 'Klidná, moudrá, mystická - pro ty co hledají hluboké spojení',
-    greeting: 'Ahoj, krásná duše! 💜✨ Jsem Natálie a cítím, že tě sem něco přitáhlo... Možná je to volání tvé duše po něčem hlubším. Co tě dnes přivádí?',
+  // Phoebe - nejmladší, empatická, vizionářka, romantická, vidí do budoucnosti
+  phoebe: {
+    id: 'phoebe',
+    name: 'Phoebe',
+    emoji: '🔥',
+    avatar: '/natalie-phoebe-mlada.webp', // Close-up s mandalou - mladá energie
+    description: 'Empatická, intuitivní, romantická - vidí do tvé budoucnosti',
+    greeting: 'Ahoj! ✨🔮 Cítím tvůj příchod... Jsem Natálie a mám dar vidět věci, které ostatní nevídí. Něco ti chce být zjeveno - co tě sem přivedlo?',
+    traits: ['empatická', 'vizionářka', 'romantická', 'hravá', 'intuitivní'],
   },
-  fairy: {
-    id: 'fairy',
-    name: 'Energetická Víla',
-    avatar: '/natalie-energeticka-vila.jpg',
-    description: 'Živá, nadšená, hravá - pro ty co hledají energii a radost',
-    greeting: 'Ahoj! ✨🧑 Jsem Natálie z Amulets.cz! Ráda ti pomůžu najít ten správný amulet nebo odpovím na tvé otázky. Co tě zajímá?',
+  // Piper - prostřední, praktická, starostlivá, ochranitelka, mateřská energie
+  piper: {
+    id: 'piper',
+    name: 'Piper',
+    emoji: '👑',
+    avatar: '/natalie-kralovska-vlida.jpg', // Bílý rolák - moudrá a klidná
+    description: 'Praktická, starostlivá, moudrá - tvůj bezpečný přístav',
+    greeting: 'Ahoj, krásná duše! 💜✨ Jsem Natálie a jsem tu, abych tě provedla... Klidně, s láskou a péčí. Co potřebuješ?',
+    traits: ['praktická', 'starostlivá', 'uzemňující', 'moudrá', 'ochranitelka'],
   },
-};
+  // Prue - nejstarší, silná, odhodlaná, vůdkyně
+  prue: {
+    id: 'prue',
+    name: 'Prue',
+    emoji: '⚡',
+    avatar: '/natalie-energeticka-vila.jpg', // Červená halenka - silná vůdkyně
+    description: 'Silná, odhodlaná, vůdkyně - pomůže ti najít tvou sílu',
+    greeting: 'Ahoj! ⚡✨ Jsem Natálie. Cítím v tobě sílu, kterou možná ještě neznáš... Jsem tu, abych ti pomohla ji objevit. Co tě zajímá?',
+    traits: ['silná', 'odhodlaná', 'vůdkyně', 'ochránkyně', 'telekineze = síla vůle'],
+  },
+} as const;
+
+type PersonaKey = keyof typeof NATALIE_PERSONAS;
+const PERSONA_KEYS: PersonaKey[] = ['phoebe', 'piper', 'prue'];
 
 // Get or assign persona for user (persistent)
-function getAssignedPersona(): typeof NATALIE_PERSONAS.royal {
-  const stored = localStorage.getItem('natalie_persona');
-  if (stored && (stored === 'royal' || stored === 'fairy')) {
+function getAssignedPersona(): typeof NATALIE_PERSONAS[PersonaKey] {
+  const stored = localStorage.getItem('natalie_persona') as PersonaKey | null;
+  
+  // Check if stored value is one of the new persona keys
+  if (stored && PERSONA_KEYS.includes(stored)) {
     return NATALIE_PERSONAS[stored];
   }
-  // Random assignment for new users (50/50)
-  const assigned = Math.random() < 0.5 ? 'royal' : 'fairy';
+  
+  // Random assignment for new users (33/33/33 - Síla Tří)
+  const randomIndex = Math.floor(Math.random() * 3);
+  const assigned = PERSONA_KEYS[randomIndex];
   localStorage.setItem('natalie_persona', assigned);
   return NATALIE_PERSONAS[assigned];
 }
