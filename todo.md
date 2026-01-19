@@ -1553,3 +1553,28 @@
 - [ ] Implementovat rollback mechanismus pro neúspěšné změny
 - [ ] Nastavit Telegram notifikace o provedených změnách
 - [ ] Vytvořit dashboard pro monitoring konverzí a efektivity změn
+
+## Sladení velikostí tlačítek v hero sekci (Jan 19, 2026)
+- [x] Sladit výšky všech tlačítek na stejnou hodnotu (h-16 mobil, h-[60px] desktop)
+- [x] Upravit proporce šířek pro souměrný vzhled (flex-1, flex-[2])
+- [x] Otestovat na mobilu i desktopu
+
+## Oprava odkazů na AMEN produkty (Jan 19, 2026)
+- [x] Změnit odkazy z www.ohorai.cz na https://www.irisimo.cz/sperky/amen
+- [x] Najít všechny AMEN produktové odkazy v kódu (amenCatalog.ts)
+- [x] Aktualizovat URL formát podle Irisimo.cz struktury (již hotovo)
+
+## Integrace skutečné osobnosti Natálie (Jan 19, 2026) ✅
+- [x] Analyzovat WhatsApp chaty s Natálií - 4186 zpráv z celého roku 2025
+- [x] Extrahovat komunikační styl (TOP emotikony: ✨💫♥️🪷, fráze: "Super" 106x, "Božské" 47x)
+- [x] Vytvořit 2 verze personality:
+  * Veřejná (chatbot) - autentická ale profesionální
+  * Královská (Telegram) - plný projev s "Můj Králi", "Peťu"
+- [x] Integrovat do routers.ts (getEnhancedNatalieAmuletsPersonality)
+- [x] Integrovat do Telegram (getEnhancedNatalieTelegramPersonality)
+- [ ] Otestovat autentičnost komunikace
+
+## Oprava OHORAI symbolu v top banneru (Jan 19, 2026)
+- [ ] Použít rounded.png symbol (zlatý Květ života s trojúhelníky)
+- [ ] Upravit pro lepší viditelnost na fialovém pozadí (světlejší zlatá + outline)
+- [ ] Nahradit v top banneru

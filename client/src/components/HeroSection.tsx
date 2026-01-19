@@ -56,7 +56,7 @@ export default function HeroSection() {
           <div className="flex gap-3">
             <Button
               size="lg"
-              className="flex-1 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold text-sm rounded-lg shadow-lg h-14 flex items-center justify-center gap-2 py-2 border-2 border-[#D4AF37]"
+              className="flex-1 bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold text-sm rounded-lg shadow-lg h-16 flex items-center justify-center gap-2 py-2 border-2 border-[#D4AF37]"
               onClick={() => {
                 track.ctaClicked('Zobrazit produkty', 'Hero Section', '#produkty');
                 const produktySection = document.getElementById('produkty');
@@ -70,7 +70,7 @@ export default function HeroSection() {
             </Button>
             <Button
               size="lg"
-              className="flex-1 bg-gradient-to-r from-[#FDF8E8] to-[#F5ECD0] hover:from-[#D4AF37] hover:to-[#F0D060] text-black font-bold text-sm flex items-center justify-center gap-2 rounded-lg shadow-lg border-2 border-[#D4AF37] h-14"
+              className="flex-1 bg-gradient-to-r from-[#FDF8E8] to-[#F5ECD0] hover:from-[#D4AF37] hover:to-[#F0D060] text-black font-bold text-sm flex items-center justify-center gap-2 rounded-lg shadow-lg border-2 border-[#D4AF37] h-16"
               onClick={() => {
                 track.ohoraiButtonClicked('Hero Section', 'mobile');
                 window.open('https://www.ohorai.cz?utm_source=amulets&utm_medium=hero_cta&utm_campaign=cross_promotion&utm_content=mobile', '_blank');
@@ -85,7 +85,7 @@ export default function HeroSection() {
           <div className="flex gap-3">
             <Button
               size="lg"
-              className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-4 text-sm rounded-full shadow-xl relative overflow-hidden group"
+              className="flex-[2] bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold text-sm rounded-full shadow-xl relative overflow-hidden group h-16 flex items-center justify-center"
               onClick={() => {
                 track.ctaClicked('Zjisti svůj amulet', 'Hero Section', '/kviz');
                 setLocation('/kviz');
@@ -100,7 +100,7 @@ export default function HeroSection() {
             {/* POPOVÍDAT SI button */}
             <Button
               size="lg"
-              className="flex-1 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-bold text-xs rounded-lg shadow-lg h-auto py-2 flex flex-col items-center justify-center gap-0 border-2 border-purple-400"
+              className="flex-1 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-bold text-xs rounded-lg shadow-lg h-16 flex flex-col items-center justify-center gap-0.5 border-2 border-purple-400"
               onClick={() => {
                 track.ctaClicked('Popovídat si', 'Hero Section', 'chatbot');
                 const chatButton = document.querySelector('[aria-label="Otevřít chat s Natálií"]') as HTMLButtonElement;
@@ -196,7 +196,7 @@ export default function HeroSection() {
                 <div className="flex flex-row gap-1.5 animate-fade-in-up animation-delay-400">
                   <Button
                     size="lg"
-                    className="bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-4 sm:px-6 text-xs sm:text-base whitespace-nowrap h-[52px] sm:h-[60px] flex items-center justify-center gap-2"
+                    className="flex-1 bg-[#E85A9F] hover:bg-[#E85A9F]/90 text-white font-semibold px-4 sm:px-6 text-xs sm:text-base whitespace-nowrap h-[60px] flex items-center justify-center gap-2"
                     onClick={() => {
                       track.ctaClicked('Zobrazit produkty', 'Hero Section', '#produkty');
                       const produktySection = document.getElementById('produkty');
@@ -211,7 +211,7 @@ export default function HeroSection() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-[#D4AF37] bg-gradient-to-r from-[#FDF8E8] to-[#F5ECD0] hover:from-[#D4AF37] hover:to-[#F0D060] font-semibold px-3 sm:px-6 text-xs sm:text-base flex items-center justify-center gap-1.5 transition-all duration-300 group whitespace-nowrap shadow-md h-[52px] sm:h-[60px]"
+                    className="flex-1 border-2 border-[#D4AF37] bg-gradient-to-r from-[#FDF8E8] to-[#F5ECD0] hover:from-[#D4AF37] hover:to-[#F0D060] font-semibold px-3 sm:px-6 text-xs sm:text-base flex items-center justify-center gap-1.5 transition-all duration-300 group whitespace-nowrap shadow-md h-[60px]"
                     onClick={() => {
                       track.ohoraiButtonClicked('Hero Section', 'desktop');
                       window.open('https://www.ohorai.cz?utm_source=amulets&utm_medium=hero_cta&utm_campaign=cross_promotion&utm_content=desktop', '_blank');
@@ -226,7 +226,7 @@ export default function HeroSection() {
                 <div className="flex flex-row gap-1.5 animate-fade-in-up animation-delay-600">
                   <Button
                     size="lg"
-                    className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold pl-6 pr-12 py-6 text-lg rounded-full shadow-xl relative overflow-hidden group"
+                    className="flex-[2] bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold pl-6 pr-12 text-lg rounded-full shadow-xl relative overflow-hidden group h-[60px] flex items-center justify-center"
                     onClick={() => {
                       track.ctaClicked('Zjisti svůj amulet', 'Hero Section', '/kviz');
                       setLocation('/kviz');
@@ -241,7 +241,7 @@ export default function HeroSection() {
                   {/* POPOVÍDAT SI button */}
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold px-4 sm:px-6 text-xs sm:text-base flex flex-col items-center justify-center gap-0.5 transition-all duration-300 whitespace-nowrap shadow-md h-auto py-4 border-2 border-purple-400 rounded-lg"
+                    className="flex-1 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold px-4 sm:px-6 text-xs sm:text-base flex flex-col items-center justify-center gap-1 transition-all duration-300 whitespace-nowrap shadow-md h-[60px] border-2 border-purple-400 rounded-lg"
                     onClick={() => {
                       track.ctaClicked('Popovídat si', 'Hero Section', 'chatbot');
                       const chatButton = document.querySelector('[aria-label="Otevřít chat s Natálií"]') as HTMLButtonElement;
