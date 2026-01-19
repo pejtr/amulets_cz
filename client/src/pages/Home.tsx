@@ -19,6 +19,7 @@ import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import HarmonyTuner from "@/components/HarmonyTuner";
+import AromaterapieBanner from "@/components/AromaterapieBanner";
 import { useEffect } from "react";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createWebsiteSchema, createOrganizationSchema, createFAQSchema } from "@/lib/schema";
@@ -81,6 +82,7 @@ export default function Home() {
         <QuizCTA />
 
         <TestimonialsSection />
+        <AromaterapieBanner />
         <CoachingSection />
         <AmenPendantsSection />
         <AmenCategorySectionsWrapper />

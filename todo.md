@@ -1817,14 +1817,14 @@
 - [ ] Implementovat collapsible/expandable na kliknutí
 
 ### Fáze 2: Lite Ladička v plovoucí liště
-- [ ] Vytvořit bottom floating bar s lite verzí ladičky
-- [ ] Přidat tlačítko pro fullscreen rozbalení
-- [ ] Egyptský design (kouzelná flétna/Aladdinova lampa)
+- [x] Vytvořit bottom floating bar s lite verzí ladičky
+- [x] Přidat tlačítko pro fullscreen rozbalení
+- [x] Egyptský design (kouzelná flétna/Aladdinova lampa)
 
 ### Fáze 3: Fullscreen Ladička
-- [ ] Implementovat fullscreen režim přes celou stránku
-- [ ] Egyptský mystický design nástroje faraonů
-- [ ] Animace rozbalení
+- [x] Implementovat fullscreen režim přes celou stránku
+- [x] Egyptský mystický design nástroje faraonů
+- [x] Animace rozbalení
 
 ### Fáze 4: Společná animace s chatbotem
 - [ ] Chatbot vyjede nahoru při rozbalení ladičky
@@ -1845,3 +1845,24 @@
 ### Finalizace
 - [ ] Otestovat všechny funkce
 - [ ] Uložit checkpoint
+
+## Aromaterapie banner na homepage (Jan 19, 2026)
+- [ ] Zkopírovat banner obrázek do public složky
+- [ ] Vytvořit AromaterapieBanner komponentu
+- [ ] Přidat banner do Home.tsx mezi sekce
+- [ ] Odkaz na stejné místo jako vysunující se banner
+- [ ] Uložit checkpoint
+
+## Aromaterapie banner na homepage (Jan 19, 2026)
+- [x] Zkopírovat banner obrázek do public složky
+- [x] Vytvořit AromaterapieBanner komponentu
+- [x] Přidat banner do Home.tsx mezi sekce (po TestimonialsSection)
+- [x] Odkaz na ohorai.cz/aromaterapie (stejné jako vysunující se banner)
+- [x] Banner 80% šířky aby nepřekrýval floating prvky (chatbot, HarmonyTuner)
+- [x] Odstranit překrývající se text, tlačítko umístěno přes originální tlačítko v obrázku
+- [x] Zvětšit výšku banneru aby se zobrazil celý obsah včetně horního textu
+
+## HarmonyTuner styling úpravy (Jan 19, 2026)
+- [ ] Zúžit HarmonyTuner (ladičku)
+- [ ] Změnit barvu na zlatou faraonskou (#D4AF37)
+- [ ] Otestovat a uložit checkpoint
