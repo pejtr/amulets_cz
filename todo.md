@@ -1501,3 +1501,7 @@
 - [ ] Vložit Telegram widget přímo do webu jako alternativu k externí aplikaci
 - [ ] Doplnit Telegram CTA do automatické offline zprávy v chatbotu
 - [x] Odstranit ikonu zpráv (message badge) z oběžné soustavy kolem hlavy Natálie
+
+## Autorská tvorba OHORAI - ikona a popisek (Jan 19, 2026)
+- [x] Změnit ikonu u "Autorská tvorba OHORAI" na modrý/fialový lotos 🪷
+- [x] Přidat malým písmem pod název text "(esence a pyramidy)"

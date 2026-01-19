@@ -166,7 +166,7 @@ export default function AIChatAssistant() {
     { id: 'coaching', label: '💜 Osobní koučing s Natálií', icon: '✨' },
     { id: 'concert', label: '🔮 Koncert křišťálových mís', icon: '🎶' },
     { id: 'course', label: '🎨 Kreativní kurzy posvátné tvorby', icon: '📚' },
-    { id: 'ohorai', label: '☆ Autorská tvorba OHORAI', icon: '🌟' },
+    { id: 'ohorai', label: '🪷 Autorská tvorba OHORAI', icon: '🪷', subtitle: '(esence a pyramidy)' },
   ];
 
   // Feedback state - sbírání zpětné vazby od návštěvníků
@@ -1000,6 +1000,9 @@ Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
                               className="text-[10px] p-2 rounded-lg border border-purple-200 hover:border-purple-400 hover:bg-purple-50 transition-all text-left"
                             >
                               <span className="block font-medium text-purple-700">{reason.label}</span>
+                              {reason.subtitle && (
+                                <span className="block text-[9px] text-purple-500 mt-0.5">{reason.subtitle}</span>
+                              )}
                             </button>
                           ))}
                         </div>
