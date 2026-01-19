@@ -1701,17 +1701,105 @@
 - [ ] Uložit checkpoint
 
 ## Maximalizace chatbota (Jan 19, 2026)
-- [ ] Přidat tlačítko "Maximalizovat" do hlavičky chatbota
-- [ ] Implementovat fullscreen/větší okno režim (90% obrazovky)
-- [ ] Automatické zvětšení textu při maximalizaci (14px → 16px)
-- [ ] Přidat tlačítka A+ / A- pro ruční změnu velikosti písma
-- [ ] Přidat tlačítko "Minimalizovat" pro návrat zpět
-- [ ] Otestovat na mobilu i desktopu
-- [ ] Uložit checkpoint
+- [x] Přidat tlačítko "Maximalizovat" do hlavičky chatbota
+- [x] Implementovat fullscreen/větší okno režim (90% obrazovky)
+- [x] Automatické zvětšení textu při maximalizaci (14px → 16px)
+- [x] Přidat tlačítka A+ / A- pro ruční změnu velikosti písma
+- [x] Přidat tlačítko "Minimalizovat" pro návrat zpět
+- [x] Otestovat na mobilu i desktopu
+- [x] Uložit checkpoint
 
 ## Zkrácení Telegram /report výstupu (Jan 19, 2026)
-- [ ] Odstranit dlouhé texty "CO TO ZNAMENÁ PRO DUŠE NAŠICH NÁVŠTĚVNÍKŮ"
-- [ ] Zkrátit na jen nejdůležitější čísla (konverzace, zprávy, konverze)
-- [ ] Vytvořit přehledný tabulkový formát
+- [x] Odstranit dlouhé texty "CO TO ZNAMENÁ PRO DUŠE NAŠICH NÁVŠTĚVNÍKŮ"
+- [x] Zkrátit na jen nejdůležitější čísla (konverzace, zprávy, konverze)
+- [x] Vytvořit přehledný tabulkový formát
 - [ ] Otestovat v Telegramu
+- [ ] Uložit checkpoint
+
+## Fix font sizes v maximalizovaném chatu (Jan 19, 2026)
+- [ ] Zvětšit font sizes: small=14px, medium=16px, large=18px/20px
+- [ ] Automatické zvětšení při maximalizaci na text-lg nebo text-xl
+- [ ] Otestovat čitelnost na různých zařízeních
+- [ ] Uložit checkpoint
+
+## Proaktivní chatbot prompty (Jan 19, 2026)
+- [ ] Implementovat časový trigger (15-30s po načtení stránky)
+- [ ] Kontextové otázky podle sekce webu (homepage, produkty, kvíz, atd.)
+- [ ] Tracking času stráveného na každé sekci
+- [ ] Variace otázek - náhodný výběr z několika variant
+- [ ] Smart timing - neopakovat pokud uživatel už zavřel chat
+- [ ] Animace vysunutí bubliny zleva s bounce efektem
+- [ ] Otestovat na různých stránkách
+- [ ] Uložit checkpoint
+
+## Úpravy navigace (Jan 19, 2026)
+- [ ] Změnit "Lunární Reading" na "Lunární čtení"
+- [ ] Přidat border + shadow na první 4 tlačítka menu
+- [ ] Vytvořit vizuální elevaci pro hlavní menu položky
+- [ ] Otestovat na různých zařízeních
+- [ ] Uložit checkpoint
+
+## Fix z-index překrývání (Jan 19, 2026)
+- [ ] Opravit z-index pro "Naše projekty" banner
+- [ ] Zajistit že header má vyšší z-index než banner
+- [ ] Otestovat na různých stránkách
+- [ ] Uložit checkpoint
+
+## Změna URL Lunární čtení (Jan 19, 2026)
+- [ ] Změnit /lunarni-reading na /moon-reading v Header.tsx
+- [ ] Aktualizovat route v App.tsx
+- [ ] Aktualizovat odkazy v chatbotu (AIChatAssistant.tsx)
+- [ ] Otestovat redirect a odkazy
+- [ ] Uložit checkpoint
+
+## Animace hvězd na Lunární čtení stránce (Jan 19, 2026)
+- [ ] Přidat floating animaci pro hvězdy
+- [ ] Různé delays pro každou hvězdu
+- [ ] Jemný, plynulý pohyb
+- [ ] Otestovat na různých zařízeních
+- [ ] Uložit checkpoint
+
+## Změna textu menu (Jan 19, 2026)
+- [ ] "Orgonitové pyramidy" → "Pyramidy" v navigaci
+- [ ] Uložit checkpoint
+
+## Změny v navigaci a animace (Jan 19, 2026)
+- [ ] "Orgonitové pyramidy" → "Pyramidy" v menu
+- [ ] Změnit /lunarni-reading na /moon-reading (Header, App, chatbot)
+- [ ] Přidat poblikávání na tlačítko "Čínský horoskop 2026"
+- [ ] Přidat floating animaci pro hvězdy na Lunární čtení stránce
+- [ ] Otestovat všechny změny
+- [ ] Uložit checkpoint
+
+## Zvětšení avataru v maximalizovaném chatu (Jan 19, 2026)
+- [ ] Zvětšit fotku Natálie v hlavičce při maximalizaci (48px → 64px/80px)
+- [ ] Zajistit plynulý přechod
+- [ ] Otestovat na různých zařízeních
+- [ ] Uložit checkpoint
+
+## Telegram /live monitoring (Jan 19, 2026)
+- [ ] Implementovat `/live` příkaz pro seznam aktivních konverzací
+- [ ] Real-time updates konverzací přes Telegram
+- [ ] Možnost sledovat konkrétní konverzaci (`/live 5`)
+- [ ] Možnost vstoupit do konverzace (`/live join 5`)
+- [ ] Notifikace při nových zprávách
+- [ ] Otestovat monitoring
+- [ ] Uložit checkpoint
+
+## Tematické grafiky pro chatbot (Jan 19, 2026)
+- [ ] Vygenerovat AI obrázky pro každou kategorii (spiritualita, produkty, lunární, horoskop, OHORAI)
+- [ ] Přidat detekci klíčových slov v odpovědích
+- [ ] Implementovat automatické zobrazení odpovídající grafiky
+- [ ] Jemné pozadí s mandalami (opacity 5-10%)
+- [ ] Animované prvky (puls, glow) pro důležité odpovědi
+- [ ] Otestovat na různých typech odpovědí
+- [ ] Uložit checkpoint
+
+## Chatbot Analytics Package (Jan 19, 2026)
+- [x] Přidat email capture tracking do databáze (chatbotEvents)
+- [x] Implementovat link click tracking v chatbot odpovědích
+- [x] Přidat metriky do /report (emails captured, link clicks, conversion funnel)
+- [ ] Vytvořit analytics dashboard s bot metrics
+- [x] Vytvořit reusable documentation pro instalaci do dalších projektů
+- [ ] Otestovat všechny analytics funkce
 - [ ] Uložit checkpoint

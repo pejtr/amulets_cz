@@ -799,3 +799,112 @@ export async function getLastSuccessfulOhoraiSync() {
 
   return result || null;
 }
+
+
+// ============================================
+// CHATBOT ANALYTICS TRACKING
+// ============================================
+
+/**
+ * Track chatbot event (email capture, link click, etc.)
+ */
+export async function trackChatbotEvent(event: {
+  sessionId?: number;
+  variantId?: number;
+  visitorId: string;
+  eventType: string;
+  eventData?: string;
+  page?: string;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    const [result] = await db.insert(chatbotEvents).values({
+      sessionId: event.sessionId || null,
+      variantId: event.variantId || null,
+      visitorId: event.visitorId,
+      eventType: event.eventType,
+      eventData: event.eventData || null,
+      page: event.page || null,
+    });
+    
+    return result;
+  } catch (error) {
+    console.error("[Chatbot] Error tracking event:", error);
+    return null;
+  }
+}
+
+/**
+ * Get email captures for a date range
+ */
+export async function getEmailCaptures(startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select()
+    .from(chatbotEvents)
+    .where(and(
+      eq(chatbotEvents.eventType, 'email_captured'),
+      gte(chatbotEvents.createdAt, startDate),
+      lte(chatbotEvents.createdAt, endDate)
+    ))
+    .orderBy(desc(chatbotEvents.createdAt));
+}
+
+/**
+ * Get link clicks for a date range
+ */
+export async function getLinkClicks(startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select()
+    .from(chatbotEvents)
+    .where(and(
+      eq(chatbotEvents.eventType, 'link_clicked'),
+      gte(chatbotEvents.createdAt, startDate),
+      lte(chatbotEvents.createdAt, endDate)
+    ))
+    .orderBy(desc(chatbotEvents.createdAt));
+}
+
+/**
+ * Get chatbot analytics summary for a date range
+ */
+export async function getChatbotAnalyticsSummary(startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const [emailCount] = await db.select({ count: count() })
+    .from(chatbotEvents)
+    .where(and(
+      eq(chatbotEvents.eventType, 'email_captured'),
+      gte(chatbotEvents.createdAt, startDate),
+      lte(chatbotEvents.createdAt, endDate)
+    ));
+
+  const [linkClickCount] = await db.select({ count: count() })
+    .from(chatbotEvents)
+    .where(and(
+      eq(chatbotEvents.eventType, 'link_clicked'),
+      gte(chatbotEvents.createdAt, startDate),
+      lte(chatbotEvents.createdAt, endDate)
+    ));
+
+  const [sessionCount] = await db.select({ count: count() })
+    .from(chatbotSessions)
+    .where(and(
+      gte(chatbotSessions.startedAt, startDate),
+      lte(chatbotSessions.startedAt, endDate)
+    ));
+
+  return {
+    emailsCaptured: emailCount?.count || 0,
+    linkClicks: linkClickCount?.count || 0,
+    totalSessions: sessionCount?.count || 0,
+    emailCaptureRate: sessionCount?.count ? ((emailCount?.count || 0) / sessionCount.count * 100).toFixed(2) : '0.00',
+    linkClickRate: sessionCount?.count ? ((linkClickCount?.count || 0) / sessionCount.count * 100).toFixed(2) : '0.00',
+  };
+}

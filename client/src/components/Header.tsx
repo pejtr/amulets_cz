@@ -13,16 +13,15 @@ import { useState } from "react";
 import GoogleTranslate from "@/components/GoogleTranslate";
 
 const navItems = [
-  { label: "🎁 Průvodce amulety", hasDropdown: false, url: "/#pruvodce-amulety", isInternal: true },
-  { label: "✨ Kvíz: Tvůj symbol", hasDropdown: false, url: "/kviz", isInternal: true },
-
-  { label: "🐎 Čínský horoskop 2026", hasDropdown: false, url: "/cinsky-horoskop", isInternal: true },
-  { label: "🌙 Lunární Reading", hasDropdown: false, url: "/lunarni-reading", isInternal: true },
-  { label: "Orgonitové pyramidy", hasDropdown: false, url: "https://www.ohorai.cz/autorske-tvorba/" },
+  { label: "🎁 Průvodce amulety", hasDropdown: false, url: "/#pruvodce-amulety", isInternal: true, featured: true },
+  { label: "✨ Kvíz: Tvůj symbol", hasDropdown: false, url: "/kviz", isInternal: true, featured: true },
+  { label: "🐎 Čínský horoskop 2026", hasDropdown: false, url: "/cinsky-horoskop", isInternal: true, featured: true, pulse: true },
+  { label: "🌙 Lunární čtení", hasDropdown: false, url: "/moon-reading", isInternal: true, featured: true },
+  { label: "Pyramidy", hasDropdown: false, url: "https://www.ohorai.cz/autorske-tvorba/" },
   { label: "Aromaterapie", hasDropdown: true, url: "https://www.ohorai.cz/esence/" },
-  { label: "O nás", hasDropdown: false, url: "/o-nas", isInternal: true },
-  { label: "Magazín", hasDropdown: false, url: "/magazin", isInternal: true },
   { label: "Privěsky AMEN", hasDropdown: false, url: "/privesky-amen", isInternal: true },
+  { label: "Magazín", hasDropdown: false, url: "/magazin", isInternal: true },
+  { label: "O nás", hasDropdown: false, url: "/o-nas", isInternal: true },
   { label: "Kontakt", hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },
 ];
 
@@ -146,7 +145,13 @@ export default function Header() {
                       window.location.href = item.url;
                     }
                   }}
-                  className="inline-flex items-center gap-1 px-3 py-2 text-foreground hover:text-primary hover:bg-transparent rounded-md transition-colors"
+                  className={`inline-flex items-center gap-1 px-3 py-2 text-foreground hover:text-primary rounded-md transition-all ${
+                    (item as any).featured 
+                      ? 'border-2 border-purple-300 shadow-md hover:shadow-lg hover:scale-105 bg-white font-semibold' 
+                      : 'hover:bg-transparent'
+                  } ${
+                    (item as any).pulse ? 'animate-pulse' : ''
+                  }`}
                 >
                   {item.label}
                   {item.hasDropdown && <ChevronDown className="h-4 w-4" />}

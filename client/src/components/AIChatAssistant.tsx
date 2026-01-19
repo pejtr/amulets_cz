@@ -1,5 +1,56 @@
 import { useState, useRef, useEffect } from "react";
 
+// Context-aware proactive prompts based on current page
+const getProactivePrompt = (path: string): string => {
+  const prompts = {
+    '/': [
+      'Dobrý den! 💜 Hledáte svůj amulet?',
+      'Ahoj! ✨ Mohu vám s něčím poradit?',
+      'Vítejte! 🔮 Máte otázku k našim produktům?',
+    ],
+    '/pruvodce-amulety': [
+      'Mohu vám pomoci vybrat symbol? ✨',
+      'Hledáte konkrétní amulet? 💎',
+      'Potřebujete poradit s výběrem? 🔮',
+    ],
+    '/kviz': [
+      'Chcete zjistit svůj spirituální symbol? ✨',
+      'Potřebujete pomoc s kvízem? 🔮',
+      'Máte otázku k výsledkům? 💜',
+    ],
+    '/cinský-horoskop-2026': [
+      'Zajímá vás váš čínský horoskop? 🐎',
+      'Potřebujete poradit s výkladem? ✨',
+      'Máte otázku k horoskopu? 🔮',
+    ],
+    '/moon-reading': [
+      'Zajímá vás Lunární čtení? 🌙',
+      'Chcete vědět více o měsíčním profilu? ✨',
+      'Potřebujete poradit? 💜',
+    ],
+    '/privěsky-amen': [
+      'Hledáte konkrétní přívěsek AMEN? 💎',
+      'Mohu vám poradit s výběrem? ✨',
+      'Máte otázku k produktům AMEN? 🔮',
+    ],
+  };
+  
+  // Find matching path or use default
+  for (const [key, questions] of Object.entries(prompts)) {
+    if (path.startsWith(key) || path === key) {
+      return questions[Math.floor(Math.random() * questions.length)];
+    }
+  }
+  
+  // Default prompts for other pages
+  const defaultPrompts = [
+    'Dobrý den! 💜 Mohu vám pomoci?',
+    'Ahoj! ✨ Máte nějakou otázku?',
+    'Vítejte! 🔮 Potřebujete poradit?',
+  ];
+  return defaultPrompts[Math.floor(Math.random() * defaultPrompts.length)];
+};
+
 // Tři proudy vědomí: hmotné (produkty), éterické (duchovní), užitečné (služba)
 // Každý proud reprezentuje jiný směr zájmu zákazníka
 const SUGGESTED_CATEGORIES = [
@@ -313,11 +364,18 @@ export default function AIChatAssistant() {
     { id: 'ohorai', label: '🪷 Autorská tvorba OHORAI', icon: '🪷', subtitle: '(esence a pyramidy)' },
     { id: 'ohorai-esence', label: '🧪 Esence OHORAI', icon: '✨', subtitle: '(aromaterapie)' },
     { id: 'ohorai-pyramidy', label: '🔺 Pyramidy OHORAI', icon: '🔺', subtitle: '(orgonitové)' },
-    { id: 'lunar-reading', label: '🌙 Lunární Reading', icon: '🌙', subtitle: '(měsíční profil)' },
+    { id: 'lunar-reading', label: '🌙 Lunární čtení', icon: '🌙', subtitle: '(měsíční profil)' },
   ];
 
   // Feedback state - sbírání zpětné vazby od návštěvníků
   const [showFeedback, setShowFeedback] = useState(false);
+  
+  // Proactive prompt state - proaktivní nabídka pomoci
+  const [showProactivePrompt, setShowProactivePrompt] = useState(false);
+  const [proactivePromptDismissed, setProactivePromptDismissed] = useState(() => {
+    return sessionStorage.getItem('proactive_prompt_dismissed') === 'true';
+  });
+  const [currentPath] = useState(window.location.pathname);
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
   const [feedbackAnswers, setFeedbackAnswers] = useState<{
     missing?: string;
@@ -413,6 +471,17 @@ Co tě dnes přivádí?`;
     }
   }, [assignedVariant]);
 
+  // Proactive prompt trigger - show after 20 seconds if chat not opened and not dismissed
+  useEffect(() => {
+    if (isOpen || proactivePromptDismissed) return;
+    
+    const timer = setTimeout(() => {
+      setShowProactivePrompt(true);
+    }, 20000); // 20 seconds
+    
+    return () => clearTimeout(timer);
+  }, [isOpen, proactivePromptDismissed]);
+  
   // Check offline hours and goodnight time every minute
   useEffect(() => {
     const checkTime = () => {
@@ -595,7 +664,7 @@ Co tě dnes přivádí?`;
         messageText = 'Ahoj Natálie, mám zájem o orgonitové pyramidy OHORAI 🔺';
         break;
       case 'lunar-reading':
-        messageText = 'Ahoj Natálie, zajímá mě Lunární Reading - měsíční profil 🌙';
+        messageText = 'Ahoj Natálie, zajímá mě Lunární čtení - měsíční profil 🌙';
         break;
       default:
         messageText = 'Ahoj Natálie, potřebuji pomoc';
@@ -730,7 +799,7 @@ Co tě dnes přivádí?`;
             ? 'inset-4 w-auto h-auto' 
             : 'bottom-0 right-0 sm:bottom-6 sm:right-6 w-full sm:w-[500px] h-[100dvh] sm:h-[780px]'
         } shadow-2xl z-50 flex flex-col sm:rounded-lg rounded-none ring-2 ring-amber-400/30 ring-offset-2 ring-offset-purple-100 transition-all duration-300 ${
-          fontSize === 'small' ? 'text-sm' : fontSize === 'large' ? 'text-base' : 'text-sm'
+          fontSize === 'small' ? 'text-sm' : fontSize === 'large' ? (isMaximized ? 'text-xl' : 'text-lg') : 'text-base'
         }`}>
           {/* Header */}
           <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 sm:rounded-t-lg flex items-center justify-between flex-shrink-0">
@@ -739,7 +808,9 @@ Co tě dnes přivádí?`;
                 <img
                   src={persona.avatar}
                   alt="Natálie"
-                  className={`w-20 h-20 rounded-full border-2 border-white object-cover transition-all duration-300 ${isOffline && !adminOverride ? 'grayscale brightness-75' : ''}`}
+                  className={`${
+                    isMaximized ? 'w-24 h-24' : 'w-20 h-20'
+                  } rounded-full border-2 border-white object-cover transition-all duration-300 ${isOffline && !adminOverride ? 'grayscale brightness-75' : ''}`}
                 />
                 {/* Online/Offline status badge - pravá spodní pozice */}
                 <span className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${isOffline && !adminOverride ? 'bg-gray-400' : 'bg-green-400'}`}></span>

@@ -200,17 +200,22 @@ export default function LunarReading() {
         <section className="relative py-20 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white overflow-hidden">
           {/* Hvězdy na pozadí */}
           <div className="absolute inset-0 opacity-30">
-            {[...Array(50)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 2}s`
-                }}
-              />
-            ))}
+            {[...Array(50)].map((_, i) => {
+              const size = Math.random() > 0.7 ? 'w-1.5 h-1.5' : 'w-1 h-1';
+              const duration = 3 + Math.random() * 4; // 3-7s
+              const delay = Math.random() * 5; // 0-5s
+              return (
+                <div
+                  key={i}
+                  className={`absolute ${size} bg-white rounded-full`}
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                    animation: `float ${duration}s ease-in-out ${delay}s infinite`,
+                  }}
+                />
+              );
+            })}
           </div>
           
           <div className="container relative z-10">

@@ -313,9 +313,22 @@ ${email ? `- Email: ${email}` : ''}
     captureEmail: publicProcedure
       .input(z.object({
         email: z.string().email(),
+        visitorId: z.string().optional(),
+        sessionId: z.number().optional(),
       }))
       .mutation(async ({ input }) => {
-        const { email } = input;
+        const { email, visitorId, sessionId } = input;
+
+        // Track email capture event
+        if (visitorId) {
+          const { trackChatbotEvent } = await import('./db');
+          await trackChatbotEvent({
+            sessionId,
+            visitorId,
+            eventType: 'email_captured',
+            eventData: JSON.stringify({ email }),
+          });
+        }
 
         // Add to Brevo with chat_engaged tag
         const contactAdded = await addBrevoContact({
@@ -333,6 +346,30 @@ ${email ? `- Email: ${email}` : ''}
             message: "Nepodařilo se uložit email. Zkuste to prosím znovu.",
           });
         }
+
+        return { success: true };
+      }),
+
+    trackLinkClick: publicProcedure
+      .input(z.object({
+        url: z.string(),
+        visitorId: z.string(),
+        sessionId: z.number().optional(),
+        linkText: z.string().optional(),
+        page: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { url, visitorId, sessionId, linkText, page } = input;
+
+        // Track link click event
+        const { trackChatbotEvent } = await import('./db');
+        await trackChatbotEvent({
+          sessionId,
+          visitorId,
+          eventType: 'link_clicked',
+          eventData: JSON.stringify({ url, linkText }),
+          page,
+        });
 
         return { success: true };
       }),

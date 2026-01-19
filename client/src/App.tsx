@@ -55,7 +55,9 @@ function Router() {
       <Route path="/predpoved-2026/:slug" component={Prediction2026} />
       <Route path="/ohorai" component={OHORAI} />
       <Route path="/tym" component={Team} />
-      <Route path="/lunarni-reading" component={LunarReading} />
+      <Route path="/moon-reading" component={LunarReading} />
+      {/* Redirect old URL to new */}
+      <Route path="/lunarni-reading">{() => <Redirect to="/moon-reading" />}</Route>
       <Route path="/o-nas" component={AboutNatalie} />
       <Route path="/privesky-amen" component={AmenPendants} />
       <Route path="/admin/campaigns" component={AdminCampaigns} />

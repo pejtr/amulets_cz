@@ -622,6 +622,10 @@ export async function generateCombinedDailyReport(): Promise<string> {
   const amuletsStats = await getChatbotComparisonStats(yesterday, today);
   const amuletsConversions = await getChatbotConversionStats(yesterday, today);
   
+  // Get Amulets.cz analytics (email captures, link clicks)
+  const { getChatbotAnalyticsSummary } = await import('./db');
+  const amuletsAnalytics = await getChatbotAnalyticsSummary(yesterday, today);
+  
   // Calculate Amulets totals
   const amuletsTotalSessions = amuletsStats.reduce((sum, s) => sum + Number(s.totalSessions || 0), 0);
   const amuletsTotalMessages = amuletsStats.reduce((sum, s) => sum + Number(s.totalMessages || 0), 0);
@@ -669,6 +673,8 @@ export async function generateCombinedDailyReport(): Promise<string> {
   report += `├─ Konverzací: <b>${amuletsTotalSessions}</b>\n`;
   report += `├─ Zpráv: <b>${amuletsTotalMessages}</b>\n`;
   report += `├─ Konverzí: <b>${amuletsTotalConversions}</b>\n`;
+  report += `├─ 📧 Emailů: <b>${amuletsAnalytics?.emailsCaptured || 0}</b>\n`;
+  report += `├─ 🔗 Kliknutí na odkazy: <b>${amuletsAnalytics?.linkClicks || 0}</b>\n`;
   report += `└─ Konverzní poměr: <b>${amuletsConversionRate.toFixed(2)}%</b>\n\n`;
 
   // OHORAI section
