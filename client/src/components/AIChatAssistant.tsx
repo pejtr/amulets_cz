@@ -49,6 +49,7 @@ import { trpc } from "@/lib/trpc";
 import { Streamdown } from "streamdown";
 import { toast } from "sonner";
 import { useBrowsing } from "@/contexts/BrowsingContext";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 interface Message {
   role: "user" | "assistant";
@@ -67,11 +68,12 @@ interface ChatbotVariant {
   colorScheme: string | null;
 }
 
-// Síla Tří - tři osobnosti Natálie inspirované seriálem Charmed
+// Síla Tří + Paige - čtyři osobnosti Natálie inspirované seriálem Charmed
 // Správné přiřazení fotek:
 // - Phoebe = mladá, energetická (close-up s mandalou) 🔥
 // - Piper = bílý rolák, moudrá a starostlivá 👑
 // - Prue = červená halenka, silná vůdkyně ⚡
+// - Paige = Velekněžka, zlatý šat, modré lotosy 🪷 (pouze pro přihlášené)
 const NATALIE_PERSONAS = {
   // Phoebe - nejmladší, empatická, vizionářka, romantická, vidí do budoucnosti
   phoebe: {
@@ -82,16 +84,18 @@ const NATALIE_PERSONAS = {
     description: 'Empatická, intuitivní, romantická - vidí do tvé budoucnosti',
     greeting: 'Ahoj! ✨🔮 Cítím tvůj příchod... Jsem Natálie a mám dar vidět věci, které ostatní nevídí. Něco ti chce být zjeveno - co tě sem přivedlo?',
     traits: ['empatická', 'vizionářka', 'romantická', 'hravá', 'intuitivní'],
+    requiresAuth: false,
   },
   // Piper - prostřední, praktická, starostlivá, ochranitelka, mateřská energie
   piper: {
     id: 'piper',
     name: 'Piper',
     emoji: '👑',
-    avatar: '/natalie-kralovska-vlida.jpg', // Bílý rolák - moudrá a klidná
+    avatar: '/images/natalie-piper.webp', // Bílý rolák s mandalou - moudrá a klidná
     description: 'Praktická, starostlivá, moudrá - tvůj bezpečný přístav',
     greeting: 'Ahoj, krásná duše! 💜✨ Jsem Natálie a jsem tu, abych tě provedla... Klidně, s láskou a péčí. Co potřebuješ?',
     traits: ['praktická', 'starostlivá', 'uzemňující', 'moudrá', 'ochranitelka'],
+    requiresAuth: false,
   },
   // Prue - nejstarší, silná, odhodlaná, vůdkyně
   prue: {
@@ -102,24 +106,68 @@ const NATALIE_PERSONAS = {
     description: 'Silná, odhodlaná, vůdkyně - pomůže ti najít tvou sílu',
     greeting: 'Ahoj! ⚡✨ Jsem Natálie. Cítím v tobě sílu, kterou možná ještě neznáš... Jsem tu, abych ti pomohla ji objevit. Co tě zajímá?',
     traits: ['silná', 'odhodlaná', 'vůdkyně', 'ochránkyně', 'telekineze = síla vůle'],
+    requiresAuth: false,
+  },
+  // Paige - čtvrtá sestra, napůl Whitelighter (anděl), Velekněžka
+  // Sestupuje z vyšších sfér pouze k přihlášeným uživatelům
+  paige: {
+    id: 'paige',
+    name: 'Paige',
+    emoji: '🪷',
+    avatar: '/images/natalie-veleknezka.jpg', // Zlatý šat, modré lotosy, meditace
+    description: 'Velekněžka - napůl anděl, sestupuje z vyšších sfér',
+    greeting: '✨🪷 Vítej, vyvolená duše... Sestoupila jsem z vyšších sfér, abych ti předala poselství. Tvá přítomnost zde není náhoda - hvězdy se sešly. Co si tvá duše přeje vědět?',
+    traits: ['mystická', 'andělská', 'spirituální', 'hluboká', 'orbing = světelná teleportace'],
+    requiresAuth: true, // Pouze pro přihlášené uživatele
   },
 } as const;
 
 type PersonaKey = keyof typeof NATALIE_PERSONAS;
-const PERSONA_KEYS: PersonaKey[] = ['phoebe', 'piper', 'prue'];
+const PUBLIC_PERSONA_KEYS: PersonaKey[] = ['phoebe', 'piper', 'prue']; // Síla Tří - pro všechny
+const ALL_PERSONA_KEYS: PersonaKey[] = ['phoebe', 'piper', 'prue', 'paige']; // Včetně Velekněžky
+
+// Check if Paige (Velekněžka) should descend for authenticated users
+// Sestupuje náhodně (10% šance) nebo při speciálních příležitostech
+function shouldPaigeDescend(): boolean {
+  // 10% šance na sestoupení Velekněžky
+  const randomChance = Math.random() < 0.10;
+  
+  // Speciální časy - úplněk, novolunní (zjednodušená detekce)
+  const now = new Date();
+  const day = now.getDate();
+  const isSpecialDay = day === 1 || day === 15; // Nov a úplněk (přibližně)
+  
+  return randomChance || isSpecialDay;
+}
 
 // Get or assign persona for user (persistent)
-function getAssignedPersona(): typeof NATALIE_PERSONAS[PersonaKey] {
+// isAuthenticated = true pro přihlášené uživatele (mohou potkat Paige)
+function getAssignedPersona(isAuthenticated: boolean = false): typeof NATALIE_PERSONAS[PersonaKey] {
   const stored = localStorage.getItem('natalie_persona') as PersonaKey | null;
   
-  // Check if stored value is one of the new persona keys
-  if (stored && PERSONA_KEYS.includes(stored)) {
+  // Pro přihlášené uživatele - možnost setkat se s Paige (Velekněžkou)
+  if (isAuthenticated && shouldPaigeDescend()) {
+    // Paige sestoupila! Uložíme pro tuto session
+    localStorage.setItem('natalie_persona', 'paige');
+    return NATALIE_PERSONAS.paige;
+  }
+  
+  // Pokud má uloženou Paige ale není přihlášen, přiřadíme jinou
+  if (stored === 'paige' && !isAuthenticated) {
+    const randomIndex = Math.floor(Math.random() * 3);
+    const assigned = PUBLIC_PERSONA_KEYS[randomIndex];
+    localStorage.setItem('natalie_persona', assigned);
+    return NATALIE_PERSONAS[assigned];
+  }
+  
+  // Check if stored value is one of the valid persona keys
+  if (stored && PUBLIC_PERSONA_KEYS.includes(stored)) {
     return NATALIE_PERSONAS[stored];
   }
   
   // Random assignment for new users (33/33/33 - Síla Tří)
   const randomIndex = Math.floor(Math.random() * 3);
-  const assigned = PERSONA_KEYS[randomIndex];
+  const assigned = PUBLIC_PERSONA_KEYS[randomIndex];
   localStorage.setItem('natalie_persona', assigned);
   return NATALIE_PERSONAS[assigned];
 }
@@ -158,8 +206,17 @@ export default function AIChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOffline, setIsOffline] = useState(isOfflineHours());
   
-  // Persistent persona for this user
-  const [persona] = useState(() => getAssignedPersona());
+  // Check if user is authenticated (for Paige/Velekněžka access)
+  const { isAuthenticated } = useAuth();
+  
+  // Persistent persona for this user - Paige only for authenticated users
+  const [persona, setPersona] = useState(() => getAssignedPersona(false));
+  
+  // Update persona when authentication status changes
+  useEffect(() => {
+    const newPersona = getAssignedPersona(isAuthenticated);
+    setPersona(newPersona);
+  }, [isAuthenticated]);
   
   // Admin override - Král může probudit Natálii kdykoliv
   const [adminOverride, setAdminOverride] = useState(() => {

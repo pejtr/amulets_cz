@@ -1638,3 +1638,14 @@
 - [x] Přidat osobnostní rysy z Charmed seriálu
 - [x] Persistence - každý uživatel si pamatuje svou "sestru"
 - [ ] Aktivovat Amaru pro Moon Reading předpovědi (postupně)
+
+## Paige - Velekněžka (4. sestra z Charmed) (Jan 19, 2026)
+- [x] Nahrát fotku Velekněžky (zlatý šat, modré lotosy, meditace)
+- [x] Vytvořit osobnost Paige/Velekněžky (mystická, andělská, spirituální)
+- [x] Implementovat logiku sestoupení (pouze pro přihlášené uživatele)
+- [x] Nastavit podmínky sestoupení (náhodně 10% nebo speciální časy - 1. a 15. den měsíce)
+- [x] Vytvořit speciální uvítací zprávu Velekněžky
+- [ ] Přidat vizuální odlišení (zlatý rámeček, speciální efekty) - budoucí
+- [ ] Otestovat na přihlášených uživatelích
+- [ ] Uložit checkpoint
+
