@@ -3,6 +3,8 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
+import { getDb } from "./db";
+import { visitorFeedback } from "../drizzle/schema";
 import { addBrevoContact, sendDiscountWelcomeEmail } from "./brevo";
 import { sendHoroscopePDFEmail } from "./sendHoroscopePDF";
 import { sendLeadEvent } from "./meta-conversions";
@@ -919,6 +921,86 @@ ${email ? `- Email: ${email}` : ''}
           throw new TRPCError({
             code: "INTERNAL_SERVER_ERROR",
             message: "Nepodařilo se odeslat zájem o koučing",
+          });
+        }
+      }),
+  }),
+
+  // =============================================================================
+  // FEEDBACK - Zpětná vazba od návštěvníků
+  // =============================================================================
+  feedback: router({
+    /**
+     * Uložit feedback od návštěvníka
+     */
+    submit: publicProcedure
+      .input(
+        z.object({
+          visitorId: z.string(),
+          sessionId: z.string().optional(),
+          feedbacks: z.array(
+            z.object({
+              type: z.enum(["missing_feature", "improvement", "high_value", "joy_factor", "general"]),
+              content: z.string().min(1),
+            })
+          ),
+          context: z.object({
+            currentPage: z.string().optional(),
+            conversationHistory: z.string().optional(),
+            timeOnSite: z.number().optional(),
+            userAgent: z.string().optional(),
+            device: z.string().optional(),
+            browser: z.string().optional(),
+          }).optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        try {
+          const { visitorId, sessionId, feedbacks, context } = input;
+
+          // Uložit každý feedback zvlášť
+          const db = await getDb();
+          if (!db) {
+            throw new TRPCError({
+              code: "INTERNAL_SERVER_ERROR",
+              message: "Databáze není dostupná",
+            });
+          }
+
+          const savedFeedbacks = [];
+          for (const fb of feedbacks) {
+            const result = await db.insert(visitorFeedback).values({
+              visitorId,
+              sessionId,
+              feedbackType: fb.type,
+              content: fb.content,
+              currentPage: context?.currentPage,
+              conversationHistory: context?.conversationHistory,
+              timeOnSite: context?.timeOnSite,
+              userAgent: context?.userAgent,
+              device: context?.device,
+              browser: context?.browser,
+              status: "new",
+            });
+            savedFeedbacks.push(result);
+          }
+
+          // Poslat Telegram notifikaci vlastníkovi
+          const feedbackSummary = feedbacks
+            .map((fb) => `• ${fb.type}: ${fb.content}`)
+            .join("\n");
+          const telegramMessage = `💬 Nový feedback od návštěvníka\n\nVisitor ID: ${visitorId}\n\n${feedbackSummary}`;
+          await sendTelegramMessage(telegramMessage);
+
+          return {
+            success: true,
+            message: "Děkujeme za vaši zpětnou vazbu! ✨",
+          };
+        } catch (error) {
+          console.error("[Feedback] Error saving feedback:", error);
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Nepodařilo se uložit feedback",
           });
         }
       }),

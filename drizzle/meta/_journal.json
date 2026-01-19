@@ -71,6 +71,13 @@
       "when": 1768776936470,
       "tag": "0009_calm_microchip",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1768782399001,
+      "tag": "0010_common_alice",
+      "breakpoints": true
     }
   ]
 }

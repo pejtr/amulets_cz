@@ -608,3 +608,64 @@ export const coachingLeads = mysqlTable("coaching_leads", {
 
 export type CoachingLead = typeof coachingLeads.$inferSelect;
 export type InsertCoachingLead = typeof coachingLeads.$inferInsert;
+
+// =============================================================================
+// VISITOR FEEDBACK - Zpětná vazba od návštěvníků
+// =============================================================================
+
+export const visitorFeedback = mysqlTable("visitor_feedback", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  // Identifikace návštěvníka
+  visitorId: varchar("visitorId", { length: 100 }).notNull(),
+  sessionId: varchar("sessionId", { length: 100 }),
+  userId: int("userId"),
+  
+  // Feedback kategorie
+  feedbackType: mysqlEnum("feedbackType", [
+    "missing_feature",    // Co chybí
+    "improvement",        // Co vylepšit
+    "high_value",         // Nejvyšší hodnota
+    "joy_factor",         // Co by udělalo radost
+    "general"             // Obecný feedback
+  ]).notNull(),
+  
+  // Obsah feedbacku
+  content: text("content").notNull(),
+  
+  // Kontext
+  currentPage: varchar("currentPage", { length: 255 }),
+  conversationHistory: text("conversationHistory"), // JSON
+  timeOnSite: int("timeOnSite"), // v sekundách
+  
+  // Sentiment (optional - může být analyzován AI)
+  sentiment: mysqlEnum("sentiment", ["positive", "neutral", "negative"]),
+  
+  // Priorita (může být nastavena manuálně)
+  priority: mysqlEnum("priority", ["low", "medium", "high", "critical"]).default("medium"),
+  
+  // Stav zpracování
+  status: mysqlEnum("status", [
+    "new",           // Nový feedback
+    "reviewed",      // Prohlédnuto
+    "planned",       // Naplánováno k implementaci
+    "implemented",   // Implementováno
+    "rejected"       // Odmítnuto
+  ]).default("new").notNull(),
+  
+  // Poznámky vlastníka
+  ownerNotes: text("ownerNotes"),
+  
+  // Metadata
+  userAgent: text("userAgent"),
+  device: varchar("device", { length: 50 }), // mobile | desktop
+  browser: varchar("browser", { length: 100 }),
+  
+  // Timestamps
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  reviewedAt: timestamp("reviewedAt"),
+  implementedAt: timestamp("implementedAt"),
+});
+
+export type VisitorFeedback = typeof visitorFeedback.$inferSelect;
+export type InsertVisitorFeedback = typeof visitorFeedback.$inferInsert;

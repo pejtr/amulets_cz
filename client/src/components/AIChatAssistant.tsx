@@ -166,6 +166,27 @@ export default function AIChatAssistant() {
     { id: 'ohorai', label: '☆ Autorská tvorba OHORAI', icon: '🌟' },
   ];
 
+  // Feedback state - sbírání zpětné vazby od návštěvníků
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
+  const [feedbackAnswers, setFeedbackAnswers] = useState<{
+    missing?: string;
+    improvement?: string;
+    highValue?: string;
+    joyFactor?: string;
+  }>({});
+
+  // Feedback otázky
+  const FEEDBACK_QUESTIONS = [
+    { id: 'missing', label: '🤔 Co vám na webu chybí?', type: 'missing_feature' as const },
+    { id: 'improvement', label: '✨ Co byste rádi vylepšili?', type: 'improvement' as const },
+    { id: 'highValue', label: '💯 Jaká funkce by pro vás měla nejvyšší hodnotu?', type: 'high_value' as const },
+    { id: 'joyFactor', label: '🎉 Co by vám udělalo radost?', type: 'joy_factor' as const },
+  ];
+
+  // Feedback mutation
+  const feedbackMutation = trpc.feedback.submit.useMutation();
+
   // A/B Testing - get random variant on mount
   const { data: assignedVariant } = trpc.chatbotAB.getVariant.useQuery({ visitorId }, {
     staleTime: Infinity, // Don't refetch
@@ -587,7 +608,14 @@ Co tě dnes přivádí?`;
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  // Zobrazit feedback před zavřením, pokud už nebylo odesláno a je více než 3 zprávy
+                  if (!feedbackSubmitted && messages.length >= 6 && !showFeedback) {
+                    setShowFeedback(true);
+                  } else {
+                    setIsOpen(false);
+                  }
+                }}
                 className="text-white hover:bg-white/20 h-8 w-8"
               >
                 <X className="h-4 w-4" />
@@ -775,6 +803,105 @@ Co tě dnes přivádí?`;
                   </>
                 )}
               </div>
+            )}
+
+            {/* Feedback Form */}
+            {showFeedback && !feedbackSubmitted && (
+              <Card className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200 mx-4 mb-4">
+                <div className="text-center mb-3">
+                  <p className="text-sm font-semibold text-gray-800">💬 Pomozte nám být lepší!</p>
+                  <p className="text-xs text-gray-600 mt-1">
+Vaše názory jsou pro nás velmi cenné. Odpovězte na pár otázek (nepřipovízné):
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  {FEEDBACK_QUESTIONS.map((q) => (
+                    <div key={q.id}>
+                      <label className="text-xs font-medium text-gray-700 block mb-1">
+                        {q.label}
+                      </label>
+                      <textarea
+                        placeholder="Vaše myšlenky..."
+                        value={feedbackAnswers[q.id as keyof typeof feedbackAnswers] || ''}
+                        onChange={(e) => setFeedbackAnswers(prev => ({
+                          ...prev,
+                          [q.id]: e.target.value
+                        }))}
+                        className="w-full text-xs p-2 border rounded-md resize-none h-16 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-2 mt-3">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setShowFeedback(false);
+                      setIsOpen(false);
+                    }}
+                    className="flex-1"
+                  >
+                    Přeskočit
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={async () => {
+                      // Připravit feedbacks pro odeslání
+                      const feedbacksToSubmit = Object.entries(feedbackAnswers)
+                        .filter(([_, content]) => content?.trim())
+                        .map(([key, content]) => ({
+                          type: FEEDBACK_QUESTIONS.find(q => q.id === key)!.type,
+                          content: content!,
+                        }));
+
+                      if (feedbacksToSubmit.length === 0) return;
+
+                      try {
+                        // Uložit feedback do databáze
+                        await feedbackMutation.mutateAsync({
+                          visitorId,
+                          sessionId: sessionId || undefined,
+                          feedbacks: feedbacksToSubmit,
+                          context: {
+                            currentPage: window.location.pathname,
+                            conversationHistory: JSON.stringify(messages.slice(0, 10)),
+                            timeOnSite: Math.floor((Date.now() - performance.timing.navigationStart) / 1000),
+                            userAgent: navigator.userAgent,
+                            device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'mobile' : 'desktop',
+                            browser: navigator.userAgent.split('(')[1]?.split(')')[0] || 'unknown',
+                          },
+                        });
+
+                        setFeedbackSubmitted(true);
+                        setShowFeedback(false);
+                        setTimeout(() => setIsOpen(false), 2000);
+                      } catch (error) {
+                        console.error('[Feedback] Error submitting:', error);
+                        // Zobrazit chybu uživateli
+                        alert('Nepodařilo se odeslat feedback. Zkuste to prosím později.');
+                      }
+                    }}
+                    className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                    disabled={!Object.values(feedbackAnswers).some(v => v?.trim())}
+                  >
+                    💜 Odeslat
+                  </Button>
+                </div>
+              </Card>
+            )}
+
+            {/* Feedback Thank You */}
+            {feedbackSubmitted && showFeedback && (
+              <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 mx-4 mb-4">
+                <div className="text-center">
+                  <div className="text-3xl mb-2">✨</div>
+                  <p className="text-sm font-semibold text-gray-800">Děkujeme za vaši zpětnou vazbu!</p>
+                  <p className="text-xs text-gray-600 mt-1">
+Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
+                  </p>
+                </div>
+              </Card>
             )}
           </div>
 

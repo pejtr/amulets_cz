@@ -1454,3 +1454,11 @@
 - [x] Přidat Telegram tlačítko do chat widgetu (veřejně dostupné)
 - [x] WhatsApp zůstává exkluzivní pro vážné zájemce (VIP tlačítko s kvalifikací)
 - [x] Telegram bot: @Natalie_Amulets_bot
+
+## Feedback mechanismus v chatu (Jan 19, 2026)
+- [x] Přidat feedback tabulku do databáze (visitor_feedback)
+- [x] Implementovat feedback UI v chat widgetu (konec konverzace)
+- [x] Vytvořit tRPC endpoint pro uložení feedbacku
+- [x] Otázky: Co chybí? Co vylepšit? Nejvyšší hodnota? Co by udělalo radost?
+- [x] Telegram notifikace vlastníkovi při novém feedbacku
+- [ ] Dashboard pro přehled feedbacků (budoucí)
