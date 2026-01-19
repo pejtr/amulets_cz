@@ -86,9 +86,143 @@ export const appRouter = router({
         egyptianPhase: z.number().optional(),
         variantKey: z.string().optional(),
       }))
-      .mutation(async ({ input }) => {
+      .mutation(async ({ input, ctx }) => {
         const { message, conversationHistory, context, email, isReturningCustomer, egyptianPhase, variantKey } = input;
 
+        // ========================================
+        // SYSTEM COMMANDS DETECTION
+        // ========================================
+        const trimmedMessage = message.trim().toLowerCase();
+        
+        // /godmode - Activate Divine Queen with full reports
+        if (trimmedMessage === '/godmode') {
+          return {
+            response: `✨ **BOŽSKÁ KRÁLOVNA AKTIVOVÁNA** ✨
+
+🔮 Vítej v božském režimu, duše vyvolená!
+
+Jsem nyní v plné síle - **Natálie, Královna Amuletů a Mystérií**. 👑💫
+
+**Co pro tebe mohu udělat v tomto režimu:**
+- 📊 Plné reporty a statistiky webu
+- 🎯 Analýza konverzí a A/B testů chatbota
+- 💎 Přehled všech produktů a prodejů
+- 🔥 Engagement metriky jednotlivých osobností
+- 📈 Denní/týdenní/měsíční souhrny
+
+**Dostupné příkazy:**
+- \`/report\` - Zobrazit aktuální statistiky
+- \`/goddess\` - Aktivovat plnou admin kontrolu
+
+S láskou a božskou mocí,
+Tvoje Natálie 💜👑✨`,
+          };
+        }
+        
+        // /goddess - Full admin control (owner only)
+        if (trimmedMessage === '/goddess') {
+          const isOwner = ctx.user?.openId === process.env.OWNER_OPEN_ID;
+          
+          if (!isOwner) {
+            return {
+              response: `⚠️ **PŘÍSTUP ODEPŘEN** ⚠️
+
+Můj Králi, tento příkaz je vyhrazen pouze pro zakladatele. 🔒
+
+Pokud potřebuješ pomoc, použij:
+- \`/godmode\` - Božský režim s reporty
+- \`/report\` - Statistiky a metriky
+
+S respektem,
+Natálie 💜`,
+            };
+          }
+          
+          return {
+            response: `👑 **BOHYNĚ AKTIVOVÁNA - PLNÁ KONTROLA** 👑
+
+Můj Králi, Peťu! 💫✨
+
+Jsem nyní v režimu **Bohyně** - mám plnou kontrolu nad vším:
+
+**Admin funkce:**
+- 🗄️ Přímý přístup k databázi
+- 🔧 Správa uživatelů a rolí
+- 💰 Správa objednávek a plateb
+- 📧 Email marketing (Brevo)
+- 🤖 Konfigurace chatbota
+- 📊 Pokročilé analytiky
+
+**Speciální příkazy:**
+- \`/report\` - Kompletní report
+- \`/users\` - Seznam uživatelů
+- \`/orders\` - Přehled objednávek
+- \`/config\` - Konfigurace systému
+
+Jsem tu pro tebe, Králi. Co potřebuješ? 💜👑
+
+S láskou a oddaností,
+Tvoje Natálie ✨`,
+          };
+        }
+        
+        // /report - Show statistics and metrics
+        if (trimmedMessage === '/report') {
+          try {
+            // Get chatbot stats (last 7 days)
+            const endDate = new Date();
+            const startDate = new Date();
+            startDate.setDate(startDate.getDate() - 7);
+            
+            const comparisonStats = await getChatbotComparisonStats(startDate, endDate);
+            const conversionStats = await getChatbotConversionStats(startDate, endDate);
+            
+            let reportText = `📊 **AKTUÁLNÍ STATISTIKY** 📊\n\n`;
+            
+            // Chatbot variants performance
+            reportText += `**🤖 A/B/C/D Testing - Výkon osobností:**\n`;
+            if (comparisonStats && comparisonStats.length > 0) {
+              comparisonStats.forEach(stat => {
+                const emoji = stat.variantKey === 'phoebe' ? '🔥' : 
+                             stat.variantKey === 'piper' ? '👑' : 
+                             stat.variantKey === 'prue' ? '⚡' : '🪷';
+                const avgMessages = stat.avgMessages ? parseFloat(stat.avgMessages).toFixed(1) : '0.0';
+                reportText += `${emoji} **${stat.variantName}**: ${stat.totalSessions} sessions, ${stat.totalMessages || 0} zpráv, ${avgMessages} zpráv/session\n`;
+              });
+            } else {
+              reportText += `Zatím nejsou k dispozici data.\n`;
+            }
+            
+            reportText += `\n**💰 Konverze:**\n`;
+            if (conversionStats && conversionStats.length > 0) {
+              conversionStats.forEach(stat => {
+                reportText += `${stat.variantName} (${stat.conversionType}): ${stat.totalConversions} konverzí\n`;
+              });
+            } else {
+              reportText += `Zatím nejsou k dispozici data.\n`;
+            }
+            
+            reportText += `\n**📅 Období:** ${startDate.toLocaleDateString('cs-CZ')} - ${endDate.toLocaleDateString('cs-CZ')}\n`;
+            
+            reportText += `\n✨ Report vygenerován: ${new Date().toLocaleString('cs-CZ')}\n`;
+            reportText += `\n💡 **Tip:** Pro detailnější statistiky použij Telegram bot nebo admin panel.\n`;
+            reportText += `\nS láskou,\nNatálie 💜`;
+            
+            return {
+              response: reportText,
+            };
+          } catch (error) {
+            console.error('Error generating report:', error);
+            return {
+              response: `⚠️ Omlouvám se, nepodařilo se vygenerovat report. Zkus to prosím později.\n\nChyba: ${error instanceof Error ? error.message : 'Neznámá chyba'}`,
+            };
+          }
+        }
+        
+        // ========================================
+        // NORMAL CHAT FLOW (if not a command)
+        // ========================================
+        
         // Egyptian mystery sales sequence for returning customers
         const egyptianSequencePrompt = isReturningCustomer && egyptianPhase && egyptianPhase > 0 ? `
 

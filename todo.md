@@ -1676,3 +1676,26 @@
 - [x] Nahradit tři špatné náhledy AI generovanými fotkami
 - [x] Otestovat na webu - AI fotky se zobrazují správně!
 - [ ] Uložit checkpoint
+
+## Vyříznutí a zvýšení kvality AMEN Love fotek (Jan 19, 2026)
+- [ ] Vyříznout 8 produktových fotek AMEN Love náramků ze screenshotu Irisimo
+- [ ] Zvýšit kvalitu vyříznutých fotek pomocí AI upscalingu
+- [ ] Aktualizovat amenCatalog.ts s novými fotkami (nahradit AI generované)
+- [ ] Otestovat na webu
+- [ ] Uložit checkpoint
+
+## Zlepšení čitelnosti sekce JAK TI MOHU POMOCI (Jan 19, 2026)
+- [x] Zvětšit Ankh symbol v sekci "Amulety & Produkty" (text-xl → text-3xl)
+- [x] Zlepšit čitelnost textu (větší font, tučnější, lepší kontrast)
+- [x] Zvětšit nadpis "JAK TI MOHU POMOCI?" (text-[9px] → text-xs, font-bold)
+- [ ] Otestovat na webu
+- [ ] Uložit checkpoint
+
+## Systémové příkazy chatbota (Jan 19, 2026)
+- [ ] Implementovat detekci příkazů v backendu (před voláním OpenAI)
+- [ ] Implementovat /godmode - aktivovat Božskou Královnu s plnými reporty
+- [ ] Implementovat /goddess - aktivovat plnou admin kontrolu (pouze pro vlastníka)
+- [ ] Implementovat /report - zobrazit statistiky, metriky, konverze
+- [ ] Přidat autentizaci vlastníka pro admin příkazy
+- [ ] Otestovat všechny příkazy v chatbotu
+- [ ] Uložit checkpoint

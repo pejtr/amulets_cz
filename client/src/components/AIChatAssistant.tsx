@@ -886,7 +886,7 @@ Co tě dnes přivádí?`;
               <div className="border-t bg-white overflow-y-auto p-1.5 max-h-36">
                 {!selectedCategory ? (
                   <>
-                    <p className="text-[9px] font-semibold text-gray-400 mb-1 uppercase">Jak ti mohu pomoci?</p>
+                    <p className="text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Jak ti mohu pomoci?</p>
                     <div className="grid grid-cols-3 gap-1.5">
                       {SUGGESTED_CATEGORIES.map((cat) => (
                         <button
@@ -911,8 +911,8 @@ Co tě dnes přivádí?`;
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                           {/* Pulzující aura */}
                           <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-purple-400/0 to-amber-400/0 group-hover:from-purple-400/10 group-hover:to-amber-400/10 animate-pulse" />
-                          <div className="text-xl leading-none relative z-10 group-hover:scale-110 transition-transform duration-300 drop-shadow-sm">{cat.icon}</div>
-                          <p className="text-[10px] font-semibold text-gray-700 group-hover:text-purple-800 leading-tight mt-1 relative z-10 transition-colors duration-300">{cat.category}</p>
+                          <div className="text-3xl leading-none relative z-10 group-hover:scale-110 transition-transform duration-300 drop-shadow-md">{cat.icon}</div>
+                          <p className="text-xs font-bold text-gray-800 group-hover:text-purple-900 leading-tight mt-2 relative z-10 transition-colors duration-300">{cat.category}</p>
                         </button>
                       ))}
                     </div>
