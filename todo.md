@@ -1591,3 +1591,42 @@
   * Chatbot Natálie pro prodej zájezdů a letenek
   * Integrace s existujícím WordPress (www.akcni-letenky.com)
   * Performance optimalizace (pre-loading, caching, 24h refresh cyklus)
+
+## Nasazení zlatého OHORAI symbolu (Jan 19, 2026)
+- [x] Zkopírovat ohorai-symbol-light-gold.png do projektu
+- [x] Nahradit symbol v top banneru (CrossLinkBanner.tsx)
+- [x] Upravit velikost a umístění pro optimální viditelnost (w-4 h-4)
+- [ ] Otestovat na různých zařízeních
+
+## A/B Testing chatbotů Natálie (Jan 19, 2026)
+- [ ] Vytvořit dvě verze chatbota (Veřejná vs. Královská)
+- [ ] Implementovat A/B testing logiku (50/50 split)
+- [ ] Nastavit tracking konverzí pro obě varianty
+- [ ] Měřit: engagement rate, conversion rate, customer satisfaction
+
+## Fáze 1: Akční Letenky - Tracking Setup (Jan 19, 2026)
+- [ ] Vytvořit dokumentaci pro implementaci
+- [ ] Připravit Microsoft Clarity setup instrukce
+- [ ] Navrhnout GA4 custom events strukturu
+- [ ] Vytvořit databázové schéma pro tracking
+
+## Transformace chatbota na posvátné egyptské orákulum (Jan 19, 2026)
+- [ ] Vygenerovat zlatý egyptský Ankh symbol (starodávný faraonský styl)
+- [ ] Vygenerovat magické symboly (Květ života, Merkaba, posvátná geometrie)
+- [ ] Zvětšit a zvýraznit Ankh v chat headeru
+- [ ] Přidat zlaté egyptské ornamenty kolem chatu
+- [ ] Animovat tlačítka (pulzování, záření, hover efekty)
+- [ ] Přidat atmosféru modrého lotosu (barvy, gradienty)
+- [ ] Vytvořit pocit moderní zpovědi/orákulové konzultace
+- [ ] Přesunout "Back to Top" tlačítko vpravo do chatu (aby nepřekáželo)
+- [x] Změnit pracovní dobu na 8:00-22:00
+- [x] Přidat "Probudit Natálii" funkci pro Krále (probuditNatalii() v konzoli)
+- [x] Opravit URL encoding pro stránku Přívěsky AMEN (/privesky-amen)
+- [x] Přidat Header + Footer na stránku Přívěsky AMEN
+
+## A/B Testing dvou osobností Natálie (Jan 19, 2026)
+- [x] Vytvořit variantu A: Královská & Vlídná (natalie-v4-current-queen.jpg)
+- [x] Vytvořit variantu B: Energetická Víla (natalie-v1-young-elegant.webp)
+- [x] Implementovat persistence pro uživatele (localStorage)
+- [x] Každý uživatel vždy mluví se stejnou verzí (fotka + osobnost)
+- [x] Offline režim: fotka sešedne + ztmaví (grayscale + brightness)

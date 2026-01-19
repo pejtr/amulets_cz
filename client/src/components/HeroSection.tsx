@@ -108,7 +108,7 @@ export default function HeroSection() {
               }}
             >
               <span className="text-sm">💬 POPOVÍDAT SI</span>
-              <span className="text-[9px] text-white/80 leading-tight">Online 6:00-24:00</span>
+              <span className="text-[9px] text-white/80 leading-tight">Online 8:00-22:00</span>
             </Button>
           </div>
         </div>
@@ -249,7 +249,7 @@ export default function HeroSection() {
                     }}
                   >
                     <span className="text-sm sm:text-base">💬 POPOVÍDAT SI</span>
-                    <span className="text-[9px] sm:text-[10px] text-white/80">Online 6:00-24:00</span>
+                    <span className="text-[9px] sm:text-[10px] text-white/80">Online 8:00-22:00</span>
                   </Button>
                 </div>
 

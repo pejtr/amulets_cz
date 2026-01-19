@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Filter, Search, ShoppingCart, Heart } from "lucide-react";
@@ -117,7 +119,9 @@ export default function AmenPendants() {
   const purposes = Array.from(new Set(pendants.map((p) => p.purpose)));
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50/50 to-pink-50/50 py-12">
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1 bg-gradient-to-b from-purple-50/50 to-pink-50/50 py-12">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
@@ -362,6 +366,8 @@ export default function AmenPendants() {
           </div>
         </div>
       </div>
+      </main>
+      <Footer />
     </div>
   );
 }

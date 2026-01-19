@@ -67,11 +67,41 @@ interface ChatbotVariant {
   colorScheme: string | null;
 }
 
-// Helper function to check if chatbot is in offline hours (00:00 - 06:00 CET)
+// Dvě osobnosti Natálie pro A/B testing
+const NATALIE_PERSONAS = {
+  royal: {
+    key: 'royal_kind',
+    name: 'Královská & Vlídná',
+    avatar: '/natalie-v4-current-queen.jpg',
+    description: 'Klidná, moudrá, mystická - pro ty co hledají hluboké spojení',
+    greeting: 'Ahoj, krásná duše! 💜✨ Jsem Natálie a cítím, že tě sem něco přitáhlo... Možná je to volání tvé duše po něčem hlubším. Co tě dnes přivádí?',
+  },
+  fairy: {
+    key: 'energy_fairy',
+    name: 'Energetická Víla',
+    avatar: '/natalie-v1-young-elegant.webp',
+    description: 'Živá, nadšená, hravá - pro ty co hledají energii a radost',
+    greeting: 'Ahoj! ✨🧑 Jsem Natálie z Amulets.cz! Ráda ti pomůžu najít ten správný amulet nebo odpovím na tvé otázky. Co tě zajímá?',
+  },
+};
+
+// Get or assign persona for user (persistent)
+function getAssignedPersona(): typeof NATALIE_PERSONAS.royal {
+  const stored = localStorage.getItem('natalie_persona');
+  if (stored && (stored === 'royal' || stored === 'fairy')) {
+    return NATALIE_PERSONAS[stored];
+  }
+  // Random assignment for new users (50/50)
+  const assigned = Math.random() < 0.5 ? 'royal' : 'fairy';
+  localStorage.setItem('natalie_persona', assigned);
+  return NATALIE_PERSONAS[assigned];
+}
+
+// Helper function to check if chatbot is in offline hours (22:00 - 08:00 CET)
 function isOfflineHours(): boolean {
   const now = new Date();
   const hours = now.getHours();
-  return hours >= 0 && hours < 6;
+  return hours >= 22 || hours < 8;
 }
 
 // Helper function to check if it's time for goodnight message (23:55 - 23:59)
@@ -92,7 +122,7 @@ Přeji ti krásné sny plné světla a lásky. Dobrou noc! 💫💜
 ~ Natálie`;
 
 // Offline message - zkrácená verze
-const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpovídám. Jsem tu denně 6:00-24:00. Napište mi na WhatsApp nebo zanechte dotaz!
+const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpovídám. Jsem tu denně 8:00-22:00. Napište mi na WhatsApp nebo zanechte dotaz!
 
 S láskou,
 Natálie 💜`;
@@ -100,6 +130,34 @@ Natálie 💜`;
 export default function AIChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOffline, setIsOffline] = useState(isOfflineHours());
+  
+  // Persistent persona for this user
+  const [persona] = useState(() => getAssignedPersona());
+  
+  // Admin override - Král může probudit Natálii kdykoliv
+  const [adminOverride, setAdminOverride] = useState(() => {
+    return localStorage.getItem('natalie_admin_override') === 'true';
+  });
+  
+  // Expose global function for admin to wake up Natalie
+  useEffect(() => {
+    (window as any).probuditNatalii = () => {
+      localStorage.setItem('natalie_admin_override', 'true');
+      setAdminOverride(true);
+      setIsOffline(false);
+      console.log('💜 Natálie probuzena pro Krále! ✨');
+    };
+    (window as any).uspatNatalii = () => {
+      localStorage.removeItem('natalie_admin_override');
+      setAdminOverride(false);
+      setIsOffline(isOfflineHours());
+      console.log('💜 Natálie jde spát... 🌙');
+    };
+    return () => {
+      delete (window as any).probuditNatalii;
+      delete (window as any).uspatNatalii;
+    };
+  }, []);
   const [showGoodnightMessage, setShowGoodnightMessage] = useState(false);
   const [variant, setVariant] = useState<ChatbotVariant | null>(null);
   const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
@@ -128,9 +186,9 @@ export default function AIChatAssistant() {
   // Check if this is a returning customer (2nd+ visit)
   const isReturningCustomer = visitCount >= 2;
   
-  // Default initial message - shown immediately without waiting for API
+  // Default initial message - based on assigned persona
   // Tři proudy: hmotné (produkty), éterické (duchovní), užitečné (služba)
-  const DEFAULT_INITIAL_MESSAGE = "Ahoj! 💜 Jsem Natálie z Amulets.cz. Ráda ti pomohu najít ten správný amulet nebo odpovím na tvé otázky. Co tě zajímá?";
+  const DEFAULT_INITIAL_MESSAGE = persona.greeting;
   
   // Messages state - starts with default message immediately
   const [messages, setMessages] = useState<Message[]>([
@@ -559,16 +617,16 @@ Co tě dnes přivádí?`;
             {/* Fotka Natálie - větší a viditelnější */}
             <div className="absolute inset-1 rounded-full overflow-hidden border-2 border-white/50">
               <img
-                src={isOffline ? "/natalie-avatar.png" : "/images/natalie-valtova-ohorai.webp"}
+                src={persona.avatar}
                 alt="Natálie"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                className={`w-full h-full object-cover group-hover:scale-110 transition-all duration-300 ${isOffline && !adminOverride ? 'grayscale brightness-75' : ''}`}
               />
             </div>
             
             {/* Online/Offline indikátor */}
             <span className="absolute top-0 right-0 flex h-5 w-5">
-              {!isOffline && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>}
-              <span className={`relative inline-flex rounded-full h-5 w-5 border-2 border-white ${isOffline ? 'bg-gray-400' : 'bg-green-500'}`}></span>
+              {(!isOffline || adminOverride) && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>}
+              <span className={`relative inline-flex rounded-full h-5 w-5 border-2 border-white ${isOffline && !adminOverride ? 'bg-gray-400' : 'bg-green-500'}`}></span>
             </span>
             
             {/* Chat ikona - menší a v rohu */}
@@ -581,24 +639,28 @@ Co tě dnes přivádí?`;
 
       {/* Chat Window */}
       {isOpen && (
-        <Card className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 w-full sm:w-[420px] h-[100dvh] sm:h-[680px] shadow-2xl z-50 flex flex-col sm:rounded-lg rounded-none">
+        <Card className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 w-full sm:w-[420px] h-[100dvh] sm:h-[680px] shadow-2xl z-50 flex flex-col sm:rounded-lg rounded-none ring-2 ring-amber-400/30 ring-offset-2 ring-offset-purple-100">
           {/* Header */}
           <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 sm:rounded-t-lg flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="relative">
                 <img
-                  src={isOffline ? "/natalie-avatar.png" : "/images/natalie-valtova-ohorai.webp"}
+                  src={persona.avatar}
                   alt="Natálie"
-                  className="w-16 h-16 rounded-full border-2 border-white object-cover"
+                  className={`w-16 h-16 rounded-full border-2 border-white object-cover transition-all duration-300 ${isOffline && !adminOverride ? 'grayscale brightness-75' : ''}`}
                 />
                 {/* Online/Offline status badge - pravá spodní pozice */}
-                <span className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${isOffline ? 'bg-gray-400' : 'bg-green-400'}`}></span>
+                <span className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${isOffline && !adminOverride ? 'bg-gray-400' : 'bg-green-400'}`}></span>
               </div>
               <div>
-                <h3 className="font-semibold text-lg">Natálie Ohorai</h3>
+                <div className="flex items-center gap-2">
+                  <h3 className="font-semibold text-lg">Natálie Ohorai</h3>
+                  {/* Zlatý Ankh symbol - posvátný egyptský znak */}
+                  <span className="text-amber-300 text-xl animate-pulse drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" title="Ankh - symbol věčného života">☥</span>
+                </div>
                 <p className="text-xs text-white/90 font-medium">Průvodkyně procesem</p>
                 <p className="text-xs text-white/70">
-                  {isOffline ? 'Offline • K dispozici od 9:00' : 'Online • Odpovídám do 1 minuty'}
+                  {isOffline && !adminOverride ? 'Offline • K dispozici od 8:00' : 'Online • Odpovídám do 1 minuty'}
                 </p>
               </div>
             </div>
@@ -758,11 +820,15 @@ Co tě dnes přivádí?`;
                               });
                             }
                           }}
-                          className="p-1.5 rounded-md bg-gradient-to-br from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-purple-200 hover:border-purple-300 transition-all text-center flex flex-col items-center justify-center"
+                          className="group p-2 rounded-lg bg-gradient-to-br from-purple-50 via-pink-50 to-amber-50 hover:from-purple-100 hover:via-pink-100 hover:to-amber-100 border-2 border-purple-200/60 hover:border-amber-400/80 transition-all duration-300 text-center flex flex-col items-center justify-center shadow-sm hover:shadow-lg hover:shadow-purple-200/50 hover:scale-105 relative overflow-hidden"
                           title={cat.category}
                         >
-                          <div className="text-lg leading-none">{cat.icon}</div>
-                          <p className="text-[10px] font-medium text-gray-700 leading-tight mt-0.5">{cat.category}</p>
+                          {/* Magický zářivý efekt */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                          {/* Pulzující aura */}
+                          <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-purple-400/0 to-amber-400/0 group-hover:from-purple-400/10 group-hover:to-amber-400/10 animate-pulse" />
+                          <div className="text-xl leading-none relative z-10 group-hover:scale-110 transition-transform duration-300 drop-shadow-sm">{cat.icon}</div>
+                          <p className="text-[10px] font-semibold text-gray-700 group-hover:text-purple-800 leading-tight mt-1 relative z-10 transition-colors duration-300">{cat.category}</p>
                         </button>
                       ))}
                     </div>

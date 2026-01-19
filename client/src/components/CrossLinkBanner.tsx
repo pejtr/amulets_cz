@@ -133,7 +133,7 @@ export default function CrossLinkBanner() {
                   rel="noopener noreferrer"
                   className="text-xs bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full whitespace-nowrap transition-colors flex items-center gap-1"
                 >
-                  <img src="/ohorai-logo.webp" alt="OHORAI" className="w-4 h-4 object-contain" />
+                  <img src="/ohorai-symbol-gold.png" alt="OHORAI" className="w-4 h-4 object-contain" />
                   <span>OHORAI</span>
                 </a>
               </div>

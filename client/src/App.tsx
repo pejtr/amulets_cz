@@ -57,7 +57,7 @@ function Router() {
       <Route path="/tym" component={Team} />
       <Route path="/lunarni-reading" component={LunarReading} />
       <Route path="/o-nas" component={AboutNatalie} />
-      <Route path="/privěsky-amen" component={AmenPendants} />
+      <Route path="/privesky-amen" component={AmenPendants} />
       <Route path="/admin/campaigns" component={AdminCampaigns} />
       <Route path="/admin/chatbot-ab" component={AdminChatbotAB} />
       <Route path="/admin/tickets" component={AdminTickets} />
