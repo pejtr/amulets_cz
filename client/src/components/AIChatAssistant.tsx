@@ -70,16 +70,16 @@ interface ChatbotVariant {
 // Dvě osobnosti Natálie pro A/B testing
 const NATALIE_PERSONAS = {
   royal: {
-    key: 'royal_kind',
+    id: 'royal',
     name: 'Královská & Vlídná',
-    avatar: '/natalie-v4-current-queen.jpg',
+    avatar: '/natalie-kralovska-vlida.jpg',
     description: 'Klidná, moudrá, mystická - pro ty co hledají hluboké spojení',
     greeting: 'Ahoj, krásná duše! 💜✨ Jsem Natálie a cítím, že tě sem něco přitáhlo... Možná je to volání tvé duše po něčem hlubším. Co tě dnes přivádí?',
   },
   fairy: {
-    key: 'energy_fairy',
+    id: 'fairy',
     name: 'Energetická Víla',
-    avatar: '/natalie-v1-young-elegant.webp',
+    avatar: '/natalie-energeticka-vila.jpg',
     description: 'Živá, nadšená, hravá - pro ty co hledají energii a radost',
     greeting: 'Ahoj! ✨🧑 Jsem Natálie z Amulets.cz! Ráda ti pomůžu najít ten správný amulet nebo odpovím na tvé otázky. Co tě zajímá?',
   },
