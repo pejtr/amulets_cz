@@ -33,7 +33,7 @@ export default function BackToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-28 right-6 z-40 w-10 h-10 rounded-full bg-[#E85A9F] text-white shadow-lg hover:bg-[#E85A9F]/90 transition-all hover:scale-110 animate-in fade-in slide-in-from-bottom-4 duration-300"
+      className="fixed bottom-28 right-6 z-[60] w-10 h-10 rounded-full bg-[#E85A9F] text-white shadow-lg hover:bg-[#E85A9F]/90 transition-all hover:scale-110 animate-in fade-in slide-in-from-bottom-4 duration-300 cursor-pointer"
       aria-label="Zpět nahoru"
     >
       <ArrowUp className="h-5 w-5 mx-auto" />

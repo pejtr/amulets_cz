@@ -18,6 +18,7 @@ import ChineseZodiac from "./pages/ChineseZodiac";
 import Prediction2026 from "./pages/Prediction2026";
 import CookieConsent from "./components/CookieConsent";
 import BackToTop from "./components/BackToTop";
+import TelegramButton from "./components/TelegramButton";
 import AIChatAssistant from "./components/AIChatAssistant";
 import AboutNatalie from "./pages/AboutNatalie";
 import AmenPendants from "./pages/AmenPendants";
@@ -95,6 +96,7 @@ function App() {
           <Router />
           <CookieConsent />
           <BackToTop />
+          <TelegramButton />
           <AIChatAssistant />
         </TooltipProvider>
         </BrowsingProvider>

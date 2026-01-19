@@ -1462,3 +1462,27 @@
 - [x] Otázky: Co chybí? Co vylepšit? Nejvyšší hodnota? Co by udělalo radost?
 - [x] Telegram notifikace vlastníkovi při novém feedbacku
 - [ ] Dashboard pro přehled feedbacků (budoucí)
+
+## BUG: Back to Top a badge overflow (Jan 19, 2026)
+- [x] Back to Top tlačítko nefunguje po kliknutí - opraveno (z-index 50)
+- [x] Zelený online badge je useknutý - opraveno (overflow-visible)
+
+## Telegram tlačítko na vertikální osu (Jan 19, 2026)
+- [x] Přidat Telegram tlačítko - přesunuto vlevo nahoru (top-20 left-4)
+- [x] Modré tlačítko s Telegram ikonou (malinkaté 10x10px)
+- [x] Odkaz na @Natalie_Amulets_bot
+
+## Telegram Bot persona Natálie - grafika (Jan 19, 2026)
+- [ ] Vygenerovat obrázek Telegram Bot persony Natálie
+- [ ] Styl: Přátelská Průvodkyně 🌸 - vřelá, vstřícná, motivující
+
+## Natáliina personalita - integrace napříč chatboty (Jan 19, 2026)
+- [ ] Vytvořit kompletní personality profil Natálie (Egypt, modrý lotos, esence, křišťály, andělé, Itálie)
+- [ ] Integrovat profil do web chat AI asistenta
+- [ ] Připravit Telegram bot s Natáliinou personalitou
+- [ ] Implementovat ranní inspirační zprávy pro PREMIUM členy (7:00)
+- [ ] Otestovat na asistentce
+
+## Telegram ikona - přesun vlevo nahoru (Jan 19, 2026)
+- [x] Zmenšit Telegram ikonu na malinkatou velikost (w-10 h-10)
+- [x] Přesunout vlevo nahoru (left-4 top-20)

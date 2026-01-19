@@ -92,7 +92,10 @@ Přeji ti krásné sny plné světla a lásky. Dobrou noc! 💫💜
 ~ Natálie`;
 
 // Offline message - zkrácená verze
-const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpočívám. Jsem tu denně 9:00-24:00. Napište mi na WhatsApp nebo zanechte dotaz! ~ Natálie 💜`;
+const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpočívám. Jsem tu denně 9:00-24:00. Napište mi na WhatsApp nebo zanechte dotaz!
+
+S láskou,
+Natálie 💜`;
 
 export default function AIChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
@@ -538,7 +541,7 @@ Co tě dnes přivádí?`;
           
           <Button
             onClick={() => setIsOpen(true)}
-            className="relative h-20 w-20 rounded-full shadow-2xl bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 p-0 overflow-hidden group hover:scale-110 transition-transform duration-300"
+            className="relative h-20 w-20 rounded-full shadow-2xl bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 p-0 group hover:scale-110 transition-transform duration-300"
             aria-label="Otevřít chat s Natálií"
           >
             {/* Fotka Natálie - větší a viditelnější */}
