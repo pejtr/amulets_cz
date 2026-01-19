@@ -1649,3 +1649,18 @@
 - [ ] Otestovat na přihlášených uživatelích
 - [ ] Uložit checkpoint
 
+
+## Oprava stránky Přívěsky AMEN (Jan 19, 2026)
+- [ ] Opravit načítání obrázků produktů (rozbité náhledy)
+- [ ] Zobrazit všechny produkty místo jen 3
+- [ ] Zkontrolovat cesty k obrázkům v amenCatalog.ts
+- [ ] Otestovat zobrazení na webu
+- [ ] Uložit checkpoint
+
+
+## Zvětšení chatbota (Jan 19, 2026)
+- [x] Zvětšit avatara Natálie v chatbotu (16px → 20px)
+- [x] Zvětšit celé chatovací okno (420px → 500px, 680px → 780px)
+- [x] Zvětšit tlačítko chatbota pro lepší viditelnost (20px → 24px)
+- [x] Otestovat na webu
+- [ ] Uložit checkpoint

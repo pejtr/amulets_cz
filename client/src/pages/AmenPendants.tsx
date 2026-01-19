@@ -30,47 +30,40 @@ export default function AmenPendants() {
   const [priceRange, setPriceRange] = useState([0, 5000]);
   const [favorites, setFavorites] = useState<string[]>([]);
 
-  // Mock data - v produkci by se načítalo z Irisimo API
+  // Načíst skutečné produkty z amenCatalog přes tRPC
+  const { data: amenProducts, isLoading } = trpc.irisimo.getAmenPendants.useQuery();
+  
   useEffect(() => {
-    const mockPendants: AmenPendant[] = [
-      {
-        id: "1",
-        name: "Privěsek AMEN Květina Života",
-        price: 299,
-        image: "https://via.placeholder.com/300x300?text=Kvĕtina+Života",
-        category: "Geometrické",
-        purpose: "Ochrana",
-        description: "Posvátný symbol Květiny života pro duchovní ochranu",
+    if (amenProducts) {
+      // Mapování dat z backendu na frontend formát
+      const mappedPendants: AmenPendant[] = amenProducts.map((product) => ({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.imageUrl,
+        category: product.collection, // Kolekce jako kategorie (Rosary, Love, Tennis...)
+        purpose: getCategoryPurpose(product.category), // Mapování účelu podle kategorie
+        description: product.description,
         affiliation: "Irisimo.cz",
-        url: "https://irisimo.cz",
-      },
-      {
-        id: "2",
-        name: "Privěsek AMEN Metatronova Krychle",
-        price: 349,
-        image: "https://via.placeholder.com/300x300?text=Metatronova+Krychle",
-        category: "Geometrické",
-        purpose: "Harmonie",
-        description: "Energetická krychle pro vnitřní harmonii",
-        affiliation: "Irisimo.cz",
-        url: "https://irisimo.cz",
-      },
-      {
-        id: "3",
-        name: "Privěsek AMEN Vesica Piscis",
-        price: 279,
-        image: "https://via.placeholder.com/300x300?text=Vesica+Piscis",
-        category: "Geometrické",
-        purpose: "Láska",
-        description: "Symbol lásky a spirituálního spojení",
-        affiliation: "Irisimo.cz",
-        url: "https://irisimo.cz",
-      },
-    ];
-    setPendants(mockPendants);
-    setFilteredPendants(mockPendants);
-    setLoading(false);
-  }, []);
+        url: product.url,
+      }));
+      setPendants(mappedPendants);
+      setFilteredPendants(mappedPendants);
+    }
+    setLoading(isLoading);
+  }, [amenProducts, isLoading]);
+  
+  // Helper funkce pro mapování kategorie na účel
+  function getCategoryPurpose(category: string): string {
+    switch (category) {
+      case 'nahrdelnik': return 'Ochrana';
+      case 'naramek': return 'Harmonie';
+      case 'prsten': return 'Láska';
+      case 'nausnice': return 'Krasa';
+      case 'privesek': return 'Ochrana';
+      default: return 'Ochrana';
+    }
+  }
 
 
 

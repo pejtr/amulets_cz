@@ -695,7 +695,7 @@ Co tě dnes přivádí?`;
           
           <Button
             onClick={() => setIsOpen(true)}
-            className="relative h-20 w-20 rounded-full shadow-2xl bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 p-0 group hover:scale-110 transition-transform duration-300"
+            className="relative h-24 w-24 rounded-full shadow-2xl bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 p-0 group hover:scale-110 transition-transform duration-300"
             aria-label="Otevřít chat s Natálií"
           >
             {/* Fotka Natálie - větší a viditelnější */}
@@ -723,7 +723,7 @@ Co tě dnes přivádí?`;
 
       {/* Chat Window */}
       {isOpen && (
-        <Card className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 w-full sm:w-[420px] h-[100dvh] sm:h-[680px] shadow-2xl z-50 flex flex-col sm:rounded-lg rounded-none ring-2 ring-amber-400/30 ring-offset-2 ring-offset-purple-100">
+        <Card className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 w-full sm:w-[500px] h-[100dvh] sm:h-[780px] shadow-2xl z-50 flex flex-col sm:rounded-lg rounded-none ring-2 ring-amber-400/30 ring-offset-2 ring-offset-purple-100">
           {/* Header */}
           <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 sm:rounded-t-lg flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
@@ -731,7 +731,7 @@ Co tě dnes přivádí?`;
                 <img
                   src={persona.avatar}
                   alt="Natálie"
-                  className={`w-16 h-16 rounded-full border-2 border-white object-cover transition-all duration-300 ${isOffline && !adminOverride ? 'grayscale brightness-75' : ''}`}
+                  className={`w-20 h-20 rounded-full border-2 border-white object-cover transition-all duration-300 ${isOffline && !adminOverride ? 'grayscale brightness-75' : ''}`}
                 />
                 {/* Online/Offline status badge - pravá spodní pozice */}
                 <span className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${isOffline && !adminOverride ? 'bg-gray-400' : 'bg-green-400'}`}></span>
