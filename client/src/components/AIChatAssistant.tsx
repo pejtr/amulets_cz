@@ -67,11 +67,11 @@ interface ChatbotVariant {
   colorScheme: string | null;
 }
 
-// Helper function to check if chatbot is in offline hours (00:00 - 09:00 CET)
+// Helper function to check if chatbot is in offline hours (00:00 - 06:00 CET)
 function isOfflineHours(): boolean {
   const now = new Date();
   const hours = now.getHours();
-  return hours >= 0 && hours < 9;
+  return hours >= 0 && hours < 6;
 }
 
 // Helper function to check if it's time for goodnight message (23:55 - 23:59)
@@ -92,7 +92,7 @@ Přeji ti krásné sny plné světla a lásky. Dobrou noc! 💫💜
 ~ Natálie`;
 
 // Offline message - zkrácená verze
-const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpočívám. Jsem tu denně 9:00-24:00. Napište mi na WhatsApp nebo zanechte dotaz!
+const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpovídám. Jsem tu denně 6:00-24:00. Napište mi na WhatsApp nebo zanechte dotaz!
 
 S láskou,
 Natálie 💜`;

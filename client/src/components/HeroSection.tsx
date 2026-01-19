@@ -52,6 +52,7 @@ export default function HeroSection() {
         
         {/* Functional buttons below the image on mobile */}
         <div className="px-4 py-4 space-y-3 bg-gradient-to-b from-[#1a1a2e] to-white">
+          {/* First row - two main buttons */}
           <div className="flex gap-3">
             <Button
               size="lg"
@@ -80,20 +81,36 @@ export default function HeroSection() {
             </Button>
           </div>
           
-          {/* Zjisti svůj amulet button - below the two buttons */}
-          <Button
-            size="lg"
-            className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-6 text-base rounded-full shadow-xl relative overflow-hidden group"
-            onClick={() => {
-              track.ctaClicked('Zjisti svůj amulet', 'Hero Section', '/kviz');
-              setLocation('/kviz');
-            }}
-          >
-            <span className="relative z-10"><span className="text-3xl mr-2">☥</span>Zjisti svůj amulet</span>
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 text-2xl group-hover:translate-x-1 transition-transform">
-              →
-            </div>
-          </Button>
+          {/* Second row - Zjisti svůj amulet + POPOVÍDAT SI */}
+          <div className="flex gap-3">
+            <Button
+              size="lg"
+              className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-4 text-sm rounded-full shadow-xl relative overflow-hidden group"
+              onClick={() => {
+                track.ctaClicked('Zjisti svůj amulet', 'Hero Section', '/kviz');
+                setLocation('/kviz');
+              }}
+            >
+              <span className="relative z-10"><span className="text-2xl mr-1">☥</span>Zjisti svůj amulet</span>
+              <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xl group-hover:translate-x-1 transition-transform">
+                →
+              </div>
+            </Button>
+            
+            {/* POPOVÍDAT SI button */}
+            <Button
+              size="lg"
+              className="flex-1 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-bold text-xs rounded-lg shadow-lg h-auto py-2 flex flex-col items-center justify-center gap-0 border-2 border-purple-400"
+              onClick={() => {
+                track.ctaClicked('Popovídat si', 'Hero Section', 'chatbot');
+                const chatButton = document.querySelector('[aria-label="Otevřít chat s Natálií"]') as HTMLButtonElement;
+                if (chatButton) chatButton.click();
+              }}
+            >
+              <span className="text-sm">💬 POPOVÍDAT SI</span>
+              <span className="text-[9px] text-white/80 leading-tight">Online 6:00-24:00</span>
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -175,7 +192,7 @@ export default function HeroSection() {
                   </div>
                 </div>
 
-                {/* Two main buttons */}
+                {/* First row - two main buttons */}
                 <div className="flex flex-row gap-1.5 animate-fade-in-up animation-delay-400">
                   <Button
                     size="lg"
@@ -187,7 +204,7 @@ export default function HeroSection() {
                         produktySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }
                     }}
-                >
+                  >
                     <Eye className="w-5 h-5" />
                     Zobrazit produkty
                   </Button>
@@ -205,11 +222,11 @@ export default function HeroSection() {
                   </Button>
                 </div>
 
-                {/* Zjisti svůj amulet button - below the two buttons on desktop */}
-                <div className="animate-fade-in-up animation-delay-600">
+                {/* Second row - Zjisti svůj amulet + POPOVÍDAT SI */}
+                <div className="flex flex-row gap-1.5 animate-fade-in-up animation-delay-600">
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold pl-10 pr-14 py-6 text-lg rounded-full shadow-xl relative overflow-hidden group"
+                    className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold pl-6 pr-12 py-6 text-lg rounded-full shadow-xl relative overflow-hidden group"
                     onClick={() => {
                       track.ctaClicked('Zjisti svůj amulet', 'Hero Section', '/kviz');
                       setLocation('/kviz');
@@ -219,6 +236,20 @@ export default function HeroSection() {
                     <div className="absolute right-6 top-1/2 -translate-y-1/2 text-2xl group-hover:translate-x-1 transition-transform">
                       →
                     </div>
+                  </Button>
+                  
+                  {/* POPOVÍDAT SI button */}
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold px-4 sm:px-6 text-xs sm:text-base flex flex-col items-center justify-center gap-0.5 transition-all duration-300 whitespace-nowrap shadow-md h-auto py-4 border-2 border-purple-400 rounded-lg"
+                    onClick={() => {
+                      track.ctaClicked('Popovídat si', 'Hero Section', 'chatbot');
+                      const chatButton = document.querySelector('[aria-label="Otevřít chat s Natálií"]') as HTMLButtonElement;
+                      if (chatButton) chatButton.click();
+                    }}
+                  >
+                    <span className="text-sm sm:text-base">💬 POPOVÍDAT SI</span>
+                    <span className="text-[9px] sm:text-[10px] text-white/80">Online 6:00-24:00</span>
                   </Button>
                 </div>
 

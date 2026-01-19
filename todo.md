@@ -1531,3 +1531,25 @@
 - [x] Přidat logiku pro změnu fotky podle online/offline statusu
 - [x] Offline: placeholder nebo současná fotka
 - [x] Online: nová profesionální fotka
+
+## Tlačítko POPOVÍDAT SI v hero sekci (Jan 19, 2026)
+- [x] Změnit pracovní dobu chatbota na 6:00-24:00 (místo 9:00-24:00)
+- [x] Přidat tlačítko "POPOVÍDAT SI" do hero sekce homepage
+- [x] Přidat informaci o online statusu a pracovní době (6:00-24:00)
+- [x] Tlačítko otevře chatbota při kliknutí
+
+## Úprava layoutu tlačítek v hero sekci (Jan 19, 2026)
+- [x] Přesunout tlačítko "POPOVÍDAT SI" na konec druhého řádku (vedle "Zjistit svůj amulet")
+- [x] Upravit layout na mobilu i desktopu
+
+## Autonomní Self-Optimizing systém (Jan 19, 2026)
+- [ ] Navrhnout architekturu autonomního optimalizačního systému
+- [ ] Implementovat heat map tracking (Hotjar nebo Microsoft Clarity)
+- [ ] Vytvořit databázovou tabulku pro ukládání behavioral dat
+- [ ] Implementovat sběr dat: kliky, scrolling, time on page, exit points
+- [ ] Vytvořit AI analýzu chování návštěvníků (po 100 unikátních návštěvách)
+- [ ] Implementovat generování optimalizačních návrhů pomocí LLM
+- [ ] Vytvořit automatické aplikování změn do kódu (A/B testing)
+- [ ] Implementovat rollback mechanismus pro neúspěšné změny
+- [ ] Nastavit Telegram notifikace o provedených změnách
+- [ ] Vytvořit dashboard pro monitoring konverzí a efektivity změn
