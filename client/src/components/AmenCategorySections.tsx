@@ -47,8 +47,8 @@ export default function AmenCategorySections({ products }: AmenCategorySectionsP
 
   return (
     <div className="space-y-16">
-      {/* Rosary Náramky - Expandovatelné */}
-      {rosaryBracelets.length > 0 && (
+      {/* Rosary Náramky - Expandovatelné - SKRYTO (prázdné) */}
+      {false && rosaryBracelets.length > 0 && (
         <div className="border border-gray-200 rounded-lg overflow-hidden">
           <button
             onClick={() => toggleSection('rosaryBracelets')}
@@ -81,8 +81,8 @@ export default function AmenCategorySections({ products }: AmenCategorySectionsP
         </div>
       )}
 
-      {/* Rosary Náhrdelníky - Expandovatelné */}
-      {rosaryNecklaces.length > 0 && (
+      {/* Rosary Náhrdelníky - Expandovatelné - SKRYTO (prázdné) */}
+      {false && rosaryNecklaces.length > 0 && (
         <div className="border border-gray-200 rounded-lg overflow-hidden">
           <button
             onClick={() => toggleSection('rosaryNecklaces')}

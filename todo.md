@@ -1669,3 +1669,10 @@
 - [x] Zvětšit nilský kříž ☥ vedle jména Natálie Ohorai (text-xl → text-2xl)
 - [x] Otestovat na webu
 - [ ] Uložit checkpoint
+
+## Oprava homepage - AMEN produkty (Jan 19, 2026)
+- [x] Odstranit prázdnou sekci "Náramky Rosary" a "Náhrdelníky Rosary"
+- [x] Vygenerovat AI produktové fotky pro AMEN Love kolekci (3 náramky)
+- [x] Nahradit tři špatné náhledy AI generovanými fotkami
+- [x] Otestovat na webu - AI fotky se zobrazují správně!
+- [ ] Uložit checkpoint
