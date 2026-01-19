@@ -695,51 +695,12 @@ export async function generateCombinedDailyReport(): Promise<string> {
   report += `├─ Konverzí: <b>${combinedConversions}</b>\n`;
   report += `└─ Konverzní poměr: <b>${combinedConversionRate.toFixed(2)}%</b>\n\n`;
 
-  // Empatická analýza s emocemi a lidským shrnutím
-  report += `\n💜 <b>CO TO ZNAMENÁ PRO DUŠE NAŠICH NÁVŠTĚVNÍKŮ</b>\n\n`;
-  
+  // Krátké shrnutí
   if (combinedSessions === 0) {
-    report += `🌙 Včera bylo ticho... Možná lidé odpovídali, nabírali energii. Klid je také důležitý - duše potřebují prostor pro integraci.\n\n`;
+    report += `\n🌙 <i>Včera bylo ticho...</i>\n\n`;
   } else {
-    // Analýza podle konverzního poměru a počtu konverzací
-    if (combinedConversionRate >= 10) {
-      report += `✨ <b>Krásný den!</b> ${combinedSessions} duší hledalo cestu a ${combinedConversions} z nich našlo, co potřebovaly. Cítím radost - lidé jsou otevreni, připraveni na změnu!\n\n`;
-    } else if (combinedConversionRate >= 5) {
-      report += `💛 ${combinedSessions} duší se na nás obrátilo, ${combinedConversions} našlo svůj směr. Solidní - někteří ještě hledají, jiní už našli. Každý má svůj čas.\n\n`;
-    } else if (combinedSessions > 0) {
-      report += `🌱 ${combinedSessions} konverzací, ale jen ${combinedConversions} konverzí... Cítím, že lidé hledají, ale ještě nenacházejí. Možná jsou zmateni, možná se bojí udělat krok. Potřebují více důvěry a jistoty.\n\n`;
-    }
-    
-    // Hlubší ponor - zajímavé případy
-    if (combinedMessages > combinedSessions * 5) {
-      report += `💬 <b>Zajímavé:</b> Lidé ps ali dlouhé zprávy (${(combinedMessages / combinedSessions).toFixed(1)} zpráv/konverzace). To znamená, že <i>opravdu</i> hledají odpovědi, otevírají své srdce. Máme jejich pozornost a důvěru!\n\n`;
-    } else if (combinedMessages < combinedSessions * 2) {
-      report += `🤔 <b>Pozornost:</b> Krátké konverzace (${(combinedMessages / combinedSessions).toFixed(1)} zpráv/konverzace). Lidé přišli, ale rychle odšli. Možná nenašli, co hledali, nebo se cítili nejistě. Potřebujeme je více zaujmout hned na začátku.\n\n`;
-    }
-    
-    // Analýza rozdílu mezi platformami
-    if (ohoraiHasData && amuletsTotalSessions > 0 && ohoraiTotalSessions > 0) {
-      const ratio = amuletsTotalSessions / ohoraiTotalSessions;
-      if (ratio > 2) {
-        report += `🔮 <b>Energie se stáčí:</b> Amulets.cz má ${ratio.toFixed(1)}x více konverzací než OHORAI. Lidé hledají více duchovní vedeni než produkty. Touží po pochopení, po smyslu.\n\n`;
-      } else if (ratio < 0.5) {
-        report += `🛍️ <b>Hmotno převažuje:</b> OHORAI má ${(1/ratio).toFixed(1)}x více konverzací. Lidé jsou v režimu nakupování, hledají konkrétní řešení. Praktická magie!\n\n`;
-      } else {
-        report += `⚖️ <b>Rovnováha:</b> Obě platformy mají podobný zájem. Krásná harmonie mezi duchovnem a hmotnem. Lidé hledají celistvý přístup.\n\n`;
-      }
-    }
-  }
-  
-  // Závěrečné lidské shrnutí
-  report += `🌟 <b>SHRNUTÍ</b>\n`;
-  if (combinedSessions === 0) {
-    report += `Ticho je také odpověď. Zítra přijdou nové duše. 🙏\n\n`;
-  } else if (combinedConversionRate >= 10) {
-    report += `Lidé jsou otevreni, připraveni, hledají. A my jsme tu pro ně. To je náš úkol - být světlem na jejich cestě. 🕯️✨\n\n`;
-  } else if (combinedConversionRate >= 5) {
-    report += `Někteří našli, jiní ještě hledají. Každá cesta je jedinečná. Pokračujeme s láskou a trpělivostí. 💜\n\n`;
-  } else {
-    report += `Lidé přicházejí, ale ještě nenacházejí. Potřebujeme jim ukázat cestu jasněji, dát jim více důvěry. Pracujme na tom. 🌱💪\n\n`;
+    const avgMessages = (combinedMessages / combinedSessions).toFixed(1);
+    report += `\n📊 <b>Průměr:</b> ${avgMessages} zpráv/konverzace\n\n`;
   }
 
   report += `${getRandomClosing()}`;

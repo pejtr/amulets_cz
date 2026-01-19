@@ -1699,3 +1699,19 @@
 - [ ] Přidat autentizaci vlastníka pro admin příkazy
 - [ ] Otestovat všechny příkazy v chatbotu
 - [ ] Uložit checkpoint
+
+## Maximalizace chatbota (Jan 19, 2026)
+- [ ] Přidat tlačítko "Maximalizovat" do hlavičky chatbota
+- [ ] Implementovat fullscreen/větší okno režim (90% obrazovky)
+- [ ] Automatické zvětšení textu při maximalizaci (14px → 16px)
+- [ ] Přidat tlačítka A+ / A- pro ruční změnu velikosti písma
+- [ ] Přidat tlačítko "Minimalizovat" pro návrat zpět
+- [ ] Otestovat na mobilu i desktopu
+- [ ] Uložit checkpoint
+
+## Zkrácení Telegram /report výstupu (Jan 19, 2026)
+- [ ] Odstranit dlouhé texty "CO TO ZNAMENÁ PRO DUŠE NAŠICH NÁVŠTĚVNÍKŮ"
+- [ ] Zkrátit na jen nejdůležitější čísla (konverzace, zprávy, konverze)
+- [ ] Vytvořit přehledný tabulkový formát
+- [ ] Otestovat v Telegramu
+- [ ] Uložit checkpoint

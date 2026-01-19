@@ -44,7 +44,7 @@ const SUGGESTED_CATEGORIES = [
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { MessageCircle, X, Send, Phone, Volume2, VolumeX } from "lucide-react";
+import { MessageCircle, X, Send, Phone, Volume2, VolumeX, Maximize2, Minimize2, Type } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { Streamdown } from "streamdown";
 import { toast } from "sonner";
@@ -204,6 +204,8 @@ Natálie 💜`;
 
 export default function AIChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
+  const [fontSize, setFontSize] = useState<'small' | 'medium' | 'large'>('medium');
   const [isOffline, setIsOffline] = useState(isOfflineHours());
   
   // Check if user is authenticated (for Paige/Velekněžka access)
@@ -723,7 +725,13 @@ Co tě dnes přivádí?`;
 
       {/* Chat Window */}
       {isOpen && (
-        <Card className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 w-full sm:w-[500px] h-[100dvh] sm:h-[780px] shadow-2xl z-50 flex flex-col sm:rounded-lg rounded-none ring-2 ring-amber-400/30 ring-offset-2 ring-offset-purple-100">
+        <Card className={`fixed ${
+          isMaximized 
+            ? 'inset-4 w-auto h-auto' 
+            : 'bottom-0 right-0 sm:bottom-6 sm:right-6 w-full sm:w-[500px] h-[100dvh] sm:h-[780px]'
+        } shadow-2xl z-50 flex flex-col sm:rounded-lg rounded-none ring-2 ring-amber-400/30 ring-offset-2 ring-offset-purple-100 transition-all duration-300 ${
+          fontSize === 'small' ? 'text-sm' : fontSize === 'large' ? 'text-base' : 'text-sm'
+        }`}>
           {/* Header */}
           <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 sm:rounded-t-lg flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
@@ -749,6 +757,30 @@ Co tě dnes přivádí?`;
               </div>
             </div>
             <div className="flex items-center gap-2">
+              {/* Font size controls */}
+              <div className="flex items-center gap-1 border-r border-white/20 pr-2">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setFontSize(fontSize === 'small' ? 'medium' : fontSize === 'medium' ? 'large' : 'large')}
+                  className="text-white hover:bg-white/20 h-8 w-8 text-xs font-bold"
+                  title="Zvětšit text"
+                  disabled={fontSize === 'large'}
+                >
+                  A+
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setFontSize(fontSize === 'large' ? 'medium' : fontSize === 'medium' ? 'small' : 'small')}
+                  className="text-white hover:bg-white/20 h-8 w-8 text-xs font-bold"
+                  title="Zmenšit text"
+                  disabled={fontSize === 'small'}
+                >
+                  A-
+                </Button>
+              </div>
+              
               <Button
                 variant="ghost"
                 size="icon"
@@ -766,6 +798,15 @@ Co tě dnes přivádí?`;
                 title="Přímý kontakt s Natálií"
               >
                 <Phone className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMaximized(!isMaximized)}
+                className="text-white hover:bg-white/20 h-8 w-8"
+                title={isMaximized ? "Minimalizovat" : "Maximalizovat"}
+              >
+                {isMaximized ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
               </Button>
               <Button
                 variant="ghost"
