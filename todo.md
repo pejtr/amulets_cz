@@ -1578,3 +1578,16 @@
 - [ ] Použít rounded.png symbol (zlatý Květ života s trojúhelníky)
 - [ ] Upravit pro lepší viditelnost na fialovém pozadí (světlejší zlatá + outline)
 - [ ] Nahradit v top banneru
+
+## Oprava OHORAI symbolu v top banneru (Jan 19, 2026)
+- [ ] Pregenerovat symbol v 2 variantách (bílá + světlá zlatá s outline)
+- [ ] Použít rounded.png jako základ (zlatý Květ života s trojúhelníky)
+- [ ] Nahradit v top banneru pro lepší viditelnost
+
+## Dokumentace a zadání (Jan 19, 2026)
+- [ ] Vytvořit dokument o psychologických prvcích Královské verze Natálie
+- [ ] Vytvořit kompletní zadání pro Akční Letenky projekt:
+  * Autonomní self-optimizing systém (heat mapy + AI analýza + auto-úpravy)
+  * Chatbot Natálie pro prodej zájezdů a letenek
+  * Integrace s existujícím WordPress (www.akcni-letenky.com)
+  * Performance optimalizace (pre-loading, caching, 24h refresh cyklus)
