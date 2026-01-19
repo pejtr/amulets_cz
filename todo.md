@@ -1487,3 +1487,7 @@
 - [x] Zmenšit Telegram ikonu na malinkatou velikost (w-10 h-10)
 - [x] Přesunout vlevo nahoru (left-4 top-20)
 - [x] Přidat Telegram ikonu do oběžné soustavy kolem fotky Natálie v chatbotovi (stejně velkou jako ostatní badge, nad badge pro zprávy)
+
+## Telegram badge vlevo nahoře na webu (Jan 19, 2026)
+- [x] Přidat hlavní Telegram badge vlevo nahoru na webu (mimo chatbot) - sofistikovaný design
+- [x] Zachovat Telegram ikonu v oběžné soustavě chatbotu jako sekundární možnost

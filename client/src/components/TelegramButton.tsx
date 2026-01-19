@@ -6,13 +6,22 @@ export default function TelegramButton() {
   };
 
   return (
-    <button
-      onClick={handleClick}
-      className="fixed top-20 left-4 z-[60] w-10 h-10 rounded-full bg-[#0088cc] text-white shadow-lg hover:bg-[#0088cc]/90 transition-all hover:scale-110 animate-in fade-in slide-in-from-bottom-4 duration-300 cursor-pointer"
-      aria-label="Telegram chat s Natálií"
-      title="Napište mi na Telegram"
-    >
-      <Send className="h-5 w-5 mx-auto" />
-    </button>
+    <div className="fixed top-20 left-4 z-[60]">
+      {/* Puls efekt - jemná animace */}
+      <div className="absolute inset-0 rounded-full bg-[#0088cc] opacity-75 animate-ping" style={{ animationDuration: '2s' }}></div>
+      
+      {/* Hlavní tlačítko */}
+      <button
+        onClick={handleClick}
+        className="relative w-12 h-12 rounded-full bg-gradient-to-br from-[#0088cc] to-[#0077b3] text-white shadow-xl hover:shadow-2xl transition-all hover:scale-110 animate-in fade-in slide-in-from-left-4 duration-500 cursor-pointer flex items-center justify-center group"
+        aria-label="Telegram chat s Natálií"
+        title="Napište mi na Telegram @Natalie_Amulets_bot"
+      >
+        <Send className="h-5 w-5 group-hover:rotate-12 transition-transform" />
+        
+        {/* Vnitřní záře */}
+        <div className="absolute inset-0 rounded-full bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+      </button>
+    </div>
   );
 }
