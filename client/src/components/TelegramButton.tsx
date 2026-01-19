@@ -1,9 +1,30 @@
 import { Send } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function TelegramButton() {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  useEffect(() => {
+    const handleChatOpen = () => setIsChatOpen(true);
+    const handleChatClose = () => setIsChatOpen(false);
+
+    window.addEventListener('chatOpen', handleChatOpen);
+    window.addEventListener('chatClose', handleChatClose);
+
+    return () => {
+      window.removeEventListener('chatOpen', handleChatOpen);
+      window.removeEventListener('chatClose', handleChatClose);
+    };
+  }, []);
+
   const handleClick = () => {
     window.open("https://t.me/Natalie_Amulets_bot", "_blank");
   };
+
+  // Skrýt tlačítko když je chat otevřený
+  if (isChatOpen) {
+    return null;
+  }
 
   return (
     <div className="fixed top-20 left-4 z-[60]">

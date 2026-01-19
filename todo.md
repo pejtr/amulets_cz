@@ -1491,3 +1491,6 @@
 ## Telegram badge vlevo nahoře na webu (Jan 19, 2026)
 - [x] Přidat hlavní Telegram badge vlevo nahoru na webu (mimo chatbot) - sofistikovaný design
 - [x] Zachovat Telegram ikonu v oběžné soustavě chatbotu jako sekundární možnost
+
+## Telegram tlačítko - skrýt při otevřeném chatu (Jan 19, 2026)
+- [x] Skrýt Telegram tlačítko když je chat otevřený (aby nepřekrývalo hlavu Natálie)
