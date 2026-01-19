@@ -167,6 +167,8 @@ export default function AIChatAssistant() {
     { id: 'concert', label: '🔮 Koncert křišťálových mís', icon: '🎶' },
     { id: 'course', label: '🎨 Kreativní kurzy posvátné tvorby', icon: '📚' },
     { id: 'ohorai', label: '🪷 Autorská tvorba OHORAI', icon: '🪷', subtitle: '(esence a pyramidy)' },
+    { id: 'ohorai-esence', label: '🧪 Esence OHORAI', icon: '✨', subtitle: '(aromaterapie)' },
+    { id: 'ohorai-pyramidy', label: '🔺 Pyramidy OHORAI', icon: '🔺', subtitle: '(orgonitové)' },
   ];
 
   // Feedback state - sbírání zpětné vazby od návštěvníků
@@ -440,6 +442,12 @@ Co tě dnes přivádí?`;
         break;
       case 'ohorai':
         messageText = 'Ahoj Natálie, mám dotaz k autorské tvorbě OHORAI ✨';
+        break;
+      case 'ohorai-esence':
+        messageText = 'Ahoj Natálie, zajímají mě aromaterapeutické esence OHORAI 🧪';
+        break;
+      case 'ohorai-pyramidy':
+        messageText = 'Ahoj Natálie, mám zájem o orgonitové pyramidy OHORAI 🔺';
         break;
       default:
         messageText = 'Ahoj Natálie, potřebuji pomoc';

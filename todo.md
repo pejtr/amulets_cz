@@ -1505,3 +1505,10 @@
 ## Autorská tvorba OHORAI - ikona a popisek (Jan 19, 2026)
 - [x] Změnit ikonu u "Autorská tvorba OHORAI" na modrý/fialový lotos 🪷
 - [x] Přidat malým písmem pod název text "(esence a pyramidy)"
+
+## OHORAI stránka a chatbot tlačítka (Jan 19, 2026)
+- [x] Vytvořit dedikovanou stránku /ohorai s galerií produktů
+- [x] Přidat příběh značky OHORAI a filozofii tvorby
+- [x] Přidat rychlé tlačítko "Ukázat esence OHORAI" do chatbotu
+- [x] Přidat rychlé tlačítko "Ukázat pyramidy OHORAI" do chatbotu
+- [x] Propojit tlačítka s novou stránkou OHORAI

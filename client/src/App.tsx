@@ -26,6 +26,7 @@ import AdminCampaigns from "./pages/AdminCampaigns";
 import AdminChatbotAB from "./pages/AdminChatbotAB";
 import AdminTickets from "./pages/AdminTickets";
 import AdminTelegram from "./pages/AdminTelegram";
+import OHORAI from "./pages/OHORAI";
 
 
 function Router() {
@@ -48,6 +49,7 @@ function Router() {
       <Route path="/kviz/vysledek/:symbol" component={QuizResult} />
       <Route path="/cinsky-horoskop" component={ChineseZodiac} />
       <Route path="/predpoved-2026/:slug" component={Prediction2026} />
+      <Route path="/ohorai" component={OHORAI} />
       <Route path="/o-nas" component={AboutNatalie} />
       <Route path="/privěsky-amen" component={AmenPendants} />
       <Route path="/admin/campaigns" component={AdminCampaigns} />
