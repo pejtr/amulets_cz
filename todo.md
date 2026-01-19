@@ -1803,3 +1803,45 @@
 - [x] Vytvořit reusable documentation pro instalaci do dalších projektů
 - [ ] Otestovat všechny analytics funkce
 - [ ] Uložit checkpoint
+
+## Fix tRPC error (Jan 19, 2026)
+- [ ] Investigate server logs for failing endpoint
+- [ ] Fix endpoint returning HTML instead of JSON
+- [ ] Test and verify fix
+- [ ] Save checkpoint
+
+## Mega Koncept: Ladička + Meditace + Velekněžka (Jan 19, 2026)
+
+### Fáze 1: Strom života
+- [ ] Vrátit sekci Strom života
+- [ ] Implementovat collapsible/expandable na kliknutí
+
+### Fáze 2: Lite Ladička v plovoucí liště
+- [ ] Vytvořit bottom floating bar s lite verzí ladičky
+- [ ] Přidat tlačítko pro fullscreen rozbalení
+- [ ] Egyptský design (kouzelná flétna/Aladdinova lampa)
+
+### Fáze 3: Fullscreen Ladička
+- [ ] Implementovat fullscreen režim přes celou stránku
+- [ ] Egyptský mystický design nástroje faraonů
+- [ ] Animace rozbalení
+
+### Fáze 4: Společná animace s chatbotem
+- [ ] Chatbot vyjede nahoru při rozbalení ladičky
+- [ ] Chat se rozšíří pro komentáře a tipy
+- [ ] Synchronizovaná animace
+
+### Fáze 5: Natálie Velekněžka
+- [ ] Vygenerovat fotku Natálie jako Velekněžky v bílém
+- [ ] Sexy spirituální vzhled
+- [ ] Větší fotka pro meditační režim
+
+### Fáze 6: Premium meditace
+- [ ] Struktura pro řízené meditace
+- [ ] Osobnostní matice a sekvence
+- [ ] Premium-only přístup k plné ladičce a meditacím
+- [ ] Příprava na voice cloning
+
+### Finalizace
+- [ ] Otestovat všechny funkce
+- [ ] Uložit checkpoint

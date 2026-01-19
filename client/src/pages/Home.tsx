@@ -18,6 +18,7 @@ import QuizCTA from "@/components/QuizCTA";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
+import HarmonyTuner from "@/components/HarmonyTuner";
 import { useEffect } from "react";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createWebsiteSchema, createOrganizationSchema, createFAQSchema } from "@/lib/schema";
@@ -88,6 +89,7 @@ export default function Home() {
       </main>
       <CrossLinkFooter />
       <Footer />
+      <HarmonyTuner />
     </div>
   );
 }
