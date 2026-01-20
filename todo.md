@@ -1920,3 +1920,10 @@
 - [x] Čistý design s gradientem podle čakry
 - [x] Přidat čakra informace do FREQUENCIES
 - [ ] Otestovat a uložit checkpoint
+
+## HarmonyTuner - odstranit scrollbar a vejít všechny frekvence (Jan 20, 2026)
+- [x] Odstranit scrollbar (overflow-x-auto)
+- [x] Zmenšit tlačítka na 75px x 75px aby se všechny vešly najednou
+- [x] Udělat panel lehce širčí (max-w-full místo max-w-7xl)
+- [x] Vycentrovat tlačítka (justify-center)
+- [ ] Otestovat a uložit checkpoint

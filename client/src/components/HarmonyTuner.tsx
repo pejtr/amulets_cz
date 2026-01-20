@@ -371,7 +371,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
     <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center">
       {/* Egyptian-style floating bar - redesigned with wave animation */}
       <div 
-        className={`mx-4 mb-4 rounded-2xl overflow-hidden shadow-2xl max-w-7xl w-full relative ${
+        className={`mx-4 mb-4 rounded-2xl overflow-hidden shadow-2xl max-w-full w-full relative ${
           playingFrequencies.size > 0 ? 'animate-wave' : ''
         }`}
         style={{
@@ -459,8 +459,8 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
             </div>
           </div>
 
-          {/* Center: All 10 frequency buttons - větší s Hz, název, čakra */}
-          <div className="flex items-center gap-3 flex-1 justify-start ml-4 overflow-x-auto">
+          {/* Center: All 10 frequency buttons - menší aby se vešly všechny */}
+          <div className="flex items-center gap-2 flex-1 justify-center">
             {FREQUENCIES.map((freq) => {
               const isSelected = freq.hz === selectedFrequency.hz;
               const isPlaying = playingFrequencies.has(freq.hz);
@@ -472,7 +472,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                     handleSelectFrequency(freq);
                     toggleFrequency(freq.hz);
                   }}
-                  className={`min-w-[90px] h-[90px] rounded-2xl flex flex-col items-center justify-center gap-1 font-medium transition-all duration-300 relative flex-shrink-0 ${
+                  className={`w-[75px] h-[75px] rounded-xl flex flex-col items-center justify-center gap-0.5 font-medium transition-all duration-300 relative flex-shrink-0 ${
                     isPlaying
                       ? 'scale-105'
                       : 'hover:scale-105'
