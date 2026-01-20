@@ -1976,3 +1976,50 @@
 
 - [ ] Otestovat všechny funkce
 - [ ] Uložit checkpoint
+
+## Telegram webhook a automatizace (Jan 20, 2026)
+- [ ] Nastavit webhook pro Telegram bota na produkční URL
+- [ ] Vytvořit endpoint pro nastavení webhooku (/api/telegram/set-webhook)
+- [ ] Dokumentovat jak nastavit webhook po nasazení
+
+## Automatické ranní horoskopy (Jan 20, 2026)
+- [ ] Implementovat scheduled job pro odesílání horoskopu v 8:00
+- [ ] Použít node-cron nebo podobnou knihovnu
+- [ ] Testovat automatické odesílání
+
+## HarmonyTuner-chatbot propojení (Jan 20, 2026)
+- [ ] Přidat useEffect do AIChatAssistant pro sledování HarmonyTuner context
+- [ ] Když uživatel klikne na frekvenci, chatbot se otevře
+- [ ] Chatbot zobrazí meditační tip podle vybrané frekvence
+- [ ] Otestovat a uložit checkpoint
+
+## Mobilní optimalizace (Jan 20, 2026)
+
+### HarmonyTuner
+- [x] Zmenšit tlačítka frekvencí na mobilu (60px místo 75px)
+- [x] Zmenšit font size pro Hz (10px), název a čakru (8px)
+- [x] Zajistit že se text nepřekrývá - responsive classes
+
+### Aromaterapie banner
+- [x] Zmenšit výšku banneru na mobilu (200px místo 280px)
+- [x] Zmenšit font size textu a tlačítka (sm breakpoints)
+- [x] Zajistit že tlačítko je viditelné a klikatelné - responsive padding
+- [x] Zmenšit padding sekce (py-4 místo py-8)
+
+### Osobní koučing sekce
+- [ ] Zmenšit výšku sekce na mobilu
+- [ ] Optimalizovat spacing a padding
+- [ ] Zmenšit font size nadpisu
+
+### Nedávno zakoupeno notifikace
+- [ ] Zmenšit velikost notifikace
+- [ ] Zmenšit thumbnail obrázku
+- [ ] Zkrátit text na mobilu
+- [ ] Otestovat a uložit checkpoint
+
+### HarmonyTuner layout změna
+- [x] Přesunout ovládací prvky (Play, Volume) pod tlačítka frekvencí
+- [x] Upravit flex layout - tlačítka nahoře centrována, controls dole
+
+### Chatbot oprava textu
+- [x] Změnit "Právě odpovídám" na "Právě odpočívám" když je Offline

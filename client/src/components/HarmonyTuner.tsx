@@ -430,58 +430,9 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
             />
           </>
         )}
-        <div className="px-4 py-3 flex items-center justify-between gap-4">
-          {/* Left: Play/Pause + Volume + Description */}
-          <div className="flex items-center gap-3">
-            {/* Play/Pause - úplně vlevo */}
-            <button
-              onClick={() => toggleFrequency(selectedFrequency.hz)}
-              className="p-3 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] hover:from-[#E5C158] hover:to-[#D4AF37] text-white transition-all duration-300 shadow-lg flex-shrink-0"
-            >
-              {playingFrequencies.has(selectedFrequency.hz) ? (
-                <Pause className="w-5 h-5" />
-              ) : (
-                <Play className="w-5 h-5 ml-0.5" />
-              )}
-            </button>
-
-            {/* Volume */}
-            <button
-              onClick={() => setIsMuted(!isMuted)}
-              className="p-2 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors flex-shrink-0"
-            >
-              {isMuted ? (
-                <VolumeX className="w-5 h-5 text-[#D4AF37]" />
-              ) : (
-                <Volume2 className="w-5 h-5 text-[#D4AF37]" />
-              )}
-            </button>
-
-            <div className="hidden md:block w-24 flex-shrink-0">
-              <Slider
-                value={[volume * 100]}
-                onValueChange={(value) => setVolume(value[0] / 100)}
-                max={100}
-                step={1}
-              />
-            </div>
-
-            {/* Description - hned po volume */}
-            <div className="hidden sm:flex items-center gap-2">
-              <span className="text-2xl">{selectedFrequency.icon}</span>
-              <div>
-                <div className="text-[#D4AF37] font-bold text-sm">
-                  {selectedFrequency.hz} Hz - {selectedFrequency.name}
-                </div>
-                <div className="text-[#D4AF37]/60 text-xs">
-                  {selectedFrequency.description}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Center: All 10 frequency buttons - menší aby se vešly všechny */}
-          <div className="flex items-center gap-2 flex-1 justify-center">
+        {/* Frequency buttons row */}
+        <div className="px-4 py-3 flex items-center justify-center gap-2">
+          {/* All 10 frequency buttons */}
             {FREQUENCIES.map((freq) => {
               const isSelected = freq.hz === selectedFrequency.hz;
               const isPlaying = playingFrequencies.has(freq.hz);
@@ -493,7 +444,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                     handleSelectFrequency(freq);
                     toggleFrequency(freq.hz);
                   }}
-                  className={`w-[75px] h-[75px] rounded-xl flex flex-col items-center justify-center gap-0.5 font-medium transition-all duration-300 relative flex-shrink-0 ${
+                  className={`w-[75px] h-[75px] md:w-[75px] md:h-[75px] sm:w-[60px] sm:h-[60px] rounded-xl flex flex-col items-center justify-center gap-0.5 font-medium transition-all duration-300 relative flex-shrink-0 ${
                     isPlaying
                       ? 'scale-105'
                       : 'hover:scale-105'
@@ -532,7 +483,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                   <div className="relative z-10 flex flex-col items-center gap-0.5">
                     {/* Hz */}
                     <div 
-                      className="text-xs font-bold tracking-wide"
+                      className="text-xs md:text-xs sm:text-[10px] font-bold tracking-wide"
                       style={{ color: freq.color }}
                     >
                       {freq.hz} Hz
@@ -548,7 +499,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                     
                     {/* Čakra */}
                     <div 
-                      className="text-[10px] opacity-80 leading-tight text-center"
+                      className="text-[10px] md:text-[10px] sm:text-[8px] opacity-80 leading-tight text-center"
                       style={{ color: freq.color }}
                     >
                       {freq.chakra}
@@ -557,6 +508,57 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                 </button>
               );
             })}
+        </div>
+
+        {/* Controls row below buttons */}
+        <div className="px-4 pb-3 flex items-center justify-between gap-4">
+          {/* Left: Play/Pause + Volume + Description */}
+          <div className="flex items-center gap-3">
+            {/* Play/Pause */}
+            <button
+              onClick={() => toggleFrequency(selectedFrequency.hz)}
+              className="p-3 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] hover:from-[#E5C158] hover:to-[#D4AF37] text-white transition-all duration-300 shadow-lg flex-shrink-0"
+            >
+              {playingFrequencies.has(selectedFrequency.hz) ? (
+                <Pause className="w-5 h-5" />
+              ) : (
+                <Play className="w-5 h-5 ml-0.5" />
+              )}
+            </button>
+
+            {/* Volume */}
+            <button
+              onClick={() => setIsMuted(!isMuted)}
+              className="p-2 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors flex-shrink-0"
+            >
+              {isMuted ? (
+                <VolumeX className="w-5 h-5 text-[#D4AF37]" />
+              ) : (
+                <Volume2 className="w-5 h-5 text-[#D4AF37]" />
+              )}
+            </button>
+
+            <div className="hidden md:block w-24 flex-shrink-0">
+              <Slider
+                value={[volume * 100]}
+                onValueChange={(value) => setVolume(value[0] / 100)}
+                max={100}
+                step={1}
+              />
+            </div>
+
+            {/* Description */}
+            <div className="hidden sm:flex items-center gap-2">
+              <span className="text-2xl">{selectedFrequency.icon}</span>
+              <div>
+                <div className="text-[#D4AF37] font-bold text-sm">
+                  {selectedFrequency.hz} Hz - {selectedFrequency.name}
+                </div>
+                <div className="text-[#D4AF37]/60 text-xs">
+                  {selectedFrequency.description}
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Right: Fullscreen + Close */}

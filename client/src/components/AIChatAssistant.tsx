@@ -246,7 +246,7 @@ Přeji ti krásné sny plné světla a lásky. Dobrou noc! 💫💜
 ~ Natálie`;
 
 // Offline message - zkrácená verze
-const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpovídám. Jsem tu denně 8:00-22:00. Napište mi na WhatsApp nebo zanechte dotaz!
+const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpočívám. Jsem tu denně 8:00-22:00. Napište mi na WhatsApp nebo zanechte dotaz!
 
 S láskou,
 Natálie 💜`;
