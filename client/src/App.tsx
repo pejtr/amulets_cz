@@ -9,6 +9,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { BrowsingProvider } from "./contexts/BrowsingContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { HarmonyTunerProvider } from "./contexts/HarmonyTunerContext";
 import Home from "./pages/Home";
 import GuideDetail from "./pages/GuideDetail";
 import Magazine from "./pages/Magazine";
@@ -101,6 +102,7 @@ function App() {
           // switchable
         >
           <BrowsingProvider>
+            <HarmonyTunerProvider>
           <ExitIntentPopup />
         <TooltipProvider>
           <Toaster />
@@ -110,6 +112,7 @@ function App() {
           <AIChatAssistant />
           <StickyEsenceBanner />
         </TooltipProvider>
+            </HarmonyTunerProvider>
           </BrowsingProvider>
         </ThemeProvider>
       </LanguageProvider>

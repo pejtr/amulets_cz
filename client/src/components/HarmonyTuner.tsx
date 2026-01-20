@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import { useHarmonyTuner, FREQUENCY_MEDITATION_TIPS } from "@/contexts/HarmonyTunerContext";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import {
@@ -12,6 +13,7 @@ import {
   Sparkles,
   Lock,
 } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 // Solfeggio frequencies with Egyptian-inspired names
 const FREQUENCIES = [
@@ -33,113 +35,148 @@ interface HarmonyTunerProps {
 }
 
 export default function HarmonyTuner({ onExpandChange, isPremium = false }: HarmonyTunerProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [selectedFrequency, setSelectedFrequency] = useState(FREQUENCIES[4]); // 432 Hz default
+  // Use context to share state with chatbot
+  const { setIsExpanded, setCurrentFrequency, setIsPlaying: setContextIsPlaying } = useHarmonyTuner();
+  
+  // Multi-frequency playback - track which frequencies are playing
+  const [playingFrequencies, setPlayingFrequencies] = useState<Set<number>>(new Set());
+  const [selectedFrequency, setSelectedFrequency] = useState(FREQUENCIES[4]); // 432 Hz default for display
   const [volume, setVolume] = useState(0.5);
   const [isMuted, setIsMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [showFrequencyWheel, setShowFrequencyWheel] = useState(false);
   
-  const audioContextRef = useRef<AudioContext | null>(null);
-  const oscillatorRef = useRef<OscillatorNode | null>(null);
-  const gainNodeRef = useRef<GainNode | null>(null);
+  // Audio contexts for each frequency (multi-frequency support)
+  const audioContextsRef = useRef<Map<number, {
+    context: AudioContext;
+    oscillator: OscillatorNode;
+    gainNode: GainNode;
+  }>>(new Map());
 
-  // Initialize audio context
-  const initAudio = useCallback(() => {
-    if (!audioContextRef.current) {
-      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
-      gainNodeRef.current = audioContextRef.current.createGain();
-      gainNodeRef.current.connect(audioContextRef.current.destination);
-      gainNodeRef.current.gain.value = isMuted ? 0 : volume;
+  // Initialize audio for a specific frequency
+  const initAudioForFrequency = useCallback((hz: number) => {
+    if (!audioContextsRef.current.has(hz)) {
+      const context = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const gainNode = context.createGain();
+      gainNode.connect(context.destination);
+      gainNode.gain.value = isMuted ? 0 : volume;
+      
+      const oscillator = context.createOscillator();
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(hz, context.currentTime);
+      oscillator.connect(gainNode);
+      
+      audioContextsRef.current.set(hz, { context, oscillator, gainNode });
     }
   }, [volume, isMuted]);
 
-  // Play frequency
-  const playFrequency = useCallback(() => {
-    initAudio();
-    
-    if (oscillatorRef.current) {
-      oscillatorRef.current.stop();
-      oscillatorRef.current.disconnect();
+  // Play a specific frequency
+  const playFrequency = useCallback((hz: number) => {
+    initAudioForFrequency(hz);
+    const audio = audioContextsRef.current.get(hz);
+    if (audio && audio.oscillator.context.state !== 'running') {
+      audio.oscillator.start();
+      setPlayingFrequencies(prev => new Set([...Array.from(prev), hz]));
     }
+  }, [initAudioForFrequency]);
 
-    if (audioContextRef.current && gainNodeRef.current) {
-      oscillatorRef.current = audioContextRef.current.createOscillator();
-      oscillatorRef.current.type = "sine";
-      oscillatorRef.current.frequency.setValueAtTime(
-        selectedFrequency.hz,
-        audioContextRef.current.currentTime
-      );
-      oscillatorRef.current.connect(gainNodeRef.current);
-      oscillatorRef.current.start();
-      setIsPlaying(true);
+  // Stop a specific frequency
+  const stopFrequency = useCallback((hz: number) => {
+    const audio = audioContextsRef.current.get(hz);
+    if (audio) {
+      try {
+        audio.oscillator.stop();
+        audio.oscillator.disconnect();
+        audio.context.close();
+      } catch (e) {
+        // Already stopped
+      }
+      audioContextsRef.current.delete(hz);
+      setPlayingFrequencies(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(hz);
+        return newSet;
+      });
     }
-  }, [selectedFrequency, initAudio]);
-
-  // Stop frequency
-  const stopFrequency = useCallback(() => {
-    if (oscillatorRef.current) {
-      oscillatorRef.current.stop();
-      oscillatorRef.current.disconnect();
-      oscillatorRef.current = null;
-    }
-    setIsPlaying(false);
   }, []);
 
-  // Toggle play/pause
-  const togglePlay = () => {
-    if (isPlaying) {
-      stopFrequency();
+  // Toggle play/pause for a specific frequency
+  const toggleFrequency = (hz: number) => {
+    if (playingFrequencies.has(hz)) {
+      stopFrequency(hz);
     } else {
-      playFrequency();
+      playFrequency(hz);
     }
   };
 
-  // Update volume
+  // Stop all frequencies
+  const stopAllFrequencies = useCallback(() => {
+    Array.from(playingFrequencies).forEach(hz => stopFrequency(hz));
+  }, [playingFrequencies, stopFrequency]);
+
+  // Update volume for all playing frequencies
   useEffect(() => {
-    if (gainNodeRef.current) {
-      gainNodeRef.current.gain.value = isMuted ? 0 : volume;
-    }
+    audioContextsRef.current.forEach((audio) => {
+      audio.gainNode.gain.value = isMuted ? 0 : volume;
+    });
   }, [volume, isMuted]);
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      stopFrequency();
-      if (audioContextRef.current) {
-        audioContextRef.current.close();
-      }
+      stopAllFrequencies();
     };
-  }, [stopFrequency]);
+  }, [stopAllFrequencies]);
 
-  // Notify parent of expansion state
+  // Notify parent and context of expansion state
   useEffect(() => {
     onExpandChange?.(isFullscreen);
-  }, [isFullscreen, onExpandChange]);
+    setIsExpanded(isFullscreen);
+    
+    // When expanded, notify chatbot with current frequency
+    if (isFullscreen) {
+      setCurrentFrequency({
+        hz: selectedFrequency.hz,
+        name: selectedFrequency.name,
+        icon: selectedFrequency.icon,
+        description: selectedFrequency.description,
+        meditationTip: FREQUENCY_MEDITATION_TIPS[selectedFrequency.hz] || '',
+      });
+    }
+  }, [isFullscreen, onExpandChange, setIsExpanded, setCurrentFrequency, selectedFrequency]);
+  
+  // Update context when playing state changes
+  useEffect(() => {
+    setContextIsPlaying(playingFrequencies.size > 0);
+  }, [playingFrequencies, setContextIsPlaying]);
+  
+  // Update context when frequency changes
+  useEffect(() => {
+    if (isFullscreen) {
+      setCurrentFrequency({
+        hz: selectedFrequency.hz,
+        name: selectedFrequency.name,
+        icon: selectedFrequency.icon,
+        description: selectedFrequency.description,
+        meditationTip: FREQUENCY_MEDITATION_TIPS[selectedFrequency.hz] || '',
+      });
+    }
+  }, [selectedFrequency, isFullscreen, setCurrentFrequency]);
 
   // Check if frequency is locked
   const isFrequencyLocked = (freq: typeof FREQUENCIES[0]) => {
     return freq.premium && !isPremium;
   };
 
-  // Handle frequency selection
+  // Handle frequency selection (for display, not for playing)
   const handleSelectFrequency = (freq: typeof FREQUENCIES[0]) => {
     if (isFrequencyLocked(freq)) {
       alert("Tato frekvence je dostupná pouze pro Premium uživatele. Kontaktujte nás pro více informací.");
       return;
     }
     
-    const wasPlaying = isPlaying;
-    if (wasPlaying) {
-      stopFrequency();
-    }
-    
     setSelectedFrequency(freq);
-    
-    if (wasPlaying) {
-      setTimeout(() => playFrequency(), 100);
-    }
   };
 
   // Hidden state - show reopen button
@@ -194,24 +231,24 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                 className="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-[#D4AF37]/50 flex items-center justify-center"
                 style={{
                   background: "radial-gradient(circle, rgba(139,69,19,0.3) 0%, rgba(0,0,0,0.8) 100%)",
-                  boxShadow: isPlaying 
+                  boxShadow: playingFrequencies.size > 0
                     ? `0 0 60px ${selectedFrequency.color}40, inset 0 0 40px ${selectedFrequency.color}20` 
                     : "0 0 30px rgba(212,175,55,0.2)",
                 }}
               >
                 {/* Inner circle with frequency */}
                 <div 
-                  className={`w-48 h-48 md:w-60 md:h-60 rounded-full border-2 border-[#D4AF37]/30 flex flex-col items-center justify-center transition-all duration-500 ${isPlaying ? 'animate-pulse' : ''}`}
+                  className={`w-48 h-48 md:w-60 md:h-60 rounded-full border-2 border-[#D4AF37]/30 flex flex-col items-center justify-center transition-all duration-500 ${playingFrequencies.size > 0 ? 'animate-pulse' : ''}`}
                   style={{
                     background: `radial-gradient(circle, ${selectedFrequency.color}20 0%, transparent 70%)`,
                   }}
                 >
                   {/* Play button */}
                   <button
-                    onClick={togglePlay}
+                    onClick={() => toggleFrequency(selectedFrequency.hz)}
                     className="mb-2 p-4 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors"
                   >
-                    {isPlaying ? (
+                    {playingFrequencies.has(selectedFrequency.hz) ? (
                       <Pause className="w-8 h-8 text-[#D4AF37]" />
                     ) : (
                       <Play className="w-8 h-8 text-[#D4AF37] ml-1" />
@@ -234,18 +271,24 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                 const x = Math.cos((angle * Math.PI) / 180) * radius;
                 const y = Math.sin((angle * Math.PI) / 180) * radius;
                 const isSelected = freq.hz === selectedFrequency.hz;
+                const isPlaying = playingFrequencies.has(freq.hz);
                 const locked = isFrequencyLocked(freq);
 
                 return (
                   <button
                     key={freq.hz}
-                    onClick={() => handleSelectFrequency(freq)}
+                    onClick={() => {
+                      handleSelectFrequency(freq);
+                      toggleFrequency(freq.hz);
+                    }}
                     className={`absolute w-16 h-16 md:w-20 md:h-20 rounded-lg flex flex-col items-center justify-center transition-all duration-300 ${
                       isSelected 
                         ? 'bg-[#D4AF37]/30 border-2 border-[#D4AF37] scale-110' 
-                        : locked
-                          ? 'bg-slate-800/80 border border-slate-600 opacity-60'
-                          : 'bg-slate-800/80 border border-[#D4AF37]/30 hover:border-[#D4AF37] hover:scale-105'
+                        : isPlaying
+                          ? 'bg-[#D4AF37]/20 border-2 border-[#D4AF37]/70 animate-pulse'
+                          : locked
+                            ? 'bg-slate-800/80 border border-slate-600 opacity-60'
+                            : 'bg-slate-800/80 border border-[#D4AF37]/30 hover:border-[#D4AF37] hover:scale-105'
                     }`}
                     style={{
                       left: `calc(50% + ${x}px - 2rem)`,
@@ -258,10 +301,10 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                     ) : (
                       <span className="text-lg">{freq.icon}</span>
                     )}
-                    <span className={`text-sm font-bold ${isSelected ? 'text-[#D4AF37]' : locked ? 'text-slate-500' : 'text-[#D4AF37]/90'}`}>
+                    <span className={`text-sm font-bold ${isSelected ? 'text-[#D4AF37]' : isPlaying ? 'text-[#D4AF37]' : locked ? 'text-slate-500' : 'text-[#D4AF37]/90'}`}>
                       {freq.hz} Hz
                     </span>
-                    <span className={`text-xs ${isSelected ? 'text-[#D4AF37]/90' : locked ? 'text-slate-600' : 'text-[#D4AF37]/60'}`}>
+                    <span className={`text-xs ${isSelected ? 'text-[#D4AF37]/90' : isPlaying ? 'text-[#D4AF37]/80' : locked ? 'text-slate-600' : 'text-[#D4AF37]/60'}`}>
                       {freq.name}
                     </span>
                   </button>
@@ -292,6 +335,21 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
             </div>
           </div>
 
+          {/* Playing frequencies indicator */}
+          {playingFrequencies.size > 0 && (
+            <div className="text-center mb-4">
+              <p className="text-[#D4AF37]/80 text-sm">
+                Hraje {playingFrequencies.size} {playingFrequencies.size === 1 ? 'frekvence' : playingFrequencies.size < 5 ? 'frekvence' : 'frekvencí'}
+              </p>
+              <button
+                onClick={stopAllFrequencies}
+                className="mt-2 px-4 py-2 rounded-lg bg-red-600/20 hover:bg-red-600/30 text-red-400 text-sm transition-colors"
+              >
+                Zastavit vše
+              </button>
+            </div>
+          )}
+
           {/* Premium upsell */}
           {!isPremium && (
             <div className="text-center">
@@ -308,58 +366,39 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
     );
   }
 
-  // Lite mode - floating bottom bar (narrower with max-w-4xl)
+  // Lite mode - floating bottom bar (redesigned layout)
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center">
-      {/* Egyptian-style floating bar - narrower */}
+      {/* Egyptian-style floating bar - redesigned */}
       <div 
-        className="mx-4 mb-4 rounded-2xl overflow-hidden shadow-2xl max-w-4xl w-full"
+        className="mx-4 mb-4 rounded-2xl overflow-hidden shadow-2xl max-w-7xl w-full"
         style={{
           background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%)",
           border: "1px solid rgba(212, 175, 55, 0.3)",
-          boxShadow: isPlaying 
+          boxShadow: playingFrequencies.size > 0
             ? `0 0 30px ${selectedFrequency.color}30, 0 10px 40px rgba(0,0,0,0.5)` 
             : "0 10px 40px rgba(0,0,0,0.5)",
         }}
       >
         <div className="px-4 py-3 flex items-center justify-between gap-4">
-          {/* Left: Egyptian icon + frequency info */}
+          {/* Left: Play/Pause + Volume + Description */}
           <div className="flex items-center gap-3">
-            <div 
-              className={`w-12 h-12 rounded-full flex items-center justify-center ${isPlaying ? 'animate-pulse' : ''}`}
-              style={{
-                background: `radial-gradient(circle, ${selectedFrequency.color}40 0%, transparent 70%)`,
-                border: `2px solid ${selectedFrequency.color}60`,
-              }}
-            >
-              <span className="text-2xl">{selectedFrequency.icon}</span>
-            </div>
-            <div className="hidden sm:block">
-              <div className="text-[#D4AF37] font-bold text-lg">
-                {selectedFrequency.hz} Hz
-              </div>
-              <div className="text-[#D4AF37]/60 text-sm">
-                {selectedFrequency.name}
-              </div>
-            </div>
-          </div>
-
-          {/* Center: Play/Pause + Volume */}
-          <div className="flex items-center gap-3">
+            {/* Play/Pause - úplně vlevo */}
             <button
-              onClick={togglePlay}
-              className="p-3 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] hover:from-[#E5C158] hover:to-[#D4AF37] text-white transition-all duration-300 shadow-lg"
+              onClick={() => toggleFrequency(selectedFrequency.hz)}
+              className="p-3 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] hover:from-[#E5C158] hover:to-[#D4AF37] text-white transition-all duration-300 shadow-lg flex-shrink-0"
             >
-              {isPlaying ? (
+              {playingFrequencies.has(selectedFrequency.hz) ? (
                 <Pause className="w-5 h-5" />
               ) : (
                 <Play className="w-5 h-5 ml-0.5" />
               )}
             </button>
 
+            {/* Volume */}
             <button
               onClick={() => setIsMuted(!isMuted)}
-              className="p-2 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors"
+              className="p-2 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors flex-shrink-0"
             >
               {isMuted ? (
                 <VolumeX className="w-5 h-5 text-[#D4AF37]" />
@@ -368,7 +407,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
               )}
             </button>
 
-            <div className="hidden md:block w-24">
+            <div className="hidden md:block w-24 flex-shrink-0">
               <Slider
                 value={[volume * 100]}
                 onValueChange={(value) => setVolume(value[0] / 100)}
@@ -376,36 +415,64 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                 step={1}
               />
             </div>
+
+            {/* Description - hned po volume */}
+            <div className="hidden sm:flex items-center gap-2">
+              <span className="text-2xl">{selectedFrequency.icon}</span>
+              <div>
+                <div className="text-[#D4AF37] font-bold text-sm">
+                  {selectedFrequency.hz} Hz - {selectedFrequency.name}
+                </div>
+                <div className="text-[#D4AF37]/60 text-xs">
+                  {selectedFrequency.description}
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Right: Frequency selector + Fullscreen */}
-          <div className="flex items-center gap-2">
-            {/* Quick frequency buttons (lite version - only free ones) */}
-            <div className="hidden lg:flex gap-1">
-              {FREQUENCIES.filter(f => !f.premium).slice(0, 4).map((freq) => (
-                <button
-                  key={freq.hz}
-                  onClick={() => handleSelectFrequency(freq)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                    freq.hz === selectedFrequency.hz
-                      ? 'bg-[#D4AF37]/30 text-[#D4AF37] border border-[#D4AF37]'
-                      : 'bg-slate-700/50 text-[#D4AF37]/70 hover:bg-slate-700 hover:text-[#D4AF37]'
-                  }`}
-                >
-                  {freq.hz}
-                </button>
-              ))}
-            </div>
+          {/* Center: All 10 frequency buttons - více vlevo */}
+          <div className="flex items-center gap-1 flex-1 justify-start ml-4">
+            {FREQUENCIES.map((freq) => {
+              const isSelected = freq.hz === selectedFrequency.hz;
+              const isPlaying = playingFrequencies.has(freq.hz);
+              const locked = isFrequencyLocked(freq);
 
-            {/* Show more frequencies button */}
-            <button
-              onClick={() => setShowFrequencyWheel(!showFrequencyWheel)}
-              className="p-2 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors"
-              title="Zobrazit frekvence"
-            >
-              <Sparkles className="w-5 h-5 text-[#D4AF37]" />
-            </button>
+              return (
+                <Tooltip key={freq.hz}>
+                  <TooltipTrigger asChild>
+                    <button
+                      onClick={() => {
+                        if (!locked) {
+                          handleSelectFrequency(freq);
+                          toggleFrequency(freq.hz);
+                        }
+                      }}
+                      disabled={locked}
+                      className={`px-2 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                        isSelected
+                          ? 'bg-[#D4AF37]/30 text-[#D4AF37] border border-[#D4AF37]'
+                          : isPlaying
+                            ? 'bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/50 animate-pulse'
+                            : locked
+                              ? 'bg-slate-800/50 text-slate-500 border border-slate-700 cursor-not-allowed opacity-50'
+                              : 'bg-slate-700/50 text-[#D4AF37]/70 hover:bg-slate-700 hover:text-[#D4AF37] border border-transparent'
+                      }`}
+                    >
+                      {locked ? '🔒' : freq.icon}
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="font-bold">{freq.hz} Hz - {freq.name}</p>
+                    <p className="text-xs">{freq.description}</p>
+                    {locked && <p className="text-xs text-amber-400 mt-1">🔒 Premium</p>}
+                  </TooltipContent>
+                </Tooltip>
+              );
+            })}
+          </div>
 
+          {/* Right: Fullscreen + Close */}
+          <div className="flex items-center gap-2 flex-shrink-0">
             {/* Fullscreen button */}
             <button
               onClick={() => setIsFullscreen(true)}
@@ -426,34 +493,18 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
           </div>
         </div>
 
-        {/* Expandable frequency selector */}
-        {showFrequencyWheel && (
-          <div className="px-4 pb-4 border-t border-[#D4AF37]/20">
-            <div className="pt-3 flex flex-wrap gap-2 justify-center">
-              {FREQUENCIES.map((freq) => {
-                const isSelected = freq.hz === selectedFrequency.hz;
-                const locked = isFrequencyLocked(freq);
-
-                return (
-                  <button
-                    key={freq.hz}
-                    onClick={() => handleSelectFrequency(freq)}
-                    disabled={locked}
-                    className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-all ${
-                      freq.hz === selectedFrequency.hz
-                        ? 'bg-[#D4AF37]/30 text-[#D4AF37] border border-[#D4AF37]'
-                        : locked
-                          ? 'bg-slate-800/50 text-slate-500 border border-slate-700 cursor-not-allowed'
-                          : 'bg-slate-700/50 text-[#D4AF37]/70 hover:bg-slate-700 hover:text-[#D4AF37] border border-transparent'
-                    }`}
-                  >
-                    {locked ? <Lock className="w-4 h-4" /> : <span>{freq.icon}</span>}
-                    <span className="font-medium">{freq.hz} Hz</span>
-                    <span className="text-xs opacity-70">{freq.name}</span>
-                  </button>
-                );
-              })}
-            </div>
+        {/* Playing frequencies indicator */}
+        {playingFrequencies.size > 1 && (
+          <div className="px-4 pb-2 flex items-center justify-between border-t border-[#D4AF37]/10">
+            <p className="text-[#D4AF37]/70 text-xs">
+              Hraje {playingFrequencies.size} frekvencí najednou
+            </p>
+            <button
+              onClick={stopAllFrequencies}
+              className="px-3 py-1 rounded-lg bg-red-600/20 hover:bg-red-600/30 text-red-400 text-xs transition-colors"
+            >
+              Zastavit vše
+            </button>
           </div>
         )}
       </div>

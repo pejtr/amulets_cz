@@ -1866,3 +1866,19 @@
 - [x] Zúžit HarmonyTuner (ladičku) - max-w-4xl, centrováno
 - [x] Změnit barvu na zlatou faraonskou (#D4AF37) - všechny amber barvy nahrazeny
 - [x] Otestovat a uložit checkpoint
+
+## HarmonyTuner a chatbot vylepšení (Jan 20, 2026)
+- [ ] Propojit HarmonyTuner s chatbotem - když se ladička rozbalí do fullscreen, chatbot automaticky vyjede nahoru
+- [ ] Chatbot nabídne meditační tipy podle vybrané frekvence v HarmonyTuner
+- [ ] Implementovat proaktivní chat prompty - po 15-30 sekundách neaktivity se vysune bublina s kontextovými dotazy
+- [ ] Přidat animované přechody mezi frekvencemi - smooth fade efekt při změně frekvence
+- [ ] Otestovat všechny funkce a uložit checkpoint
+
+## HarmonyTuner redesign lite bar (Jan 20, 2026)
+- [x] Přidat tooltip při najetí na frekvenci - zobrazí pro co je určená
+- [x] Přesunout Play a Volume úplně vlevo
+- [x] Zobrazit popis frekvence hned po volume
+- [x] Zobrazit všech 10 frekvencí najednou (ne jen 4)
+- [x] Implementovat multi-frequency playback - možnost pustit dvě frekvence najednou
+- [x] Posunout tlačítka frekvencí více vlevo pro lepší rozmístění
+- [x] Otestovat všechny funkce a uložit checkpoint
