@@ -1882,3 +1882,41 @@
 - [x] Implementovat multi-frequency playback - možnost pustit dvě frekvence najednou
 - [x] Posunout tlačítka frekvencí více vlevo pro lepší rozmístění
 - [x] Otestovat všechny funkce a uložit checkpoint
+
+## HarmonyTuner-chatbot propojení (Jan 20, 2026)
+- [ ] Upravit AIChatAssistant aby naslouchal HarmonyTunerContext
+- [ ] Když se HarmonyTuner rozbalí do fullscreen, chatbot automaticky nabídne meditační tipy
+- [ ] Zobrazit meditační tip podle vybrané frekvence (z FREQUENCY_MEDITATION_TIPS)
+- [ ] Chatbot se automaticky otevře když uživatel změní frekvenci ve fullscreen režimu
+- [ ] Otestovat integraci a uložit checkpoint
+
+## HarmonyTuner bug fixes (Jan 20, 2026)
+- [ ] Opravit logiku přehrávání - tlačítka nejdou pustit
+- [ ] Odemknout všechny frekvence - odstranit premium lock
+- [ ] Zvětšit tlačítka frekvencí pro lepší použitelnost
+- [ ] Otestovat a uložit checkpoint
+
+## HarmonyTuner spiritual redesign (Jan 20, 2026)
+- [x] Udělat tlačítka frekvencí kulatá a spirituální
+- [x] Přidat gradient a glow efekt pro každou frekvenci
+- [x] Zvětšit tlačítka pro lepší použitelnost
+- [x] Opravit logiku přehrávání - tlačítka nejdou pustit
+- [x] Odemknout všechny frekvence - odstranit premium lock
+- [x] Přidat pulzující animaci při přehrávání
+- [x] Přidat vlnovou animaci celého panelu při přehrávání
+- [ ] Otestovat a uložit checkpoint
+
+## Odstranit Velekněžku (Paige) z chatbota (Jan 20, 2026)
+- [x] Odstranit Paige z NATALIE_PERSONAS
+- [x] Odstranit všechny reference na Paige/Velekněžku
+- [x] Ponechat pouze Sílu Tří (Phoebe, Piper, Prue)
+- [x] Opravit TypeScript chyby
+
+## Redesign frequency buttons - větší s Hz, název, čakra (Jan 20, 2026)
+- [x] Zvětšit tlačítka frekvencí (90px x 90px)
+- [x] Zobrazit frekvenci v Hz nahoře
+- [x] Zobrazit název uprostřed
+- [x] Zobrazit čakru dole
+- [x] Čistý design s gradientem podle čakry
+- [x] Přidat čakra informace do FREQUENCIES
+- [ ] Otestovat a uložit checkpoint

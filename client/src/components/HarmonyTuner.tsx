@@ -15,18 +15,18 @@ import {
 } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
-// Solfeggio frequencies with Egyptian-inspired names
+// Solfeggio frequencies with chakra information
 const FREQUENCIES = [
-  { hz: 174, name: "Základní tón", icon: "🔥", description: "Uzemňující energie", color: "#FF6B35", premium: false },
-  { hz: 285, name: "Obnova tkání", icon: "🏺", description: "Regenerace těla", color: "#F7C59F", premium: false },
-  { hz: 396, name: "Osvobození", icon: "🔓", description: "Uvolnění strachu", color: "#D4AF37", premium: false },
-  { hz: 417, name: "Změna", icon: "💎", description: "Transformace", color: "#00CED1", premium: true },
-  { hz: 432, name: "Harmonie", icon: "✨", description: "Univerzální ladění", color: "#9B59B6", premium: false },
-  { hz: 528, name: "Láska", icon: "💚", description: "Frekvence zázraků", color: "#2ECC71", premium: false },
-  { hz: 639, name: "Vztahy", icon: "🧡", description: "Spojení duší", color: "#E67E22", premium: true },
-  { hz: 741, name: "Probuzení", icon: "🌸", description: "Intuice", color: "#FF69B4", premium: true },
-  { hz: 852, name: "Duchovní řád", icon: "🔮", description: "Třetí oko", color: "#8E44AD", premium: true },
-  { hz: 963, name: "Jednota", icon: "🌀", description: "Korunní čakra", color: "#3498DB", premium: true },
+  { hz: 174, name: "Základní tón", chakra: "Kořenová", icon: "🔥", description: "Uzemňující energie", color: "#C41E3A", premium: false },
+  { hz: 285, name: "Obnova", chakra: "Sakální", icon: "🏺", description: "Regenerace těla", color: "#FF6B35", premium: false },
+  { hz: 396, name: "Osvobození", chakra: "Solarní plexus", icon: "🔓", description: "Uvolnění strachu", color: "#FFD700", premium: false },
+  { hz: 417, name: "Změna", chakra: "Solarní plexus", icon: "💎", description: "Transformace", color: "#F7C59F", premium: false },
+  { hz: 432, name: "Harmonie", chakra: "Srdeční", icon: "✨", description: "Univerzální ladění", color: "#2ECC71", premium: false },
+  { hz: 528, name: "Láska", chakra: "Srdeční", icon: "💚", description: "Frekvence zázraků", color: "#00D084", premium: false },
+  { hz: 639, name: "Vztahy", chakra: "Hrdelní", icon: "🧡", description: "Spojení duší", color: "#00CED1", premium: false },
+  { hz: 741, name: "Probuzení", chakra: "Třetí oko", icon: "🌸", description: "Intuice", color: "#4B0082", premium: false },
+  { hz: 852, name: "Duchovnost", chakra: "Třetí oko", icon: "🔮", description: "Duchovní řád", color: "#8E44AD", premium: false },
+  { hz: 963, name: "Jednota", chakra: "Korunní", icon: "🌀", description: "Korunní čakra", color: "#9B59B6", premium: false },
 ];
 
 interface HarmonyTunerProps {
@@ -369,17 +369,46 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
   // Lite mode - floating bottom bar (redesigned layout)
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center">
-      {/* Egyptian-style floating bar - redesigned */}
+      {/* Egyptian-style floating bar - redesigned with wave animation */}
       <div 
-        className="mx-4 mb-4 rounded-2xl overflow-hidden shadow-2xl max-w-7xl w-full"
+        className={`mx-4 mb-4 rounded-2xl overflow-hidden shadow-2xl max-w-7xl w-full relative ${
+          playingFrequencies.size > 0 ? 'animate-wave' : ''
+        }`}
         style={{
           background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%)",
           border: "1px solid rgba(212, 175, 55, 0.3)",
           boxShadow: playingFrequencies.size > 0
             ? `0 0 30px ${selectedFrequency.color}30, 0 10px 40px rgba(0,0,0,0.5)` 
             : "0 10px 40px rgba(0,0,0,0.5)",
+          animation: playingFrequencies.size > 0 ? 'wave-pulse 2s ease-in-out infinite' : 'none',
         }}
       >
+        {/* Wave animation overlay when playing */}
+        {playingFrequencies.size > 0 && (
+          <>
+            <div 
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `radial-gradient(circle at 50% 50%, ${selectedFrequency.color}15 0%, transparent 70%)`,
+                animation: 'wave-ripple 3s ease-out infinite',
+              }}
+            />
+            <div 
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `radial-gradient(circle at 50% 50%, ${selectedFrequency.color}10 0%, transparent 70%)`,
+                animation: 'wave-ripple 3s ease-out infinite 1s',
+              }}
+            />
+            <div 
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `radial-gradient(circle at 50% 50%, ${selectedFrequency.color}08 0%, transparent 70%)`,
+                animation: 'wave-ripple 3s ease-out infinite 2s',
+              }}
+            />
+          </>
+        )}
         <div className="px-4 py-3 flex items-center justify-between gap-4">
           {/* Left: Play/Pause + Volume + Description */}
           <div className="flex items-center gap-3">
@@ -430,43 +459,81 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
             </div>
           </div>
 
-          {/* Center: All 10 frequency buttons - více vlevo */}
-          <div className="flex items-center gap-1 flex-1 justify-start ml-4">
+          {/* Center: All 10 frequency buttons - větší s Hz, název, čakra */}
+          <div className="flex items-center gap-3 flex-1 justify-start ml-4 overflow-x-auto">
             {FREQUENCIES.map((freq) => {
               const isSelected = freq.hz === selectedFrequency.hz;
               const isPlaying = playingFrequencies.has(freq.hz);
-              const locked = isFrequencyLocked(freq);
 
               return (
-                <Tooltip key={freq.hz}>
-                  <TooltipTrigger asChild>
-                    <button
-                      onClick={() => {
-                        if (!locked) {
-                          handleSelectFrequency(freq);
-                          toggleFrequency(freq.hz);
-                        }
-                      }}
-                      disabled={locked}
-                      className={`px-2 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                        isSelected
-                          ? 'bg-[#D4AF37]/30 text-[#D4AF37] border border-[#D4AF37]'
-                          : isPlaying
-                            ? 'bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/50 animate-pulse'
-                            : locked
-                              ? 'bg-slate-800/50 text-slate-500 border border-slate-700 cursor-not-allowed opacity-50'
-                              : 'bg-slate-700/50 text-[#D4AF37]/70 hover:bg-slate-700 hover:text-[#D4AF37] border border-transparent'
-                      }`}
+                <button
+                  key={freq.hz}
+                  onClick={() => {
+                    handleSelectFrequency(freq);
+                    toggleFrequency(freq.hz);
+                  }}
+                  className={`min-w-[90px] h-[90px] rounded-2xl flex flex-col items-center justify-center gap-1 font-medium transition-all duration-300 relative flex-shrink-0 ${
+                    isPlaying
+                      ? 'scale-105'
+                      : 'hover:scale-105'
+                  }`}
+                  style={{
+                    background: isSelected || isPlaying
+                      ? `linear-gradient(135deg, ${freq.color}40 0%, ${freq.color}20 100%)`
+                      : `linear-gradient(135deg, ${freq.color}20 0%, ${freq.color}10 100%)`,
+                    border: `2px solid ${isSelected || isPlaying ? freq.color : freq.color + '60'}`,
+                    boxShadow: isPlaying
+                      ? `0 0 25px ${freq.color}60, 0 0 50px ${freq.color}30, inset 0 0 20px ${freq.color}10`
+                      : isSelected
+                        ? `0 0 20px ${freq.color}40, inset 0 0 15px ${freq.color}08`
+                        : `0 0 10px ${freq.color}20`,
+                  }}
+                >
+                  {/* Wave animation overlay when playing */}
+                  {isPlaying && (
+                    <>
+                      <span
+                        className="absolute inset-0 rounded-2xl animate-ping"
+                        style={{
+                          background: `radial-gradient(circle, ${freq.color}30 0%, transparent 70%)`,
+                        }}
+                      />
+                      <span
+                        className="absolute inset-0 rounded-2xl animate-pulse"
+                        style={{
+                          background: `radial-gradient(circle, ${freq.color}20 0%, transparent 80%)`,
+                        }}
+                      />
+                    </>
+                  )}
+                  
+                  {/* Content */}
+                  <div className="relative z-10 flex flex-col items-center gap-0.5">
+                    {/* Hz */}
+                    <div 
+                      className="text-xs font-bold tracking-wide"
+                      style={{ color: freq.color }}
                     >
-                      {locked ? '🔒' : freq.icon}
-                    </button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p className="font-bold">{freq.hz} Hz - {freq.name}</p>
-                    <p className="text-xs">{freq.description}</p>
-                    {locked && <p className="text-xs text-amber-400 mt-1">🔒 Premium</p>}
-                  </TooltipContent>
-                </Tooltip>
+                      {freq.hz} Hz
+                    </div>
+                    
+                    {/* Název */}
+                    <div 
+                      className="text-sm font-semibold leading-tight text-center"
+                      style={{ color: freq.color }}
+                    >
+                      {freq.name}
+                    </div>
+                    
+                    {/* Čakra */}
+                    <div 
+                      className="text-[10px] opacity-80 leading-tight text-center"
+                      style={{ color: freq.color }}
+                    >
+                      {freq.chakra}
+                    </div>
+                  </div>
+                </button>
               );
             })}
           </div>
