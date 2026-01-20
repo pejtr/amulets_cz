@@ -17,7 +17,7 @@ import {
 const FREQUENCIES = [
   { hz: 174, name: "Základní tón", icon: "🔥", description: "Uzemňující energie", color: "#FF6B35", premium: false },
   { hz: 285, name: "Obnova tkání", icon: "🏺", description: "Regenerace těla", color: "#F7C59F", premium: false },
-  { hz: 396, name: "Osvobození", icon: "🔓", description: "Uvolnění strachu", color: "#FFD700", premium: false },
+  { hz: 396, name: "Osvobození", icon: "🔓", description: "Uvolnění strachu", color: "#D4AF37", premium: false },
   { hz: 417, name: "Změna", icon: "💎", description: "Transformace", color: "#00CED1", premium: true },
   { hz: 432, name: "Harmonie", icon: "✨", description: "Univerzální ladění", color: "#9B59B6", premium: false },
   { hz: 528, name: "Láska", icon: "💚", description: "Frekvence zázraků", color: "#2ECC71", premium: false },
@@ -103,21 +103,6 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
     }
   }, [volume, isMuted]);
 
-  // Update frequency when changed while playing
-  useEffect(() => {
-    if (isPlaying && oscillatorRef.current && audioContextRef.current) {
-      oscillatorRef.current.frequency.setValueAtTime(
-        selectedFrequency.hz,
-        audioContextRef.current.currentTime
-      );
-    }
-  }, [selectedFrequency, isPlaying]);
-
-  // Notify parent about fullscreen change
-  useEffect(() => {
-    onExpandChange?.(isFullscreen);
-  }, [isFullscreen, onExpandChange]);
-
   // Cleanup on unmount
   useEffect(() => {
     return () => {
@@ -128,28 +113,41 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
     };
   }, [stopFrequency]);
 
-  // Check if frequency is locked (premium only)
+  // Notify parent of expansion state
+  useEffect(() => {
+    onExpandChange?.(isFullscreen);
+  }, [isFullscreen, onExpandChange]);
+
+  // Check if frequency is locked
   const isFrequencyLocked = (freq: typeof FREQUENCIES[0]) => {
     return freq.premium && !isPremium;
   };
 
-  // Select frequency
+  // Handle frequency selection
   const handleSelectFrequency = (freq: typeof FREQUENCIES[0]) => {
     if (isFrequencyLocked(freq)) {
-      // Show premium modal or toast
+      alert("Tato frekvence je dostupná pouze pro Premium uživatele. Kontaktujte nás pro více informací.");
       return;
     }
+    
+    const wasPlaying = isPlaying;
+    if (wasPlaying) {
+      stopFrequency();
+    }
+    
     setSelectedFrequency(freq);
-    if (isPlaying) {
-      // Frequency will update via useEffect
+    
+    if (wasPlaying) {
+      setTimeout(() => playFrequency(), 100);
     }
   };
 
+  // Hidden state - show reopen button
   if (!isVisible) {
     return (
       <button
         onClick={() => setIsVisible(true)}
-        className="fixed bottom-4 left-4 z-40 p-3 rounded-full bg-gradient-to-r from-amber-600 to-amber-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 group"
+        className="fixed bottom-4 left-4 z-40 p-3 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white shadow-lg hover:shadow-xl transition-all duration-300 group"
         title="Otevřít Ladičku Harmonie"
       >
         <Sparkles className="w-6 h-6 group-hover:animate-pulse" />
@@ -165,7 +163,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
         <div 
           className="absolute inset-0 opacity-10"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD700' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
         />
         
@@ -180,10 +178,10 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
         <div className="container mx-auto px-4 py-8 relative">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 mb-2">
+            <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F4E5B8] to-[#D4AF37] mb-2">
               ✨ Ladička Harmonie ✨
             </h1>
-            <p className="text-amber-200/70 text-lg">
+            <p className="text-[#D4AF37]/70 text-lg">
               Ponořte se do světa léčivých frekvencí starověkého Egypta
             </p>
           </div>
@@ -193,17 +191,17 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
             <div className="relative">
               {/* Outer golden ring */}
               <div 
-                className="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-amber-500/50 flex items-center justify-center"
+                className="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-[#D4AF37]/50 flex items-center justify-center"
                 style={{
                   background: "radial-gradient(circle, rgba(139,69,19,0.3) 0%, rgba(0,0,0,0.8) 100%)",
                   boxShadow: isPlaying 
                     ? `0 0 60px ${selectedFrequency.color}40, inset 0 0 40px ${selectedFrequency.color}20` 
-                    : "0 0 30px rgba(255,215,0,0.2)",
+                    : "0 0 30px rgba(212,175,55,0.2)",
                 }}
               >
                 {/* Inner circle with frequency */}
                 <div 
-                  className={`w-48 h-48 md:w-60 md:h-60 rounded-full border-2 border-amber-400/30 flex flex-col items-center justify-center transition-all duration-500 ${isPlaying ? 'animate-pulse' : ''}`}
+                  className={`w-48 h-48 md:w-60 md:h-60 rounded-full border-2 border-[#D4AF37]/30 flex flex-col items-center justify-center transition-all duration-500 ${isPlaying ? 'animate-pulse' : ''}`}
                   style={{
                     background: `radial-gradient(circle, ${selectedFrequency.color}20 0%, transparent 70%)`,
                   }}
@@ -211,21 +209,21 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                   {/* Play button */}
                   <button
                     onClick={togglePlay}
-                    className="mb-2 p-4 rounded-full bg-amber-500/20 hover:bg-amber-500/30 transition-colors"
+                    className="mb-2 p-4 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors"
                   >
                     {isPlaying ? (
-                      <Pause className="w-8 h-8 text-amber-400" />
+                      <Pause className="w-8 h-8 text-[#D4AF37]" />
                     ) : (
-                      <Play className="w-8 h-8 text-amber-400 ml-1" />
+                      <Play className="w-8 h-8 text-[#D4AF37] ml-1" />
                     )}
                   </button>
                   
                   {/* Frequency display */}
-                  <div className="text-5xl md:text-6xl font-bold text-amber-400">
+                  <div className="text-5xl md:text-6xl font-bold text-[#D4AF37]">
                     {selectedFrequency.hz} <span className="text-2xl">Hz</span>
                   </div>
-                  <div className="text-amber-200 text-lg mt-1">{selectedFrequency.name}</div>
-                  <div className="text-amber-200/60 text-sm">{selectedFrequency.description}</div>
+                  <div className="text-[#D4AF37]/90 text-lg mt-1">{selectedFrequency.name}</div>
+                  <div className="text-[#D4AF37]/60 text-sm">{selectedFrequency.description}</div>
                 </div>
               </div>
 
@@ -244,26 +242,26 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                     onClick={() => handleSelectFrequency(freq)}
                     className={`absolute w-16 h-16 md:w-20 md:h-20 rounded-lg flex flex-col items-center justify-center transition-all duration-300 ${
                       isSelected 
-                        ? 'bg-amber-500/30 border-2 border-amber-400 scale-110' 
+                        ? 'bg-[#D4AF37]/30 border-2 border-[#D4AF37] scale-110' 
                         : locked
                           ? 'bg-slate-800/80 border border-slate-600 opacity-60'
-                          : 'bg-slate-800/80 border border-amber-500/30 hover:border-amber-400 hover:scale-105'
+                          : 'bg-slate-800/80 border border-[#D4AF37]/30 hover:border-[#D4AF37] hover:scale-105'
                     }`}
                     style={{
-                      left: `calc(50% + ${x}px - 40px)`,
-                      top: `calc(50% + ${y}px - 40px)`,
+                      left: `calc(50% + ${x}px - 2rem)`,
+                      top: `calc(50% + ${y}px - 2rem)`,
                     }}
-                    disabled={locked}
+                    title={locked ? "🔒 Premium" : freq.description}
                   >
                     {locked ? (
-                      <Lock className="w-4 h-4 text-slate-500 mb-1" />
+                      <Lock className="w-6 h-6 text-slate-500" />
                     ) : (
                       <span className="text-lg">{freq.icon}</span>
                     )}
-                    <span className={`text-sm font-bold ${isSelected ? 'text-amber-400' : locked ? 'text-slate-500' : 'text-amber-200'}`}>
+                    <span className={`text-sm font-bold ${isSelected ? 'text-[#D4AF37]' : locked ? 'text-slate-500' : 'text-[#D4AF37]/90'}`}>
                       {freq.hz} Hz
                     </span>
-                    <span className={`text-xs ${isSelected ? 'text-amber-300' : locked ? 'text-slate-600' : 'text-amber-200/60'}`}>
+                    <span className={`text-xs ${isSelected ? 'text-[#D4AF37]/90' : locked ? 'text-slate-600' : 'text-[#D4AF37]/60'}`}>
                       {freq.name}
                     </span>
                   </button>
@@ -273,33 +271,34 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
           </div>
 
           {/* Volume control */}
-          <div className="flex items-center justify-center gap-4 mb-8">
+          <div className="flex justify-center items-center gap-4 mb-8">
             <button
               onClick={() => setIsMuted(!isMuted)}
-              className="p-2 rounded-full bg-amber-500/20 hover:bg-amber-500/30 transition-colors"
+              className="p-2 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors"
             >
               {isMuted ? (
-                <VolumeX className="w-6 h-6 text-amber-400" />
+                <VolumeX className="w-6 h-6 text-[#D4AF37]" />
               ) : (
-                <Volume2 className="w-6 h-6 text-amber-400" />
+                <Volume2 className="w-6 h-6 text-[#D4AF37]" />
               )}
             </button>
-            <Slider
-              value={[volume * 100]}
-              onValueChange={(value) => setVolume(value[0] / 100)}
-              max={100}
-              step={1}
-              className="w-48"
-            />
+            <div className="w-48">
+              <Slider
+                value={[volume * 100]}
+                onValueChange={(value) => setVolume(value[0] / 100)}
+                max={100}
+                step={1}
+              />
+            </div>
           </div>
 
-          {/* Premium upgrade prompt */}
+          {/* Premium upsell */}
           {!isPremium && (
             <div className="text-center">
-              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-amber-600/20 to-purple-600/20 border border-amber-500/30">
-                <Lock className="w-5 h-5 text-amber-400" />
-                <span className="text-amber-200">
-                  Odemkněte všechny frekvence s <strong className="text-amber-400">Premium</strong>
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#D4AF37]/20 to-purple-600/20 border border-[#D4AF37]/30">
+                <Lock className="w-5 h-5 text-[#D4AF37]" />
+                <span className="text-[#D4AF37]/90">
+                  Odemkněte všechny frekvence s <strong className="text-[#D4AF37]">Premium</strong>
                 </span>
               </div>
             </div>
@@ -309,15 +308,15 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
     );
   }
 
-  // Lite mode - floating bottom bar
+  // Lite mode - floating bottom bar (narrower with max-w-4xl)
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40">
-      {/* Egyptian-style floating bar */}
+    <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center">
+      {/* Egyptian-style floating bar - narrower */}
       <div 
-        className="mx-4 mb-4 rounded-2xl overflow-hidden shadow-2xl"
+        className="mx-4 mb-4 rounded-2xl overflow-hidden shadow-2xl max-w-4xl w-full"
         style={{
           background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%)",
-          border: "1px solid rgba(255, 215, 0, 0.3)",
+          border: "1px solid rgba(212, 175, 55, 0.3)",
           boxShadow: isPlaying 
             ? `0 0 30px ${selectedFrequency.color}30, 0 10px 40px rgba(0,0,0,0.5)` 
             : "0 10px 40px rgba(0,0,0,0.5)",
@@ -336,10 +335,10 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
               <span className="text-2xl">{selectedFrequency.icon}</span>
             </div>
             <div className="hidden sm:block">
-              <div className="text-amber-400 font-bold text-lg">
+              <div className="text-[#D4AF37] font-bold text-lg">
                 {selectedFrequency.hz} Hz
               </div>
-              <div className="text-amber-200/60 text-sm">
+              <div className="text-[#D4AF37]/60 text-sm">
                 {selectedFrequency.name}
               </div>
             </div>
@@ -349,7 +348,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
           <div className="flex items-center gap-3">
             <button
               onClick={togglePlay}
-              className="p-3 rounded-full bg-gradient-to-r from-amber-600 to-amber-800 hover:from-amber-500 hover:to-amber-700 text-white transition-all duration-300 shadow-lg"
+              className="p-3 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] hover:from-[#E5C158] hover:to-[#D4AF37] text-white transition-all duration-300 shadow-lg"
             >
               {isPlaying ? (
                 <Pause className="w-5 h-5" />
@@ -360,12 +359,12 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
 
             <button
               onClick={() => setIsMuted(!isMuted)}
-              className="p-2 rounded-full bg-amber-500/20 hover:bg-amber-500/30 transition-colors"
+              className="p-2 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors"
             >
               {isMuted ? (
-                <VolumeX className="w-5 h-5 text-amber-400" />
+                <VolumeX className="w-5 h-5 text-[#D4AF37]" />
               ) : (
-                <Volume2 className="w-5 h-5 text-amber-400" />
+                <Volume2 className="w-5 h-5 text-[#D4AF37]" />
               )}
             </button>
 
@@ -389,8 +388,8 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                   onClick={() => handleSelectFrequency(freq)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                     freq.hz === selectedFrequency.hz
-                      ? 'bg-amber-500/30 text-amber-400 border border-amber-400'
-                      : 'bg-slate-700/50 text-amber-200/70 hover:bg-slate-700 hover:text-amber-200'
+                      ? 'bg-[#D4AF37]/30 text-[#D4AF37] border border-[#D4AF37]'
+                      : 'bg-slate-700/50 text-[#D4AF37]/70 hover:bg-slate-700 hover:text-[#D4AF37]'
                   }`}
                 >
                   {freq.hz}
@@ -401,19 +400,19 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
             {/* Show more frequencies button */}
             <button
               onClick={() => setShowFrequencyWheel(!showFrequencyWheel)}
-              className="p-2 rounded-full bg-amber-500/20 hover:bg-amber-500/30 transition-colors"
+              className="p-2 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors"
               title="Zobrazit frekvence"
             >
-              <Sparkles className="w-5 h-5 text-amber-400" />
+              <Sparkles className="w-5 h-5 text-[#D4AF37]" />
             </button>
 
             {/* Fullscreen button */}
             <button
               onClick={() => setIsFullscreen(true)}
-              className="p-2 rounded-full bg-gradient-to-r from-purple-600/30 to-amber-600/30 hover:from-purple-600/50 hover:to-amber-600/50 transition-colors border border-amber-500/30"
+              className="p-2 rounded-full bg-gradient-to-r from-purple-600/30 to-[#D4AF37]/30 hover:from-purple-600/50 hover:to-[#D4AF37]/50 transition-colors border border-[#D4AF37]/30"
               title="Plná verze"
             >
-              <Maximize2 className="w-5 h-5 text-amber-400" />
+              <Maximize2 className="w-5 h-5 text-[#D4AF37]" />
             </button>
 
             {/* Close button */}
@@ -429,10 +428,12 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
 
         {/* Expandable frequency selector */}
         {showFrequencyWheel && (
-          <div className="px-4 pb-4 border-t border-amber-500/20">
+          <div className="px-4 pb-4 border-t border-[#D4AF37]/20">
             <div className="pt-3 flex flex-wrap gap-2 justify-center">
               {FREQUENCIES.map((freq) => {
+                const isSelected = freq.hz === selectedFrequency.hz;
                 const locked = isFrequencyLocked(freq);
+
                 return (
                   <button
                     key={freq.hz}
@@ -440,10 +441,10 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                     disabled={locked}
                     className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-all ${
                       freq.hz === selectedFrequency.hz
-                        ? 'bg-amber-500/30 text-amber-400 border border-amber-400'
+                        ? 'bg-[#D4AF37]/30 text-[#D4AF37] border border-[#D4AF37]'
                         : locked
                           ? 'bg-slate-800/50 text-slate-500 border border-slate-700 cursor-not-allowed'
-                          : 'bg-slate-700/50 text-amber-200/70 hover:bg-slate-700 hover:text-amber-200 border border-transparent'
+                          : 'bg-slate-700/50 text-[#D4AF37]/70 hover:bg-slate-700 hover:text-[#D4AF37] border border-transparent'
                     }`}
                   >
                     {locked ? <Lock className="w-4 h-4" /> : <span>{freq.icon}</span>}

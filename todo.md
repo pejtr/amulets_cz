@@ -1863,6 +1863,6 @@
 - [x] Zvětšit výšku banneru aby se zobrazil celý obsah včetně horního textu
 
 ## HarmonyTuner styling úpravy (Jan 19, 2026)
-- [ ] Zúžit HarmonyTuner (ladičku)
-- [ ] Změnit barvu na zlatou faraonskou (#D4AF37)
-- [ ] Otestovat a uložit checkpoint
+- [x] Zúžit HarmonyTuner (ladičku) - max-w-4xl, centrováno
+- [x] Změnit barvu na zlatou faraonskou (#D4AF37) - všechny amber barvy nahrazeny
+- [x] Otestovat a uložit checkpoint
