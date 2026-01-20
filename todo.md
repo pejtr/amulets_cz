@@ -1949,3 +1949,30 @@
 - [x] Šipka na tlačítku se otáčí podle stavu (collapsed/expanded)
 - [x] Otestovat - tlačítko viditelné nahoře, panel se rozbalí kliknutím
 - [ ] Uložit checkpoint
+
+## HarmonyTuner-chatbot propojení (Jan 20, 2026)
+- [ ] Implementovat useEffect v AIChatAssistant pro sledování HarmonyTuner context
+- [ ] Když uživatel klikne na frekvenci, chatbot automaticky otevře a nabídne meditační tipy
+- [ ] Vytvořit meditační tipy pro každou frekvenci/čakru
+- [ ] Přidat smooth scroll chatbota nahoru když se HarmonyTuner rozbalí
+- [ ] Otestovat a uložit checkpoint
+
+## Telegram bot - nové funkce (Jan 20, 2026)
+
+### Notifikace pro objednávky a kontaktní formulář
+- [ ] Přidat notifikaci při odeslání kontaktního formuláře
+- [ ] Přidat notifikaci při nové objednávce (pokud existuje)
+- [ ] Formátovat zprávy s detaily (jméno, email, zpráva)
+
+### Denní horoskop - automatické ranní zprávy
+- [x] Vytvořit funkci generateDailyHoroscope() pro generování denního horoskopu
+- [x] Přidat příkaz /horoskop pro manuální zobrazení
+- [x] Automatické posílání ráno (8:00) - již implementováno v scheduleDailyReport()
+
+### Meditační tipy podle HarmonyTuner frekvencí
+- [x] Přidat příkaz /meditace pro zobrazení tipů
+- [x] Přidat příkaz /frekvence [Hz] pro konkrétní frekvenci
+- [x] Propojit s HarmonyTuner daty (FREQUENCIES s čakrami a popisy)
+
+- [ ] Otestovat všechny funkce
+- [ ] Uložit checkpoint

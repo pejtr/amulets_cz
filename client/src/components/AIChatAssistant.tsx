@@ -103,6 +103,20 @@ import { useBrowsing } from "@/contexts/BrowsingContext";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { useHarmonyTuner } from "@/contexts/HarmonyTunerContext";
 
+// Meditation tips for each frequency/chakra
+const FREQUENCY_MEDITATION_TIPS: Record<number, { chakra: string; tip: string }> = {
+  174: { chakra: "Základní", tip: "🌱 **Základní tón - Uzemnění**\n\nTato frekvence tě spojuje se Zemí. Zkus:\n- Sed si pohodlně, nohy pevně na zemi\n- Představuj si kořeny rostroucí z tvých chodidel\n- Dýchej hluboce a cít bezpečí" },
+  285: { chakra: "Sakální", tip: "🔥 **Obnova - Sakální čakra**\n\nFrekvence obnovy a léčení. Zkus:\n- Polož ruce na břicho\n- Představuj si oranžovou energii\n- Pusť vinu a přijmi odpouštění" },
+  396: { chakra: "Solární plexus", tip: "☀️ **Osvobozání - Solární plexus**\n\nOsvobodí tě od strachu. Zkus:\n- Ruce na žaludek\n- Představuj si žlutou energii\n- Opakuj: 'Jsem silný/á a svobodný/á'" },
+  417: { chakra: "Solární plexus", tip: "🌟 **Změna - Solární plexus**\n\nPodporuje pozitivní změny. Zkus:\n- Vizualizuj své cíle\n- Představuj si zlatou energii\n- Cít sílu pro změnu" },
+  432: { chakra: "Srdeční", tip: "💚 **Harmonie - Srdeční čakra**\n\nUnivezální ladění. Zkus:\n- Ruce na srdce\n- Představuj si zelenou/růžovou energii\n- Dýchej lásku a soucit" },
+  528: { chakra: "Srdeční", tip: "💖 **Láska - Srdeční čakra**\n\nFrekvence lásky a léčení DNA. Zkus:\n- Otevři srdce\n- Představuj si zelenou energii\n- Pošli lásku sobě i světu" },
+  639: { chakra: "Hrdelní", tip: "💙 **Vztahy - Hrdelní čakra**\n\nHarmonizuje vztahy. Zkus:\n- Ruce na krk\n- Představuj si modrou energii\n- Komunikuj s láskou a pravdou" },
+  741: { chakra: "Třetí oko", tip: "🔮 **Probouzení - Třetí oko**\n\nProbouzí intuici. Zkus:\n- Ruce na čelo\n- Představuj si indigovou energii\n- Důvěřuj své intuici" },
+  852: { chakra: "Koruno vní", tip: "💜 **Duchovnost - Korunová čakra**\n\nSpojuje s vyšší dimenzí. Zkus:\n- Ruce nad hlavou\n- Představuj si fialovou/bílou energii\n- Otevři se duchovnímu vedení" },
+  963: { chakra: "Koruno vní", tip: "✨ **Jednota - Korunová čakra**\n\nFrekvence jednoty s vesmírem. Zkus:\n- Medituj v tichu\n- Představuj si bílou energii\n- Cít propojení se vším" },
+};
+
 interface Message {
   role: "user" | "assistant";
   content: string;

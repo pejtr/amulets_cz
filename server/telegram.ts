@@ -317,6 +317,119 @@ function getTelegramSystemPrompt(): string {
 Odpovídej vždy v češtině, krátce a přátelsky.`;
 }
 
+// ============================================
+// HOROSCOPE & MEDITATION FEATURES
+// ============================================
+
+/**
+ * Frequency data with chakra information for meditation tips
+ */
+const FREQUENCIES = [
+  { hz: 174, name: 'Základní tón', chakra: 'Kořenová', color: '#DC2626', description: 'Uzemnění a bezpečí. Pomoc při bolesti a stresu.' },
+  { hz: 285, name: 'Obnova', chakra: 'Sakální', color: '#EA580C', description: 'Regenerace buněk a tkání. Podpora hojivých procesů.' },
+  { hz: 396, name: 'Osvobození', chakra: 'Solární plexus', color: '#FACC15', description: 'Osvobození od strachu a viny. Transformace negativních emocí.' },
+  { hz: 417, name: 'Změna', chakra: 'Solární plexus', color: '#F59E0B', description: 'Usnadnění změny. Vyčištění traumatických zážitků.' },
+  { hz: 432, name: 'Harmonie', chakra: 'Srdeční', color: '#22C55E', description: 'Univerzální ladění. Harmonie s přírodou a vesmírem.' },
+  { hz: 528, name: 'Láska', chakra: 'Srdeční', color: '#10B981', description: 'Frekvence lásky a zázraků. Oprava DNA.' },
+  { hz: 639, name: 'Vztahy', chakra: 'Hrdelní', color: '#06B6D4', description: 'Harmonizace vztahů. Komunikace a porozumění.' },
+  { hz: 741, name: 'Intuice', chakra: 'Třetí oko', color: '#8B5CF6', description: 'Probuzení intuice. Řešení problémů.' },
+  { hz: 852, name: 'Duchovnost', chakra: 'Třetí oko', color: '#A855F7', description: 'Návrat k duchovnímu řádu. Probuzení intuice.' },
+  { hz: 963, name: 'Jednota', chakra: 'Korunní', color: '#EC4899', description: 'Spojení s vyšším vědomím. Osvícení.' },
+];
+
+/**
+ * Generate daily Chinese horoscope message
+ */
+async function generateDailyHoroscope(): Promise<string> {
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('cs-CZ', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  
+  // Chinese zodiac animals
+  const animals = ['Krysa', 'Bůvol', 'Tygr', 'Králík', 'Drak', 'Had', 'Kůň', 'Koza', 'Opice', 'Kohout', 'Pes', 'Prase'];
+  const elements = ['Dřevo', 'Oheň', 'Země', 'Kov', 'Voda'];
+  
+  // 2026 is Year of the Fire Horse
+  const yearAnimal = 'Ohnivý Kůň';
+  
+  // Daily energy based on day of year
+  const dayOfYear = Math.floor((now.getTime() - new Date(now.getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24));
+  const dailyAnimal = animals[dayOfYear % 12];
+  const dailyElement = elements[dayOfYear % 5];
+  
+  // Lucky numbers
+  const luckyNumbers = [Math.floor(Math.random() * 9) + 1, Math.floor(Math.random() * 9) + 1, Math.floor(Math.random() * 9) + 1];
+  
+  // Lucky colors
+  const colors = ['zlatá', 'červená', 'zelená', 'modrá', 'fialová', 'bílá', 'stříbrná'];
+  const luckyColor = colors[dayOfYear % colors.length];
+  
+  // Recommended frequency
+  const recommendedFreq = FREQUENCIES[dayOfYear % FREQUENCIES.length];
+  
+  let horoscope = `🌟 <b>Čínský horoskop - ${dateStr}</b>\n\n`;
+  horoscope += `🐴 <b>Rok ${yearAnimal}u 2026</b>\n`;
+  horoscope += `🌀 Denní energie: <b>${dailyElement} ${dailyAnimal}</b>\n\n`;
+  horoscope += `🎰 Šťastná čísla: <b>${luckyNumbers.join(', ')}</b>\n`;
+  horoscope += `🎨 Šťastná barva: <b>${luckyColor}</b>\n\n`;
+  horoscope += `🎵 <b>Doporučená frekvence:</b>\n`;
+  horoscope += `${recommendedFreq.hz} Hz - ${recommendedFreq.name}\n`;
+  horoscope += `Čakra: ${recommendedFreq.chakra}\n`;
+  horoscope += `${recommendedFreq.description}\n\n`;
+  horoscope += `✨ Ať vás dnes provází harmonie a štěstí! 💜\n\n`;
+  horoscope += `Tvoje Natálie 💜`;
+  
+  return horoscope;
+}
+
+/**
+ * Generate meditation tips message
+ */
+function generateMeditationTips(): string {
+  let tips = `🧘 <b>Meditační tipy podle frekvencí</b>\n\n`;
+  tips += `Každá frekvence rezonuje s jinou čakrou a pomáhá s jinými aspekty života:\n\n`;
+  
+  for (const freq of FREQUENCIES) {
+    tips += `<b>${freq.hz} Hz - ${freq.name}</b>\n`;
+    tips += `• Čakra: ${freq.chakra}\n`;
+    tips += `• ${freq.description}\n\n`;
+  }
+  
+  tips += `💡 <b>Tip:</b> Použij příkaz /frekvence [Hz] pro detail konkrétní frekvence.\n`;
+  tips += `Např.: /frekvence 432\n\n`;
+  tips += `Tvoje Natálie 💜`;
+  
+  return tips;
+}
+
+/**
+ * Get specific frequency tip
+ */
+function getFrequencyTip(hz: number): string {
+  const freq = FREQUENCIES.find(f => f.hz === hz);
+  
+  if (!freq) {
+    return `❌ Frekvence ${hz} Hz není v našem systému.\n\nDostupné frekvence: ${FREQUENCIES.map(f => f.hz).join(', ')} Hz\n\nTvoje Natálie 💜`;
+  }
+  
+  let tip = `🎵 <b>${freq.hz} Hz - ${freq.name}</b>\n\n`;
+  tip += `🟢 <b>Čakra:</b> ${freq.chakra}\n`;
+  tip += `🎨 <b>Barva:</b> ${freq.color}\n\n`;
+  tip += `<b>Popis:</b>\n${freq.description}\n\n`;
+  
+  // Add meditation instructions
+  tip += `<b>🧘 Jak meditovat s touto frekvencí:</b>\n`;
+  tip += `1. Najdi si klidné místo a pohodlně se usaď\n`;
+  tip += `2. Zavři oči a soustřeď se na dech\n`;
+  tip += `3. Představ si barvu ${freq.chakra.toLowerCase()} čakry\n`;
+  tip += `4. Nech frekvenci prostávat tvým tělem\n`;
+  tip += `5. Medituj 10-20 minut\n\n`;
+  
+  tip += `✨ Použij Generátor harmonických frekvencí na amulets.cz!\n\n`;
+  tip += `Tvoje Natálie 💜`;
+  
+  return tip;
+}
+
 /**
  * Process incoming Telegram message and generate AI response
  */
@@ -413,6 +526,49 @@ export async function processIncomingMessage(update: TelegramUpdate): Promise<bo
     history.push({
       role: 'assistant',
       content: '[Odeslán denní report]',
+      timestamp: Date.now(),
+    });
+    conversationHistory.set(userId, history);
+    return true;
+  }
+
+  // Příkaz /horoskop - denní čínský horoskop
+  if (lowerMessage === '/horoskop' || lowerMessage.startsWith('/horoskop ')) {
+    const horoscope = await generateDailyHoroscope();
+    await sendTelegramMessageToChat(chatId.toString(), horoscope, 'HTML');
+    
+    history.push({
+      role: 'assistant',
+      content: '[Odeslán denní horoskop]',
+      timestamp: Date.now(),
+    });
+    conversationHistory.set(userId, history);
+    return true;
+  }
+
+  // Příkaz /meditace - meditační tipy podle frekvencí
+  if (lowerMessage === '/meditace' || lowerMessage.startsWith('/meditace ')) {
+    const tips = generateMeditationTips();
+    await sendTelegramMessageToChat(chatId.toString(), tips, 'HTML');
+    
+    history.push({
+      role: 'assistant',
+      content: '[Odeslány meditační tipy]',
+      timestamp: Date.now(),
+    });
+    conversationHistory.set(userId, history);
+    return true;
+  }
+
+  // Příkaz /frekvence [Hz] - konkrétní frekvence
+  if (lowerMessage.startsWith('/frekvence ')) {
+    const hz = parseInt(lowerMessage.split(' ')[1]);
+    const tip = getFrequencyTip(hz);
+    await sendTelegramMessageToChat(chatId.toString(), tip, 'HTML');
+    
+    history.push({
+      role: 'assistant',
+      content: `[Odeslán tip pro frekvenci ${hz} Hz]`,
       timestamp: Date.now(),
     });
     conversationHistory.set(userId, history);
