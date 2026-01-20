@@ -44,6 +44,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
   const [volume, setVolume] = useState(0.5);
   const [isMuted, setIsMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true); // Defaultně zasunutý
   const [isVisible, setIsVisible] = useState(true);
   const [showFrequencyWheel, setShowFrequencyWheel] = useState(false);
   
@@ -366,12 +367,32 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
     );
   }
 
-  // Lite mode - floating bottom bar (redesigned layout)
+  // Top-positioned collapsible bar (redesigned layout)
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center">
-      {/* Egyptian-style floating bar - redesigned with wave animation */}
+    <div className="fixed top-0 left-0 right-0 z-40 flex flex-col items-center">
+      {/* Toggle button - "Generátor harmonických frekvencí" */}
+      <button
+        onClick={() => setIsCollapsed(!isCollapsed)}
+        className="mt-2 px-6 py-2 rounded-b-xl text-sm font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2"
+        style={{
+          background: "linear-gradient(135deg, #D4AF37 0%, #C9A02C 100%)",
+          color: "#1a1a2e",
+          boxShadow: "0 4px 15px rgba(212, 175, 55, 0.4)",
+        }}
+      >
+        <span>✨</span>
+        <span>Generátor harmonických frekvencí</span>
+        <span className={`transition-transform duration-300 ${isCollapsed ? 'rotate-180' : ''}`}>▼</span>
+      </button>
+
+      {/* HarmonyTuner panel - slide down when expanded */}
       <div 
-        className={`mx-4 mb-4 rounded-2xl overflow-hidden shadow-2xl max-w-full w-full relative ${
+        className={`w-full flex justify-center transition-all duration-500 overflow-hidden ${
+          isCollapsed ? 'max-h-0 opacity-0' : 'max-h-[200px] opacity-100'
+        }`}
+      >
+        <div 
+          className={`mx-4 mt-2 rounded-2xl overflow-hidden shadow-2xl max-w-6xl w-full relative ${
           playingFrequencies.size > 0 ? 'animate-wave' : ''
         }`}
         style={{
@@ -574,6 +595,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
             </button>
           </div>
         )}
+        </div>
       </div>
     </div>
   );

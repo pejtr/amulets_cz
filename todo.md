@@ -1927,3 +1927,25 @@
 - [x] Udělat panel lehce širčí (max-w-full místo max-w-7xl)
 - [x] Vycentrovat tlačítka (justify-center)
 - [ ] Otestovat a uložit checkpoint
+
+## HarmonyTuner-chatbot propojení (Jan 20, 2026)
+- [ ] Dokončit integraci AIChatAssistant s HarmonyTunerContext
+- [ ] Když se změní frekvence, chatbot nabídne meditační tip
+- [ ] Když se HarmonyTuner rozbalí do fullscreen, chatbot se automaticky otevře
+- [ ] Zobrazit meditační tipy podle čakry a frekvence
+- [ ] Otestovat integraci a uložit checkpoint
+
+## HarmonyTuner - zúžit aby nepřekrýval floating badges (Jan 20, 2026)
+- [x] Zúžit HarmonyTuner do šířky (max-w-6xl místo max-w-full)
+- [x] Zajistit že nepřekrývá spodní floating badges (Nedávno zakoupeno)
+- [ ] Otestovat a uložit checkpoint
+
+## HarmonyTuner - přesunout nahoru pod menu a defaultně zasunutý (Jan 20, 2026)
+- [x] Přidat isCollapsed state do HarmonyTuner
+- [x] Vytvořit vysouvačí tlačítko "Generátor harmonických frekvencí" (zlaté, s ikonami)
+- [x] Přesunout HarmonyTuner z bottom floating bar nahoru (fixed top-0)
+- [x] Defaultně zasunutý (collapsed) - zobrazí se jen tlačítko
+- [x] Kliknutím na tlačítko se rozbalí dolů (slide down animation s max-h a opacity)
+- [x] Šipka na tlačítku se otáčí podle stavu (collapsed/expanded)
+- [x] Otestovat - tlačítko viditelné nahoře, panel se rozbalí kliknutím
+- [ ] Uložit checkpoint
