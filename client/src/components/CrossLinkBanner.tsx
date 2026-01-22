@@ -114,7 +114,7 @@ export default function CrossLinkBanner() {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-40 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white shadow-lg transition-transform duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-30 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white shadow-lg transition-transform duration-300 ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >

@@ -2108,3 +2108,9 @@
 - [x] Opravit překrývání HarmonyTuner tutoriálu s menu (odstraněno auto-spuštění)
 - [x] Přidat Bindu.cz odkaz do footeru (charitativní organizace - kamarádka)
 - [x] Implementovat hudbu na pozadí jako na bindu.cz (BackgroundMusic komponenta)
+
+### Opravy chatbota a hudby (Jan 22, 2026)
+- [x] Upravit chatbota aby Natálie pozdravila před otázkou
+- [x] Opravit hudbu na pozadí (lokální soubor)
+- [x] Opravit překrývání Spřízněné projekty dropdown s navigací (z-index)
+- [x] Opravit aromaterapie banner - na celou šířku bez oříznutí

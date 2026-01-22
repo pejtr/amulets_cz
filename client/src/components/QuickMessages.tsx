@@ -24,11 +24,11 @@ const QUICK_MESSAGES: QuickMessage[] = [
   // Time-based triggers
   {
     id: "welcome_30s",
-    message: "✨ Ahoj! Hledáš svůj spirituální symbol? Mohu ti pomoci!",
+    message: "💜 Ahoj! Jsem Natálie a ráda ti poradím s výběrem amuletu nebo kamene. Potřebuješ pomoci?",
     trigger: "time",
     triggerValue: 30,
     priority: 1,
-    cta: { text: "Ano, poraď mi", action: "open_chat" },
+    cta: { text: "Ano, prosím", action: "open_chat" },
     showOnce: true,
     category: "engagement",
   },
@@ -44,7 +44,7 @@ const QUICK_MESSAGES: QuickMessage[] = [
   },
   {
     id: "help_120s",
-    message: "🔮 Potřebuješ poradit s výběrem amuletu nebo kamene?",
+    message: "🔮 Ahoj! Jsem tu pro tebe. Potřebuješ poradit s výběrem amuletu nebo kamene?",
     trigger: "time",
     triggerValue: 120,
     priority: 1,

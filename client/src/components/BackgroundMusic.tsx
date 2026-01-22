@@ -1,13 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { Volume2, VolumeX, Music } from 'lucide-react';
 
-// Meditační hudba - Latika's Theme (jako na bindu.cz)
-// Poznámka: Pro produkci použijte vlastní licencovanou hudbu nebo royalty-free
-const BACKGROUND_MUSIC_URL = 'http://bindu.cz/www/video/latika-s-theme-128kbps-cropped.mp3';
-
-// Alternativní royalty-free meditační hudby (doporučeno pro produkci):
-// - https://pixabay.com/music/search/meditation/
-// - https://www.bensound.com/royalty-free-music/meditation
+// Lokální meditační hudba - uložena v public složce
+// Použijeme royalty-free hudbu z Pixabay
+const BACKGROUND_MUSIC_URL = '/meditation-music.mp3';
 
 const STORAGE_KEY = 'background-music-enabled';
 const VOLUME_KEY = 'background-music-volume';
@@ -16,21 +12,16 @@ export default function BackgroundMusic() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.3);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Load saved preferences
   useEffect(() => {
-    const savedEnabled = localStorage.getItem(STORAGE_KEY);
     const savedVolume = localStorage.getItem(VOLUME_KEY);
     
     if (savedVolume) {
       setVolume(parseFloat(savedVolume));
-    }
-    
-    // Don't auto-play - wait for user interaction
-    if (savedEnabled === 'true') {
-      setHasInteracted(true);
     }
   }, []);
 
@@ -40,12 +31,20 @@ export default function BackgroundMusic() {
       const audio = new Audio(BACKGROUND_MUSIC_URL);
       audio.loop = true;
       audio.volume = volume;
-      audio.preload = 'none'; // Don't preload until user interacts
+      audio.preload = 'none';
       audioRef.current = audio;
+
+      // Handle successful load
+      audio.oncanplaythrough = () => {
+        setIsLoaded(true);
+        setHasError(false);
+      };
 
       // Handle audio errors
       audio.onerror = () => {
         console.error('Background music failed to load');
+        setHasError(true);
+        setIsLoaded(false);
       };
     }
 
@@ -80,13 +79,18 @@ export default function BackgroundMusic() {
         }
         await audioRef.current.play();
         setIsPlaying(true);
-        setHasInteracted(true);
         localStorage.setItem(STORAGE_KEY, 'true');
       }
     } catch (error) {
       console.error('Error toggling background music:', error);
+      setHasError(true);
     }
   };
+
+  // Don't render if there's an error loading the audio
+  if (hasError) {
+    return null;
+  }
 
   return (
     <div 
