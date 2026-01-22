@@ -2148,3 +2148,8 @@
 
 ### Prodloužení pracovní doby Natálie (Jan 22, 2026)
 - [x] Změnit offline hodiny z 22:00-8:00 na 00:00-8:00 (pracuje do půlnoci)
+
+### Oprava Telegram bota a OHORAI synchronizace (Jan 22, 2026)
+- [x] Přidat endpoint pro registraci Telegram webhook
+- [x] Opravit OHORAI synchronizaci - skrýt sekci pokud nejsou data
+- [x] Vytvořit admin stránku pro A/B test statistiky Natálie

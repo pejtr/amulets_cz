@@ -875,9 +875,9 @@ export async function generateCombinedDailyReport(): Promise<string> {
   report += `├─ 🔗 Kliknutí na odkazy: <b>${amuletsAnalytics?.linkClicks || 0}</b>\n`;
   report += `└─ Konverzní poměr: <b>${amuletsConversionRate.toFixed(2)}%</b>\n\n`;
 
-  // OHORAI section
-  report += `💎 <b>OHORAI MARKETPLACE</b>\n`;
+  // OHORAI section - pouze pokud jsou data
   if (ohoraiHasData) {
+    report += `💎 <b>OHORAI MARKETPLACE</b>\n`;
     report += `├─ Konverzací: <b>${ohoraiTotalSessions}</b>\n`;
     report += `├─ Zpráv: <b>${ohoraiTotalMessages}</b>\n`;
     report += `├─ Konverzí: <b>${ohoraiTotalConversions}</b>\n`;
@@ -888,8 +888,6 @@ export async function generateCombinedDailyReport(): Promise<string> {
     } else {
       report += `\n`;
     }
-  } else {
-    report += `└─ <i>Čekám na první synchronizaci dat z OHORAI...</i>\n\n`;
   }
 
   // Combined totals

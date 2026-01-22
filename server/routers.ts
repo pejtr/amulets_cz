@@ -34,7 +34,7 @@ import {
   getAllChatbotTickets,
   getChatbotTicketsByVisitor,
 } from "./db";
-import { sendDailyReport, sendTestMessage, generateDailyReport, sendTelegramMessage } from "./telegram";
+import { sendDailyReport, sendTestMessage, generateDailyReport, sendTelegramMessage, setTelegramWebhook, getTelegramWebhookInfo } from "./telegram";
 import { createCoachingLead, formatLeadForTelegram } from "./coachingDb";
 import { 
   getNatalieAmuletsPersonality,
@@ -829,6 +829,29 @@ ${email ? `- Email: ${email}` : ''}
           });
         }
         return { success: true, message: 'Test message sent to Telegram' };
+      }),
+
+    // Register webhook
+    registerWebhook: publicProcedure
+      .input(z.object({
+        webhookUrl: z.string().url(),
+      }))
+      .mutation(async ({ input }) => {
+        const success = await setTelegramWebhook(input.webhookUrl);
+        if (!success) {
+          throw new TRPCError({ 
+            code: 'INTERNAL_SERVER_ERROR', 
+            message: 'Failed to register webhook. Check Telegram configuration.' 
+          });
+        }
+        return { success: true, message: 'Webhook registered successfully' };
+      }),
+
+    // Get webhook info
+    getWebhookInfo: publicProcedure
+      .query(async () => {
+        const info = await getTelegramWebhookInfo();
+        return { info };
       }),
 
     // Preview report (without sending)
