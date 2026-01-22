@@ -2073,3 +2073,12 @@
 ### HarmonyTuner opravy (Jan 22, 2026)
 - [x] Opravit Play tlačítko - přidán resume pro AudioContext
 - [x] Přesunout HarmonyTuner pod sticky menu (top-[80px] md:top-[120px])
+
+### HarmonyTuner Audio Analyzer (Jan 22, 2026)
+- [x] Vytvořit AudioAnalyzer komponentu s Web Audio API
+- [x] Implementovat nahrávání z mikrofonu
+- [x] Implementovat pitch detection (autocorrelation algoritmus)
+- [x] Zobrazit detekovanou frekvenci v reálném čase
+- [x] Najít nejbližší Solfeggio frekvenci
+- [x] Doporučit meditační tipy podle detekované frekvence
+- [x] Integrovat do HarmonyTuner UI (tlačítko Mic)

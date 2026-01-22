@@ -12,7 +12,9 @@ import {
   X,
   Sparkles,
   Lock,
+  Mic,
 } from "lucide-react";
+import AudioAnalyzer from "@/components/AudioAnalyzer";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 // Solfeggio frequencies with chakra information
@@ -47,6 +49,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
   const [isCollapsed, setIsCollapsed] = useState(true); // Defaultně zasunutý
   const [isVisible, setIsVisible] = useState(true);
   const [showFrequencyWheel, setShowFrequencyWheel] = useState(false);
+  const [showAudioAnalyzer, setShowAudioAnalyzer] = useState(false);
   
   // Audio contexts for each frequency (multi-frequency support)
   const audioContextsRef = useRef<Map<number, {
@@ -596,8 +599,17 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
             </div>
           </div>
 
-          {/* Right: Fullscreen + Close */}
+          {/* Right: Audio Analyzer + Fullscreen + Close */}
           <div className="flex items-center gap-2 flex-shrink-0">
+            {/* Audio Analyzer button */}
+            <button
+              onClick={() => setShowAudioAnalyzer(true)}
+              className="p-2 rounded-full bg-gradient-to-r from-green-600/30 to-[#D4AF37]/30 hover:from-green-600/50 hover:to-[#D4AF37]/50 transition-colors border border-green-500/30"
+              title="Analyzovat zvuk"
+            >
+              <Mic className="w-5 h-5 text-green-400" />
+            </button>
+
             {/* Fullscreen button */}
             <button
               onClick={() => setIsFullscreen(true)}
@@ -634,6 +646,24 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
         )}
         </div>
       </div>
+
+      {/* Audio Analyzer Modal */}
+      {showAudioAnalyzer && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+          <div className="w-full max-w-lg">
+            <AudioAnalyzer
+              onFrequencyDetected={(frequency, closestSolfeggio) => {
+                // Find matching frequency in our list and select it
+                const matchingFreq = FREQUENCIES.find(f => f.hz === closestSolfeggio.hz);
+                if (matchingFreq) {
+                  setSelectedFrequency(matchingFreq);
+                }
+              }}
+              onClose={() => setShowAudioAnalyzer(false)}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
