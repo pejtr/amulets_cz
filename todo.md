@@ -2045,3 +2045,31 @@
 - [ ] Vytvořit 2 Telegram skupiny: "🪷 Amulets PREMIUM" a "👑 Amulets VIP" - MANUÁLNÍ KROK
 - [ ] Implementovat automatické přidání do skupiny po platbě - TODO: webhook
 - [ ] Testovat celý flow (platba → Premium → cross-sell OHORAI)
+
+### Rychlé zprávy z chatbot bubliny (Jan 22, 2026)
+- [ ] Implementovat behavioral triggers pro rychlé zprávy
+- [ ] Zprávy vyskakují z chatbot bubliny podle chování zákazníka
+- [ ] Triggery: čas na stránce (30s, 60s, 120s), scroll depth, sekce
+- [ ] Personalizované zprávy podle kontextu (produkty, symboly, horoskopy)
+- [ ] Animace notifikace (pulse, slide-in)
+
+### Uvítací zpráva pro PREMIUM/VIP členy (Jan 22, 2026)
+- [ ] Přidat uvítací zprávu představující výhody PREMIUM členství
+- [ ] Přidat uvítací zprávu pro VIP členy (exkluzivní obsah)
+- [ ] Zobrazit při prvním přihlášení člena
+
+### Automatizovaná sekvence zpráv pro PREMIUM (Jan 22, 2026)
+- [ ] Den 1: Vítej v PREMIUM + hlavní funkce
+- [ ] Den 3: Jak využít meditace a frekvence
+- [ ] Den 7: Exkluzivní slevy na OHORAI produkty
+- [ ] Den 14: Pozvánka do VIP komunity
+
+### Speciální bonusový obsah pro VIP (Jan 22, 2026)
+- [ ] Exkluzivní meditace (pouze VIP)
+- [ ] Přímý kontakt s Natálií
+- [ ] Early access k novým produktům
+- [ ] VIP slevy 20% na vše
+
+### HarmonyTuner opravy (Jan 22, 2026)
+- [x] Opravit Play tlačítko - přidán resume pro AudioContext
+- [x] Přesunout HarmonyTuner pod sticky menu (top-[80px] md:top-[120px])

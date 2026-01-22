@@ -102,6 +102,7 @@ import { toast } from "sonner";
 import { useBrowsing } from "@/contexts/BrowsingContext";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { useHarmonyTuner } from "@/contexts/HarmonyTunerContext";
+import QuickMessages from "@/components/QuickMessages";
 
 // Meditation tips for each frequency/chakra
 const FREQUENCY_MEDITATION_TIPS: Record<number, { chakra: string; tip: string }> = {
@@ -756,8 +757,48 @@ Co tě dnes přivádí?`;
     }
   }, [messages]);
 
+  // Handler for QuickMessages to open chat with optional message
+  const handleQuickMessageOpenChat = (message?: string) => {
+    setIsOpen(true);
+    if (message) {
+      setTimeout(() => {
+        setInput(message);
+      }, 500);
+    }
+  };
+
+  // Detect current section based on scroll position
+  const [currentSection, setCurrentSection] = useState<string | undefined>();
+  
+  useEffect(() => {
+    const detectSection = () => {
+      const sections = ['products', 'horoscope', 'symbols', 'testimonials', 'faq'];
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+            setCurrentSection(sectionId);
+            return;
+          }
+        }
+      }
+      setCurrentSection(undefined);
+    };
+    
+    window.addEventListener('scroll', detectSection);
+    return () => window.removeEventListener('scroll', detectSection);
+  }, []);
+
   return (
     <>
+      {/* Quick Messages - Rychlé zprávy z chatbot bubliny */}
+      <QuickMessages
+        onOpenChat={handleQuickMessageOpenChat}
+        isChatOpen={isOpen}
+        currentSection={currentSection}
+      />
+      
       {/* Chat Button - Větší a pulzující */}
       {!isOpen && (
         <div className="fixed bottom-6 right-6 z-50">

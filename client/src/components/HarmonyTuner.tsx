@@ -73,14 +73,48 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
   }, [volume, isMuted]);
 
   // Play a specific frequency
-  const playFrequency = useCallback((hz: number) => {
-    initAudioForFrequency(hz);
-    const audio = audioContextsRef.current.get(hz);
-    if (audio && audio.oscillator.context.state !== 'running') {
-      audio.oscillator.start();
+  const playFrequency = useCallback(async (hz: number) => {
+    try {
+      // Remove old audio context if exists
+      const existingAudio = audioContextsRef.current.get(hz);
+      if (existingAudio) {
+        try {
+          existingAudio.oscillator.stop();
+          existingAudio.oscillator.disconnect();
+          await existingAudio.context.close();
+        } catch (e) {
+          // Ignore cleanup errors
+        }
+        audioContextsRef.current.delete(hz);
+      }
+      
+      // Create new audio context
+      const context = new (window.AudioContext || (window as any).webkitAudioContext)();
+      
+      // Resume context if suspended (required for user interaction)
+      if (context.state === 'suspended') {
+        await context.resume();
+      }
+      
+      const gainNode = context.createGain();
+      gainNode.connect(context.destination);
+      gainNode.gain.value = isMuted ? 0 : volume;
+      
+      const oscillator = context.createOscillator();
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(hz, context.currentTime);
+      oscillator.connect(gainNode);
+      
+      // Store reference
+      audioContextsRef.current.set(hz, { context, oscillator, gainNode });
+      
+      // Start oscillator
+      oscillator.start();
       setPlayingFrequencies(prev => new Set([...Array.from(prev), hz]));
+    } catch (error) {
+      console.error('Error playing frequency:', error);
     }
-  }, [initAudioForFrequency]);
+  }, [volume, isMuted]);
 
   // Stop a specific frequency
   const stopFrequency = useCallback((hz: number) => {
@@ -368,8 +402,9 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
   }
 
   // Top-positioned collapsible bar (redesigned layout)
+  // Pozice pod sticky menu (header je cca 120px na desktopu, 80px na mobilu)
   return (
-    <div className="fixed top-0 left-0 right-0 z-40 flex flex-col items-center">
+    <div className="fixed top-[80px] md:top-[120px] left-0 right-0 z-30 flex flex-col items-center">
       {/* Toggle button - "Generátor harmonických frekvencí" */}
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
