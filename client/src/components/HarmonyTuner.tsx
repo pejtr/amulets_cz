@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import AudioAnalyzer from "@/components/AudioAnalyzer";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import HarmonyTunerTutorial, { useHarmonyTutorial } from "@/components/HarmonyTunerTutorial";
+import { HelpCircle } from "lucide-react";
 
 // Solfeggio frequencies with chakra information
 const FREQUENCIES = [
@@ -50,6 +52,9 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
   const [isVisible, setIsVisible] = useState(true);
   const [showFrequencyWheel, setShowFrequencyWheel] = useState(false);
   const [showAudioAnalyzer, setShowAudioAnalyzer] = useState(false);
+  
+  // Tutorial state
+  const { showTutorial, startTutorial, closeTutorial, completeTutorial, hasSeenTutorial } = useHarmonyTutorial();
   
   // Audio contexts for each frequency (multi-frequency support)
   const audioContextsRef = useRef<Map<number, {
@@ -425,7 +430,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
 
       {/* HarmonyTuner panel - slide down when expanded */}
       <div 
-        className={`w-full flex justify-center transition-all duration-500 overflow-hidden ${
+        className={`harmony-tuner-panel w-full flex justify-center transition-all duration-500 overflow-hidden ${
           isCollapsed ? 'max-h-0 opacity-0' : 'max-h-[200px] opacity-100'
         }`}
       >
@@ -469,7 +474,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
           </>
         )}
         {/* Frequency buttons row */}
-        <div className="px-4 py-3 flex items-center justify-center gap-2">
+        <div className="harmony-frequencies px-4 py-3 flex items-center justify-center gap-2">
           {/* All 10 frequency buttons */}
             {FREQUENCIES.map((freq) => {
               const isSelected = freq.hz === selectedFrequency.hz;
@@ -482,7 +487,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
                     handleSelectFrequency(freq);
                     toggleFrequency(freq.hz);
                   }}
-                  className={`w-[75px] h-[75px] md:w-[75px] md:h-[75px] sm:w-[60px] sm:h-[60px] rounded-xl flex flex-col items-center justify-center gap-0.5 font-medium transition-all duration-300 relative flex-shrink-0 ${
+                  className={`harmony-frequency-button w-[75px] h-[75px] md:w-[75px] md:h-[75px] sm:w-[60px] sm:h-[60px] rounded-xl flex flex-col items-center justify-center gap-0.5 font-medium transition-all duration-300 relative flex-shrink-0 ${
                     isPlaying
                       ? 'scale-105'
                       : 'hover:scale-105'
@@ -555,7 +560,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
             {/* Play/Pause */}
             <button
               onClick={() => toggleFrequency(selectedFrequency.hz)}
-              className="p-3 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] hover:from-[#E5C158] hover:to-[#D4AF37] text-white transition-all duration-300 shadow-lg flex-shrink-0"
+              className="harmony-play-button p-3 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] hover:from-[#E5C158] hover:to-[#D4AF37] text-white transition-all duration-300 shadow-lg flex-shrink-0"
             >
               {playingFrequencies.has(selectedFrequency.hz) ? (
                 <Pause className="w-5 h-5" />
@@ -567,7 +572,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
             {/* Volume */}
             <button
               onClick={() => setIsMuted(!isMuted)}
-              className="p-2 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors flex-shrink-0"
+              className="harmony-volume-control p-2 rounded-full bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 transition-colors flex-shrink-0"
             >
               {isMuted ? (
                 <VolumeX className="w-5 h-5 text-[#D4AF37]" />
@@ -601,10 +606,28 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
 
           {/* Right: Audio Analyzer + Fullscreen + Close */}
           <div className="flex items-center gap-2 flex-shrink-0">
+            {/* Tutorial button - spustí tutoriál a automaticky rozbalí panel */}
+            <button
+              onClick={() => {
+                // Nejprve rozbalit panel, pak spustit tutoriál
+                if (isCollapsed) {
+                  setIsCollapsed(false);
+                  // Počkat na animaci rozbalení
+                  setTimeout(() => startTutorial(), 500);
+                } else {
+                  startTutorial();
+                }
+              }}
+              className="p-2 rounded-full bg-gradient-to-r from-amber-600/30 to-[#D4AF37]/30 hover:from-amber-600/50 hover:to-[#D4AF37]/50 transition-colors border border-amber-500/30"
+              title="Zobrazit tutoriál"
+            >
+              <HelpCircle className="w-5 h-5 text-amber-400" />
+            </button>
+
             {/* Audio Analyzer button */}
             <button
               onClick={() => setShowAudioAnalyzer(true)}
-              className="p-2 rounded-full bg-gradient-to-r from-green-600/30 to-[#D4AF37]/30 hover:from-green-600/50 hover:to-[#D4AF37]/50 transition-colors border border-green-500/30"
+              className="harmony-mic-button p-2 rounded-full bg-gradient-to-r from-green-600/30 to-[#D4AF37]/30 hover:from-green-600/50 hover:to-[#D4AF37]/50 transition-colors border border-green-500/30"
               title="Analyzovat zvuk"
             >
               <Mic className="w-5 h-5 text-green-400" />
@@ -646,6 +669,13 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
         )}
         </div>
       </div>
+
+      {/* Tutorial */}
+      <HarmonyTunerTutorial
+        isOpen={showTutorial}
+        onClose={closeTutorial}
+        onComplete={completeTutorial}
+      />
 
       {/* Audio Analyzer Modal */}
       {showAudioAnalyzer && (

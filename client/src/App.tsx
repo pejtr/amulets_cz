@@ -10,6 +10,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { BrowsingProvider } from "./contexts/BrowsingContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { HarmonyTunerProvider } from "./contexts/HarmonyTunerContext";
+import { ABTestProvider } from "./contexts/ABTestContext";
 import Home from "./pages/Home";
 import GuideDetail from "./pages/GuideDetail";
 import Magazine from "./pages/Magazine";
@@ -23,12 +24,14 @@ import BackToTop from "./components/BackToTop";
 
 import AIChatAssistant from "./components/AIChatAssistant";
 import StickyEsenceBanner from "./components/StickyEsenceBanner";
+import BackgroundMusic from "./components/BackgroundMusic";
 import AboutNatalie from "./pages/AboutNatalie";
 import AmenPendants from "./pages/AmenPendants";
 import AdminCampaigns from "./pages/AdminCampaigns";
 import AdminChatbotAB from "./pages/AdminChatbotAB";
 import AdminTickets from "./pages/AdminTickets";
 import AdminTelegram from "./pages/AdminTelegram";
+import AdminABTests from "./pages/AdminABTests";
 import OHORAI from "./pages/OHORAI";
 import Team from "./pages/Team";
 import LunarReading from "./pages/LunarReading";
@@ -65,6 +68,7 @@ function Router() {
       <Route path="/admin/chatbot-ab" component={AdminChatbotAB} />
       <Route path="/admin/tickets" component={AdminTickets} />
       <Route path="/admin/telegram" component={AdminTelegram} />
+      <Route path="/admin/ab-tests" component={AdminABTests} />
       {/* Redirects for old/removed pages */}
       <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>
       <Route path={"/404"} component={NotFound} />
@@ -103,6 +107,7 @@ function App() {
         >
           <BrowsingProvider>
             <HarmonyTunerProvider>
+              <ABTestProvider>
           <ExitIntentPopup />
         <TooltipProvider>
           <Toaster />
@@ -111,7 +116,9 @@ function App() {
           <BackToTop />
           <AIChatAssistant />
           <StickyEsenceBanner />
+          <BackgroundMusic />
         </TooltipProvider>
+              </ABTestProvider>
             </HarmonyTunerProvider>
           </BrowsingProvider>
         </ThemeProvider>

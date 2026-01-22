@@ -2082,3 +2082,29 @@
 - [x] Najít nejbližší Solfeggio frekvenci
 - [x] Doporučit meditační tipy podle detekované frekvence
 - [x] Integrovat do HarmonyTuner UI (tlačítko Mic)
+
+### Vizuální tutoriál HarmonyTuner (Jan 22, 2026)
+- [x] Vytvořit HarmonyTunerTutorial komponentu
+- [x] Implementovat krokový průvodce (step-by-step)
+- [x] Přidat highlight efekt na jednotlivé prvky
+- [x] Uložit stav "viděl tutoriál" do localStorage
+- [x] Přidat tlačítko pro opětovné spuštění tutoriálu (HelpCircle ikona)
+
+### A/B testování PREMIUM tlačítka (Jan 22, 2026)
+- [x] Vytvořit ABTestProvider context
+- [x] Implementovat varianty tlačítka (barvy, texty) - 4 varianty
+- [x] Trackovat konverze pro každou variantu (localStorage + server)
+- [x] Přidat admin dashboard pro výsledky A/B testů (/admin/ab-tests)
+- [x] Automaticky vybrat vítěznou variantu (po 100+ zobrazeních)
+
+### Stripe integrace PREMIUM (Jan 22, 2026)
+- [ ] Přidat Stripe feature pomocí webdev_add_feature
+- [ ] Vytvořit checkout flow pro 88 Kč/měsíc
+- [ ] Implementovat webhook pro potvrzení platby
+- [ ] Aktualizovat user_memberships po úspěšné platbě
+- [ ] Propojit s Telegram VIP skupinou (automatické pozvánky)
+
+### Oprava tutoriálu a nové funkce (Jan 22, 2026)
+- [x] Opravit překrývání HarmonyTuner tutoriálu s menu (odstraněno auto-spuštění)
+- [x] Přidat Bindu.cz odkaz do footeru (charitativní organizace - kamarádka)
+- [x] Implementovat hudbu na pozadí jako na bindu.cz (BackgroundMusic komponenta)

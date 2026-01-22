@@ -144,6 +144,24 @@ export default function Footer() {
                 @DonuteriePrague
               </a>
             </div>
+
+            {/* Bindu - charitativní organizace */}
+            <div className="flex flex-col items-center gap-2">
+              <a
+                href="http://bindu.cz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors font-medium"
+              >
+                ॐ Bindu z.s.
+              </a>
+              <p className="text-xs text-muted-foreground text-center max-w-[180px]">
+                Charita pro děti v Indii a Nepálu
+              </p>
+              <span className="text-xs text-pink-500 font-medium">
+                ❤ 100% příspěvků jde dětem
+              </span>
+            </div>
           </div>
         </div>
 
