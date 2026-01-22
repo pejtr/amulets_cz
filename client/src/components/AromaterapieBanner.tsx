@@ -9,10 +9,12 @@ export default function AromaterapieBanner() {
   return (
     <section className="relative w-full overflow-hidden py-4 md:py-8">
       {/* Full width background image - no container restrictions */}
-      <div 
-        className="relative w-full h-[200px] sm:h-[280px] md:h-[400px] lg:h-[500px] bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/aromaterapie-banner.png')" }}
-      >
+      <div className="relative w-full h-[200px] sm:h-[280px] md:h-[400px] lg:h-[500px]">
+        <img
+          src="/aromaterapie-banner.png"
+          alt="Aromaterapie banner"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         {/* SEO only - hidden heading */}
         <h2 className="sr-only">
           Vůně, která vám rozzáří život - 100% čisté aromaterapeutické esence

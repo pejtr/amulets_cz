@@ -2131,3 +2131,7 @@
 - [x] Opravit feedback formulář - přidat křížek pro zavření
 - [x] Umožnit scrollování ve feedback formuláři
 - [x] Otestovat na mobilu i desktopu
+
+### Oprava aromaterapie banneru pro 4K (Jan 22, 2026)
+- [x] Opravit šířku aromaterapie banneru pro 4K monitory
+- [x] Zajistit že banner je na celou šířku bez ořezu
