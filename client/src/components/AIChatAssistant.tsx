@@ -803,9 +803,13 @@ Co tě dnes přivádí?`;
       {/* Chat Button - Větší a pulzující */}
       {!isOpen && (
         <div className="fixed bottom-6 right-6 z-50">
-          {/* Pulzující kruhy pro urgenci */}
-          <span className="absolute inset-0 rounded-full animate-ping bg-purple-400 opacity-30" style={{ animationDuration: '2s' }}></span>
-          <span className="absolute inset-0 rounded-full animate-ping bg-pink-400 opacity-20" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }}></span>
+          {/* Pulzující kruhy pro urgenci - pouze když je online */}
+          {(!isOffline || adminOverride) && (
+            <>
+              <span className="absolute inset-0 rounded-full animate-ping bg-purple-400 opacity-30" style={{ animationDuration: '2s' }}></span>
+              <span className="absolute inset-0 rounded-full animate-ping bg-pink-400 opacity-20" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }}></span>
+            </>
+          )}
           
           <Button
             onClick={() => setIsOpen(true)}

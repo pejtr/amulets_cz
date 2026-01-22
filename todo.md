@@ -2142,3 +2142,6 @@
 
 ### Úprava menu Spřízňené projekty (Jan 22, 2026)
 - [x] Rozdělit položky do dvou sloupců: E-shop (Dobrá Čajovna, Amarex) a Další (Bindu.cz)
+
+### Vypnout pulzování chatbotu během offline (Jan 22, 2026)
+- [x] Odstranit pulzování chatbot bubliny když je Natálie offline (22:00-8:00)
