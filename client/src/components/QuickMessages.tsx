@@ -126,9 +126,10 @@ interface QuickMessagesProps {
   onOpenChat: (message?: string) => void;
   isChatOpen: boolean;
   currentSection?: string;
+  isOffline?: boolean;
 }
 
-export default function QuickMessages({ onOpenChat, isChatOpen, currentSection }: QuickMessagesProps) {
+export default function QuickMessages({ onOpenChat, isChatOpen, currentSection, isOffline = false }: QuickMessagesProps) {
   const [activeMessage, setActiveMessage] = useState<QuickMessage | null>(null);
   const [shownMessages, setShownMessages] = useState<Set<string>>(() => {
     const stored = sessionStorage.getItem("quick_messages_shown");
@@ -281,7 +282,8 @@ export default function QuickMessages({ onOpenChat, isChatOpen, currentSection }
     setTimeout(() => setActiveMessage(null), 300);
   };
 
-  if (!activeMessage || isChatOpen) return null;
+  // Skrýt quick messages pokud je Natálie offline nebo je chat otevřený
+  if (!activeMessage || isChatOpen || isOffline) return null;
 
   return (
     <div

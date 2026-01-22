@@ -2135,3 +2135,7 @@
 ### Oprava aromaterapie banneru pro 4K (Jan 22, 2026)
 - [x] Opravit šířku aromaterapie banneru pro 4K monitory
 - [x] Zajistit že banner je na celou šířku bez ořezu
+
+### Oprava quick messages během offline (Jan 22, 2026)
+- [x] Skrýt rychlé zprávy když je Natálie offline
+- [x] Zobrazit pouze když je Natálie online

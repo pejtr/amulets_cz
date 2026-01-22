@@ -797,6 +797,7 @@ Co tě dnes přivádí?`;
         onOpenChat={handleQuickMessageOpenChat}
         isChatOpen={isOpen}
         currentSection={currentSection}
+        isOffline={isOffline && !adminOverride}
       />
       
       {/* Chat Button - Větší a pulzující */}
