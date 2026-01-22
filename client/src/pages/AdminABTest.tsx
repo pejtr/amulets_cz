@@ -1,7 +1,8 @@
 import { trpc } from "@/lib/trpc";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Loader2, TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { Loader2, TrendingUp, TrendingDown, Minus, BarChart3 } from "lucide-react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useState } from "react";
 
 export default function AdminABTest() {
@@ -18,6 +19,17 @@ export default function AdminABTest() {
   });
 
   const { data: variants } = trpc.chatbotAB.getAllVariants.useQuery();
+
+  const autoDeactivateMutation = trpc.telegram.autoDeactivateWeakVariants.useMutation({
+    onSuccess: (data) => {
+      if (data.deactivated.length > 0) {
+        alert(`Deaktivováno ${data.deactivated.length} slabých variant:\n${data.deactivated.map(v => `- ${v.name} (${v.conversionRate.toFixed(2)}%)`).join('\n')}`);
+      } else {
+        alert('Všechny varianty mají dobrý výkon, žádná nebyla deaktivována.');
+      }
+      refetch();
+    },
+  });
 
   if (isLoading) {
     return (
@@ -65,9 +77,24 @@ export default function AdminABTest() {
             variant="outline"
             onClick={() => refetch()}
             size="sm"
-            className="ml-auto"
           >
             Obnovit
+          </Button>
+          <Button
+            variant="destructive"
+            onClick={() => autoDeactivateMutation.mutate()}
+            size="sm"
+            disabled={autoDeactivateMutation.isPending}
+            className="ml-auto"
+          >
+            {autoDeactivateMutation.isPending ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Deaktivuji...
+              </>
+            ) : (
+              'Auto-deaktivovat slabé'
+            )}
           </Button>
         </div>
 
@@ -96,6 +123,36 @@ export default function AdminABTest() {
                   <p className="text-sm text-gray-600">konverzní poměr</p>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Conversion Rate Chart */}
+        {stats && stats.length > 0 && (
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BarChart3 className="h-5 w-5" />
+                Graf konverzních poměrů
+              </CardTitle>
+              <CardDescription>Vizuální porovnání výkonu jednotlivých variant</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={stats.map((stat: any) => ({
+                  name: variants?.find((v: any) => v.id === stat.variantId)?.name || stat.variantKey,
+                  'Konverzní poměr (%)': Number(stat.conversionRate || 0).toFixed(2),
+                  'Konverzace': Number(stat.totalSessions || 0),
+                  'Konverze': Number(stat.totalConversions || 0),
+                }))}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="Konverzní poměr (%)" stroke="#8b5cf6" strokeWidth={3} />
+                </LineChart>
+              </ResponsiveContainer>
             </CardContent>
           </Card>
         )}

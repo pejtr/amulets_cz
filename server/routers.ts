@@ -35,6 +35,7 @@ import {
   getChatbotTicketsByVisitor,
 } from "./db";
 import { sendDailyReport, sendTestMessage, generateDailyReport, sendTelegramMessage, setTelegramWebhook, getTelegramWebhookInfo } from "./telegram";
+import { autoDeactivateWeakVariants } from "./abTestAutoDeactivate";
 import { createCoachingLead, formatLeadForTelegram } from "./coachingDb";
 import { 
   getNatalieAmuletsPersonality,
@@ -852,6 +853,13 @@ ${email ? `- Email: ${email}` : ''}
       .query(async () => {
         const info = await getTelegramWebhookInfo();
         return { info };
+      }),
+
+    // Auto-deactivate weak variants
+    autoDeactivateWeakVariants: publicProcedure
+      .mutation(async () => {
+        const result = await autoDeactivateWeakVariants();
+        return result;
       }),
 
     // Preview report (without sending)

@@ -2153,3 +2153,8 @@
 - [x] Přidat endpoint pro registraci Telegram webhook
 - [x] Opravit OHORAI synchronizaci - skrýt sekci pokud nejsou data
 - [x] Vytvořit admin stránku pro A/B test statistiky Natálie
+
+### Vylepšení A/B test systému (Jan 22, 2026)
+- [x] Přidat graf konverzních poměrů do /admin/abtest
+- [x] Vytvořit mechanismus pro automatickou deaktivaci slabých variant po 7 dnech
+- [x] Rozšířit statistiky o průměrný počet zpráv na konverzaci (již implementováno)
