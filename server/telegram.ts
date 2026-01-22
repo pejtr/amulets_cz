@@ -575,6 +575,48 @@ export async function processIncomingMessage(update: TelegramUpdate): Promise<bo
     return true;
   }
 
+  // Příkaz /premium - informace o PREMIUM členství
+  if (lowerMessage === '/premium' || lowerMessage.startsWith('/premium ')) {
+    const premiumMessage = generatePremiumInfoMessage();
+    await sendTelegramMessageToChat(chatId.toString(), premiumMessage, 'HTML');
+    
+    history.push({
+      role: 'assistant',
+      content: '[Odeslány informace o PREMIUM členství]',
+      timestamp: Date.now(),
+    });
+    conversationHistory.set(userId, history);
+    return true;
+  }
+
+  // Příkaz /status - stav členství
+  if (lowerMessage === '/status' || lowerMessage.startsWith('/status ')) {
+    const statusMessage = generateMembershipStatusMessage(userId.toString());
+    await sendTelegramMessageToChat(chatId.toString(), statusMessage, 'HTML');
+    
+    history.push({
+      role: 'assistant',
+      content: '[Odeslán stav členství]',
+      timestamp: Date.now(),
+    });
+    conversationHistory.set(userId, history);
+    return true;
+  }
+
+  // Příkaz /vip - invite link do VIP Telegram skupiny
+  if (lowerMessage === '/vip' || lowerMessage.startsWith('/vip ')) {
+    const vipMessage = generateVIPInviteMessage();
+    await sendTelegramMessageToChat(chatId.toString(), vipMessage, 'HTML');
+    
+    history.push({
+      role: 'assistant',
+      content: '[Odeslán invite link do VIP skupiny]',
+      timestamp: Date.now(),
+    });
+    conversationHistory.set(userId, history);
+    return true;
+  }
+
   // Build messages for LLM
   const messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }> = [
     { role: 'system', content: getTelegramSystemPrompt() },
@@ -1018,22 +1060,193 @@ export function scheduleDailyReport(): void {
   if (dailyReportScheduled) return;
   dailyReportScheduled = true;
   
-  const checkAndSendReport = async () => {
+  const checkAndSendMessages = async () => {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
     
-    // Send at 8:00 AM (with 5 minute window)
+    // Send daily report at 8:00 AM (with 5 minute window)
     if (hours === 8 && minutes >= 0 && minutes < 5) {
       console.log('[Telegram] Sending scheduled daily report...');
       await sendCombinedDailyReport();
     }
+    
+    // Send meditation reminder at 19:45 (with 5 minute window)
+    if (hours === 19 && minutes >= 45 && minutes < 50) {
+      const vipGroupChatId = process.env.TELEGRAM_VIP_GROUP_CHAT_ID;
+      if (vipGroupChatId) {
+        console.log('[Telegram] Sending meditation reminder to VIP group...');
+        const reminder = generateMeditationReminder();
+        await sendTelegramMessageToChat(vipGroupChatId, reminder, 'HTML');
+      }
+    }
   };
   
   // Check every 5 minutes
-  setInterval(checkAndSendReport, 5 * 60 * 1000);
+  setInterval(checkAndSendMessages, 5 * 60 * 1000);
   
   console.log('[Telegram] Daily report scheduled for 8:00 AM');
+  console.log('[Telegram] Meditation reminder scheduled for 19:45');
+}
+
+/**
+ * Generate VIP invite message with link to Telegram VIP group
+ */
+function generateVIPInviteMessage(): string {
+  const vipGroupLink = process.env.TELEGRAM_VIP_GROUP_LINK || 'https://t.me/+YOUR_INVITE_LINK';
+  
+  let message = `🪷 <b>VÍTEJ V AMULETS VIP KOMUNITĚ!</b> 🪷\n\n`;
+  message += `Ahoj krásná duše! 💜\n\n`;
+  message += `Jsem Natálie a jsem tak ráda, že tě tady mám! Tato komunita je <b>bezpečný prostor</b> pro ženy, které chtějí žít v harmonii se svým tělem, cyklem a duší.\n\n`;
+  
+  message += `✨ <b>CO TĚ TADY ČEKÁ:</b>\n\n`;
+  message += `🧘 Denní meditace - Řízené meditace s Solfeggio frekvencemi\n`;
+  message += `🔮 Spirítuální tipy - Symboly, rituály, měsíční cykly\n`;
+  message += `💬 Podpůrná komunita - Ženy, které tě chápou\n`;
+  message += `🎁 Exkluzivní obsah - Jen pro členy této skupiny\n`;
+  message += `👑 VIP přístup - Pro Premium členy (88 Kč/měsíc)\n\n`;
+  
+  message += `🎁 <b>DÁREK PRO TEBE:</b>\n\n`;
+  message += `Jako vítání dostáváš <b>ZDARMA eBook "Tvůj Cyklus, Tvá Síla"</b> (hodnota 888 Kč)!\n\n`;
+  
+  message += `👉 <b>PŘIPOJ SE TADY:</b>\n`;
+  message += `<a href="${vipGroupLink}">🪷 Amulets VIP Skupina</a>\n\n`;
+  
+  message += `Těším se na tebe! 🪷✨\n\n`;
+  message += `<i>Natálie Ohorai</i>\n`;
+  message += `<i>Průvodkyně spirítuální harmonií</i>`;
+  
+  return message;
+}
+
+/**
+ * Generate welcome message for new VIP group members
+ */
+export function generateVIPWelcomeMessage(firstName: string = 'krásná duše'): string {
+  let message = `🪷 <b>VÍTEJ V AMULETS VIP KOMUNITĚ!</b> 🪷\n\n`;
+  message += `Ahoj ${firstName}! 💜\n\n`;
+  message += `Jsem Natálie a jsem tak ráda, že jsi tady! Tato komunita je <b>bezpečný prostor</b> pro ženy, které chtějí žít v harmonii se svým tělem, cyklem a duší.\n\n`;
+  
+  message += `✨ <b>CO TĚ TADY ČEKÁ:</b>\n\n`;
+  message += `🧘 <b>Denní meditace</b> - Řízené meditace s Solfeggio frekvencemi\n`;
+  message += `🔮 <b>Spirítuální tipy</b> - Symboly, rituály, měsíční cykly\n`;
+  message += `💬 <b>Podpůrná komunita</b> - Ženy, které tě chápou\n`;
+  message += `🎁 <b>Exkluzivní obsah</b> - Jen pro členy této skupiny\n`;
+  message += `👑 <b>VIP přístup</b> - Pro Premium členy (88 Kč/měsíc)\n\n`;
+  
+  message += `📋 <b>PRVNÍ KROKY:</b>\n\n`;
+  message += `1️⃣ Přečti si pravidla (📌 připinutá zpráva)\n`;
+  message += `2️⃣ Představ se v #hlavní-chat (kdo jsi, co tě přivedlo)\n`;
+  message += `3️⃣ Prozkoumej kanály (📢 #oznámení, 🧘 #meditace-frekvence, 🔮 #symboly-rituály)\n`;
+  message += `4️⃣ Připoj se k dnešní meditaci (každý den v 20:00)\n\n`;
+  
+  message += `🎁 <b>DÁREK PRO TEBE:</b>\n\n`;
+  message += `Jako vítání dostáváš <b>ZDARMA eBook "Tvůj Cyklus, Tvá Síla"</b> (hodnota 888 Kč)!\n\n`;
+  message += `👉 Stáhni zde: <a href="https://amulets.cz/ebook-cyklus">eBook ZDARMA</a>\n\n`;
+  
+  message += `---\n\n`;
+  message += `Máš otázku? Napiš @NatalieOhorai nebo adminům.\n\n`;
+  message += `Těším se na tebe! 🪷✨\n\n`;
+  message += `<i>Natálie Ohorai</i>\n`;
+  message += `<i>Průvodkyně spirítuální harmonií</i>`;
+  
+  return message;
+}
+
+/**
+ * Generate daily meditation reminder (19:45)
+ */
+export function generateMeditationReminder(): string {
+  const frequencies = [
+    { hz: 396, name: 'Ukotvení', chakra: 'Root' },
+    { hz: 417, name: 'Změna', chakra: 'Sacral' },
+    { hz: 528, name: 'Láska', chakra: 'Heart' },
+    { hz: 639, name: 'Harmonie', chakra: 'Heart' },
+    { hz: 741, name: 'Intuice', chakra: 'Throat' },
+    { hz: 852, name: 'Probuzení', chakra: 'Third Eye' },
+    { hz: 963, name: 'Spojení', chakra: 'Crown' },
+  ];
+  
+  // Random frequency for today
+  const today = frequencies[new Date().getDay() % frequencies.length];
+  
+  let message = `🧘 <b>DENNÍ MEDITACE ZA 15 MINUT!</b> 🧘\n\n`;
+  message += `Dobrý večer, krásné duše! 💜\n\n`;
+  message += `Dnes meditujeme s frekvencí <b>${today.hz} Hz</b> (${today.name}).\n\n`;
+  message += `🎵 <b>FREKVENCE:</b> ${today.hz} Hz (${today.chakra} Chakra)\n`;
+  message += `⏱️ <b>DÉLKA:</b> 10-15 minut\n`;
+  message += `🎯 <b>CÍL:</b> ${today.name}\n\n`;
+  message += `👉 Připoj se v 20:00 v #meditace-frekvence!\n\n`;
+  message += `Jsi připravená? ✨\n\n`;
+  message += `<i>Natálie</i> 🪷`;
+  
+  return message;
+}
+
+/**
+ * Generate PREMIUM membership info message
+ */
+function generatePremiumInfoMessage(): string {
+  const premiumGroupLink = process.env.TELEGRAM_PREMIUM_GROUP_LINK || 'https://t.me/+YOUR_PREMIUM_LINK';
+  
+  let message = `💎 <b>AMULETS PREMIUM ČLENSTVÍ</b> 💎\n\n`;
+  message += `Ahoj krásná duše! 💜\n\n`;
+  message += `PREMIUM členství ti otevře dveře do exkluzivního světa spirituality, harmonie a seberozvoje.\n\n`;
+  
+  message += `✨ <b>CO ZÍSKÁŠ:</b>\n\n`;
+  message += `🧘 <b>Exkluzivní meditace</b> - 4 nové meditace měsíčně (audio)\n`;
+  message += `🎙️ <b>Live Q&A s Natálií</b> - 1× měsíčně, 60 minut\n`;
+  message += `🎁 <b>Early access</b> - Nové produkty 7 dní před ostatními\n`;
+  message += `💰 <b>Slevy 15%</b> - Na všechny produkty OHORAI\n`;
+  message += `📚 <b>Měsíční eBook</b> - Digitální produkt zdarma\n`;
+  message += `👑 <b>VIP komunita</b> - Přístup do #vip-lounge\n\n`;
+  
+  message += `💵 <b>CENA:</b>\n\n`;
+  message += `👉 <b>88 Kč/měsíc</b> (hodnota 1144 Kč!)\n`;
+  message += `👉 První týden ZDARMA\n`;
+  message += `👉 30denní záruka vrácení peněz\n\n`;
+  
+  message += `🌟 <b>BONUS PŘI REGISTRACI:</b>\n\n`;
+  message += `🎁 eBook "Tvůj Cyklus, Tvá Síla" (hodnota 888 Kč)\n`;
+  message += `🎁 Přístup do OHORAI Marketplace se slevou 15%\n\n`;
+  
+  message += `👉 <b>REGISTRACE:</b>\n`;
+  message += `<a href="https://amulets.cz/premium">Staň se PREMIUM členem</a>\n\n`;
+  
+  message += `<i>Máš otázky? Napiš mi!</i> 💜\n\n`;
+  message += `<i>Natálie Ohorai</i>\n`;
+  message += `<i>Průvodkyně spirítuální harmonií</i>`;
+  
+  return message;
+}
+
+/**
+ * Generate membership status message
+ */
+function generateMembershipStatusMessage(userId: string): string {
+  // TODO: Fetch actual membership status from database
+  // For now, return a placeholder message
+  
+  let message = `📋 <b>STAV TVÉHO ČLENSTVÍ</b> 📋\n\n`;
+  message += `Ahoj! Tady je přehled tvého členství:\n\n`;
+  
+  message += `👤 <b>Uživatel:</b> ${userId}\n`;
+  message += `🌟 <b>Tier:</b> FREE\n`;
+  message += `📅 <b>Od:</b> -\n`;
+  message += `⏳ <b>Platí do:</b> -\n\n`;
+  
+  message += `💎 <b>UPGRADE NA PREMIUM:</b>\n\n`;
+  message += `Za pouhých 88 Kč/měsíc získáš:\n`;
+  message += `• Exkluzivní meditace\n`;
+  message += `• Live Q&A s Natálií\n`;
+  message += `• 15% slevy na OHORAI\n`;
+  message += `• Měsíční eBooky\n\n`;
+  
+  message += `👉 Napiš /premium pro více info!\n\n`;
+  
+  message += `<i>Natálie</i> 🪷`;
+  
+  return message;
 }
 
 // Auto-start scheduler when module loads

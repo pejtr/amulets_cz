@@ -2023,3 +2023,25 @@
 
 ### Chatbot oprava textu
 - [x] Změnit "Právě odpovídám" na "Právě odpočívám" když je Offline
+
+### Telegram VIP Skupina integrace (Jan 21, 2026)
+- [ ] Vytvořit Telegram VIP skupinu (🪷 Amulets VIP) - MANUÁLNÍ KROK
+- [x] Implementovat invite link generátor v chatbotu (/vip příkaz)
+- [x] Přidat welcome bot pro nové členy (generateVIPWelcomeMessage)
+- [ ] Implementovat Premium check (kdo má předplatné) - TODO: Přidat do databáze
+- [x] Přidat denní připomínky na meditace (19:45) - automatické
+- [ ] Implementovat scheduled posty (první týden obsahu) - TODO: Přidat cron job
+- [x] Integrovat s existujícím Telegram botem
+- [ ] Testovat celý flow (vstup → welcome → Premium)
+
+### PREMIUM + VIP systém propojený s OHORAI Marketplace (Jan 21, 2026)
+- [x] Analyzovat OHORAI Marketplace strukturu
+- [x] Vytvořit databázové schéma pro členství (membership_tiers, user_memberships, vip_invites)
+- [x] Implementovat /premium příkaz v Telegram botu
+- [x] Implementovat /status příkaz pro kontrolu členství
+- [ ] Implementovat Premium check (88 Kč/měsíc) - TODO: Stripe integrace
+- [ ] Implementovat VIP check (invite-only) - rodina & přátelé
+- [ ] Cross-platform synchronizace (Amulets.cz ↔ OHORAI Marketplace) - TODO: API
+- [ ] Vytvořit 2 Telegram skupiny: "🪷 Amulets PREMIUM" a "👑 Amulets VIP" - MANUÁLNÍ KROK
+- [ ] Implementovat automatické přidání do skupiny po platbě - TODO: webhook
+- [ ] Testovat celý flow (platba → Premium → cross-sell OHORAI)

@@ -782,3 +782,164 @@ export const ritualCompletions = mysqlTable("ritual_completions", {
 
 export type RitualCompletion = typeof ritualCompletions.$inferSelect;
 export type InsertRitualCompletion = typeof ritualCompletions.$inferInsert;
+
+
+// ============================================
+// TELEGRAM PREMIUM & VIP MEMBERSHIP
+// ============================================
+
+// Membership Tiers - úrovně členství
+export const membershipTiers = mysqlTable("membership_tiers", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  // Tier info
+  tierKey: varchar("tierKey", { length: 50 }).notNull().unique(), // 'free', 'premium', 'premium_plus', 'lifetime', 'vip'
+  name: varchar("name", { length: 100 }).notNull(),
+  description: text("description"),
+  
+  // Pricing
+  priceMonthly: int("priceMonthly").default(0).notNull(), // v haléřích (Kč * 100)
+  priceYearly: int("priceYearly").default(0).notNull(),
+  priceLifetime: int("priceLifetime").default(0).notNull(),
+  
+  // Benefits (JSON)
+  benefits: text("benefits"), // JSON array of benefit strings
+  
+  // Telegram
+  telegramGroupLink: varchar("telegramGroupLink", { length: 255 }),
+  telegramGroupChatId: varchar("telegramGroupChatId", { length: 50 }),
+  
+  // Cross-platform
+  ohoraiDiscount: int("ohoraiDiscount").default(0).notNull(), // procento slevy na OHORAI
+  
+  // Status
+  isActive: boolean("isActive").default(true).notNull(),
+  isInviteOnly: boolean("isInviteOnly").default(false).notNull(), // pro VIP
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type MembershipTier = typeof membershipTiers.$inferSelect;
+export type InsertMembershipTier = typeof membershipTiers.$inferInsert;
+
+// User Memberships - členství uživatelů
+export const userMemberships = mysqlTable("user_memberships", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  // User reference
+  userId: int("userId").references(() => users.id, { onDelete: "cascade" }),
+  email: varchar("email", { length: 320 }),
+  telegramId: varchar("telegramId", { length: 50 }),
+  telegramUsername: varchar("telegramUsername", { length: 100 }),
+  
+  // Tier
+  tierId: int("tierId").notNull().references(() => membershipTiers.id),
+  
+  // Status
+  status: mysqlEnum("status", ["active", "cancelled", "expired", "pending"]).default("pending").notNull(),
+  
+  // Billing period
+  startedAt: timestamp("startedAt").defaultNow().notNull(),
+  expiresAt: timestamp("expiresAt"),
+  cancelledAt: timestamp("cancelledAt"),
+  
+  // Payment
+  stripeCustomerId: varchar("stripeCustomerId", { length: 255 }),
+  stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 255 }),
+  lastPaymentAt: timestamp("lastPaymentAt"),
+  
+  // Cross-platform sync
+  ohoraiSynced: boolean("ohoraiSynced").default(false).notNull(),
+  ohoraiSyncedAt: timestamp("ohoraiSyncedAt"),
+  
+  // Telegram group status
+  addedToGroup: boolean("addedToGroup").default(false).notNull(),
+  addedToGroupAt: timestamp("addedToGroupAt"),
+  
+  // Metadata
+  source: mysqlEnum("source", ["website", "telegram", "ohorai", "manual"]).default("website").notNull(),
+  referredBy: varchar("referredBy", { length: 100 }),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type UserMembership = typeof userMemberships.$inferSelect;
+export type InsertUserMembership = typeof userMemberships.$inferInsert;
+
+// VIP Invites - pozvánky do VIP skupiny
+export const vipInvites = mysqlTable("vip_invites", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  // Invite code
+  inviteCode: varchar("inviteCode", { length: 50 }).notNull().unique(),
+  
+  // Creator
+  createdByUserId: int("createdByUserId").references(() => users.id),
+  createdByName: varchar("createdByName", { length: 100 }),
+  
+  // Usage
+  maxUses: int("maxUses").default(1).notNull(),
+  usedCount: int("usedCount").default(0).notNull(),
+  
+  // Expiration
+  expiresAt: timestamp("expiresAt"),
+  
+  // Status
+  isActive: boolean("isActive").default(true).notNull(),
+  
+  // Note
+  note: text("note"), // poznámka pro koho je pozvánka
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type VipInvite = typeof vipInvites.$inferSelect;
+export type InsertVipInvite = typeof vipInvites.$inferInsert;
+
+// VIP Invite Uses - použití VIP pozvánky
+export const vipInviteUses = mysqlTable("vip_invite_uses", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  inviteId: int("inviteId").notNull().references(() => vipInvites.id, { onDelete: "cascade" }),
+  
+  // User who used the invite
+  userId: int("userId").references(() => users.id),
+  telegramId: varchar("telegramId", { length: 50 }),
+  telegramUsername: varchar("telegramUsername", { length: 100 }),
+  
+  usedAt: timestamp("usedAt").defaultNow().notNull(),
+});
+
+export type VipInviteUse = typeof vipInviteUses.$inferSelect;
+export type InsertVipInviteUse = typeof vipInviteUses.$inferInsert;
+
+// Membership Activity Log - aktivita členů
+export const membershipActivityLog = mysqlTable("membership_activity_log", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  membershipId: int("membershipId").notNull().references(() => userMemberships.id, { onDelete: "cascade" }),
+  
+  // Activity type
+  activityType: mysqlEnum("activityType", [
+    "joined",           // Připojil se
+    "upgraded",         // Upgradoval tier
+    "downgraded",       // Downgradoval tier
+    "cancelled",        // Zrušil členství
+    "renewed",          // Obnovil členství
+    "payment_success",  // Úspěšná platba
+    "payment_failed",   // Neúspěšná platba
+    "added_to_group",   // Přidán do Telegram skupiny
+    "removed_from_group", // Odebrán ze skupiny
+    "ohorai_synced"     // Synchronizováno s OHORAI
+  ]).notNull(),
+  
+  // Details
+  details: text("details"), // JSON s detaily aktivity
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type MembershipActivityLog = typeof membershipActivityLog.$inferSelect;
+export type InsertMembershipActivityLog = typeof membershipActivityLog.$inferInsert;
