@@ -1127,7 +1127,17 @@ Co tě dnes přivádí?`;
 
             {/* Feedback Form */}
             {showFeedback && !feedbackSubmitted && (
-              <Card className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200 mx-4 mb-4">
+              <Card className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200 mx-4 mb-4 relative">
+                {/* Křížek pro ukončení feedbacku */}
+                <button
+                  onClick={() => {
+                    setShowFeedback(false);
+                  }}
+                  className="absolute top-2 right-2 p-1 rounded-full hover:bg-purple-200 transition-colors"
+                  aria-label="Zavřít feedback"
+                >
+                  <X className="h-4 w-4 text-gray-600" />
+                </button>
                 <div className="text-center mb-3">
                   <p className="text-sm font-semibold text-gray-800">💬 Pomozte nám být lepší!</p>
                   <p className="text-xs text-gray-600 mt-1">

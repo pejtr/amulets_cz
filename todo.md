@@ -2120,3 +2120,9 @@
 - [x] Přidat tRPC endpointy pro horoskopy (getWeekly, getBySign, generate, subscribe, unsubscribe)
 - [x] Nastavit CRON job pro nedělní generování (6:00 CET) - Manus schedule
 - [x] Otestovat generování a uložit checkpoint (vitest testy pro horoscope.test.ts)
+
+### Nové funkce a opravy (Jan 22, 2026)
+- [x] Opravit křížek pro ukončení feedbacku v chatbotu na mobilu
+- [x] Vytvořit stránku /tydenni-horoskop s přehledem 12 znamení
+- [x] Přidat Valentýnskou kampaň s amulety lásky
+- [x] Spustit manuální generování horoskopů

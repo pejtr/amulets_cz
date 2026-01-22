@@ -35,6 +35,9 @@ import AdminABTests from "./pages/AdminABTests";
 import OHORAI from "./pages/OHORAI";
 import Team from "./pages/Team";
 import LunarReading from "./pages/LunarReading";
+import TydenníHoroskop from "./pages/TydenníHoroskop";
+import ValentinskaKampan from "./pages/ValentinskaKampan";
+import AdminHoroscope from "./pages/AdminHoroscope";
 
 
 function Router() {
@@ -60,6 +63,8 @@ function Router() {
       <Route path="/ohorai" component={OHORAI} />
       <Route path="/tym" component={Team} />
       <Route path="/moon-reading" component={LunarReading} />
+      <Route path="/tydenni-horoskop" component={TydenníHoroskop} />
+      <Route path="/valentyn" component={ValentinskaKampan} />
       {/* Redirect old URL to new */}
       <Route path="/lunarni-reading">{() => <Redirect to="/moon-reading" />}</Route>
       <Route path="/o-nas" component={AboutNatalie} />
@@ -69,6 +74,7 @@ function Router() {
       <Route path="/admin/tickets" component={AdminTickets} />
       <Route path="/admin/telegram" component={AdminTelegram} />
       <Route path="/admin/ab-tests" component={AdminABTests} />
+      <Route path="/admin/horoscope" component={AdminHoroscope} />
       {/* Redirects for old/removed pages */}
       <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>
       <Route path={"/404"} component={NotFound} />
