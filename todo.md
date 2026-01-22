@@ -2145,3 +2145,6 @@
 
 ### Vypnout pulzování chatbotu během offline (Jan 22, 2026)
 - [x] Odstranit pulzování chatbot bubliny když je Natálie offline (22:00-8:00)
+
+### Prodloužení pracovní doby Natálie (Jan 22, 2026)
+- [x] Změnit offline hodiny z 22:00-8:00 na 00:00-8:00 (pracuje do půlnoci)

@@ -222,11 +222,11 @@ function getAssignedPersona(isAuthenticated: boolean = false): typeof NATALIE_PE
   return NATALIE_PERSONAS[assigned];
 }
 
-// Helper function to check if chatbot is in offline hours (22:00 - 08:00 CET)
+// Helper function to check if chatbot is in offline hours (00:00 - 08:00 CET)
 function isOfflineHours(): boolean {
   const now = new Date();
   const hours = now.getHours();
-  return hours >= 22 || hours < 8;
+  return hours < 8; // Offline pouze od půlnoci do 8:00
 }
 
 // Helper function to check if it's time for goodnight message (23:55 - 23:59)
@@ -247,7 +247,7 @@ Přeji ti krásné sny plné světla a lásky. Dobrou noc! 💫💜
 ~ Natálie`;
 
 // Offline message - zkrácená verze
-const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpočívám. Jsem tu denně 8:00-22:00. Napište mi na WhatsApp nebo zanechte dotaz!
+const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpočívám. Jsem tu denně 8:00-24:00. Napište mi na WhatsApp nebo zanechte dotaz!
 
 S láskou,
 Natálie 💜`;
@@ -870,7 +870,7 @@ Co tě dnes přivádí?`;
                 </div>
                 <p className="text-xs text-white/90 font-medium">Průvodkyně procesem</p>
                 <p className="text-xs text-white/70">
-                  {isOffline && !adminOverride ? 'Offline • K dispozici od 8:00' : 'Online • Odpovídám do 1 minuty'}
+                  {isOffline && !adminOverride ? 'Offline • Online od 8:00 do 24:00' : 'Online • Odpovídám do 1 minuty'}
                 </p>
               </div>
             </div>
