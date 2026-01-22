@@ -2158,3 +2158,8 @@
 - [x] Přidat graf konverzních poměrů do /admin/abtest
 - [x] Vytvořit mechanismus pro automatickou deaktivaci slabých variant po 7 dnech
 - [x] Rozšířit statistiky o průměrný počet zpráv na konverzaci (již implementováno)
+
+### Line chart trendy a automatická deaktivace (Jan 22, 2026)
+- [x] Přidat endpoint pro získání denních trendových dat variant
+- [x] Implementovat line chart s trendy konverzních poměrů za 30 dní
+- [x] Vytvořit cron job pro automatickou deaktivaci každé pondělí v 9:00

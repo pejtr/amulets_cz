@@ -19,6 +19,7 @@ export default function AdminABTest() {
   });
 
   const { data: variants } = trpc.chatbotAB.getAllVariants.useQuery();
+  const { data: trends } = trpc.chatbotAB.getVariantTrends.useQuery({ days: 30 });
 
   const autoDeactivateMutation = trpc.telegram.autoDeactivateWeakVariants.useMutation({
     onSuccess: (data) => {
@@ -127,30 +128,54 @@ export default function AdminABTest() {
           </Card>
         )}
 
-        {/* Conversion Rate Chart */}
-        {stats && stats.length > 0 && (
+        {/* Conversion Rate Trends (30 days) */}
+        {trends && trends.length > 0 && (
           <Card className="mb-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <BarChart3 className="h-5 w-5" />
-                Graf konverzních poměrů
+                Trendy konverzních poměrů (30 dní)
               </CardTitle>
-              <CardDescription>Vizuální porovnání výkonu jednotlivých variant</CardDescription>
+              <CardDescription>Vývoj konverzních poměrů jednotlivých variant v čase</CardDescription>
             </CardHeader>
             <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={stats.map((stat: any) => ({
-                  name: variants?.find((v: any) => v.id === stat.variantId)?.name || stat.variantKey,
-                  'Konverzní poměr (%)': Number(stat.conversionRate || 0).toFixed(2),
-                  'Konverzace': Number(stat.totalSessions || 0),
-                  'Konverze': Number(stat.totalConversions || 0),
-                }))}>
+              <ResponsiveContainer width="100%" height={400}>
+                <LineChart data={trends.map((day: any) => {
+                  const dataPoint: any = { date: day.date };
+                  day.variants.forEach((v: any) => {
+                    dataPoint[v.variantName] = v.conversionRate;
+                  });
+                  return dataPoint;
+                })}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
+                  <XAxis 
+                    dataKey="date" 
+                    tickFormatter={(value) => {
+                      const date = new Date(value);
+                      return `${date.getDate()}/${date.getMonth() + 1}`;
+                    }}
+                  />
+                  <YAxis label={{ value: 'Konverzní poměr (%)', angle: -90, position: 'insideLeft' }} />
+                  <Tooltip 
+                    labelFormatter={(value) => {
+                      const date = new Date(value);
+                      return date.toLocaleDateString('cs-CZ');
+                    }}
+                  />
                   <Legend />
-                  <Line type="monotone" dataKey="Konverzní poměr (%)" stroke="#8b5cf6" strokeWidth={3} />
+                  {variants?.map((variant: any, index: number) => {
+                    const colors = ['#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#3b82f6', '#ef4444'];
+                    return (
+                      <Line 
+                        key={variant.id}
+                        type="monotone" 
+                        dataKey={variant.name} 
+                        stroke={colors[index % colors.length]} 
+                        strokeWidth={2}
+                        dot={{ r: 2 }}
+                      />
+                    );
+                  })}
                 </LineChart>
               </ResponsiveContainer>
             </CardContent>

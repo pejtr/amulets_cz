@@ -36,6 +36,8 @@ import {
 } from "./db";
 import { sendDailyReport, sendTestMessage, generateDailyReport, sendTelegramMessage, setTelegramWebhook, getTelegramWebhookInfo } from "./telegram";
 import { autoDeactivateWeakVariants } from "./abTestAutoDeactivate";
+import { getChatbotVariantTrends } from "./abTestTrends";
+import { weeklyABTestCleanup } from "./jobs/weeklyABTestCleanup";
 import { createCoachingLead, formatLeadForTelegram } from "./coachingDb";
 import { 
   getNatalieAmuletsPersonality,
@@ -580,6 +582,16 @@ ${email ? `- Email: ${email}` : ''}
       return getAllChatbotVariants();
     }),
 
+    // Get variant trends
+    getVariantTrends: publicProcedure
+      .input(z.object({
+        days: z.number().default(30),
+      }))
+      .query(async ({ input }) => {
+        const trends = await getChatbotVariantTrends(input.days);
+        return trends;
+      }),
+
     // Start new session
     startSession: publicProcedure
       .input(z.object({
@@ -859,6 +871,13 @@ ${email ? `- Email: ${email}` : ''}
     autoDeactivateWeakVariants: publicProcedure
       .mutation(async () => {
         const result = await autoDeactivateWeakVariants();
+        return result;
+      }),
+
+    // Run weekly A/B test cleanup (manual trigger)
+    runWeeklyCleanup: publicProcedure
+      .mutation(async () => {
+        const result = await weeklyABTestCleanup();
         return result;
       }),
 
