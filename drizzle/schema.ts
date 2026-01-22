@@ -943,3 +943,127 @@ export const membershipActivityLog = mysqlTable("membership_activity_log", {
 
 export type MembershipActivityLog = typeof membershipActivityLog.$inferSelect;
 export type InsertMembershipActivityLog = typeof membershipActivityLog.$inferInsert;
+
+
+// ============================================
+// WEEKLY HOROSCOPES SYSTEM
+// ============================================
+
+// Weekly Horoscopes - týdenní horoskopy pro všech 12 znamení
+export const weeklyHoroscopes = mysqlTable("weekly_horoscopes", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  // Identifikace
+  zodiacSign: varchar("zodiacSign", { length: 20 }).notNull(), // aries, taurus, etc.
+  weekStart: date("weekStart").notNull(), // Pondělí
+  weekEnd: date("weekEnd").notNull(), // Neděle
+  
+  // Hodnocení (1-5 hvězdiček)
+  overallRating: int("overallRating").notNull(),
+  loveRating: int("loveRating").notNull(),
+  careerRating: int("careerRating").notNull(),
+  financeRating: int("financeRating").notNull(),
+  healthRating: int("healthRating").notNull(),
+  
+  // Texty horoskopů
+  overallText: text("overallText").notNull(),
+  loveText: text("loveText").notNull(),
+  careerText: text("careerText").notNull(),
+  financeText: text("financeText").notNull(),
+  healthText: text("healthText").notNull(),
+  
+  // Šťastné prvky
+  luckyDays: text("luckyDays"), // JSON array: ["pondělí", "čtvrtek"]
+  luckyNumbers: text("luckyNumbers"), // JSON array: [3, 7, 21]
+  luckyColor: varchar("luckyColor", { length: 50 }),
+  luckyStone: varchar("luckyStone", { length: 100 }),
+  
+  // Planetární vlivy
+  planetaryInfluences: text("planetaryInfluences"),
+  
+  // SEO
+  metaTitle: varchar("metaTitle", { length: 70 }),
+  metaDescription: varchar("metaDescription", { length: 160 }),
+  
+  // Status
+  published: boolean("published").default(false).notNull(),
+  publishedAt: timestamp("publishedAt"),
+  viewCount: int("viewCount").default(0).notNull(),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type WeeklyHoroscope = typeof weeklyHoroscopes.$inferSelect;
+export type InsertWeeklyHoroscope = typeof weeklyHoroscopes.$inferInsert;
+
+// Planetary Events - planetární události pro kontext horoskopů
+export const planetaryEvents = mysqlTable("planetary_events", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  eventDate: date("eventDate").notNull(),
+  eventType: varchar("eventType", { length: 50 }).notNull(), // new_moon, full_moon, retrograde, conjunction
+  planet: varchar("planet", { length: 30 }), // Mercury, Venus, Mars, etc.
+  
+  titleCs: varchar("titleCs", { length: 200 }).notNull(),
+  descriptionCs: text("descriptionCs"),
+  
+  zodiacSign: varchar("zodiacSign", { length: 20 }), // ve kterém znamení
+  aspectType: varchar("aspectType", { length: 50 }), // conjunction, opposition, trine, etc.
+  
+  importance: mysqlEnum("importance", ["low", "medium", "high", "critical"]).default("medium"),
+  isActive: boolean("isActive").default(true).notNull(),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type PlanetaryEvent = typeof planetaryEvents.$inferSelect;
+export type InsertPlanetaryEvent = typeof planetaryEvents.$inferInsert;
+
+// Horoscope Subscriptions - odběratelé týdenního horoskopu
+export const horoscopeSubscriptions = mysqlTable("horoscope_subscriptions", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  email: varchar("email", { length: 320 }).notNull().unique(),
+  name: varchar("name", { length: 100 }),
+  zodiacSign: varchar("zodiacSign", { length: 20 }), // preferované znamení
+  
+  userId: int("userId").references(() => users.id),
+  
+  isActive: boolean("isActive").default(true).notNull(),
+  confirmedAt: timestamp("confirmedAt"),
+  unsubscribedAt: timestamp("unsubscribedAt"),
+  
+  // Statistiky
+  emailsSent: int("emailsSent").default(0).notNull(),
+  emailsOpened: int("emailsOpened").default(0).notNull(),
+  lastSentAt: timestamp("lastSentAt"),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type HoroscopeSubscription = typeof horoscopeSubscriptions.$inferSelect;
+export type InsertHoroscopeSubscription = typeof horoscopeSubscriptions.$inferInsert;
+
+// Horoscope Generation Log - log automatického generování
+export const horoscopeGenerationLog = mysqlTable("horoscope_generation_log", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  weekStart: date("weekStart").notNull(),
+  weekEnd: date("weekEnd").notNull(),
+  
+  status: mysqlEnum("status", ["started", "in_progress", "completed", "partial", "failed"]).notNull(),
+  
+  totalSigns: int("totalSigns").default(12).notNull(),
+  completedSigns: int("completedSigns").default(0).notNull(),
+  failedSigns: text("failedSigns"), // JSON array of failed sign keys
+  
+  errorMessage: text("errorMessage"),
+  duration: int("duration"), // in seconds
+  
+  completedAt: timestamp("completedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type HoroscopeGenerationLog = typeof horoscopeGenerationLog.$inferSelect;
+export type InsertHoroscopeGenerationLog = typeof horoscopeGenerationLog.$inferInsert;

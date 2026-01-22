@@ -2114,3 +2114,9 @@
 - [x] Opravit hudbu na pozadí (lokální soubor)
 - [x] Opravit překrývání Spřízněné projekty dropdown s navigací (z-index)
 - [x] Opravit aromaterapie banner - na celou šířku bez oříznutí
+
+### Automatické generování týdenních horoskopů (Jan 22, 2026)
+- [x] Vytvořit LLM generátor horoskopu (server/horoscopeGenerator.ts)
+- [x] Přidat tRPC endpointy pro horoskopy (getWeekly, getBySign, generate, subscribe, unsubscribe)
+- [x] Nastavit CRON job pro nedělní generování (6:00 CET) - Manus schedule
+- [x] Otestovat generování a uložit checkpoint (vitest testy pro horoscope.test.ts)

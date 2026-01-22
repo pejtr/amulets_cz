@@ -1180,6 +1180,238 @@ ${email ? `- Email: ${email}` : ''}
         }
       }),
   }),
+
+  // =============================================================================
+  // HOROSCOPE - Týdenní horoskopy
+  // =============================================================================
+  horoscope: router({
+    /**
+     * Získat týdenní horoskop pro všechna znamení
+     */
+    getWeekly: publicProcedure
+      .input(
+        z.object({
+          weekStart: z.string().optional(), // ISO date string, default = aktuální týden
+        })
+      )
+      .query(async ({ input }) => {
+        const db = await getDb();
+        if (!db) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Databáze není dostupná",
+          });
+        }
+
+        const { weeklyHoroscopes } = await import("../drizzle/schema");
+        const { eq, desc } = await import("drizzle-orm");
+
+        // Určit začátek týdne (pondělí)
+        let targetDate: Date;
+        if (input.weekStart) {
+          targetDate = new Date(input.weekStart);
+        } else {
+          targetDate = new Date();
+          const day = targetDate.getDay();
+          const diff = targetDate.getDate() - day + (day === 0 ? -6 : 1);
+          targetDate.setDate(diff);
+          targetDate.setHours(0, 0, 0, 0);
+        }
+
+        const horoscopes = await db
+          .select()
+          .from(weeklyHoroscopes)
+          .where(eq(weeklyHoroscopes.weekStart, targetDate))
+          .orderBy(desc(weeklyHoroscopes.createdAt));
+
+        return {
+          weekStart: targetDate.toISOString(),
+          horoscopes,
+        };
+      }),
+
+    /**
+     * Získat týdenní horoskop pro konkrétní znamení
+     */
+    getBySign: publicProcedure
+      .input(
+        z.object({
+          sign: z.string(),
+          weekStart: z.string().optional(),
+        })
+      )
+      .query(async ({ input }) => {
+        const db = await getDb();
+        if (!db) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Databáze není dostupná",
+          });
+        }
+
+        const { weeklyHoroscopes } = await import("../drizzle/schema");
+        const { eq, and, desc } = await import("drizzle-orm");
+
+        // Určit začátek týdne
+        let targetDate: Date;
+        if (input.weekStart) {
+          targetDate = new Date(input.weekStart);
+        } else {
+          targetDate = new Date();
+          const day = targetDate.getDay();
+          const diff = targetDate.getDate() - day + (day === 0 ? -6 : 1);
+          targetDate.setDate(diff);
+          targetDate.setHours(0, 0, 0, 0);
+        }
+
+        const horoscope = await db
+          .select()
+          .from(weeklyHoroscopes)
+          .where(
+            and(
+              eq(weeklyHoroscopes.zodiacSign, input.sign),
+              eq(weeklyHoroscopes.weekStart, targetDate)
+            )
+          )
+          .orderBy(desc(weeklyHoroscopes.createdAt))
+          .limit(1);
+
+        return horoscope[0] || null;
+      }),
+
+    /**
+     * Vygenerovat týdenní horoskopy (admin only)
+     */
+    generate: publicProcedure
+      .input(
+        z.object({
+          weekStart: z.string().optional(),
+          forceRegenerate: z.boolean().optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        // Kontrola admin práv
+        if (!ctx.user || ctx.user.role !== "admin") {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: "Pouze admin může generovat horoskopy",
+          });
+        }
+
+        const horoscopeGenerator = await import("./horoscopeGenerator");
+        
+        let targetDate: Date | undefined;
+        if (input.weekStart) {
+          targetDate = new Date(input.weekStart);
+        }
+
+        const result = await horoscopeGenerator.generateWeeklyHoroscopes(targetDate || new Date());
+        
+        return result;
+      }),
+
+    /**
+     * Přihlásit se k odběru týdenních horoskopů
+     */
+    subscribe: publicProcedure
+      .input(
+        z.object({
+          email: z.string().email(),
+          sign: z.string().optional(),
+          name: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const db = await getDb();
+        if (!db) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Databáze není dostupná",
+          });
+        }
+
+        const { horoscopeSubscriptions } = await import("../drizzle/schema");
+        const { eq } = await import("drizzle-orm");
+
+        // Zkontrolovat existující odběr
+        const existing = await db
+          .select()
+          .from(horoscopeSubscriptions)
+          .where(eq(horoscopeSubscriptions.email, input.email))
+          .limit(1);
+
+        if (existing.length > 0) {
+          // Aktualizovat existující
+          await db
+            .update(horoscopeSubscriptions)
+            .set({
+              zodiacSign: input.sign,
+              name: input.name,
+              isActive: true,
+            })
+            .where(eq(horoscopeSubscriptions.email, input.email));
+        } else {
+          // Vytvořit nový
+          await db.insert(horoscopeSubscriptions).values({
+            email: input.email,
+            zodiacSign: input.sign,
+            name: input.name,
+            isActive: true,
+          });
+        }
+
+        // Přidat do Brevo
+        try {
+          await addBrevoContact({ 
+            email: input.email, 
+            attributes: { FIRSTNAME: input.name || "" },
+            listIds: [4] // List 4 pro horoskopy
+          });
+        } catch (e) {
+          console.error("[Horoscope] Failed to add to Brevo:", e);
+        }
+
+        return {
+          success: true,
+          message: "Děkujeme za přihlášení k odběru týdenních horoskopů! \u2728",
+        };
+      }),
+
+    /**
+     * Odhlásit se z odběru
+     */
+    unsubscribe: publicProcedure
+      .input(
+        z.object({
+          email: z.string().email(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const db = await getDb();
+        if (!db) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Databáze není dostupná",
+          });
+        }
+
+        const { horoscopeSubscriptions } = await import("../drizzle/schema");
+        const { eq } = await import("drizzle-orm");
+
+        await db
+          .update(horoscopeSubscriptions)
+          .set({
+            isActive: false,
+            unsubscribedAt: new Date(),
+          })
+          .where(eq(horoscopeSubscriptions.email, input.email));
+
+        return {
+          success: true,
+          message: "Byli jste odhlášeni z odběru horoskopů.",
+        };
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
