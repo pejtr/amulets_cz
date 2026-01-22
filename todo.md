@@ -2139,3 +2139,6 @@
 ### Oprava quick messages během offline (Jan 22, 2026)
 - [x] Skrýt rychlé zprávy když je Natálie offline
 - [x] Zobrazit pouze když je Natálie online
+
+### Úprava menu Spřízňené projekty (Jan 22, 2026)
+- [x] Rozdělit položky do dvou sloupců: E-shop (Dobrá Čajovna, Amarex) a Další (Bindu.cz)

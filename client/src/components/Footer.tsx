@@ -97,70 +97,112 @@ export default function Footer() {
         {/* Partners */}
         <div className="mt-8 pt-8 border-t border-border">
           <div className="text-center mb-4">
-            <h4 className="text-sm font-semibold text-foreground mb-3">✨ Naši přátelé ✨</h4>
+            <h4 className="text-sm font-semibold text-foreground mb-3">✨ Spřízňené projekty ✨</h4>
           </div>
-          <div className="flex flex-wrap justify-center gap-6 text-sm">
-            {/* Dobrá čajovna Praha */}
-            <div className="flex flex-col items-center gap-2">
-              <a
-                href="https://www.dobracajovnapraha.cz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors font-medium"
-              >
-                Dobrá čajovna Praha
-              </a>
-              <a
-                href="https://instagram.com/dobracajovnapraha"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Instagram className="h-3 w-3" />
-                @dobracajovnapraha
-              </a>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* E-shop sloupec */}
+            <div>
+              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4 text-center">E-shop</h5>
+              <div className="flex flex-col gap-6">
+                {/* Dobrá čajovna Praha */}
+                <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                  <div className="text-2xl flex-shrink-0">🍵</div>
+                  <div className="flex-1">
+                    <a
+                      href="https://www.dobracajovnapraha.cz"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground hover:text-primary transition-colors font-medium block mb-1"
+                    >
+                      Dobrá Čajovna Praha
+                    </a>
+                    <p className="text-xs text-muted-foreground mb-2">
+                      Prémiové čaje a čajové doplňky
+                    </p>
+                    <a
+                      href="https://instagram.com/dobracajovnapraha"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Instagram className="h-3 w-3" />
+                      @dobracajovnapraha
+                    </a>
+                  </div>
+                </div>
+
+                {/* Amarex */}
+                <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                  <div className="text-2xl flex-shrink-0">🌶️</div>
+                  <div className="flex-1">
+                    <a
+                      href="https://www.amarex.cz"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground hover:text-primary transition-colors font-medium block mb-1"
+                    >
+                      Amarex
+                    </a>
+                    <p className="text-xs text-muted-foreground">
+                      Přírodní produkt na podporu erekce
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Donuterie */}
-            <div className="flex flex-col items-center gap-2">
-              <a
-                href="https://www.donuterie.eu/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors font-medium"
-              >
-                Donuterie Prague
-              </a>
-              <p className="text-xs text-muted-foreground text-center">
-                Showroom & výdejna OHORAI
-              </p>
-              <a
-                href="https://instagram.com/DonuteriePrague"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Instagram className="h-3 w-3" />
-                @DonuteriePrague
-              </a>
-            </div>
+            {/* Další sloupec */}
+            <div>
+              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4 text-center">Další</h5>
+              <div className="flex flex-col gap-6">
+                {/* Donuterie */}
+                <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                  <div className="text-2xl flex-shrink-0">🍩</div>
+                  <div className="flex-1">
+                    <a
+                      href="https://www.donuterie.eu/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground hover:text-primary transition-colors font-medium block mb-1"
+                    >
+                      Donuterie Prague
+                    </a>
+                    <p className="text-xs text-muted-foreground mb-2">
+                      Showroom & výdejna OHORAI
+                    </p>
+                    <a
+                      href="https://instagram.com/DonuteriePrague"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Instagram className="h-3 w-3" />
+                      @DonuteriePrague
+                    </a>
+                  </div>
+                </div>
 
-            {/* Bindu - charitativní organizace */}
-            <div className="flex flex-col items-center gap-2">
-              <a
-                href="http://bindu.cz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors font-medium"
-              >
-                ॐ Bindu z.s.
-              </a>
-              <p className="text-xs text-muted-foreground text-center max-w-[180px]">
-                Charita pro děti v Indii a Nepálu
-              </p>
-              <span className="text-xs text-pink-500 font-medium">
-                ❤ 100% příspěvků jde dětem
-              </span>
+                {/* Bindu - charitativní organizace */}
+                <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                  <div className="text-2xl flex-shrink-0">ॐ</div>
+                  <div className="flex-1">
+                    <a
+                      href="http://bindu.cz"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground hover:text-primary transition-colors font-medium block mb-1"
+                    >
+                      Bindu z.s.
+                    </a>
+                    <p className="text-xs text-muted-foreground mb-1">
+                      Charita pro děti v Indii a Nepálu
+                    </p>
+                    <span className="text-xs text-pink-500 font-medium">
+                      ❤ 100% příspěvků jde dětem
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
