@@ -2126,3 +2126,8 @@
 - [x] Vytvořit stránku /tydenni-horoskop s přehledem 12 znamení
 - [x] Přidat Valentýnskou kampaň s amulety lásky
 - [x] Spustit manuální generování horoskopů
+
+### Oprava chatbot feedbacku (Jan 22, 2026)
+- [x] Opravit feedback formulář - přidat křížek pro zavření
+- [x] Umožnit scrollování ve feedback formuláři
+- [x] Otestovat na mobilu i desktopu
