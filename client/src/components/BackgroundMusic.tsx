@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Volume2, VolumeX, Music } from 'lucide-react';
+import { Volume2, VolumeX, Play } from 'lucide-react';
 
 // Lokální meditační hudba - uložena v public složce
 // Použijeme royalty-free hudbu z Pixabay
@@ -118,7 +118,7 @@ export default function BackgroundMusic() {
         {isPlaying ? (
           <Volume2 className="w-5 h-5 relative z-10" />
         ) : (
-          <Music className="w-5 h-5 relative z-10" />
+          <Play className="w-5 h-5 relative z-10" />
         )}
       </button>
 

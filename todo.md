@@ -2163,3 +2163,12 @@
 - [x] Přidat endpoint pro získání denních trendových dat variant
 - [x] Implementovat line chart s trendy konverzních poměrů za 30 dní
 - [x] Vytvořit cron job pro automatickou deaktivaci každé pondělí v 9:00
+
+### Vylepšení telegram reportů (Jan 23, 2026)
+- [x] Přidat analýzu nejčastějších témat konverzací
+- [x] Přidat seznam přání a požadavků uživatelů
+- [x] Přidat sentiment analýzu (spokojenost)
+- [x] Přidat ukázky zajímavých dotazů
+
+### Změna ikony hudby (Jan 23, 2026)
+- [x] Změnit ikonu hudebního přehrávače z noty na play

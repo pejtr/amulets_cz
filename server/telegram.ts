@@ -8,6 +8,7 @@
 import { getChatbotComparisonStats, getChatbotConversionStats, getAllChatbotVariants } from './db';
 import { invokeLLM } from './_core/llm';
 import { generateCentralizedReport, getCachedAggregatedStats } from './centralizedReportingDb';
+import { analyzeConversations, formatInsightsForTelegram } from './conversationAnalysis';
 import { 
   getRandomGreeting as getSharedGreeting, 
   getRandomClosing as getSharedClosing, 
@@ -204,6 +205,17 @@ export async function generateDailyReport(): Promise<string> {
       const winnerVariant = variants.find(v => v.id === winner.variantId);
       report += `\n🏆 Nejlepší včera: <b>${winnerVariant?.name || winner.variantKey}</b>`;
     }
+  }
+
+  // Add conversation insights
+  try {
+    const insights = await analyzeConversations(yesterday, today);
+    const insightsText = formatInsightsForTelegram(insights);
+    if (insightsText) {
+      report += `\n${insightsText}`;
+    }
+  } catch (error) {
+    console.error('[Telegram] Error adding conversation insights:', error);
   }
 
   report += `\n\n${getRandomClosing()}`;
