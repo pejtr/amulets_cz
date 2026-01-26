@@ -18,6 +18,7 @@ import AudioAnalyzer from "@/components/AudioAnalyzer";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import HarmonyTunerTutorial, { useHarmonyTutorial } from "@/components/HarmonyTunerTutorial";
 import { HelpCircle } from "lucide-react";
+import CrystalBowlIcon from "@/components/icons/CrystalBowlIcon";
 
 // Solfeggio frequencies with chakra information
 const FREQUENCIES = [
@@ -227,10 +228,10 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
     return (
       <button
         onClick={() => setIsVisible(true)}
-        className="fixed bottom-4 left-4 z-40 p-3 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white shadow-lg hover:shadow-xl transition-all duration-300 group"
+        className="fixed bottom-4 left-4 z-40 p-4 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white shadow-lg hover:shadow-xl transition-all duration-300 group hover:scale-110"
         title="Otevřít Ladičku Harmonie"
       >
-        <Sparkles className="w-6 h-6 group-hover:animate-pulse" />
+        <CrystalBowlIcon size={28} className="group-hover:animate-pulse" />
       </button>
     );
   }
@@ -412,7 +413,7 @@ export default function HarmonyTuner({ onExpandChange, isPremium = false }: Harm
   // Top-positioned collapsible bar (redesigned layout)
   // Pozice pod sticky menu (header je cca 120px na desktopu, 80px na mobilu)
   return (
-    <div className="fixed top-[80px] md:top-[120px] left-0 right-0 z-30 flex flex-col items-center">
+    <div className="hidden md:flex fixed top-[80px] md:top-[120px] left-0 right-0 z-30 flex-col items-center">
       {/* Toggle button - "Generátor harmonických frekvencí" */}
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}

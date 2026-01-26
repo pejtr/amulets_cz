@@ -125,8 +125,8 @@ export default function AmenCategorySections({ products }: AmenCategorySectionsP
         />
       )}
 
-      {/* Tennis Kolekce */}
-      {tennisBracelets.length > 0 && (
+      {/* Tennis Kolekce - SKRYTO */}
+      {false && tennisBracelets.length > 0 && (
         <CategorySection
           title="Tenisové náramky"
           subtitle="Luxusní tenisové náramky se zirkony"
@@ -145,8 +145,8 @@ export default function AmenCategorySections({ products }: AmenCategorySectionsP
         />
       )}
 
-      {/* Náušnice */}
-      {earrings.length > 0 && (
+      {/* Náušnice - SKRYTO */}
+      {false && earrings.length > 0 && (
         <CategorySection
           title="Náušnice AMEN"
           subtitle="Elegantní náušnice z různých kolekcí"
@@ -155,8 +155,8 @@ export default function AmenCategorySections({ products }: AmenCategorySectionsP
         />
       )}
 
-      {/* Prsteny */}
-      {rings.length > 0 && (
+      {/* Prsteny - SKRYTO */}
+      {false && rings.length > 0 && (
         <CategorySection
           title="Prsteny AMEN"
           subtitle="Stříbrné a pozlacené prsteny"
@@ -165,8 +165,8 @@ export default function AmenCategorySections({ products }: AmenCategorySectionsP
         />
       )}
 
-      {/* Heart Kolekce */}
-      {heartCollection.length > 0 && (
+      {/* Heart Kolekce - SKRYTO */}
+      {false && heartCollection.length > 0 && (
         <CategorySection
           title="Kolekce Heart"
           subtitle="Šperky se srdíčky - symbol lásky"

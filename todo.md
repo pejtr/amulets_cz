@@ -2172,3 +2172,18 @@
 
 ### Změna ikony hudby (Jan 23, 2026)
 - [x] Změnit ikonu hudebního přehrávače z noty na play
+
+### Konsolidace projektů a optimalizace (Jan 26, 2026)
+- [x] Odstranit CrossLinkBanner (vysouvací pruh nahoře)
+- [x] Odstranit velkou CrossLinkFooter sekci uprostřed stránky
+- [x] Ponechat pouze kompaktní footer sekci dole
+- [x] Zredukovat AMEN produkty - ponechat 4 nejoriginálnější (Přívěšky, LOVE, Vita Christi, Angels)
+- [x] Odstranit AMEN kolekce: Tennis, Náušnice, Prsteny, Heart
+- [x] Připravit doporučení pro boho/jógovou meditační hudbu (tibetské mísy, sitár, příroda)
+- [x] Změnit ikonu hudby na PAUSE při přehrávání (místo reproduktoru)
+
+### Úprava HarmonyTuner (Jan 26, 2026)
+- [x] Zredukovat HarmonyTuner na plovoucí ikonu křišťálové mísy
+- [x] Přesunout ikonu dolů (levý dolní roh vedle chatbotu)
+- [x] Změnit ikonu z současné na křišťálovou mísu
+- [x] Skrýt pruh s frekvencemi na mobilu (zobrazit pouze na desktopu)
