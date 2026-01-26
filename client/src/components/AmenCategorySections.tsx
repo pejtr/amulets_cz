@@ -1,6 +1,7 @@
 import { ExternalLink, Heart, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Button } from "./ui/button";
+import AmenProductFilter, { FilterState } from "./AmenProductFilter";
 
 interface AmenProduct {
   id: string;
@@ -27,6 +28,36 @@ export default function AmenCategorySections({ products }: AmenCategorySectionsP
     rosaryNecklaces: false,
   });
 
+  // State pro filtrování
+  const [filters, setFilters] = useState<FilterState>({
+    categories: [],
+    priceRange: [0, 10000],
+  });
+
+  // Dostupné kategorie a cenové rozpětí
+  const availableCategories = useMemo(() => {
+    const cats = new Set(products.map(p => p.category));
+    return Array.from(cats).filter(Boolean);
+  }, [products]);
+
+  const minPrice = useMemo(() => Math.min(...products.map(p => p.price)), [products]);
+  const maxPrice = useMemo(() => Math.max(...products.map(p => p.price)), [products]);
+
+  // Filtrované produkty
+  const filteredProducts = useMemo(() => {
+    return products.filter(product => {
+      // Filtr podle kategorie
+      if (filters.categories.length > 0 && !filters.categories.includes(product.category)) {
+        return false;
+      }
+      // Filtr podle ceny
+      if (product.price < filters.priceRange[0] || product.price > filters.priceRange[1]) {
+        return false;
+      }
+      return true;
+    });
+  }, [products, filters]);
+
   const toggleSection = (sectionKey: string) => {
     setExpandedSections(prev => ({
       ...prev,
@@ -34,19 +65,26 @@ export default function AmenCategorySections({ products }: AmenCategorySectionsP
     }));
   };
 
-  // Rozdělení produktů podle kategorií a kolekcí
-  const rosaryBracelets = products.filter(p => p.collection === 'Rosary' && p.category === 'naramek');
-  const rosaryNecklaces = products.filter(p => p.collection === 'Rosary' && p.category === 'nahrdelnik');
-  const loveBracelets = products.filter(p => p.collection === 'Love');
-  const tennisBracelets = products.filter(p => p.collection === 'Tennis');
-  const vitaChristiBracelets = products.filter(p => p.collection === 'Vita Christi et Mariae');
-  const earrings = products.filter(p => p.category === 'nausnice');
-  const rings = products.filter(p => p.category === 'prsten');
-  const heartCollection = products.filter(p => p.collection === 'Heart');
-  const angelsCollection = products.filter(p => p.collection === 'Angels');
+  // Rozdělení produktů podle kategorií a kolekcí (používáme filteredProducts)
+  const rosaryBracelets = filteredProducts.filter(p => p.collection === 'Rosary' && p.category === 'naramek');
+  const rosaryNecklaces = filteredProducts.filter(p => p.collection === 'Rosary' && p.category === 'nahrdelnik');
+  const loveBracelets = filteredProducts.filter(p => p.collection === 'Love');
+  const tennisBracelets = filteredProducts.filter(p => p.collection === 'Tennis');
+  const vitaChristiBracelets = filteredProducts.filter(p => p.collection === 'Vita Christi et Mariae');
+  const earrings = filteredProducts.filter(p => p.category === 'nausnice');
+  const rings = filteredProducts.filter(p => p.category === 'prsten');
+  const heartCollection = filteredProducts.filter(p => p.collection === 'Heart');
+  const angelsCollection = filteredProducts.filter(p => p.collection === 'Angels');
 
   return (
     <div className="space-y-16">
+      {/* Filtrovací panel */}
+      <AmenProductFilter
+        onFilterChange={setFilters}
+        availableCategories={availableCategories}
+        minPrice={minPrice}
+        maxPrice={maxPrice}
+      />
       {/* Rosary Náramky - Expandovatelné - SKRYTO (prázdné) */}
       {false && rosaryBracelets.length > 0 && (
         <div className="border border-gray-200 rounded-lg overflow-hidden">

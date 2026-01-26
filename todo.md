@@ -2187,3 +2187,10 @@
 - [x] Přesunout ikonu dolů (levý dolní roh vedle chatbotu)
 - [x] Změnit ikonu z současné na křišťálovou mísu
 - [x] Skrýt pruh s frekvencemi na mobilu (zobrazit pouze na desktopu)
+
+### Další vylepšení (Jan 26, 2026)
+- [x] Připravit doporučení zdrojů pro boho/jógovou meditační hudbu (Pixabay, YouTube Audio Library)
+- [ ] Nahradit meditation-music.mp3 novou hudbou (manuální stažení z Pixabay)
+- [x] Implementovat filtrování AMEN produktů podle kategorie
+- [x] Přidat cenový filtr pro AMEN produkty
+- [x] Vytvořit sticky bottom navigation bar pro mobil (Domů, Produkty, Kvíz, Kontakt)
