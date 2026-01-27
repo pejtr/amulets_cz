@@ -55,6 +55,55 @@ export type UserInteraction = typeof userInteractions.$inferSelect;
 export type InsertUserInteraction = typeof userInteractions.$inferInsert;
 
 // ============================================
+// CHATBOT CONVERSATIONS & MEMORY
+// ============================================
+
+// Conversations - perzistentní konverzace pro přihlášené uživatele
+export const conversations = mysqlTable("conversations", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull().references(() => users.id, { onDelete: "cascade" }),
+  title: varchar("title", { length: 255 }),
+  summary: text("summary"),
+  messageCount: int("messageCount").default(0).notNull(),
+  lastMessageAt: timestamp("lastMessageAt").defaultNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Conversation = typeof conversations.$inferSelect;
+export type InsertConversation = typeof conversations.$inferInsert;
+
+// Messages - zprávy v konverzacích
+export const messages = mysqlTable("messages", {
+  id: int("id").autoincrement().primaryKey(),
+  conversationId: int("conversationId").notNull().references(() => conversations.id, { onDelete: "cascade" }),
+  role: varchar("role", { length: 20 }).notNull(), // 'user' | 'assistant' | 'system'
+  content: text("content").notNull(),
+  metadata: text("metadata"), // JSON string for additional data (RAG sources, etc.)
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Message = typeof messages.$inferSelect;
+export type InsertMessage = typeof messages.$inferInsert;
+
+// Knowledge Base - vektorová databáze pro RAG
+export const knowledgeBase = mysqlTable("knowledge_base", {
+  id: int("id").autoincrement().primaryKey(),
+  contentType: varchar("contentType", { length: 50 }).notNull(), // 'symbol', 'stone', 'product', 'article', 'faq'
+  contentId: varchar("contentId", { length: 100 }),
+  title: varchar("title", { length: 255 }).notNull(),
+  content: text("content").notNull(),
+  url: varchar("url", { length: 500 }),
+  embedding: text("embedding"), // JSON array of floats
+  metadata: text("metadata"), // JSON string for additional data
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type KnowledgeBase = typeof knowledgeBase.$inferSelect;
+export type InsertKnowledgeBase = typeof knowledgeBase.$inferInsert;
+
+// ============================================
 // CHATBOT A/B TESTING TABLES
 // ============================================
 

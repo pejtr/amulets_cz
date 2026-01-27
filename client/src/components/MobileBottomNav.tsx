@@ -36,8 +36,8 @@ export default function MobileBottomNav() {
 
           return (
             <Link key={item.href} href={item.href}>
-              <a
-                className={`flex flex-col items-center justify-center w-full h-full transition-all duration-200 ${
+              <div
+                className={`flex flex-col items-center justify-center w-full h-full transition-all duration-200 cursor-pointer ${
                   isActive
                     ? 'text-purple-600'
                     : 'text-gray-500 hover:text-purple-500'
@@ -58,7 +58,7 @@ export default function MobileBottomNav() {
                 {isActive && (
                   <div className="absolute bottom-0 w-12 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-t-full" />
                 )}
-              </a>
+              </div>
             </Link>
           );
         })}

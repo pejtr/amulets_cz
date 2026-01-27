@@ -20,6 +20,7 @@ import Footer from "@/components/Footer";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
 import HarmonyTuner from "@/components/HarmonyTuner";
 import MobileBottomNav from "@/components/MobileBottomNav";
+import EnhancedChatbot from "@/components/EnhancedChatbot";
 import AromaterapieBanner from "@/components/AromaterapieBanner";
 import { useEffect } from "react";
 import { setOpenGraphTags } from "@/lib/seo";
@@ -94,6 +95,7 @@ export default function Home() {
       <Footer />
       <HarmonyTuner />
       <MobileBottomNav />
+      <EnhancedChatbot />
     </div>
   );
 }

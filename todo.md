@@ -2194,3 +2194,23 @@
 - [x] Implementovat filtrování AMEN produktů podle kategorie
 - [x] Přidat cenový filtr pro AMEN produkty
 - [x] Vytvořit sticky bottom navigation bar pro mobil (Domů, Produkty, Kvíz, Kontakt)
+
+### Vylepšení chatbota - perzistentní paměť a RAG (Jan 26, 2026)
+- [ ] Vytvořit databázové schéma pro konverzace (conversations table)
+- [ ] Vytvořit databázové schéma pro zprávy (messages table)
+- [ ] Implementovat vektorové embeddingy pro RAG systém
+- [ ] Vytvořit knowledge base z obsahu webu (symboly, kameny, produkty)
+- [ ] Implementovat context retrieval (vyhledávání relevantního obsahu)
+- [ ] Rozšířit chatbot backend o perzistentní paměť
+- [ ] Přidat RAG do chatbot odpovědí
+- [ ] Aktualizovat frontend - zobrazit historii konverzací
+- [ ] Přidat tlačítko "Nová konverzace"
+- [ ] Otestovat celý systém
+
+### Vylepšení chatbota - perzistentní paměť a RAG (Jan 27, 2026)
+- [x] Vytvořit databázové schéma pro konverzace a zprávy
+- [x] Implementovat RAG systém s vektorovými embeddingy
+- [x] Rozšířit chatbot backend o paměť a RAG
+- [x] Vytvořit EnhancedChatbot komponentu pro přihlášené uživatele
+- [x] Přidat historii konverzací a RAG zdroje do UI
+- [ ] Opravit RAG testy (embedding API timeout)

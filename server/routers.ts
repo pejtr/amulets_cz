@@ -376,6 +376,155 @@ ${email ? `- Email: ${email}` : ''}
 
         return { success: true };
       }),
+
+    // ========================================
+    // ENHANCED CHAT WITH MEMORY & RAG
+    // ========================================
+    sendMessageWithMemory: publicProcedure
+      .input(z.object({
+        message: z.string(),
+        conversationId: z.number().optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        const { message, conversationId } = input;
+
+        // Require authentication for persistent memory
+        if (!ctx.user) {
+          throw new TRPCError({
+            code: "UNAUTHORIZED",
+            message: "Pro použití perzistentní paměti se prosím přihlaste.",
+          });
+        }
+
+        const { 
+          getOrCreateConversation, 
+          addMessage, 
+          getRecentMessages 
+        } = await import('./conversationMemory');
+        const { searchKnowledgeBase, buildRAGContext } = await import('./rag');
+
+        try {
+          // Get or create conversation
+          const convId = conversationId || await getOrCreateConversation(ctx.user.id);
+
+          // Save user message
+          await addMessage(convId, 'user', message);
+
+          // Get recent conversation history (last 10 messages)
+          const history = await getRecentMessages(convId, 10);
+
+          // Search knowledge base for relevant content
+          const ragResults = await searchKnowledgeBase(message, 3);
+          const ragContext = buildRAGContext(ragResults);
+
+          // Build messages for LLM
+          const llmMessages: Array<{ role: string; content: string }> = [
+            {
+              role: 'system',
+              content: `Jsi Natálie, přátelská a znalá asistentka pro Amulets.cz - e-shop se spirituálními symboly, drahými kameny a amulety.
+
+${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď milá a užitečná. Pokud se uživatel ptá na produkty nebo symboly, využij informace z databáze výše.`,
+            },
+            ...history,
+          ];
+
+          // Call LLM
+          const response = await invokeLLM({
+            messages: llmMessages as any,
+          });
+
+          const assistantMessage = (typeof response.choices[0]?.message?.content === 'string' 
+            ? response.choices[0]?.message?.content 
+            : 'Omlouvám se, nepodařilo se mi odpovědět.');
+
+          // Save assistant message with RAG metadata
+          await addMessage(convId, 'assistant', assistantMessage, {
+            ragSources: ragResults.map((r: any) => ({ title: r.title, url: r.url })),
+            model: 'gpt-4',
+          });
+
+          return {
+            response: assistantMessage,
+            conversationId: convId,
+            ragSources: ragResults.map((r: any) => ({ title: r.title, url: r.url || undefined })),
+          };
+        } catch (error) {
+          console.error('Error in sendMessageWithMemory:', error);
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Omlouváme se, došlo k chybě. Zkuste to prosím znovu.",
+          });
+        }
+      }),
+
+    // Get user's conversations
+    getConversations: publicProcedure
+      .query(async ({ ctx }) => {
+        if (!ctx.user) {
+          throw new TRPCError({
+            code: "UNAUTHORIZED",
+            message: "Pro zobrazení konverzací se prosím přihlaste.",
+          });
+        }
+
+        const { getUserConversations } = await import('./conversationMemory');
+        return await getUserConversations(ctx.user.id);
+      }),
+
+    // Get conversation messages
+    getConversationMessages: publicProcedure
+      .input(z.object({
+        conversationId: z.number(),
+      }))
+      .query(async ({ input, ctx }) => {
+        if (!ctx.user) {
+          throw new TRPCError({
+            code: "UNAUTHORIZED",
+            message: "Pro zobrazení zpráv se prosím přihlaste.",
+          });
+        }
+
+        const { getConversationMessages, getConversation } = await import('./conversationMemory');
+        
+        // Verify ownership
+        const conversation = await getConversation(input.conversationId);
+        if (!conversation || conversation.userId !== ctx.user.id) {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: "Nemáte oprávnění zobrazit tuto konverzaci.",
+          });
+        }
+
+        return await getConversationMessages(input.conversationId);
+      }),
+
+    // Delete conversation
+    deleteConversation: publicProcedure
+      .input(z.object({
+        conversationId: z.number(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (!ctx.user) {
+          throw new TRPCError({
+            code: "UNAUTHORIZED",
+            message: "Pro smazání konverzace se prosím přihlaste.",
+          });
+        }
+
+        const { deleteConversation, getConversation } = await import('./conversationMemory');
+        
+        // Verify ownership
+        const conversation = await getConversation(input.conversationId);
+        if (!conversation || conversation.userId !== ctx.user.id) {
+          throw new TRPCError({
+            code: "FORBIDDEN",
+            message: "Nemáte oprávnění smazat tuto konverzaci.",
+          });
+        }
+
+        await deleteConversation(input.conversationId);
+        return { success: true };
+      }),
   }),
 
   // Newsletter subscription for lead magnets
