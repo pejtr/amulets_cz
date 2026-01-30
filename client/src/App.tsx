@@ -39,6 +39,7 @@ import TydenníHoroskop from "./pages/TydenníHoroskop";
 import ValentinskaKampan from "./pages/ValentinskaKampan";
 import AdminHoroscope from "./pages/AdminHoroscope";
 import AdminABTest from "./pages/AdminABTest";
+import ChatbotAnalytics from "./pages/ChatbotAnalytics";
 
 
 function Router() {
@@ -77,6 +78,7 @@ function Router() {
       <Route path="/admin/ab-tests" component={AdminABTests} />
       <Route path="/admin/horoscope" component={AdminHoroscope} />
       <Route path="/admin/abtest" component={AdminABTest} />
+      <Route path="/admin/chatbot-analytics" component={ChatbotAnalytics} />
       {/* Redirects for old/removed pages */}
       <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>
       <Route path={"/404"} component={NotFound} />

@@ -2214,3 +2214,12 @@
 - [x] Vytvořit EnhancedChatbot komponentu pro přihlášené uživatele
 - [x] Přidat historii konverzací a RAG zdroje do UI
 - [ ] Opravit RAG testy (embedding API timeout)
+
+### Chatbot Analytics (Jan 30, 2026)
+- [x] Vytvořit analytics endpointy (getStats, getRecentConversations, getPopularTopics)
+- [x] Implementovat admin dashboard na /admin/chatbot-analytics
+- [x] Zobrazit statistiky (celkem konverzací, zpráv, průměr)
+- [x] Zobrazit poslední konverzace s detaily
+- [x] Implementovat analýzu nejčastějších témat (word frequency)
+- [x] Zobrazit top 10 nejaktivnějších uživatelů
+- [x] Napsat a spustit testy pro analytics endpointy (6/6 prošlo)

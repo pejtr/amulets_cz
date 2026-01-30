@@ -1611,6 +1611,141 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         };
       }),
   }),
+
+  // Chatbot Analytics
+  chatbotAnalytics: router({    
+    // Get conversation statistics
+    getStats: publicProcedure
+      .input(z.object({
+        startDate: z.string().optional(),
+        endDate: z.string().optional(),
+      }))
+      .query(async ({ input }) => {
+        const db = await getDb();
+        if (!db) {
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Database not available' });
+        }
+
+        const { conversations, messages } = await import('../drizzle/schema');
+        const { sql, gte, lte, and } = await import('drizzle-orm');
+
+        // Build date filter
+        const dateFilter = [];
+        if (input.startDate) {
+          dateFilter.push(gte(conversations.createdAt, new Date(input.startDate)));
+        }
+        if (input.endDate) {
+          dateFilter.push(lte(conversations.createdAt, new Date(input.endDate)));
+        }
+
+        // Get total conversations
+        const totalConversationsResult = dateFilter.length > 0
+          ? await db.select({ count: sql<number>`count(*)` }).from(conversations).where(and(...dateFilter))
+          : await db.select({ count: sql<number>`count(*)` }).from(conversations);
+        const totalConversations = totalConversationsResult[0]?.count || 0;
+
+        // Get total messages
+        const totalMessagesResult = await db.select({ count: sql<number>`count(*)` }).from(messages);
+        const totalMessages = totalMessagesResult[0]?.count || 0;
+
+        // Get average messages per conversation
+        const avgMessagesResult = await db.select({
+          avg: sql<number>`AVG(${conversations.messageCount})`
+        }).from(conversations);
+        const avgMessages = avgMessagesResult[0]?.avg || 0;
+
+        // Get most active users (top 10)
+        const topUsersResult = await db.select({
+          userId: conversations.userId,
+          conversationCount: sql<number>`count(*)`
+        })
+        .from(conversations)
+        .groupBy(conversations.userId)
+        .orderBy(sql`count(*) DESC`)
+        .limit(10);
+
+        return {
+          totalConversations,
+          totalMessages,
+          avgMessagesPerConversation: Math.round(avgMessages * 10) / 10,
+          topUsers: topUsersResult,
+        };
+      }),
+
+    // Get recent conversations
+    getRecentConversations: publicProcedure
+      .input(z.object({
+        limit: z.number().default(20),
+        offset: z.number().default(0),
+      }))
+      .query(async ({ input }) => {
+        const db = await getDb();
+        if (!db) {
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Database not available' });
+        }
+
+        const { conversations, users } = await import('../drizzle/schema');
+        const { desc, eq } = await import('drizzle-orm');
+
+        const result = await db.select({
+          id: conversations.id,
+          userId: conversations.userId,
+          userName: users.name,
+          title: conversations.title,
+          messageCount: conversations.messageCount,
+          lastMessageAt: conversations.lastMessageAt,
+          createdAt: conversations.createdAt,
+        })
+        .from(conversations)
+        .leftJoin(users, eq(conversations.userId, users.id))
+        .orderBy(desc(conversations.lastMessageAt))
+        .limit(input.limit)
+        .offset(input.offset);
+
+        return result;
+      }),
+
+    // Get popular topics (most common words in messages)
+    getPopularTopics: publicProcedure
+      .query(async () => {
+        const db = await getDb();
+        if (!db) {
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Database not available' });
+        }
+
+        const { messages } = await import('../drizzle/schema');
+        const { eq } = await import('drizzle-orm');
+
+        // Get all user messages
+        const userMessages = await db.select({
+          content: messages.content
+        })
+        .from(messages)
+        .where(eq(messages.role, 'user'))
+        .limit(1000); // Limit for performance
+
+        // Simple word frequency analysis
+        const wordCounts: Record<string, number> = {};
+        const stopWords = new Set(['a', 'an', 'the', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'should', 'could', 'may', 'might', 'must', 'can', 'of', 'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'to', 'from', 'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should', 'now']);
+
+        userMessages.forEach(msg => {
+          const words = msg.content.toLowerCase().match(/\b\w+\b/g) || [];
+          words.forEach(word => {
+            if (word.length > 3 && !stopWords.has(word)) {
+              wordCounts[word] = (wordCounts[word] || 0) + 1;
+            }
+          });
+        });
+
+        // Get top 20 words
+        const topWords = Object.entries(wordCounts)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 20)
+          .map(([word, count]) => ({ word, count }));
+
+        return topWords;
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
