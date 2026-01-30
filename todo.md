@@ -2223,3 +2223,40 @@
 - [x] Implementovat analýzu nejčastějších témat (word frequency)
 - [x] Zobrazit top 10 nejaktivnějších uživatelů
 - [x] Napsat a spustit testy pro analytics endpointy (6/6 prošlo)
+
+### Knowledge base, grafy a export (Jan 30, 2026)
+- [x] Opravit kliknutí na svinutý chatbot (EnhancedChatbot)
+- [ ] Integrovat EnhancedChatbot do ChatbotWidget (jeden chatbot pro všechny)
+- [ ] Přidat banner pro nepřihlášené uživatele (výzva k přihlášení pro pokročilé funkce)
+- [ ] Naplnit knowledge base symboly z symbolsData
+- [ ] Naplnit knowledge base kameny z stonesData
+- [ ] Naplnit knowledge base FAQ otázkami
+- [ ] Přidat Chart.js do projektu
+- [ ] Implementovat časový graf konverzací (denní/týdenní/měsíční)
+- [ ] Přidat export endpoint pro CSV
+- [ ] Implementovat tlačítko "Export do CSV" v admin dashboardu
+
+### Chatbot integrace a konverzní strategie (Jan 30, 2026)
+- [x] Smazat problematický seed-knowledge.ts
+- [ ] Zvýraznit input pole v maximalizovaném chatu (tmavší border, shadow)
+- [ ] Rozšířit AIChatAssistant o perzistentní paměť a RAG
+- [ ] Implementovat A+/A- tlačítka pro změnu velikosti písma
+- [ ] Přidat konverzní strategii: BASIC (88 Kč) → PREMIUM (s OHORAI Academy)
+- [ ] Definovat PREMIUM výhody: Amulets Premium + OHORAI Academy + OHORAI Premium
+- [ ] Odstranit EnhancedChatbot komponentu
+- [ ] Aktualizovat Home.tsx - použít pouze AIChatAssistant
+
+## Vylepšení AIChatAssistant (Jan 30, 2026)
+- [x] Odstranit EnhancedChatbot z Home.tsx (ikona vpravo dole)
+- [x] Zvýraznit ikony v hlavičce AIChatAssistant (větší velikost, lepší viditelnost)
+- [x] Přidat tooltips pro všechny ikony v hlavičce (A+, A-, hlasitost, telefon, fullscreen, zavřít)
+- [x] Přidat speciální tooltip pro hlasový režim s vysvětlením funkce
+- [ ] Integrovat persistent memory do AIChatAssistant (použít chat.sendMessageWithMemory endpoint)
+- [ ] Integrovat RAG systém do AIChatAssistant (zobrazit zdroje pod odpověďmi)
+- [ ] Přidat sidebar s historií konverzací (pro přihlášené uživatele)
+- [ ] Implementovat A+/A- font size controls s localStorage persistencí
+- [ ] Přidat konverzní strategii (gentle upsell po 3-5 a 10 zprávách)
+- [ ] Vylepšit viditelnost input pole (tmavší border, shadow, lepší kontrast)
+- [ ] Přidat "Přihlásit se pro pokročilé funkce" banner pro anonymní uživatele
+- [ ] Otestovat všechny funkce na mobilu i desktopu
+- [x] Opravit logiku rozloučení - když uživatel nenapsal žádnou zprávu, nezobrazovat feedback formulář

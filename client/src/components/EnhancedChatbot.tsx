@@ -156,7 +156,7 @@ export default function EnhancedChatbot() {
       {!isOpen && (
         <Button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-20 right-6 z-50 h-14 w-14 rounded-full shadow-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+          className="fixed bottom-20 right-6 z-[100] h-14 w-14 rounded-full shadow-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
           aria-label="Otevřít chat s pamětí"
         >
           <Sparkles className="h-6 w-6" />
@@ -165,7 +165,7 @@ export default function EnhancedChatbot() {
 
       {/* Chat Window */}
       {isOpen && (
-        <Card className="fixed bottom-20 right-6 z-50 w-96 h-[600px] shadow-2xl flex flex-col">
+        <Card className="fixed bottom-20 right-6 z-[100] w-96 h-[600px] shadow-2xl flex flex-col">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-t-lg">
             <div className="flex items-center gap-2">

@@ -95,6 +95,7 @@ const SUGGESTED_CATEGORIES = [
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { MessageCircle, X, Send, Phone, Volume2, VolumeX, Maximize2, Minimize2, Type } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { Streamdown } from "streamdown";
@@ -877,70 +878,119 @@ Co tě dnes přivádí?`;
             <div className="flex items-center gap-2">
               {/* Font size controls */}
               <div className="flex items-center gap-1 border-r border-white/20 pr-2">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setFontSize(fontSize === 'small' ? 'medium' : fontSize === 'medium' ? 'large' : 'large')}
-                  className="text-white hover:bg-white/20 h-8 w-8 text-xs font-bold"
-                  title="Zvětšit text"
-                  disabled={fontSize === 'large'}
-                >
-                  A+
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setFontSize(fontSize === 'large' ? 'medium' : fontSize === 'medium' ? 'small' : 'small')}
-                  className="text-white hover:bg-white/20 h-8 w-8 text-xs font-bold"
-                  title="Zmenšit text"
-                  disabled={fontSize === 'small'}
-                >
-                  A-
-                </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => setFontSize(fontSize === 'small' ? 'medium' : fontSize === 'medium' ? 'large' : 'large')}
+                      className="text-white hover:bg-white/20 h-10 w-10 text-sm font-bold transition-all hover:scale-110"
+                      disabled={fontSize === 'large'}
+                    >
+                      A+
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" className="bg-white text-gray-800 border border-purple-200">
+                    <p className="font-medium">Zvětšit text</p>
+                  </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => setFontSize(fontSize === 'large' ? 'medium' : fontSize === 'medium' ? 'small' : 'small')}
+                      className="text-white hover:bg-white/20 h-10 w-10 text-sm font-bold transition-all hover:scale-110"
+                      disabled={fontSize === 'small'}
+                    >
+                      A-
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" className="bg-white text-gray-800 border border-purple-200">
+                    <p className="font-medium">Zmenšit text</p>
+                  </TooltipContent>
+                </Tooltip>
               </div>
               
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleVoice}
-                className="text-white hover:bg-white/20 h-8 w-8"
-                title={voiceEnabled ? "Vypnout hlas" : "Zapnout hlas"}
-              >
-                {voiceEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => handleWhatsAppRequest()}
-                className="text-white hover:bg-white/20 h-8 w-8"
-                title="Přímý kontakt s Natálií"
-              >
-                <Phone className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsMaximized(!isMaximized)}
-                className="text-white hover:bg-white/20 h-8 w-8"
-                title={isMaximized ? "Minimalizovat" : "Maximalizovat"}
-              >
-                {isMaximized ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => {
-                  // Zobrazit feedback před zavřením, pokud už nebylo odesláno a je více než 3 zprávy
-                  if (!feedbackSubmitted && messages.length >= 6 && !showFeedback) {
-                    setShowFeedback(true);
-                  } else {
-                    setIsOpen(false);
-                  }
-                }}
-                className="text-white hover:bg-white/20 h-8 w-8"
-              >
-                <X className="h-4 w-4" />
-              </Button>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={toggleVoice}
+                    className="text-white hover:bg-white/20 h-10 w-10 transition-all hover:scale-110"
+                  >
+                    {voiceEnabled ? <Volume2 className="h-5 w-5" /> : <VolumeX className="h-5 w-5" />}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="bg-white text-gray-800 border border-purple-200 max-w-xs">
+                  <p className="font-semibold mb-1">{voiceEnabled ? '🔊 Hlasové odpovědi zapnuty' : '🔇 Hlasové odpovědi vypnuty'}</p>
+                  <p className="text-xs text-gray-600">
+                    {voiceEnabled 
+                      ? 'Odpovědi se přehrávají nahlas. Klikněte pro vypnutí.' 
+                      : 'Zapněte pro poslouchání odpovědí – ideální při józe nebo relaxaci 🧘‍♀️'}
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleWhatsAppRequest()}
+                    className="text-white hover:bg-white/20 h-10 w-10 transition-all hover:scale-110"
+                  >
+                    <Phone className="h-5 w-5" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="bg-white text-gray-800 border border-purple-200">
+                  <p className="font-medium">📞 Přímý kontakt s Natálií</p>
+                  <p className="text-xs text-gray-600 mt-0.5">WhatsApp / Telefon</p>
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsMaximized(!isMaximized)}
+                    className="text-white hover:bg-white/20 h-10 w-10 transition-all hover:scale-110"
+                  >
+                    {isMaximized ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="bg-white text-gray-800 border border-purple-200">
+                  <p className="font-medium">{isMaximized ? '⬇️ Zmenšit okno' : '⬆️ Zvětšit na celou obrazovku'}</p>
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => {
+                      // Spočítat user zprávy (ne assistant zprávy)
+                      const userMessagesCount = messages.filter(m => m.role === 'user').length;
+                      
+                      // Zobrazit feedback pouze pokud:
+                      // 1. Uživatel napsal alespoň 1 zprávu (proběhla konverzace)
+                      // 2. Celkem je alespoň 6 zpráv (3 user + 3 assistant)
+                      // 3. Feedback ještě nebyl odeslán
+                      if (userMessagesCount > 0 && !feedbackSubmitted && messages.length >= 6 && !showFeedback) {
+                        setShowFeedback(true);
+                      } else {
+                        setIsOpen(false);
+                      }
+                    }}
+                    className="text-white hover:bg-white/20 h-10 w-10 transition-all hover:scale-110"
+                  >
+                    <X className="h-5 w-5" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="bg-white text-gray-800 border border-purple-200">
+                  <p className="font-medium">❌ Zavřít chat</p>
+                </TooltipContent>
+              </Tooltip>
             </div>
           </div>
 
