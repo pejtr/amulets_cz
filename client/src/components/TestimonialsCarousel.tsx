@@ -23,7 +23,7 @@ const testimonials: Testimonial[] = [
     id: 2,
     name: 'Sarri',
     rating: 5,
-    text: 'Paní Natálie pracuje v napojení. Cokoli vytvoří, je úžasné ♥️ Mám ráda obchod Ohorai. Doporučuji každému, kdo by chtěl pro sebe něco udělat – osobní křišťály od paní Natálie mají sílu a krásnou energii…',
+    text: 'Paní Natálie pracuje v napojení. Cokoli vytvoří, je úžasné ♥️ Mám ráda obchod Amulets. Doporučuji každému, kdo by chtěl pro sebe něco udělat – osobní křišťály od paní Natálie mají sílu a krásnou energii…',
     verified: true,
   },
   {

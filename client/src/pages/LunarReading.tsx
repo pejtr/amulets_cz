@@ -196,40 +196,60 @@ export default function LunarReading() {
       <Header />
       
       <main className="flex-1">
-        {/* Hero sekce */}
-        <section className="relative py-20 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white overflow-hidden">
-          {/* Hvězdy na pozadí */}
-          <div className="absolute inset-0 opacity-30">
-            {[...Array(50)].map((_, i) => {
-              const size = Math.random() > 0.7 ? 'w-1.5 h-1.5' : 'w-1 h-1';
-              const duration = 3 + Math.random() * 4; // 3-7s
+        {/* Hero sekce - tmavé pozadí s měsícem a hvězdami */}
+        <section className="relative py-24 md:py-32 bg-gradient-to-b from-indigo-950 via-purple-950 to-violet-900 text-white overflow-hidden">
+          {/* Velký měsíc v pozadí */}
+          <div className="absolute left-1/4 top-20 w-64 h-64 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-yellow-200/30 to-orange-200/20 blur-3xl"></div>
+          
+          {/* Hvězdy na pozadí - více a větší */}
+          <div className="absolute inset-0">
+            {[...Array(100)].map((_, i) => {
+              const size = Math.random() > 0.8 ? 'w-2 h-2' : Math.random() > 0.5 ? 'w-1.5 h-1.5' : 'w-1 h-1';
+              const opacity = Math.random() > 0.5 ? 'opacity-70' : 'opacity-40';
+              const duration = 2 + Math.random() * 4; // 2-6s
               const delay = Math.random() * 5; // 0-5s
               return (
                 <div
                   key={i}
-                  className={`absolute ${size} bg-white rounded-full`}
+                  className={`absolute ${size} ${opacity} bg-white rounded-full animate-pulse`}
                   style={{
                     left: `${Math.random() * 100}%`,
                     top: `${Math.random() * 100}%`,
-                    animation: `float ${duration}s ease-in-out ${delay}s infinite`,
+                    animationDuration: `${duration}s`,
+                    animationDelay: `${delay}s`,
                   }}
                 />
               );
             })}
           </div>
           
+          {/* Mlhovité mraky */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-10 left-0 w-full h-32 bg-gradient-to-r from-transparent via-purple-300/30 to-transparent blur-2xl"></div>
+            <div className="absolute bottom-10 right-0 w-full h-32 bg-gradient-to-l from-transparent via-pink-300/30 to-transparent blur-2xl"></div>
+          </div>
+          
           <div className="container relative z-10">
             <div className="max-w-3xl mx-auto text-center">
-              <div className="flex justify-center mb-6">
-                <Moon className="w-20 h-20 text-yellow-300" />
+              {/* Velká ikona měsíce */}
+              <div className="flex justify-center mb-8">
+                <div className="relative">
+                  <Moon className="w-24 h-24 md:w-32 md:h-32 text-yellow-200 drop-shadow-[0_0_30px_rgba(250,204,21,0.5)]" />
+                  <div className="absolute inset-0 animate-ping opacity-20">
+                    <Moon className="w-24 h-24 md:w-32 md:h-32 text-yellow-200" />
+                  </div>
+                </div>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-yellow-200 via-pink-200 to-purple-200 bg-clip-text text-transparent drop-shadow-lg">
                 Lunární Reading
               </h1>
-              <p className="text-xl mb-4 opacity-90">
+              
+              <p className="text-xl md:text-2xl mb-6 text-purple-100 font-light">
                 Objevte svůj personalizovaný měsíční profil
               </p>
-              <p className="text-lg opacity-75">
+              
+              <p className="text-base md:text-lg text-purple-200/90 leading-relaxed max-w-2xl mx-auto">
                 Zjistěte, jak měsíční fáze při vašem narození ovlivňuje vaši osobnost, emoce a duchovní cestu
               </p>
             </div>

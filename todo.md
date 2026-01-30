@@ -2260,3 +2260,8 @@
 - [ ] Přidat "Přihlásit se pro pokročilé funkce" banner pro anonymní uživatele
 - [ ] Otestovat všechny funkce na mobilu i desktopu
 - [x] Opravit logiku rozloučení - když uživatel nenapsal žádnou zprávu, nezobrazovat feedback formulář
+
+## Designové úpravy (Jan 30, 2026)
+- [x] Opravit recenze - změnit "Ohorai" na "Amulets" nebo "Amulets.cz"
+- [x] Redesign stránky Lunární reading - tmavé pozadí s měsícem a hvězdami
+- [x] Upravit sekci Průvodce amulety na HP - magické pozadí se zlatými efekty a hvězdami

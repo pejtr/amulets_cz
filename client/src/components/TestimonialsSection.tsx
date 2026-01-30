@@ -7,7 +7,7 @@ const testimonials = [
     name: "Sarri",
     date: "2.10.2023",
     rating: 5,
-    text: "Mám ráda obchod Ohorai. Stejně tak mám ráda jejich krásné, silné produkty. Doporučuji každému, kdo by chtěl pro sebe něco udělat – osobní křišťály od paní Natálie mají sílu a krásnou energii…",
+    text: "Mám ráda obchod Amulets. Stejně tak mám ráda jejich krásné, silné produkty. Doporučuji každému, kdo by chtěl pro sebe něco udělat – osobní křišťály od paní Natálie mají sílu a krásnou energii…",
     verified: true,
   },
   {

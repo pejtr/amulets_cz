@@ -89,8 +89,52 @@ export default function GuideSection() {
   const displayedStones = showAllStones ? stones : stones.slice(0, 8);
 
   return (
-    <section id="pruvodce-amulety" className="w-full bg-accent/20 py-16">
-      <div className="container">
+    <section id="pruvodce-amulety" className="w-full relative py-16 overflow-hidden">
+      {/* Magické pozadí s hvězdami a zlatými efekty */}
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-50/50 via-pink-50/30 to-yellow-50/40"></div>
+      
+      {/* Zlaté jiskřící efekty */}
+      <div className="absolute inset-0 opacity-20">
+        {[...Array(30)].map((_, i) => {
+          const size = Math.random() > 0.7 ? 'w-2 h-2' : 'w-1 h-1';
+          const duration = 3 + Math.random() * 5; // 3-8s
+          const delay = Math.random() * 5; // 0-5s
+          return (
+            <div
+              key={i}
+              className={`absolute ${size} bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full blur-sm animate-pulse`}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDuration: `${duration}s`,
+                animationDelay: `${delay}s`,
+              }}
+            />
+          );
+        })}
+      </div>
+      
+      {/* Hvězdy */}
+      <div className="absolute inset-0 opacity-30">
+        {[...Array(50)].map((_, i) => {
+          const size = Math.random() > 0.8 ? 'w-1.5 h-1.5' : 'w-1 h-1';
+          const duration = 2 + Math.random() * 3; // 2-5s
+          const delay = Math.random() * 4; // 0-4s
+          return (
+            <div
+              key={i}
+              className={`absolute ${size} bg-white rounded-full animate-pulse`}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDuration: `${duration}s`,
+                animationDelay: `${delay}s`,
+              }}
+            />
+          );
+        })}
+      </div>
+      <div className="container relative z-10">
         <div className="text-center mb-12">
           <div className="inline-block">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 px-6 py-4 md:px-8 md:py-5 rounded-2xl bg-gradient-to-br from-white via-purple-50/80 to-pink-50/80 shadow-lg">
