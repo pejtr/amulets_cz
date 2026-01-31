@@ -1,10 +1,10 @@
 import { Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
-import FeaturedCategories from "@/components/FeaturedCategories";
+import OhoraiBanner from "@/components/OhoraiBanner";
 
 export default function Footer() {
   return (
     <>
-      <FeaturedCategories />
+      <OhoraiBanner />
       <footer className="w-full bg-accent/30 border-t border-border">
       <div className="container py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -99,7 +99,7 @@ export default function Footer() {
           <div className="text-center mb-6">
             <h4 className="text-base md:text-lg font-semibold text-foreground">✨ Spřízněné projekty ✨</h4>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3 max-w-7xl mx-auto">
             {/* Dobrá čajovna Praha */}
             <a
               href="https://www.dobracajovnapraha.cz"
@@ -182,6 +182,18 @@ export default function Footer() {
               <div className="text-4xl md:text-5xl group-hover:scale-110 transition-transform">✈️</div>
               <span className="text-sm md:text-base font-semibold text-primary group-hover:underline text-center">Last Minute</span>
               <p className="text-xs md:text-sm text-muted-foreground text-center">Cestování</p>
+            </a>
+
+            {/* Jan Kroča */}
+            <a
+              href="https://www.jankroca.cz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted/50 transition-all duration-300 group hover:scale-105"
+            >
+              <div className="text-4xl md:text-5xl group-hover:scale-110 transition-transform">🏛️</div>
+              <span className="text-sm md:text-base font-semibold text-primary group-hover:underline text-center">Jan Kroča</span>
+              <p className="text-xs md:text-sm text-muted-foreground text-center">Léčivá místa</p>
             </a>
           </div>
         </div>

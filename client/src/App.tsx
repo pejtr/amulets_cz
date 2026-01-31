@@ -25,6 +25,7 @@ import BackToTop from "./components/BackToTop";
 import AIChatAssistant from "./components/AIChatAssistant";
 import StickyEsenceBanner from "./components/StickyEsenceBanner";
 import BackgroundMusic from "./components/BackgroundMusic";
+import OhoraiWidget from "./components/OhoraiWidget";
 import AboutNatalie from "./pages/AboutNatalie";
 import AmenPendants from "./pages/AmenPendants";
 import AdminCampaigns from "./pages/AdminCampaigns";
@@ -131,6 +132,7 @@ function App() {
           <AIChatAssistant />
           <StickyEsenceBanner />
           <BackgroundMusic />
+          <OhoraiWidget />
         </TooltipProvider>
               </ABTestProvider>
             </HarmonyTunerProvider>

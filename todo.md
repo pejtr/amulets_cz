@@ -2303,3 +2303,10 @@
 - [ ] Přegenerovat meditační hudbu na klidnější ambientní track
 - [ ] Opravit Telegram bota - neodpovídá na zprávy
 - [x] Upravit chatbot personality - směřovat koketní zákazníky k nákupu produktů
+- [ ] Nahrát OHORAI.cz promo video do projektu
+- [ ] Najít a přidat egyptskou hudbu
+- [ ] Vytvořit OHORAI promo komponentu s videem a hudbou
+- [ ] Přidat promo sekci na homepage
+- [x] Vytvořit OHORAI sticky widget s pozadím Natálie a textem
+- [x] Přidat Jana Kroču do spřízněných projektů ve footeru
+- [x] Vytvořit horizontální OHORAI banner a nahradit banner nad footerem
