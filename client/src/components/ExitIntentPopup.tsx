@@ -10,6 +10,7 @@ export default function ExitIntentPopup() {
   const [hasShown, setHasShown] = useState(false);
   const [showCode, setShowCode] = useState(false);
   const [email, setEmail] = useState("");
+  const [ctaVariant, setCtaVariant] = useState<string | null>(null);
 
   const subscribeDiscount = trpc.email.subscribeDiscount.useMutation({
     onSuccess: () => {
@@ -28,6 +29,12 @@ export default function ExitIntentPopup() {
     if (popupShown) {
       setHasShown(true);
       return;
+    }
+
+    // Get last CTA variant from sessionStorage for personalization
+    const lastCTA = sessionStorage.getItem("lastCTAVariant");
+    if (lastCTA) {
+      setCtaVariant(lastCTA);
     }
 
     // Exit intent detection - mouse leaving viewport from top
@@ -123,14 +130,17 @@ export default function ExitIntentPopup() {
 
           {/* Heading */}
           <h2 className="text-3xl font-bold text-center mb-2 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-            Exkluzivní sleva na amulety 🎁
+            {ctaVariant?.includes('ebook') ? '📖 Ještě jste si nestáhli e-book?' : 'Exkluzivní sleva na amulety 🎁'}
           </h2>
 
           {!showCode ? (
             <>
               {/* Email capture form */}
               <p className="text-center text-gray-600 mb-6">
-                Získejte <span className="font-bold text-purple-600">11% slevu</span> na celý sortiment
+                {ctaVariant?.includes('ebook') 
+                  ? (<>Stáhněte si <span className="font-bold text-purple-600">"7 Kroků k Rovnováze"</span> zdarma</>) 
+                  : (<>Získejte <span className="font-bold text-purple-600">11% slevu</span> na celý sortiment</>)
+                }
               </p>
 
               <form onSubmit={handleSubmitEmail} className="space-y-4">

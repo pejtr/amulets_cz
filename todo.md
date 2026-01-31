@@ -2293,3 +2293,10 @@
 - [x] Zvětšit tlačítko Prohlédnout kolekci v AromaterapieBanner aby kompletně zakrylo text ABOUT pod ním
 - [x] Opravit layout sekce Kolekce šperků AMEN - centrovat nadpis a tlačítko do containeru
 - [x] Přidat koučingové reference do sekce recenzí pro zvýšení důvěryhodnosti koučovacích služeb
+- [x] Vytvořit e-book '7 kroků k rovnováze' jako lead magnet - napsat obsah
+- [x] Vytvořit PDF design e-booku s profesionálním layoutem
+- [x] Implementovat databázový model pro lead magnety (ebook_downloads tabulka)
+- [x] Vytvořit landing page s formulářem pro stažení e-booku
+- [x] Implementovat email automatizaci pro odesílání e-booku
+- [ ] Přidat CTA bannery pro e-book na homepage
+- [ ] Implementovat exit-intent popup s personalizací podle CTA varianty

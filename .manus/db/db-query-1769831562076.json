@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `ebook_downloads` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `email` varchar(320) NOT NULL,\n  `name` varchar(255),\n  `ebookType` varchar(100) NOT NULL DEFAULT '7-kroku-k-rovnovaze',\n  `sourcePage` varchar(500),\n  `utmSource` varchar(100),\n  `utmMedium` varchar(100),\n  `utmCampaign` varchar(100),\n  `ctaVariant` varchar(50),\n  `emailSent` boolean NOT NULL DEFAULT false,\n  `emailSentAt` timestamp,\n  `convertedToClient` boolean NOT NULL DEFAULT false,\n  `conversionDate` timestamp,\n  `notes` text,\n  `createdAt` timestamp NOT NULL DEFAULT (now()),\n  CONSTRAINT `ebook_downloads_id` PRIMARY KEY(`id`)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute CREATE TABLE IF NOT EXISTS `ebook_downloads` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `email` varchar(320) NOT NULL,\n  `name` varchar(255),\n  `ebookType` varchar(100) NOT NULL DEFAULT '7-kroku-k-rovnovaze',\n  `sourcePage` varchar(500),\n  `utmSource` varchar(100),\n  `utmMedium` varchar(100),\n  `utmCampaign` varchar(100),\n  `ctaVariant` varchar(50),\n  `emailSent` boolean NOT NULL DEFAULT false,\n  `emailSentAt` timestamp,\n  `convertedToClient` boolean NOT NULL DEFAULT false,\n  `conversionDate` timestamp,\n  `notes` text,\n  `createdAt` timestamp NOT NULL DEFAULT (now()),\n  CONSTRAINT `ebook_downloads_id` PRIMARY KEY(`id`)\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 532
+}

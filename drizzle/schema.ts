@@ -54,6 +54,28 @@ export const userInteractions = mysqlTable("user_interactions", {
 export type UserInteraction = typeof userInteractions.$inferSelect;
 export type InsertUserInteraction = typeof userInteractions.$inferInsert;
 
+// E-book Downloads - lead magnet tracking
+export const ebookDownloads = mysqlTable("ebook_downloads", {
+  id: int("id").autoincrement().primaryKey(),
+  email: varchar("email", { length: 320 }).notNull(),
+  name: varchar("name", { length: 255 }),
+  ebookType: varchar("ebookType", { length: 100 }).notNull().default("7-kroku-k-rovnovaze"),
+  sourcePage: varchar("sourcePage", { length: 500 }),
+  utmSource: varchar("utmSource", { length: 100 }),
+  utmMedium: varchar("utmMedium", { length: 100 }),
+  utmCampaign: varchar("utmCampaign", { length: 100 }),
+  ctaVariant: varchar("ctaVariant", { length: 50 }), // pro exit-intent personalizaci
+  emailSent: boolean("emailSent").default(false).notNull(),
+  emailSentAt: timestamp("emailSentAt"),
+  convertedToClient: boolean("convertedToClient").default(false).notNull(),
+  conversionDate: timestamp("conversionDate"),
+  notes: text("notes"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type EbookDownload = typeof ebookDownloads.$inferSelect;
+export type InsertEbookDownload = typeof ebookDownloads.$inferInsert;
+
 // ============================================
 // CHATBOT CONVERSATIONS & MEMORY
 // ============================================

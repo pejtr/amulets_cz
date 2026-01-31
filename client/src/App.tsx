@@ -41,6 +41,7 @@ import AdminHoroscope from "./pages/AdminHoroscope";
 import AdminABTest from "./pages/AdminABTest";
 import ChatbotAnalytics from "./pages/ChatbotAnalytics";
 import AdminABTesting from "./pages/AdminABTesting";
+import EbookLanding from "./pages/EbookLanding";
 
 
 function Router() {
@@ -81,6 +82,7 @@ function Router() {
       <Route path="/admin/abtest" component={AdminABTest} />
       <Route path="/admin/chatbot-analytics" component={ChatbotAnalytics} />
       <Route path="/admin/ab-testing" component={AdminABTesting} />
+      <Route path="/ebook" component={EbookLanding} />
       {/* Redirects for old/removed pages */}
       <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>
       <Route path={"/404"} component={NotFound} />

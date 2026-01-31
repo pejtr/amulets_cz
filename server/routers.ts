@@ -35,6 +35,7 @@ import {
   getChatbotTicketsByVisitor,
 } from "./db";
 import { sendDailyReport, sendTestMessage, generateDailyReport, sendTelegramMessage, setTelegramWebhook, getTelegramWebhookInfo } from "./telegram";
+import { sendEbookEmail } from "./sendEbookEmail";
 import { autoDeactivateWeakVariants } from "./abTestAutoDeactivate";
 import { autoOptimizeVariantWeights, getOptimizationStatus } from "./abTestAutoOptimize";
 import { getChatbotVariantTrends } from "./abTestTrends";
@@ -1759,6 +1760,104 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
           .map(([word, count]) => ({ word, count }));
 
         return topWords;
+      }),
+  }),
+
+  // E-book Lead Magnet
+  ebook: router({
+    requestDownload: publicProcedure
+      .input(z.object({
+        email: z.string().email(),
+        name: z.string(),
+        ebookType: z.string().default("7-kroku-k-rovnovaze"),
+        sourcePage: z.string().optional(),
+        utmSource: z.string().optional(),
+        utmMedium: z.string().optional(),
+        utmCampaign: z.string().optional(),
+        ctaVariant: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const db = await getDb();
+        if (!db) {
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Database not available' });
+        }
+
+        const { ebookDownloads } = await import('../drizzle/schema');
+        
+        // Save to database
+        await db.insert(ebookDownloads).values({
+          email: input.email,
+          name: input.name,
+          ebookType: input.ebookType,
+          sourcePage: input.sourcePage,
+          utmSource: input.utmSource,
+          utmMedium: input.utmMedium,
+          utmCampaign: input.utmCampaign,
+          ctaVariant: input.ctaVariant,
+          emailSent: false,
+        });
+
+        // Send email with e-book
+        try {
+          await sendEbookEmail(input.email, input.name, input.ebookType);
+          
+          // Update emailSent status
+          const { eq } = await import('drizzle-orm');
+          await db.update(ebookDownloads)
+            .set({ 
+              emailSent: true, 
+              emailSentAt: new Date() 
+            })
+            .where(eq(ebookDownloads.email, input.email));
+        } catch (error) {
+          console.error('Failed to send e-book email:', error);
+          // Don't throw - still return download URL
+        }
+
+        // Add to Brevo contact list
+        try {
+          await addBrevoContact({
+            email: input.email,
+            attributes: {
+              FIRSTNAME: input.name,
+              EBOOK_DOWNLOADED: input.ebookType,
+              LEAD_SOURCE: 'E-book Lead Magnet',
+            },
+            listIds: [2], // E-book subscribers list
+          });
+        } catch (error) {
+          console.error('Failed to add to Brevo:', error);
+        }
+
+        // Send lead notification to Telegram
+        try {
+          const message = `🎁 Nový e-book download!\n\n` +
+            `📧 Email: ${input.email}\n` +
+            `👤 Jméno: ${input.name}\n` +
+            `📖 E-book: ${input.ebookType}\n` +
+            `📄 Zdroj: ${input.sourcePage || 'N/A'}\n` +
+            `🎯 CTA varianta: ${input.ctaVariant || 'N/A'}\n` +
+            `📊 UTM: ${input.utmSource || 'N/A'} / ${input.utmMedium || 'N/A'} / ${input.utmCampaign || 'N/A'}`;
+          
+          await sendTelegramMessage(message);
+        } catch (error) {
+          console.error('Failed to send Telegram notification:', error);
+        }
+
+        // Track Meta conversion
+        try {
+          await sendLeadEvent({
+            email: input.email,
+            eventSourceUrl: input.sourcePage || 'https://amulets.manus.space/ebook',
+          });
+        } catch (error) {
+          console.error('Failed to track Meta conversion:', error);
+        }
+
+        return {
+          success: true,
+          downloadUrl: '/7-kroku-k-rovnovaze.pdf',
+        };
       }),
   }),
 });
