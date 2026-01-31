@@ -94,7 +94,7 @@ export default function BackgroundMusic() {
 
   return (
     <div 
-      className="fixed bottom-4 left-4 z-40 flex items-center gap-2"
+      className="fixed bottom-28 left-4 z-40 flex items-center gap-2"
       onMouseEnter={() => setShowVolumeSlider(true)}
       onMouseLeave={() => setShowVolumeSlider(false)}
     >

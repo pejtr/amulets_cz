@@ -22,24 +22,54 @@ const purchaseData: PurchaseData[] = [
   { name: "Michaela", city: "Zlína", product: "Pyramida Hojnost", productImage: "/products/pyramida-hojnost.webp", timeAgo: "před 3 hodinami" },
 ];
 
+// Timing constants - delší prodlevy pro lepší UX
+const INITIAL_DELAY = 60000; // 60 sekund před první notifikací
+const NOTIFICATION_INTERVAL = 120000; // 2 minuty mezi notifikacemi
+const FADE_OUT_DELAY = 500;
+
 export default function PurchaseNotification() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isClosedManually, setIsClosedManually] = useState(false);
+  const [isOhoraiWidgetActive, setIsOhoraiWidgetActive] = useState(true);
+
+  // Check if OHORAI widget is active (not minimized/closed)
+  useEffect(() => {
+    const checkOhoraiWidget = () => {
+      // Check if OHORAI widget exists and is expanded (not minimized)
+      const widget = document.querySelector('[data-ohorai-widget]');
+      const isActive = widget && !widget.classList.contains('minimized');
+      setIsOhoraiWidgetActive(!!isActive);
+    };
+
+    // Check initially
+    checkOhoraiWidget();
+
+    // Set up observer to watch for widget changes
+    const observer = new MutationObserver(checkOhoraiWidget);
+    observer.observe(document.body, { 
+      childList: true, 
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
-    if (isClosedManually) return;
+    if (isClosedManually || isOhoraiWidgetActive) return;
 
-    // Initial delay before first notification
+    // Initial delay before first notification - delší prodleva
     const initialDelay = setTimeout(() => {
       setIsVisible(true);
-    }, 15000); // Show first notification after 15 seconds
+    }, INITIAL_DELAY);
 
     return () => clearTimeout(initialDelay);
-  }, [isClosedManually]);
+  }, [isClosedManually, isOhoraiWidgetActive]);
 
   useEffect(() => {
-    if (isClosedManually) return;
+    if (isClosedManually || isOhoraiWidgetActive) return;
 
     const interval = setInterval(() => {
       // Hide current notification
@@ -49,11 +79,18 @@ export default function PurchaseNotification() {
       setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % purchaseData.length);
         setIsVisible(true);
-      }, 500); // Wait for fade out animation
-    }, 45000); // Show each notification for 45 seconds (more realistic)
+      }, FADE_OUT_DELAY);
+    }, NOTIFICATION_INTERVAL);
 
     return () => clearInterval(interval);
-  }, [isClosedManually]);
+  }, [isClosedManually, isOhoraiWidgetActive]);
+
+  // Hide notification when OHORAI widget becomes active
+  useEffect(() => {
+    if (isOhoraiWidgetActive) {
+      setIsVisible(false);
+    }
+  }, [isOhoraiWidgetActive]);
 
   const handleClose = () => {
     setIsVisible(false);
@@ -66,8 +103,8 @@ export default function PurchaseNotification() {
 
   return (
     <div
-      className={`fixed bottom-6 left-6 z-50 transition-all duration-500 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+      className={`fixed bottom-6 left-6 z-30 transition-all duration-500 ${
+        isVisible && !isOhoraiWidgetActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
     >
       <div className="bg-gradient-to-br from-white via-white to-emerald-50/60 rounded-lg shadow-2xl border border-emerald-100/50 p-4 max-w-sm flex items-start gap-3">

@@ -2310,3 +2310,5 @@
 - [x] Vytvořit OHORAI sticky widget s pozadím Natálie a textem
 - [x] Přidat Jana Kroču do spřízněných projektů ve footeru
 - [x] Vytvořit horizontální OHORAI banner a nahradit banner nad footerem
+- [x] Posunout tlačítko Meditační hudba aby se nepřekrývalo s OHORAI widgetem
+- [x] Vypnout notifikace při aktivním widgetu a prodloužit prodlevu mezi nimi

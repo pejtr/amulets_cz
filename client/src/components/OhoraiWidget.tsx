@@ -16,6 +16,7 @@ export default function OhoraiWidget() {
 
   return (
     <div
+      data-ohorai-widget
       className={`fixed z-40 transition-all duration-300 ${
         isMinimized
           ? "bottom-4 left-4 w-14 h-14"
