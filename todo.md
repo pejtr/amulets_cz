@@ -2289,3 +2289,6 @@
 - [ ] RAG systém s knowledge base (produkty, články)
 - [x] Zvětšit ikony a text v sekci "Spřízněné projekty" ve footeru pro lepší čitelnost
 - [x] Opravit URL adres ve footeru (Recepty Zdraví, YouKeto, Last Minute)
+- [ ] Vylepšit stránku O nás - přidat rozhovor Rostečky.cz s fotkou, optimalizovat popis Natálie s koučingovými službami
+- [x] Zvětšit tlačítko Prohlédnout kolekci v AromaterapieBanner aby kompletně zakrylo text ABOUT pod ním
+- [x] Opravit layout sekce Kolekce šperků AMEN - centrovat nadpis a tlačítko do containeru

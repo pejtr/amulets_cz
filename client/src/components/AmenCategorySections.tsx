@@ -77,9 +77,10 @@ export default function AmenCategorySections({ products }: AmenCategorySectionsP
   const angelsCollection = filteredProducts.filter(p => p.collection === 'Angels');
 
   return (
-    <div className="space-y-16">
-      {/* Header s nadpisem a filtrem */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+    <div className="container">
+      <div className="space-y-16">
+        {/* Header s nadpisem a filtrem */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
         <div className="text-center sm:text-left">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
             💎 Kolekce šperků AMEN
@@ -232,6 +233,7 @@ export default function AmenCategorySections({ products }: AmenCategorySectionsP
           icon={<Sparkles className="w-6 h-6" />}
         />
       )}
+      </div>
     </div>
   );
 }
