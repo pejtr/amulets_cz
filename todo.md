@@ -2265,3 +2265,14 @@
 - [x] Opravit recenze - změnit "Ohorai" na "Amulets" nebo "Amulets.cz"
 - [x] Redesign stránky Lunární reading - tmavé pozadí s měsícem a hvězdami
 - [x] Upravit sekci Průvodce amulety na HP - magické pozadí se zlatými efekty a hvězdami
+
+## Chatbot vylepšení - A/B Testing & Analytics (Jan 31, 2026)
+- [ ] Databázové schéma pro konverzace (chat_sessions, chat_messages)
+- [ ] Databázové schéma pro A/B testing (persona_variants, conversion_events)
+- [ ] Backend API: ukládání konverzací do DB
+- [ ] Backend API: A/B testing analytics endpoint
+- [ ] A/B testing persony v chatbotu (3 varianty: Phoebe, Piper, Prue style)
+- [x] localStorage pro font size (A+/A-)
+- [x] Upsell strategie po 5 zprávách
+- [x] Analytics dashboard pro sledování konverzí (getOptimizationStatus endpoint)
+- [x] Auto-optimalizace: po 100+ konverzacích zvýšit traffic na nejlepší personu

@@ -256,7 +256,11 @@ Natálie 💜`;
 export default function AIChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
-  const [fontSize, setFontSize] = useState<'small' | 'medium' | 'large'>('medium');
+  const [fontSize, setFontSize] = useState<'small' | 'medium' | 'large'>(() => {
+    const stored = localStorage.getItem('amulets_chat_font_size');
+    if (stored === 'small' || stored === 'medium' || stored === 'large') return stored;
+    return 'medium';
+  });
   const [isOffline, setIsOffline] = useState(isOfflineHours());
   
   // Check if user is authenticated (for Paige/Velekněžka access)
@@ -559,6 +563,42 @@ Co tě dnes přivádí?`;
       // Show email capture after 3 messages
       if (messages.filter((m) => m.role === "user").length >= 2 && !email) {
         setShowEmailCapture(true);
+      }
+
+      // Upsell strategie po 5 zprávách - jemná nabídka konzultace
+      const userMessageCount = messages.filter((m) => m.role === "user").length;
+      if (userMessageCount === 5 && !localStorage.getItem('amulets_upsell_shown')) {
+        // Zobrazit jemný upsell po 5 zprávách
+        setTimeout(() => {
+          setMessages((prev) => [
+            ...prev,
+            {
+              role: "assistant",
+              content: `💜 **Milá duše, vidím, že tě toto téma opravdu zajímá!**
+
+Pokud bys chtěl/a jít hlouběji, nabízím ti několik možností:
+
+✨ **Osobní konzultace** - 30 minut se mnou přes video/telefon
+🌙 **Lunární čtení** - Osobní měsíční profil podle tvého data narození
+🔮 **Kviz: Tvůj symbol** - Zjisti, který amulet rezonuje s tvou energií
+
+Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
+              timestamp: new Date(),
+            },
+          ]);
+          localStorage.setItem('amulets_upsell_shown', 'true');
+          
+          // Track upsell impression
+          if (variant) {
+            logEventMutation.mutate({
+              visitorId,
+              variantId: variant.id,
+              eventType: 'upsell_impression',
+              eventData: JSON.stringify({ messageCount: userMessageCount }),
+              page: window.location.pathname,
+            });
+          }
+        }, 2000); // 2 sekundy po odpovědi
       }
     },
     onError: (error) => {
@@ -883,7 +923,11 @@ Co tě dnes přivádí?`;
                     <Button
                       variant="ghost"
                       size="icon"
-                      onClick={() => setFontSize(fontSize === 'small' ? 'medium' : fontSize === 'medium' ? 'large' : 'large')}
+                      onClick={() => {
+                        const newSize = fontSize === 'small' ? 'medium' : fontSize === 'medium' ? 'large' : 'large';
+                        setFontSize(newSize);
+                        localStorage.setItem('amulets_chat_font_size', newSize);
+                      }}
                       className="text-white hover:bg-white/20 h-10 w-10 text-sm font-bold transition-all hover:scale-110"
                       disabled={fontSize === 'large'}
                     >
@@ -899,7 +943,11 @@ Co tě dnes přivádí?`;
                     <Button
                       variant="ghost"
                       size="icon"
-                      onClick={() => setFontSize(fontSize === 'large' ? 'medium' : fontSize === 'medium' ? 'small' : 'small')}
+                      onClick={() => {
+                        const newSize = fontSize === 'large' ? 'medium' : fontSize === 'medium' ? 'small' : 'small';
+                        setFontSize(newSize);
+                        localStorage.setItem('amulets_chat_font_size', newSize);
+                      }}
                       className="text-white hover:bg-white/20 h-10 w-10 text-sm font-bold transition-all hover:scale-110"
                       disabled={fontSize === 'small'}
                     >

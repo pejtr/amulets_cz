@@ -36,6 +36,7 @@ import {
 } from "./db";
 import { sendDailyReport, sendTestMessage, generateDailyReport, sendTelegramMessage, setTelegramWebhook, getTelegramWebhookInfo } from "./telegram";
 import { autoDeactivateWeakVariants } from "./abTestAutoDeactivate";
+import { autoOptimizeVariantWeights, getOptimizationStatus } from "./abTestAutoOptimize";
 import { getChatbotVariantTrends } from "./abTestTrends";
 import { weeklyABTestCleanup } from "./jobs/weeklyABTestCleanup";
 import { createCoachingLead, formatLeadForTelegram } from "./coachingDb";
@@ -962,6 +963,20 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
           throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to answer ticket' });
         }
         return { success: true };
+      }),
+
+    // Auto-optimize variant weights (after 100+ conversions)
+    autoOptimize: publicProcedure
+      .mutation(async () => {
+        const result = await autoOptimizeVariantWeights();
+        return result;
+      }),
+
+    // Get optimization status
+    getOptimizationStatus: publicProcedure
+      .query(async () => {
+        const status = await getOptimizationStatus();
+        return status;
       }),
   }),
 
