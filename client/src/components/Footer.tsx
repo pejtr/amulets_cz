@@ -94,116 +94,95 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Partners */}
+        {/* Partners - všechny v jednom řádku */}
         <div className="mt-8 pt-8 border-t border-border">
-          <div className="text-center mb-4">
-            <h4 className="text-sm font-semibold text-foreground mb-3">✨ Spřízňené projekty ✨</h4>
+          <div className="text-center mb-6">
+            <h4 className="text-base md:text-lg font-semibold text-foreground">✨ Spřízněné projekty ✨</h4>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* E-shop sloupec */}
-            <div>
-              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4 text-center">E-shop</h5>
-              <div className="flex flex-col gap-6">
-                {/* Dobrá čajovna Praha */}
-                <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
-                  <div className="text-2xl flex-shrink-0">🍵</div>
-                  <div className="flex-1">
-                    <a
-                      href="https://www.dobracajovnapraha.cz"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground hover:text-primary transition-colors font-medium block mb-1"
-                    >
-                      Dobrá Čajovna Praha
-                    </a>
-                    <p className="text-xs text-muted-foreground mb-2">
-                      Prémiové čaje a čajové doplňky
-                    </p>
-                    <a
-                      href="https://instagram.com/dobracajovnapraha"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Instagram className="h-3 w-3" />
-                      @dobracajovnapraha
-                    </a>
-                  </div>
-                </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 max-w-6xl mx-auto">
+            {/* Dobrá čajovna Praha */}
+            <a
+              href="https://www.dobracajovnapraha.cz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted/50 transition-all duration-300 group hover:scale-105"
+            >
+              <div className="text-4xl md:text-5xl group-hover:scale-110 transition-transform">🍵</div>
+              <span className="text-sm md:text-base font-semibold text-primary group-hover:underline text-center">Dobrá Čajovna</span>
+              <p className="text-xs md:text-sm text-muted-foreground text-center">Prémiové čaje</p>
+            </a>
 
-                {/* Amarex */}
-                <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
-                  <div className="text-2xl flex-shrink-0">🌶️</div>
-                  <div className="flex-1">
-                    <a
-                      href="https://www.amarex.cz"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground hover:text-primary transition-colors font-medium block mb-1"
-                    >
-                      Amarex
-                    </a>
-                    <p className="text-xs text-muted-foreground">
-                      Přírodní produkt na podporu erekce
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Amarex */}
+            <a
+              href="https://www.amarex.cz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted/50 transition-all duration-300 group hover:scale-105"
+            >
+              <div className="text-4xl md:text-5xl group-hover:scale-110 transition-transform">🍌</div>
+              <span className="text-sm md:text-base font-semibold text-primary group-hover:underline text-center">Amarex</span>
+              <p className="text-xs md:text-sm text-muted-foreground text-center">Podpora erekce</p>
+            </a>
 
-            {/* Další sloupec */}
-            <div>
-              <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4 text-center">Další</h5>
-              <div className="flex flex-col gap-6">
-                {/* Donuterie */}
-                <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
-                  <div className="text-2xl flex-shrink-0">🍩</div>
-                  <div className="flex-1">
-                    <a
-                      href="https://www.donuterie.eu/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground hover:text-primary transition-colors font-medium block mb-1"
-                    >
-                      Donuterie Prague
-                    </a>
-                    <p className="text-xs text-muted-foreground mb-2">
-                      Showroom & výdejna OHORAI
-                    </p>
-                    <a
-                      href="https://instagram.com/DonuteriePrague"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Instagram className="h-3 w-3" />
-                      @DonuteriePrague
-                    </a>
-                  </div>
-                </div>
+            {/* Donuterie */}
+            <a
+              href="https://www.donuterie.eu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted/50 transition-all duration-300 group hover:scale-105"
+            >
+              <div className="text-4xl md:text-5xl group-hover:scale-110 transition-transform">🍩</div>
+              <span className="text-sm md:text-base font-semibold text-primary group-hover:underline text-center">Donuterie</span>
+              <p className="text-xs md:text-sm text-muted-foreground text-center">Výdejna OHORAI</p>
+            </a>
 
-                {/* Bindu - charitativní organizace */}
-                <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
-                  <div className="text-2xl flex-shrink-0">ॐ</div>
-                  <div className="flex-1">
-                    <a
-                      href="http://bindu.cz"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground hover:text-primary transition-colors font-medium block mb-1"
-                    >
-                      Bindu z.s.
-                    </a>
-                    <p className="text-xs text-muted-foreground mb-1">
-                      Charita pro děti v Indii a Nepálu
-                    </p>
-                    <span className="text-xs text-pink-500 font-medium">
-                      ❤ 100% příspěvků jde dětem
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Bindu */}
+            <a
+              href="http://bindu.cz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted/50 transition-all duration-300 group hover:scale-105"
+            >
+              <div className="text-4xl md:text-5xl group-hover:scale-110 transition-transform">ॐ</div>
+              <span className="text-sm md:text-base font-semibold text-primary group-hover:underline text-center">Bindu z.s.</span>
+              <p className="text-xs md:text-sm text-muted-foreground text-center">❤ Charita</p>
+            </a>
+
+            {/* Recepty Zdraví */}
+            <a
+              href="https://receptyzdravi.cz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted/50 transition-all duration-300 group hover:scale-105"
+            >
+              <div className="text-4xl md:text-5xl group-hover:scale-110 transition-transform">🥗</div>
+              <span className="text-sm md:text-base font-semibold text-primary group-hover:underline text-center">Recepty Zdraví</span>
+              <p className="text-xs md:text-sm text-muted-foreground text-center">Zdravé recepty</p>
+            </a>
+
+            {/* YouKeto */}
+            <a
+              href="https://youketo.cz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted/50 transition-all duration-300 group hover:scale-105"
+            >
+              <div className="text-4xl md:text-5xl group-hover:scale-110 transition-transform">🥑</div>
+              <span className="text-sm md:text-base font-semibold text-primary group-hover:underline text-center">YouKeto</span>
+              <p className="text-xs md:text-sm text-muted-foreground text-center">Keto dieta</p>
+            </a>
+
+            {/* Last Minute */}
+            <a
+              href="https://lastminutedovolene.cz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted/50 transition-all duration-300 group hover:scale-105"
+            >
+              <div className="text-4xl md:text-5xl group-hover:scale-110 transition-transform">✈️</div>
+              <span className="text-sm md:text-base font-semibold text-primary group-hover:underline text-center">Last Minute</span>
+              <p className="text-xs md:text-sm text-muted-foreground text-center">Cestování</p>
+            </a>
           </div>
         </div>
 

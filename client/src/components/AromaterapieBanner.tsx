@@ -21,14 +21,14 @@ export default function AromaterapieBanner() {
         </h2>
         
         {/* CTA Button - positioned to overlay the original button in the image */}
-        <div className="absolute top-[55%] md:top-[52%] left-[8%] md:left-[12%]">
+        <div className="absolute top-[52%] sm:top-[50%] md:top-[48%] left-[5%] sm:left-[7%] md:left-[10%]">
           <Button
             onClick={handleClick}
             size="lg"
-            className="bg-gradient-to-r from-[#D4AF37] to-[#B8860B] hover:from-[#E5C158] hover:to-[#D4AF37] text-black font-bold px-4 sm:px-6 md:px-10 py-2 sm:py-3 md:py-6 text-sm sm:text-base md:text-xl shadow-lg hover:shadow-xl transition-all duration-300 group rounded-full"
+            className="bg-gradient-to-r from-[#D4AF37] to-[#B8860B] hover:from-[#E5C158] hover:to-[#D4AF37] text-black font-bold px-10 sm:px-14 md:px-20 lg:px-24 py-5 sm:py-6 md:py-8 lg:py-10 text-lg sm:text-xl md:text-2xl lg:text-3xl shadow-lg hover:shadow-xl transition-all duration-300 group rounded-full"
           >
             <span>Prohlédnout kolekci</span>
-            <ArrowRight className="ml-2 h-5 w-5 md:h-6 md:w-6 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="ml-2 sm:ml-3 h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
       </div>

@@ -78,13 +78,23 @@ export default function AmenCategorySections({ products }: AmenCategorySectionsP
 
   return (
     <div className="space-y-16">
-      {/* Filtrovací panel */}
-      <AmenProductFilter
-        onFilterChange={setFilters}
-        availableCategories={availableCategories}
-        minPrice={minPrice}
-        maxPrice={maxPrice}
-      />
+      {/* Header s nadpisem a filtrem */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+        <div className="text-center sm:text-left">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+            💎 Kolekce šperků AMEN
+          </h2>
+          <p className="text-sm text-muted-foreground mt-1">
+            Filtrujte podle kategorie nebo ceny
+          </p>
+        </div>
+        <AmenProductFilter
+          onFilterChange={setFilters}
+          availableCategories={availableCategories}
+          minPrice={minPrice}
+          maxPrice={maxPrice}
+        />
+      </div>
       {/* Rosary Náramky - Expandovatelné - SKRYTO (prázdné) */}
       {false && rosaryBracelets.length > 0 && (
         <div className="border border-gray-200 rounded-lg overflow-hidden">

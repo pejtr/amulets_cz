@@ -2287,3 +2287,5 @@
 - [x] Admin dashboard pro A/B testing (konverzní poměry, manuální optimalizace) - /admin/ab-testing
 - [ ] Persistent memory pro chatbot (ukládání konverzací do DB)
 - [ ] RAG systém s knowledge base (produkty, články)
+- [x] Zvětšit ikony a text v sekci "Spřízněné projekty" ve footeru pro lepší čitelnost
+- [x] Opravit URL adres ve footeru (Recepty Zdraví, YouKeto, Last Minute)
