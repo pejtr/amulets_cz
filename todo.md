@@ -2292,3 +2292,4 @@
 - [ ] Vylepšit stránku O nás - přidat rozhovor Rostečky.cz s fotkou, optimalizovat popis Natálie s koučingovými službami
 - [x] Zvětšit tlačítko Prohlédnout kolekci v AromaterapieBanner aby kompletně zakrylo text ABOUT pod ním
 - [x] Opravit layout sekce Kolekce šperků AMEN - centrovat nadpis a tlačítko do containeru
+- [x] Přidat koučingové reference do sekce recenzí pro zvýšení důvěryhodnosti koučovacích služeb

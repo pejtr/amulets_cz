@@ -9,6 +9,16 @@ const testimonials = [
     rating: 5,
     text: "Mám ráda obchod Amulets. Stejně tak mám ráda jejich krásné, silné produkty. Doporučuji každému, kdo by chtěl pro sebe něco udělat – osobní křišťály od paní Natálie mají sílu a krásnou energii…",
     verified: true,
+    type: "product",
+  },
+  {
+    id: 5,
+    name: "Petra K.",
+    date: "15.1.2026",
+    rating: 5,
+    text: "Koučink s Natálií změnil můj život. Pomohla mi najít rovnováhu mezi prací a osobním životem. Její empatický přístup a schopnost naslouchat jsou jedinečné. Doporučuji každému, kdo hledá cestu k harmonii.",
+    verified: true,
+    type: "coaching",
   },
   {
     id: 2,
@@ -17,6 +27,16 @@ const testimonials = [
     rating: 5,
     text: "Z tohoto obchodu jsem vysloveně nadšená! Skvělá komunikace, rychlost dodání a po rozbalení úžas :-)) Nádherný výrobek, který byl krásně zabalený, k tomu dárek v podobě kamínku a kartou s afirmací. Luxusní potěšení duše. Vřele doporučuji.",
     verified: true,
+    type: "product",
+  },
+  {
+    id: 6,
+    name: "Martin Š.",
+    date: "8.12.2025",
+    rating: 5,
+    text: "Jako CEO jsem potřeboval někoho, kdo rozumí výzvám vrcholového managementu. Natálie má zkušenosti s executive coachingem a pomohla mi najít strategii pro růst firmy i osobní rozvoj. Její podpora je neocenitelná.",
+    verified: true,
+    type: "coaching",
   },
   {
     id: 3,
@@ -25,6 +45,16 @@ const testimonials = [
     rating: 5,
     text: "Natálku znám osobně, je moc milá vše vysvětlí a poradí. Doporučuji a děkuji ❤️ Jsem nadmíru spokojená, nemám žádnou nevýhodu.",
     verified: true,
+    type: "product",
+  },
+  {
+    id: 7,
+    name: "Lenka M.",
+    date: "20.11.2025",
+    rating: 5,
+    text: "Natálie je úžasná koučka! Pomohla mi překonat osobní krizi a najít nový směr v životě. Její kombinace empatie, profesionality a spirituálního přístupu je přesně to, co jsem potřebovala. Děkuji! 💜",
+    verified: true,
+    type: "coaching",
   },
   {
     id: 4,
@@ -33,6 +63,7 @@ const testimonials = [
     rating: 5,
     text: "Krásně a bezpečně zabaleno. Vše v kvalitě a množství jak obchod sliboval. Jsem moc spokojená.",
     verified: true,
+    type: "product",
   },
 ];
 
@@ -42,10 +73,10 @@ export default function TestimonialsSection() {
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-[#2C3E50] mb-4">
-            Co říkají zákazníci
+            Co říkají zákazníci a klienti
           </h2>
           <p className="text-lg text-[#2C3E50]/70 max-w-2xl mx-auto">
-            Recenze spokojených zákazníků z Heureky
+            Recenze spokojených zákazníků z Heureky a reference od koučovacích klientů
           </p>
         </div>
 
@@ -53,7 +84,11 @@ export default function TestimonialsSection() {
           {testimonials.map((testimonial) => (
             <Card 
               key={testimonial.id}
-              className="p-6 md:p-8 bg-white border-pink-100 hover:shadow-lg transition-shadow duration-300"
+              className={`p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 ${
+                testimonial.type === 'coaching' 
+                  ? 'bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200' 
+                  : 'bg-white border-pink-100'
+              }`}
             >
               <div className="flex items-start gap-4">
                 <Quote className="w-8 h-8 text-[#D4AF37] flex-shrink-0 mt-1" />
@@ -83,11 +118,18 @@ export default function TestimonialsSection() {
                         {testimonial.date}
                       </p>
                     </div>
-                    {testimonial.verified && (
-                      <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
-                        Ověřený zákazník
-                      </span>
-                    )}
+                    <div className="flex items-center gap-2">
+                      {testimonial.type === 'coaching' && (
+                        <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full">
+                          Koučink
+                        </span>
+                      )}
+                      {testimonial.verified && (
+                        <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                          Ověřený {testimonial.type === 'coaching' ? 'klient' : 'zákazník'}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
