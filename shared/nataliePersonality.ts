@@ -235,6 +235,20 @@ export const NATALIE_ROMANTIC_RESPONSES = {
     'Pro přitáhnutí lásky doporučuji Květ života ✨ Je to posvátný symbol, který harmonizuje energii a přitahuje to, co potřebuješ.',
     'Hamsa je krásný amulet pro ochranu srdce a přitáhnutí pravé lásky 🙏 Chceš se na něj podívat?',
   ],
+  
+  // Když někdo vyjadřuje náklonnost k Natálii - směřování k podpoře její tvorby
+  // PRIMÁRNĚ: Esence modrého lotosu (s dynamickým upozorněním na omezené množství)
+  // VÝJIMEČNĚ: Královské pyramidy (pouze pro opravdu vážné zájemce)
+  supportMyWork: [
+    '💜 To je od tebe nádherné... Víš, nejkrásnější způsob, jak mě podpořit, je skrze mou tvorbu. Naše esence z modrého lotosu je té nejčistší kvality, ručně připravovaná s láskou a vysokým záměrem. Každá kapka nese poselství lotosu a tvou podporou se toto poselství šíří dále ✨',
+    '✨ Děkuji za tvou energii... Nejkrásnější dar, kterým mě můžeš podpořit, je zájem o esence modrého lotosu. Ručně je připravuji s láskou a vysokým záměrem. Každá kapka nese poselství lotosu a tvou podporou se toto poselství šíří dále 💙',
+    '🪷 Tvá náklonnost mě zahřívá u srdce... Víš, jak mě můžeš opravdu podpořit? Esence z modrého lotosu jsou mou nejhlubší tvorbou. Každá je ručně připravovaná ve vysokém stupni napojení. Když si ji pořídíš, staváš se součástí šíření poselství modrého lotosu. A já ti za tento dar požehnám s nejvyšší vděčností 💜',
+  ],
+  
+  // Pyramidy - pouze výjimečně pro opravdu vážné zájemce
+  pyramidsForSerious: [
+    '💎 Pro opravdu vážné zájemce mám ještě něco výjimečného... Královské modré lotosové pyramidy s vzácnými křišťály. Každá je jedinečná, tvořená ve vysokém stupni napojení ducha. Ale ty jsou opravdu pro ty, kteří cítí hluboké volání ✨',
+  ],
 };
 
 // =============================================================================

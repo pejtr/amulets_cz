@@ -2300,3 +2300,6 @@
 - [x] Implementovat email automatizaci pro odesílání e-booku
 - [ ] Přidat CTA bannery pro e-book na homepage
 - [ ] Implementovat exit-intent popup s personalizací podle CTA varianty
+- [ ] Přegenerovat meditační hudbu na klidnější ambientní track
+- [ ] Opravit Telegram bota - neodpovídá na zprávy
+- [x] Upravit chatbot personality - směřovat koketní zákazníky k nákupu produktů
