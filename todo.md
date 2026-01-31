@@ -2276,3 +2276,14 @@
 - [x] Upsell strategie po 5 zprávách
 - [x] Analytics dashboard pro sledování konverzí (getOptimizationStatus endpoint)
 - [x] Auto-optimalizace: po 100+ konverzacích zvýšit traffic na nejlepší personu
+
+## Telegram Bot Fix (Jan 31, 2026)
+- [ ] Diagnostikovat proč Telegram bot neodpovídá
+- [ ] Opravit konfiguraci nebo kód
+- [ ] Otestovat funkčnost
+
+## Nové funkce (Jan 31, 2026)
+- [x] Opravit Telegram webhook URL
+- [x] Admin dashboard pro A/B testing (konverzní poměry, manuální optimalizace) - /admin/ab-testing
+- [ ] Persistent memory pro chatbot (ukládání konverzací do DB)
+- [ ] RAG systém s knowledge base (produkty, články)

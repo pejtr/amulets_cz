@@ -9,7 +9,7 @@ export default function AromaterapieBanner() {
   return (
     <section className="relative w-full overflow-hidden py-4 md:py-8">
       {/* Full width background image - no container restrictions */}
-      <div className="relative w-full h-[200px] sm:h-[280px] md:h-[400px] lg:h-[500px]">
+      <div className="relative w-full h-[280px] sm:h-[350px] md:h-[480px] lg:h-[580px]">
         <img
           src="/aromaterapie-banner.png"
           alt="Aromaterapie banner"

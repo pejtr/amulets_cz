@@ -83,13 +83,13 @@ export default function Home() {
         <GuideSection />
         <QuizCTA />
 
-        <TestimonialsSection />
-        <AromaterapieBanner />
         <CoachingSection />
         <AmenPendantsSection />
         <AmenCategorySectionsWrapper />
+        <TestimonialsSection />
         <MagazineSection />
         <FAQSection />
+        <AromaterapieBanner />
       </main>
 
       <Footer />

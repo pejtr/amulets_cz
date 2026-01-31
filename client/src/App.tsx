@@ -40,6 +40,7 @@ import ValentinskaKampan from "./pages/ValentinskaKampan";
 import AdminHoroscope from "./pages/AdminHoroscope";
 import AdminABTest from "./pages/AdminABTest";
 import ChatbotAnalytics from "./pages/ChatbotAnalytics";
+import AdminABTesting from "./pages/AdminABTesting";
 
 
 function Router() {
@@ -79,6 +80,7 @@ function Router() {
       <Route path="/admin/horoscope" component={AdminHoroscope} />
       <Route path="/admin/abtest" component={AdminABTest} />
       <Route path="/admin/chatbot-analytics" component={ChatbotAnalytics} />
+      <Route path="/admin/ab-testing" component={AdminABTesting} />
       {/* Redirects for old/removed pages */}
       <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>
       <Route path={"/404"} component={NotFound} />
