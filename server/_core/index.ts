@@ -8,6 +8,7 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { processIncomingMessage } from "../telegram";
+import "../scheduleWeeklyReport"; // Auto-start weekly report scheduler
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {

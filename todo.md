@@ -2462,3 +2462,9 @@
 - [x] Vytvořit tRPC proceduru pro export zpráv do Excel
 - [x] Přidat UI tlačítka pro export v AdminMessages
 - [x] Otestovat export a uložit checkpoint
+
+### Týenní email report offline zpráv (1. února 2026)
+- [x] Vytvořit funkci pro generování HTML emailu s nepřečtenými zprávami
+- [x] Přidat tRPC proceduru pro manuální odeslání reportu (testování)
+- [x] Nastavit cron job pro automatické odesílání každé pondělí v 8:00
+- [x] Otestovat report a uložit checkpoint

@@ -3,7 +3,7 @@ import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Mail, MailOpen, Trash2, ArrowLeft, RefreshCw, Download } from "lucide-react";
+import { Loader2, Mail, MailOpen, Trash2, ArrowLeft, RefreshCw, Download, Send } from "lucide-react";
 import { useLocation } from "wouter";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -129,6 +129,20 @@ export default function AdminMessages() {
     }
   };
 
+  // Weekly report mutation
+  const sendWeeklyReportMutation = trpc.offlineMessages.sendWeeklyReport.useMutation({
+    onSuccess: (data) => {
+      if (data.success) {
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
+    },
+    onError: () => {
+      toast.error('Nepodařilo se odeslat týenní report');
+    },
+  });
+
   // Helper to safely render browsing context
   const renderBrowsingContext = (ctx: unknown) => {
     if (!ctx || typeof ctx !== 'object') return null;
@@ -241,6 +255,19 @@ export default function AdminMessages() {
             <Button variant="outline" size="sm" onClick={handleExportExcel}>
               <Download className="h-4 w-4 mr-1" />
               Excel
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => sendWeeklyReportMutation.mutate()}
+              disabled={sendWeeklyReportMutation.isPending}
+            >
+              {sendWeeklyReportMutation.isPending ? (
+                <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+              ) : (
+                <Send className="h-4 w-4 mr-1" />
+              )}
+              Týdení report
             </Button>
             <Button variant="outline" size="sm" onClick={() => refetch()}>
               <RefreshCw className="h-4 w-4" />

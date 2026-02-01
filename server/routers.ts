@@ -2042,6 +2042,20 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         
         return { csv, filename: `offline-zpravy-${new Date().toISOString().split('T')[0]}.csv` };
       }),
+
+    // Odeslat týenní report emailem (manuální trigger nebo cron)
+    sendWeeklyReport: publicProcedure
+      .mutation(async ({ ctx }) => {
+        // Check if user is admin
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup k odesílání reportu' });
+        }
+
+        const { sendWeeklyOfflineMessagesReport } = await import('./weeklyOfflineMessagesReport');
+        const result = await sendWeeklyOfflineMessagesReport();
+        
+        return result;
+      }),
   }),
 });
 
