@@ -863,7 +863,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
       
       {/* Chat Button - Kompaktní a pulzující (zmenšeno o 33%) */}
       {!isOpen && (
-        <div className="fixed bottom-8 right-4 z-50">
+        <div className="fixed bottom-24 left-4 z-50">
           {/* Pulzující kruhy pro urgenci - pouze když je online */}
           {(!isOffline || adminOverride) && (
             <>

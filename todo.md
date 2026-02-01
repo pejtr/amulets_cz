@@ -2548,3 +2548,19 @@
 - [x] Defaultně svinutý doleva (translateX(-calc(100%+1rem)))
 - [x] Vysunutý pouze když hraje hudba (isPlaying === true)
 - [ ] Otestovat a uložit checkpoint
+
+## Zjemnění scroll animací (1. února 2026)
+- [x] Prodloužit duration zoom-in animací (z 0.6s na 1s)
+- [x] Přidat jemnější easing (cubic-bezier(0.16, 1, 0.3, 1) pro smooth efekt)
+- [x] Aplikovat na všechny sekce (produkty, průvodce, magazín, horoskop)
+
+## Membership banner v chatbotu (1. února 2026)
+- [ ] Přidat banner "AKTIVUJ si měsíční členství 88 Kč/měs pro podporu 24/7" do chatbotu
+- [ ] Zobrazit banner pouze když je Natálie OFFLINE (mimo 9:00-19:00)
+- [ ] Umístit banner do prázdného prostoru pod ikonami v headeru
+- [ ] Otestovat a uložit checkpoint
+
+## Oprava chatbot avataru (1. února 2026)
+- [x] Přesunout avatar doleva (left-4 místo right-4)
+- [x] Posunout avatar výše (bottom-24 místo bottom-8)
+- [x] Zajištit, aby nepřekrývala dolní navigační panel
