@@ -2601,3 +2601,7 @@
 - [x] Rovnoměrné rozložení (justify-evenly) s padding px-4
 - [x] Přesunout Natálii přesně nad první tlačítko (bottom-24 left-6)
 - [x] Snížit výšku navigace na h-16 pro kompaktnější vzhled
+
+## Úprava Natálie avataru (1. února 2026)
+- [x] Posunout Natálii výš na desktopu (md:bottom-36 md:left-4)
+- [x] Změnit gradient kolem avataru na živý fialovo-růžový (from-fuchsia-500 to-pink-500)

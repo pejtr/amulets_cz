@@ -863,7 +863,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
       
       {/* Chat Button - Levitující nad prvním tlačítkem (Domů) v dolní navigaci */}
       {!isOpen && (
-        <div className="fixed bottom-24 left-6 z-50 animate-float">
+        <div className="fixed bottom-24 left-6 md:bottom-36 md:left-4 z-50 animate-float">
           {/* Pulzující kruhy pro urgenci - pouze když je online */}
           {(!isOffline || adminOverride) && (
             <>
@@ -874,7 +874,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
           
           <Button
             onClick={() => setIsOpen(true)}
-            className="relative h-16 w-16 md:h-28 md:w-28 lg:h-32 lg:w-32 rounded-full shadow-2xl bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 p-0 group hover:scale-110 transition-transform duration-300"
+            className="relative h-16 w-16 md:h-28 md:w-28 lg:h-32 lg:w-32 rounded-full shadow-2xl bg-gradient-to-br from-fuchsia-500 to-pink-500 hover:from-fuchsia-600 hover:to-pink-600 p-0 group hover:scale-110 transition-transform duration-300"
             aria-label="Otevřít chat s Natálií"
           >
             {/* Fotka Natálie - kompaktní na mobilu, velká na desktopu */}
