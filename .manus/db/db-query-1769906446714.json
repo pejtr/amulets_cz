@@ -1,0 +1,9 @@
+{
+  "query": "INSERT INTO membership_tiers (tierKey, name, description, priceMonthly, priceYearly, priceLifetime, benefits, ohoraiDiscount, isActive, isInviteOnly) VALUES \n('free', 'Zdarma', 'Základní přístup k obsahu', 0, 0, 0, '[\"Přístup k veřejnému obsahu\", \"Kvíz na zjištění symbolu\", \"Newsletter\"]', 0, 1, 0),\n('premium', 'Premium', 'Plný přístup ke všem funkcím', 29900, 249900, 0, '[\"Vše z Free\", \"Exkluzivní obsah\", \"AI chatbot bez limitu\", \"Slevy na produkty\", \"Telegram skupina\"]', 10, 1, 0),\n('vip', 'VIP', 'Exkluzivní VIP členství', 0, 0, 999900, '[\"Vše z Premium\", \"Osobní konzultace s Natálií\", \"VIP Telegram skupina\", \"Prioritní podpora\", \"20% sleva na OHORAI\"]', 20, 1, 1);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute INSERT INTO membership_tiers (tierKey, name, description, priceMonthly, priceYearly, priceLifetime, benefits, ohoraiDiscount, isActive, isInviteOnly) VALUES \n('free', 'Zdarma', 'Základní přístup k obsahu', 0, 0, 0, '[\"Přístup k veřejnému obsahu\", \"Kvíz na zjištění symbolu\", \"Newsletter\"]', 0, 1, 0),\n('premium', 'Premium', 'Plný přístup ke všem funkcím', 29900, 249900, 0, '[\"Vše z Free\", \"Exkluzivní obsah\", \"AI chatbot bez limitu\", \"Slevy na produkty\", \"Telegram skupina\"]', 10, 1, 0),\n('vip', 'VIP', 'Exkluzivní VIP členství', 0, 0, 999900, '[\"Vše z Premium\", \"Osobní konzultace s Natálií\", \"VIP Telegram skupina\", \"Prioritní podpora\", \"20% sleva na OHORAI\"]', 20, 1, 1);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 369
+}

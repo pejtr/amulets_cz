@@ -2322,3 +2322,21 @@
 - [x] Posunout chatbot ikonu doprava a nahoru (right-4, bottom-8)
 - [x] Optimalizovat OHORAI widget pro mobilní zařízení (menší velikost, lepší pozice)
 - [x] Jan Kroča již přidán do footeru (spřízněné projekty)
+
+
+## Přehrávač ambientní meditační hudby (1. února 2026)
+- [ ] Vyhledat a stáhnout royalty-free meditační hudbu
+- [ ] Vytvořit MeditationMusicPlayer komponentu s play/pause ovládáním
+- [ ] Přidat elegantní UI design (minimalistický, floating button)
+- [ ] Integrovat do Home.tsx
+- [ ] Otestovat funkčnost přehrávače
+
+
+## Odstranění OHORAI widgetu (1. února 2026)
+- [ ] Odstranit OHORAI widget z Home.tsx
+
+
+## Zvětšení fotky chatbota na desktopu (1. února 2026)
+- [x] Zvětšit fotku chatbota na desktopu 3x (z h-16 w-16 na md:h-24 md:w-24)
+- [x] Zvětšit online/offline indikátor na desktopu (md:h-6 md:w-6)
+- [x] Zvětšit chat ikonu na desktopu (md:h-5 md:w-5)

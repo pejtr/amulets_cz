@@ -1,0 +1,19 @@
+{
+  "query": "SELECT id FROM users WHERE role = 'admin'; SELECT id FROM membership_tiers WHERE tierKey = 'premium';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute SELECT id FROM users WHERE role = 'admin'; SELECT id FROM membership_tiers WHERE tierKey = 'premium';",
+  "rows": [
+    {
+      "id": "1"
+    },
+    {
+      "id": "id"
+    },
+    {
+      "id": "2"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\n1\nid\n2\n",
+  "stderr": "",
+  "execution_time_ms": 398
+}

@@ -1,0 +1,21 @@
+{
+  "query": "SELECT * FROM users WHERE role = 'admin';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute SELECT * FROM users WHERE role = 'admin';",
+  "rows": [
+    {
+      "id": "1",
+      "openId": "KRswYnztXsY6kUnaGpWxGn",
+      "name": "Petr MATĚJ",
+      "email": "petr.matej@gmail.com",
+      "loginMethod": "google",
+      "role": "admin",
+      "createdAt": "2026-01-17 13:12:48",
+      "updatedAt": "2026-02-01 00:39:47",
+      "lastSignedIn": "2026-02-01 00:39:48"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\topenId\tname\temail\tloginMethod\trole\tcreatedAt\tupdatedAt\tlastSignedIn\n1\tKRswYnztXsY6kUnaGpWxGn\tPetr MATĚJ\tpetr.matej@gmail.com\tgoogle\tadmin\t2026-01-17 13:12:48\t2026-02-01 00:39:47\t2026-02-01 00:39:48\n",
+  "stderr": "",
+  "execution_time_ms": 346
+}

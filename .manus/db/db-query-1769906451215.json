@@ -1,0 +1,17 @@
+{
+  "query": "SELECT u.id as userId, u.name, u.email, mt.id as tierId, mt.tierKey FROM users u, membership_tiers mt WHERE u.role = 'admin' AND mt.tierKey = 'premium';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute SELECT u.id as userId, u.name, u.email, mt.id as tierId, mt.tierKey FROM users u, membership_tiers mt WHERE u.role = 'admin' AND mt.tierKey = 'premium';",
+  "rows": [
+    {
+      "userId": "1",
+      "name": "Petr MATĚJ",
+      "email": "petr.matej@gmail.com",
+      "tierId": "2",
+      "tierKey": "premium"
+    }
+  ],
+  "messages": [],
+  "stdout": "userId\tname\temail\ttierId\ttierKey\n1\tPetr MATĚJ\tpetr.matej@gmail.com\t2\tpremium\n",
+  "stderr": "",
+  "execution_time_ms": 355
+}

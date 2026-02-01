@@ -1,0 +1,35 @@
+{
+  "query": "SELECT um.*, mt.name as tierName, u.name as userName FROM user_memberships um JOIN membership_tiers mt ON um.tierId = mt.id JOIN users u ON um.userId = u.id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute SELECT um.*, mt.name as tierName, u.name as userName FROM user_memberships um JOIN membership_tiers mt ON um.tierId = mt.id JOIN users u ON um.userId = u.id;",
+  "rows": [
+    {
+      "id": "1",
+      "userId": "1",
+      "email": "NULL",
+      "telegramId": "NULL",
+      "telegramUsername": "NULL",
+      "tierId": "2",
+      "status": "active",
+      "startedAt": "2026-02-01 00:41:00",
+      "expiresAt": "2027-02-01 00:41:00",
+      "cancelledAt": "NULL",
+      "stripeCustomerId": "NULL",
+      "stripeSubscriptionId": "NULL",
+      "lastPaymentAt": "NULL",
+      "ohoraiSynced": "0",
+      "ohoraiSyncedAt": "NULL",
+      "addedToGroup": "0",
+      "addedToGroupAt": "NULL",
+      "source": "manual",
+      "referredBy": "NULL",
+      "createdAt": "2026-02-01 00:41:00",
+      "updatedAt": "2026-02-01 00:41:00",
+      "tierName": "Premium",
+      "userName": "Petr MATĚJ"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tuserId\temail\ttelegramId\ttelegramUsername\ttierId\tstatus\tstartedAt\texpiresAt\tcancelledAt\tstripeCustomerId\tstripeSubscriptionId\tlastPaymentAt\tohoraiSynced\tohoraiSyncedAt\taddedToGroup\taddedToGroupAt\tsource\treferredBy\tcreatedAt\tupdatedAt\ttierName\tuserName\n1\t1\tNULL\tNULL\tNULL\t2\tactive\t2026-02-01 00:41:00\t2027-02-01 00:41:00\tNULL\tNULL\tNULL\tNULL\t0\tNULL\t0\tNULL\tmanual\tNULL\t2026-02-01 00:41:00\t2026-02-01 00:41:00\tPremium\tPetr MATĚJ\n",
+  "stderr": "",
+  "execution_time_ms": 362
+}
