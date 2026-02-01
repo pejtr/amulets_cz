@@ -21,7 +21,6 @@ import ReadingProgressBar from "@/components/ReadingProgressBar";
 import HarmonyTuner from "@/components/HarmonyTuner";
 import MobileBottomNav from "@/components/MobileBottomNav";
 
-import AromaterapieBanner from "@/components/AromaterapieBanner";
 import { useEffect } from "react";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createWebsiteSchema, createOrganizationSchema, createFAQSchema } from "@/lib/schema";
@@ -89,7 +88,6 @@ export default function Home() {
         <TestimonialsSection />
         <MagazineSection />
         <FAQSection />
-        <AromaterapieBanner />
       </main>
 
       <Footer />

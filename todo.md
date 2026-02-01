@@ -2357,3 +2357,7 @@
 ## Chatbot úpravy (1. února 2026)
 - [x] Zvětšit fotku chatbota na desktopu ještě více (md:h-28 md:w-28 lg:h-32 lg:w-32)
 - [x] Automaticky probudit chatbota pro admina (i když spí) - isAdmin check
+
+
+## Odstranění AromaterapieBanner (1. února 2026)
+- [x] Odstranit sekci aromaterapeutických esencí z homepage

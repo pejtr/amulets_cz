@@ -117,7 +117,7 @@ export default function HeroSection() {
       {/* Desktop: original version with overlay text */}
       <div className="hidden md:block relative w-full min-h-[600px]">
         {/* ARCHANDĚLSKÁ KŘÍDLA - Éterický efekt za Natálií */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-20">
           {/* Hlavní křídla - levé */}
           <div 
             className="absolute animate-angel-wings"
@@ -126,7 +126,7 @@ export default function HeroSection() {
               top: '10%',
               width: '500px',
               height: '600px',
-              background: 'radial-gradient(ellipse 100% 80% at 100% 50%, rgba(212, 175, 55, 0.25) 0%, rgba(255, 215, 0, 0.15) 30%, rgba(255, 223, 0, 0.05) 60%, transparent 80%)',
+              background: 'radial-gradient(ellipse 100% 80% at 100% 50%, rgba(212, 175, 55, 0.5) 0%, rgba(255, 215, 0, 0.35) 30%, rgba(255, 223, 0, 0.15) 60%, transparent 85%)',
               transformOrigin: 'right center',
               transform: 'rotate(-15deg)',
             }}
@@ -139,7 +139,7 @@ export default function HeroSection() {
               top: '10%',
               width: '500px',
               height: '600px',
-              background: 'radial-gradient(ellipse 100% 80% at 0% 50%, rgba(212, 175, 55, 0.25) 0%, rgba(255, 215, 0, 0.15) 30%, rgba(255, 223, 0, 0.05) 60%, transparent 80%)',
+              background: 'radial-gradient(ellipse 100% 80% at 0% 50%, rgba(212, 175, 55, 0.5) 0%, rgba(255, 215, 0, 0.35) 30%, rgba(255, 223, 0, 0.15) 60%, transparent 85%)',
               transformOrigin: 'left center',
               transform: 'rotate(15deg)',
               animationDelay: '0.5s',
@@ -154,7 +154,7 @@ export default function HeroSection() {
               top: '8%',
               width: '250px',
               height: '250px',
-              background: 'radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(212, 175, 55, 0.15) 40%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(255, 215, 0, 0.5) 0%, rgba(212, 175, 55, 0.3) 40%, transparent 70%)',
             }}
           />
           
