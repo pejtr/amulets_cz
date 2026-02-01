@@ -159,7 +159,8 @@ export default function OHORAI() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Aromaterapeutické esence</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Ručně vyráběné esence z přírodních éterických olejů a drahých kamenů
+              Ručně vyráběné esence z přírodních éterických olejů a drahých kamenů.
+              Každá esence dosáhla nejvyšší vibrační koherence pomocí křišťálových nástrojů a jejich vibračního působení.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">

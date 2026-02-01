@@ -2363,3 +2363,8 @@
 - [x] Odstranit sekci aromaterapeutických esencí z homepage
 - [x] Odstranit StickyEsenceBanner (vyjíždějící reklama)
 - [x] Odstranit OhoraiWidget (oranžová postavička)
+
+
+## Úprava textů OHORAI (1. února 2026)
+- [x] Změnit "muzikoterapie" na "vibrační koherence pomocí křišťálových nástrojů"
+- [x] Upravit popis esencí - dosaženo nejvyšší vibrační koherence

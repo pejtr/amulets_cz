@@ -4,7 +4,7 @@
  * Propaguje OHORAI.cz - autorský e-shop Natálie s:
  * - 100% čistými aromaterapeutickými esencemi
  * - Ručně vyráběnými produkty s modrým lotosem
- * - Muzikoterapií
+ * - Nejvyšší vibrační koherence pomocí křišťálových nástrojů
  */
 export default function OhoraiBanner() {
   return (
@@ -37,7 +37,7 @@ export default function OhoraiBanner() {
             <div className="space-y-4">
               <img
                 src="/ohorai-text.png"
-                alt="Vůně, která vám rozzáří život - 100% čisté aromaterapeutické esence, ruční tvorba & muzikoterapie"
+                alt="Vůně, která vám rozzáří život - 100% čisté aromaterapeutické esence, ruční tvorba"
                 className="w-full max-w-2xl mx-auto lg:mx-0 drop-shadow-2xl"
               />
             </div>
@@ -48,8 +48,9 @@ export default function OhoraiBanner() {
               <span className="font-bold text-yellow-300">
                 ručně vyráběnými produkty
               </span>
-              : čisté aromaterapeutické esence, posvátný modrý lotos, křišťálové
-              nástroje a muzikoterapie.
+              : čisté aromaterapeutické esence, posvátný modrý lotos. Každá esence
+              dosáhla nejvyšší vibrační koherence pomocí křišťálových nástrojů
+              a jejich vibračního působení.
             </p>
 
             {/* CTA Button */}
@@ -133,7 +134,7 @@ export default function OhoraiBanner() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span>Muzikoterapie</span>
+                <span>Vibrační koherence</span>
               </div>
             </div>
           </div>
