@@ -2605,3 +2605,14 @@
 ## Úprava Natálie avataru (1. února 2026)
 - [x] Posunout Natálii výš na desktopu (md:bottom-36 md:left-4)
 - [x] Změnit gradient kolem avataru na živý fialovo-růžový (from-fuchsia-500 to-pink-500)
+
+## Oprava klikání na přehrávač (1. února 2026)
+- [x] Zkontrolovat z-index MusicPlayer komponenty
+- [x] Opravit překrývání elementů na desktopu (z-[60])
+- [x] Zajištit, aby tlačítka přehrávače byla klikatelná
+
+### Úprava spřízených projektů ve footeru (1. února 2026)
+- [x] Změnit "Amarex" na "Pro Erecta"
+- [x] Změnit odkaz z amarex.cz na www.silnelibido.cz
+- [x] Změnit emoji z 🍌 na 💪
+- [x] Změnit popis z "Podpora erekce" na "Silné libido"

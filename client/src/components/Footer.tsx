@@ -112,16 +112,16 @@ export default function Footer() {
               <p className="text-xs md:text-sm text-muted-foreground text-center">Prémiové čaje</p>
             </a>
 
-            {/* Amarex */}
+            {/* Pro Erecta */}
             <a
-              href="https://www.amarex.cz"
+              href="https://www.silnelibido.cz"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted/50 transition-all duration-300 group hover:scale-105"
             >
-              <div className="text-4xl md:text-5xl group-hover:scale-110 transition-transform">🍌</div>
-              <span className="text-sm md:text-base font-semibold text-primary group-hover:underline text-center">Amarex</span>
-              <p className="text-xs md:text-sm text-muted-foreground text-center">Podpora erekce</p>
+              <div className="text-4xl md:text-5xl group-hover:scale-110 transition-transform">💪</div>
+              <span className="text-sm md:text-base font-semibold text-primary group-hover:underline text-center">Pro Erecta</span>
+              <p className="text-xs md:text-sm text-muted-foreground text-center">Silné libido</p>
             </a>
 
             {/* Donuterie */}

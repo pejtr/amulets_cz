@@ -165,7 +165,7 @@ export default function BackgroundMusic() {
       {/* Music player - positioned above bottom navigation */}
       <div 
         className={`
-          fixed bottom-20 left-4 z-40 flex items-center gap-2
+          fixed bottom-20 left-4 z-[60] flex items-center gap-2
           transition-transform duration-500 ease-out
           md:translate-x-0
           ${isPlaying ? 'translate-x-0' : '-translate-x-[calc(100%+1rem)] md:translate-x-0'}
