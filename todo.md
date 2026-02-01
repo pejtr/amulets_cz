@@ -2394,3 +2394,18 @@
 - [x] Přidat automatickou odpověď když je chatbot offline - "Děkuji za vaši zprávu! 💜 Právě jsem mimo pracovní dobu..."
 - [x] Vizuální indikace že zpráva byla přijata - odpověď se zobrazí po 0.5s
 - [x] WhatsApp kontakt v offline odpovědi - +420 776 041 740
+
+
+## Offline zprávy - ukládání do databáze (1. února 2026)
+- [ ] Vytvořit databázovou tabulku offlineMessages
+- [ ] Upravit chatbot pro ukládání offline zpráv do DB
+- [ ] Vytvořit admin panel pro čtení offline zpráv
+- [ ] Přidat možnost označit zprávu jako přečtenou
+- [ ] Zobrazit počet nepřečtených zpráv v admin UI
+
+
+## Archandělská křídla - redesign (1. února 2026)
+- [x] Vytvořit viditelná křídla s jasným tvarem - vygenerován obrázek angel-wings.png
+- [x] Vycentrovat křídla přesně za Natálií - left: 50%, top: 50%, transform: translate(-50%, -50%)
+- [x] Zlatá barva, étericky vzhled - drop-shadow efekt
+- [x] Aktivace při spuštění Gloria in Excelsis Deo - isMusicPlaying check

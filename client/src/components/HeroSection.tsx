@@ -118,49 +118,28 @@ export default function HeroSection() {
 
       {/* Desktop: original version with overlay text */}
       <div className="hidden md:block relative w-full min-h-[600px]">
-        {/* ARCHANDĚLSKÁ KŘÍDLA - Výrazný éterický efekt za Natálií - aktivuje se při hudbě */}
+        {/* ARCHANDĚLSKÁ KŘÍDLA - Viditelná zářivá křídla za Natálií - aktivují se při hudbě */}
         <div className={`absolute inset-0 pointer-events-none overflow-hidden z-20 transition-opacity duration-1000 ${isMusicPlaying ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Hlavní křídla - LEVÉ - výrazné */}
+          {/* Obrázek archandělských křídel - vycentrováno za Natálií */}
           <div 
             className="absolute animate-angel-wings"
             style={{
-              right: '25%',
-              top: '0%',
-              width: '600px',
-              height: '700px',
-              background: `
-                radial-gradient(ellipse 120% 100% at 100% 50%, 
-                  rgba(255, 215, 0, 0.8) 0%, 
-                  rgba(212, 175, 55, 0.6) 20%, 
-                  rgba(255, 223, 0, 0.4) 40%, 
-                  rgba(255, 215, 0, 0.2) 60%, 
-                  transparent 80%
-                )`,
-              transformOrigin: 'right center',
-              transform: 'rotate(-20deg) scaleY(1.2)',
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '800px',
+              height: '600px',
             }}
-          />
-          {/* Hlavní křídla - PRAVÉ - výrazné */}
-          <div 
-            className="absolute animate-angel-wings"
-            style={{
-              right: '-5%',
-              top: '0%',
-              width: '600px',
-              height: '700px',
-              background: `
-                radial-gradient(ellipse 120% 100% at 0% 50%, 
-                  rgba(255, 215, 0, 0.8) 0%, 
-                  rgba(212, 175, 55, 0.6) 20%, 
-                  rgba(255, 223, 0, 0.4) 40%, 
-                  rgba(255, 215, 0, 0.2) 60%, 
-                  transparent 80%
-                )`,
-              transformOrigin: 'left center',
-              transform: 'rotate(20deg) scaleY(1.2)',
-              animationDelay: '0.5s',
-            }}
-          />
+          >
+            <img 
+              src="/angel-wings.png" 
+              alt="Archandělská křídla"
+              className="w-full h-full object-contain"
+              style={{
+                filter: 'drop-shadow(0 0 40px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 80px rgba(255, 215, 0, 0.5))',
+              }}
+            />
+          </div>
           
           {/* Zlatá záře za hlavou - HALO efekt - výrazný */}
           <div 

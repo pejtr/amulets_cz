@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, boolean, decimal, date, time } from "drizzle-orm/mysql-core";
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, boolean, decimal, date, time, json } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -36,6 +36,23 @@ export const sharedUserProfiles = mysqlTable("shared_user_profiles", {
 
 export type SharedUserProfile = typeof sharedUserProfiles.$inferSelect;
 export type InsertSharedUserProfile = typeof sharedUserProfiles.$inferInsert;
+
+// Offline Messages - zprávy poslané mimo pracovní dobu
+export const offlineMessages = mysqlTable("offline_messages", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").references(() => users.id, { onDelete: "set null" }), // nullable - může být i nepřihlášený uživatel
+  email: varchar("email", { length: 320 }), // email uživatele pokud ho zadal
+  message: text("message").notNull(), // obsah zprávy
+  conversationHistory: json("conversationHistory"), // historie konverzace pro kontext
+  browsingContext: json("browsingContext"), // kontext prohlížení (stránka, referrer, atd.)
+  isRead: boolean("isRead").default(false).notNull(), // zda byla zpráva přečtena adminem
+  readAt: timestamp("readAt"), // kdy byla zpráva přečtena
+  readBy: int("readBy").references(() => users.id, { onDelete: "set null" }), // kdo zprávu přečetl
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type OfflineMessage = typeof offlineMessages.$inferSelect;
+export type InsertOfflineMessage = typeof offlineMessages.$inferInsert;
 
 // User Interactions
 export const userInteractions = mysqlTable("user_interactions", {
