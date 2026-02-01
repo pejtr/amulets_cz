@@ -2649,3 +2649,7 @@
 
 ## Zarovnání přehrávače s ikonami (1. února 2026)
 - [x] Posunout přehrávač doprava (right-4) zarovnaný s ikonami dolního panelu
+
+## Přesun Natálie blíže k dolnímu panelu (1. února 2026)
+- [x] Posunout Natálii níž (z bottom-24 na bottom-20)
+- [x] Zachovat desktop pozici (md:bottom-36 md:left-4)

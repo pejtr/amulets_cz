@@ -863,7 +863,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
       
       {/* Chat Button - Levitující nad prvním tlačítkem (Domů) v dolní navigaci */}
       {!isOpen && (
-        <div className="fixed bottom-24 left-6 md:bottom-36 md:left-4 z-50 animate-float">
+        <div className="fixed bottom-20 left-6 md:bottom-36 md:left-4 z-50 animate-float">
           {/* Pulzující kruhy pro urgenci - pouze když je online */}
           {(!isOffline || adminOverride) && (
             <>
