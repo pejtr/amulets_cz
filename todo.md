@@ -2624,3 +2624,8 @@
 - [x] Zvýšit brightness a glow efekt (brightness 1.8, větší drop-shadow)
 - [x] Křídla jsou již za Natálii (z-5) a zobrazují se pouze při hudbě
 - [x] Back to Top tlačítko je již vpravo (right-6)
+
+## Oprava viditelnosti ikony přehrávače (1. února 2026)
+- [x] Ikona přehrávače zůstává viditelná i když je hudba vypnutá
+- [x] Odstranit podmínku translate-x která skrývala ikonu na mobilu
+- [x] Pouze křídla v HeroSection zmizí když hudba nehraje, přehrávač zůstává
