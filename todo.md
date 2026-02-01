@@ -2616,3 +2616,11 @@
 - [x] Změnit odkaz z amarex.cz na www.silnelibido.cz
 - [x] Změnit emoji z 🍌 na 💪
 - [x] Změnit popis z "Podpora erekce" na "Silné libido"
+
+## Oprava archandělských křídel a Back to Top (1. února 2026)
+- [x] Vygenerovat nová zářivě bílá křídla (angel-wings-white.png)
+- [x] Odstranit černé pozadí pomocí OpenCV
+- [x] Změnit odkaz v HeroSection na nová bílá křídla
+- [x] Zvýšit brightness a glow efekt (brightness 1.8, větší drop-shadow)
+- [x] Křídla jsou již za Natálii (z-5) a zobrazují se pouze při hudbě
+- [x] Back to Top tlačítko je již vpravo (right-6)

@@ -155,11 +155,11 @@ export default function HeroSection() {
             }}
           >
             <img 
-              src="/angel-wings.png" 
+              src="/angel-wings-white.png" 
               alt="Archandělská křídla"
               className="w-full h-full object-contain"
               style={{
-                filter: 'brightness(1.5) drop-shadow(0 0 40px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 80px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 120px rgba(255, 255, 255, 0.4))',
+                filter: 'brightness(1.8) drop-shadow(0 0 50px rgba(255, 255, 255, 1)) drop-shadow(0 0 100px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 150px rgba(255, 255, 255, 0.6))',
               }}
             />
           </div>
