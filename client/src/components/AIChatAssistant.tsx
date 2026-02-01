@@ -861,9 +861,9 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
         isOffline={isOffline && !adminOverride && !isAdmin}
       />
       
-      {/* Chat Button - Kompaktní a pulzující (zmenšeno o 33%) */}
+      {/* Chat Button - Levitující vlevo nad logem Amulets v dolní navigaci */}
       {!isOpen && (
-        <div className="fixed bottom-24 left-4 z-50">
+        <div className="fixed bottom-32 left-8 z-50 animate-float">
           {/* Pulzující kruhy pro urgenci - pouze když je online */}
           {(!isOffline || adminOverride) && (
             <>
@@ -902,7 +902,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
 
       {/* Chat Window */}
       {isOpen && (
-        <Card className={`fixed ${
+        <Card className={`fixed animate-in slide-in-from-bottom-4 fade-in duration-500 ${
           isMaximized 
             ? 'inset-4 w-auto h-auto' 
             : 'bottom-0 right-0 sm:bottom-6 sm:right-6 w-full sm:w-[500px] h-[100dvh] sm:h-[780px]'

@@ -2564,3 +2564,33 @@
 - [x] Přesunout avatar doleva (left-4 místo right-4)
 - [x] Posunout avatar výše (bottom-24 místo bottom-8)
 - [x] Zajištit, aby nepřekrývala dolní navigační panel
+
+## Úprava dolní navigace a headeru (1. února 2026)
+- [x] Nahradit ikonu domů v dolním panelu logem Amulets
+- [x] Přesunout chatbot ikonu v headeru blíže k logu (gap-1 md:gap-2)
+
+## Optimalizace pozice notifikací (1. února 2026)
+- [x] Přesunout notifikace výše nad dolní navigační panel (bottom-20 místo bottom-6)
+- [x] Zajištit, aby notifikace nepřekrývaly navigaci
+
+## Levitující Natálie nad logem (1. února 2026)
+- [ ] Zvětšit logo v dolní navigaci 3x (z w-8 na w-24 h-24)
+- [ ] Přidat levitující animaci Natálii avataru (animate-float)
+- [ ] Umístit Natálii přímo nad logo (vypočítat pozici)
+
+## Redesign dolní navigace podle hamburger menu (1. února 2026)
+- [x] Nahradit současné položky odkazy z hamburger menu
+- [x] Logo Amulets (domů) - zůstává
+- [x] Kvízy (rozbalovací) - Kvíz: Tvůj symbol, Čínský horoskop 2026, Lunární čtení
+- [x] Průvodce amulety
+- [x] Magazín (místo Kontakt)
+- [x] Implementovat rozbalovací menu pro Kvízy (mini menu nad navigací)
+- [x] Pravidelné rozmístění tlačítek (justify-evenly)
+
+## Pozice Natálie avataru (1. února 2026)
+- [x] Přesunout Natálii vlevo nad logo Amulets v dolní navigaci (left-8)
+- [x] Vypočítat přesnou pozici (left offset podle pozice loga)
+
+## Smooth animace chatbotu (1. února 2026)
+- [x] Přidat plynulou rozvinovací animaci při otevření chatbotu
+- [x] Použit slide-in-from-bottom + fade-in animaci (duration-500)

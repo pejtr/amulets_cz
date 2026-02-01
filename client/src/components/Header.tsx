@@ -43,7 +43,7 @@ export default function Header() {
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
           {/* Logo + Chatbot */}
-          <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
+          <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
             <Link 
               href="/" 
               className="flex-shrink-0"
