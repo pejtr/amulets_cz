@@ -264,7 +264,10 @@ export default function AIChatAssistant() {
   const [isOffline, setIsOffline] = useState(isOfflineHours());
   
   // Check if user is authenticated (for Paige/Velekněžka access)
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
+  
+  // Auto-wake for admin - Král má Natálii vždy probuzenou
+  const isAdmin = user?.role === 'admin';
   
   // Persistent persona for this user - Paige only for authenticated users
   const [persona, setPersona] = useState(() => getAssignedPersona(false));
@@ -838,7 +841,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
         onOpenChat={handleQuickMessageOpenChat}
         isChatOpen={isOpen}
         currentSection={currentSection}
-        isOffline={isOffline && !adminOverride}
+        isOffline={isOffline && !adminOverride && !isAdmin}
       />
       
       {/* Chat Button - Kompaktní a pulzující (zmenšeno o 33%) */}
@@ -854,27 +857,27 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
           
           <Button
             onClick={() => setIsOpen(true)}
-            className="relative h-16 w-16 md:h-24 md:w-24 rounded-full shadow-2xl bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 p-0 group hover:scale-110 transition-transform duration-300"
+            className="relative h-16 w-16 md:h-28 md:w-28 lg:h-32 lg:w-32 rounded-full shadow-2xl bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 p-0 group hover:scale-110 transition-transform duration-300"
             aria-label="Otevřít chat s Natálií"
           >
-            {/* Fotka Natálie - kompaktní na mobilu, větší na desktopu */}
-            <div className="absolute inset-0.5 rounded-full overflow-hidden border-2 md:border-3 border-white/50">
+            {/* Fotka Natálie - kompaktní na mobilu, velká na desktopu */}
+            <div className="absolute inset-0.5 rounded-full overflow-hidden border-2 md:border-3 lg:border-4 border-white/50">
               <img
                 src={persona.avatar}
                 alt="Natálie"
-                className={`w-full h-full object-cover group-hover:scale-110 transition-all duration-300 ${isOffline && !adminOverride ? 'grayscale brightness-75' : ''}`}
+                className={`w-full h-full object-cover group-hover:scale-110 transition-all duration-300 ${isOffline && !adminOverride && !isAdmin ? 'grayscale brightness-75' : ''}`}
               />
             </div>
             
             {/* Online/Offline indikátor */}
-            <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 md:h-6 md:w-6">
-              {(!isOffline || adminOverride) && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>}
-              <span className={`relative inline-flex rounded-full h-4 w-4 md:h-6 md:w-6 border-2 md:border-3 border-white ${isOffline && !adminOverride ? 'bg-gray-400' : 'bg-green-500'}`}></span>
+            <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 md:h-6 md:w-6 lg:h-7 lg:w-7">
+              {(!isOffline || adminOverride || isAdmin) && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>}
+              <span className={`relative inline-flex rounded-full h-4 w-4 md:h-6 md:w-6 lg:h-7 lg:w-7 border-2 md:border-3 border-white ${isOffline && !adminOverride && !isAdmin ? 'bg-gray-400' : 'bg-green-500'}`}></span>
             </span>
             
             {/* Chat ikona - menší na mobilu, větší na desktopu */}
-            <span className="absolute -bottom-0.5 -left-0.5 bg-white rounded-full p-0.5 md:p-1 shadow-lg">
-              <MessageCircle className="h-3 w-3 md:h-5 md:w-5 text-purple-600" />
+            <span className="absolute -bottom-0.5 -left-0.5 bg-white rounded-full p-0.5 md:p-1.5 lg:p-2 shadow-lg">
+              <MessageCircle className="h-3 w-3 md:h-5 md:w-5 lg:h-6 lg:w-6 text-purple-600" />
             </span>
           </Button>
         </div>
@@ -898,10 +901,10 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                   alt="Natálie"
                   className={`${
                     isMaximized ? 'w-24 h-24' : 'w-20 h-20'
-                  } rounded-full border-2 border-white object-cover transition-all duration-300 ${isOffline && !adminOverride ? 'grayscale brightness-75' : ''}`}
+                  } rounded-full border-2 border-white object-cover transition-all duration-300 ${isOffline && !adminOverride && !isAdmin ? 'grayscale brightness-75' : ''}`}
                 />
                 {/* Online/Offline status badge - pravá spodní pozice */}
-                <span className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${isOffline && !adminOverride ? 'bg-gray-400' : 'bg-green-400'}`}></span>
+                <span className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${isOffline && !adminOverride && !isAdmin ? 'bg-gray-400' : 'bg-green-400'}`}></span>
               </div>
               <div>
                 <div className="flex items-center gap-2">
@@ -911,7 +914,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                 </div>
                 <p className="text-xs text-white/90 font-medium">Průvodkyně procesem</p>
                 <p className="text-xs text-white/70">
-                  {isOffline && !adminOverride ? 'Offline • Online od 8:00 do 24:00' : 'Online • Odpovídám do 1 minuty'}
+                  {isOffline && !adminOverride && !isAdmin ? 'Offline • Online od 8:00 do 24:00' : 'Online • Odpovídám do 1 minuty'}
                 </p>
               </div>
             </div>
