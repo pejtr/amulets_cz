@@ -2537,3 +2537,14 @@
 - [x] Snížit rychlost parallax efektu (z 0.5x na 0.15x pro pozadí, z 0.3x na 0.08x pro symboly)
 - [x] Přidat smooth easing funkci pro plynulejší pohyb (easeOutQuad)
 - [x] Otestovat a uložit checkpoint
+
+## Přesun chatbotu do headeru (1. února 2026)
+- [x] Přesunout chatbot ikonu z plovoucího tlačítka do headeru vedle loga
+- [x] Přidat pulzující animaci pro lepší viditelnost (animate-ping + animate-bounce badge)
+- [x] Optimalizovat pro mobilní zařízení (responzivní velikost)
+
+## Úprava mobilního hudebního přehrávače (1. února 2026)
+- [x] Přidat slide-in/out animaci pro hudební přehrávač na mobilu
+- [x] Defaultně svinutý doleva (translateX(-calc(100%+1rem)))
+- [x] Vysunutý pouze když hraje hudba (isPlaying === true)
+- [ ] Otestovat a uložit checkpoint

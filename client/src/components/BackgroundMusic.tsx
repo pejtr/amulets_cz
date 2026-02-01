@@ -162,9 +162,14 @@ export default function BackgroundMusic() {
         </div>
       )}
 
-      {/* Music player - positioned higher to not overlap notifications */}
+      {/* Music player - positioned above bottom navigation */}
       <div 
-        className="fixed bottom-44 left-4 z-40 flex items-center gap-2"
+        className={`
+          fixed bottom-20 left-4 z-40 flex items-center gap-2
+          transition-transform duration-500 ease-out
+          md:translate-x-0
+          ${isPlaying ? 'translate-x-0' : '-translate-x-[calc(100%+1rem)] md:translate-x-0'}
+        `}
         onMouseEnter={() => setShowVolumeSlider(true)}
         onMouseLeave={() => setShowVolumeSlider(false)}
       >

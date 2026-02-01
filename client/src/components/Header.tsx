@@ -8,6 +8,7 @@ import {
   Menu,
   X,
   ChevronDown,
+  MessageCircle,
 } from "lucide-react";
 import { useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -41,18 +42,42 @@ export default function Header() {
       <div className="container py-0">
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
-          <Link 
-            href="/" 
-            className="flex-shrink-0"
-            onClick={(e) => {
-              if (window.location.pathname === '/') {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }
-            }}
-          >
-            <img src={APP_LOGO} alt="Amulets" className="h-20 md:h-24 w-auto cursor-pointer" />
-          </Link>
+          {/* Logo + Chatbot */}
+          <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
+            <Link 
+              href="/" 
+              className="flex-shrink-0"
+              onClick={(e) => {
+                if (window.location.pathname === '/') {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+            >
+              <img src={APP_LOGO} alt="Amulets" className="h-20 md:h-24 w-auto cursor-pointer" />
+            </Link>
+            
+            {/* Chatbot button */}
+            <button
+              onClick={() => {
+                const chatWidget = document.querySelector('[data-chat-widget]') as HTMLElement;
+                if (chatWidget) {
+                  chatWidget.click();
+                }
+              }}
+              className="relative p-2 md:p-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
+              title="Chatbot asistent"
+            >
+              {/* Pulzující animace */}
+              <span className="absolute inset-0 rounded-full animate-ping opacity-40 bg-pink-400" />
+              <MessageCircle className="w-5 h-5 md:w-6 md:h-6 relative z-10" />
+              
+              {/* Notifikační badge */}
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 md:w-5 md:h-5 flex items-center justify-center font-bold animate-bounce">
+                !
+              </span>
+            </button>
+          </div>
 
           {/* Search bar - desktop */}
           <div className="hidden md:flex flex-1 max-w-xl">
