@@ -1,4 +1,4 @@
-import { eq, and, gte, lte, sql, desc, sum, avg, count } from "drizzle-orm";
+import { eq, and, gte, lte, lt, like, sql, desc, sum, avg, count } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users, chatbotVariants, chatbotSessions, chatbotMessages, chatbotEvents, chatbotDailyStats, chatbotConversions, chatbotTickets, chatbotTicketResponses, topicCategories, detectedTopics, demandReports, contentSuggestions, ohoraiStats, ohoraiSyncLog, type InsertOhoraiStats, type InsertOhoraiSyncLog } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -953,11 +953,14 @@ export async function getAllOfflineMessages(options?: {
   limit?: number;
   offset?: number;
   unreadOnly?: boolean;
+  email?: string;
+  dateFrom?: string;
+  dateTo?: string;
 }) {
   const db = await getDb();
   if (!db) return [];
 
-  const { limit = 50, offset = 0, unreadOnly = false } = options || {};
+  const { limit = 50, offset = 0, unreadOnly = false, email, dateFrom, dateTo } = options || {};
 
   let query = db.select({
     id: offlineMessages.id,
@@ -972,8 +975,31 @@ export async function getAllOfflineMessages(options?: {
     createdAt: offlineMessages.createdAt,
   }).from(offlineMessages);
 
+  // Build WHERE conditions
+  const conditions = [];
+  
   if (unreadOnly) {
-    query = query.where(eq(offlineMessages.isRead, false)) as typeof query;
+    conditions.push(eq(offlineMessages.isRead, false));
+  }
+  
+  if (email) {
+    conditions.push(like(offlineMessages.email, `%${email}%`));
+  }
+  
+  if (dateFrom) {
+    const fromDate = new Date(dateFrom);
+    conditions.push(gte(offlineMessages.createdAt, fromDate));
+  }
+  
+  if (dateTo) {
+    const toDate = new Date(dateTo);
+    // Add 1 day to include the entire day
+    toDate.setDate(toDate.getDate() + 1);
+    conditions.push(lt(offlineMessages.createdAt, toDate));
+  }
+  
+  if (conditions.length > 0) {
+    query = query.where(and(...conditions)) as typeof query;
   }
 
   return query

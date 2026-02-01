@@ -2451,3 +2451,8 @@
 
 ### 4. Mezo projekty
 - [x] Přidat odkaz na DO-ITALIE.cz do footeru jako spřízněný projekt
+
+## Pokročilé filtrování admin zpráv (1. února 2026)
+- [x] Aktualizovat tRPC getAll proceduru pro podporu date range a email filtru
+- [x] Přidat UI filtry do AdminMessages (date picker, email search)
+- [x] Otestovat filtrování a uložit checkpoint

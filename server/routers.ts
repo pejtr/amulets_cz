@@ -1874,6 +1874,9 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         limit: z.number().optional().default(50),
         offset: z.number().optional().default(0),
         unreadOnly: z.boolean().optional().default(false),
+        email: z.string().optional(),
+        dateFrom: z.string().optional(), // ISO date string
+        dateTo: z.string().optional(), // ISO date string
       }).optional())
       .query(async ({ ctx, input }) => {
         // Check if user is admin
