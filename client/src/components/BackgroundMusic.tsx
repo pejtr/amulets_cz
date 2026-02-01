@@ -21,11 +21,17 @@ export default function BackgroundMusic() {
   // Load saved preferences
   useEffect(() => {
     const savedVolume = localStorage.getItem(VOLUME_KEY);
+    const savedPlayState = localStorage.getItem(STORAGE_KEY);
     
     if (savedVolume) {
       setVolume(parseFloat(savedVolume));
     }
-  }, []);
+    
+    // Restore play state
+    if (savedPlayState === 'true') {
+      setIsPlaying(true);
+    }
+  }, [setIsPlaying]);
 
   // Initialize audio element
   useEffect(() => {
@@ -48,6 +54,18 @@ export default function BackgroundMusic() {
         setHasError(true);
         setIsLoaded(false);
       };
+
+      // Auto-play if it was playing before
+      const savedPlayState = localStorage.getItem(STORAGE_KEY);
+      if (savedPlayState === 'true') {
+        audio.load();
+        audio.currentTime = START_TIME;
+        audio.play().catch(err => {
+          console.log('Auto-play prevented by browser:', err);
+          setIsPlaying(false);
+          localStorage.setItem(STORAGE_KEY, 'false');
+        });
+      }
 
       // When audio loops, reset to start time
       audio.onended = () => {
