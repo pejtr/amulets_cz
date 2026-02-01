@@ -2056,6 +2056,99 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         
         return result;
       }),
+
+    // Hromadné označení zpráv jako přečtené
+    markMultipleAsRead: publicProcedure
+      .input(z.object({
+        messageIds: z.array(z.number()),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        // Check if user is admin
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup k označování zpráv' });
+        }
+
+        const { markMultipleOfflineMessagesAsRead } = await import('./db');
+        const count = await markMultipleOfflineMessagesAsRead(input.messageIds, ctx.user.id);
+        
+        return { success: true, count };
+      }),
+
+    // Odeslat rychlou odpověď na offline zprávu
+    sendQuickReply: publicProcedure
+      .input(z.object({
+        messageId: z.number(),
+        replyText: z.string(),
+        recipientEmail: z.string().email(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        // Check if user is admin
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup k odesílání odpovědí' });
+        }
+
+        const { sendBrevoEmail } = await import('./brevo');
+        const { markOfflineMessageAsRead } = await import('./db');
+        
+        // Odeslat email
+        const emailSent = await sendBrevoEmail({
+          to: [{ email: input.recipientEmail }],
+          subject: 'Odpověď na vaši zprávu - Amulets.cz',
+          htmlContent: `
+            <!DOCTYPE html>
+            <html>
+              <head>
+                <meta charset="utf-8">
+                <style>
+                  body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+                  .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; text-align: center; }
+                  .content { background: #f9f9f9; padding: 20px; border-radius: 10px; margin-top: 20px; white-space: pre-wrap; }
+                  .footer { text-align: center; margin-top: 20px; color: #666; font-size: 14px; }
+                </style>
+              </head>
+              <body>
+                <div class="header">
+                  <h2>💌 Odpověď na vaši zprávu</h2>
+                </div>
+                <div class="content">
+                  ${input.replyText}
+                </div>
+                <div class="footer">
+                  <p>Děkujeme za vaši zprávu!</p>
+                  <p><a href="https://amulets.manus.space">Amulets.cz</a></p>
+                </div>
+              </body>
+            </html>
+          `,
+          sender: { name: 'Amulets.cz', email: 'info@amulets.cz' },
+        });
+
+        if (!emailSent) {
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Nepodařilo se odeslat email' });
+        }
+
+        // Označit zprávu jako přečtenou
+        await markOfflineMessageAsRead(input.messageId, ctx.user.id);
+        
+        return { success: true, message: 'Odpověď odeslána a zpráva označena jako přečtená' };
+      }),
+
+    // Získat statistiky offline zpráv
+    getStatistics: publicProcedure
+      .input(z.object({
+        days: z.number().optional().default(30),
+      }).optional())
+      .query(async ({ ctx, input }) => {
+        // Check if user is admin
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup ke statistikám' });
+        }
+
+        const { getOfflineMessagesStatistics } = await import('./db');
+        const stats = await getOfflineMessagesStatistics(input?.days || 30);
+        
+        return stats;
+      }),
   }),
 });
 

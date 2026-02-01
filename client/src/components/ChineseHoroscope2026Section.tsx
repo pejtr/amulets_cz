@@ -1,6 +1,6 @@
 import { Star } from "lucide-react";
 import { Link } from "wouter";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import LazyImage from "@/components/LazyImage";
 
 const chineseZodiac2026 = [
@@ -20,10 +20,31 @@ const chineseZodiac2026 = [
 
 export default function ChineseHoroscope2026Section() {
   const [showAll, setShowAll] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const displayedZodiac = showAll ? chineseZodiac2026 : chineseZodiac2026.slice(0, 6);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasAnimated]);
+
   return (
-    <section className="w-full bg-gradient-to-br from-orange-50/50 to-red-50/50 py-16">
+    <section ref={sectionRef} className="w-full bg-gradient-to-br from-orange-50/50 to-red-50/50 py-16">
       <div className="container">
         <div className="flex items-center gap-3 mb-8">
           <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center">
@@ -43,7 +64,10 @@ export default function ChineseHoroscope2026Section() {
             <Link
               key={index}
               href={zodiac.url}
-              className={`bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all hover:scale-105 flex flex-col items-center gap-3 ${zodiac.highlight ? 'ring-2 ring-orange-400' : ''}`}
+              className={`bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all hover:scale-105 flex flex-col items-center gap-3 ${zodiac.highlight ? 'ring-2 ring-orange-400' : ''} ${hasAnimated ? 'animate-zoom-in-card' : 'opacity-0'}`}
+              style={{
+                animationDelay: hasAnimated ? `${index * 150}ms` : '0ms',
+              }}
             >
               <div className="relative w-full">
                 <LazyImage

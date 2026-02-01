@@ -215,7 +215,7 @@ export default function HeroSection() {
         <img
           src="/hero-natalie-bg.jpg"
           alt="Natálie Ohorai - Zakladatelka Amulets.cz"
-          className="w-full h-full object-cover relative z-10"
+          className="w-full h-full object-cover relative z-0"
         />
         
         {/* Animated sparkles overlay - Desktop */}
@@ -263,7 +263,7 @@ export default function HeroSection() {
         </div>
 
         {/* Content overlay - positioned on the LEFT */}
-        <div className="absolute inset-0 flex items-end md:items-center">
+        <div className="absolute inset-0 flex items-end md:items-center z-20">
           <div className="container">
             <div className="max-w-xl">
               {/* Text content - LEFT aligned */}

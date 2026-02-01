@@ -1,4 +1,4 @@
-import { eq, and, gte, lte, lt, like, sql, desc, sum, avg, count } from "drizzle-orm";
+import { eq, and, gte, lte, lt, like, sql, desc, sum, avg, count, inArray } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users, chatbotVariants, chatbotSessions, chatbotMessages, chatbotEvents, chatbotDailyStats, chatbotConversions, chatbotTickets, chatbotTicketResponses, topicCategories, detectedTopics, demandReports, contentSuggestions, ohoraiStats, ohoraiSyncLog, type InsertOhoraiStats, type InsertOhoraiSyncLog } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -1076,4 +1076,109 @@ export async function deleteOfflineMessage(messageId: number) {
     console.error("[OfflineMessages] Error deleting message:", error);
     return false;
   }
+}
+
+/**
+ * Hromadně označit více offline zpráv jako přečtené
+ */
+export async function markMultipleOfflineMessagesAsRead(
+  messageIds: number[],
+  readBy: number
+): Promise<number> {
+  if (messageIds.length === 0) return 0;
+
+  const db = await getDb();
+  if (!db) return 0;
+
+  try {
+    const result = await db
+      .update(offlineMessages)
+      .set({
+        isRead: true,
+        readAt: new Date(),
+        readBy,
+      })
+      .where(inArray(offlineMessages.id, messageIds));
+
+    return Array.isArray(result) ? result.length : 0;
+  } catch (error) {
+    console.error("[OfflineMessages] Error marking multiple as read:", error);
+    return 0;
+  }
+}
+
+/**
+ * Získat statistiky offline zpráv za posledních N dní
+ */
+export async function getOfflineMessagesStatistics(days: number = 30) {
+  const db = await getDb();
+  if (!db) return {
+    totalMessages: 0,
+    unreadMessages: 0,
+    messagesWithEmail: 0,
+    avgMessagesPerDay: 0,
+    messagesByDate: [],
+    topWords: [],
+  };
+
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() - days);
+
+  // Získat všechny zprávy za období
+  const messages = await db
+    .select()
+    .from(offlineMessages)
+    .where(gte(offlineMessages.createdAt, startDate))
+    .orderBy(offlineMessages.createdAt);
+
+  // Časová řada - počet zpráv po dnech
+  const messagesByDate: Record<string, number> = {};
+  messages.forEach(msg => {
+    const date = new Date(msg.createdAt).toISOString().split('T')[0];
+    messagesByDate[date] = (messagesByDate[date] || 0) + 1;
+  });
+
+  // Word frequency - nejčastější slova ze zpráv
+  const wordCounts: Record<string, number> = {};
+  const stopWords = new Set([
+    'a', 'i', 'o', 'v', 'z', 'k', 'na', 's', 'do', 'po', 'pro', 'za', 'od', 'u', 'je', 'se', 'to', 'že',
+    'bych', 'byl', 'byla', 'bylo', 'byli', 'jsem', 'jsi', 'jsme', 'jste', 'jsou', 'budu', 'budeš', 'bude', 'budeme', 'budete', 'budou',
+    'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'from', 'is', 'are', 'was', 'were', 'be', 'been', 'being'
+  ]);
+
+  messages.forEach(msg => {
+    if (!msg.message) return;
+    
+    // Rozdělit na slova a normalizovat
+    const words = msg.message
+      .toLowerCase()
+      .replace(/[^a-záčďéěíňóřšťúůýž0-9\s]/g, '') // Odstranit interpunkci, zachovat česká písmena
+      .split(/\s+/)
+      .filter(word => word.length > 3 && !stopWords.has(word)); // Minimálně 4 znaky, ne stop slova
+
+    words.forEach(word => {
+      wordCounts[word] = (wordCounts[word] || 0) + 1;
+    });
+  });
+
+  // Top 20 slov
+  const topWords = Object.entries(wordCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 20)
+    .map(([word, count]) => ({ word, count }));
+
+  // Základní statistiky
+  const totalMessages = messages.length;
+  const unreadMessages = messages.filter(m => !m.isRead).length;
+  const messagesWithEmail = messages.filter(m => m.email).length;
+  const avgMessagesPerDay = totalMessages / days;
+
+  return {
+    totalMessages,
+    unreadMessages,
+    messagesWithEmail,
+    avgMessagesPerDay: Math.round(avgMessagesPerDay * 10) / 10,
+    messagesByDate: Object.entries(messagesByDate).map(([date, count]) => ({ date, count })),
+    topWords,
+  };
 }

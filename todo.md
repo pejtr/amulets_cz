@@ -2468,3 +2468,33 @@
 - [x] Přidat tRPC proceduru pro manuální odeslání reportu (testování)
 - [x] Nastavit cron job pro automatické odesílání každé pondělí v 8:00
 - [x] Otestovat report a uložit checkpoint
+
+## Pokročilé funkce admin panelu (1. února 2026)
+
+### 1. Bulk akce
+- [ ] Přidat checkboxy ke každé zprávě
+- [ ] Přidat "Vybrat vše" checkbox v headeru
+- [ ] Vytvořit tRPC proceduru markMultipleAsRead
+- [ ] Přidat UI tlačítko "Označit vybrané jako přečtené"
+
+### 2. Statistiky zpráv
+- [ ] Vytvořit tRPC proceduru pro získání statistik (časová řada, word frequency)
+- [ ] Přidat graf počtu zpráv v čase (Chart.js nebo Recharts)
+- [ ] Vytvořit word cloud nejčastějších slov ze zpráv
+- [ ] Přidat statistickou dashboard sekci nad seznamem zpráv
+
+### 3. Quick reply systém
+- [ ] Vytvořit tRPC proceduru sendQuickReply pro odeslání emailu
+- [ ] Přidat UI dialog s šablonami odpovědí
+- [ ] Implementovat 3-5 předdefinovaných šablon odpovědí
+- [ ] Přidat možnost vlastní odpovědi
+- [ ] Po odeslání automaticky označit zprávu jako přečtenou
+
+## Animace čínského horoskopu (1. února 2026)
+- [x] Přidat CSS keyframes pro zoom-in animaci
+- [x] Aplikovat postupný delay na jednotlivé karty znamení (150ms mezi kartami)
+- [x] Přidat IntersectionObserver pro spuštění animace při scrollu
+
+## Oprava hero sekce (1. února 2026)
+- [x] Vrátit chybějící texty a tlačítka do HeroSection (opraveno z-index)
+- [x] Otestovat zobrazení hero sekce
