@@ -1,6 +1,5 @@
-import { Gift, BookOpen, Newspaper, Sparkles } from 'lucide-react';
+import { Home, Gift, BookOpen, Newspaper, Sparkles } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
-import { APP_LOGO } from '@/const';
 import { useState } from 'react';
 
 export default function MobileBottomNav() {
@@ -15,7 +14,7 @@ export default function MobileBottomNav() {
 
   const navItems = [
     {
-      icon: 'logo',
+      icon: Home,
       label: 'Domů',
       href: '/',
     },
@@ -57,7 +56,7 @@ export default function MobileBottomNav() {
           />
           
           {/* Quiz menu */}
-          <div className="fixed bottom-20 left-0 right-0 z-50 bg-white border-t-2 border-purple-100 shadow-2xl md:hidden animate-in slide-in-from-bottom duration-200">
+          <div className="fixed bottom-16 left-0 right-0 z-50 bg-white border-t-2 border-purple-100 shadow-2xl md:hidden animate-in slide-in-from-bottom duration-200">
             <div className="py-2">
               {quizItems.map((quiz) => (
                 <Link key={quiz.href} href={quiz.href}>
@@ -76,7 +75,7 @@ export default function MobileBottomNav() {
 
       {/* Dolní navigace */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-purple-100 shadow-2xl">
-        <div className="flex items-center justify-evenly h-20">
+        <div className="flex items-center justify-evenly h-16">
           {navItems.map((item) => {
             const isActive = item.href === '#' ? false : location === item.href;
 
@@ -85,14 +84,14 @@ export default function MobileBottomNav() {
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item)}
-                  className={`flex flex-col items-center justify-center w-full h-full transition-all duration-200 ${
+                  className={`flex flex-col items-center justify-center px-4 py-2 transition-all duration-200 ${
                     showQuizMenu
                       ? 'text-purple-600'
                       : 'text-gray-500 hover:text-purple-500'
                   }`}
                 >
                   {(() => {
-                    const Icon = item.icon as typeof Sparkles;
+                    const Icon = item.icon;
                     return (
                       <Icon
                         className={`w-6 h-6 mb-1 transition-transform duration-200 ${
@@ -108,9 +107,6 @@ export default function MobileBottomNav() {
                   >
                     {item.label}
                   </span>
-                  {showQuizMenu && (
-                    <div className="absolute bottom-0 w-12 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-t-full" />
-                  )}
                 </button>
               );
             }
@@ -118,33 +114,23 @@ export default function MobileBottomNav() {
             return (
               <Link key={item.href} href={item.href}>
                 <div
-                  className={`flex flex-col items-center justify-center w-full h-full transition-all duration-200 cursor-pointer ${
+                  className={`flex flex-col items-center justify-center px-4 py-2 transition-all duration-200 cursor-pointer ${
                     isActive
                       ? 'text-purple-600'
                       : 'text-gray-500 hover:text-purple-500'
                   }`}
                   onClick={() => setShowQuizMenu(false)}
                 >
-                  {item.icon === 'logo' ? (
-                    <img
-                      src={APP_LOGO}
-                      alt="Amulets"
-                      className={`w-24 h-24 object-contain transition-transform duration-200 ${
-                        isActive ? 'scale-110' : ''
-                      }`}
-                    />
-                  ) : (
-                    (() => {
-                      const Icon = item.icon as typeof Gift;
-                      return (
-                        <Icon
-                          className={`w-6 h-6 mb-1 transition-transform duration-200 ${
-                            isActive ? 'scale-110' : ''
-                          }`}
-                        />
-                      );
-                    })()
-                  )}
+                  {(() => {
+                    const Icon = item.icon;
+                    return (
+                      <Icon
+                        className={`w-6 h-6 mb-1 transition-transform duration-200 ${
+                          isActive ? 'scale-110' : ''
+                        }`}
+                      />
+                    );
+                  })()}
                   <span
                     className={`text-xs font-medium ${
                       isActive ? 'font-semibold' : ''
@@ -152,9 +138,6 @@ export default function MobileBottomNav() {
                   >
                     {item.label}
                   </span>
-                  {isActive && (
-                    <div className="absolute bottom-0 w-12 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-t-full" />
-                  )}
                 </div>
               </Link>
             );

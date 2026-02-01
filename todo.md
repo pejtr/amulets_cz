@@ -2594,3 +2594,10 @@
 ## Smooth animace chatbotu (1. února 2026)
 - [x] Přidat plynulou rozvinovací animaci při otevření chatbotu
 - [x] Použit slide-in-from-bottom + fade-in animaci (duration-500)
+
+## Optimalizace dolní navigace - finální úpravy (1. února 2026)
+- [x] Nahradit logo Home ikonou pro konzistenci
+- [x] Všechna tlačítka stejně velká s konzistentními ikonami (w-6 h-6)
+- [x] Rovnoměrné rozložení (justify-evenly) s padding px-4
+- [x] Přesunout Natálii přesně nad první tlačítko (bottom-24 left-6)
+- [x] Snížit výšku navigace na h-16 pro kompaktnější vzhled
