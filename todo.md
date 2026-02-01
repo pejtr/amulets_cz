@@ -2388,3 +2388,9 @@
 - [x] Debugovat proč se křídla nezobrazují když hraje hudba - opraven z-index na z-20
 - [x] Opravit propojení MusicContext s HeroSection
 - [x] Opravit přehrávání - pokračovat odkud skončilo, ne od začátku
+
+
+## Chatbot offline režim - automatická odpověď (1. února 2026)
+- [x] Přidat automatickou odpověď když je chatbot offline - "Děkuji za vaši zprávu! 💜 Právě jsem mimo pracovní dobu..."
+- [x] Vizuální indikace že zpráva byla přijata - odpověď se zobrazí po 0.5s
+- [x] WhatsApp kontakt v offline odpovědi - +420 776 041 740

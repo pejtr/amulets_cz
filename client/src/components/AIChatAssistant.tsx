@@ -651,15 +651,32 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
       content: typeof msg.content === 'string' ? msg.content : '',
     }));
 
-    chatMutation.mutate({
-      message: input,
-      conversationHistory,
-      context: browsingContext,
-      email: email || undefined,
-      isReturningCustomer,
-      egyptianPhase,
-      variantKey: variant?.variantKey,
-    });
+    // Check if offline and add automatic response
+    if (isOffline && !isAdmin) {
+      // Add automatic offline response immediately
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "assistant",
+            content: "Děkuji za vaši zprávu! 💜 Právě jsem mimo pracovní dobu (8:00-24:00), ale vaši zprávu jsem přijala a brzy vám odpovím.\n\nPokud je to naléhavé, můžete mi napsat na WhatsApp +420 776 041 740 nebo zanechat kontakt a ozvu se vám co nejdříve. 🙏",
+            timestamp: new Date(),
+          },
+        ]);
+        setTimeout(scrollToBottom, 100);
+      }, 500);
+    } else {
+      // Normal online response
+      chatMutation.mutate({
+        message: input,
+        conversationHistory,
+        context: browsingContext,
+        email: email || undefined,
+        isReturningCustomer,
+        egyptianPhase,
+        variantKey: variant?.variantKey,
+      });
+    }
 
     // Advance Egyptian phase after each message (max 4)
     if (isReturningCustomer && variant?.variantKey === 'young_mystic' && egyptianPhase < 4) {
