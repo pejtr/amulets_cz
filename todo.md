@@ -2532,3 +2532,8 @@
 - [x] Implementovat lazy loading pro všechny obrázky (LazyImage komponenta s IntersectionObserver)
 - [x] Přidat placeholder skeleton efekt během načítání (shimmer animace)
 - [x] Optimalizovat initial load time (300px rootMargin pro přednačítání)
+
+## Zjemnění parallax animace v hero sekci (1. února 2026)
+- [x] Snížit rychlost parallax efektu (z 0.5x na 0.15x pro pozadí, z 0.3x na 0.08x pro symboly)
+- [x] Přidat smooth easing funkci pro plynulejší pohyb (easeOutQuad)
+- [x] Otestovat a uložit checkpoint

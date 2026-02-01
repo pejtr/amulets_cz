@@ -21,10 +21,15 @@ export default function HeroSection() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Parallax calculations
-  const parallaxBg = scrollY * 0.5; // Background moves slower
-  const parallaxSymbols = scrollY * 0.3; // Symbols move even slower
-  const parallaxOpacity = Math.max(0, 1 - scrollY / 600); // Fade out on scroll
+  // Parallax calculations - velmi jemné pro elegantní "vznášení"
+  // Použití easing funkce pro plynulejší pohyb
+  const easeOutQuad = (t: number) => t * (2 - t);
+  const scrollProgress = Math.min(scrollY / 600, 1);
+  const easedProgress = easeOutQuad(scrollProgress);
+  
+  const parallaxBg = scrollY * 0.15; // Velmi jemný pohyb pozadí
+  const parallaxSymbols = scrollY * 0.08; // Ještě jemnější pohyb symbolů
+  const parallaxOpacity = Math.max(0, 1 - easedProgress); // Smooth fade out
 
   return (
     <section className="relative w-full overflow-hidden bg-white">
