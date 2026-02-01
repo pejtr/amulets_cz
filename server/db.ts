@@ -908,3 +908,146 @@ export async function getChatbotAnalyticsSummary(startDate: Date, endDate: Date)
     linkClickRate: sessionCount?.count ? ((linkClickCount?.count || 0) / sessionCount.count * 100).toFixed(2) : '0.00',
   };
 }
+
+
+// ============================================
+// OFFLINE MESSAGES HELPERS
+// ============================================
+
+import { offlineMessages } from "../drizzle/schema";
+
+/**
+ * Uložit offline zprávu do databáze
+ */
+export async function saveOfflineMessage(data: {
+  userId?: number;
+  email?: string;
+  message: string;
+  conversationHistory?: unknown;
+  browsingContext?: unknown;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    const [result] = await db.insert(offlineMessages).values({
+      userId: data.userId || null,
+      email: data.email || null,
+      message: data.message,
+      conversationHistory: data.conversationHistory || null,
+      browsingContext: data.browsingContext || null,
+      isRead: false,
+    });
+    
+    return result;
+  } catch (error) {
+    console.error("[OfflineMessages] Error saving message:", error);
+    return null;
+  }
+}
+
+/**
+ * Získat všechny offline zprávy (pro admin panel)
+ */
+export async function getAllOfflineMessages(options?: {
+  limit?: number;
+  offset?: number;
+  unreadOnly?: boolean;
+}) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const { limit = 50, offset = 0, unreadOnly = false } = options || {};
+
+  let query = db.select({
+    id: offlineMessages.id,
+    userId: offlineMessages.userId,
+    email: offlineMessages.email,
+    message: offlineMessages.message,
+    conversationHistory: offlineMessages.conversationHistory,
+    browsingContext: offlineMessages.browsingContext,
+    isRead: offlineMessages.isRead,
+    readAt: offlineMessages.readAt,
+    readBy: offlineMessages.readBy,
+    createdAt: offlineMessages.createdAt,
+  }).from(offlineMessages);
+
+  if (unreadOnly) {
+    query = query.where(eq(offlineMessages.isRead, false)) as typeof query;
+  }
+
+  return query
+    .orderBy(desc(offlineMessages.createdAt))
+    .limit(limit)
+    .offset(offset);
+}
+
+/**
+ * Získat počet nepřečtených offline zpráv
+ */
+export async function getUnreadOfflineMessagesCount() {
+  const db = await getDb();
+  if (!db) return 0;
+
+  const [result] = await db.select({ count: count() })
+    .from(offlineMessages)
+    .where(eq(offlineMessages.isRead, false));
+
+  return result?.count || 0;
+}
+
+/**
+ * Označit offline zprávu jako přečtenou
+ */
+export async function markOfflineMessageAsRead(messageId: number, readByUserId: number) {
+  const db = await getDb();
+  if (!db) return false;
+
+  try {
+    await db.update(offlineMessages)
+      .set({
+        isRead: true,
+        readAt: new Date(),
+        readBy: readByUserId,
+      })
+      .where(eq(offlineMessages.id, messageId));
+    
+    return true;
+  } catch (error) {
+    console.error("[OfflineMessages] Error marking as read:", error);
+    return false;
+  }
+}
+
+/**
+ * Získat jednu offline zprávu podle ID
+ */
+export async function getOfflineMessageById(messageId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const [result] = await db.select()
+    .from(offlineMessages)
+    .where(eq(offlineMessages.id, messageId))
+    .limit(1);
+
+  return result || null;
+}
+
+/**
+ * Smazat offline zprávu
+ */
+export async function deleteOfflineMessage(messageId: number) {
+  const db = await getDb();
+  if (!db) return false;
+
+  try {
+    await db.delete(offlineMessages)
+      .where(eq(offlineMessages.id, messageId));
+    
+    return true;
+  } catch (error) {
+    console.error("[OfflineMessages] Error deleting message:", error);
+    return false;
+  }
+}

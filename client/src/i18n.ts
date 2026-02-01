@@ -53,6 +53,30 @@ const resources = {
       // Music Player
       "music.title": "Gloria in Excelsis Deo",
       "music.meaning": "\"Sláva na výsostech Bohu\" - andělský hymnus z Bible (Lukáš 2:14), zpívaný anděly při narození Ježíše Krista.",
+      
+      // Products
+      "product.pyramid": "Orgonitová pyramida",
+      "product.pendant": "Přívěsek",
+      "product.essence": "Aromaterapeutická esence",
+      "product.addToCart": "Přidat do košíku",
+      "product.details": "Zobrazit detail",
+      "product.price": "Cena",
+      "product.inStock": "Skladem",
+      "product.outOfStock": "Vyprodané",
+      
+      // Quiz
+      "quiz.title": "Kvíz: Zjisti svůj symbol",
+      "quiz.subtitle": "Odpověz na několik otázek a objev svůj osobní talisman",
+      "quiz.start": "Začít kvíz",
+      "quiz.next": "Další otázka",
+      "quiz.previous": "Předchozí",
+      "quiz.finish": "Zobrazit výsledek",
+      "quiz.result.title": "Tvůj symbol je",
+      "quiz.result.description": "Tento symbol ti pomůže na tvé duchovní cestě",
+      
+      // SEO
+      "seo.title": "Amulets.cz - Zjisti svůj spirituální symbol | 33 posvátných symbolů",
+      "seo.description": "Objevte význam 33 spirituálních symbolů a najděte svůj osobní talisman. Průvodce ezoteriky, drahými kameny a jejich léčivými účinky.",
     }
   },
   it: {
@@ -105,6 +129,30 @@ const resources = {
       // Music Player
       "music.title": "Gloria in Excelsis Deo",
       "music.meaning": "\"Gloria a Dio nell'alto dei cieli\" - inno angelico dalla Bibbia (Luca 2:14), cantato dagli angeli alla nascita di Gesù Cristo.",
+      
+      // Products
+      "product.pyramid": "Piramide di orgonite",
+      "product.pendant": "Ciondolo",
+      "product.essence": "Essenza aromaterapica",
+      "product.addToCart": "Aggiungi al carrello",
+      "product.details": "Vedi dettagli",
+      "product.price": "Prezzo",
+      "product.inStock": "Disponibile",
+      "product.outOfStock": "Esaurito",
+      
+      // Quiz
+      "quiz.title": "Quiz: Scopri il tuo simbolo",
+      "quiz.subtitle": "Rispondi ad alcune domande e scopri il tuo talismano personale",
+      "quiz.start": "Inizia il quiz",
+      "quiz.next": "Prossima domanda",
+      "quiz.previous": "Precedente",
+      "quiz.finish": "Mostra risultato",
+      "quiz.result.title": "Il tuo simbolo è",
+      "quiz.result.description": "Questo simbolo ti aiuterà nel tuo percorso spirituale",
+      
+      // SEO
+      "seo.title": "Amulets.cz - Scopri il tuo simbolo spirituale | 33 simboli sacri",
+      "seo.description": "Scopri il significato di 33 simboli spirituali e trova il tuo talismano personale. Guida all'esoterismo, pietre preziose e i loro effetti curativi.",
     }
   }
 };

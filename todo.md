@@ -2429,3 +2429,25 @@
 - [x] Přidat přepínač jazyků do headeru (LanguageSwitcher)
 - [ ] Aplikovat překlady na všechny komponenty
 - [ ] Testovat na mobilních zařízeních
+
+
+## Komplexní implementace (1. února 2026)
+
+### 1. Italské překlady produktových stránek
+- [x] Přeložit produktové karty a popisy amuletů
+- [x] Přeložit kvíz a výsledky kvízu
+- [x] Přeložit stránky kurzů
+
+### 2. Admin panel pro offline zprávy
+- [x] Vytvořit tRPC procedury pro čtení offline zpráv
+- [x] Vytvořit admin stránku pro zobrazení zpráv (/admin/messages)
+- [x] Přidat možnost označit zprávu jako přečtenou
+- [x] Přidat možnost odpovědět na zprávu (emailem)
+
+### 3. SEO meta tagy pro italštinu
+- [x] Přidat italské meta title a description (v i18n)
+- [x] Přidat hreflang tagy pro cs a it
+- [x] Přidat italské Open Graph tagy
+
+### 4. Mezo projekty
+- [x] Přidat odkaz na DO-ITALIE.cz do footeru jako spřízněný projekt

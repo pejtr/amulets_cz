@@ -195,6 +195,18 @@ export default function Footer() {
               <span className="text-sm md:text-base font-semibold text-primary group-hover:underline text-center">Jan Kroča</span>
               <p className="text-xs md:text-sm text-muted-foreground text-center">Léčivá místa</p>
             </a>
+
+            {/* DO-ITALIE.cz */}
+            <a
+              href="https://do-italie.manus.space/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted/50 transition-all duration-300 group hover:scale-105"
+            >
+              <div className="text-4xl md:text-5xl group-hover:scale-110 transition-transform">🇮🇹</div>
+              <span className="text-sm md:text-base font-semibold text-primary group-hover:underline text-center">DO-ITALIE.cz</span>
+              <p className="text-xs md:text-sm text-muted-foreground text-center">Dovolená v Itálii</p>
+            </a>
           </div>
         </div>
 

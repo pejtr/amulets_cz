@@ -33,6 +33,11 @@ import {
   answerChatbotTicket,
   getAllChatbotTickets,
   getChatbotTicketsByVisitor,
+  getAllOfflineMessages,
+  getUnreadOfflineMessagesCount,
+  markOfflineMessageAsRead,
+  deleteOfflineMessage,
+  saveOfflineMessage,
 } from "./db";
 import { sendDailyReport, sendTestMessage, generateDailyReport, sendTelegramMessage, setTelegramWebhook, getTelegramWebhookInfo } from "./telegram";
 import { sendEbookEmail } from "./sendEbookEmail";
@@ -1858,6 +1863,108 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
           success: true,
           downloadUrl: '/7-kroku-k-rovnovaze.pdf',
         };
+      }),
+  }),
+
+  // Admin - Offline Messages
+  offlineMessages: router({
+    // Získat všechny offline zprávy (pouze admin)
+    getAll: publicProcedure
+      .input(z.object({
+        limit: z.number().optional().default(50),
+        offset: z.number().optional().default(0),
+        unreadOnly: z.boolean().optional().default(false),
+      }).optional())
+      .query(async ({ ctx, input }) => {
+        // Check if user is admin
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup k offline zprávám' });
+        }
+
+        const messages = await getAllOfflineMessages(input);
+        return messages;
+      }),
+
+    // Získat počet nepřečtených zpráv
+    getUnreadCount: publicProcedure
+      .query(async ({ ctx }) => {
+        // Check if user is admin
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup k offline zprávám' });
+        }
+
+        const count = await getUnreadOfflineMessagesCount();
+        return { count };
+      }),
+
+    // Označit zprávu jako přečtenou
+    markAsRead: publicProcedure
+      .input(z.object({
+        messageId: z.number(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        // Check if user is admin
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup k offline zprávám' });
+        }
+
+        const success = await markOfflineMessageAsRead(input.messageId, ctx.user.id);
+        return { success };
+      }),
+
+    // Smazat zprávu
+    delete: publicProcedure
+      .input(z.object({
+        messageId: z.number(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        // Check if user is admin
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup k offline zprávám' });
+        }
+
+        const success = await deleteOfflineMessage(input.messageId);
+        return { success };
+      }),
+
+    // Uložit offline zprávu (veřejné - pro chatbot)
+    save: publicProcedure
+      .input(z.object({
+        message: z.string(),
+        email: z.string().email().optional(),
+        conversationHistory: z.array(z.object({
+          role: z.enum(['user', 'assistant']),
+          content: z.string(),
+        })).optional(),
+        browsingContext: z.object({
+          currentPage: z.string().optional(),
+          referrer: z.string().optional(),
+          timeOnSite: z.number().optional(),
+        }).optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        const result = await saveOfflineMessage({
+          userId: ctx.user?.id,
+          email: input.email,
+          message: input.message,
+          conversationHistory: input.conversationHistory,
+          browsingContext: input.browsingContext,
+        });
+
+        // Send Telegram notification about new offline message
+        try {
+          const telegramMsg = `📨 Nová offline zpráva!\n\n` +
+            `💬 Zpráva: ${input.message.substring(0, 200)}${input.message.length > 200 ? '...' : ''}\n` +
+            `📧 Email: ${input.email || 'Neuvedeno'}\n` +
+            `👤 Uživatel: ${ctx.user?.name || 'Nepřihlášený'}\n` +
+            `📄 Stránka: ${input.browsingContext?.currentPage || 'N/A'}`;
+          
+          await sendTelegramMessage(telegramMsg);
+        } catch (error) {
+          console.error('Failed to send Telegram notification for offline message:', error);
+        }
+
+        return { success: !!result };
       }),
   }),
 });
