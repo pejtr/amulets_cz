@@ -119,7 +119,7 @@ export default function HeroSection() {
       {/* Desktop: original version with overlay text */}
       <div className="hidden md:block relative w-full min-h-[600px]">
         {/* ARCHANDĚLSKÁ KŘÍDLA - Výrazný éterický efekt za Natálií - aktivuje se při hudbě */}
-        <div className={`absolute inset-0 pointer-events-none overflow-hidden z-5 transition-opacity duration-1000 ${isMusicPlaying ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`absolute inset-0 pointer-events-none overflow-hidden z-20 transition-opacity duration-1000 ${isMusicPlaying ? 'opacity-100' : 'opacity-0'}`}>
           {/* Hlavní křídla - LEVÉ - výrazné */}
           <div 
             className="absolute animate-angel-wings"

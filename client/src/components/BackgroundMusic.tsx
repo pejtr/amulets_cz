@@ -104,9 +104,10 @@ export default function BackgroundMusic() {
         // Load audio if not loaded yet
         if (audioRef.current.readyState === 0) {
           audioRef.current.load();
+          // Only set start time on first load
+          audioRef.current.currentTime = START_TIME;
         }
-        // Start from 0:44
-        audioRef.current.currentTime = START_TIME;
+        // Continue from where it was paused
         await audioRef.current.play();
         setIsPlaying(true);
         localStorage.setItem(STORAGE_KEY, 'true');

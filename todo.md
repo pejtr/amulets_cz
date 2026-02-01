@@ -2382,3 +2382,9 @@
 - [x] Přidat vysvětlení významu na rozkliknutí ("Sláva na výsostech Bohu")
 - [x] Nastavit start od 0:44
 - [x] Posunout přehrávač výše (bottom-44) aby nepřekrýval notifikace
+
+
+## Oprava archandělských křídel (1. února 2026)
+- [x] Debugovat proč se křídla nezobrazují když hraje hudba - opraven z-index na z-20
+- [x] Opravit propojení MusicContext s HeroSection
+- [x] Opravit přehrávání - pokračovat odkud skončilo, ne od začátku
