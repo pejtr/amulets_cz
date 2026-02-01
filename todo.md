@@ -2414,3 +2414,9 @@
 ## Archandělská křídla - úprava barvy a pozice (1. února 2026)
 - [x] Změnit barvu křídel z zlaté na božsky bílou - brightness(1.5) + bílé drop-shadow
 - [x] Posunout křídla za Natálii (z-index nižší než obrázek) - z-5
+
+
+## Animace archandělských křídel (1. února 2026)
+- [x] Přidat plynulou animaci rozevírání křídel při spuštění hudby - scale-100 + opacity-100
+- [x] Přidat plynulou animaci zavírání křídel při zastavení hudby - scale-50 + opacity-0
+- [x] Použít scale transform pro efekt rozevírání/zavírání - transition-all duration-[2000ms] ease-out
