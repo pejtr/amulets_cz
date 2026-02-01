@@ -504,3 +504,30 @@
 .animate-zoom-in-card {
   animation: zoomInCard 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
+
+
+/* ============================================
+   RIPPLE EFEKT - Micro-interakce pro tlačítka
+   ============================================ */
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple-animation 600ms ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Přidat relativní pozici a overflow hidden pro všechna tlačítka */
+button, .button, [role="button"] {
+  position: relative;
+  overflow: hidden;
+}

@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { magazineArticles } from "@/data/magazineContent";
 import { tantraArticles } from "@/data/tantraArticles";
 import { ArrowRight, Star } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 // Kombinovat všechny články
 const allArticles = [...magazineArticles, ...tantraArticles];
@@ -15,6 +16,28 @@ const displayArticles = allArticles
   .slice(0, 6);
 
 export default function MagazineSection() {
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasAnimated]);
+
   return (
     <section id="magazin" className="py-16 md:py-24 bg-gradient-to-b from-white to-purple-50/30">
       <div className="container">
@@ -78,13 +101,16 @@ export default function MagazineSection() {
           </div>
         )}
 
-        {/* Grid ostatních článků */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {displayArticles.map((article) => (
+        {/* Grid ostatních článků s animací */}
+        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {displayArticles.map((article, index) => (
             <Link
               key={article.slug}
               href={`/magazin/${article.slug}`}
-              className="group block bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
+              className={`group block bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 ${hasAnimated ? 'animate-zoom-in-card' : 'opacity-0'}`}
+              style={{
+                animationDelay: hasAnimated ? `${index * 150}ms` : '0ms',
+              }}
             >
               {/* Obrázek */}
               {article.image && (

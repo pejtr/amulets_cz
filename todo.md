@@ -2515,3 +2515,20 @@
 - [x] Vytvořit tooltip komponentu s krátkým popisem znamení
 - [x] Přidat hover efekt na karty horoskopu
 - [x] Zobrazit klíčové vlastnosti znamení v tooltipu (gradient orange-red)
+
+## Pokročilá vylepšení UX (1. února 2026)
+
+### 1. Zoom-in animace na další sekce
+- [x] Aplikovat zoom-in animaci na GuideSection (průvodce symboly)
+- [x] Aplikovat zoom-in animaci na MagazineSection
+- [x] Otestovat animace na různých zařízeních
+
+### 2. Micro-interakce pro tlačítka
+- [x] Vytvořit ripple efekt komponentu (useRipple hook)
+- [x] Aplikovat ripple efekt na všechna tlačítka (Button komponenta)
+- [x] Přidat haptic feedback simulaci (vibrace na mobilech - 10ms)
+
+### 3. Lazy loading optimalizace
+- [x] Implementovat lazy loading pro všechny obrázky (LazyImage komponenta s IntersectionObserver)
+- [x] Přidat placeholder skeleton efekt během načítání (shimmer animace)
+- [x] Optimalizovat initial load time (300px rootMargin pro přednačítání)

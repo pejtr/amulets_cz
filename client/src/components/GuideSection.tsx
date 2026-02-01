@@ -1,6 +1,6 @@
-import { Sparkles, Gem, Target } from "lucide-react";
+import { Sparkles, Target, Gem } from "lucide-react";
 import { Link } from "wouter";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import LazyImage from "@/components/LazyImage";
 
 const symbols = [
@@ -85,8 +85,49 @@ const purposes = [
 export default function GuideSection() {
   const [showAllSymbols, setShowAllSymbols] = useState(false);
   const [showAllStones, setShowAllStones] = useState(false);
+  const [hasSymbolsAnimated, setHasSymbolsAnimated] = useState(false);
+  const [hasStonesAnimated, setHasStonesAnimated] = useState(false);
+  const symbolsRef = useRef<HTMLDivElement>(null);
+  const stonesRef = useRef<HTMLDivElement>(null);
+  
   const displayedSymbols = showAllSymbols ? symbols : symbols.slice(0, 12);
   const displayedStones = showAllStones ? stones : stones.slice(0, 8);
+
+  useEffect(() => {
+    const symbolsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasSymbolsAnimated) {
+            setHasSymbolsAnimated(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const stonesObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasStonesAnimated) {
+            setHasStonesAnimated(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (symbolsRef.current) {
+      symbolsObserver.observe(symbolsRef.current);
+    }
+    if (stonesRef.current) {
+      stonesObserver.observe(stonesRef.current);
+    }
+
+    return () => {
+      symbolsObserver.disconnect();
+      stonesObserver.disconnect();
+    };
+  }, [hasSymbolsAnimated, hasStonesAnimated]);
 
   return (
     <section id="pruvodce-amulety" className="w-full relative py-16 overflow-hidden">
@@ -179,7 +220,7 @@ export default function GuideSection() {
         </div>
 
         {/* Výběr podle symbolů */}
-        <div className="mb-16">
+        <div className="mb-16" ref={symbolsRef}>
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 rounded-full bg-[#E85A9F]/10 flex items-center justify-center">
               <Sparkles className="h-6 w-6 text-[#E85A9F]" />
@@ -198,39 +239,41 @@ export default function GuideSection() {
               <Link
                 key={index}
                 href={symbol.url}
-                className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all hover:scale-105 flex flex-col items-center gap-3"
+                className={`bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all hover:scale-105 flex flex-col items-center gap-3 ${hasSymbolsAnimated ? 'animate-zoom-in-card' : 'opacity-0'}`}
+                style={{
+                  animationDelay: hasSymbolsAnimated ? `${index * 150}ms` : '0ms',
+                }}
               >
-                <LazyImage
-                  src={symbol.image}
-                  alt={symbol.name}
-                  loading={index < 8 ? "eager" : "lazy"}
-                  aspectRatio="square"
-                  containerClassName="w-full rounded-lg overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50"
-                  showSkeleton={true}
-                  rootMargin="400px"
-                />
+                <div className="relative w-full">
+                  <LazyImage
+                    src={symbol.image}
+                    alt={symbol.name}
+                    loading="lazy"
+                    aspectRatio="square"
+                    containerClassName="w-full rounded-lg overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50"
+                    showSkeleton={true}
+                  />
+                </div>
                 <p className="text-sm font-medium text-foreground text-center">
                   {symbol.name}
                 </p>
               </Link>
             ))}
           </div>
-          
-          {/* Tlačítko "Zobrazit další" */}
-          {!showAllSymbols && (
-            <div className="flex justify-center mt-8">
+          {symbols.length > 12 && (
+            <div className="mt-6 text-center">
               <button
-                onClick={() => setShowAllSymbols(true)}
-                className="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                onClick={() => setShowAllSymbols(!showAllSymbols)}
+                className="px-6 py-3 bg-gradient-to-r from-[#E85A9F] to-[#9B59B6] text-white rounded-full font-medium hover:shadow-lg transition-all hover:scale-105"
               >
-                Zobrazit další ({symbols.length - 12})
+                {showAllSymbols ? "Zobrazit méně" : `Zobrazit další (${symbols.length - 12})`}
               </button>
             </div>
           )}
         </div>
 
         {/* Výběr podle kamenů */}
-        <div id="vyber-podle-kamenu">
+        <div ref={stonesRef}>
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 rounded-full bg-[#E85A9F]/10 flex items-center justify-center">
               <Gem className="h-6 w-6 text-[#E85A9F]" />
@@ -240,25 +283,30 @@ export default function GuideSection() {
                 Výběr podle kamenů
               </h3>
               <p className="text-sm text-muted-foreground">
-                Rychlý výběr podle druhu kamenů
+                Jaké jsou jejich léčivé účinky?
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
             {displayedStones.map((stone, index) => (
               <Link
                 key={index}
                 href={stone.url}
-                className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all hover:scale-105 flex flex-col items-center gap-3"
+                className={`bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all hover:scale-105 flex flex-col items-center gap-3 ${hasStonesAnimated ? 'animate-zoom-in-card' : 'opacity-0'}`}
+                style={{
+                  animationDelay: hasStonesAnimated ? `${index * 150}ms` : '0ms',
+                }}
               >
-                <LazyImage
-                  src={stone.image}
-                  alt={stone.name}
-                  loading={index < 4 ? "eager" : "lazy"}
-                  aspectRatio="square"
-                  containerClassName="w-full rounded-lg overflow-hidden bg-gradient-to-br from-gray-50 to-purple-50"
-                  showSkeleton={true}
-                />
+                <div className="relative w-full">
+                  <LazyImage
+                    src={stone.image}
+                    alt={stone.name}
+                    loading="lazy"
+                    aspectRatio="square"
+                    containerClassName="w-full rounded-lg overflow-hidden bg-gradient-to-br from-purple-50 to-pink-50"
+                    showSkeleton={true}
+                  />
+                </div>
                 <p className="text-sm font-medium text-foreground text-center">
                   {stone.name}
                 </p>
