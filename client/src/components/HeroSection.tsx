@@ -3,10 +3,12 @@ import { track } from "@/lib/tracking";
 import { Eye } from "lucide-react";
 import { useLocation } from "wouter";
 import { useMusic } from "@/contexts/MusicContext";
+import { useTranslation } from 'react-i18next';
 
 export default function HeroSection() {
   const [, setLocation] = useLocation();
   const { isPlaying: isMusicPlaying } = useMusic();
+  const { t } = useTranslation();
 
   return (
     <section className="relative w-full overflow-hidden bg-white">

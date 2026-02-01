@@ -2420,3 +2420,12 @@
 - [x] Přidat plynulou animaci rozevírání křídel při spuštění hudby - scale-100 + opacity-100
 - [x] Přidat plynulou animaci zavírání křídel při zastavení hudby - scale-50 + opacity-0
 - [x] Použít scale transform pro efekt rozevírání/zavírání - transition-all duration-[2000ms] ease-out
+
+
+## Automatická lokalizace do italštiny (1. února 2026)
+- [x] Nainstalovat i18next a react-i18next pro lokalizaci
+- [x] Vytvořit italské překlady klíčových textů (hero, navigace, produkty, chatbot, footer)
+- [x] Implementovat detekci jazyka podle browseru (i18next-browser-languagedetector)
+- [x] Přidat přepínač jazyků do headeru (LanguageSwitcher)
+- [ ] Aplikovat překlady na všechny komponenty
+- [ ] Testovat na mobilních zařízeních

@@ -10,7 +10,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useState } from "react";
-import GoogleTranslate from "@/components/GoogleTranslate";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const navItems = [
   { label: "🎁 Průvodce amulety", hasDropdown: false, url: "/#pruvodce-amulety", isInternal: true, featured: true },
@@ -33,7 +33,7 @@ export default function Header() {
       {/* Top bar - only on desktop */}
       <div className="hidden md:block bg-[#E8C4D8] py-1 overflow-visible">
         <div className="container flex justify-end items-center text-sm">
-          <GoogleTranslate />
+          <LanguageSwitcher />
         </div>
       </div>
 
