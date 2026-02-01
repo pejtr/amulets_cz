@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE membership_tiers \nSET \n  name = 'VIP Kruh Duše',\n  description = 'Exkluzivní prostor pro hluboké terapeutické sdílení na úrovni duše. Intimní skupina pro ty, kteří hledají skutečnou transformaci a propojení s Natálií.',\n  benefits = '[\"Hluboké terapeutické sdílení na úrovni duše\", \"Osobní propojení s Natálií\", \"Intimní VIP skupina pro transformaci\", \"Prioritní podpora 24/7\", \"20% sleva na všechny produkty OHORAI\", \"Exkluzivní meditace a rituály\"]'\nWHERE tierKey = 'vip';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute UPDATE membership_tiers \nSET \n  name = 'VIP Kruh Duše',\n  description = 'Exkluzivní prostor pro hluboké terapeutické sdílení na úrovni duše. Intimní skupina pro ty, kteří hledají skutečnou transformaci a propojení s Natálií.',\n  benefits = '[\"Hluboké terapeutické sdílení na úrovni duše\", \"Osobní propojení s Natálií\", \"Intimní VIP skupina pro transformaci\", \"Prioritní podpora 24/7\", \"20% sleva na všechny produkty OHORAI\", \"Exkluzivní meditace a rituály\"]'\nWHERE tierKey = 'vip';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 359
+}

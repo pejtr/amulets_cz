@@ -2340,3 +2340,15 @@
 - [x] Zvětšit fotku chatbota na desktopu 3x (z h-16 w-16 na md:h-24 md:w-24)
 - [x] Zvětšit online/offline indikátor na desktopu (md:h-6 md:w-6)
 - [x] Zvětšit chat ikonu na desktopu (md:h-5 md:w-5)
+
+
+## VIP Telegram - Hluboké terapeutické sdílení (1. února 2026)
+- [ ] Aktualizovat popis VIP členství - zaměřit na terapeutické sdílení na úrovni duše
+- [ ] Upravit Telegram bot - tvářit se jako živý člověk Natálie (ne bot)
+- [ ] Nastavit terapeutický styl komunikace pro VIP skupinu
+
+
+## Archandělská křídla pro Natálii v Hero sekci (1. února 2026)
+- [x] Vytvořit éterický efekt archandělských křídel za Natálií
+- [x] Jemně ambientní pohyblivá animace
+- [x] Zářivě zlatá barva s éterickým vzhledem

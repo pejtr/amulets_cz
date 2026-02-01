@@ -116,10 +116,109 @@ export default function HeroSection() {
 
       {/* Desktop: original version with overlay text */}
       <div className="hidden md:block relative w-full min-h-[600px]">
+        {/* ARCHANDĚLSKÁ KŘÍDLA - Éterický efekt za Natálií */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          {/* Hlavní křídla - levé */}
+          <div 
+            className="absolute animate-angel-wings"
+            style={{
+              right: '15%',
+              top: '10%',
+              width: '500px',
+              height: '600px',
+              background: 'radial-gradient(ellipse 100% 80% at 100% 50%, rgba(212, 175, 55, 0.25) 0%, rgba(255, 215, 0, 0.15) 30%, rgba(255, 223, 0, 0.05) 60%, transparent 80%)',
+              transformOrigin: 'right center',
+              transform: 'rotate(-15deg)',
+            }}
+          />
+          {/* Hlavní křídla - pravé */}
+          <div 
+            className="absolute animate-angel-wings"
+            style={{
+              right: '5%',
+              top: '10%',
+              width: '500px',
+              height: '600px',
+              background: 'radial-gradient(ellipse 100% 80% at 0% 50%, rgba(212, 175, 55, 0.25) 0%, rgba(255, 215, 0, 0.15) 30%, rgba(255, 223, 0, 0.05) 60%, transparent 80%)',
+              transformOrigin: 'left center',
+              transform: 'rotate(15deg)',
+              animationDelay: '0.5s',
+            }}
+          />
+          
+          {/* Zlatá záře za hlavou - halo efekt */}
+          <div 
+            className="absolute animate-golden-glow rounded-full"
+            style={{
+              right: '22%',
+              top: '8%',
+              width: '250px',
+              height: '250px',
+              background: 'radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(212, 175, 55, 0.15) 40%, transparent 70%)',
+            }}
+          />
+          
+          {/* Éterické částice - vznášející se zlaté jiskry */}
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={`ethereal-${i}`}
+              className="absolute animate-ethereal-particle"
+              style={{
+                right: `${10 + Math.random() * 35}%`,
+                top: `${5 + Math.random() * 60}%`,
+                width: `${2 + Math.random() * 4}px`,
+                height: `${2 + Math.random() * 4}px`,
+                background: 'radial-gradient(circle, rgba(255, 223, 0, 0.9) 0%, rgba(212, 175, 55, 0.6) 50%, transparent 100%)',
+                borderRadius: '50%',
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${3 + Math.random() * 3}s`,
+                boxShadow: '0 0 6px 2px rgba(255, 215, 0, 0.4)',
+              }}
+            />
+          ))}
+          
+          {/* Světelné paprsky z křídel */}
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={`ray-${i}`}
+              className="absolute animate-wing-light-ray"
+              style={{
+                right: `${15 + i * 5}%`,
+                top: '5%',
+                width: '3px',
+                height: '400px',
+                background: 'linear-gradient(to bottom, rgba(255, 223, 0, 0.2) 0%, rgba(255, 215, 0, 0.1) 30%, transparent 100%)',
+                transformOrigin: 'top center',
+                '--ray-angle': `${-20 + i * 8}deg`,
+                animationDelay: `${i * 0.3}s`,
+              } as React.CSSProperties}
+            />
+          ))}
+          
+          {/* Třpytky na křídlech */}
+          {[...Array(12)].map((_, i) => (
+            <div
+              key={`sparkle-wing-${i}`}
+              className="absolute animate-wing-sparkle"
+              style={{
+                right: `${8 + Math.random() * 40}%`,
+                top: `${10 + Math.random() * 50}%`,
+                width: '4px',
+                height: '4px',
+                background: 'white',
+                borderRadius: '50%',
+                boxShadow: '0 0 8px 2px rgba(255, 255, 255, 0.8), 0 0 15px 5px rgba(255, 215, 0, 0.5)',
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 2}s`,
+              }}
+            />
+          ))}
+        </div>
+        
         <img
           src="/hero-natalie-bg.jpg"
           alt="Natálie Ohorai - Zakladatelka Amulets.cz"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover relative z-10"
         />
         
         {/* Animated sparkles overlay - Desktop */}

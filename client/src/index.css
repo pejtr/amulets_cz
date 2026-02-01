@@ -380,3 +380,103 @@
     opacity: 0.6;
   }
 }
+
+
+/* ============================================
+   ARCHANDĚLSKÁ KŘÍDLA - Éterický efekt
+   ============================================ */
+
+/* Hlavní animace křídel - jemné dýchání */
+@keyframes angel-wings-breathe {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scaleX(1) scaleY(1);
+    filter: blur(30px);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scaleX(1.05) scaleY(1.02);
+    filter: blur(25px);
+  }
+}
+
+/* Zlatá záře - pulzující */
+@keyframes golden-glow-pulse {
+  0%, 100% {
+    opacity: 0.2;
+    box-shadow: 
+      0 0 60px 30px rgba(212, 175, 55, 0.15),
+      0 0 120px 60px rgba(255, 215, 0, 0.1),
+      0 0 180px 90px rgba(255, 223, 0, 0.05);
+  }
+  50% {
+    opacity: 0.4;
+    box-shadow: 
+      0 0 80px 40px rgba(212, 175, 55, 0.25),
+      0 0 160px 80px rgba(255, 215, 0, 0.15),
+      0 0 240px 120px rgba(255, 223, 0, 0.08);
+  }
+}
+
+/* Éterické částice - vznášející se */
+@keyframes ethereal-particle {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.5);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(1.2);
+  }
+}
+
+/* Světelné paprsky z křídel */
+@keyframes wing-light-ray {
+  0%, 100% {
+    opacity: 0.05;
+    transform: scaleY(0.8) rotate(var(--ray-angle, 0deg));
+  }
+  50% {
+    opacity: 0.15;
+    transform: scaleY(1.1) rotate(var(--ray-angle, 0deg));
+  }
+}
+
+/* Jemné třpytky na křídlech */
+@keyframes wing-sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animace třídy */
+.animate-angel-wings {
+  animation: angel-wings-breathe 8s ease-in-out infinite;
+}
+
+.animate-golden-glow {
+  animation: golden-glow-pulse 6s ease-in-out infinite;
+}
+
+.animate-ethereal-particle {
+  animation: ethereal-particle 4s ease-out infinite;
+}
+
+.animate-wing-light-ray {
+  animation: wing-light-ray 5s ease-in-out infinite;
+}
+
+.animate-wing-sparkle {
+  animation: wing-sparkle 3s ease-in-out infinite;
+}
