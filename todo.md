@@ -2409,3 +2409,8 @@
 - [x] Vycentrovat křídla přesně za Natálií - left: 50%, top: 50%, transform: translate(-50%, -50%)
 - [x] Zlatá barva, étericky vzhled - drop-shadow efekt
 - [x] Aktivace při spuštění Gloria in Excelsis Deo - isMusicPlaying check
+
+
+## Archandělská křídla - úprava barvy a pozice (1. února 2026)
+- [x] Změnit barvu křídel z zlaté na božsky bílou - brightness(1.5) + bílé drop-shadow
+- [x] Posunout křídla za Natálii (z-index nižší než obrázek) - z-5

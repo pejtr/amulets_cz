@@ -118,8 +118,8 @@ export default function HeroSection() {
 
       {/* Desktop: original version with overlay text */}
       <div className="hidden md:block relative w-full min-h-[600px]">
-        {/* ARCHANDĚLSKÁ KŘÍDLA - Viditelná zářivá křídla za Natálií - aktivují se při hudbě */}
-        <div className={`absolute inset-0 pointer-events-none overflow-hidden z-20 transition-opacity duration-1000 ${isMusicPlaying ? 'opacity-100' : 'opacity-0'}`}>
+        {/* ARCHANDĚLSKÁ KŘÍDLA - Božsky bílá křídla ZA Natálií - aktivují se při hudbě */}
+        <div className={`absolute inset-0 pointer-events-none overflow-hidden z-5 transition-opacity duration-1000 ${isMusicPlaying ? 'opacity-100' : 'opacity-0'}`}>
           {/* Obrázek archandělských křídel - vycentrováno za Natálií */}
           <div 
             className="absolute animate-angel-wings"
@@ -136,7 +136,7 @@ export default function HeroSection() {
               alt="Archandělská křídla"
               className="w-full h-full object-contain"
               style={{
-                filter: 'drop-shadow(0 0 40px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 80px rgba(255, 215, 0, 0.5))',
+                filter: 'brightness(1.5) drop-shadow(0 0 40px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 80px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 120px rgba(255, 255, 255, 0.4))',
               }}
             />
           </div>
