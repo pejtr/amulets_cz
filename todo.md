@@ -2629,3 +2629,9 @@
 - [x] Ikona přehrávače zůstává viditelná i když je hudba vypnutá
 - [x] Odstranit podmínku translate-x která skrývala ikonu na mobilu
 - [x] Pouze křídla v HeroSection zmizí když hudba nehraje, přehrávač zůstává
+
+## Minimalizace přehrávače když nehraje (1. února 2026)
+- [x] Když hudba nehraje, zobrazit pouze Play tlačítko
+- [x] Skrýt info ikonu když nehraje (zobrazí se pouze při přehrávání)
+- [x] Skrýt název písně když nehraje
+- [x] Posunout přehrávač níž (bottom-4) když nehraje, bottom-20 když hraje

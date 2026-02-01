@@ -164,7 +164,9 @@ export default function BackgroundMusic() {
 
       {/* Music player - positioned above bottom navigation */}
       <div 
-        className="fixed bottom-20 left-4 z-[60] flex items-center gap-2 transition-all duration-300"
+        className={`fixed left-4 z-[60] flex items-center gap-2 transition-all duration-300 ${
+          isPlaying ? 'bottom-20' : 'bottom-4'
+        }`}
         onMouseEnter={() => setShowVolumeSlider(true)}
         onMouseLeave={() => setShowVolumeSlider(false)}
       >
@@ -192,14 +194,16 @@ export default function BackgroundMusic() {
           )}
         </button>
 
-        {/* Info button */}
-        <button
-          onClick={() => setShowInfo(true)}
-          className="p-2 rounded-full bg-white/90 text-gray-500 hover:bg-white hover:text-[#D4AF37] shadow-lg transition-all duration-300"
-          title="O této hudbě"
-        >
-          <Info className="w-4 h-4" />
-        </button>
+        {/* Info button - pouze když hraje */}
+        {isPlaying && (
+          <button
+            onClick={() => setShowInfo(true)}
+            className="p-2 rounded-full bg-white/90 text-gray-500 hover:bg-white hover:text-[#D4AF37] shadow-lg transition-all duration-300"
+            title="O této hudbě"
+          >
+            <Info className="w-4 h-4" />
+          </button>
+        )}
 
         {/* Volume slider - shows on hover */}
         <div 
@@ -222,12 +226,7 @@ export default function BackgroundMusic() {
           <Volume2 className="w-4 h-4 text-gray-400 flex-shrink-0" />
         </div>
 
-        {/* Label - shows when not playing and not hovered */}
-        {!isPlaying && !showVolumeSlider && (
-          <span className="text-xs text-gray-600 bg-white/90 px-3 py-1.5 rounded-full shadow-sm font-medium">
-            👼 Gloria in Excelsis Deo
-          </span>
-        )}
+        {/* Label - skrytý když nehraje */}
 
         {/* Playing indicator */}
         {isPlaying && !showVolumeSlider && (
