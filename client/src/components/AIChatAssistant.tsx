@@ -841,9 +841,9 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
         isOffline={isOffline && !adminOverride}
       />
       
-      {/* Chat Button - Větší a pulzující */}
+      {/* Chat Button - Kompaktní a pulzující (zmenšeno o 33%) */}
       {!isOpen && (
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className="fixed bottom-8 right-4 z-50">
           {/* Pulzující kruhy pro urgenci - pouze když je online */}
           {(!isOffline || adminOverride) && (
             <>
@@ -854,11 +854,11 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
           
           <Button
             onClick={() => setIsOpen(true)}
-            className="relative h-24 w-24 rounded-full shadow-2xl bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 p-0 group hover:scale-110 transition-transform duration-300"
+            className="relative h-16 w-16 rounded-full shadow-2xl bg-gradient-to-br from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 p-0 group hover:scale-110 transition-transform duration-300"
             aria-label="Otevřít chat s Natálií"
           >
-            {/* Fotka Natálie - větší a viditelnější */}
-            <div className="absolute inset-1 rounded-full overflow-hidden border-2 border-white/50">
+            {/* Fotka Natálie - kompaktní */}
+            <div className="absolute inset-0.5 rounded-full overflow-hidden border-2 border-white/50">
               <img
                 src={persona.avatar}
                 alt="Natálie"
@@ -867,14 +867,14 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
             </div>
             
             {/* Online/Offline indikátor */}
-            <span className="absolute top-0 right-0 flex h-5 w-5">
+            <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4">
               {(!isOffline || adminOverride) && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>}
-              <span className={`relative inline-flex rounded-full h-5 w-5 border-2 border-white ${isOffline && !adminOverride ? 'bg-gray-400' : 'bg-green-500'}`}></span>
+              <span className={`relative inline-flex rounded-full h-4 w-4 border-2 border-white ${isOffline && !adminOverride ? 'bg-gray-400' : 'bg-green-500'}`}></span>
             </span>
             
             {/* Chat ikona - menší a v rohu */}
-            <span className="absolute bottom-0 left-0 bg-white rounded-full p-1 shadow-lg">
-              <MessageCircle className="h-4 w-4 text-purple-600" />
+            <span className="absolute -bottom-0.5 -left-0.5 bg-white rounded-full p-0.5 shadow-lg">
+              <MessageCircle className="h-3 w-3 text-purple-600" />
             </span>
           </Button>
         </div>

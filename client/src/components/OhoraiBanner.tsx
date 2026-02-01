@@ -12,11 +12,11 @@ export default function OhoraiBanner() {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/ohorai-bg.png"
+          src="/ohorai-banner.png"
           alt="OHORAI - Natálie s esencí modrého lotosu"
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-80"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/90 to-pink-900/80" />
+        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-purple-900/60 to-purple-900/90" />
       </div>
 
       {/* Content */}

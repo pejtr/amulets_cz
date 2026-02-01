@@ -2312,3 +2312,13 @@
 - [x] Vytvořit horizontální OHORAI banner a nahradit banner nad footerem
 - [x] Posunout tlačítko Meditační hudba aby se nepřekrývalo s OHORAI widgetem
 - [x] Vypnout notifikace při aktivním widgetu a prodloužit prodlevu mezi nimi
+- [ ] Změnit OHORAI widget CTA na email notifikaci o dostupnosti esence
+- [ ] Optimalizovat OHORAI widget pro mobilní zobrazení
+- [ ] Zmenšit ikonu chatbota o 33% a posunout doprava a nahoru
+
+
+## Úpravy UI prvků (1. února 2026)
+- [x] Zmenšit chatbot ikonu o 33% (z h-24 w-24 na h-16 w-16)
+- [x] Posunout chatbot ikonu doprava a nahoru (right-4, bottom-8)
+- [x] Optimalizovat OHORAI widget pro mobilní zařízení (menší velikost, lepší pozice)
+- [x] Jan Kroča již přidán do footeru (spřízněné projekty)
