@@ -11,6 +11,7 @@ import { BrowsingProvider } from "./contexts/BrowsingContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { HarmonyTunerProvider } from "./contexts/HarmonyTunerContext";
 import { ABTestProvider } from "./contexts/ABTestContext";
+import { MusicProvider } from "./contexts/MusicContext";
 import Home from "./pages/Home";
 import GuideDetail from "./pages/GuideDetail";
 import Magazine from "./pages/Magazine";
@@ -121,6 +122,7 @@ function App() {
           <BrowsingProvider>
             <HarmonyTunerProvider>
               <ABTestProvider>
+                <MusicProvider>
           <ExitIntentPopup />
         <TooltipProvider>
           <Toaster />
@@ -130,6 +132,7 @@ function App() {
           <AIChatAssistant />
           <BackgroundMusic />
         </TooltipProvider>
+              </MusicProvider>
               </ABTestProvider>
             </HarmonyTunerProvider>
           </BrowsingProvider>

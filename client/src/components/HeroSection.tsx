@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button";
 import { track } from "@/lib/tracking";
 import { Eye } from "lucide-react";
 import { useLocation } from "wouter";
+import { useMusic } from "@/contexts/MusicContext";
 
 export default function HeroSection() {
   const [, setLocation] = useLocation();
+  const { isPlaying: isMusicPlaying } = useMusic();
 
   return (
     <section className="relative w-full overflow-hidden bg-white">
@@ -116,45 +118,59 @@ export default function HeroSection() {
 
       {/* Desktop: original version with overlay text */}
       <div className="hidden md:block relative w-full min-h-[600px]">
-        {/* ARCHANDĚLSKÁ KŘÍDLA - Éterický efekt za Natálií */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-20">
-          {/* Hlavní křídla - levé */}
+        {/* ARCHANDĚLSKÁ KŘÍDLA - Výrazný éterický efekt za Natálií - aktivuje se při hudbě */}
+        <div className={`absolute inset-0 pointer-events-none overflow-hidden z-5 transition-opacity duration-1000 ${isMusicPlaying ? 'opacity-100' : 'opacity-0'}`}>
+          {/* Hlavní křídla - LEVÉ - výrazné */}
           <div 
             className="absolute animate-angel-wings"
             style={{
-              right: '15%',
-              top: '10%',
-              width: '500px',
-              height: '600px',
-              background: 'radial-gradient(ellipse 100% 80% at 100% 50%, rgba(212, 175, 55, 0.5) 0%, rgba(255, 215, 0, 0.35) 30%, rgba(255, 223, 0, 0.15) 60%, transparent 85%)',
+              right: '25%',
+              top: '0%',
+              width: '600px',
+              height: '700px',
+              background: `
+                radial-gradient(ellipse 120% 100% at 100% 50%, 
+                  rgba(255, 215, 0, 0.8) 0%, 
+                  rgba(212, 175, 55, 0.6) 20%, 
+                  rgba(255, 223, 0, 0.4) 40%, 
+                  rgba(255, 215, 0, 0.2) 60%, 
+                  transparent 80%
+                )`,
               transformOrigin: 'right center',
-              transform: 'rotate(-15deg)',
+              transform: 'rotate(-20deg) scaleY(1.2)',
             }}
           />
-          {/* Hlavní křídla - pravé */}
+          {/* Hlavní křídla - PRAVÉ - výrazné */}
           <div 
             className="absolute animate-angel-wings"
             style={{
-              right: '5%',
-              top: '10%',
-              width: '500px',
-              height: '600px',
-              background: 'radial-gradient(ellipse 100% 80% at 0% 50%, rgba(212, 175, 55, 0.5) 0%, rgba(255, 215, 0, 0.35) 30%, rgba(255, 223, 0, 0.15) 60%, transparent 85%)',
+              right: '-5%',
+              top: '0%',
+              width: '600px',
+              height: '700px',
+              background: `
+                radial-gradient(ellipse 120% 100% at 0% 50%, 
+                  rgba(255, 215, 0, 0.8) 0%, 
+                  rgba(212, 175, 55, 0.6) 20%, 
+                  rgba(255, 223, 0, 0.4) 40%, 
+                  rgba(255, 215, 0, 0.2) 60%, 
+                  transparent 80%
+                )`,
               transformOrigin: 'left center',
-              transform: 'rotate(15deg)',
+              transform: 'rotate(20deg) scaleY(1.2)',
               animationDelay: '0.5s',
             }}
           />
           
-          {/* Zlatá záře za hlavou - halo efekt */}
+          {/* Zlatá záře za hlavou - HALO efekt - výrazný */}
           <div 
             className="absolute animate-golden-glow rounded-full"
             style={{
-              right: '22%',
-              top: '8%',
-              width: '250px',
-              height: '250px',
-              background: 'radial-gradient(circle, rgba(255, 215, 0, 0.5) 0%, rgba(212, 175, 55, 0.3) 40%, transparent 70%)',
+              right: '18%',
+              top: '2%',
+              width: '350px',
+              height: '350px',
+              background: 'radial-gradient(circle, rgba(255, 215, 0, 0.9) 0%, rgba(212, 175, 55, 0.6) 30%, rgba(255, 223, 0, 0.3) 60%, transparent 80%)',
             }}
           />
           

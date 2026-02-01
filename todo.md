@@ -2368,3 +2368,17 @@
 ## Úprava textů OHORAI (1. února 2026)
 - [x] Změnit "muzikoterapie" na "vibrační koherence pomocí křišťálových nástrojů"
 - [x] Upravit popis esencí - dosaženo nejvyšší vibrační koherence
+
+
+## Archandělská křídla - oprava (1. února 2026)
+- [x] Vytvořit výrazná viditelná archandělská křídla za Natálií
+- [x] Aktivovat křídla až po spuštění meditační hudby
+- [x] Propojit s BackgroundMusic komponentou přes MusicContext
+
+
+## Gloria in Excelsis Deo - meditační hudba (1. února 2026)
+- [x] Stáhnout skladbu Gloria in Excelsis Deo z YouTube
+- [x] Přejmenovat přehrávač na "Gloria in Excelsis Deo"
+- [x] Přidat vysvětlení významu na rozkliknutí ("Sláva na výsostech Bohu")
+- [x] Nastavit start od 0:44
+- [x] Posunout přehrávač výše (bottom-44) aby nepřekrýval notifikace
