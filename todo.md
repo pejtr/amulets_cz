@@ -2635,3 +2635,17 @@
 - [x] Skrýt info ikonu když nehraje (zobrazí se pouze při přehrávání)
 - [x] Skrýt název písně když nehraje
 - [x] Posunout přehrávač níž (bottom-4) když nehraje, bottom-20 když hraje
+
+## Oprava z-index rozbalovacího menu a pozice přehrávače (1. února 2026)
+- [ ] Zvýšit z-index rozbalovacího menu kvízů (z-[70])
+- [ ] Zajistit že menu překryje Natálii a přehrávač
+- [ ] Posunout přehrávač na dolní panel (bottom-16 místo bottom-4/bottom-20)
+- [ ] Overlay už existuje, jen zkontrolovat z-index hierarchii
+
+## Oprava z-index menu, pozice přehrávače a routingu (1. února 2026)
+- [x] Zvýšit z-index rozbalovacího menu (overlay z-[70], menu z-[80])
+- [x] Posunout přehrávač na dolní panel (bottom-16)
+- [x] Opravit odkaz Průvodce na /#pruvodce (scroll na sekci)
+
+## Zarovnání přehrávače s ikonami (1. února 2026)
+- [x] Posunout přehrávač doprava (right-4) zarovnaný s ikonami dolního panelu

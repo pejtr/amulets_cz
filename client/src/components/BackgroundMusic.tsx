@@ -164,9 +164,7 @@ export default function BackgroundMusic() {
 
       {/* Music player - positioned above bottom navigation */}
       <div 
-        className={`fixed left-4 z-[60] flex items-center gap-2 transition-all duration-300 ${
-          isPlaying ? 'bottom-20' : 'bottom-4'
-        }`}
+        className="fixed right-4 bottom-16 z-[60] flex items-center gap-2 transition-all duration-300"
         onMouseEnter={() => setShowVolumeSlider(true)}
         onMouseLeave={() => setShowVolumeSlider(false)}
       >

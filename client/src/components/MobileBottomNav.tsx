@@ -27,7 +27,7 @@ export default function MobileBottomNav() {
     {
       icon: Gift,
       label: 'Průvodce',
-      href: '/pruvodce-amulety',
+      href: '/#pruvodce',
     },
     {
       icon: Newspaper,
@@ -51,12 +51,12 @@ export default function MobileBottomNav() {
         <>
           {/* Overlay pro zavření menu */}
           <div 
-            className="fixed inset-0 bg-black/20 z-40 md:hidden"
+            className="fixed inset-0 bg-black/20 z-[70] md:hidden"
             onClick={() => setShowQuizMenu(false)}
           />
           
           {/* Quiz menu */}
-          <div className="fixed bottom-16 left-0 right-0 z-50 bg-white border-t-2 border-purple-100 shadow-2xl md:hidden animate-in slide-in-from-bottom duration-200">
+          <div className="fixed bottom-16 left-0 right-0 z-[80] bg-white border-t-2 border-purple-100 shadow-2xl md:hidden animate-in slide-in-from-bottom duration-200">
             <div className="py-2">
               {quizItems.map((quiz) => (
                 <Link key={quiz.href} href={quiz.href}>
