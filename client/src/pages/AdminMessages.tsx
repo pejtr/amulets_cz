@@ -3,7 +3,7 @@ import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Mail, MailOpen, Trash2, ArrowLeft, RefreshCw } from "lucide-react";
+import { Loader2, Mail, MailOpen, Trash2, ArrowLeft, RefreshCw, Download } from "lucide-react";
 import { useLocation } from "wouter";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -79,6 +79,55 @@ export default function AdminMessages() {
       toast.error("Nepodařilo se smazat zprávu");
     },
   });
+
+  // Export handlers
+  const utils = trpc.useUtils();
+  
+  const handleExportCSV = async () => {
+    try {
+      const result = await utils.client.offlineMessages.exportCSV.query({
+        unreadOnly: showUnreadOnly,
+        email: emailFilter || undefined,
+        dateFrom: dateFrom || undefined,
+        dateTo: dateTo || undefined,
+      });
+      
+      // Create blob and download
+      const blob = new Blob([result.csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = result.filename;
+      link.click();
+      URL.revokeObjectURL(link.href);
+      
+      toast.success('CSV soubor stažen');
+    } catch (error) {
+      toast.error('Nepodařilo se exportovat CSV');
+    }
+  };
+
+  const handleExportExcel = async () => {
+    try {
+      const result = await utils.client.offlineMessages.exportExcel.query({
+        unreadOnly: showUnreadOnly,
+        email: emailFilter || undefined,
+        dateFrom: dateFrom || undefined,
+        dateTo: dateTo || undefined,
+      });
+      
+      // Create blob and download
+      const blob = new Blob([result.csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = result.filename;
+      link.click();
+      URL.revokeObjectURL(link.href);
+      
+      toast.success('Excel soubor stažen');
+    } catch (error) {
+      toast.error('Nepodařilo se exportovat Excel');
+    }
+  };
 
   // Helper to safely render browsing context
   const renderBrowsingContext = (ctx: unknown) => {
@@ -184,6 +233,14 @@ export default function AdminMessages() {
               onClick={() => setShowUnreadOnly(!showUnreadOnly)}
             >
               {showUnreadOnly ? "Zobrazit vše" : "Pouze nepřečtené"}
+            </Button>
+            <Button variant="outline" size="sm" onClick={handleExportCSV}>
+              <Download className="h-4 w-4 mr-1" />
+              CSV
+            </Button>
+            <Button variant="outline" size="sm" onClick={handleExportExcel}>
+              <Download className="h-4 w-4 mr-1" />
+              Excel
             </Button>
             <Button variant="outline" size="sm" onClick={() => refetch()}>
               <RefreshCw className="h-4 w-4" />

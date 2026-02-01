@@ -2456,3 +2456,9 @@
 - [x] Aktualizovat tRPC getAll proceduru pro podporu date range a email filtru
 - [x] Přidat UI filtry do AdminMessages (date picker, email search)
 - [x] Otestovat filtrování a uložit checkpoint
+
+## Export offline zpráv (1. února 2026)
+- [x] Vytvořit tRPC proceduru pro export zpráv do CSV
+- [x] Vytvořit tRPC proceduru pro export zpráv do Excel
+- [x] Přidat UI tlačítka pro export v AdminMessages
+- [x] Otestovat export a uložit checkpoint

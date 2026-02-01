@@ -1969,6 +1969,79 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
 
         return { success: !!result };
       }),
+
+    // Export zpráv do CSV
+    exportCSV: publicProcedure
+      .input(z.object({
+        unreadOnly: z.boolean().optional().default(false),
+        email: z.string().optional(),
+        dateFrom: z.string().optional(),
+        dateTo: z.string().optional(),
+      }).optional())
+      .query(async ({ ctx, input }) => {
+        // Check if user is admin
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup k exportu zpráv' });
+        }
+
+        // Get all messages without limit for export
+        const messages = await getAllOfflineMessages({ ...input, limit: 10000, offset: 0 });
+        
+        // Build CSV
+        const headers = ['ID', 'Email', 'Zpráva', 'Přečteno', 'Datum vytvoření', 'Datum přečtení', 'Stránka'];
+        const rows = messages.map(msg => [
+          msg.id,
+          msg.email || '',
+          `"${(msg.message || '').replace(/"/g, '""')}"`, // Escape quotes
+          msg.isRead ? 'Ano' : 'Ne',
+          msg.createdAt ? new Date(msg.createdAt).toLocaleString('cs-CZ') : '',
+          msg.readAt ? new Date(msg.readAt).toLocaleString('cs-CZ') : '',
+          msg.browsingContext && typeof msg.browsingContext === 'object' && 'currentPage' in msg.browsingContext 
+            ? `"${(msg.browsingContext.currentPage as string || '').replace(/"/g, '""')}"`
+            : '',
+        ]);
+        
+        const csv = [headers.join(','), ...rows.map(row => row.join(','))].join('\n');
+        
+        return { csv, filename: `offline-zpravy-${new Date().toISOString().split('T')[0]}.csv` };
+      }),
+
+    // Export zpráv do Excel (jako CSV s BOM pro Excel)
+    exportExcel: publicProcedure
+      .input(z.object({
+        unreadOnly: z.boolean().optional().default(false),
+        email: z.string().optional(),
+        dateFrom: z.string().optional(),
+        dateTo: z.string().optional(),
+      }).optional())
+      .query(async ({ ctx, input }) => {
+        // Check if user is admin
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup k exportu zpráv' });
+        }
+
+        // Get all messages without limit for export
+        const messages = await getAllOfflineMessages({ ...input, limit: 10000, offset: 0 });
+        
+        // Build CSV with BOM for Excel (better Czech character support)
+        const headers = ['ID', 'Email', 'Zpráva', 'Přečteno', 'Datum vytvoření', 'Datum přečtení', 'Stránka'];
+        const rows = messages.map(msg => [
+          msg.id,
+          msg.email || '',
+          `"${(msg.message || '').replace(/"/g, '""')}"`,
+          msg.isRead ? 'Ano' : 'Ne',
+          msg.createdAt ? new Date(msg.createdAt).toLocaleString('cs-CZ') : '',
+          msg.readAt ? new Date(msg.readAt).toLocaleString('cs-CZ') : '',
+          msg.browsingContext && typeof msg.browsingContext === 'object' && 'currentPage' in msg.browsingContext 
+            ? `"${(msg.browsingContext.currentPage as string || '').replace(/"/g, '""')}"`
+            : '',
+        ]);
+        
+        // Add BOM for Excel UTF-8 support
+        const csv = '\uFEFF' + [headers.join(','), ...rows.map(row => row.join(','))].join('\n');
+        
+        return { csv, filename: `offline-zpravy-${new Date().toISOString().split('T')[0]}.csv` };
+      }),
   }),
 });
 
