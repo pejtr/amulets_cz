@@ -11,7 +11,7 @@ const VOLUME_KEY = 'background-music-volume';
 
 export default function BackgroundMusic() {
   const { isPlaying, setIsPlaying } = useMusic();
-  const [volume, setVolume] = useState(0.3);
+  const [volume, setVolume] = useState(0.15);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
