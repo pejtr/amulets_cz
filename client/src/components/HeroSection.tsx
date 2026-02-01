@@ -4,11 +4,27 @@ import { Eye } from "lucide-react";
 import { useLocation } from "wouter";
 import { useMusic } from "@/contexts/MusicContext";
 import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from 'react';
 
 export default function HeroSection() {
   const [, setLocation] = useLocation();
   const { isPlaying: isMusicPlaying } = useMusic();
   const { t } = useTranslation();
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Parallax calculations
+  const parallaxBg = scrollY * 0.5; // Background moves slower
+  const parallaxSymbols = scrollY * 0.3; // Symbols move even slower
+  const parallaxOpacity = Math.max(0, 1 - scrollY / 600); // Fade out on scroll
 
   return (
     <section className="relative w-full overflow-hidden bg-white">
@@ -118,7 +134,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Desktop: original version with overlay text */}
+      {/* Desktop: original version with overlay text + PARALLAX */}
       <div className="hidden md:block relative w-full min-h-[600px]">
         {/* ARCHANDĚLSKÁ KŘÍDLA - Božsky bílá křídla ZA Natálií - plynulá animace při hudbě */}
         <div className={`absolute inset-0 pointer-events-none overflow-hidden z-5 transition-all duration-[2000ms] ease-out ${isMusicPlaying ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`} style={{ transformOrigin: 'center center' }}>
@@ -212,14 +228,26 @@ export default function HeroSection() {
           ))}
         </div>
         
+        {/* Background image with parallax */}
         <img
           src="/hero-natalie-bg.jpg"
           alt="Natálie Ohorai - Zakladatelka Amulets.cz"
           className="w-full h-full object-cover relative z-0"
+          style={{
+            transform: `translateY(${parallaxBg}px)`,
+            transition: 'transform 0.1s ease-out',
+          }}
         />
         
-        {/* Animated sparkles overlay - Desktop */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Animated sparkles overlay - Desktop with parallax */}
+        <div 
+          className="absolute inset-0 pointer-events-none overflow-hidden"
+          style={{
+            transform: `translateY(${parallaxSymbols}px)`,
+            opacity: parallaxOpacity,
+            transition: 'transform 0.1s ease-out, opacity 0.1s ease-out',
+          }}
+        >
           {/* Floating sparkles */}
           {[...Array(25)].map((_, i) => (
             <div

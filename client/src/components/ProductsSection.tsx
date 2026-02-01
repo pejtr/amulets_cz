@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import ProductQuickView from "@/components/ProductQuickView";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const pyramids = [
   {
@@ -127,13 +127,59 @@ const essences = [
     rating: 4.7,
     reviewCount: 11,
     url: "https://www.ohorai.cz/esence-matka-zeme-10ml/",
-    description: "Silná esence snoubící vůni skořice, borovice a kadidla s modrým lotosem. Podporuje uzemňení a spojení s matkou Zemí. Obsahuje 24k zlato a křišťál. Obsah: 10 ml. Určena pro aromaterapeutické účely.",
+    description: "Silná esence snoubící vůni skořice, borovice a kadidla s modrým lotosem. Podporuje uzemňění a spojení s matkou Zemí. Obsahuje 24k zlato a křišťál. Obsah: 10 ml. Určena pro aromaterapeutické účely.",
   },
 ];
 
 export default function ProductsSection() {
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+  const [pyramidsVisible, setPyramidsVisible] = useState(false);
+  const [essencesVisible, setEssencesVisible] = useState(false);
+  
+  const pyramidsRef = useRef<HTMLDivElement>(null);
+  const essencesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const pyramidsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !pyramidsVisible) {
+          setPyramidsVisible(true);
+        }
+      });
+    }, observerOptions);
+
+    const essencesObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !essencesVisible) {
+          setEssencesVisible(true);
+        }
+      });
+    }, observerOptions);
+
+    if (pyramidsRef.current) {
+      pyramidsObserver.observe(pyramidsRef.current);
+    }
+
+    if (essencesRef.current) {
+      essencesObserver.observe(essencesRef.current);
+    }
+
+    return () => {
+      if (pyramidsRef.current) {
+        pyramidsObserver.unobserve(pyramidsRef.current);
+      }
+      if (essencesRef.current) {
+        essencesObserver.unobserve(essencesRef.current);
+      }
+    };
+  }, [pyramidsVisible, essencesVisible]);
 
   const handleQuickView = (product: any) => {
     setSelectedProduct(product);
@@ -187,13 +233,18 @@ export default function ProductsSection() {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div ref={pyramidsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {pyramids.map((product, index) => (
-              <ProductCard 
-                key={index} 
-                {...product} 
-                onQuickView={() => handleQuickView(product)}
-              />
+              <div
+                key={index}
+                className={pyramidsVisible ? 'animate-zoom-in-card' : 'opacity-0'}
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                <ProductCard 
+                  {...product} 
+                  onQuickView={() => handleQuickView(product)}
+                />
+              </div>
             ))}
           </div>
         </section>
@@ -228,13 +279,18 @@ export default function ProductsSection() {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div ref={essencesRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {essences.map((product, index) => (
-              <ProductCard 
-                key={index} 
-                {...product} 
-                onQuickView={() => handleQuickView(product)}
-              />
+              <div
+                key={index}
+                className={essencesVisible ? 'animate-zoom-in-card' : 'opacity-0'}
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                <ProductCard 
+                  {...product} 
+                  onQuickView={() => handleQuickView(product)}
+                />
+              </div>
             ))}
           </div>
         </section>

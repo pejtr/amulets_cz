@@ -2498,3 +2498,20 @@
 ## Oprava hero sekce (1. února 2026)
 - [x] Vrátit chybějící texty a tlačítka do HeroSection (opraveno z-index)
 - [x] Otestovat zobrazení hero sekce
+
+## Vizuální vylepšení webu (1. února 2026)
+
+### 1. Zoom-in animace na produktové karty
+- [x] Aplikovat stejnou zoom-in animaci jako u horoskopu na ProductsSection
+- [x] Přidat IntersectionObserver pro spuštění při scrollu
+- [x] Otestovat animaci na různých zařízeních
+
+### 2. Parallax scrolling v hero sekci
+- [x] Přidat parallax efekt na pozadí hero sekce (0.5x rychlost)
+- [x] Animovat zlaté symboly (Květ života, pyramida) při scrollu (0.3x rychlost)
+- [x] Optimalizovat pro mobilní zařízení (parallax pouze na desktopu)
+
+### 3. Bublinový tooltip u čínského horoskopu
+- [x] Vytvořit tooltip komponentu s krátkým popisem znamení
+- [x] Přidat hover efekt na karty horoskopu
+- [x] Zobrazit klíčové vlastnosti znamení v tooltipu (gradient orange-red)
