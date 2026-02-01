@@ -2359,5 +2359,7 @@
 - [x] Automaticky probudit chatbota pro admina (i když spí) - isAdmin check
 
 
-## Odstranění AromaterapieBanner (1. února 2026)
+## Odstranění AromaterapieBanner a OHORAI (1. února 2026)
 - [x] Odstranit sekci aromaterapeutických esencí z homepage
+- [x] Odstranit StickyEsenceBanner (vyjíždějící reklama)
+- [x] Odstranit OhoraiWidget (oranžová postavička)
