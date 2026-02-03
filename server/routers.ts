@@ -95,9 +95,11 @@ export const appRouter = router({
         isReturningCustomer: z.boolean().optional(),
         egyptianPhase: z.number().optional(),
         variantKey: z.string().optional(),
+        sessionId: z.number().optional(),
+        visitorId: z.string().optional(),
       }))
       .mutation(async ({ input, ctx }) => {
-        const { message, conversationHistory, context, email, isReturningCustomer, egyptianPhase, variantKey } = input;
+        const { message, conversationHistory, context, email, isReturningCustomer, egyptianPhase, variantKey, sessionId, visitorId } = input;
 
         // ========================================
         // SYSTEM COMMANDS DETECTION
@@ -307,6 +309,29 @@ ${email ? `- Email: ${email}` : ''}
 
           const content = response.choices[0].message.content;
           const responseText = typeof content === 'string' ? content : "Omlouvám se, nemohu odpovědět. Zkuste to prosím znovu.";
+          
+          // Save messages to database if sessionId is provided
+          if (sessionId && visitorId) {
+            // Get variant ID from variantKey
+            const variants = await getAllChatbotVariants();
+            const variant = variants.find((v: any) => v.variantKey === variantKey) || variants[0];
+            
+            // Save user message
+            await addChatbotMessage({
+              sessionId,
+              variantId: variant.id,
+              role: 'user',
+              content: message,
+            });
+            
+            // Save assistant response
+            await addChatbotMessage({
+              sessionId,
+              variantId: variant.id,
+              role: 'assistant',
+              content: responseText,
+            });
+          }
           
           return {
             response: responseText,
@@ -760,14 +785,16 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         browser: z.string().optional(),
       }))
       .mutation(async ({ input }) => {
-        await createChatbotSession(input);
+        const session = await createChatbotSession(input);
         await logChatbotEvent({
           visitorId: input.visitorId,
           variantId: input.variantId,
           eventType: 'session_start',
           page: input.sourcePage,
         });
-        return { success: true };
+        // Return the numeric session ID
+        const sessionId = session && 'id' in session ? session.id : undefined;
+        return { success: true, sessionId };
       }),
 
     // End session

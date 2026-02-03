@@ -305,6 +305,7 @@ export default function AIChatAssistant() {
   const [showGoodnightMessage, setShowGoodnightMessage] = useState(false);
   const [variant, setVariant] = useState<ChatbotVariant | null>(null);
   const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
+  const [numericSessionId, setNumericSessionId] = useState<number | undefined>(undefined);
   const [visitorId] = useState(() => {
     const stored = localStorage.getItem('amulets_visitor_id');
     if (stored) return stored;
@@ -412,7 +413,14 @@ export default function AIChatAssistant() {
   });
 
   // Start session mutation
-  const startSessionMutation = trpc.chatbotAB.startSession.useMutation();
+  const startSessionMutation = trpc.chatbotAB.startSession.useMutation({
+    onSuccess: (data) => {
+      // Save numeric session ID from backend
+      if (data.sessionId) {
+        setNumericSessionId(data.sessionId);
+      }
+    },
+  });
 
   // Log event mutation
   const logEventMutation = trpc.chatbotAB.logEvent.useMutation();
@@ -675,6 +683,8 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
         isReturningCustomer,
         egyptianPhase,
         variantKey: variant?.variantKey,
+        sessionId: numericSessionId,
+        visitorId,
       });
     }
 
@@ -1233,6 +1243,9 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                                   message: question,
                                   context: browsingContext,
                                   email: email || undefined,
+                                  sessionId: numericSessionId,
+                                  visitorId,
+                                  variantKey: variant?.variantKey,
                                 });
                               }, 100);
                             }}

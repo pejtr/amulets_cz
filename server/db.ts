@@ -149,6 +149,12 @@ export async function createChatbotSession(data: {
   if (!db) return null;
   
   const [result] = await db.insert(chatbotSessions).values(data);
+  
+  // Return the numeric ID of the created session
+  if (result && result.insertId) {
+    return { id: Number(result.insertId), ...data };
+  }
+  
   return result;
 }
 
@@ -192,6 +198,17 @@ export async function addChatbotMessage(data: {
   
   const [result] = await db.insert(chatbotMessages).values(data);
   return result;
+}
+
+// Get messages by session ID
+export async function getChatbotMessagesBySession(sessionId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select()
+    .from(chatbotMessages)
+    .where(eq(chatbotMessages.sessionId, sessionId))
+    .orderBy(chatbotMessages.createdAt);
 }
 
 // Log event
