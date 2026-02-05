@@ -223,11 +223,20 @@ function getAssignedPersona(isAuthenticated: boolean = false): typeof NATALIE_PE
   return NATALIE_PERSONAS[assigned];
 }
 
-// Helper function to check if chatbot is in offline hours (00:00 - 08:00 CET)
-function isOfflineHours(): boolean {
+// Helper function to check if chatbot is in offline hours
+// For non-authenticated users: 00:00-08:00 AND 20:00-24:00 (red indicator)
+// For authenticated/PREMIUM users: only 00:00-08:00 (available 20:00-24:00 via Telegram)
+function isOfflineHours(isAuthenticated: boolean = false): boolean {
   const now = new Date();
   const hours = now.getHours();
-  return hours < 8; // Offline pouze od půlnoci do 8:00
+  
+  // PREMIUM users (authenticated) - offline only 00:00-08:00
+  if (isAuthenticated) {
+    return hours < 8;
+  }
+  
+  // Regular users - offline 00:00-08:00 AND 20:00-24:00
+  return hours < 8 || hours >= 20;
 }
 
 // Helper function to check if it's time for goodnight message (23:55 - 23:59)
@@ -247,11 +256,26 @@ Přeji ti krásné sny plné světla a lásky. Dobrou noc! 💫💜
 
 ~ Natálie`;
 
-// Offline message - zkrácená verze
-const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpočívám. Jsem tu denně 8:00-24:00. Napište mi na WhatsApp nebo zanechte dotaz!
+// Offline message - pro nepřihlášené uživatele (00:00-08:00 a 20:00-24:00)
+const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpočívám. Jsem tu denně 8:00-20:00. Napište mi na WhatsApp nebo zanechte dotaz!
 
 S láskou,
 Natálie 💜`;
+
+// Offline message - pro PREMIUM uživatele (20:00-24:00 - dostupná přes Telegram)
+const PREMIUM_OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpočívám, ale pro tebe jako PREMIUM uživatele jsem dostupná přes Telegram! 💬
+
+Klikni na tlačítko "Telegram Bot" níže a můžeme pokračovat v rozhovoru. 😊
+
+S láskou,
+Natálie 💜`;
+
+// Auto-reply message when user sends message while offline
+const AUTO_REPLY_MESSAGE = `Vaše zpráva byla přijata! 💜
+
+Natálie vám odpoví hned, jak to bude možné. Děkuji za trpělivost!
+
+~ Amulets.cz tým ✨`;
 
 export default function AIChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
@@ -261,10 +285,10 @@ export default function AIChatAssistant() {
     if (stored === 'small' || stored === 'medium' || stored === 'large') return stored;
     return 'medium';
   });
-  const [isOffline, setIsOffline] = useState(isOfflineHours());
-  
   // Check if user is authenticated (for Paige/Velekněžka access)
   const { isAuthenticated, user } = useAuth();
+  
+  const [isOffline, setIsOffline] = useState(() => isOfflineHours(isAuthenticated));
   
   // Auto-wake for admin - Král má Natálii vždy probuzenou
   const isAdmin = user?.role === 'admin';
@@ -294,7 +318,7 @@ export default function AIChatAssistant() {
     (window as any).uspatNatalii = () => {
       localStorage.removeItem('natalie_admin_override');
       setAdminOverride(false);
-      setIsOffline(isOfflineHours());
+      setIsOffline(isOfflineHours(isAuthenticated));
       console.log('💜 Natálie jde spát... 🌙');
     };
     return () => {
@@ -503,7 +527,7 @@ Co tě dnes přivádí?`;
   // Check offline hours and goodnight time every minute
   useEffect(() => {
     const checkTime = () => {
-      setIsOffline(isOfflineHours());
+      setIsOffline(isOfflineHours(isAuthenticated));
       
       // Check for goodnight time
       if (isGoodnightTime() && isOpen && !showGoodnightMessage) {
@@ -667,7 +691,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
           ...prev,
           {
             role: "assistant",
-            content: "Děkuji za vaši zprávu! 💜 Právě jsem mimo pracovní dobu (8:00-24:00), ale vaši zprávu jsem přijala a brzy vám odpovím.\n\nPokud je to naléhavé, můžete mi napsat na WhatsApp +420 776 041 740 nebo zanechat kontakt a ozvu se vám co nejdříve. 🙏",
+            content: AUTO_REPLY_MESSAGE,
             timestamp: new Date(),
           },
         ]);
@@ -873,7 +897,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
       
       {/* Chat Button - Levitující nad prvním tlačítkem (Domů) v dolní navigaci */}
       {!isOpen && (
-        <div className="fixed bottom-20 left-6 md:bottom-36 md:left-4 z-50 animate-float">
+        <div className="fixed bottom-6 left-6 md:bottom-8 md:left-4 z-[100] animate-float">
           {/* Pulzující kruhy pro urgenci - pouze když je online */}
           {(!isOffline || adminOverride) && (
             <>
@@ -915,8 +939,8 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
         <Card className={`fixed animate-in slide-in-from-bottom-4 fade-in duration-500 ${
           isMaximized 
             ? 'inset-4 w-auto h-auto' 
-            : 'bottom-0 right-0 sm:bottom-6 sm:right-6 w-full sm:w-[500px] h-[100dvh] sm:h-[780px]'
-        } shadow-2xl z-50 flex flex-col sm:rounded-lg rounded-none ring-2 ring-amber-400/30 ring-offset-2 ring-offset-purple-100 transition-all duration-300 ${
+            : 'inset-0 sm:inset-auto sm:bottom-6 sm:right-6 w-full sm:w-[500px] h-full sm:h-[780px]'
+        } shadow-2xl z-[100] flex flex-col sm:rounded-lg rounded-none ring-2 ring-amber-400/30 ring-offset-2 ring-offset-purple-100 transition-all duration-300 ${
           fontSize === 'small' ? 'text-sm' : fontSize === 'large' ? (isMaximized ? 'text-xl' : 'text-lg') : 'text-base'
         }`}>
           {/* Header */}
@@ -1081,7 +1105,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                 <div className="flex justify-start">
                   <div className="max-w-[80%] rounded-2xl px-4 py-2 bg-white shadow-md text-gray-800">
                     <Streamdown className="text-sm prose prose-sm max-w-none">
-                      {OFFLINE_MESSAGE}
+                      {isAuthenticated ? PREMIUM_OFFLINE_MESSAGE : OFFLINE_MESSAGE}
                     </Streamdown>
                     <p className="text-xs mt-1 text-gray-500">
                       {new Date().toLocaleTimeString("cs-CZ", {

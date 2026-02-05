@@ -2653,3 +2653,24 @@
 ## Přesun Natálie blíže k dolnímu panelu (1. února 2026)
 - [x] Posunout Natálii níž (z bottom-24 na bottom-20)
 - [x] Zachovat desktop pozici (md:bottom-36 md:left-4)
+
+## Vylepšení chatbota a notifikací (nové požadavky)
+- [x] Opravit indikaci online/offline - zelená indikace mimo pracovní dobu je chyba
+- [x] Nastavit červenou indikaci od 20h-24h pro nepřihlášené uživatele
+- [x] Implementovat PREMIUM přístup 20h-24h - pro přihlášené uživatele dostupnost přes Telegram (zpracováno frontend, backend Telegram bot bude další fáze)
+- [x] Přidat automatickou odpověď při offline - "Vaše zpráva byla přijata a Natálie odpoví hned jak to bude možné"
+- [x] Vycentrovat notifikace doprostřed aby nepřekrývaly chatbot
+- [x] Přesunout play tlačítko úplně vpravo v notifikacích (přidáno CTA tlačítko "TAM CHCI >")
+- [ ] Implementovat analytiku článků - sledovat které články čtou nejvíce
+- [ ] Přidat statistiky článků do denních reportů Telegram bota
+- [ ] Vylepšit Telegram bota - proaktivní komunikace hlasem
+- [ ] Přidat lepší paměť do Telegram bota
+- [ ] Implementovat metakognici (přemýšlení o přemýšlení) do Telegram bota
+
+## Posun prvků níž (nový požadavek)
+- [x] Posunout Natálii (levitující avatar) níž (z bottom-20 na bottom-6)
+- [x] Posunout notifikace níž (z bottom-20 na bottom-6)
+- [x] Posunout play tlačítko (šipka) níž (z bottom-16 na bottom-6)
+## Oprava useknutého chatbota (nový požadavek)
+- [x] Zvýšit z-index chatbota z 50 na 100
+- [x] Opravit useknutý header chatbota - použit inset-0 místo bottom-0 + h-[100dvh]

@@ -103,11 +103,11 @@ export default function PurchaseNotification() {
 
   return (
     <div
-      className={`fixed bottom-20 left-6 z-30 transition-all duration-500 ${
+      className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-30 transition-all duration-500 ${
         isVisible && !isOhoraiWidgetActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
     >
-      <div className="bg-gradient-to-br from-white via-white to-emerald-50/60 rounded-lg shadow-2xl border border-emerald-100/50 p-4 max-w-sm flex items-start gap-3">
+      <div className="bg-gradient-to-br from-white via-white to-emerald-50/60 rounded-lg shadow-2xl border border-emerald-100/50 p-4 max-w-md flex items-start gap-3">
         {/* Product Image */}
         <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-gradient-to-br from-emerald-50 to-emerald-100/50">
           <img
@@ -141,14 +141,24 @@ export default function PurchaseNotification() {
           </div>
         </div>
 
-        {/* Close Button */}
-        <button
-          onClick={handleClose}
-          className="flex-shrink-0 p-1 hover:bg-muted rounded-full transition-colors"
-          aria-label="Zavřít"
-        >
-          <X className="h-4 w-4 text-muted-foreground" />
-        </button>
+        {/* CTA Button - úplně vpravo */}
+        <div className="flex flex-col items-end gap-1 flex-shrink-0">
+          <button
+            onClick={handleClose}
+            className="p-1 hover:bg-muted rounded-full transition-colors"
+            aria-label="Zavřít"
+          >
+            <X className="h-4 w-4 text-muted-foreground" />
+          </button>
+          <a
+            href="https://ohorai.cz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 px-3 py-1.5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white text-xs font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg whitespace-nowrap"
+          >
+            TAM CHCI &gt;
+          </a>
+        </div>
       </div>
     </div>
   );
