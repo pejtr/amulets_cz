@@ -235,7 +235,7 @@ export default function HeroSection() {
         
         {/* Background image with parallax */}
         <img
-          src="/hero-natalie-bg.jpg"
+          src="https://files.manuscdn.com/user_upload_by_module/session_file/89740521/BdmiRovyxtpcIWTi.jpg"
           alt="Natálie Ohorai - Zakladatelka Amulets.cz"
           className="w-full h-full object-cover relative z-0"
           style={{

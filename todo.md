@@ -2674,3 +2674,7 @@
 ## Oprava useknutého chatbota (nový požadavek)
 - [x] Zvýšit z-index chatbota z 50 na 100
 - [x] Opravit useknutý header chatbota - použit inset-0 místo bottom-0 + h-[100dvh]
+
+## Oprava chybějících obrázků po přesunu na S3 (nový požadavek)
+- [x] Opravit fotku Natálie v hero sekci - nahradit lokální cestu CDN URL
+- [x] Zkontrolovat a opravit další chybějící obrázky - žádné další nenalezeny v kódu
