@@ -281,6 +281,7 @@ export async function notifyNewComment(data: {
   authorName: string;
   content: string;
   isAutoApproved: boolean;
+  aiModeration?: string;
 }): Promise<boolean> {
   try {
     const statusEmoji = data.isAutoApproved ? '✅' : '⏳';
@@ -297,6 +298,7 @@ export async function notifyNewComment(data: {
       `📝 <b>Článek:</b> ${data.articleSlug} (${data.articleType})`,
       `👤 <b>Autor:</b> ${data.authorName}`,
       `${statusEmoji} <b>Status:</b> ${statusText}`,
+      data.aiModeration ? `🤖 <b>AI moderace:</b> ${data.aiModeration}` : '',
       ``,
       `<i>"${shortContent}"</i>`,
       ``,

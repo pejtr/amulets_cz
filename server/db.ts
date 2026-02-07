@@ -1468,6 +1468,7 @@ export async function addArticleComment(data: {
   authorEmail?: string;
   content: string;
   parentId?: number;
+  status?: 'pending' | 'approved' | 'rejected' | 'spam';
 }) {
   const db = await getDb();
   if (!db) return null;
@@ -1482,7 +1483,7 @@ export async function addArticleComment(data: {
       authorEmail: data.authorEmail || null,
       content: data.content,
       parentId: data.parentId || null,
-      status: data.userId ? 'approved' : 'pending', // auto-approve for logged-in users
+      status: data.status || (data.userId ? 'approved' : 'pending'), // AI moderation or auto-approve for logged-in users
     });
     return { id: Number(result[0].insertId) };
   } catch (error) {

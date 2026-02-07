@@ -230,7 +230,7 @@ describe("articles", () => {
   });
 
   describe("articles.addComment", () => {
-    it("should add a comment as anonymous user (pending status)", async () => {
+    it("should add a comment as anonymous user (AI moderation decides)", async () => {
       const ctx = createPublicContext();
       const caller = appRouter.createCaller(ctx);
 
@@ -243,7 +243,8 @@ describe("articles", () => {
       });
 
       expect(result).toHaveProperty("id");
-      expect(result.autoApproved).toBe(false);
+      // AI moderation may auto-approve quality comments
+      expect(typeof result.autoApproved).toBe("boolean");
     });
 
     it("should auto-approve comment for logged-in user", async () => {
@@ -358,6 +359,116 @@ describe("articles", () => {
         limit: 5,
       });
 
+      expect(Array.isArray(result)).toBe(true);
+    });
+  });
+
+  // ============================================
+  // HEADLINE A/B TESTING
+  // ============================================
+
+  describe("articles.getHeadlineVariant", () => {
+    it("should return null for article without test", async () => {
+      const ctx = createPublicContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.getHeadlineVariant({
+        articleSlug: "no-test-article",
+        visitorId: "v_headline_1",
+      });
+
+      expect(result).toBeNull();
+    });
+  });
+
+  describe("articles.createHeadlineTest", () => {
+    it("should deny access for non-admin users", async () => {
+      const ctx = createAuthContext();
+      const caller = appRouter.createCaller(ctx);
+
+      await expect(
+        caller.articles.createHeadlineTest({
+          articleSlug: "test-headline-article",
+          variants: [
+            { variantKey: "control", headline: "Original Title", isControl: true },
+            { variantKey: "variant-b", headline: "Better Title" },
+          ],
+        })
+      ).rejects.toThrow();
+    });
+
+    it("should create headline test for admin", async () => {
+      const ctx = createAdminContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.createHeadlineTest({
+        articleSlug: "test-headline-create",
+        articleType: "magazine",
+        variants: [
+          { variantKey: "control", headline: "Původní titulek", isControl: true },
+          { variantKey: "variant-b", headline: "Lepší titulek" },
+        ],
+      });
+
+      expect(result).toBe(true);
+    });
+  });
+
+  describe("articles.getHeadlineTestResults", () => {
+    it("should deny access for non-admin users", async () => {
+      const ctx = createPublicContext();
+      const caller = appRouter.createCaller(ctx);
+
+      await expect(caller.articles.getHeadlineTestResults()).rejects.toThrow();
+    });
+
+    it("should return results for admin", async () => {
+      const ctx = createAdminContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.getHeadlineTestResults();
+      expect(Array.isArray(result)).toBe(true);
+    });
+  });
+
+  describe("articles.trackHeadlineClick", () => {
+    it("should track a headline click", async () => {
+      const ctx = createPublicContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.trackHeadlineClick({
+        articleSlug: "test-headline-click",
+        visitorId: "v_headline_click_1",
+      });
+
+      // Returns true or false depending on whether assignment exists
+      expect(typeof result).toBe("boolean");
+    });
+  });
+
+  describe("articles.updateHeadlineEngagement", () => {
+    it("should update headline engagement metrics", async () => {
+      const ctx = createPublicContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.updateHeadlineEngagement({
+        articleSlug: "test-headline-engagement",
+        visitorId: "v_headline_eng_1",
+        readTimeSeconds: 120,
+        scrollDepthPercent: 85,
+        completed: true,
+      });
+
+      expect(typeof result).toBe("boolean");
+    });
+  });
+
+  describe("articles.getActiveHeadlineTests", () => {
+    it("should return array of article slugs with active tests", async () => {
+      const ctx = createPublicContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.getActiveHeadlineTests();
       expect(Array.isArray(result)).toBe(true);
     });
   });

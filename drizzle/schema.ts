@@ -1248,3 +1248,43 @@ export const articleComments = mysqlTable("article_comments", {
 
 export type ArticleComment = typeof articleComments.$inferSelect;
 export type InsertArticleComment = typeof articleComments.$inferInsert;
+
+// ============================================
+// ARTICLE HEADLINE A/B TESTING
+// ============================================
+
+export const articleHeadlineTests = mysqlTable("article_headline_tests", {
+  id: int("id").autoincrement().primaryKey(),
+  articleSlug: varchar("articleSlug", { length: 255 }).notNull(),
+  articleType: varchar("articleType", { length: 50 }).notNull().default("magazine"),
+  variantKey: varchar("variantKey", { length: 50 }).notNull(),
+  headline: varchar("headline", { length: 500 }).notNull(),
+  isControl: boolean("isControl").default(false).notNull(),
+  isActive: boolean("isActive").default(true).notNull(),
+  impressions: int("impressions").default(0).notNull(),
+  clicks: int("clicks").default(0).notNull(),
+  totalReadTime: int("totalReadTime").default(0).notNull(),
+  totalScrollDepth: int("totalScrollDepth").default(0).notNull(),
+  completions: int("completions").default(0).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ArticleHeadlineTest = typeof articleHeadlineTests.$inferSelect;
+export type InsertArticleHeadlineTest = typeof articleHeadlineTests.$inferInsert;
+
+export const articleHeadlineAssignments = mysqlTable("article_headline_assignments", {
+  id: int("id").autoincrement().primaryKey(),
+  articleSlug: varchar("articleSlug", { length: 255 }).notNull(),
+  variantKey: varchar("variantKey", { length: 50 }).notNull(),
+  visitorId: varchar("visitorId", { length: 100 }).notNull(),
+  clicked: boolean("clicked").default(false).notNull(),
+  readTimeSeconds: int("readTimeSeconds").default(0),
+  scrollDepthPercent: int("scrollDepthPercent").default(0),
+  completed: boolean("completed").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ArticleHeadlineAssignment = typeof articleHeadlineAssignments.$inferSelect;
+export type InsertArticleHeadlineAssignment = typeof articleHeadlineAssignments.$inferInsert;

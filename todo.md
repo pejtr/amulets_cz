@@ -2710,3 +2710,9 @@
 - [x] Admin panel pro moderaci komentářů (/admin/comments)
 - [x] Okamžité Telegram notifikace při novém komentáři
 - [x] Heatmapa nejčtenějších článků v admin dashboardu s vizualizací engagementu a míry dočtení
+- [x] AI moderace komentářů - automatický filtr spamu a schvalování kvalitních komentářů přes LLM
+- [x] Týdenní email digest nejčtenějších článků pro registrované uživatele (Brevo)
+- [x] A/B testování titulků článků - měření CTR a míry dočtení
+- [x] Změnit text 'TAM CHCI' v social proof notifikaci na 'ZOBRAZIT'
+- [x] Posunout Natálii chatbota o 50% nahoru na mobilu (bottom-[4.5rem])
+- [x] Posunout hudební přehrávač nahoru na mobilu (bottom-[4.5rem] md:bottom-8)

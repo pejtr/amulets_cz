@@ -156,7 +156,7 @@ export default function PurchaseNotification() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 px-3 py-1.5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white text-xs font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg whitespace-nowrap"
           >
-            TAM CHCI &gt;
+            ZOBRAZIT &gt;
           </a>
         </div>
       </div>

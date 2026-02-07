@@ -40,6 +40,9 @@ import {
   saveOfflineMessage,
 } from "./db";
 import { sendDailyReport, sendTestMessage, generateDailyReport, sendTelegramMessage, setTelegramWebhook, getTelegramWebhookInfo, notifyNewComment } from "./telegram";
+import { moderateCommentWithAI, quickSpamCheck } from "./commentModeration";
+import { sendWeeklyArticleDigest } from "./weeklyArticleDigest";
+import { getHeadlineVariant, trackHeadlineClick, updateHeadlineEngagement, createHeadlineTest, getHeadlineTestResults, getActiveHeadlineTests } from "./headlineABTest";
 import { sendEbookEmail } from "./sendEbookEmail";
 import { autoDeactivateWeakVariants } from "./abTestAutoDeactivate";
 import { autoOptimizeVariantWeights, getOptimizationStatus } from "./abTestAutoOptimize";
@@ -1053,6 +1056,16 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
           });
         }
         return { success: true, message: 'Test message sent to Telegram' };
+      }),
+
+    // Send weekly article digest manually
+    sendWeeklyDigest: publicProcedure
+      .mutation(async ({ ctx }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin může odeslát týdenní digest' });
+        }
+        const result = await sendWeeklyArticleDigest();
+        return result;
       }),
 
     // Register webhook
@@ -2302,14 +2315,43 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         parentId: z.number().optional(),
       }))
       .mutation(async ({ input, ctx }) => {
+        // Quick spam check (heuristic, no LLM needed)
+        const isQuickSpam = quickSpamCheck(input.content);
+        if (isQuickSpam) {
+          // Still save but mark as spam immediately
+          const result = await addArticleComment({
+            ...input,
+            userId: ctx.user?.id,
+            status: 'spam',
+          });
+          console.log(`[AI Moderation] Quick spam detected: "${input.content.substring(0, 50)}..."`);
+          return { ...result, autoApproved: false, aiModeration: { decision: 'spam', reason: 'Heuristický filtr spamu' } };
+        }
+
+        // AI moderation for non-authenticated users
+        let aiResult = null;
+        let finalStatus: 'pending' | 'approved' | 'spam' | 'rejected' = ctx.user ? 'approved' : 'pending';
+        
+        if (!ctx.user) {
+          // Run AI moderation for anonymous users
+          aiResult = await moderateCommentWithAI({
+            content: input.content,
+            authorName: input.authorName,
+            articleSlug: input.articleSlug,
+            articleType: input.articleType,
+          });
+          finalStatus = aiResult.decision;
+        }
+
         const result = await addArticleComment({
           ...input,
           userId: ctx.user?.id,
+          status: finalStatus,
         });
         if (!result) {
           throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Nepodařilo se přidat komentář' });
         }
-        const isAutoApproved = !!ctx.user;
+        const isAutoApproved = finalStatus === 'approved';
         
         // Send instant Telegram notification
         notifyNewComment({
@@ -2318,9 +2360,10 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
           authorName: input.authorName,
           content: input.content,
           isAutoApproved,
+          aiModeration: aiResult ? `${aiResult.decision} (${Math.round(aiResult.confidence * 100)}%) - ${aiResult.reason}` : undefined,
         }).catch(err => console.error('[Telegram] Comment notification failed:', err));
         
-        return { ...result, autoApproved: isAutoApproved };
+        return { ...result, autoApproved: isAutoApproved, aiModeration: aiResult };
       }),
 
     // Moderate comment (admin only)
@@ -2370,7 +2413,7 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         return await getAllArticleComments();
       }),
 
-    // Get article engagement heatmap data (admin only)
+       // Get article engagement heatmap data (admin only)
     getEngagementHeatmap: publicProcedure
       .input(z.object({
         days: z.number().optional().default(30),
@@ -2379,9 +2422,82 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         if (!ctx.user || ctx.user.role !== 'admin') {
           throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup' });
         }
-        const since = new Date();
-        since.setDate(since.getDate() - (input?.days || 30));
+        const since = new Date(Date.now() - (input?.days || 30) * 24 * 60 * 60 * 1000);
         return await getArticleEngagementHeatmap(since);
+      }),
+
+    // ============================================
+    // HEADLINE A/B TESTING
+    // ============================================
+
+    // Get headline variant for a visitor
+    getHeadlineVariant: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        visitorId: z.string(),
+      }))
+      .query(async ({ input }) => {
+        return await getHeadlineVariant(input.articleSlug, input.visitorId);
+      }),
+
+    // Track headline click
+    trackHeadlineClick: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        visitorId: z.string(),
+      }))
+      .mutation(async ({ input }) => {
+        return await trackHeadlineClick(input.articleSlug, input.visitorId);
+      }),
+
+    // Update headline engagement metrics
+    updateHeadlineEngagement: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        visitorId: z.string(),
+        readTimeSeconds: z.number().optional(),
+        scrollDepthPercent: z.number().optional(),
+        completed: z.boolean().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { articleSlug, visitorId, ...data } = input;
+        return await updateHeadlineEngagement(articleSlug, visitorId, data);
+      }),
+
+    // Create headline A/B test (admin only)
+    createHeadlineTest: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        articleType: z.string().optional(),
+        variants: z.array(z.object({
+          variantKey: z.string(),
+          headline: z.string(),
+          isControl: z.boolean().optional(),
+        })).min(2),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin může vytvářet testy' });
+        }
+        return await createHeadlineTest(input);
+      }),
+
+    // Get headline test results (admin only)
+    getHeadlineTestResults: publicProcedure
+      .input(z.object({
+        articleSlug: z.string().optional(),
+      }).optional())
+      .query(async ({ ctx, input }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup' });
+        }
+        return await getHeadlineTestResults(input?.articleSlug);
+      }),
+
+    // Get articles with active headline tests
+    getActiveHeadlineTests: publicProcedure
+      .query(async () => {
+        return await getActiveHeadlineTests();
       }),
   }),
 });

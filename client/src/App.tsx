@@ -45,6 +45,7 @@ import EbookLanding from "./pages/EbookLanding";
 import AdminMessages from "./pages/AdminMessages";
 import AdminComments from "./pages/AdminComments";
 import AdminArticleHeatmap from "./pages/AdminArticleHeatmap";
+import AdminHeadlineABTest from "./pages/AdminHeadlineABTest";
 
 
 function Router() {
@@ -88,6 +89,7 @@ function Router() {
       <Route path="/admin/messages" component={AdminMessages} />
       <Route path="/admin/comments" component={AdminComments} />
       <Route path="/admin/article-heatmap" component={AdminArticleHeatmap} />
+      <Route path="/admin/headline-ab" component={AdminHeadlineABTest} />
       <Route path="/ebook" component={EbookLanding} />
       {/* Redirects for old/removed pages */}
       <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>
