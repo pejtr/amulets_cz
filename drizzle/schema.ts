@@ -1155,3 +1155,93 @@ export const horoscopeGenerationLog = mysqlTable("horoscope_generation_log", {
 
 export type HoroscopeGenerationLog = typeof horoscopeGenerationLog.$inferSelect;
 export type InsertHoroscopeGenerationLog = typeof horoscopeGenerationLog.$inferInsert;
+
+
+// ============================================
+// ARTICLE ANALYTICS, COMMENTS & RATINGS
+// ============================================
+
+// Article Views - trackování zobrazení článků
+export const articleViews = mysqlTable("article_views", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  // Identifikace článku
+  articleSlug: varchar("articleSlug", { length: 200 }).notNull(),
+  articleType: mysqlEnum("articleType", ["magazine", "guide", "tantra"]).default("magazine").notNull(),
+  
+  // Identifikace návštěvníka
+  visitorId: varchar("visitorId", { length: 64 }).notNull(),
+  userId: int("userId").references(() => users.id, { onDelete: "set null" }),
+  
+  // Kontext
+  referrer: varchar("referrer", { length: 500 }),
+  sourcePage: varchar("sourcePage", { length: 500 }),
+  device: varchar("device", { length: 50 }),
+  
+  // Engagement
+  readTimeSeconds: int("readTimeSeconds"), // jak dlouho četl
+  scrollDepthPercent: int("scrollDepthPercent"), // jak daleko scrolloval (0-100)
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ArticleView = typeof articleViews.$inferSelect;
+export type InsertArticleView = typeof articleViews.$inferInsert;
+
+// Article Ratings - hodnocení článků (1-5 hvězdiček)
+export const articleRatings = mysqlTable("article_ratings", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  // Identifikace článku
+  articleSlug: varchar("articleSlug", { length: 200 }).notNull(),
+  articleType: mysqlEnum("articleType", ["magazine", "guide", "tantra"]).default("magazine").notNull(),
+  
+  // Identifikace uživatele
+  visitorId: varchar("visitorId", { length: 64 }).notNull(),
+  userId: int("userId").references(() => users.id, { onDelete: "set null" }),
+  
+  // Hodnocení
+  rating: int("rating").notNull(), // 1-5
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ArticleRating = typeof articleRatings.$inferSelect;
+export type InsertArticleRating = typeof articleRatings.$inferInsert;
+
+// Article Comments - komentáře pod články
+export const articleComments = mysqlTable("article_comments", {
+  id: int("id").autoincrement().primaryKey(),
+  
+  // Identifikace článku
+  articleSlug: varchar("articleSlug", { length: 200 }).notNull(),
+  articleType: mysqlEnum("articleType", ["magazine", "guide", "tantra"]).default("magazine").notNull(),
+  
+  // Autor
+  visitorId: varchar("visitorId", { length: 64 }),
+  userId: int("userId").references(() => users.id, { onDelete: "set null" }),
+  authorName: varchar("authorName", { length: 100 }).notNull(),
+  authorEmail: varchar("authorEmail", { length: 320 }),
+  
+  // Obsah
+  content: text("content").notNull(),
+  
+  // Odpověď na jiný komentář (vlákno)
+  parentId: int("parentId"), // self-reference pro reply
+  
+  // Moderace
+  status: mysqlEnum("status", ["pending", "approved", "rejected", "spam"]).default("pending").notNull(),
+  moderatedBy: varchar("moderatedBy", { length: 100 }),
+  moderatedAt: timestamp("moderatedAt"),
+  
+  // Metadata
+  ipAddress: varchar("ipAddress", { length: 45 }),
+  userAgent: text("userAgent"),
+  
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ArticleComment = typeof articleComments.$inferSelect;
+export type InsertArticleComment = typeof articleComments.$inferInsert;

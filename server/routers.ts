@@ -46,6 +46,18 @@ import { autoOptimizeVariantWeights, getOptimizationStatus } from "./abTestAutoO
 import { getChatbotVariantTrends } from "./abTestTrends";
 import { weeklyABTestCleanup } from "./jobs/weeklyABTestCleanup";
 import { createCoachingLead, formatLeadForTelegram } from "./coachingDb";
+import {
+  trackArticleView,
+  updateArticleViewEngagement,
+  getArticleStats,
+  getTopArticlesByViews,
+  rateArticle,
+  getVisitorArticleRating,
+  addArticleComment,
+  getArticleComments,
+  moderateArticleComment,
+  getPendingArticleComments,
+} from "./db";
 import { 
   getNatalieAmuletsPersonality,
   getNatalieBasePersonality,
@@ -2175,6 +2187,159 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         const stats = await getOfflineMessagesStatistics(input?.days || 30);
         
         return stats;
+      }),
+  }),
+
+  // =============================================================================
+  // ARTICLE ANALYTICS, COMMENTS & RATINGS
+  // =============================================================================
+  articles: router({
+    // Track article view
+    trackView: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        articleType: z.enum(['magazine', 'guide', 'tantra']).default('magazine'),
+        visitorId: z.string(),
+        referrer: z.string().optional(),
+        sourcePage: z.string().optional(),
+        device: z.string().optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        const result = await trackArticleView({
+          ...input,
+          userId: ctx.user?.id,
+        });
+        // Return the view ID for later engagement update
+        return { viewId: result ? Number((result as any)[0]?.insertId || 0) : 0 };
+      }),
+
+    // Update engagement metrics (read time, scroll depth)
+    updateEngagement: publicProcedure
+      .input(z.object({
+        viewId: z.number(),
+        readTimeSeconds: z.number().optional(),
+        scrollDepthPercent: z.number().min(0).max(100).optional(),
+      }))
+      .mutation(async ({ input }) => {
+        await updateArticleViewEngagement(input.viewId, {
+          readTimeSeconds: input.readTimeSeconds,
+          scrollDepthPercent: input.scrollDepthPercent,
+        });
+        return { success: true };
+      }),
+
+    // Get article stats (views, rating, comments count)
+    getStats: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+      }))
+      .query(async ({ input }) => {
+        const stats = await getArticleStats(input.articleSlug);
+        return stats || {
+          views: { total: 0, uniqueVisitors: 0, avgReadTime: 0, avgScrollDepth: 0 },
+          ratings: { average: 0, total: 0 },
+          comments: { total: 0 },
+        };
+      }),
+
+    // Rate an article
+    rate: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        articleType: z.enum(['magazine', 'guide', 'tantra']).default('magazine'),
+        visitorId: z.string(),
+        rating: z.number().min(1).max(5),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        const result = await rateArticle({
+          ...input,
+          userId: ctx.user?.id,
+        });
+        if (!result) {
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Nepodařilo se uložit hodnocení' });
+        }
+        return result;
+      }),
+
+    // Get visitor's rating for an article
+    getMyRating: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        visitorId: z.string(),
+      }))
+      .query(async ({ input }) => {
+        const rating = await getVisitorArticleRating(input.articleSlug, input.visitorId);
+        return { rating };
+      }),
+
+    // Get comments for an article
+    getComments: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+      }))
+      .query(async ({ input }) => {
+        const comments = await getArticleComments(input.articleSlug);
+        return comments;
+      }),
+
+    // Add a comment
+    addComment: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        articleType: z.enum(['magazine', 'guide', 'tantra']).default('magazine'),
+        visitorId: z.string().optional(),
+        authorName: z.string().min(2).max(100),
+        authorEmail: z.string().email().optional(),
+        content: z.string().min(3).max(2000),
+        parentId: z.number().optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        const result = await addArticleComment({
+          ...input,
+          userId: ctx.user?.id,
+        });
+        if (!result) {
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Nepodařilo se přidat komentář' });
+        }
+        return { ...result, autoApproved: !!ctx.user };
+      }),
+
+    // Moderate comment (admin only)
+    moderateComment: publicProcedure
+      .input(z.object({
+        commentId: z.number(),
+        status: z.enum(['approved', 'rejected', 'spam']),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin může moderovat komentáře' });
+        }
+        const result = await moderateArticleComment(input.commentId, input.status, ctx.user.name || 'admin');
+        if (!result) {
+          throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Nepodařilo se moderovat komentář' });
+        }
+        return result;
+      }),
+
+    // Get pending comments (admin only)
+    getPendingComments: publicProcedure
+      .query(async ({ ctx }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup' });
+        }
+        return await getPendingArticleComments();
+      }),
+
+    // Get top articles (for dashboard)
+    getTopArticles: publicProcedure
+      .input(z.object({
+        days: z.number().optional().default(7),
+        limit: z.number().optional().default(10),
+      }).optional())
+      .query(async ({ input }) => {
+        const since = new Date();
+        since.setDate(since.getDate() - (input?.days || 7));
+        return await getTopArticlesByViews(since, input?.limit || 10);
       }),
   }),
 });

@@ -17,6 +17,9 @@ import { ArrowLeft } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
 import { track } from "@/lib/tracking";
+import { useArticleTracking } from "@/hooks/useArticleTracking";
+import ArticleRating from "@/components/ArticleRating";
+import ArticleComments from "@/components/ArticleComments";
 
 // Funkce pro převod názvu na slug
 function nameToSlug(name: string): string {
@@ -37,6 +40,9 @@ export default function GuideDetail() {
   const [location] = useLocation();
   const slug = params.slug || "";
   const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  // Track article view and engagement
+  const { visitorId } = useArticleTracking(slug, 'guide');
   
   // Detekce typu z URL path
   let type = "";
@@ -497,6 +503,14 @@ export default function GuideDetail() {
                     Zobrazit produkty
                   </Link>
                 </div>
+
+                {/* Hodnocení */}
+                <div className="mt-8">
+                  <ArticleRating articleSlug={slug} articleType="guide" visitorId={visitorId} />
+                </div>
+
+                {/* Komentáře */}
+                <ArticleComments articleSlug={slug} articleType="guide" visitorId={visitorId} />
               </div>
 
               {/* Pravý sloupec - obrázek (pouze desktop) */}

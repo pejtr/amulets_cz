@@ -13,9 +13,11 @@ import { tantraArticles } from "@/data/tantraArticles";
 
 // Kombinovat všechny články
 const allArticles = [...magazineArticles, ...tantraArticles];
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getMixedRelatedArticles } from "@/lib/relatedArticles";
-import { useEffect } from "react";
+import { useArticleTracking } from "@/hooks/useArticleTracking";
+import ArticleRating from "@/components/ArticleRating";
+import ArticleComments from "@/components/ArticleComments";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema, createHowToSchema } from "@/lib/schema";
@@ -27,6 +29,12 @@ export default function MagazineArticle() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const article = allArticles.find((item) => item.slug === slug);
+
+  // Determine article type
+  const articleType = tantraArticles.some(a => a.slug === slug) ? 'tantra' as const : 'magazine' as const;
+
+  // Track article view and engagement
+  const { visitorId } = useArticleTracking(slug, articleType);
 
   // SEO meta tagy
   useEffect(() => {
@@ -207,6 +215,14 @@ export default function MagazineArticle() {
           {/* Obsah článku s TOC, obrázky a odkazy */}
           <div className="max-w-4xl mx-auto mt-12">
             <MarkdownContent content={article.content} showTOC={true} />
+
+            {/* Hodnocení článku */}
+            <div className="mt-12">
+              <ArticleRating articleSlug={slug} articleType={articleType} visitorId={visitorId} />
+            </div>
+
+            {/* Komentáře */}
+            <ArticleComments articleSlug={slug} articleType={articleType} visitorId={visitorId} />
 
             <div className="mt-16 p-8 bg-gradient-to-br from-accent/20 to-accent/5 rounded-lg border border-accent/20">
               <h3 className="text-2xl font-bold mb-4">Prozkoumejte naše produkty</h3>

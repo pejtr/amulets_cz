@@ -2695,3 +2695,14 @@
 ## Oprava responsivity navigace na tabletu (nový požadavek)
 - [x] Zmenšit fonty a padding navigačních položek pro tablet/kompaktní desktop (text-xs lg:text-sm, px-1.5 lg:px-3)
 - [x] Zajistit horizontální scroll pro menší obrazovky (overflow-x-auto + scrollbar-hide)
+
+## Analytika článků, komentáře a hodnocení (nový požadavek)
+- [x] Vytvořit DB tabulky: article_views, article_comments, article_ratings
+- [x] Implementovat trackování zobrazení článků (page views)
+- [x] Implementovat tRPC procedury pro komentáře (CRUD)
+- [x] Implementovat tRPC procedury pro hodnocení (1-5 hvězdiček)
+- [x] Implementovat tRPC proceduru pro statistiky článků
+- [x] Vytvořit frontend komponentu pro komentáře pod články
+- [x] Vytvořit frontend komponentu pro hodnocení článků (hvězdičky)
+- [x] Přidat přehled nejčtenějších článků do denních Telegram reportů
+- [x] Napsat vitest testy pro nové procedury (15/15 passed)

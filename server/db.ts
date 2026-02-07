@@ -1,6 +1,6 @@
 import { eq, and, gte, lte, lt, like, sql, desc, sum, avg, count, inArray } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, chatbotVariants, chatbotSessions, chatbotMessages, chatbotEvents, chatbotDailyStats, chatbotConversions, chatbotTickets, chatbotTicketResponses, topicCategories, detectedTopics, demandReports, contentSuggestions, ohoraiStats, ohoraiSyncLog, type InsertOhoraiStats, type InsertOhoraiSyncLog } from "../drizzle/schema";
+import { InsertUser, users, chatbotVariants, chatbotSessions, chatbotMessages, chatbotEvents, chatbotDailyStats, chatbotConversions, chatbotTickets, chatbotTicketResponses, topicCategories, detectedTopics, demandReports, contentSuggestions, ohoraiStats, ohoraiSyncLog, type InsertOhoraiStats, type InsertOhoraiSyncLog, articleViews, articleRatings, articleComments } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -1198,4 +1198,399 @@ export async function getOfflineMessagesStatistics(days: number = 30) {
     messagesByDate: Object.entries(messagesByDate).map(([date, count]) => ({ date, count })),
     topWords,
   };
+}
+
+
+// ============================================
+// ARTICLE ANALYTICS, COMMENTS & RATINGS
+// ============================================
+
+/**
+ * Track article view
+ */
+export async function trackArticleView(data: {
+  articleSlug: string;
+  articleType: 'magazine' | 'guide' | 'tantra';
+  visitorId: string;
+  userId?: number;
+  referrer?: string;
+  sourcePage?: string;
+  device?: string;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    const result = await db.insert(articleViews).values({
+      articleSlug: data.articleSlug,
+      articleType: data.articleType,
+      visitorId: data.visitorId,
+      userId: data.userId || null,
+      referrer: data.referrer || null,
+      sourcePage: data.sourcePage || null,
+      device: data.device || null,
+    });
+    return result;
+  } catch (error) {
+    console.error('[DB] Error tracking article view:', error);
+    return null;
+  }
+}
+
+/**
+ * Update article view engagement (read time, scroll depth)
+ */
+export async function updateArticleViewEngagement(viewId: number, data: {
+  readTimeSeconds?: number;
+  scrollDepthPercent?: number;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    const result = await db.update(articleViews)
+      .set({
+        readTimeSeconds: data.readTimeSeconds,
+        scrollDepthPercent: data.scrollDepthPercent,
+      })
+      .where(eq(articleViews.id, viewId));
+    return result;
+  } catch (error) {
+    console.error('[DB] Error updating article view engagement:', error);
+    return null;
+  }
+}
+
+/**
+ * Get article stats (views, avg rating, comment count)
+ */
+export async function getArticleStats(articleSlug: string) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    // Views count
+    const viewsResult = await db.select({ 
+      totalViews: count(),
+      uniqueVisitors: sql<number>`COUNT(DISTINCT ${articleViews.visitorId})`,
+      avgReadTime: avg(articleViews.readTimeSeconds),
+      avgScrollDepth: avg(articleViews.scrollDepthPercent),
+    })
+    .from(articleViews)
+    .where(eq(articleViews.articleSlug, articleSlug));
+
+    // Rating stats
+    const ratingsResult = await db.select({
+      avgRating: avg(articleRatings.rating),
+      totalRatings: count(),
+    })
+    .from(articleRatings)
+    .where(eq(articleRatings.articleSlug, articleSlug));
+
+    // Comment count (approved only)
+    const commentsResult = await db.select({
+      totalComments: count(),
+    })
+    .from(articleComments)
+    .where(and(
+      eq(articleComments.articleSlug, articleSlug),
+      eq(articleComments.status, 'approved')
+    ));
+
+    return {
+      views: {
+        total: Number(viewsResult[0]?.totalViews || 0),
+        uniqueVisitors: Number(viewsResult[0]?.uniqueVisitors || 0),
+        avgReadTime: Math.round(Number(viewsResult[0]?.avgReadTime || 0)),
+        avgScrollDepth: Math.round(Number(viewsResult[0]?.avgScrollDepth || 0)),
+      },
+      ratings: {
+        average: Number(Number(ratingsResult[0]?.avgRating || 0).toFixed(1)),
+        total: Number(ratingsResult[0]?.totalRatings || 0),
+      },
+      comments: {
+        total: Number(commentsResult[0]?.totalComments || 0),
+      },
+    };
+  } catch (error) {
+    console.error('[DB] Error getting article stats:', error);
+    return null;
+  }
+}
+
+/**
+ * Get top articles by views (for daily report)
+ */
+export async function getTopArticlesByViews(since: Date, limit: number = 10) {
+  const db = await getDb();
+  if (!db) return [];
+
+  try {
+    const result = await db.select({
+      articleSlug: articleViews.articleSlug,
+      articleType: articleViews.articleType,
+      totalViews: count(),
+      uniqueVisitors: sql<number>`COUNT(DISTINCT ${articleViews.visitorId})`,
+      avgReadTime: avg(articleViews.readTimeSeconds),
+    })
+    .from(articleViews)
+    .where(gte(articleViews.createdAt, since))
+    .groupBy(articleViews.articleSlug, articleViews.articleType)
+    .orderBy(desc(count()))
+    .limit(limit);
+
+    return result;
+  } catch (error) {
+    console.error('[DB] Error getting top articles:', error);
+    return [];
+  }
+}
+
+/**
+ * Get article views summary for date range (for Telegram report)
+ */
+export async function getArticleViewsSummary(since: Date, until: Date) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    const result = await db.select({
+      totalViews: count(),
+      uniqueVisitors: sql<number>`COUNT(DISTINCT ${articleViews.visitorId})`,
+      uniqueArticles: sql<number>`COUNT(DISTINCT ${articleViews.articleSlug})`,
+      avgReadTime: avg(articleViews.readTimeSeconds),
+    })
+    .from(articleViews)
+    .where(and(
+      gte(articleViews.createdAt, since),
+      lt(articleViews.createdAt, until)
+    ));
+
+    return {
+      totalViews: Number(result[0]?.totalViews || 0),
+      uniqueVisitors: Number(result[0]?.uniqueVisitors || 0),
+      uniqueArticles: Number(result[0]?.uniqueArticles || 0),
+      avgReadTime: Math.round(Number(result[0]?.avgReadTime || 0)),
+    };
+  } catch (error) {
+    console.error('[DB] Error getting article views summary:', error);
+    return null;
+  }
+}
+
+/**
+ * Rate an article (upsert - one rating per visitor per article)
+ */
+export async function rateArticle(data: {
+  articleSlug: string;
+  articleType: 'magazine' | 'guide' | 'tantra';
+  visitorId: string;
+  userId?: number;
+  rating: number;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    // Check if visitor already rated this article
+    const existing = await db.select()
+      .from(articleRatings)
+      .where(and(
+        eq(articleRatings.articleSlug, data.articleSlug),
+        eq(articleRatings.visitorId, data.visitorId)
+      ))
+      .limit(1);
+
+    if (existing.length > 0) {
+      // Update existing rating
+      await db.update(articleRatings)
+        .set({ rating: data.rating })
+        .where(eq(articleRatings.id, existing[0].id));
+      return { id: existing[0].id, updated: true };
+    } else {
+      // Insert new rating
+      const result = await db.insert(articleRatings).values({
+        articleSlug: data.articleSlug,
+        articleType: data.articleType,
+        visitorId: data.visitorId,
+        userId: data.userId || null,
+        rating: data.rating,
+      });
+      return { id: Number(result[0].insertId), updated: false };
+    }
+  } catch (error) {
+    console.error('[DB] Error rating article:', error);
+    return null;
+  }
+}
+
+/**
+ * Get visitor's rating for an article
+ */
+export async function getVisitorArticleRating(articleSlug: string, visitorId: string) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    const result = await db.select()
+      .from(articleRatings)
+      .where(and(
+        eq(articleRatings.articleSlug, articleSlug),
+        eq(articleRatings.visitorId, visitorId)
+      ))
+      .limit(1);
+
+    return result.length > 0 ? result[0].rating : null;
+  } catch (error) {
+    console.error('[DB] Error getting visitor rating:', error);
+    return null;
+  }
+}
+
+/**
+ * Add a comment to an article
+ */
+export async function addArticleComment(data: {
+  articleSlug: string;
+  articleType: 'magazine' | 'guide' | 'tantra';
+  visitorId?: string;
+  userId?: number;
+  authorName: string;
+  authorEmail?: string;
+  content: string;
+  parentId?: number;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    const result = await db.insert(articleComments).values({
+      articleSlug: data.articleSlug,
+      articleType: data.articleType,
+      visitorId: data.visitorId || null,
+      userId: data.userId || null,
+      authorName: data.authorName,
+      authorEmail: data.authorEmail || null,
+      content: data.content,
+      parentId: data.parentId || null,
+      status: data.userId ? 'approved' : 'pending', // auto-approve for logged-in users
+    });
+    return { id: Number(result[0].insertId) };
+  } catch (error) {
+    console.error('[DB] Error adding article comment:', error);
+    return null;
+  }
+}
+
+/**
+ * Get approved comments for an article
+ */
+export async function getArticleComments(articleSlug: string) {
+  const db = await getDb();
+  if (!db) return [];
+
+  try {
+    const result = await db.select()
+      .from(articleComments)
+      .where(and(
+        eq(articleComments.articleSlug, articleSlug),
+        eq(articleComments.status, 'approved')
+      ))
+      .orderBy(desc(articleComments.createdAt));
+
+    return result;
+  } catch (error) {
+    console.error('[DB] Error getting article comments:', error);
+    return [];
+  }
+}
+
+/**
+ * Moderate a comment (approve/reject)
+ */
+export async function moderateArticleComment(commentId: number, status: 'approved' | 'rejected' | 'spam', moderatedBy: string) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    await db.update(articleComments)
+      .set({
+        status,
+        moderatedBy,
+        moderatedAt: new Date(),
+      })
+      .where(eq(articleComments.id, commentId));
+    return { success: true };
+  } catch (error) {
+    console.error('[DB] Error moderating comment:', error);
+    return null;
+  }
+}
+
+/**
+ * Get pending comments for moderation
+ */
+export async function getPendingArticleComments() {
+  const db = await getDb();
+  if (!db) return [];
+
+  try {
+    const result = await db.select()
+      .from(articleComments)
+      .where(eq(articleComments.status, 'pending'))
+      .orderBy(desc(articleComments.createdAt));
+
+    return result;
+  } catch (error) {
+    console.error('[DB] Error getting pending comments:', error);
+    return [];
+  }
+}
+
+/**
+ * Get all article analytics for Telegram daily report
+ */
+export async function getArticleAnalyticsForReport(since: Date, until: Date) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    // Summary
+    const summary = await getArticleViewsSummary(since, until);
+    
+    // Top articles
+    const topArticles = await getTopArticlesByViews(since, 5);
+    
+    // New comments count
+    const newCommentsResult = await db.select({
+      total: count(),
+    })
+    .from(articleComments)
+    .where(and(
+      gte(articleComments.createdAt, since),
+      lt(articleComments.createdAt, until)
+    ));
+
+    // New ratings count
+    const newRatingsResult = await db.select({
+      total: count(),
+      avgRating: avg(articleRatings.rating),
+    })
+    .from(articleRatings)
+    .where(and(
+      gte(articleRatings.createdAt, since),
+      lt(articleRatings.createdAt, until)
+    ));
+
+    return {
+      summary,
+      topArticles,
+      newComments: Number(newCommentsResult[0]?.total || 0),
+      newRatings: Number(newRatingsResult[0]?.total || 0),
+      avgNewRating: Number(Number(newRatingsResult[0]?.avgRating || 0).toFixed(1)),
+    };
+  } catch (error) {
+    console.error('[DB] Error getting article analytics for report:', error);
+    return null;
+  }
 }

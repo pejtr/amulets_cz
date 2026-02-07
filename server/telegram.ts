@@ -5,7 +5,7 @@
  * sleduje výkon webu a chatbota, a je tu pro vás kdykoliv potřebujete.
  */
 
-import { getChatbotComparisonStats, getChatbotConversionStats, getAllChatbotVariants } from './db';
+import { getChatbotComparisonStats, getChatbotConversionStats, getAllChatbotVariants, getArticleAnalyticsForReport } from './db';
 import { invokeLLM } from './_core/llm';
 import { generateCentralizedReport, getCachedAggregatedStats } from './centralizedReportingDb';
 import { analyzeConversations, formatInsightsForTelegram } from './conversationAnalysis';
@@ -216,6 +216,42 @@ export async function generateDailyReport(): Promise<string> {
     }
   } catch (error) {
     console.error('[Telegram] Error adding conversation insights:', error);
+  }
+
+  // Add article analytics
+  try {
+    const articleAnalytics = await getArticleAnalyticsForReport(yesterday, today);
+    if (articleAnalytics && articleAnalytics.summary && articleAnalytics.summary.totalViews > 0) {
+      report += `\n\n<b>📖 Analytika článků:</b>\n`;
+      report += `• Zobrazení: <b>${articleAnalytics.summary.totalViews}</b>\n`;
+      report += `• Unikátní čtenáři: <b>${articleAnalytics.summary.uniqueVisitors}</b>\n`;
+      report += `• Článků čteno: <b>${articleAnalytics.summary.uniqueArticles}</b>\n`;
+      if (articleAnalytics.summary.avgReadTime > 0) {
+        const minutes = Math.floor(articleAnalytics.summary.avgReadTime / 60);
+        const seconds = articleAnalytics.summary.avgReadTime % 60;
+        report += `• Prům. čas čtení: <b>${minutes}m ${seconds}s</b>\n`;
+      }
+      
+      if (articleAnalytics.topArticles.length > 0) {
+        report += `\n<b>🏆 Nejčtenější články:</b>\n`;
+        articleAnalytics.topArticles.slice(0, 5).forEach((article: any, i: number) => {
+          const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.`;
+          report += `${medal} ${article.articleSlug} (${article.totalViews}x, ${article.uniqueVisitors} unik.)\n`;
+        });
+      }
+
+      if (articleAnalytics.newComments > 0 || articleAnalytics.newRatings > 0) {
+        report += `\n<b>💬 Interakce:</b>\n`;
+        if (articleAnalytics.newComments > 0) {
+          report += `• Nové komentáře: <b>${articleAnalytics.newComments}</b>\n`;
+        }
+        if (articleAnalytics.newRatings > 0) {
+          report += `• Nová hodnocení: <b>${articleAnalytics.newRatings}</b> (prům. ${articleAnalytics.avgNewRating}⭐)\n`;
+        }
+      }
+    }
+  } catch (error) {
+    console.error('[Telegram] Error adding article analytics:', error);
   }
 
   report += `\n\n${getRandomClosing()}`;
