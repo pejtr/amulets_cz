@@ -1,0 +1,9 @@
+{
+  "query": "ALTER TABLE article_views MODIFY COLUMN device VARCHAR(200) DEFAULT NULL;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute ALTER TABLE article_views MODIFY COLUMN device VARCHAR(200) DEFAULT NULL;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 509
+}

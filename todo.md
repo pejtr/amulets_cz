@@ -2706,3 +2706,7 @@
 - [x] Vytvořit frontend komponentu pro hodnocení článků (hvězdičky)
 - [x] Přidat přehled nejčtenějších článků do denních Telegram reportů
 - [x] Napsat vitest testy pro nové procedury (15/15 passed)
+- [x] Vylepšit mobilní trackování - touch events, orientace, viewport, scroll behavior
+- [x] Admin panel pro moderaci komentářů (/admin/comments)
+- [x] Okamžité Telegram notifikace při novém komentáři
+- [x] Heatmapa nejčtenějších článků v admin dashboardu s vizualizací engagementu a míry dočtení

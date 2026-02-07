@@ -1176,11 +1176,14 @@ export const articleViews = mysqlTable("article_views", {
   // Kontext
   referrer: varchar("referrer", { length: 500 }),
   sourcePage: varchar("sourcePage", { length: 500 }),
-  device: varchar("device", { length: 50 }),
+  device: varchar("device", { length: 200 }), // deviceType|os|browser|resolution|dpr|orientation|connection|input
   
   // Engagement
-  readTimeSeconds: int("readTimeSeconds"), // jak dlouho četl
+  readTimeSeconds: int("readTimeSeconds"), // celkový čas na stránce
   scrollDepthPercent: int("scrollDepthPercent"), // jak daleko scrolloval (0-100)
+  activeReadTimeSeconds: int("activeReadTimeSeconds"), // aktivní čas čtení (bez idle)
+  interactionCount: int("interactionCount"), // počet interakcí (klik, tap)
+  orientationChanges: int("orientationChanges"), // počet změn orientace (mobil)
   
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });

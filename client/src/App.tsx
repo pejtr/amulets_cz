@@ -43,6 +43,8 @@ import ChatbotAnalytics from "./pages/ChatbotAnalytics";
 import AdminABTesting from "./pages/AdminABTesting";
 import EbookLanding from "./pages/EbookLanding";
 import AdminMessages from "./pages/AdminMessages";
+import AdminComments from "./pages/AdminComments";
+import AdminArticleHeatmap from "./pages/AdminArticleHeatmap";
 
 
 function Router() {
@@ -84,6 +86,8 @@ function Router() {
       <Route path="/admin/chatbot-analytics" component={ChatbotAnalytics} />
       <Route path="/admin/ab-testing" component={AdminABTesting} />
       <Route path="/admin/messages" component={AdminMessages} />
+      <Route path="/admin/comments" component={AdminComments} />
+      <Route path="/admin/article-heatmap" component={AdminArticleHeatmap} />
       <Route path="/ebook" component={EbookLanding} />
       {/* Redirects for old/removed pages */}
       <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>

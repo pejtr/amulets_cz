@@ -39,7 +39,7 @@ import {
   deleteOfflineMessage,
   saveOfflineMessage,
 } from "./db";
-import { sendDailyReport, sendTestMessage, generateDailyReport, sendTelegramMessage, setTelegramWebhook, getTelegramWebhookInfo } from "./telegram";
+import { sendDailyReport, sendTestMessage, generateDailyReport, sendTelegramMessage, setTelegramWebhook, getTelegramWebhookInfo, notifyNewComment } from "./telegram";
 import { sendEbookEmail } from "./sendEbookEmail";
 import { autoDeactivateWeakVariants } from "./abTestAutoDeactivate";
 import { autoOptimizeVariantWeights, getOptimizationStatus } from "./abTestAutoOptimize";
@@ -57,6 +57,8 @@ import {
   getArticleComments,
   moderateArticleComment,
   getPendingArticleComments,
+  getAllArticleComments,
+  getArticleEngagementHeatmap,
 } from "./db";
 import { 
   getNatalieAmuletsPersonality,
@@ -2213,17 +2215,23 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         return { viewId: result ? Number((result as any)[0]?.insertId || 0) : 0 };
       }),
 
-    // Update engagement metrics (read time, scroll depth)
+    // Update engagement metrics (read time, scroll depth, mobile metrics)
     updateEngagement: publicProcedure
       .input(z.object({
         viewId: z.number(),
         readTimeSeconds: z.number().optional(),
         scrollDepthPercent: z.number().min(0).max(100).optional(),
+        activeReadTimeSeconds: z.number().optional(),
+        interactionCount: z.number().optional(),
+        orientationChanges: z.number().optional(),
       }))
       .mutation(async ({ input }) => {
         await updateArticleViewEngagement(input.viewId, {
           readTimeSeconds: input.readTimeSeconds,
           scrollDepthPercent: input.scrollDepthPercent,
+          activeReadTimeSeconds: input.activeReadTimeSeconds,
+          interactionCount: input.interactionCount,
+          orientationChanges: input.orientationChanges,
         });
         return { success: true };
       }),
@@ -2301,7 +2309,18 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         if (!result) {
           throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Nepodařilo se přidat komentář' });
         }
-        return { ...result, autoApproved: !!ctx.user };
+        const isAutoApproved = !!ctx.user;
+        
+        // Send instant Telegram notification
+        notifyNewComment({
+          articleSlug: input.articleSlug,
+          articleType: input.articleType,
+          authorName: input.authorName,
+          content: input.content,
+          isAutoApproved,
+        }).catch(err => console.error('[Telegram] Comment notification failed:', err));
+        
+        return { ...result, autoApproved: isAutoApproved };
       }),
 
     // Moderate comment (admin only)
@@ -2340,6 +2359,29 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         const since = new Date();
         since.setDate(since.getDate() - (input?.days || 7));
         return await getTopArticlesByViews(since, input?.limit || 10);
+      }),
+
+    // Get all comments (admin only)
+    getAllComments: publicProcedure
+      .query(async ({ ctx }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup' });
+        }
+        return await getAllArticleComments();
+      }),
+
+    // Get article engagement heatmap data (admin only)
+    getEngagementHeatmap: publicProcedure
+      .input(z.object({
+        days: z.number().optional().default(30),
+      }).optional())
+      .query(async ({ ctx, input }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup' });
+        }
+        const since = new Date();
+        since.setDate(since.getDate() - (input?.days || 30));
+        return await getArticleEngagementHeatmap(since);
       }),
   }),
 });

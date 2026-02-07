@@ -1243,16 +1243,25 @@ export async function trackArticleView(data: {
 export async function updateArticleViewEngagement(viewId: number, data: {
   readTimeSeconds?: number;
   scrollDepthPercent?: number;
+  activeReadTimeSeconds?: number;
+  interactionCount?: number;
+  orientationChanges?: number;
 }) {
   const db = await getDb();
   if (!db) return null;
 
   try {
+    const updateData: Record<string, any> = {};
+    if (data.readTimeSeconds !== undefined) updateData.readTimeSeconds = data.readTimeSeconds;
+    if (data.scrollDepthPercent !== undefined) updateData.scrollDepthPercent = data.scrollDepthPercent;
+    if (data.activeReadTimeSeconds !== undefined) updateData.activeReadTimeSeconds = data.activeReadTimeSeconds;
+    if (data.interactionCount !== undefined) updateData.interactionCount = data.interactionCount;
+    if (data.orientationChanges !== undefined) updateData.orientationChanges = data.orientationChanges;
+
+    if (Object.keys(updateData).length === 0) return null;
+
     const result = await db.update(articleViews)
-      .set({
-        readTimeSeconds: data.readTimeSeconds,
-        scrollDepthPercent: data.scrollDepthPercent,
-      })
+      .set(updateData)
       .where(eq(articleViews.id, viewId));
     return result;
   } catch (error) {
@@ -1592,5 +1601,64 @@ export async function getArticleAnalyticsForReport(since: Date, until: Date) {
   } catch (error) {
     console.error('[DB] Error getting article analytics for report:', error);
     return null;
+  }
+}
+
+/**
+ * Get all comments (for admin moderation panel)
+ */
+export async function getAllArticleComments() {
+  const db = await getDb();
+  if (!db) return [];
+
+  try {
+    const result = await db.select()
+      .from(articleComments)
+      .orderBy(desc(articleComments.createdAt))
+      .limit(200);
+
+    return result;
+  } catch (error) {
+    console.error('[DB] Error getting all article comments:', error);
+    return [];
+  }
+}
+
+/**
+ * Get article engagement heatmap data (for admin dashboard)
+ * Returns per-article metrics: views, unique visitors, avg read time, avg scroll depth,
+ * avg active read time, avg interaction count, device breakdown
+ */
+export async function getArticleEngagementHeatmap(since: Date) {
+  const db = await getDb();
+  if (!db) return [];
+
+  try {
+    const result = await db.select({
+      articleSlug: articleViews.articleSlug,
+      articleType: articleViews.articleType,
+      totalViews: count(),
+      uniqueVisitors: sql<number>`COUNT(DISTINCT ${articleViews.visitorId})`,
+      avgReadTime: sql<number>`ROUND(AVG(${articleViews.readTimeSeconds}))`,
+      avgScrollDepth: sql<number>`ROUND(AVG(${articleViews.scrollDepthPercent}))`,
+      avgActiveReadTime: sql<number>`ROUND(AVG(${articleViews.activeReadTimeSeconds}))`,
+      avgInteractions: sql<number>`ROUND(AVG(${articleViews.interactionCount}))`,
+      mobileViews: sql<number>`SUM(CASE WHEN ${articleViews.device} LIKE 'mobile%' THEN 1 ELSE 0 END)`,
+      tabletViews: sql<number>`SUM(CASE WHEN ${articleViews.device} LIKE 'tablet%' THEN 1 ELSE 0 END)`,
+      desktopViews: sql<number>`SUM(CASE WHEN ${articleViews.device} LIKE 'desktop%' THEN 1 ELSE 0 END)`,
+      completionRate: sql<number>`ROUND(AVG(CASE WHEN ${articleViews.scrollDepthPercent} >= 80 THEN 100 ELSE 0 END))`,
+      avgRating: sql<number>`(SELECT ROUND(AVG(r.rating), 1) FROM article_ratings r WHERE r.articleSlug = ${articleViews.articleSlug})`,
+      totalRatings: sql<number>`(SELECT COUNT(*) FROM article_ratings r WHERE r.articleSlug = ${articleViews.articleSlug})`,
+      totalComments: sql<number>`(SELECT COUNT(*) FROM article_comments c WHERE c.articleSlug = ${articleViews.articleSlug} AND c.status = 'approved')`,
+    })
+    .from(articleViews)
+    .where(gte(articleViews.createdAt, since))
+    .groupBy(articleViews.articleSlug, articleViews.articleType)
+    .orderBy(desc(count()));
+
+    return result;
+  } catch (error) {
+    console.error('[DB] Error getting article engagement heatmap:', error);
+    return [];
   }
 }

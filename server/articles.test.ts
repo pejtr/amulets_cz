@@ -77,27 +77,71 @@ describe("articles", () => {
         articleSlug: "test-article",
         articleType: "magazine",
         visitorId: "v_test_123",
-        device: "desktop",
+        device: "desktop|windows|chrome|1920x1080|dpr1|landscape|4g|mouse",
       });
 
       expect(result).toHaveProperty("viewId");
       expect(typeof result.viewId).toBe("number");
     });
 
-    it("should accept optional referrer and sourcePage", async () => {
+    it("should accept mobile device string with extended info", async () => {
       const ctx = createPublicContext();
       const caller = appRouter.createCaller(ctx);
 
       const result = await caller.articles.trackView({
-        articleSlug: "test-article-2",
+        articleSlug: "test-article-mobile",
         articleType: "guide",
-        visitorId: "v_test_456",
+        visitorId: "v_test_mobile_1",
         referrer: "https://google.com",
         sourcePage: "/magazin",
-        device: "mobile",
+        device: "mobile|android|chrome|375x812|dpr3|portrait|4g|touch",
       });
 
       expect(result).toHaveProperty("viewId");
+    });
+  });
+
+  describe("articles.updateEngagement", () => {
+    it("should update basic engagement metrics", async () => {
+      const ctx = createPublicContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const view = await caller.articles.trackView({
+        articleSlug: "test-engagement-article",
+        articleType: "magazine",
+        visitorId: "v_engagement_test_1",
+      });
+
+      const result = await caller.articles.updateEngagement({
+        viewId: view.viewId,
+        readTimeSeconds: 120,
+        scrollDepthPercent: 85,
+      });
+
+      expect(result).toEqual({ success: true });
+    });
+
+    it("should update extended mobile engagement metrics", async () => {
+      const ctx = createPublicContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const view = await caller.articles.trackView({
+        articleSlug: "test-mobile-engagement",
+        articleType: "magazine",
+        visitorId: "v_mobile_engagement_1",
+        device: "mobile|ios|safari|390x844|dpr3|portrait|4g|touch",
+      });
+
+      const result = await caller.articles.updateEngagement({
+        viewId: view.viewId,
+        readTimeSeconds: 180,
+        scrollDepthPercent: 92,
+        activeReadTimeSeconds: 145,
+        interactionCount: 23,
+        orientationChanges: 2,
+      });
+
+      expect(result).toEqual({ success: true });
     });
   });
 
@@ -153,7 +197,6 @@ describe("articles", () => {
       const ctx = createPublicContext();
       const caller = appRouter.createCaller(ctx);
 
-      // First rating
       await caller.articles.rate({
         articleSlug: "test-upsert-article",
         articleType: "magazine",
@@ -161,7 +204,6 @@ describe("articles", () => {
         rating: 3,
       });
 
-      // Update rating
       const result = await caller.articles.rate({
         articleSlug: "test-upsert-article",
         articleType: "magazine",
@@ -250,6 +292,48 @@ describe("articles", () => {
     });
   });
 
+  describe("articles.getAllComments", () => {
+    it("should deny access for non-admin users", async () => {
+      const ctx = createPublicContext();
+      const caller = appRouter.createCaller(ctx);
+
+      await expect(caller.articles.getAllComments()).rejects.toThrow();
+    });
+
+    it("should allow access for admin users and return array", async () => {
+      const ctx = createAdminContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.getAllComments();
+      expect(Array.isArray(result)).toBe(true);
+    });
+  });
+
+  describe("articles.getEngagementHeatmap", () => {
+    it("should deny access for non-admin users", async () => {
+      const ctx = createPublicContext();
+      const caller = appRouter.createCaller(ctx);
+
+      await expect(caller.articles.getEngagementHeatmap({ days: 7 })).rejects.toThrow();
+    });
+
+    it("should return heatmap data for admin users", async () => {
+      const ctx = createAdminContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.getEngagementHeatmap({ days: 30 });
+      expect(Array.isArray(result)).toBe(true);
+    });
+
+    it("should work with default days parameter", async () => {
+      const ctx = createAdminContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.getEngagementHeatmap();
+      expect(Array.isArray(result)).toBe(true);
+    });
+  });
+
   describe("articles.moderateComment", () => {
     it("should deny access for non-admin users", async () => {
       const ctx = createAuthContext();
@@ -275,29 +359,6 @@ describe("articles", () => {
       });
 
       expect(Array.isArray(result)).toBe(true);
-    });
-  });
-
-  describe("articles.updateEngagement", () => {
-    it("should update engagement metrics", async () => {
-      const ctx = createPublicContext();
-      const caller = appRouter.createCaller(ctx);
-
-      // First track a view
-      const view = await caller.articles.trackView({
-        articleSlug: "test-engagement-article",
-        articleType: "magazine",
-        visitorId: "v_engagement_test_1",
-      });
-
-      // Then update engagement
-      const result = await caller.articles.updateEngagement({
-        viewId: view.viewId,
-        readTimeSeconds: 120,
-        scrollDepthPercent: 85,
-      });
-
-      expect(result).toEqual({ success: true });
     });
   });
 });

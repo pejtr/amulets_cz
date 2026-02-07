@@ -273,6 +273,44 @@ function getVariantEmoji(variantKey: string): string {
 }
 
 /**
+ * Send instant notification when a new comment is posted
+ */
+export async function notifyNewComment(data: {
+  articleSlug: string;
+  articleType: string;
+  authorName: string;
+  content: string;
+  isAutoApproved: boolean;
+}): Promise<boolean> {
+  try {
+    const statusEmoji = data.isAutoApproved ? '✅' : '⏳';
+    const statusText = data.isAutoApproved ? 'Auto-schváleno' : 'Čeká na schválení';
+    
+    // Truncate long comments
+    const shortContent = data.content.length > 200 
+      ? data.content.substring(0, 200) + '...' 
+      : data.content;
+
+    const message = [
+      `💬 <b>Nový komentář!</b>`,
+      ``,
+      `📝 <b>Článek:</b> ${data.articleSlug} (${data.articleType})`,
+      `👤 <b>Autor:</b> ${data.authorName}`,
+      `${statusEmoji} <b>Status:</b> ${statusText}`,
+      ``,
+      `<i>"${shortContent}"</i>`,
+      ``,
+      !data.isAutoApproved ? `👉 <a href="https://amulets.cz/admin/comments">Moderovat komentáře</a>` : '',
+    ].filter(Boolean).join('\n');
+
+    return await sendTelegramMessage(message, 'HTML');
+  } catch (error) {
+    console.error('[Telegram] Error sending comment notification:', error);
+    return false;
+  }
+}
+
+/**
  * Send daily report to Telegram
  */
 export async function sendDailyReport(): Promise<boolean> {

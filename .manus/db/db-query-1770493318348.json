@@ -1,0 +1,9 @@
+{
+  "query": "ALTER TABLE article_views ADD COLUMN activeReadTimeSeconds INT DEFAULT NULL AFTER scrollDepthPercent;\nALTER TABLE article_views ADD COLUMN interactionCount INT DEFAULT NULL AFTER activeReadTimeSeconds;\nALTER TABLE article_views ADD COLUMN orientationChanges INT DEFAULT NULL AFTER interactionCount;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute ALTER TABLE article_views ADD COLUMN activeReadTimeSeconds INT DEFAULT NULL AFTER scrollDepthPercent;\nALTER TABLE article_views ADD COLUMN interactionCount INT DEFAULT NULL AFTER activeReadTimeSeconds;\nALTER TABLE article_views ADD COLUMN orientationChanges INT DEFAULT NULL AFTER interactionCount;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1805
+}
