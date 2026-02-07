@@ -146,10 +146,10 @@ export default function Header() {
 
       {/* Navigation - desktop only */}
       <nav className="hidden md:block border-t border-border bg-gray-50 py-0">
-        <div className="container">
-          <ul className="flex items-center justify-start gap-1 py-1 text-sm">
+        <div className="container overflow-x-auto scrollbar-hide">
+          <ul className="flex items-center justify-start gap-0.5 lg:gap-1 py-1 text-xs lg:text-sm whitespace-nowrap">
             {navItems.map((item, index) => (
-              <li key={index}>
+              <li key={index} className="flex-shrink-0">
                 <a
                   href={item.url}
                   target={(item as any).isInternal ? undefined : "_blank"}
@@ -170,7 +170,7 @@ export default function Header() {
                       window.location.href = item.url;
                     }
                   }}
-                  className={`inline-flex items-center gap-1 px-3 py-2 text-foreground hover:text-primary rounded-md transition-all ${
+                  className={`inline-flex items-center gap-0.5 lg:gap-1 px-1.5 lg:px-3 py-1.5 lg:py-2 text-foreground hover:text-primary rounded-md transition-all ${
                     (item as any).featured 
                       ? 'border-2 border-purple-300 shadow-md hover:shadow-lg hover:scale-105 bg-white font-semibold' 
                       : 'hover:bg-transparent'
@@ -179,7 +179,7 @@ export default function Header() {
                   }`}
                 >
                   {item.label}
-                  {item.hasDropdown && <ChevronDown className="h-4 w-4" />}
+                  {item.hasDropdown && <ChevronDown className="h-3 w-3 lg:h-4 lg:w-4" />}
                 </a>
               </li>
             ))}

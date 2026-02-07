@@ -2678,3 +2678,20 @@
 ## Oprava chybějících obrázků po přesunu na S3 (nový požadavek)
 - [x] Opravit fotku Natálie v hero sekci - nahradit lokální cestu CDN URL
 - [x] Zkontrolovat a opravit další chybějící obrázky - žádné další nenalezeny v kódu
+## Oprava pozice tooltipu (nový požadavek)
+- [x] Přesunout tooltip "Líbí se ti naše produkty?" vlevo místo doprostřed (změna z right-6 na left-6)
+## Oprava pozice notifikace nad navigační panel (nový požadavek)
+- [x] Posunout notifikace výš aby nekončily na spodním navigačním panelu (z bottom-6 na bottom-24)
+## ElevenLabs Voice Agent - Knowledge Base export
+- [x] Vytvořit export script pro Knowledge Base dokumenty
+- [x] Exportovat 38 symbolů do 01-posvátné-symboly.md
+- [x] Exportovat 23 kamenů do 02-drahé-kameny.md
+- [x] Exportovat 66 účelů do 03-účely-amuletů.md
+- [x] Exportovat 14 FAQ do 04-faq.md
+- [x] Exportovat 9 článků do 05-magazín-články.md
+- [x] Exportovat 3 kurzy do 06-kurzy.md
+- [x] Exportovat kvíz mapování do 07-kvíz-symboly.md
+- [x] Vytvořit profil Natálie a služby do 08-natálie-profil-služby.md
+## Oprava responsivity navigace na tabletu (nový požadavek)
+- [x] Zmenšit fonty a padding navigačních položek pro tablet/kompaktní desktop (text-xs lg:text-sm, px-1.5 lg:px-3)
+- [x] Zajistit horizontální scroll pro menší obrazovky (overflow-x-auto + scrollbar-hide)

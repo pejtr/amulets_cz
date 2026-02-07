@@ -287,7 +287,7 @@ export default function QuickMessages({ onOpenChat, isChatOpen, currentSection, 
 
   return (
     <div
-      className={`fixed bottom-32 right-6 z-40 max-w-xs transition-all duration-300 ${
+      className={`fixed bottom-32 left-6 z-40 max-w-xs transition-all duration-300 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
@@ -315,11 +315,11 @@ export default function QuickMessages({ onOpenChat, isChatOpen, currentSection, 
         )}
 
         {/* Speech bubble tail */}
-        <div className="absolute -bottom-2 right-8 w-4 h-4 bg-white border-r border-b border-purple-200 transform rotate-45"></div>
+        <div className="absolute -bottom-2 left-8 w-4 h-4 bg-white border-r border-b border-purple-200 transform rotate-45"></div>
       </div>
 
       {/* Pulsing indicator connecting to chat button */}
-      <div className="absolute -bottom-8 right-4 w-2 h-8 flex flex-col items-center justify-end gap-1">
+      <div className="absolute -bottom-8 left-4 w-2 h-8 flex flex-col items-center justify-end gap-1">
         <span className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse"></span>
         <span className="w-1.5 h-1.5 bg-purple-500 rounded-full animate-pulse" style={{ animationDelay: "150ms" }}></span>
         <span className="w-1.5 h-1.5 bg-purple-600 rounded-full animate-pulse" style={{ animationDelay: "300ms" }}></span>

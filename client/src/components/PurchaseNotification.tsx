@@ -103,7 +103,7 @@ export default function PurchaseNotification() {
 
   return (
     <div
-      className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-30 transition-all duration-500 ${
+      className={`fixed bottom-24 left-1/2 -translate-x-1/2 z-30 transition-all duration-500 ${
         isVisible && !isOhoraiWidgetActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
     >

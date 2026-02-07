@@ -521,3 +521,12 @@ button, .button, [role="button"] {
   position: relative;
   overflow: hidden;
 }
+
+/* Hide scrollbar for navigation overflow */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
