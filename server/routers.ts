@@ -49,6 +49,8 @@ import { generateMetaDescVariants, generateAndCreateMetaDescTest, batchGenerateM
 import { sendEbookEmail } from "./sendEbookEmail";
 import { isGSCConfigured, getTopPages, getArticleCTRData, getGSCStatus } from "./googleSearchConsole";
 import { runWeeklyMetaDescEvaluation, getPerformanceSnapshot } from "./scheduleMetaDescEvaluation";
+import { trackReading, getRecommendations, getReadingHistory, getReadingStats } from "./recommendations";
+import { runWeeklyHeadlineEvaluation } from "./scheduleHeadlineEvaluation";
 import { autoDeactivateWeakVariants } from "./abTestAutoDeactivate";
 import { autoOptimizeVariantWeights, getOptimizationStatus } from "./abTestAutoOptimize";
 import { getChatbotVariantTrends } from "./abTestTrends";
@@ -2829,6 +2831,60 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
       .query(async ({ ctx }) => {
         if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
         return await getPerformanceSnapshot();
+      }),
+
+    // ============================================
+    // READING HISTORY & RECOMMENDATIONS
+    // ============================================
+
+    trackReading: publicProcedure
+      .input(z.object({
+        visitorId: z.string(),
+        articleSlug: z.string(),
+        articleType: z.string(),
+        articleCategory: z.string().optional(),
+        readTimeSeconds: z.number(),
+        scrollDepthPercent: z.number(),
+        completed: z.boolean(),
+        referrerSource: z.string().optional(),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        return await trackReading({
+          ...input,
+          userId: ctx.user?.id,
+        });
+      }),
+
+    getRecommendations: publicProcedure
+      .input(z.object({
+        visitorId: z.string(),
+        currentArticleSlug: z.string(),
+        limit: z.number().optional().default(6),
+      }))
+      .query(async ({ input }) => {
+        return await getRecommendations(input.visitorId, input.currentArticleSlug, input.limit);
+      }),
+
+    getReadingHistory: publicProcedure
+      .input(z.object({
+        visitorId: z.string(),
+        limit: z.number().optional().default(50),
+      }))
+      .query(async ({ input }) => {
+        return await getReadingHistory(input.visitorId, input.limit);
+      }),
+
+    getReadingStats: publicProcedure
+      .query(async ({ ctx }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await getReadingStats();
+      }),
+
+    // Run weekly headline evaluation manually
+    runWeeklyHeadlineEvaluation: publicProcedure
+      .mutation(async ({ ctx }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await runWeeklyHeadlineEvaluation();
       }),
   }),
 });

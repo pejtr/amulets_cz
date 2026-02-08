@@ -20,6 +20,7 @@ import { useHeadlineABTest } from "@/hooks/useHeadlineABTest";
 import { useMetaDescABTest } from "@/hooks/useMetaDescABTest";
 import ArticleRating from "@/components/ArticleRating";
 import ArticleComments from "@/components/ArticleComments";
+import RecommendedArticles from "@/components/RecommendedArticles";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema, createHowToSchema } from "@/lib/schema";
@@ -259,6 +260,12 @@ export default function MagazineArticle() {
           </div>
         </article>
       </main>
+      {/* AI-powered personalized recommendations */}
+      <RecommendedArticles 
+        currentArticleSlug={slug} 
+        articleType={articleType} 
+        visitorId={visitorId} 
+      />
       <RelatedArticles articles={getMixedRelatedArticles(slug, 'magazine', 3)} />
       <GuideSection />
       <ProductsStrip />

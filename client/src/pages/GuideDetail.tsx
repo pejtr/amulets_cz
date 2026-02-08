@@ -22,6 +22,7 @@ import { useHeadlineABTest } from "@/hooks/useHeadlineABTest";
 import { useMetaDescABTest } from "@/hooks/useMetaDescABTest";
 import ArticleRating from "@/components/ArticleRating";
 import ArticleComments from "@/components/ArticleComments";
+import RecommendedArticles from "@/components/RecommendedArticles";
 
 // Funkce pro převod názvu na slug
 function nameToSlug(name: string): string {
@@ -552,6 +553,12 @@ export default function GuideDetail() {
           </div>
         </article>
       </main>
+      {/* AI-powered personalized recommendations */}
+      <RecommendedArticles 
+        currentArticleSlug={slug} 
+        articleType="guide" 
+        visitorId={visitorId} 
+      />
       <RelatedArticles articles={getMixedRelatedArticles(params.slug || '', 'guide', 3)} />
       <GuideSection />
       <ProductsStrip />

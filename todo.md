@@ -2740,3 +2740,12 @@
 - [x] Real-time notifikace při dosažení statistické signifikance A/B testů (check každých 30 min)
 - [x] Performance vizualizace - grafy vývoje CTR variant v čase v admin panelu (CTR, impressions, completion rate charts)
 - [x] Napsat vitest testy pro scheduled job, notifikace a vizualizaci (11/11 passed)
+- [x] Doporučovací systém článků - DB schema pro reading history tracking
+- [x] Doporučovací systém článků - backend logika (content-based + collaborative filtering)
+- [x] Doporučovací systém článků - tRPC procedury
+- [x] Doporučovací systém článků - frontend widget "Doporučené pro vás" (MagazineArticle + GuideDetail)
+- [x] Komentáře a diskuze - DB schema (comments tabulka) - již existuje z dřívější implementace
+- [x] Komentáře a diskuze - backend CRUD + moderace (již implementováno dříve - addComment, getComments, moderateComment, AI moderace)
+- [x] Komentáře a diskuze - frontend UI komponenta (již implementováno - ArticleComments.tsx integrovaný v MagazineArticle + GuideDetail)
+- [x] Vylepšení headline A/B testů - auto-generování nových variant + weekly evaluation + signifikance check
+- [x] Napsat vitest testy pro doporučovací systém, komentáře a headline vylepšení (11/11 passed)

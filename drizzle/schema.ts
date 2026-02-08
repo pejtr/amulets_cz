@@ -1329,3 +1329,27 @@ export const articleMetaDescAssignments = mysqlTable("article_meta_desc_assignme
 
 export type ArticleMetaDescAssignment = typeof articleMetaDescAssignments.$inferSelect;
 export type InsertArticleMetaDescAssignment = typeof articleMetaDescAssignments.$inferInsert;
+
+// ============================================
+// READING HISTORY & RECOMMENDATIONS
+// ============================================
+
+export const readingHistory = mysqlTable("reading_history", {
+  id: int("id").autoincrement().primaryKey(),
+  visitorId: varchar("visitorId", { length: 100 }).notNull(),
+  userId: int("userId").references(() => users.id, { onDelete: "set null" }),
+  articleSlug: varchar("articleSlug", { length: 255 }).notNull(),
+  articleType: varchar("articleType", { length: 50 }).notNull().default("magazine"),
+  articleCategory: varchar("articleCategory", { length: 100 }),
+  readTimeSeconds: int("readTimeSeconds").default(0).notNull(),
+  scrollDepthPercent: int("scrollDepthPercent").default(0).notNull(),
+  completed: boolean("completed").default(false).notNull(),
+  referrerSource: varchar("referrerSource", { length: 255 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ReadingHistory = typeof readingHistory.$inferSelect;
+export type InsertReadingHistory = typeof readingHistory.$inferInsert;
+
+
