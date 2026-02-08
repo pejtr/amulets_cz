@@ -433,6 +433,7 @@ export default function AdminDashboard() {
               <QuickAction href="/admin/tickets" icon={<FileText className="h-5 w-5" />} label="Tikety" />
               <QuickAction href="/admin/telegram" icon={<Mail className="h-5 w-5" />} label="Telegram" />
               <QuickAction href="/admin/campaigns" icon={<TrendingUp className="h-5 w-5" />} label="Kampaně" />
+              <QuickAction href="/admin/recommendations" icon={<Activity className="h-5 w-5" />} label="Doporučení" />
               <QuickAction href="/admin/ab-testing" icon={<Percent className="h-5 w-5" />} label="CTA testy" />
               <QuickAction href="/admin/horoscope" icon={<Star className="h-5 w-5" />} label="Horoskopy" />
               <QuickAction href="/admin/messages" icon={<Users className="h-5 w-5" />} label="Zprávy" />

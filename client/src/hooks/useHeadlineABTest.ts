@@ -1,5 +1,5 @@
 import { trpc } from "@/lib/trpc";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 /**
  * Hook for A/B testing article headlines
@@ -62,7 +62,11 @@ export function useHeadlineClickTracker() {
 }
 
 /**
- * Hook for listing pages - fetches active tests and variants for multiple articles
+ * Hook for listing pages - fetches active tests and variants for multiple articles.
+ * 
+ * FIXED: Previously called useQuery inside .map() which violated React Rules of Hooks.
+ * Now uses a single query to fetch all active tests, then fetches variants in a single
+ * batch effect instead of individual hook calls per article.
  */
 export function useHeadlineVariants(articleSlugs: string[]) {
   const [variants, setVariants] = useState<Record<string, string>>({});
@@ -73,45 +77,59 @@ export function useHeadlineVariants(articleSlugs: string[]) {
   }, []);
 
   const { data: activeTests } = trpc.articles.getActiveHeadlineTests.useQuery(undefined, {
-    staleTime: 60_000, // Cache for 1 minute
+    staleTime: 60_000,
     retry: false,
   });
 
-  // For each active test that matches our article slugs, fetch the variant
+  // Find which of our article slugs have active tests
   const activeArticleSlugs = useMemo(() => {
     if (!activeTests) return [];
     return articleSlugs.filter(slug => activeTests.includes(slug));
   }, [activeTests, articleSlugs]);
 
-  // Fetch variants for active tests one by one
-  const variantQueries = activeArticleSlugs.map(slug => 
-    trpc.articles.getHeadlineVariant.useQuery(
-      { articleSlug: slug, visitorId },
-      { 
-        enabled: !!visitorId && !!slug,
-        staleTime: Infinity,
-        retry: false,
-      }
-    )
-  );
+  // Use a single batch query to get all variants at once via tRPC
+  // Instead of calling useQuery in a loop, we fetch via a single effect
+  const utils = trpc.useUtils();
 
-  // Build variants map
   useEffect(() => {
-    const newVariants: Record<string, string> = {};
-    activeArticleSlugs.forEach((slug, i) => {
-      const query = variantQueries[i];
-      if (query?.data?.headline) {
-        newVariants[slug] = query.data.headline;
+    if (!visitorId || activeArticleSlugs.length === 0) return;
+
+    let cancelled = false;
+
+    const fetchAllVariants = async () => {
+      const results: Record<string, string> = {};
+      
+      // Fetch all variants in parallel using tRPC utils (not hooks)
+      const promises = activeArticleSlugs.map(async (slug) => {
+        try {
+          const variant = await utils.articles.getHeadlineVariant.fetch(
+            { articleSlug: slug, visitorId },
+          );
+          if (variant?.headline) {
+            results[slug] = variant.headline;
+          }
+        } catch {
+          // Silently fail for individual variants
+        }
+      });
+
+      await Promise.all(promises);
+
+      if (!cancelled && Object.keys(results).length > 0) {
+        setVariants(prev => ({ ...prev, ...results }));
       }
-    });
-    if (Object.keys(newVariants).length > 0) {
-      setVariants(prev => ({ ...prev, ...newVariants }));
-    }
-  }, [variantQueries.map(q => q.data).join(",")]);
+    };
+
+    fetchAllVariants();
+
+    return () => { cancelled = true; };
+  }, [visitorId, activeArticleSlugs.join(","), utils]);
 
   const getTitle = (slug: string, originalTitle: string) => {
     return variants[slug] || originalTitle;
   };
 
-  return { getTitle, isLoading: variantQueries.some(q => q.isLoading) };
+  const isLoading = activeArticleSlugs.length > 0 && Object.keys(variants).length === 0;
+
+  return { getTitle, isLoading };
 }

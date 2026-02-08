@@ -13,6 +13,7 @@ export default function LanguageSwitcher() {
 
   const languages = [
     { code: 'cs', name: 'Čeština', flag: '🇨🇿' },
+    { code: 'en', name: 'English', flag: '🇺🇸' },
     { code: 'it', name: 'Italiano', flag: '🇮🇹' },
   ];
 

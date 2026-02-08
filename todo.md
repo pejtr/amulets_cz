@@ -2749,3 +2749,9 @@
 - [x] Komentáře a diskuze - frontend UI komponenta (již implementováno - ArticleComments.tsx integrovaný v MagazineArticle + GuideDetail)
 - [x] Vylepšení headline A/B testů - auto-generování nových variant + weekly evaluation + signifikance check
 - [x] Napsat vitest testy pro doporučovací systém, komentáře a headline vylepšení (11/11 passed)
+- [x] BUG: Opravit useHeadlineABTest - observer.getOptimisticResult is not a function (hooks v map loop) - přepsáno na utils.fetch v useEffect
+- [x] Admin dashboard pro doporučovací systém - vizualizace reading history dat (/admin/recommendations)
+- [x] A/B testování pozice doporučovacího widgetu pro optimální CTR (Widget A/B tab)
+- [x] Real-time user behavior tracking systém pro doporučovací engine (engagement funnel, behavior insights)
+- [x] Napsat vitest testy pro nové funkce (9/9 passed - reading stats, recommendations, tracking)
+- [x] Anglický překlad pro US návštěvníky - auto-detekce jazyka + překlad UI a obsahu (en locale + LanguageSwitcher)
