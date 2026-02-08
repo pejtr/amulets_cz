@@ -539,4 +539,77 @@ describe("articles", () => {
       expect(Array.isArray(result.results)).toBe(true);
     });
   });
+
+  describe("articles.aiGenerateHeadlines", () => {
+    it("should deny access for non-admin users", async () => {
+      const ctx = createPublicContext();
+      const caller = appRouter.createCaller(ctx);
+
+      await expect(
+        caller.articles.aiGenerateHeadlines({
+          articleSlug: "test-article",
+          originalTitle: "Test Title",
+          articleExcerpt: "Test excerpt about spirituality",
+          articleType: "magazine",
+          numberOfVariants: 3,
+        })
+      ).rejects.toThrow();
+    });
+
+    it("should generate headline variants for admin", async () => {
+      const ctx = createAdminContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.aiGenerateHeadlines({
+        articleSlug: "aromaterapie-esence",
+        originalTitle: "Aromaterapie & esence",
+        articleExcerpt: "Pr\u016fvodce aromaterapii a esencemi pro za\u010d\u00e1te\u010dn\u00edky",
+        articleType: "magazine",
+        numberOfVariants: 3,
+      });
+
+      expect(result).toHaveProperty("variants");
+      expect(result).toHaveProperty("reasoning");
+      expect(Array.isArray(result.variants)).toBe(true);
+      expect(result.variants.length).toBeGreaterThanOrEqual(2);
+      // First variant should be control
+      expect(result.variants[0].isControl).toBe(true);
+      expect(result.variants[0].headline).toBe("Aromaterapie & esence");
+    }, 30000); // LLM call may take time
+  });
+
+  describe("articles.aiGenerateAndTest", () => {
+    it("should deny access for non-admin users", async () => {
+      const ctx = createPublicContext();
+      const caller = appRouter.createCaller(ctx);
+
+      await expect(
+        caller.articles.aiGenerateAndTest({
+          articleSlug: "test-article",
+          originalTitle: "Test Title",
+          articleExcerpt: "Test excerpt",
+          articleType: "magazine",
+          numberOfVariants: 2,
+        })
+      ).rejects.toThrow();
+    });
+
+    it("should generate headlines and create A/B test for admin", async () => {
+      const ctx = createAdminContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.aiGenerateAndTest({
+        articleSlug: "ai-test-" + Date.now(),
+        originalTitle: "Test Article Title",
+        articleExcerpt: "Kr\u00e1tk\u00fd popis testovac\u00edho \u010dl\u00e1nku o spiritualit\u011b",
+        articleType: "magazine",
+        numberOfVariants: 2,
+      });
+
+      expect(result).toHaveProperty("testCreated");
+      expect(result.testCreated).toBe(true);
+      expect(result).toHaveProperty("variants");
+      expect(Array.isArray(result.variants)).toBe(true);
+    }, 30000); // LLM call may take time
+  });
 });

@@ -21,7 +21,14 @@ import {
   TrendingUp,
   Crown,
   Zap,
+  Sparkles,
+  Wand2,
+  Loader2,
+  Brain,
+  Lightbulb,
+  Rocket,
 } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Magazine articles for dropdown
 const MAGAZINE_ARTICLES = [
@@ -39,6 +46,12 @@ export default function AdminHeadlineABTest() {
   const { user, loading: authLoading } = useAuth();
   const [selectedArticle, setSelectedArticle] = useState<string>("");
   const [articleType, setArticleType] = useState<string>("magazine");
+  const [aiArticleSlug, setAiArticleSlug] = useState<string>("");
+  const [aiArticleTitle, setAiArticleTitle] = useState<string>("");
+  const [aiArticleExcerpt, setAiArticleExcerpt] = useState<string>("");
+  const [aiArticleType, setAiArticleType] = useState<string>("magazine");
+  const [aiNumVariants, setAiNumVariants] = useState<number>(3);
+  const [aiPreviewResult, setAiPreviewResult] = useState<any>(null);
   const [variants, setVariants] = useState<Array<{ key: string; headline: string; isControl: boolean }>>([
     { key: "control", headline: "", isControl: true },
     { key: "variant-b", headline: "", isControl: false },
@@ -86,6 +99,31 @@ export default function AdminHeadlineABTest() {
       setSelectedArticle("");
     },
     onError: (err: any) => toast.error(err.message),
+  });
+
+  // AI headline generation mutations
+  const aiPreviewMutation = trpc.articles.aiGenerateHeadlines.useMutation({
+    onSuccess: (data: any) => {
+      setAiPreviewResult(data);
+      toast.success(`AI navrhla ${data.variants.length - 1} alternativních titulků`);
+    },
+    onError: (err: any) => toast.error(`Chyba AI: ${err.message}`),
+  });
+
+  const aiGenerateAndTestMutation = trpc.articles.aiGenerateAndTest.useMutation({
+    onSuccess: (data: any) => {
+      if (data.testCreated) {
+        toast.success(`A/B test vytvořen s ${data.variants.length} variantami!`);
+        setAiPreviewResult(null);
+        setAiArticleSlug("");
+        setAiArticleTitle("");
+        setAiArticleExcerpt("");
+        refetch();
+      } else {
+        toast.error("Test se nepodařilo vytvořit");
+      }
+    },
+    onError: (err: any) => toast.error(`Chyba: ${err.message}`),
   });
 
   // Group results by article
@@ -158,83 +196,248 @@ export default function AdminHeadlineABTest() {
           </div>
         </div>
 
-        {/* Create New Test */}
-        <Card className="mb-8 border-purple-200">
-          <CardHeader>
-            <CardTitle className="text-lg flex items-center gap-2">
-              <Plus className="w-5 h-5 text-purple-600" />
-              Vytvořit nový test
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label>Článek</Label>
-                <Select value={selectedArticle} onValueChange={setSelectedArticle}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Vyberte článek..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {MAGAZINE_ARTICLES.map(a => (
-                      <SelectItem key={a.slug} value={a.slug}>{a.title}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label>Typ článku</Label>
-                <Select value={articleType} onValueChange={setArticleType}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="magazine">Magazín</SelectItem>
-                    <SelectItem value="guide">Průvodce</SelectItem>
-                    <SelectItem value="tantra">Účel</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
+        {/* Create New Test - Tabs */}
+        <Tabs defaultValue="ai" className="mb-8">
+          <TabsList className="grid w-full grid-cols-2 max-w-md">
+            <TabsTrigger value="ai" className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4" /> AI Generování
+            </TabsTrigger>
+            <TabsTrigger value="manual" className="flex items-center gap-2">
+              <Plus className="w-4 h-4" /> Manuální
+            </TabsTrigger>
+          </TabsList>
 
-            <div className="space-y-3">
-              <Label>Varianty titulku</Label>
-              {variants.map((variant, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <span className={`text-xs font-medium px-2 py-1 rounded ${variant.isControl ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'}`}>
-                    {variant.isControl ? 'Kontrola' : variant.key.toUpperCase()}
-                  </span>
-                  <Input
-                    value={variant.headline}
-                    onChange={(e) => {
-                      const updated = [...variants];
-                      updated[index].headline = e.target.value;
-                      setVariants(updated);
-                    }}
-                    placeholder={variant.isControl ? "Původní titulek..." : "Alternativní titulek..."}
-                    className="flex-1"
-                  />
-                  {!variant.isControl && variants.length > 2 && (
-                    <Button variant="ghost" size="icon" onClick={() => removeVariant(index)}>
-                      <Trash2 className="w-4 h-4 text-red-500" />
-                    </Button>
-                  )}
+          {/* AI Generation Tab */}
+          <TabsContent value="ai">
+            <Card className="border-violet-200 bg-gradient-to-br from-violet-50/50 to-purple-50/50">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Brain className="w-5 h-5 text-violet-600" />
+                  AI Generování titulků
+                </CardTitle>
+                <p className="text-sm text-gray-500">
+                  AI analyzuje obsah článku a navrhne optimalizované varianty titulků na základě copywritingových strategií a historických dat z A/B testů.
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label>Slug článku</Label>
+                    <Input
+                      value={aiArticleSlug}
+                      onChange={(e) => setAiArticleSlug(e.target.value)}
+                      placeholder="napr. aromaterapie-esence"
+                    />
+                  </div>
+                  <div>
+                    <Label>Typ článku</Label>
+                    <Select value={aiArticleType} onValueChange={setAiArticleType}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="magazine">Magazín</SelectItem>
+                        <SelectItem value="guide">Průvodce symboly</SelectItem>
+                        <SelectItem value="stone">Průvodce kameny</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-              ))}
-              <div className="flex gap-2">
-                <Button variant="outline" size="sm" onClick={addVariant}>
-                  <Plus className="w-4 h-4 mr-1" /> Přidat variantu
-                </Button>
-                <Button
-                  onClick={handleCreate}
-                  disabled={createTestMutation.isPending}
-                  className="bg-purple-600 hover:bg-purple-700"
-                >
-                  {createTestMutation.isPending ? "Vytvářím..." : "Vytvořit test"}
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+                <div>
+                  <Label>Původní titulek</Label>
+                  <Input
+                    value={aiArticleTitle}
+                    onChange={(e) => setAiArticleTitle(e.target.value)}
+                    placeholder="Současný titulek článku..."
+                  />
+                </div>
+                <div>
+                  <Label>Úryvek / popis článku</Label>
+                  <Input
+                    value={aiArticleExcerpt}
+                    onChange={(e) => setAiArticleExcerpt(e.target.value)}
+                    placeholder="Krátký popis obsahu článku pro kontext AI..."
+                  />
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <Label>Počet variant:</Label>
+                    <Select value={String(aiNumVariants)} onValueChange={(v) => setAiNumVariants(Number(v))}>
+                      <SelectTrigger className="w-20">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="2">2</SelectItem>
+                        <SelectItem value="3">3</SelectItem>
+                        <SelectItem value="4">4</SelectItem>
+                        <SelectItem value="5">5</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Button
+                    onClick={() => {
+                      if (!aiArticleSlug || !aiArticleTitle || !aiArticleExcerpt) {
+                        toast.error("Vyplňte všechna pole");
+                        return;
+                      }
+                      aiPreviewMutation.mutate({
+                        articleSlug: aiArticleSlug,
+                        originalTitle: aiArticleTitle,
+                        articleExcerpt: aiArticleExcerpt,
+                        articleType: aiArticleType as "magazine" | "guide" | "stone",
+                        numberOfVariants: aiNumVariants,
+                      });
+                    }}
+                    variant="outline"
+                    className="border-violet-300 text-violet-700 hover:bg-violet-100"
+                    disabled={aiPreviewMutation.isPending}
+                  >
+                    {aiPreviewMutation.isPending ? (
+                      <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> AI generuje...</>
+                    ) : (
+                      <><Wand2 className="w-4 h-4 mr-2" /> Náhled variant</>
+                    )}
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      if (!aiArticleSlug || !aiArticleTitle || !aiArticleExcerpt) {
+                        toast.error("Vyplňte všechna pole");
+                        return;
+                      }
+                      aiGenerateAndTestMutation.mutate({
+                        articleSlug: aiArticleSlug,
+                        originalTitle: aiArticleTitle,
+                        articleExcerpt: aiArticleExcerpt,
+                        articleType: aiArticleType as "magazine" | "guide" | "stone",
+                        numberOfVariants: aiNumVariants,
+                      });
+                    }}
+                    className="bg-violet-600 hover:bg-violet-700"
+                    disabled={aiGenerateAndTestMutation.isPending}
+                  >
+                    {aiGenerateAndTestMutation.isPending ? (
+                      <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Vytvářím test...</>
+                    ) : (
+                      <><Rocket className="w-4 h-4 mr-2" /> Generovat & spustit test</>
+                    )}
+                  </Button>
+                </div>
+
+                {/* AI Preview Results */}
+                {aiPreviewResult && (
+                  <div className="mt-4 bg-white rounded-lg border border-violet-200 p-4">
+                    <h3 className="font-medium text-violet-800 flex items-center gap-2 mb-3">
+                      <Lightbulb className="w-4 h-4" />
+                      AI navržené varianty
+                    </h3>
+                    <div className="space-y-2">
+                      {aiPreviewResult.variants.map((v: any, i: number) => (
+                        <div key={i} className={`flex items-start gap-3 p-3 rounded-lg ${v.isControl ? 'bg-blue-50 border border-blue-200' : 'bg-violet-50 border border-violet-200'}`}>
+                          <span className={`text-xs font-medium px-2 py-1 rounded whitespace-nowrap ${v.isControl ? 'bg-blue-100 text-blue-700' : 'bg-violet-100 text-violet-700'}`}>
+                            {v.isControl ? 'Kontrola' : v.strategy}
+                          </span>
+                          <div className="flex-1">
+                            <p className="font-medium text-gray-800">{v.headline}</p>
+                            {!v.isControl && (
+                              <p className="text-xs text-gray-500 mt-1">Strategie: {v.strategy}</p>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-3 p-3 bg-amber-50 rounded-lg border border-amber-200">
+                      <p className="text-sm text-amber-800">
+                        <strong>AI zdůvodnění:</strong> {aiPreviewResult.reasoning}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Manual Tab */}
+          <TabsContent value="manual">
+            <Card className="border-purple-200">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Plus className="w-5 h-5 text-purple-600" />
+                  Manuálně vytvořit test
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label>Článek</Label>
+                    <Select value={selectedArticle} onValueChange={setSelectedArticle}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Vyberte článek..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {MAGAZINE_ARTICLES.map(a => (
+                          <SelectItem key={a.slug} value={a.slug}>{a.title}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label>Typ článku</Label>
+                    <Select value={articleType} onValueChange={setArticleType}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="magazine">Magazín</SelectItem>
+                        <SelectItem value="guide">Průvodce</SelectItem>
+                        <SelectItem value="tantra">Účel</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <Label>Varianty titulku</Label>
+                  {variants.map((variant, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <span className={`text-xs font-medium px-2 py-1 rounded ${variant.isControl ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'}`}>
+                        {variant.isControl ? 'Kontrola' : variant.key.toUpperCase()}
+                      </span>
+                      <Input
+                        value={variant.headline}
+                        onChange={(e) => {
+                          const updated = [...variants];
+                          updated[index].headline = e.target.value;
+                          setVariants(updated);
+                        }}
+                        placeholder={variant.isControl ? "Původní titulek..." : "Alternativní titulek..."}
+                        className="flex-1"
+                      />
+                      {!variant.isControl && variants.length > 2 && (
+                        <Button variant="ghost" size="icon" onClick={() => removeVariant(index)}>
+                          <Trash2 className="w-4 h-4 text-red-500" />
+                        </Button>
+                      )}
+                    </div>
+                  ))}
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="sm" onClick={addVariant}>
+                      <Plus className="w-4 h-4 mr-1" /> Přidat variantu
+                    </Button>
+                    <Button
+                      onClick={handleCreate}
+                      disabled={createTestMutation.isPending}
+                      className="bg-purple-600 hover:bg-purple-700"
+                    >
+                      {createTestMutation.isPending ? "Vytvářím..." : "Vytvořit test"}
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
 
         {/* Auto-Evaluate & Deploy */}
         <Card className="mb-8 border-green-200 bg-green-50/50">

@@ -2719,3 +2719,7 @@
 - [x] Propojit A/B testování titulků s frontendem - dynamické zobrazení variant v Magazínu a Průvodci
 - [x] Vytvořit admin dashboard s klíčovými metrikami webu na jednom místě (/admin/dashboard)
 - [x] Implementovat automatické vyhodnocení a nasazení vítězné varianty v A/B testování titulků
+- [x] AI generování alternativních titulků - LLM analyzuje obsah článku a navrhne optimalizované varianty
+- [x] Automatické vytvoření A/B testu z AI navržených titulků
+- [x] Admin UI pro AI generování titulků - tlačítko v admin panelu A/B testů
+- [x] Napsat testy pro AI generování titulků (39/39 passed)

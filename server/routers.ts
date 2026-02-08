@@ -43,6 +43,7 @@ import { sendDailyReport, sendTestMessage, generateDailyReport, sendTelegramMess
 import { moderateCommentWithAI, quickSpamCheck } from "./commentModeration";
 import { sendWeeklyArticleDigest } from "./weeklyArticleDigest";
 import { getHeadlineVariant, trackHeadlineClick, updateHeadlineEngagement, createHeadlineTest, getHeadlineTestResults, getActiveHeadlineTests, evaluateHeadlineTests, deployWinningVariant, autoEvaluateAndDeploy } from "./headlineABTest";
+import { generateHeadlineVariants, generateAndCreateTest, batchGenerateHeadlines } from "./aiHeadlineGenerator";
 import { sendEbookEmail } from "./sendEbookEmail";
 import { autoDeactivateWeakVariants } from "./abTestAutoDeactivate";
 import { autoOptimizeVariantWeights, getOptimizationStatus } from "./abTestAutoOptimize";
@@ -2542,6 +2543,73 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         return await autoEvaluateAndDeploy(
           input?.minImpressions || 100,
           input?.confidenceThreshold || 0.95
+        );
+      }),
+
+    // AI: Generate headline variants (preview only, admin)
+    aiGenerateHeadlines: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        originalTitle: z.string(),
+        articleExcerpt: z.string(),
+        articleType: z.enum(["magazine", "guide", "stone"]).optional().default("magazine"),
+        numberOfVariants: z.number().min(1).max(5).optional().default(3),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin může generovat AI titulky' });
+        }
+        return await generateHeadlineVariants(
+          input.articleSlug,
+          input.originalTitle,
+          input.articleExcerpt,
+          input.articleType,
+          input.numberOfVariants
+        );
+      }),
+
+    // AI: Generate headlines AND create A/B test automatically (admin)
+    aiGenerateAndTest: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        originalTitle: z.string(),
+        articleExcerpt: z.string(),
+        articleType: z.enum(["magazine", "guide", "stone"]).optional().default("magazine"),
+        numberOfVariants: z.number().min(1).max(5).optional().default(3),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin může generovat AI titulky' });
+        }
+        return await generateAndCreateTest(
+          input.articleSlug,
+          input.originalTitle,
+          input.articleExcerpt,
+          input.articleType,
+          input.numberOfVariants
+        );
+      }),
+
+    // AI: Batch generate headlines for multiple articles (admin)
+    aiBatchGenerate: publicProcedure
+      .input(z.object({
+        articles: z.array(z.object({
+          slug: z.string(),
+          title: z.string(),
+          excerpt: z.string(),
+          type: z.enum(["magazine", "guide", "stone"]),
+        })),
+        numberOfVariants: z.number().min(1).max(5).optional().default(3),
+        autoCreateTests: z.boolean().optional().default(false),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin může generovat AI titulky' });
+        }
+        return await batchGenerateHeadlines(
+          input.articles,
+          input.numberOfVariants,
+          input.autoCreateTests
         );
       }),
   }),
