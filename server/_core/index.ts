@@ -9,6 +9,7 @@ import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { processIncomingMessage } from "../telegram";
 import "../scheduleWeeklyReport"; // Auto-start weekly report scheduler
+import "../scheduleMetaDescEvaluation"; // Auto-start meta desc A/B test evaluation
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {

@@ -2736,3 +2736,7 @@
 - [x] Google Search Console API integrace - přesnější organická CTR data (připravené pro GSC Service Account)
 - [x] Spustit první A/B test meta descriptions pro článek s nejvyšším provozem (trojity-mesic, symbol-nesmrtelnosti, aromaterapie-esence)
 - [x] Napsat vitest testy pro batch generování a GSC integraci (14/14 passed)
+- [x] Weekly scheduled job - automatické vyhodnocení a deploy vítězných meta descriptions
+- [x] Real-time notifikace při dosažení statistické signifikance A/B testů (check každých 30 min)
+- [x] Performance vizualizace - grafy vývoje CTR variant v čase v admin panelu (CTR, impressions, completion rate charts)
+- [x] Napsat vitest testy pro scheduled job, notifikace a vizualizaci (11/11 passed)

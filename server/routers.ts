@@ -48,6 +48,7 @@ import { getMetaDescVariant, trackMetaDescClick, updateMetaDescEngagement, creat
 import { generateMetaDescVariants, generateAndCreateMetaDescTest, batchGenerateMetaDescriptions } from "./aiMetaDescGenerator";
 import { sendEbookEmail } from "./sendEbookEmail";
 import { isGSCConfigured, getTopPages, getArticleCTRData, getGSCStatus } from "./googleSearchConsole";
+import { runWeeklyMetaDescEvaluation, getPerformanceSnapshot } from "./scheduleMetaDescEvaluation";
 import { autoDeactivateWeakVariants } from "./abTestAutoDeactivate";
 import { autoOptimizeVariantWeights, getOptimizationStatus } from "./abTestAutoOptimize";
 import { getChatbotVariantTrends } from "./abTestTrends";
@@ -2814,6 +2815,20 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
         const siteUrl = process.env.GSC_SITE_URL || 'https://amulets.cz';
         const data = await getArticleCTRData(input.articleSlugs, siteUrl, input.days);
         return { configured: true, data: Object.fromEntries(data) };
+      }),
+
+    // Manual trigger for weekly meta desc evaluation
+    runWeeklyMetaDescEvaluation: publicProcedure
+      .mutation(async ({ ctx }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await runWeeklyMetaDescEvaluation();
+      }),
+
+    // Performance snapshot for visualization
+    metaDescPerformanceSnapshot: publicProcedure
+      .query(async ({ ctx }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await getPerformanceSnapshot();
       }),
   }),
 });

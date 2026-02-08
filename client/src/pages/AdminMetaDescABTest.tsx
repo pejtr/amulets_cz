@@ -32,6 +32,7 @@ import {
   Search,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, Cell } from "recharts";
 
 // Magazine articles for dropdown
 const MAGAZINE_ARTICLES = [
@@ -96,6 +97,18 @@ export default function AdminMetaDescABTest() {
         toast.info(`Vyhodnoceno ${data.evaluated} testů, ale žádný nebyl automaticky nasazen`);
       } else {
         toast.info("Žádný test zatím nedosáhl statistické signifikance");
+      }
+      refetch();
+    },
+    onError: (err: any) => toast.error(err.message),
+  });
+
+  const weeklyEvalMutation = trpc.articles.runWeeklyMetaDescEvaluation.useMutation({
+    onSuccess: (data: any) => {
+      if (data.deployed > 0) {
+        toast.success(`Týdenní vyhodnocení: ${data.deployed} vítězů nasazeno z ${data.evaluated} testů`);
+      } else {
+        toast.info(data.message || "Týdenní vyhodnocení dokončeno");
       }
       refetch();
     },
@@ -237,7 +250,7 @@ export default function AdminMetaDescABTest() {
 
         {/* Create New Test - Tabs */}
         <Tabs defaultValue="ai" className="mb-8">
-          <TabsList className="grid w-full grid-cols-3 max-w-lg">
+          <TabsList className="grid w-full grid-cols-4 max-w-2xl">
             <TabsTrigger value="ai" className="flex items-center gap-2">
               <Sparkles className="w-4 h-4" /> AI Generování
             </TabsTrigger>
@@ -246,6 +259,9 @@ export default function AdminMetaDescABTest() {
             </TabsTrigger>
             <TabsTrigger value="manual" className="flex items-center gap-2">
               <Plus className="w-4 h-4" /> Manuální
+            </TabsTrigger>
+            <TabsTrigger value="performance" className="flex items-center gap-2">
+              <TrendingUp className="w-4 h-4" /> Performance
             </TabsTrigger>
           </TabsList>
 
@@ -569,6 +585,11 @@ export default function AdminMetaDescABTest() {
             </Card>
           </TabsContent>
 
+          {/* Performance Visualization Tab */}
+          <TabsContent value="performance">
+            <PerformanceVisualization />
+          </TabsContent>
+
           {/* Manual Tab */}
           <TabsContent value="manual">
             <Card className="border-teal-200">
@@ -680,6 +701,14 @@ export default function AdminMetaDescABTest() {
                 disabled={autoDeployMutation.isPending}
               >
                 {autoDeployMutation.isPending ? "Nasazuji..." : "Auto-deploy vítězů"}
+              </Button>
+              <Button
+                onClick={() => weeklyEvalMutation.mutate()}
+                variant="outline"
+                className="border-purple-300 text-purple-700 hover:bg-purple-100"
+                disabled={weeklyEvalMutation.isPending}
+              >
+                {weeklyEvalMutation.isPending ? "Spouštím..." : "🕐 Spustit týdenní vyhodnocení"}
               </Button>
             </div>
 
@@ -877,4 +906,260 @@ function getCompletionColor(rate: number): string {
   if (rate >= 50) return 'text-green-600';
   if (rate >= 25) return 'text-amber-600';
   return 'text-red-500';
+}
+
+// Color palette for chart lines
+const CHART_COLORS = [
+  '#0d9488', '#f59e0b', '#8b5cf6', '#ef4444', '#3b82f6',
+  '#10b981', '#ec4899', '#f97316', '#06b6d4', '#84cc16',
+];
+
+function PerformanceVisualization() {
+  const { data: snapshot, isLoading } = trpc.articles.metaDescPerformanceSnapshot.useQuery(undefined, {
+    refetchInterval: 60000, // Refresh every minute
+  });
+
+  const { data: results } = trpc.articles.getMetaDescTestResults.useQuery();
+
+  // Group snapshot data by article for CTR comparison bar chart
+  const ctrComparisonData = useMemo(() => {
+    if (!snapshot) return [];
+    const byArticle: Record<string, Array<{ variantKey: string; ctr: number; impressions: number; completionRate: number }>> = {};
+    for (const s of snapshot) {
+      if (!byArticle[s.articleSlug]) byArticle[s.articleSlug] = [];
+      byArticle[s.articleSlug].push({
+        variantKey: s.variantKey,
+        ctr: s.ctr,
+        impressions: s.impressions,
+        completionRate: s.completionRate,
+      });
+    }
+    return Object.entries(byArticle).map(([slug, variants]) => {
+      const row: Record<string, any> = { article: slug.length > 20 ? slug.substring(0, 20) + '...' : slug, fullSlug: slug };
+      for (const v of variants) {
+        row[v.variantKey] = v.ctr;
+        row[`${v.variantKey}_imp`] = v.impressions;
+      }
+      return row;
+    });
+  }, [snapshot]);
+
+  // Get all unique variant keys for chart
+  const allVariantKeys = useMemo(() => {
+    if (!snapshot) return [];
+    const keys = new Set<string>();
+    for (const s of snapshot) keys.add(s.variantKey);
+    return Array.from(keys).sort();
+  }, [snapshot]);
+
+  // Impressions distribution data
+  const impressionsData = useMemo(() => {
+    if (!snapshot) return [];
+    const byArticle: Record<string, Record<string, number>> = {};
+    for (const s of snapshot) {
+      if (!byArticle[s.articleSlug]) byArticle[s.articleSlug] = {};
+      byArticle[s.articleSlug][s.variantKey] = s.impressions;
+    }
+    return Object.entries(byArticle).map(([slug, variants]) => {
+      const row: Record<string, any> = { article: slug.length > 20 ? slug.substring(0, 20) + '...' : slug };
+      for (const [key, val] of Object.entries(variants)) {
+        row[key] = val;
+      }
+      return row;
+    });
+  }, [snapshot]);
+
+  // Completion rate comparison
+  const completionData = useMemo(() => {
+    if (!snapshot) return [];
+    const byArticle: Record<string, Record<string, number>> = {};
+    for (const s of snapshot) {
+      if (!byArticle[s.articleSlug]) byArticle[s.articleSlug] = {};
+      byArticle[s.articleSlug][s.variantKey] = s.completionRate;
+    }
+    return Object.entries(byArticle).map(([slug, variants]) => {
+      const row: Record<string, any> = { article: slug.length > 20 ? slug.substring(0, 20) + '...' : slug };
+      for (const [key, val] of Object.entries(variants)) {
+        row[key] = val;
+      }
+      return row;
+    });
+  }, [snapshot]);
+
+  if (isLoading) {
+    return (
+      <Card className="border-teal-200">
+        <CardContent className="py-12 text-center">
+          <Loader2 className="w-8 h-8 mx-auto animate-spin text-teal-500" />
+          <p className="text-sm text-gray-500 mt-3">Načítání performance dat...</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  if (!snapshot || snapshot.length === 0) {
+    return (
+      <Card className="border-dashed border-2 border-gray-200">
+        <CardContent className="py-12 text-center text-gray-500">
+          <BarChart3 className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+          <p className="text-lg font-medium">Zatím žádná data</p>
+          <p className="text-sm mt-1">Performance data se zobrazí po spuštění A/B testů</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* CTR Comparison Chart */}
+      <Card className="border-teal-200 bg-gradient-to-br from-teal-50/30 to-emerald-50/30">
+        <CardHeader>
+          <CardTitle className="text-lg flex items-center gap-2">
+            <TrendingUp className="w-5 h-5 text-teal-600" />
+            CTR porovnání variant
+          </CardTitle>
+          <p className="text-sm text-gray-500">Click-through rate jednotlivých variant meta descriptions (%)</p>
+        </CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={ctrComparisonData} margin={{ top: 5, right: 30, left: 20, bottom: 60 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis
+                dataKey="article"
+                tick={{ fontSize: 11 }}
+                angle={-35}
+                textAnchor="end"
+                height={80}
+              />
+              <YAxis tick={{ fontSize: 12 }} label={{ value: 'CTR (%)', angle: -90, position: 'insideLeft', style: { fontSize: 12 } }} />
+              <Tooltip
+                formatter={(value: number, name: string) => [`${value.toFixed(2)}%`, name]}
+                contentStyle={{ borderRadius: '8px', border: '1px solid #d1d5db' }}
+              />
+              <Legend />
+              {allVariantKeys.map((key, i) => (
+                <Bar key={key} dataKey={key} fill={CHART_COLORS[i % CHART_COLORS.length]} radius={[4, 4, 0, 0]} />
+              ))}
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      {/* Impressions Distribution */}
+      <Card className="border-blue-200 bg-gradient-to-br from-blue-50/30 to-indigo-50/30">
+        <CardHeader>
+          <CardTitle className="text-lg flex items-center gap-2">
+            <MousePointerClick className="w-5 h-5 text-blue-600" />
+            Distribuce zobrazení
+          </CardTitle>
+          <p className="text-sm text-gray-500">Počet zobrazení (impressions) pro každou variantu</p>
+        </CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={impressionsData} margin={{ top: 5, right: 30, left: 20, bottom: 60 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis
+                dataKey="article"
+                tick={{ fontSize: 11 }}
+                angle={-35}
+                textAnchor="end"
+                height={80}
+              />
+              <YAxis tick={{ fontSize: 12 }} label={{ value: 'Impressions', angle: -90, position: 'insideLeft', style: { fontSize: 12 } }} />
+              <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #d1d5db' }} />
+              <Legend />
+              {allVariantKeys.map((key, i) => (
+                <Bar key={key} dataKey={key} fill={CHART_COLORS[i % CHART_COLORS.length]} radius={[4, 4, 0, 0]} />
+              ))}
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      {/* Completion Rate Comparison */}
+      <Card className="border-purple-200 bg-gradient-to-br from-purple-50/30 to-pink-50/30">
+        <CardHeader>
+          <CardTitle className="text-lg flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5 text-purple-600" />
+            Míra dočtení článku
+          </CardTitle>
+          <p className="text-sm text-gray-500">Kolik % návštěvníků dočetlo článek do konce dle varianty meta description</p>
+        </CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={completionData} margin={{ top: 5, right: 30, left: 20, bottom: 60 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis
+                dataKey="article"
+                tick={{ fontSize: 11 }}
+                angle={-35}
+                textAnchor="end"
+                height={80}
+              />
+              <YAxis tick={{ fontSize: 12 }} label={{ value: 'Dočtení (%)', angle: -90, position: 'insideLeft', style: { fontSize: 12 } }} />
+              <Tooltip
+                formatter={(value: number, name: string) => [`${value.toFixed(1)}%`, name]}
+                contentStyle={{ borderRadius: '8px', border: '1px solid #d1d5db' }}
+              />
+              <Legend />
+              {allVariantKeys.map((key, i) => (
+                <Bar key={key} dataKey={key} fill={CHART_COLORS[i % CHART_COLORS.length]} radius={[4, 4, 0, 0]} />
+              ))}
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      {/* Summary Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <Card className="border-teal-200">
+          <CardContent className="py-4 text-center">
+            <FlaskConical className="w-6 h-6 mx-auto mb-2 text-teal-500" />
+            <p className="text-2xl font-bold text-teal-700">{new Set(snapshot.map(s => s.articleSlug)).size}</p>
+            <p className="text-xs text-gray-500">Aktivní testy</p>
+          </CardContent>
+        </Card>
+        <Card className="border-blue-200">
+          <CardContent className="py-4 text-center">
+            <MousePointerClick className="w-6 h-6 mx-auto mb-2 text-blue-500" />
+            <p className="text-2xl font-bold text-blue-700">{snapshot.reduce((sum, s) => sum + s.impressions, 0)}</p>
+            <p className="text-xs text-gray-500">Celkem zobrazení</p>
+          </CardContent>
+        </Card>
+        <Card className="border-amber-200">
+          <CardContent className="py-4 text-center">
+            <TrendingUp className="w-6 h-6 mx-auto mb-2 text-amber-500" />
+            <p className="text-2xl font-bold text-amber-700">{snapshot.reduce((sum, s) => sum + s.clicks, 0)}</p>
+            <p className="text-xs text-gray-500">Celkem kliků</p>
+          </CardContent>
+        </Card>
+        <Card className="border-green-200">
+          <CardContent className="py-4 text-center">
+            <Crown className="w-6 h-6 mx-auto mb-2 text-green-500" />
+            <p className="text-2xl font-bold text-green-700">
+              {snapshot.length > 0
+                ? (snapshot.reduce((sum, s) => sum + s.ctr, 0) / snapshot.length).toFixed(1)
+                : '0'}%
+            </p>
+            <p className="text-xs text-gray-500">Průměrné CTR</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Scheduler Info */}
+      <Card className="border-gray-200 bg-gray-50">
+        <CardContent className="py-4">
+          <div className="flex items-center gap-3">
+            <Clock className="w-5 h-5 text-gray-400" />
+            <div>
+              <p className="text-sm font-medium text-gray-700">Automatické vyhodnocení</p>
+              <p className="text-xs text-gray-500">
+                Týdenní vyhodnocení: každou neděli v 9:00 • Real-time detekce signifikance: každých 30 min • Notifikace přes Telegram + systém
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
 }
