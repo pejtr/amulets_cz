@@ -115,6 +115,30 @@ export default function AdminMetaDescABTest() {
     onError: (err: any) => toast.error(err.message),
   });
 
+  // Batch generation state
+  const [batchResults, setBatchResults] = useState<any[]>([]);
+  const [batchProgress, setBatchProgress] = useState<{ current: number; total: number } | null>(null);
+
+  const batchGenerateMutation = trpc.articles.batchGenerateMetaDescriptions.useMutation({
+    onSuccess: (data: any) => {
+      setBatchResults(data);
+      setBatchProgress(null);
+      const successful = data.filter((r: any) => r.testCreated);
+      const failed = data.filter((r: any) => r.error);
+      if (successful.length > 0) {
+        toast.success(`Vytvořeno ${successful.length} A/B testů z ${data.length} článků`);
+      }
+      if (failed.length > 0) {
+        toast.error(`${failed.length} článků selhalo`);
+      }
+      refetch();
+    },
+    onError: (err: any) => {
+      setBatchProgress(null);
+      toast.error(`Batch chyba: ${err.message}`);
+    },
+  });
+
   // AI meta description generation mutations
   const aiPreviewMutation = trpc.articles.generateMetaDescVariants.useMutation({
     onSuccess: (data: any) => {
@@ -213,9 +237,12 @@ export default function AdminMetaDescABTest() {
 
         {/* Create New Test - Tabs */}
         <Tabs defaultValue="ai" className="mb-8">
-          <TabsList className="grid w-full grid-cols-2 max-w-md">
+          <TabsList className="grid w-full grid-cols-3 max-w-lg">
             <TabsTrigger value="ai" className="flex items-center gap-2">
               <Sparkles className="w-4 h-4" /> AI Generování
+            </TabsTrigger>
+            <TabsTrigger value="batch" className="flex items-center gap-2">
+              <Rocket className="w-4 h-4" /> Batch
             </TabsTrigger>
             <TabsTrigger value="manual" className="flex items-center gap-2">
               <Plus className="w-4 h-4" /> Manuální
@@ -384,6 +411,158 @@ export default function AdminMetaDescABTest() {
                         </p>
                       </div>
                     )}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Batch Tab */}
+          <TabsContent value="batch">
+            <Card className="border-teal-200 bg-gradient-to-br from-purple-50/50 to-teal-50/50">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Rocket className="w-5 h-5 text-purple-600" />
+                  Hromadné generování meta descriptions
+                </CardTitle>
+                <p className="text-sm text-gray-500">
+                  AI vygeneruje optimalizované meta descriptions pro všechny články najednou a automaticky vytvoří A/B testy.
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                  <p className="text-sm text-amber-800">
+                    <strong>⚠️ Upozornění:</strong> Batch generování zpracuje všechny články postupně. Každý článek vyžaduje LLM volání, takže celý proces může trvat několik minut.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <Card className="bg-white border-purple-100 cursor-pointer hover:border-purple-300 transition-colors" onClick={() => {
+                    const articles = [
+                      { slug: 'aromaterapie-esence', title: 'Aromaterapie & esence - k čemu nám slouží?', currentDescription: 'Aromaterapie je starobylá metoda léčení pomocí esenciálních olejů.', excerpt: 'Aromaterapie je starobylá metoda léčení pomocí esenciálních olejů, která harmonizuje tělo, mysl i duši.', type: 'magazine' as const },
+                      { slug: '10-nejsilnejsich-amuletu-pro-ochranu-2026', title: '10 nejsilnějších amuletů pro ochranu 2026', currentDescription: 'Ochrana před negativní energií je důležitější než kdy jindy.', excerpt: 'Ochrana před negativní energií je v dnešní době důležitější než kdy jindy. Objevte 10 nejsilnějších amuletů.', type: 'magazine' as const },
+                      { slug: 'jak-vybrat-kamen-podle-znameni-zverokruhu', title: 'Jak vybrat kámen podle znamení zvěrokruhu', currentDescription: 'Každé znamení má své unikátní kameny.', excerpt: 'Každé znamení zvěrokruhu má své unikátní kameny, které posilují jeho přirozené vlastnosti.', type: 'magazine' as const },
+                      { slug: 'modry-lotos-egyptska-historie', title: 'Modrý lotos - Posvátná květina starověkého Egypta', currentDescription: 'Modrý lotos byl nejposvátnější květinou starověkého Egypta.', excerpt: 'Modrý lotos byl nejposvátnější květinou starověkého Egypta. Objevte jeho fascinující historii.', type: 'magazine' as const },
+                      { slug: '7-caker-pruvodce', title: '7 čaker: Kompletní průvodce energetickými centry', currentDescription: 'Poznejte 7 hlavních čaker a jejich význam.', excerpt: 'Poznejte 7 hlavních čaker, jejich význam, barvy a kameny pro harmonizaci.', type: 'magazine' as const },
+                      { slug: 'orgonit-co-to-je', title: 'Orgonit: Co to je a jak funguje?', currentDescription: 'Poznejte, co je orgonit a jak funguje.', excerpt: 'Poznejte, co je orgonit, jak funguje a jak může zlepšit energii ve vašem životě.', type: 'magazine' as const },
+                      { slug: 'ucinky-orgonitovych-pyramid', title: 'Účinky orgonitových pyramid na zdraví a energii', currentDescription: 'Jak orgonitové pyramidy ovlivňují zdraví a energii.', excerpt: 'Jak orgonitové pyramidy ovlivňují zdraví, spánek a celkovou energii.', type: 'magazine' as const },
+                      { slug: 'tantricka-masaz-pro-pary', title: 'Tantrická masáž pro páry: Kompletní průvodce', currentDescription: 'Tantrická masáž pro páry - kompletní průvodce.', excerpt: 'Tantrická masáž pro páry - kompletní průvodce pro hlubší spojení.', type: 'magazine' as const },
+                      { slug: 'kameny-pro-lasku-a-vztahy', title: 'Kameny pro lásku a vztahy: Které vybrat?', currentDescription: 'Kameny pro lásku a vztahy - které vybrat?', excerpt: 'Kameny pro lásku a vztahy - které vybrat pro harmonické vztahy.', type: 'magazine' as const },
+                    ];
+                    setBatchProgress({ current: 0, total: articles.length });
+                    batchGenerateMutation.mutate({
+                      articles,
+                      numberOfVariants: 3,
+                      autoCreateTests: true,
+                    });
+                  }}>
+                    <CardContent className="py-4 text-center">
+                      <FileText className="w-8 h-8 mx-auto mb-2 text-purple-500" />
+                      <p className="font-medium text-sm">Všechny magazínové články</p>
+                      <p className="text-xs text-gray-500 mt-1">9 článků</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-white border-purple-100 cursor-pointer hover:border-purple-300 transition-colors" onClick={() => {
+                    const articles = [
+                      { slug: 'tantricka-masaz-pro-pary', title: 'Tantrická masáž pro páry', currentDescription: 'Tantrická masáž pro páry.', excerpt: 'Tantrická masáž pro páry - kompletní průvodce.', type: 'magazine' as const },
+                      { slug: 'kameny-pro-lasku-a-vztahy', title: 'Kameny pro lásku a vztahy', currentDescription: 'Kameny pro lásku a vztahy.', excerpt: 'Kameny pro lásku a vztahy - které vybrat.', type: 'magazine' as const },
+                      { slug: 'jak-probudit-kundalini-energii', title: 'Jak probudit kundalini energii bezpečně', currentDescription: 'Jak probudit kundalini energii.', excerpt: 'Jak probudit kundalini energii bezpečně - průvodce.', type: 'magazine' as const },
+                      { slug: 'posvatna-sexualita-cesta-k-spojeni', title: 'Posvátná sexualita: Cesta k hlubšímu spojení', currentDescription: 'Posvátná sexualita.', excerpt: 'Posvátná sexualita: Cesta k hlubšímu spojení.', type: 'magazine' as const },
+                      { slug: 'symboly-lasky-a-jejich-vyznam', title: 'Symboly lásky a jejich význam', currentDescription: 'Symboly lásky a jejich význam.', excerpt: 'Symboly lásky a jejich význam v různých kulturách.', type: 'magazine' as const },
+                      { slug: 'jak-pritahnout-lasku-do-zivota', title: 'Jak přitáhnout lásku do života: 7 kroků', currentDescription: 'Jak přitáhnout lásku.', excerpt: 'Jak přitáhnout lásku do života: 7 kroků.', type: 'magazine' as const },
+                    ];
+                    setBatchProgress({ current: 0, total: articles.length });
+                    batchGenerateMutation.mutate({
+                      articles,
+                      numberOfVariants: 3,
+                      autoCreateTests: true,
+                    });
+                  }}>
+                    <CardContent className="py-4 text-center">
+                      <FlaskConical className="w-8 h-8 mx-auto mb-2 text-pink-500" />
+                      <p className="font-medium text-sm">Tantra články</p>
+                      <p className="text-xs text-gray-500 mt-1">6 článků</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-white border-purple-100 cursor-pointer hover:border-purple-300 transition-colors" onClick={() => {
+                    const allArticles = [
+                      { slug: 'aromaterapie-esence', title: 'Aromaterapie & esence', currentDescription: 'Aromaterapie je starobylá metoda léčení.', excerpt: 'Aromaterapie je starobylá metoda léčení pomocí esenciálních olejů.', type: 'magazine' as const },
+                      { slug: '10-nejsilnejsich-amuletu-pro-ochranu-2026', title: '10 nejsilnějších amuletů', currentDescription: 'Ochrana před negativní energií.', excerpt: 'Ochrana před negativní energií - 10 nejsilnějších amuletů.', type: 'magazine' as const },
+                      { slug: 'jak-vybrat-kamen-podle-znameni-zverokruhu', title: 'Jak vybrat kámen', currentDescription: 'Každé znamení má své kameny.', excerpt: 'Každé znamení zvěrokruhu má své unikátní kameny.', type: 'magazine' as const },
+                      { slug: 'modry-lotos-egyptska-historie', title: 'Modrý lotos', currentDescription: 'Posvátná květina Egypta.', excerpt: 'Modrý lotos - posvátná květina starověkého Egypta.', type: 'magazine' as const },
+                      { slug: '7-caker-pruvodce', title: '7 čaker', currentDescription: 'Poznejte 7 hlavních čaker.', excerpt: 'Poznejte 7 hlavních čaker a jejich význam.', type: 'magazine' as const },
+                      { slug: 'orgonit-co-to-je', title: 'Orgonit', currentDescription: 'Co je orgonit a jak funguje.', excerpt: 'Poznejte, co je orgonit a jak funguje.', type: 'magazine' as const },
+                      { slug: 'ucinky-orgonitovych-pyramid', title: 'Účinky orgonitových pyramid', currentDescription: 'Orgonitové pyramidy a zdraví.', excerpt: 'Jak orgonitové pyramidy ovlivňují zdraví.', type: 'magazine' as const },
+                      { slug: 'tantricka-masaz-pro-pary', title: 'Tantrická masáž', currentDescription: 'Tantrická masáž pro páry.', excerpt: 'Tantrická masáž pro páry - průvodce.', type: 'magazine' as const },
+                      { slug: 'kameny-pro-lasku-a-vztahy', title: 'Kameny pro lásku', currentDescription: 'Kameny pro lásku a vztahy.', excerpt: 'Kameny pro lásku a vztahy.', type: 'magazine' as const },
+                      { slug: 'jak-probudit-kundalini-energii', title: 'Kundalini energie', currentDescription: 'Jak probudit kundalini.', excerpt: 'Jak probudit kundalini energii bezpečně.', type: 'magazine' as const },
+                      { slug: 'posvatna-sexualita-cesta-k-spojeni', title: 'Posvátná sexualita', currentDescription: 'Posvátná sexualita.', excerpt: 'Posvátná sexualita: Cesta k spojení.', type: 'magazine' as const },
+                      { slug: 'symboly-lasky-a-jejich-vyznam', title: 'Symboly lásky', currentDescription: 'Symboly lásky.', excerpt: 'Symboly lásky a jejich význam.', type: 'magazine' as const },
+                      { slug: 'jak-pritahnout-lasku-do-zivota', title: 'Jak přitáhnout lásku', currentDescription: 'Jak přitáhnout lásku.', excerpt: 'Jak přitáhnout lásku do života.', type: 'magazine' as const },
+                      { slug: 'tantricka-cviceni-pro-zacatecniky', title: 'Tantrická cvičení', currentDescription: 'Tantrická cvičení pro začátečníky.', excerpt: 'Tantrická cvičení pro začátečníky.', type: 'magazine' as const },
+                      { slug: 'srdecni-cakra-otevreni-pro-lasku', title: 'Srdeční čakra', currentDescription: 'Srdeční čakra a láska.', excerpt: 'Srdeční čakra: Otevření pro lásku.', type: 'magazine' as const },
+                      { slug: 'esence-pro-intimitu-a-vasen', title: 'Esence pro intimitu', currentDescription: 'Esence pro intimitu a vášeň.', excerpt: 'Esence pro intimitu a vášeň.', type: 'magazine' as const },
+                      { slug: 'jak-ozivit-intimitu-ve-vztahu', title: 'Jak oživit intimitu', currentDescription: 'Jak oživit intimitu ve vztahu.', excerpt: 'Jak oživit intimitu ve vztahu.', type: 'magazine' as const },
+                    ];
+                    setBatchProgress({ current: 0, total: allArticles.length });
+                    batchGenerateMutation.mutate({
+                      articles: allArticles,
+                      numberOfVariants: 3,
+                      autoCreateTests: true,
+                    });
+                  }}>
+                    <CardContent className="py-4 text-center">
+                      <Zap className="w-8 h-8 mx-auto mb-2 text-amber-500" />
+                      <p className="font-medium text-sm">Všechny články</p>
+                      <p className="text-xs text-gray-500 mt-1">17 článků</p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Batch Progress */}
+                {batchGenerateMutation.isPending && (
+                  <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                    <div className="flex items-center gap-3">
+                      <Loader2 className="w-5 h-5 text-purple-600 animate-spin" />
+                      <div>
+                        <p className="font-medium text-purple-800">Batch generování probíhá...</p>
+                        <p className="text-sm text-purple-600">AI generuje meta descriptions pro všechny články. Toto může trvat několik minut.</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Batch Results */}
+                {batchResults.length > 0 && !batchGenerateMutation.isPending && (
+                  <div className="space-y-3">
+                    <h3 className="font-medium text-purple-800 flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4" />
+                      Výsledky batch generování ({batchResults.length} článků)
+                    </h3>
+                    <div className="max-h-96 overflow-y-auto space-y-2">
+                      {batchResults.map((r: any, i: number) => (
+                        <div key={i} className={`p-3 rounded-lg border text-sm ${
+                          r.error ? 'bg-red-50 border-red-200' : r.testCreated ? 'bg-green-50 border-green-200' : 'bg-gray-50 border-gray-200'
+                        }`}>
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium">{r.articleSlug}</span>
+                            {r.error ? (
+                              <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded">✗ Chyba</span>
+                            ) : r.testCreated ? (
+                              <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">✓ Test vytvořen</span>
+                            ) : (
+                              <span className="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded">Vygenerováno</span>
+                            )}
+                          </div>
+                          {r.error && <p className="text-xs text-red-600 mt-1">{r.error}</p>}
+                          {r.variants && r.variants.length > 0 && (
+                            <p className="text-xs text-gray-500 mt-1">{r.variants.length} variant - {r.variants.filter((v: any) => !v.isControl).map((v: any) => v.strategy).join(', ')}</p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
               </CardContent>

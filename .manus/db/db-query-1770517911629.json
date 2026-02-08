@@ -1,0 +1,26 @@
+{
+  "query": "SELECT * FROM article_views LIMIT 1",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute SELECT * FROM article_views LIMIT 1",
+  "rows": [
+    {
+      "id": "1",
+      "articleSlug": "test-article",
+      "articleType": "magazine",
+      "visitorId": "v_test_123",
+      "userId": "NULL",
+      "referrer": "NULL",
+      "sourcePage": "NULL",
+      "device": "desktop",
+      "readTimeSeconds": "NULL",
+      "scrollDepthPercent": "NULL",
+      "activeReadTimeSeconds": "NULL",
+      "interactionCount": "NULL",
+      "orientationChanges": "NULL",
+      "createdAt": "2026-02-07 16:04:51"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tarticleSlug\tarticleType\tvisitorId\tuserId\treferrer\tsourcePage\tdevice\treadTimeSeconds\tscrollDepthPercent\tactiveReadTimeSeconds\tinteractionCount\torientationChanges\tcreatedAt\n1\ttest-article\tmagazine\tv_test_123\tNULL\tNULL\tNULL\tdesktop\tNULL\tNULL\tNULL\tNULL\tNULL\t2026-02-07 16:04:51\n",
+  "stderr": "",
+  "execution_time_ms": 353
+}

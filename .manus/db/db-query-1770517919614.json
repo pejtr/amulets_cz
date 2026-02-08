@@ -1,0 +1,50 @@
+{
+  "query": "SELECT articleSlug, COUNT(*) as views FROM article_views GROUP BY articleSlug ORDER BY views DESC LIMIT 10",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute SELECT articleSlug, COUNT(*) as views FROM article_views GROUP BY articleSlug ORDER BY views DESC LIMIT 10",
+  "rows": [
+    {
+      "articleSlug": "test-engagement-article",
+      "views": "10"
+    },
+    {
+      "articleSlug": "test-article",
+      "views": "10"
+    },
+    {
+      "articleSlug": "test-mobile-engagement",
+      "views": "8"
+    },
+    {
+      "articleSlug": "test-article-mobile",
+      "views": "8"
+    },
+    {
+      "articleSlug": "cinsky-horoskop-had",
+      "views": "3"
+    },
+    {
+      "articleSlug": "cinsky-horoskop-kralik",
+      "views": "3"
+    },
+    {
+      "articleSlug": "trojity-mesic",
+      "views": "3"
+    },
+    {
+      "articleSlug": "cinsky-horoskop-1990",
+      "views": "2"
+    },
+    {
+      "articleSlug": "cinsky-horoskop-1977",
+      "views": "2"
+    },
+    {
+      "articleSlug": "symbol-nesmrtelnosti",
+      "views": "2"
+    }
+  ],
+  "messages": [],
+  "stdout": "articleSlug\tviews\ntest-engagement-article\t10\ntest-article\t10\ntest-mobile-engagement\t8\ntest-article-mobile\t8\ncinsky-horoskop-had\t3\ncinsky-horoskop-kralik\t3\ntrojity-mesic\t3\ncinsky-horoskop-1990\t2\ncinsky-horoskop-1977\t2\nsymbol-nesmrtelnosti\t2\n",
+  "stderr": "",
+  "execution_time_ms": 350
+}

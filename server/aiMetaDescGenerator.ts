@@ -193,6 +193,61 @@ Také přidej krátké zdůvodnění, proč jsi zvolil tyto varianty.`;
 }
 
 /**
+ * Batch generate meta descriptions for multiple articles at once
+ */
+export async function batchGenerateMetaDescriptions(
+  articles: Array<{
+    slug: string;
+    title: string;
+    currentDescription: string;
+    excerpt: string;
+    type: "magazine" | "guide" | "stone";
+  }>,
+  numberOfVariants: number = 3,
+  autoCreateTests: boolean = false
+): Promise<Array<MetaDescGenerationResult & { testCreated: boolean; error?: string }>> {
+  const results: Array<MetaDescGenerationResult & { testCreated: boolean; error?: string }> = [];
+
+  for (const article of articles) {
+    try {
+      if (autoCreateTests) {
+        const result = await generateAndCreateMetaDescTest(
+          article.slug,
+          article.title,
+          article.currentDescription,
+          article.excerpt,
+          article.type,
+          numberOfVariants
+        );
+        results.push(result);
+      } else {
+        const result = await generateMetaDescVariants(
+          article.slug,
+          article.title,
+          article.currentDescription,
+          article.excerpt,
+          article.type,
+          numberOfVariants
+        );
+        results.push({ ...result, testCreated: false });
+      }
+    } catch (error) {
+      results.push({
+        articleSlug: article.slug,
+        originalDescription: article.currentDescription,
+        variants: [],
+        reasoning: "",
+        testCreated: false,
+        error: error instanceof Error ? error.message : "Nezn\u00e1m\u00e1 chyba",
+      });
+    }
+  }
+
+  console.log(`[AI MetaDesc Batch] Processed ${articles.length} articles, ${results.filter(r => r.testCreated).length} tests created`);
+  return results;
+}
+
+/**
  * Generate meta descriptions AND automatically create an A/B test
  */
 export async function generateAndCreateMetaDescTest(

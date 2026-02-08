@@ -3,7 +3,7 @@ import { useMusic } from '@/contexts/MusicContext';
 import { Volume2, VolumeX, Play, Pause, Info, X } from 'lucide-react';
 
 // Gloria in Excelsis Deo - andělský hymnus
-const BACKGROUND_MUSIC_URL = '/gloria-in-excelsis-deo.mp3';
+const BACKGROUND_MUSIC_URL = 'https://files.manuscdn.com/user_upload_by_module/session_file/89740521/nmECOwvSkrrnnlxT.mp3';
 const START_TIME = 44; // Začít od 0:44
 
 const STORAGE_KEY = 'background-music-enabled';

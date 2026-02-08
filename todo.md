@@ -2731,3 +2731,8 @@
 - [x] Admin UI pro správu meta description A/B testů
 - [x] Napsat testy pro meta description A/B testování
 - [x] Opravit animaci načítání produktů - jemný fade-in s translateY(12px), 0.8s, stagger 100ms
+- [x] Opravit BackgroundMusic - audio soubor se nenačítá (no supported source found) - obnoven z git a nahrán na S3 CDN
+- [x] Batch generování meta descriptions - hromadné AI generování pro všechny články najednou
+- [x] Google Search Console API integrace - přesnější organická CTR data (připravené pro GSC Service Account)
+- [x] Spustit první A/B test meta descriptions pro článek s nejvyšším provozem (trojity-mesic, symbol-nesmrtelnosti, aromaterapie-esence)
+- [x] Napsat vitest testy pro batch generování a GSC integraci (14/14 passed)

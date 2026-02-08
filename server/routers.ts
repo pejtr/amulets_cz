@@ -45,8 +45,9 @@ import { sendWeeklyArticleDigest } from "./weeklyArticleDigest";
 import { getHeadlineVariant, trackHeadlineClick, updateHeadlineEngagement, createHeadlineTest, getHeadlineTestResults, getActiveHeadlineTests, evaluateHeadlineTests, deployWinningVariant, autoEvaluateAndDeploy } from "./headlineABTest";
 import { generateHeadlineVariants, generateAndCreateTest, batchGenerateHeadlines } from "./aiHeadlineGenerator";
 import { getMetaDescVariant, trackMetaDescClick, updateMetaDescEngagement, createMetaDescTest, getMetaDescTestResults, getActiveMetaDescTests, evaluateMetaDescTests, deployMetaDescWinner, autoEvaluateAndDeployMetaDesc } from "./metaDescABTest";
-import { generateMetaDescVariants, generateAndCreateMetaDescTest } from "./aiMetaDescGenerator";
+import { generateMetaDescVariants, generateAndCreateMetaDescTest, batchGenerateMetaDescriptions } from "./aiMetaDescGenerator";
 import { sendEbookEmail } from "./sendEbookEmail";
+import { isGSCConfigured, getTopPages, getArticleCTRData, getGSCStatus } from "./googleSearchConsole";
 import { autoDeactivateWeakVariants } from "./abTestAutoDeactivate";
 import { autoOptimizeVariantWeights, getOptimizationStatus } from "./abTestAutoOptimize";
 import { getChatbotVariantTrends } from "./abTestTrends";
@@ -2755,6 +2756,64 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
           input.articleType,
           input.numberOfVariants
         );
+      }),
+
+    // Batch Meta Description Generation
+    batchGenerateMetaDescriptions: publicProcedure
+      .input(z.object({
+        articles: z.array(z.object({
+          slug: z.string(),
+          title: z.string(),
+          currentDescription: z.string(),
+          excerpt: z.string(),
+          type: z.enum(["magazine", "guide", "stone"]).optional().default("magazine"),
+        })),
+        numberOfVariants: z.number().optional().default(3),
+        autoCreateTests: z.boolean().optional().default(false),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await batchGenerateMetaDescriptions(
+          input.articles.map(a => ({ ...a, type: a.type as "magazine" | "guide" | "stone" })),
+          input.numberOfVariants,
+          input.autoCreateTests
+        );
+      }),
+
+    // Google Search Console Integration
+    gscStatus: publicProcedure
+      .query(async ({ ctx }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return getGSCStatus();
+      }),
+
+    gscTopPages: publicProcedure
+      .input(z.object({
+        limit: z.number().optional().default(20),
+        days: z.number().optional().default(28),
+      }))
+      .query(async ({ ctx, input }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        if (!isGSCConfigured()) {
+          return { configured: false, pages: [] as Array<{ page: string; clicks: number; impressions: number; ctr: number; position: number }> };
+        }
+        const pages = await getTopPages(input.limit, input.days);
+        return { configured: true, pages };
+      }),
+
+    gscArticleCTR: publicProcedure
+      .input(z.object({
+        articleSlugs: z.array(z.string()),
+        days: z.number().optional().default(14),
+      }))
+      .query(async ({ ctx, input }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        if (!isGSCConfigured()) {
+          return { configured: false, data: {} as Record<string, { clicks: number; impressions: number; ctr: number; position: number }> };
+        }
+        const siteUrl = process.env.GSC_SITE_URL || 'https://amulets.cz';
+        const data = await getArticleCTRData(input.articleSlugs, siteUrl, input.days);
+        return { configured: true, data: Object.fromEntries(data) };
       }),
   }),
 });
