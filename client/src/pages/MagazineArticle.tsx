@@ -17,6 +17,7 @@ import { useState, useEffect } from "react";
 import { getMixedRelatedArticles } from "@/lib/relatedArticles";
 import { useArticleTracking } from "@/hooks/useArticleTracking";
 import { useHeadlineABTest } from "@/hooks/useHeadlineABTest";
+import { useMetaDescABTest } from "@/hooks/useMetaDescABTest";
 import ArticleRating from "@/components/ArticleRating";
 import ArticleComments from "@/components/ArticleComments";
 import { ArrowLeft, Calendar } from "lucide-react";
@@ -40,18 +41,25 @@ export default function MagazineArticle() {
   // A/B test headline
   const { displayTitle, hasActiveTest } = useHeadlineABTest(slug, article?.title || "");
 
+  // A/B test meta description
+  const { displayDescription: abMetaDescription } = useMetaDescABTest(slug, article?.metaDescription || "");
+
   // SEO meta tagy
   useEffect(() => {
     if (article) {
       document.title = article.metaTitle;
       
-      let metaDesc = document.querySelector('meta[name="description"]');
-      if (!metaDesc) {
-        metaDesc = document.createElement('meta');
-        metaDesc.setAttribute('name', 'description');
-        document.head.appendChild(metaDesc);
+      // Meta description is now managed by useMetaDescABTest hook
+      // Only set it here if no A/B test is active (fallback)
+      if (!abMetaDescription || abMetaDescription === article.metaDescription) {
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (!metaDesc) {
+          metaDesc = document.createElement('meta');
+          metaDesc.setAttribute('name', 'description');
+          document.head.appendChild(metaDesc);
+        }
+        metaDesc.setAttribute('content', article.metaDescription);
       }
-      metaDesc.setAttribute('content', article.metaDescription);
 
       // Open Graph tags
       setOpenGraphTags({

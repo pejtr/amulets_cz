@@ -46,6 +46,7 @@ import AdminMessages from "./pages/AdminMessages";
 import AdminComments from "./pages/AdminComments";
 import AdminArticleHeatmap from "./pages/AdminArticleHeatmap";
 import AdminHeadlineABTest from "./pages/AdminHeadlineABTest";
+import AdminMetaDescABTest from "./pages/AdminMetaDescABTest";
 import AdminDashboard from "./pages/AdminDashboard";
 
 
@@ -91,6 +92,7 @@ function Router() {
       <Route path="/admin/comments" component={AdminComments} />
       <Route path="/admin/article-heatmap" component={AdminArticleHeatmap} />
       <Route path="/admin/headline-ab" component={AdminHeadlineABTest} />
+      <Route path="/admin/meta-desc-ab" component={AdminMetaDescABTest} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/ebook" component={EbookLanding} />
       {/* Redirects for old/removed pages */}

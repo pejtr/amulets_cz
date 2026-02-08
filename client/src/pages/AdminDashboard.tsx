@@ -24,6 +24,7 @@ import {
   Activity,
   Percent,
   ScrollText,
+  Search,
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -426,7 +427,8 @@ export default function AdminDashboard() {
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
               <QuickAction href="/admin/comments" icon={<MessageCircle className="h-5 w-5" />} label="Komentáře" count={pendingCount} />
               <QuickAction href="/admin/article-heatmap" icon={<BarChart3 className="h-5 w-5" />} label="Heatmapa" />
-              <QuickAction href="/admin/headline-ab" icon={<FlaskConical className="h-5 w-5" />} label="A/B testy" />
+              <QuickAction href="/admin/headline-ab" icon={<FlaskConical className="h-5 w-5" />} label="A/B titulky" />
+              <QuickAction href="/admin/meta-desc-ab" icon={<Search className="h-5 w-5" />} label="A/B meta desc" />
               <QuickAction href="/admin/chatbot-ab" icon={<Bot className="h-5 w-5" />} label="Chatbot A/B" />
               <QuickAction href="/admin/tickets" icon={<FileText className="h-5 w-5" />} label="Tikety" />
               <QuickAction href="/admin/telegram" icon={<Mail className="h-5 w-5" />} label="Telegram" />

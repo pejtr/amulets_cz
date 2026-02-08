@@ -15,6 +15,13 @@
       "when": 1770506821932,
       "tag": "0001_hot_silverclaw",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1770516261914,
+      "tag": "0002_loose_mesmero",
+      "breakpoints": true
     }
   ]
 }

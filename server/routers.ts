@@ -44,6 +44,8 @@ import { moderateCommentWithAI, quickSpamCheck } from "./commentModeration";
 import { sendWeeklyArticleDigest } from "./weeklyArticleDigest";
 import { getHeadlineVariant, trackHeadlineClick, updateHeadlineEngagement, createHeadlineTest, getHeadlineTestResults, getActiveHeadlineTests, evaluateHeadlineTests, deployWinningVariant, autoEvaluateAndDeploy } from "./headlineABTest";
 import { generateHeadlineVariants, generateAndCreateTest, batchGenerateHeadlines } from "./aiHeadlineGenerator";
+import { getMetaDescVariant, trackMetaDescClick, updateMetaDescEngagement, createMetaDescTest, getMetaDescTestResults, getActiveMetaDescTests, evaluateMetaDescTests, deployMetaDescWinner, autoEvaluateAndDeployMetaDesc } from "./metaDescABTest";
+import { generateMetaDescVariants, generateAndCreateMetaDescTest } from "./aiMetaDescGenerator";
 import { sendEbookEmail } from "./sendEbookEmail";
 import { autoDeactivateWeakVariants } from "./abTestAutoDeactivate";
 import { autoOptimizeVariantWeights, getOptimizationStatus } from "./abTestAutoOptimize";
@@ -2610,6 +2612,148 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
           input.articles,
           input.numberOfVariants,
           input.autoCreateTests
+        );
+      }),
+
+    // ========== META DESCRIPTION A/B TESTING ==========
+
+    getMetaDescVariant: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        visitorId: z.string(),
+      }))
+      .query(async ({ input }) => {
+        return await getMetaDescVariant(input.articleSlug, input.visitorId);
+      }),
+
+    trackMetaDescClick: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        visitorId: z.string(),
+        referrerSource: z.string().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        return await trackMetaDescClick(input.articleSlug, input.visitorId, input.referrerSource);
+      }),
+
+    updateMetaDescEngagement: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        visitorId: z.string(),
+        readTimeSeconds: z.number().optional(),
+        scrollDepthPercent: z.number().optional(),
+        completed: z.boolean().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { articleSlug, visitorId, ...data } = input;
+        return await updateMetaDescEngagement(articleSlug, visitorId, data);
+      }),
+
+    createMetaDescTest: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        articleType: z.string().optional(),
+        variants: z.array(z.object({
+          variantKey: z.string(),
+          metaDescription: z.string(),
+          isControl: z.boolean().optional(),
+        })),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await createMetaDescTest(input);
+      }),
+
+    getMetaDescTestResults: publicProcedure
+      .input(z.object({
+        articleSlug: z.string().optional(),
+      }).optional())
+      .query(async ({ ctx, input }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await getMetaDescTestResults(input?.articleSlug);
+      }),
+
+    getActiveMetaDescTests: publicProcedure
+      .query(async () => {
+        return await getActiveMetaDescTests();
+      }),
+
+    evaluateMetaDescTests: publicProcedure
+      .input(z.object({
+        minImpressions: z.number().optional().default(100),
+        confidenceThreshold: z.number().optional().default(0.95),
+      }).optional())
+      .mutation(async ({ ctx, input }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await evaluateMetaDescTests(
+          input?.minImpressions || 100,
+          input?.confidenceThreshold || 0.95
+        );
+      }),
+
+    deployMetaDescWinner: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        winnerVariantKey: z.string(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await deployMetaDescWinner(input.articleSlug, input.winnerVariantKey);
+      }),
+
+    autoEvaluateMetaDesc: publicProcedure
+      .input(z.object({
+        minImpressions: z.number().optional().default(100),
+        confidenceThreshold: z.number().optional().default(0.95),
+      }).optional())
+      .mutation(async ({ ctx, input }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await autoEvaluateAndDeployMetaDesc(
+          input?.minImpressions || 100,
+          input?.confidenceThreshold || 0.95
+        );
+      }),
+
+    // AI Meta Description Generation
+    generateMetaDescVariants: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        originalTitle: z.string(),
+        originalDescription: z.string(),
+        articleExcerpt: z.string(),
+        articleType: z.enum(["magazine", "guide", "stone"]).optional().default("magazine"),
+        numberOfVariants: z.number().optional().default(3),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await generateMetaDescVariants(
+          input.articleSlug,
+          input.originalTitle,
+          input.originalDescription,
+          input.articleExcerpt,
+          input.articleType,
+          input.numberOfVariants
+        );
+      }),
+
+    generateAndCreateMetaDescTest: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        originalTitle: z.string(),
+        originalDescription: z.string(),
+        articleExcerpt: z.string(),
+        articleType: z.enum(["magazine", "guide", "stone"]).optional().default("magazine"),
+        numberOfVariants: z.number().optional().default(3),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await generateAndCreateMetaDescTest(
+          input.articleSlug,
+          input.originalTitle,
+          input.originalDescription,
+          input.articleExcerpt,
+          input.articleType,
+          input.numberOfVariants
         );
       }),
   }),

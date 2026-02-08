@@ -238,7 +238,7 @@ export default function ProductsSection() {
               <div
                 key={index}
                 className={pyramidsVisible ? 'animate-zoom-in-card' : 'opacity-0'}
-                style={{ animationDelay: `${index * 150}ms` }}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 <ProductCard 
                   {...product} 
@@ -284,7 +284,7 @@ export default function ProductsSection() {
               <div
                 key={index}
                 className={essencesVisible ? 'animate-zoom-in-card' : 'opacity-0'}
-                style={{ animationDelay: `${index * 150}ms` }}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 <ProductCard 
                   {...product} 

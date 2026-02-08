@@ -2,7 +2,7 @@
   "version": "5",
   "dialect": "mysql",
   "id": "8fb117b2-4c6e-44a4-8ab6-92eab6dbaea3",
-  "prevId": "6a1db84e-899e-4005-af2b-39076b4e4b52",
+  "prevId": "c0370234-1766-4f97-9860-4b404e169911",
   "tables": {
     "affiliate_campaigns": {
       "name": "affiliate_campaigns",

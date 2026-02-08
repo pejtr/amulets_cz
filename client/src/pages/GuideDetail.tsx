@@ -19,6 +19,7 @@ import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/
 import { track } from "@/lib/tracking";
 import { useArticleTracking } from "@/hooks/useArticleTracking";
 import { useHeadlineABTest } from "@/hooks/useHeadlineABTest";
+import { useMetaDescABTest } from "@/hooks/useMetaDescABTest";
 import ArticleRating from "@/components/ArticleRating";
 import ArticleComments from "@/components/ArticleComments";
 
@@ -55,13 +56,19 @@ export default function GuideDetail() {
   // Track article view and engagement
   const { visitorId } = useArticleTracking(slug, 'guide');
 
-
-  
   // Detekce typu z URL path
   let type = "";
   if (location.startsWith("/symbol/")) type = "symbol";
   else if (location.startsWith("/kamen/")) type = "kamen";
   else if (location.startsWith("/ucel/")) type = "ucel";
+
+  // A/B test meta description - find content for meta desc lookup
+  const contentForMetaDesc = type === "symbol"
+    ? symbolsData.find(i => i.slug === slug) || purposesData.find(i => i.slug === slug)
+    : type === "kamen"
+    ? stonesData.find(i => i.slug === slug)
+    : purposesData.find(i => i.slug === slug);
+  const { displayDescription: abMetaDescription } = useMetaDescABTest(slug, contentForMetaDesc?.metaDescription || "");
 
   // Najdeme správný obsah podle typu a slugu
   let content = null;
@@ -95,14 +102,16 @@ export default function GuideDetail() {
       const guideType = type === 'symbol' ? 'symbol' : type === 'kamen' ? 'stone' : 'purpose';
       track.guideViewed(content.title, guideType);
       
-      // Meta description
-      let metaDesc = document.querySelector('meta[name="description"]');
-      if (!metaDesc) {
-        metaDesc = document.createElement('meta');
-        metaDesc.setAttribute('name', 'description');
-        document.head.appendChild(metaDesc);
+      // Meta description - managed by useMetaDescABTest hook when A/B test is active
+      if (!abMetaDescription || abMetaDescription === content.metaDescription) {
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (!metaDesc) {
+          metaDesc = document.createElement('meta');
+          metaDesc.setAttribute('name', 'description');
+          document.head.appendChild(metaDesc);
+        }
+        metaDesc.setAttribute('content', content.metaDescription);
       }
-      metaDesc.setAttribute('content', content.metaDescription);
 
       // Open Graph tags
       setOpenGraphTags({

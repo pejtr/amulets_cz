@@ -1,0 +1,16 @@
+{
+  "query": "SHOW TABLES LIKE 'article_meta_desc%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute SHOW TABLES LIKE 'article_meta_desc%';",
+  "rows": [
+    {
+      "Tables_in_HAWYZkdAU8mixfPXqdsPSj (article_meta_desc%)": "article_meta_desc_assignments"
+    },
+    {
+      "Tables_in_HAWYZkdAU8mixfPXqdsPSj (article_meta_desc%)": "article_meta_desc_tests"
+    }
+  ],
+  "messages": [],
+  "stdout": "Tables_in_HAWYZkdAU8mixfPXqdsPSj (article_meta_desc%)\narticle_meta_desc_assignments\narticle_meta_desc_tests\n",
+  "stderr": "",
+  "execution_time_ms": 351
+}

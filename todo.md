@@ -2723,3 +2723,11 @@
 - [x] Automatické vytvoření A/B testu z AI navržených titulků
 - [x] Admin UI pro AI generování titulků - tlačítko v admin panelu A/B testů
 - [x] Napsat testy pro AI generování titulků (39/39 passed)
+- [x] DB tabulky pro A/B testování meta descriptions (meta_description_tests, meta_description_variants, meta_description_impressions)
+- [x] Backend helper funkce pro meta description A/B testy (CRUD, tracking, vyhodnocení)
+- [x] tRPC procedury pro meta description A/B testy
+- [x] AI generování optimalizovaných meta descriptions přes LLM
+- [x] Frontend integrace - dynamické meta tagy dle přiřazené varianty
+- [x] Admin UI pro správu meta description A/B testů
+- [x] Napsat testy pro meta description A/B testování
+- [x] Opravit animaci načítání produktů - jemný fade-in s translateY(12px), 0.8s, stagger 100ms

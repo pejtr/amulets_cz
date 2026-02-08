@@ -1,0 +1,32 @@
+{
+  "query": "SHOW CREATE TABLE article_meta_desc_tests;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user dtffFtxzpGHwBQ5.9f9e2b30cd53 --database HAWYZkdAU8mixfPXqdsPSj --execute SHOW CREATE TABLE article_meta_desc_tests;",
+  "rows": [
+    {
+      "Table": "article_meta_desc_tests",
+      "Create Table": "CREATE TABLE `article_meta_desc_tests` ("
+    }
+  ],
+  "messages": [
+    "  `id` int(11) NOT NULL AUTO_INCREMENT,",
+    "  `articleSlug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,",
+    "  `articleType` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'magazine',",
+    "  `variantKey` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,",
+    "  `metaDescription` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,",
+    "  `isControl` tinyint(1) NOT NULL DEFAULT '0',",
+    "  `isActive` tinyint(1) NOT NULL DEFAULT '1',",
+    "  `impressions` int(11) NOT NULL DEFAULT '0',",
+    "  `clicks` int(11) NOT NULL DEFAULT '0',",
+    "  `totalReadTime` int(11) NOT NULL DEFAULT '0',",
+    "  `totalScrollDepth` int(11) NOT NULL DEFAULT '0',",
+    "  `completions` int(11) NOT NULL DEFAULT '0',",
+    "  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,",
+    "  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,",
+    "  PRIMARY KEY (`id`) /*T![clustered_index] CLUSTERED */,",
+    "  UNIQUE KEY `unique_slug_variant` (`articleSlug`,`variantKey`)",
+    ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+  ],
+  "stdout": "Table\tCreate Table\narticle_meta_desc_tests\tCREATE TABLE `article_meta_desc_tests` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `articleSlug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `articleType` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'magazine',\n  `variantKey` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `metaDescription` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,\n  `isControl` tinyint(1) NOT NULL DEFAULT '0',\n  `isActive` tinyint(1) NOT NULL DEFAULT '1',\n  `impressions` int(11) NOT NULL DEFAULT '0',\n  `clicks` int(11) NOT NULL DEFAULT '0',\n  `totalReadTime` int(11) NOT NULL DEFAULT '0',\n  `totalScrollDepth` int(11) NOT NULL DEFAULT '0',\n  `completions` int(11) NOT NULL DEFAULT '0',\n  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`) /*T![clustered_index] CLUSTERED */,\n  UNIQUE KEY `unique_slug_variant` (`articleSlug`,`variantKey`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci\n",
+  "stderr": "",
+  "execution_time_ms": 351
+}
