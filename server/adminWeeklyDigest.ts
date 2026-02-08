@@ -16,7 +16,8 @@ import {
   articleViews, articleRatings, articleComments,
   articleHeadlineTests, articleMetaDescTests,
   readingHistory, chatbotSessions, chatbotConversions,
-  widgetAbTests, widgetAbVariants
+  widgetAbTests, widgetAbVariants,
+  chatbotMessages, detectedTopics, topicCategories
 } from "../drizzle/schema";
 import { sql, gte, desc, eq, and, count } from "drizzle-orm";
 import { sendTelegramMessage } from "./telegram";
@@ -84,6 +85,19 @@ interface WeeklyStats {
   // New vs returning
   newReaders: number;
   returningReaders: number;
+  // Top chatbot topics
+  chatbotTopTopics: Array<{
+    topic: string;
+    category: string;
+    count: number;
+    sentiment: string;
+    intent: string;
+    hasContentGap: boolean;
+  }>;
+  chatbotTopQuestions: Array<{
+    question: string;
+    count: number;
+  }>;
 }
 
 async function collectWeeklyStats(): Promise<WeeklyStats> {
@@ -99,6 +113,7 @@ async function collectWeeklyStats(): Promise<WeeklyStats> {
     chatbot: { totalSessions: 0, totalConversions: 0, conversionRate: 0, avgDuration: 0 },
     referrerBreakdown: [], peakHours: [],
     newReaders: 0, returningReaders: 0,
+    chatbotTopTopics: [], chatbotTopQuestions: [],
   };
 
   if (!db) return defaultStats;
@@ -306,6 +321,69 @@ async function collectWeeklyStats(): Promise<WeeklyStats> {
     const uniqueReadersThisWeek = Number(pageViewStats?.unique) || 0;
     const newReaders = Number(newReadersResult?.count) || 0;
 
+    // === CHATBOT TOP TOPICS ===
+    const topTopicsRaw = await db.select({
+      topic: detectedTopics.topic,
+      categoryId: detectedTopics.categoryId,
+      count: sql<number>`COUNT(*)`,
+      sentiment: sql<string>`(
+        SELECT dt2.sentiment FROM detected_topics dt2 
+        WHERE dt2.topic = ${detectedTopics.topic} 
+        GROUP BY dt2.sentiment ORDER BY COUNT(*) DESC LIMIT 1
+      )`,
+      intent: sql<string>`(
+        SELECT dt3.intent FROM detected_topics dt3 
+        WHERE dt3.topic = ${detectedTopics.topic} 
+        GROUP BY dt3.intent ORDER BY COUNT(*) DESC LIMIT 1
+      )`,
+      hasContentGap: sql<number>`SUM(CASE WHEN ${detectedTopics.contentGap} = 1 THEN 1 ELSE 0 END)`,
+    })
+      .from(detectedTopics)
+      .where(gte(detectedTopics.createdAt, oneWeekAgo))
+      .groupBy(detectedTopics.topic, detectedTopics.categoryId)
+      .orderBy(desc(sql`COUNT(*)`))
+      .limit(10);
+
+    // Get category names
+    const categoryIds = Array.from(new Set(topTopicsRaw.filter(t => t.categoryId).map(t => t.categoryId!)));
+    const categoryMap = new Map<number, string>();
+    if (categoryIds.length > 0) {
+      const categories = await db.select().from(topicCategories);
+      for (const cat of categories) {
+        categoryMap.set(cat.id, cat.name);
+      }
+    }
+
+    const chatbotTopTopics = topTopicsRaw.map(t => ({
+      topic: t.topic,
+      category: t.categoryId ? (categoryMap.get(t.categoryId) || 'Nezařazeno') : 'Nezařazeno',
+      count: Number(t.count),
+      sentiment: String(t.sentiment || 'neutral'),
+      intent: String(t.intent || 'question'),
+      hasContentGap: Number(t.hasContentGap) > 0,
+    }));
+
+    // === CHATBOT TOP QUESTIONS (from user messages) ===
+    const topQuestionsRaw = await db.select({
+      content: chatbotMessages.content,
+      count: sql<number>`COUNT(*)`,
+    })
+      .from(chatbotMessages)
+      .where(and(
+        gte(chatbotMessages.createdAt, oneWeekAgo),
+        eq(chatbotMessages.role, 'user'),
+        sql`LENGTH(${chatbotMessages.content}) > 10`,
+        sql`LENGTH(${chatbotMessages.content}) < 300`,
+      ))
+      .groupBy(chatbotMessages.content)
+      .orderBy(desc(sql`COUNT(*)`))
+      .limit(15);
+
+    const chatbotTopQuestions = topQuestionsRaw.map(q => ({
+      question: q.content,
+      count: Number(q.count),
+    }));
+
     // === COMPLETION RATE ===
     const [completionStats] = await db.select({
       rate: sql<number>`AVG(CASE WHEN ${readingHistory.completed} = 1 THEN 100 ELSE ${readingHistory.scrollDepthPercent} END)`,
@@ -342,6 +420,8 @@ async function collectWeeklyStats(): Promise<WeeklyStats> {
       peakHours: hourStats.map(h => ({ hour: Number(h.hour), count: Number(h.count) })),
       newReaders,
       returningReaders: Math.max(0, uniqueReadersThisWeek - newReaders),
+      chatbotTopTopics,
+      chatbotTopQuestions,
     };
   } catch (error) {
     console.error('[Admin Digest] Error collecting stats:', error);
@@ -372,6 +452,12 @@ Active A/B tests: ${stats.headlineTests.active} headline, ${stats.metaDescTests.
 Significant results: ${stats.headlineTests.significantResults.length + stats.metaDescTests.significantResults.length}
 
 Chatbot: ${stats.chatbot.totalSessions} sessions, ${stats.chatbot.conversionRate}% conversion rate
+
+Top chatbot topics (what visitors ask about most):
+${stats.chatbotTopTopics.map(t => `- ${t.topic} (${t.count}×, ${t.intent}, sentiment: ${t.sentiment}${t.hasContentGap ? ', CONTENT GAP - no answer available' : ''})`).join('\n') || 'No data'}
+
+Top visitor questions:
+${stats.chatbotTopQuestions.slice(0, 8).map(q => `- "${q.question}" (${q.count}×)`).join('\n') || 'No data'}
 
 Top referrers: ${stats.referrerBreakdown.map(r => `${r.source}: ${r.percentage}%`).join(', ')}
 Peak hours: ${stats.peakHours.map(h => `${h.hour}:00 (${h.count})`).join(', ')}
@@ -496,6 +582,34 @@ function generateAdminDigestEmail(stats: WeeklyStats, aiRecommendations: string)
     `<span style="display: inline-block; background: #fef3c7; color: #92400e; padding: 2px 10px; border-radius: 12px; font-size: 12px; margin-right: 6px;">${h.hour}:00 (${h.count}×)</span>`
   ).join('');
 
+  // Chatbot top topics
+  const sentimentEmoji: Record<string, string> = { positive: '😊', neutral: '😐', negative: '😟' };
+  const intentEmoji: Record<string, string> = { question: '❓', purchase: '🛒', complaint: '⚠️', feedback: '💬', other: '📌' };
+  
+  const chatbotTopicsHtml = stats.chatbotTopTopics.length > 0 
+    ? stats.chatbotTopTopics.map((t, i) => `
+      <tr style="border-bottom: 1px solid #f0e6f6;">
+        <td style="padding: 8px; font-size: 13px;">
+          <strong style="color: #333;">${i + 1}. ${t.topic}</strong>
+          ${t.hasContentGap ? '<span style="display: inline-block; background: #fef2f2; color: #dc2626; padding: 1px 6px; border-radius: 8px; font-size: 10px; margin-left: 4px;">Content Gap</span>' : ''}
+        </td>
+        <td style="padding: 8px; text-align: center; font-size: 13px; color: #555;">${t.category}</td>
+        <td style="padding: 8px; text-align: center; font-size: 13px; font-weight: 600; color: #4c1d95;">${t.count}×</td>
+        <td style="padding: 8px; text-align: center; font-size: 13px;">${sentimentEmoji[t.sentiment] || '😐'} ${intentEmoji[t.intent] || '📌'}</td>
+      </tr>
+    `).join('')
+    : '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #888; font-size: 13px;">Žádná témata tento týden</td></tr>';
+
+  const chatbotQuestionsHtml = stats.chatbotTopQuestions.length > 0
+    ? stats.chatbotTopQuestions.slice(0, 10).map((q, i) => `
+      <div style="padding: 6px 0; border-bottom: 1px solid #f5f5f5; font-size: 12px;">
+        <span style="color: #888; margin-right: 6px;">${i + 1}.</span>
+        <span style="color: #333;">"${q.question.length > 80 ? q.question.slice(0, 80) + '...' : q.question}"</span>
+        <span style="color: #4c1d95; font-weight: 600; margin-left: 6px;">(${q.count}×)</span>
+      </div>
+    `).join('')
+    : '<div style="font-size: 13px; color: #888; padding: 8px;">Žádné dotazy tento týden</div>';
+
   // AI recommendations - convert markdown to simple HTML
   const aiHtml = aiRecommendations
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -615,6 +729,37 @@ function generateAdminDigestEmail(stats: WeeklyStats, aiRecommendations: string)
             </td>
           </tr>
 
+          <!-- Chatbot Top Topics & Questions -->
+          <tr>
+            <td style="background: white; padding: 0 28px 24px; border-left: 1px solid #e8e0f0; border-right: 1px solid #e8e0f0;">
+              <h2 style="font-size: 16px; color: #1e1b4b; margin: 0 0 12px; border-bottom: 2px solid #a855f7; padding-bottom: 8px;">💬 Nejčastější dotazy z chatbotu</h2>
+              
+              <!-- Top Topics Table -->
+              <div style="font-size: 13px; font-weight: 600; color: #555; margin-bottom: 8px;">Detekovaná témata:</div>
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; margin-bottom: 16px;">
+                <tr style="background: #faf7fb;">
+                  <th style="padding: 6px 8px; text-align: left; font-size: 11px; color: #888; text-transform: uppercase;">Téma</th>
+                  <th style="padding: 6px 8px; text-align: center; font-size: 11px; color: #888; text-transform: uppercase;">Kategorie</th>
+                  <th style="padding: 6px 8px; text-align: center; font-size: 11px; color: #888; text-transform: uppercase;">Počet</th>
+                  <th style="padding: 6px 8px; text-align: center; font-size: 11px; color: #888; text-transform: uppercase;">Nálada</th>
+                </tr>
+                ${chatbotTopicsHtml}
+              </table>
+
+              <!-- Top Questions -->
+              <div style="font-size: 13px; font-weight: 600; color: #555; margin-bottom: 8px;">Nejčastější otázky návštěvníků:</div>
+              ${chatbotQuestionsHtml}
+
+              ${stats.chatbotTopTopics.filter(t => t.hasContentGap).length > 0 ? `
+              <div style="margin-top: 12px; padding: 10px 14px; background: #fef2f2; border-left: 3px solid #dc2626; border-radius: 4px;">
+                <div style="font-size: 12px; font-weight: 600; color: #dc2626; margin-bottom: 4px;">⚠️ Content Gaps nalezeny</div>
+                <div style="font-size: 12px; color: #666;">
+                  Chatbot nemá odpovědi na: ${stats.chatbotTopTopics.filter(t => t.hasContentGap).map(t => `<strong>${t.topic}</strong>`).join(', ')}
+                </div>
+              </div>` : ''}
+            </td>
+          </tr>
+
           <!-- Behavior Insights -->
           <tr>
             <td style="background: white; padding: 0 28px 24px; border-left: 1px solid #e8e0f0; border-right: 1px solid #e8e0f0;">
@@ -708,6 +853,9 @@ export async function sendAdminWeeklyDigest(): Promise<{
       `🤖 Chatbot: ${stats.chatbot.totalSessions} sessions, ${stats.chatbot.conversionRate}% conv.`,
       ``,
       `🏆 Top článek: ${stats.topArticles[0] ? formatSlugToTitle(stats.topArticles[0].slug) + ` (${stats.topArticles[0].views}×)` : 'N/A'}`,
+      ``,
+      stats.chatbotTopTopics.length > 0 ? `💬 Top dotazy: ${stats.chatbotTopTopics.slice(0, 3).map(t => t.topic).join(', ')}` : '',
+      stats.chatbotTopTopics.filter(t => t.hasContentGap).length > 0 ? `⚠️ Content gaps: ${stats.chatbotTopTopics.filter(t => t.hasContentGap).map(t => t.topic).join(', ')}` : '',
       ``,
       `📧 Email odeslán na: ${ownerEmail}`,
     ].join('\n');

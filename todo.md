@@ -2759,3 +2759,7 @@
 - [x] Widget A/B test propojení s DB - ukládání pozice per-visitor, měření CTR (widget_ab_tests, widget_ab_variants, widget_ab_assigns)
 - [x] Weekly email digest pro admina - souhrn reading stats, top články, A/B test výsledky, behavior insights, AI strategická doporučení (Brevo + Telegram, pondělí 7:00)
 - [x] Vitest testy pro hreflang, widget A/B a email digest (30/30 passed)
+- [x] useWidgetABTest() React hook - automatické přiřazení variant a tracking kliknutí v UI
+- [x] Admin A/B Test Dashboard - vizuální panel s CTR grafy trendů a manuálním nasazením vítěze (/admin/widget-ab)
+- [x] Rozšíření admin weekly digestu o sekci s nejčastějšími dotazy z chatbotu (top témata, top otázky, content gaps)
+- [x] Vitest testy pro useWidgetABTest hook, dashboard a chatbot digest (25/25 passed)

@@ -49,6 +49,7 @@ import AdminHeadlineABTest from "./pages/AdminHeadlineABTest";
 import AdminMetaDescABTest from "./pages/AdminMetaDescABTest";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminRecommendations from "./pages/AdminRecommendations";
+import AdminWidgetABTest from "./pages/AdminWidgetABTest";
 
 
 function Router() {
@@ -96,6 +97,7 @@ function Router() {
       <Route path="/admin/meta-desc-ab" component={AdminMetaDescABTest} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/admin/recommendations" component={AdminRecommendations} />
+      <Route path="/admin/widget-ab" component={AdminWidgetABTest} />
       <Route path="/ebook" component={EbookLanding} />
       {/* Redirects for old/removed pages */}
       <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>
