@@ -20,6 +20,7 @@ import {
   FlaskConical,
   TrendingUp,
   Crown,
+  Zap,
 } from "lucide-react";
 
 // Magazine articles for dropdown
@@ -45,6 +46,33 @@ export default function AdminHeadlineABTest() {
 
   const { data: results, isLoading: resultsLoading, refetch } = trpc.articles.getHeadlineTestResults.useQuery(undefined, {
     enabled: !!user && user.role === 'admin',
+  });
+
+  const evaluateQuery = trpc.articles.evaluateTests.useQuery(undefined, {
+    enabled: false, // Only fetch on demand
+  });
+
+  const deployWinnerMutation = trpc.articles.deployWinner.useMutation({
+    onSuccess: (data: any) => {
+      toast.success(data.message);
+      refetch();
+    },
+    onError: (err: any) => toast.error(err.message),
+  });
+
+  const autoDeployMutation = trpc.articles.autoEvaluateAndDeploy.useMutation({
+    onSuccess: (data: any) => {
+      if (data.deployed > 0) {
+        toast.success(`Nasazeno ${data.deployed} vítězných variant z ${data.evaluated} vyhodnocených testů`);
+      } else if (data.evaluated > 0) {
+        toast.info(`Vyhodnoceno ${data.evaluated} testů, ale žádný nebyl automaticky nasazen`);
+      } else {
+        toast.info("Žádný test zatím nedosáhl statistické signifikance");
+      }
+      refetch();
+      evaluateQuery.refetch();
+    },
+    onError: (err: any) => toast.error(err.message),
   });
 
   const createTestMutation = trpc.articles.createHeadlineTest.useMutation({
@@ -205,6 +233,83 @@ export default function AdminHeadlineABTest() {
                 </Button>
               </div>
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Auto-Evaluate & Deploy */}
+        <Card className="mb-8 border-green-200 bg-green-50/50">
+          <CardHeader>
+            <CardTitle className="text-lg flex items-center gap-2">
+              <Zap className="w-5 h-5 text-green-600" />
+              Automatické vyhodnocení & nasazení
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600 mb-4">
+              Systém analyzuje všechny aktivní testy a identifikuje varianty, které dosáhly statistické signifikance (95% confidence). Vítězné varianty lze nasadit jedním kliknutím.
+            </p>
+            <div className="flex flex-wrap gap-3 mb-4">
+              <Button
+                onClick={() => evaluateQuery.refetch()}
+                variant="outline"
+                className="border-green-300 text-green-700 hover:bg-green-100"
+                disabled={evaluateQuery.isFetching}
+              >
+                {evaluateQuery.isFetching ? "Analyzuji..." : "🔍 Analyzovat testy"}
+              </Button>
+              <Button
+                onClick={() => autoDeployMutation.mutate({})}
+                className="bg-green-600 hover:bg-green-700"
+                disabled={autoDeployMutation.isPending}
+              >
+                {autoDeployMutation.isPending ? "Nasazuji..." : "🚀 Auto-deploy vítězů"}
+              </Button>
+            </div>
+
+            {evaluateQuery.data && evaluateQuery.data.length > 0 ? (
+              <div className="space-y-3">
+                {evaluateQuery.data.map((result: any) => (
+                  <div key={result.articleSlug} className="bg-white rounded-lg p-4 border border-green-200">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-medium text-green-800">{result.articleSlug}</span>
+                      <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                        {result.winner.confidence}% jistota
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                      <div className="bg-green-50 rounded p-2">
+                        <div className="flex items-center gap-1 text-green-700 font-medium mb-1">
+                          <Crown className="w-3 h-3" /> Vítěz: {result.winner.variantKey}
+                        </div>
+                        <p className="text-gray-600 truncate" title={result.winner.headline}>{result.winner.headline}</p>
+                        <p className="text-green-600 font-mono">CTR: {result.winner.ctr.toFixed(1)}% | Dočtení: {result.winner.completionRate.toFixed(1)}%</p>
+                      </div>
+                      <div className="bg-red-50 rounded p-2">
+                        <div className="flex items-center gap-1 text-red-700 font-medium mb-1">
+                          Poražený: {result.loser.variantKey}
+                        </div>
+                        <p className="text-gray-600 truncate" title={result.loser.headline}>{result.loser.headline}</p>
+                        <p className="text-red-600 font-mono">CTR: {result.loser.ctr.toFixed(1)}% | Dočtení: {result.loser.completionRate.toFixed(1)}%</p>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2">{result.recommendation}</p>
+                    <Button
+                      size="sm"
+                      className="mt-2 bg-green-600 hover:bg-green-700"
+                      onClick={() => deployWinnerMutation.mutate({
+                        articleSlug: result.articleSlug,
+                        winnerVariantKey: result.winner.variantKey,
+                      })}
+                      disabled={deployWinnerMutation.isPending}
+                    >
+                      Nasadit vítěze
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            ) : evaluateQuery.data && evaluateQuery.data.length === 0 ? (
+              <p className="text-sm text-gray-500 italic">Žádný test zatím nedosáhl statistické signifikance. Potřeba více dat (min. 100 zobrazení na variantu).</p>
+            ) : null}
           </CardContent>
         </Card>
 

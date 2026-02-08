@@ -2,7 +2,8 @@ import { Link } from "wouter";
 import { magazineArticles } from "@/data/magazineContent";
 import { tantraArticles } from "@/data/tantraArticles";
 import { ArrowRight, Star } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
+import { useHeadlineVariants, useHeadlineClickTracker } from "@/hooks/useHeadlineABTest";
 
 // Kombinovat všechny články
 const allArticles = [...magazineArticles, ...tantraArticles];
@@ -18,6 +19,11 @@ const displayArticles = allArticles
 export default function MagazineSection() {
   const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  // A/B test headline variants
+  const articleSlugs = useMemo(() => allArticles.map(a => a.slug), []);
+  const { getTitle } = useHeadlineVariants(articleSlugs);
+  const { handleClick: trackHeadlineClick } = useHeadlineClickTracker();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -85,7 +91,7 @@ export default function MagazineSection() {
                       Egyptská mytologie
                     </span>
                     <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-[#D4AF37] transition-colors">
-                      {featuredArticle.title}
+                      {getTitle(featuredArticle.slug, featuredArticle.title)}
                     </h3>
                     <p className="text-muted-foreground mb-6 line-clamp-3">
                       {featuredArticle.excerpt}
@@ -107,6 +113,7 @@ export default function MagazineSection() {
             <Link
               key={article.slug}
               href={`/magazin/${article.slug}`}
+              onClick={() => trackHeadlineClick(article.slug)}
               className={`group block bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 ${hasAnimated ? 'animate-zoom-in-card' : 'opacity-0'}`}
               style={{
                 animationDelay: hasAnimated ? `${index * 150}ms` : '0ms',
@@ -128,7 +135,7 @@ export default function MagazineSection() {
               {/* Obsah */}
               <div className="p-6">
                 <h3 className="text-lg font-bold mb-3 text-foreground group-hover:text-[#D4AF37] transition-colors line-clamp-2">
-                  {article.title}
+                  {getTitle(article.slug, article.title)}
                 </h3>
                 <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                   {article.excerpt}

@@ -18,6 +18,7 @@ import { setOpenGraphTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
 import { track } from "@/lib/tracking";
 import { useArticleTracking } from "@/hooks/useArticleTracking";
+import { useHeadlineABTest } from "@/hooks/useHeadlineABTest";
 import ArticleRating from "@/components/ArticleRating";
 import ArticleComments from "@/components/ArticleComments";
 
@@ -35,6 +36,16 @@ function nameToSlug(name: string): string {
 const symbolNames = ["Ruka Fatimy", "Květ života v lotosu", "Čínský drak", "Davidova hvězda", "Strom života", "Hvězda sjednocení", "Květ života", "Metatronova krychle", "Choku Rei", "Buddha", "Jin Jang", "Horovo oko"];
 const stoneNames = ["Lapis Lazuli", "Ametyst", "Růženín", "Tygří oko", "Křišťál", "Obsidián", "Čaroit", "Turmalín", "Akvamarín", "Měsíční kámen", "Granát", "Citrín", "Karneol"];
 
+// Small wrapper component that uses the A/B test hook
+function HeadlineABTitleH1({ slug, originalTitle }: { slug: string; originalTitle: string }) {
+  const { displayTitle } = useHeadlineABTest(slug, originalTitle);
+  return (
+    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+      {displayTitle}
+    </h1>
+  );
+}
+
 export default function GuideDetail() {
   const params = useParams();
   const [location] = useLocation();
@@ -43,6 +54,8 @@ export default function GuideDetail() {
 
   // Track article view and engagement
   const { visitorId } = useArticleTracking(slug, 'guide');
+
+
   
   // Detekce typu z URL path
   let type = "";
@@ -194,9 +207,7 @@ export default function GuideDetail() {
           ]} />
 
           <div className="max-w-6xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              {content.title}
-            </h1>
+            <HeadlineABTitleH1 slug={slug} originalTitle={content.title} />
 
             {/* Obrázek pod nadpisem na mobilu */}
             {content.image && (

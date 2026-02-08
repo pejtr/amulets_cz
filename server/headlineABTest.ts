@@ -325,3 +325,206 @@ export async function getActiveHeadlineTests(): Promise<string[]> {
     return [];
   }
 }
+
+/**
+ * Statistical significance calculation using Z-test for proportions
+ * Returns confidence level (0-1) that variant B is better than variant A
+ */
+function calculateSignificance(
+  impressionsA: number,
+  conversionsA: number,
+  impressionsB: number,
+  conversionsB: number
+): number {
+  if (impressionsA < 10 || impressionsB < 10) return 0;
+
+  const pA = conversionsA / impressionsA;
+  const pB = conversionsB / impressionsB;
+  const pPool = (conversionsA + conversionsB) / (impressionsA + impressionsB);
+  const se = Math.sqrt(pPool * (1 - pPool) * (1 / impressionsA + 1 / impressionsB));
+
+  if (se === 0) return 0;
+
+  const z = (pB - pA) / se;
+
+  // Approximate normal CDF using error function approximation
+  const t = 1 / (1 + 0.2316419 * Math.abs(z));
+  const d = 0.3989422804014327;
+  const p = d * Math.exp(-z * z / 2) * (0.3193815 * t + -0.3565638 * t * t + 1.781478 * t * t * t + -1.8212560 * t * t * t * t + 1.3302744 * t * t * t * t * t);
+
+  return z > 0 ? 1 - p : p;
+}
+
+/**
+ * Evaluate all active A/B tests and determine winners
+ * Returns list of tests that have reached statistical significance
+ */
+export async function evaluateHeadlineTests(minImpressions: number = 100, confidenceThreshold: number = 0.95): Promise<Array<{
+  articleSlug: string;
+  winner: {
+    variantKey: string;
+    headline: string;
+    ctr: number;
+    completionRate: number;
+    confidence: number;
+  };
+  loser: {
+    variantKey: string;
+    headline: string;
+    ctr: number;
+    completionRate: number;
+  };
+  recommendation: string;
+}>> {
+  const db = await getDb();
+  if (!db) return [];
+
+  try {
+    // Get all active tests
+    const allTests = await db.select()
+      .from(articleHeadlineTests)
+      .where(eq(articleHeadlineTests.isActive, true));
+
+    // Group by article
+    const byArticle: Record<string, typeof allTests> = {};
+    for (const test of allTests) {
+      if (!byArticle[test.articleSlug]) byArticle[test.articleSlug] = [];
+      byArticle[test.articleSlug].push(test);
+    }
+
+    const results: Array<{
+      articleSlug: string;
+      winner: { variantKey: string; headline: string; ctr: number; completionRate: number; confidence: number };
+      loser: { variantKey: string; headline: string; ctr: number; completionRate: number };
+      recommendation: string;
+    }> = [];
+
+    for (const [slug, variants] of Object.entries(byArticle)) {
+      if (variants.length < 2) continue;
+
+      // Check minimum impressions
+      const allHaveMinImpressions = variants.every(v => v.impressions >= minImpressions);
+      if (!allHaveMinImpressions) continue;
+
+      // Find best and worst by CTR
+      const sorted = [...variants].sort((a, b) => {
+        const ctrA = a.impressions > 0 ? a.clicks / a.impressions : 0;
+        const ctrB = b.impressions > 0 ? b.clicks / b.impressions : 0;
+        return ctrB - ctrA;
+      });
+
+      const best = sorted[0];
+      const worst = sorted[sorted.length - 1];
+
+      const bestCtr = best.impressions > 0 ? (best.clicks / best.impressions) * 100 : 0;
+      const worstCtr = worst.impressions > 0 ? (worst.clicks / worst.impressions) * 100 : 0;
+      const bestCompletionRate = best.clicks > 0 ? (best.completions / best.clicks) * 100 : 0;
+      const worstCompletionRate = worst.clicks > 0 ? (worst.completions / worst.clicks) * 100 : 0;
+
+      // Calculate statistical significance
+      const confidence = calculateSignificance(
+        worst.impressions, worst.clicks,
+        best.impressions, best.clicks
+      );
+
+      if (confidence >= confidenceThreshold) {
+        const ctrImprovement = worstCtr > 0 ? ((bestCtr - worstCtr) / worstCtr * 100).toFixed(1) : "∞";
+
+        results.push({
+          articleSlug: slug,
+          winner: {
+            variantKey: best.variantKey,
+            headline: best.headline,
+            ctr: bestCtr,
+            completionRate: bestCompletionRate,
+            confidence: Math.round(confidence * 100),
+          },
+          loser: {
+            variantKey: worst.variantKey,
+            headline: worst.headline,
+            ctr: worstCtr,
+            completionRate: worstCompletionRate,
+          },
+          recommendation: `Varianta "${best.variantKey}" vyhrává s ${bestCtr.toFixed(1)}% CTR vs ${worstCtr.toFixed(1)}% (${confidence >= 0.99 ? "velmi vysoká" : "vysoká"} jistota ${Math.round(confidence * 100)}%). Zlepšení CTR: +${ctrImprovement}%. Doporučujeme nasadit vítěznou variantu.`,
+        });
+      }
+    }
+
+    return results;
+  } catch (error) {
+    console.error('[Headline AB] Error evaluating tests:', error);
+    return [];
+  }
+}
+
+/**
+ * Deploy winning variant - deactivate losing variants and keep only the winner
+ */
+export async function deployWinningVariant(articleSlug: string, winnerVariantKey: string): Promise<{
+  success: boolean;
+  message: string;
+}> {
+  const db = await getDb();
+  if (!db) return { success: false, message: "Database not available" };
+
+  try {
+    // Verify the winner exists and is active
+    const winner = await db.select()
+      .from(articleHeadlineTests)
+      .where(and(
+        eq(articleHeadlineTests.articleSlug, articleSlug),
+        eq(articleHeadlineTests.variantKey, winnerVariantKey),
+        eq(articleHeadlineTests.isActive, true)
+      ))
+      .limit(1);
+
+    if (winner.length === 0) {
+      return { success: false, message: `Varianta "${winnerVariantKey}" nebyla nalezena nebo není aktivní` };
+    }
+
+    // Deactivate all other variants for this article
+    await db.update(articleHeadlineTests)
+      .set({ isActive: false })
+      .where(and(
+        eq(articleHeadlineTests.articleSlug, articleSlug),
+        sql`${articleHeadlineTests.variantKey} != ${winnerVariantKey}`
+      ));
+
+    return {
+      success: true,
+      message: `Vítězná varianta "${winnerVariantKey}" nasazena pro článek "${articleSlug}". Ostatní varianty deaktivovány.`,
+    };
+  } catch (error) {
+    console.error('[Headline AB] Error deploying winner:', error);
+    return { success: false, message: "Chyba při nasazování vítězné varianty" };
+  }
+}
+
+/**
+ * Auto-evaluate and deploy winners for all tests that have reached significance
+ * This can be called periodically (e.g., daily) to automatically optimize headlines
+ */
+export async function autoEvaluateAndDeploy(minImpressions: number = 100, confidenceThreshold: number = 0.95): Promise<{
+  evaluated: number;
+  deployed: number;
+  results: Array<{ articleSlug: string; winner: string; confidence: number; deployed: boolean }>;
+}> {
+  const winners = await evaluateHeadlineTests(minImpressions, confidenceThreshold);
+  const results: Array<{ articleSlug: string; winner: string; confidence: number; deployed: boolean }> = [];
+
+  for (const w of winners) {
+    const deployment = await deployWinningVariant(w.articleSlug, w.winner.variantKey);
+    results.push({
+      articleSlug: w.articleSlug,
+      winner: w.winner.variantKey,
+      confidence: w.winner.confidence,
+      deployed: deployment.success,
+    });
+  }
+
+  return {
+    evaluated: winners.length,
+    deployed: results.filter(r => r.deployed).length,
+    results,
+  };
+}

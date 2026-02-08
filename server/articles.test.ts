@@ -472,4 +472,71 @@ describe("articles", () => {
       expect(Array.isArray(result)).toBe(true);
     });
   });
+
+  // ============================================
+  // AUTO-EVALUATE & DEPLOY
+  // ============================================
+
+  describe("articles.evaluateTests", () => {
+    it("should deny access for non-admin users", async () => {
+      const ctx = createPublicContext();
+      const caller = appRouter.createCaller(ctx);
+
+      await expect(caller.articles.evaluateTests()).rejects.toThrow();
+    });
+
+    it("should return evaluation results for admin", async () => {
+      const ctx = createAdminContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.evaluateTests();
+      expect(Array.isArray(result)).toBe(true);
+    });
+  });
+
+  describe("articles.deployWinner", () => {
+    it("should deny access for non-admin users", async () => {
+      const ctx = createAuthContext();
+      const caller = appRouter.createCaller(ctx);
+
+      await expect(
+        caller.articles.deployWinner({
+          articleSlug: "test-deploy",
+          winnerVariantKey: "control",
+        })
+      ).rejects.toThrow();
+    });
+
+    it("should return error for non-existent variant", async () => {
+      const ctx = createAdminContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.deployWinner({
+        articleSlug: "non-existent-slug",
+        winnerVariantKey: "non-existent-variant",
+      });
+
+      expect(result.success).toBe(false);
+    });
+  });
+
+  describe("articles.autoEvaluateAndDeploy", () => {
+    it("should deny access for non-admin users", async () => {
+      const ctx = createPublicContext();
+      const caller = appRouter.createCaller(ctx);
+
+      await expect(caller.articles.autoEvaluateAndDeploy()).rejects.toThrow();
+    });
+
+    it("should return deployment results for admin", async () => {
+      const ctx = createAdminContext();
+      const caller = appRouter.createCaller(ctx);
+
+      const result = await caller.articles.autoEvaluateAndDeploy();
+      expect(result).toHaveProperty("evaluated");
+      expect(result).toHaveProperty("deployed");
+      expect(result).toHaveProperty("results");
+      expect(Array.isArray(result.results)).toBe(true);
+    });
+  });
 });

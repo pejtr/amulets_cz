@@ -42,7 +42,7 @@ import {
 import { sendDailyReport, sendTestMessage, generateDailyReport, sendTelegramMessage, setTelegramWebhook, getTelegramWebhookInfo, notifyNewComment } from "./telegram";
 import { moderateCommentWithAI, quickSpamCheck } from "./commentModeration";
 import { sendWeeklyArticleDigest } from "./weeklyArticleDigest";
-import { getHeadlineVariant, trackHeadlineClick, updateHeadlineEngagement, createHeadlineTest, getHeadlineTestResults, getActiveHeadlineTests } from "./headlineABTest";
+import { getHeadlineVariant, trackHeadlineClick, updateHeadlineEngagement, createHeadlineTest, getHeadlineTestResults, getActiveHeadlineTests, evaluateHeadlineTests, deployWinningVariant, autoEvaluateAndDeploy } from "./headlineABTest";
 import { sendEbookEmail } from "./sendEbookEmail";
 import { autoDeactivateWeakVariants } from "./abTestAutoDeactivate";
 import { autoOptimizeVariantWeights, getOptimizationStatus } from "./abTestAutoOptimize";
@@ -2498,6 +2498,51 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
     getActiveHeadlineTests: publicProcedure
       .query(async () => {
         return await getActiveHeadlineTests();
+      }),
+
+    // Evaluate headline tests for statistical significance (admin only)
+    evaluateTests: publicProcedure
+      .input(z.object({
+        minImpressions: z.number().optional().default(100),
+        confidenceThreshold: z.number().optional().default(0.95),
+      }).optional())
+      .query(async ({ ctx, input }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin má přístup' });
+        }
+        return await evaluateHeadlineTests(
+          input?.minImpressions || 100,
+          input?.confidenceThreshold || 0.95
+        );
+      }),
+
+    // Deploy winning variant (admin only)
+    deployWinner: publicProcedure
+      .input(z.object({
+        articleSlug: z.string(),
+        winnerVariantKey: z.string(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin může nasazovat varianty' });
+        }
+        return await deployWinningVariant(input.articleSlug, input.winnerVariantKey);
+      }),
+
+    // Auto-evaluate and deploy all winning variants (admin only)
+    autoEvaluateAndDeploy: publicProcedure
+      .input(z.object({
+        minImpressions: z.number().optional().default(100),
+        confidenceThreshold: z.number().optional().default(0.95),
+      }).optional())
+      .mutation(async ({ ctx, input }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin může spouštět auto-deploy' });
+        }
+        return await autoEvaluateAndDeploy(
+          input?.minImpressions || 100,
+          input?.confidenceThreshold || 0.95
+        );
       }),
   }),
 });

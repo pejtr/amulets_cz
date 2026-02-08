@@ -2716,3 +2716,6 @@
 - [x] Změnit text 'TAM CHCI' v social proof notifikaci na 'ZOBRAZIT'
 - [x] Posunout Natálii chatbota o 50% nahoru na mobilu (bottom-[4.5rem])
 - [x] Posunout hudební přehrávač nahoru na mobilu (bottom-[4.5rem] md:bottom-8)
+- [x] Propojit A/B testování titulků s frontendem - dynamické zobrazení variant v Magazínu a Průvodci
+- [x] Vytvořit admin dashboard s klíčovými metrikami webu na jednom místě (/admin/dashboard)
+- [x] Implementovat automatické vyhodnocení a nasazení vítězné varianty v A/B testování titulků

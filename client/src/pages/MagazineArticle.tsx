@@ -16,6 +16,7 @@ const allArticles = [...magazineArticles, ...tantraArticles];
 import { useState, useEffect } from "react";
 import { getMixedRelatedArticles } from "@/lib/relatedArticles";
 import { useArticleTracking } from "@/hooks/useArticleTracking";
+import { useHeadlineABTest } from "@/hooks/useHeadlineABTest";
 import ArticleRating from "@/components/ArticleRating";
 import ArticleComments from "@/components/ArticleComments";
 import { ArrowLeft, Calendar } from "lucide-react";
@@ -35,6 +36,9 @@ export default function MagazineArticle() {
 
   // Track article view and engagement
   const { visitorId } = useArticleTracking(slug, articleType);
+
+  // A/B test headline
+  const { displayTitle, hasActiveTest } = useHeadlineABTest(slug, article?.title || "");
 
   // SEO meta tagy
   useEffect(() => {
@@ -161,7 +165,7 @@ export default function MagazineArticle() {
               </div>
               
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                {article.title}
+                {displayTitle || article.title}
               </h1>
 
                <p className="text-lg text-muted-foreground italic">
