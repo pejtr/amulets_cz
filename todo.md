@@ -2755,3 +2755,7 @@
 - [x] Real-time user behavior tracking systém pro doporučovací engine (engagement funnel, behavior insights)
 - [x] Napsat vitest testy pro nové funkce (9/9 passed - reading stats, recommendations, tracking)
 - [x] Anglický překlad pro US návštěvníky - auto-detekce jazyka + překlad UI a obsahu (en locale + LanguageSwitcher)
+- [x] Hreflang tagy pro CZ/EN verze - lepší SEO indexace v Google US (Home, MagazineArticle, GuideDetail, ChineseZodiac)
+- [x] Widget A/B test propojení s DB - ukládání pozice per-visitor, měření CTR (widget_ab_tests, widget_ab_variants, widget_ab_assigns)
+- [x] Weekly email digest pro admina - souhrn reading stats, top články, A/B test výsledky, behavior insights, AI strategická doporučení (Brevo + Telegram, pondělí 7:00)
+- [x] Vitest testy pro hreflang, widget A/B a email digest (30/30 passed)

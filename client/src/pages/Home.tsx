@@ -22,7 +22,7 @@ import HarmonyTuner from "@/components/HarmonyTuner";
 import MobileBottomNav from "@/components/MobileBottomNav";
 
 import { useEffect } from "react";
-import { setOpenGraphTags } from "@/lib/seo";
+import { setOpenGraphTags, setHreflangTags } from "@/lib/seo";
 import { setSchemaMarkup, createWebsiteSchema, createOrganizationSchema, createFAQSchema } from "@/lib/schema";
 import { faqData } from "@/data/faqData";
 
@@ -66,6 +66,8 @@ export default function Home() {
       createOrganizationSchema(),
       createFAQSchema(faqData),
     ]);
+
+    setHreflangTags("/");
   }, []);
 
   return (

@@ -11,6 +11,7 @@ import { processIncomingMessage } from "../telegram";
 import "../scheduleWeeklyReport"; // Auto-start weekly report scheduler
 import "../scheduleMetaDescEvaluation"; // Auto-start meta desc A/B test evaluation
 import "../scheduleHeadlineEvaluation"; // Auto-start headline A/B test evaluation
+import "../adminWeeklyDigest"; // Auto-start admin weekly digest scheduler
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {

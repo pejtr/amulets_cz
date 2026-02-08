@@ -14,7 +14,7 @@ import { symbolsData, stonesData, purposesData } from "@/data/guideContent";
 import { getMixedRelatedArticles } from "@/lib/relatedArticles";
 import React, { useEffect, useState, Fragment } from "react";
 import { ArrowLeft } from "lucide-react";
-import { setOpenGraphTags } from "@/lib/seo";
+import { setOpenGraphTags, setHreflangTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
 import { track } from "@/lib/tracking";
 import { useArticleTracking } from "@/hooks/useArticleTracking";
@@ -186,6 +186,8 @@ export default function GuideDetail() {
       });
 
       setSchemaMarkup([breadcrumbs, article]);
+
+      setHreflangTags(`/${type}/${slug}`);
     }
   }, [content, type, slug]);
 

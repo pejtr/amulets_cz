@@ -1352,4 +1352,38 @@ export const readingHistory = mysqlTable("reading_history", {
 export type ReadingHistory = typeof readingHistory.$inferSelect;
 export type InsertReadingHistory = typeof readingHistory.$inferInsert;
 
+// Widget Placement A/B Tests
+export const widgetAbTests = mysqlTable("widget_ab_tests", {
+  id: int("id").autoincrement().primaryKey(),
+  widgetName: varchar("widgetName", { length: 100 }).notNull(),
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export const widgetAbVariants = mysqlTable("widget_ab_variants", {
+  id: int("id").autoincrement().primaryKey(),
+  testId: int("testId").notNull().references(() => widgetAbTests.id, { onDelete: "cascade" }),
+  variantName: varchar("variantName", { length: 100 }).notNull(),
+  placement: varchar("placement", { length: 100 }).notNull(),
+  impressions: int("impressions").default(0).notNull(),
+  clicks: int("clicks").default(0).notNull(),
+  isWinner: boolean("isWinner").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export const widgetAbAssigns = mysqlTable("widget_ab_assigns", {
+  id: int("id").autoincrement().primaryKey(),
+  testId: int("testId").notNull().references(() => widgetAbTests.id, { onDelete: "cascade" }),
+  variantId: int("variantId").notNull().references(() => widgetAbVariants.id, { onDelete: "cascade" }),
+  visitorId: varchar("visitorId", { length: 100 }).notNull(),
+  clicked: boolean("clicked").default(false).notNull(),
+  articleSlug: varchar("articleSlug", { length: 255 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type WidgetAbTest = typeof widgetAbTests.$inferSelect;
+export type WidgetAbVariant = typeof widgetAbVariants.$inferSelect;
+export type WidgetAbAssign = typeof widgetAbAssigns.$inferSelect;
+
 

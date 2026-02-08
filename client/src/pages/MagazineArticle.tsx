@@ -22,7 +22,7 @@ import ArticleRating from "@/components/ArticleRating";
 import ArticleComments from "@/components/ArticleComments";
 import RecommendedArticles from "@/components/RecommendedArticles";
 import { ArrowLeft, Calendar } from "lucide-react";
-import { setOpenGraphTags } from "@/lib/seo";
+import { setOpenGraphTags, setHreflangTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema, createHowToSchema } from "@/lib/schema";
 import { MarkdownContent } from "@/lib/markdownParser";
 
@@ -134,6 +134,8 @@ export default function MagazineArticle() {
       }
 
       setSchemaMarkup(schemas);
+
+      setHreflangTags(`/magazin/${slug}`);
     }
   }, [article, slug]);
 

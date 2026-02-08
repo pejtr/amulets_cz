@@ -51,6 +51,8 @@ import { isGSCConfigured, getTopPages, getArticleCTRData, getGSCStatus } from ".
 import { runWeeklyMetaDescEvaluation, getPerformanceSnapshot } from "./scheduleMetaDescEvaluation";
 import { trackReading, getRecommendations, getReadingHistory, getReadingStats } from "./recommendations";
 import { runWeeklyHeadlineEvaluation } from "./scheduleHeadlineEvaluation";
+import { createWidgetTest, getActiveWidgetTest, getOrAssignVariant, trackWidgetClick, getWidgetTestResults, deployWidgetWinner, getAllWidgetTests } from "./widgetABTest";
+import { sendAdminWeeklyDigest } from "./adminWeeklyDigest";
 import { autoDeactivateWeakVariants } from "./abTestAutoDeactivate";
 import { autoOptimizeVariantWeights, getOptimizationStatus } from "./abTestAutoOptimize";
 import { getChatbotVariantTrends } from "./abTestTrends";
@@ -1069,9 +1071,19 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
     sendWeeklyDigest: publicProcedure
       .mutation(async ({ ctx }) => {
         if (!ctx.user || ctx.user.role !== 'admin') {
-          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin může odeslát týdenní digest' });
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin může odeslat týdenní digest' });
         }
         const result = await sendWeeklyArticleDigest();
+        return result;
+      }),
+
+    // Send admin weekly digest manually
+    sendAdminDigest: publicProcedure
+      .mutation(async ({ ctx }) => {
+        if (!ctx.user || ctx.user.role !== 'admin') {
+          throw new TRPCError({ code: 'FORBIDDEN', message: 'Pouze admin může odeslat admin digest' });
+        }
+        const result = await sendAdminWeeklyDigest();
         return result;
       }),
 
@@ -2885,6 +2897,68 @@ ${ragContext ? `${ragContext}\n\n` : ''}Odpovídej vždy v češtině, buď mil�
       .mutation(async ({ ctx }) => {
         if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
         return await runWeeklyHeadlineEvaluation();
+      }),
+
+    // Widget A/B Test procedures
+    createWidgetTest: publicProcedure
+      .input(z.object({
+        widgetName: z.string(),
+        variants: z.array(z.object({
+          variantName: z.string(),
+          placement: z.string(),
+        })),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await createWidgetTest(input);
+      }),
+
+    getActiveWidgetTest: publicProcedure
+      .input(z.object({ widgetName: z.string() }))
+      .query(async ({ input }) => {
+        return await getActiveWidgetTest(input.widgetName);
+      }),
+
+    getOrAssignWidgetVariant: publicProcedure
+      .input(z.object({
+        widgetName: z.string(),
+        visitorId: z.string(),
+        articleSlug: z.string().optional(),
+      }))
+      .query(async ({ input }) => {
+        return await getOrAssignVariant(input);
+      }),
+
+    trackWidgetClick: publicProcedure
+      .input(z.object({
+        variantId: z.number(),
+        visitorId: z.string(),
+      }))
+      .mutation(async ({ input }) => {
+        return await trackWidgetClick(input);
+      }),
+
+    getWidgetTestResults: publicProcedure
+      .input(z.object({ testId: z.number() }))
+      .query(async ({ ctx, input }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await getWidgetTestResults(input.testId);
+      }),
+
+    deployWidgetWinner: publicProcedure
+      .input(z.object({
+        testId: z.number(),
+        winnerVariantId: z.number(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await deployWidgetWinner(input.testId, input.winnerVariantId);
+      }),
+
+    getAllWidgetTests: publicProcedure
+      .query(async ({ ctx }) => {
+        if (ctx.user?.role !== 'admin') throw new TRPCError({ code: 'FORBIDDEN' });
+        return await getAllWidgetTests();
       }),
   }),
 });

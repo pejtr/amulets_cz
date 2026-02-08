@@ -6,7 +6,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import ChineseZodiacCalculator from "@/components/ChineseZodiacCalculator";
 import ChineseZodiacCompatibility from "@/components/ChineseZodiacCompatibility";
 import ChineseZodiacFAQ from "@/components/ChineseZodiacFAQ";
-import { setOpenGraphTags } from "@/lib/seo";
+import { setOpenGraphTags, setHreflangTags } from "@/lib/seo";
 import { setSchemaMarkup, createBreadcrumbSchema } from "@/lib/schema";
 
 export default function ChineseZodiac() {
@@ -34,6 +34,8 @@ export default function ChineseZodiac() {
     ]);
 
     setSchemaMarkup([breadcrumbs]);
+
+    setHreflangTags("/cinsky-horoskop");
   }, []);
 
   const chineseZodiacSigns = [

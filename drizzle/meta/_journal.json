@@ -29,6 +29,20 @@
       "when": 1770519846290,
       "tag": "0003_faithful_jack_flag",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1770589428304,
+      "tag": "0004_melodic_falcon",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1770589640247,
+      "tag": "0005_violet_human_fly",
+      "breakpoints": true
     }
   ]
 }

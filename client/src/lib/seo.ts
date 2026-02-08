@@ -59,6 +59,32 @@ export function setOpenGraphTags(data: {
   metaDescription.setAttribute("content", data.description);
 }
 
+/**
+ * Set dynamic hreflang tags for the current page.
+ * Call this in page components to update hreflang links based on current route.
+ */
+export function setHreflangTags(path: string) {
+  const baseUrl = "https://amulets.cz";
+  const languages = [
+    { lang: "cs", href: `${baseUrl}${path}` },
+    { lang: "en", href: `${baseUrl}${path}${path.includes("?") ? "&" : "?"}lang=en` },
+    { lang: "it", href: `${baseUrl}${path}${path.includes("?") ? "&" : "?"}lang=it` },
+    { lang: "x-default", href: `${baseUrl}${path}` },
+  ];
+
+  // Remove existing hreflang links
+  document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
+
+  // Add new hreflang links
+  for (const { lang, href } of languages) {
+    const link = document.createElement("link");
+    link.setAttribute("rel", "alternate");
+    link.setAttribute("hreflang", lang);
+    link.setAttribute("href", href);
+    document.head.appendChild(link);
+  }
+}
+
 function setMetaTag(property: string, content: string) {
   const isOg = property.startsWith("og:");
   const attr = isOg ? "property" : "name";
