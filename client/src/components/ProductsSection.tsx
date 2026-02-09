@@ -4,6 +4,7 @@ import { ExternalLink, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import ProductQuickView from "@/components/ProductQuickView";
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from 'react-i18next';
 
 const pyramids = [
   {
@@ -134,6 +135,7 @@ const essences = [
 export default function ProductsSection() {
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+  const { t } = useTranslation();
   const [pyramidsVisible, setPyramidsVisible] = useState(false);
   const [essencesVisible, setEssencesVisible] = useState(false);
   
@@ -195,10 +197,10 @@ export default function ProductsSection() {
             <div className="text-2xl">🛍️</div>
             <div>
               <h3 className="font-bold text-foreground mb-1">
-                Jak nakoupit?
+                {t('header.howToBuy')}
               </h3>
               <p className="text-sm text-muted-foreground">
-                Vyberte si produkt, klikněte na tlačítko <span className="font-semibold text-[#D4AF37]">"Koupit na OHORAI"</span> a budete přesměrováni na oficiální e-shop OHORAI.cz, kde dokončíte objednávku.
+                {t('header.howToBuyDesc')}
               </p>
             </div>
           </div>
@@ -208,18 +210,18 @@ export default function ProductsSection() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="text-center md:text-left">
               <h2 className="text-3xl font-bold text-foreground mb-2">
-                Orgonitové pyramidy
+                {t('products.pyramids.title')}
               </h2>
               <p className="text-muted-foreground">
-                Ručně vyráběné pyramidy s drahými krystaly a vzácnou, silnou bylinou modrý lotos
+                {t('products.pyramids.desc')}
               </p>
               <div className="text-sm mt-2">
-                <span className="text-muted-foreground">Přečtěte si: </span>
+                <span className="text-muted-foreground">{t('products.readAlso')} </span>
                 <Link 
                   href="/magazin/modry-lotos-egyptska-historie"
                   className="text-[#D4AF37] hover:underline font-semibold"
                 >
-                  Modrý lotos - Posvátná květina
+                  {t('products.pyramids.readMore')}
                 </Link>
               </div>
             </div>
@@ -228,7 +230,7 @@ export default function ProductsSection() {
               className="gap-2 self-start md:self-auto shrink-0"
               onClick={() => window.open('https://www.ohorai.cz/autorske-tvorba/', '_blank')}
             >
-              Zobrazit vše
+              {t('products.viewAll')}
               <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
@@ -254,18 +256,18 @@ export default function ProductsSection() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="text-center md:text-left">
               <h2 className="text-3xl font-bold text-foreground mb-2">
-                Aromaterapeutické esence
+                {t('products.essences.title')}
               </h2>
               <p className="text-muted-foreground max-w-3xl">
                 Ručně vyráběné vůně ze 100% esenciálních olejů nejvyšší kvality. Řada KORUNA s nejčistšími esencemi, krystaly a pravým 24k zlatem. <span className="text-[#D4AF37] font-medium">Naše ikonická esence s modrým lotosem</span> – posvátnou květinou starověkého Egypta, která byla používána v chrámových rituálech a symbolizuje duchovní probuzení a spojení s vyššími sférami.
               </p>
               <div className="text-sm mt-2">
-                <span className="text-muted-foreground">Přečtěte si: </span>
+                <span className="text-muted-foreground">{t('products.readAlso')} </span>
                 <Link 
                   href="/magazin/aromaterapie-esence"
                   className="text-[#D4AF37] hover:underline font-semibold"
                 >
-                  Aromaterapie & esence - k čemu nám slouží?
+                  {t('products.essences.readMore')}
                 </Link>
               </div>
             </div>

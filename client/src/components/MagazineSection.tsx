@@ -4,21 +4,23 @@ import { tantraArticles } from "@/data/tantraArticles";
 import { ArrowRight, Star } from "lucide-react";
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useHeadlineVariants, useHeadlineClickTracker } from "@/hooks/useHeadlineABTest";
+import { useTranslation } from 'react-i18next';
 
 // Kombinovat všechny články
 const allArticles = [...magazineArticles, ...tantraArticles];
 
-// Připnutý článek - Modrý lotos
-const featuredArticle = allArticles.find(a => a.slug === "modry-lotos-egyptska-historie");
+// Připnutý článek - 4 země, 4 kultury (nový IG post)
+const featuredArticle = allArticles.find(a => a.slug === "4-zeme-4-kultury-4-sily");
 
 // Ostatní články (bez připnutého) - zobrazit prvních 6
 const displayArticles = allArticles
-  .filter(a => a.slug !== "modry-lotos-egyptska-historie")
+  .filter(a => a.slug !== "4-zeme-4-kultury-4-sily")
   .slice(0, 6);
 
 export default function MagazineSection() {
   const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   // A/B test headline variants
   const articleSlugs = useMemo(() => allArticles.map(a => a.slug), []);
@@ -48,9 +50,9 @@ export default function MagazineSection() {
     <section id="magazin" className="py-16 md:py-24 bg-gradient-to-b from-white to-purple-50/30">
       <div className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Magazín</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('magazine.title')}</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Objevte zajímavé články o duchovnosti, léčivých rostlinách a aromaterapii
+            {t('magazine.subtitle')}
           </p>
         </div>
 
@@ -155,7 +157,7 @@ export default function MagazineSection() {
             href="/magazin"
             className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white font-semibold rounded-full hover:from-[#B8860B] hover:to-[#8B6914] transition-all duration-300 shadow-lg hover:shadow-xl"
           >
-            Zobrazit další články
+            {t('magazine.showMore')}
             <ArrowRight className="h-5 w-5" />
           </Link>
         </div>

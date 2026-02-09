@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 
 export default function PromoBanner() {
   const [isVisible, setIsVisible] = useState(true);
@@ -19,6 +20,8 @@ export default function PromoBanner() {
     };
   }, []);
 
+  const { t } = useTranslation();
+
   if (!isVisible) return null;
 
   return (
@@ -33,7 +36,7 @@ export default function PromoBanner() {
     >
       <div className="container flex items-center justify-center gap-2 relative">
         <span className="text-sm md:text-base font-semibold text-center">
-          🎁 Doprava zdarma nad 1 500 Kč
+          🎁 {t('promo.freeShipping')}
         </span>
         <button
           onClick={() => setIsVisible(false)}

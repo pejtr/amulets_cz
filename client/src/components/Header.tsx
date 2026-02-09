@@ -11,23 +11,25 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-
-const navItems = [
-  { label: "🎁 Průvodce amulety", hasDropdown: false, url: "/#pruvodce-amulety", isInternal: true, featured: true },
-  { label: "✨ Kvíz: Tvůj symbol", hasDropdown: false, url: "/kviz", isInternal: true, featured: true },
-  { label: "🐎 Čínský horoskop 2026", hasDropdown: false, url: "/cinsky-horoskop", isInternal: true, featured: true, pulse: true },
-  { label: "🌙 Lunární čtení", hasDropdown: false, url: "/moon-reading", isInternal: true, featured: true },
-  { label: "Pyramidy", hasDropdown: false, url: "https://www.ohorai.cz/autorske-tvorba/" },
-  { label: "Aromaterapie", hasDropdown: true, url: "https://www.ohorai.cz/esence/" },
-  { label: "Privěsky AMEN", hasDropdown: false, url: "/privesky-amen", isInternal: true },
-  { label: "Magazín", hasDropdown: false, url: "/magazin", isInternal: true },
-  { label: "O nás", hasDropdown: false, url: "/o-nas", isInternal: true },
-  { label: "Kontakt", hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },
-];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const navItems = [
+    { label: `🎁 ${t('nav.guides')}`, hasDropdown: false, url: "/#pruvodce-amulety", isInternal: true, featured: true },
+    { label: `✨ ${t('nav.symbol')}`, hasDropdown: false, url: "/kviz", isInternal: true, featured: true },
+    { label: `🐎 ${t('nav.horoscope')}`, hasDropdown: false, url: "/cinsky-horoskop", isInternal: true, featured: true, pulse: true },
+    { label: `🌙 ${t('nav.lunar')}`, hasDropdown: false, url: "/moon-reading", isInternal: true, featured: true },
+    { label: t('nav.pyramids'), hasDropdown: false, url: "https://www.ohorai.cz/autorske-tvorba/" },
+    { label: t('nav.aromatherapy'), hasDropdown: true, url: "https://www.ohorai.cz/esence/" },
+    { label: t('nav.prayers'), hasDropdown: false, url: "/privesky-amen", isInternal: true },
+    { label: t('nav.magazine'), hasDropdown: false, url: "/magazin", isInternal: true },
+    { label: t('nav.about'), hasDropdown: false, url: "/o-nas", isInternal: true },
+    { label: t('nav.contact'), hasDropdown: false, url: "https://www.ohorai.cz/kontakt/" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-border">
@@ -41,7 +43,6 @@ export default function Header() {
       {/* Main header */}
       <div className="container py-0">
         <div className="flex items-center justify-between gap-4">
-          {/* Logo */}
           {/* Logo + Chatbot */}
           <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
             <Link 
@@ -66,7 +67,7 @@ export default function Header() {
                 }
               }}
               className="relative p-2 md:p-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
-              title="Chatbot asistent"
+              title={t('header.chatbot')}
             >
               {/* Pulzující animace */}
               <span className="absolute inset-0 rounded-full animate-ping opacity-40 bg-pink-400" />
@@ -84,7 +85,7 @@ export default function Header() {
             <div className="relative w-full">
               <input
                 type="text"
-                placeholder="Co hledáte?"
+                placeholder={t('header.search')}
                 className="w-full px-4 py-2 pr-10 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -95,10 +96,10 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-2 text-sm">
             <User className="h-5 w-5 text-primary" />
             <div>
-              <p className="font-semibold text-primary">Potřebujete poradit?</p>
+              <p className="font-semibold text-primary">{t('header.needHelp')}</p>
               <p className="text-muted-foreground">
                 📞 776 041 740{" "}
-                <span className="text-xs">(po - pá: 9:00 - 19:00)</span>
+                <span className="text-xs">({t('footer.hours')})</span>
               </p>
             </div>
           </div>
@@ -165,7 +166,6 @@ export default function Header() {
                         window.location.href = item.url;
                       }
                     } else if ((item as any).isInternal) {
-                      // For internal routes like /kviz, let the router handle it
                       e.preventDefault();
                       window.location.href = item.url;
                     }
@@ -225,12 +225,12 @@ export default function Header() {
             {/* Mobile contact info */}
             <div className="mt-6 pt-6 border-t border-border">
               <p className="font-semibold text-primary mb-2">
-                Potřebujete poradit?
+                {t('header.needHelp')}
               </p>
               <p className="text-sm text-muted-foreground">
                 📞 776 041 740
                 <br />
-                <span className="text-xs">(po - pá: 9:00 - 19:00)</span>
+                <span className="text-xs">({t('footer.hours')})</span>
               </p>
             </div>
           </nav>

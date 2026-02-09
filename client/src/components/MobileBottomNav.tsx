@@ -1,37 +1,39 @@
 import { Home, Gift, BookOpen, Newspaper, Sparkles } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function MobileBottomNav() {
   const [location] = useLocation();
   const [showQuizMenu, setShowQuizMenu] = useState(false);
+  const { t } = useTranslation();
 
   const quizItems = [
-    { label: '🎁 Kvíz: Tvůj symbol', href: '/kviz' },
-    { label: '🐯 Čínský horoskop 2026', href: '/cinsky-horoskop-2026' },
-    { label: '🌙 Lunární čtení', href: '/lunarni-cteni' },
+    { label: `🎁 ${t('nav.symbol')}`, href: '/kviz' },
+    { label: `🐯 ${t('nav.horoscope')}`, href: '/cinsky-horoskop-2026' },
+    { label: `🌙 ${t('nav.lunar')}`, href: '/lunarni-cteni' },
   ];
 
   const navItems = [
     {
       icon: Home,
-      label: 'Domů',
+      label: t('mobileNav.home'),
       href: '/',
     },
     {
       icon: Sparkles,
-      label: 'Kvízy',
+      label: t('mobileNav.quizzes'),
       href: '#',
       hasSubmenu: true,
     },
     {
       icon: Gift,
-      label: 'Průvodce',
+      label: t('mobileNav.guide'),
       href: '/#pruvodce',
     },
     {
       icon: Newspaper,
-      label: 'Magazín',
+      label: t('mobileNav.magazine'),
       href: '/magazin',
     },
   ];

@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { X, Cookie } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Zkontrolovat, zda uživatel již souhlasil
@@ -35,11 +37,10 @@ export default function CookieConsent() {
             </div>
             <div className="flex-1">
               <h3 className="font-semibold text-foreground mb-1">
-                Používáme cookies
+                {t('cookie.title')}
               </h3>
               <p className="text-sm text-muted-foreground">
-                Tento web používá cookies pro zajištění funkčnosti Google Translate a analytiky. 
-                Kliknutím na "Přijmout" souhlasíte s používáním cookies v souladu s GDPR.
+                {t('cookie.description')}
               </p>
             </div>
           </div>
@@ -48,13 +49,13 @@ export default function CookieConsent() {
               onClick={declineCookies}
               className="flex-1 md:flex-none px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
-              Odmítnout
+              {t('cookie.reject')}
             </button>
             <button
               onClick={acceptCookies}
               className="flex-1 md:flex-none px-6 py-2 text-sm font-medium text-white bg-[#E85A9F] hover:bg-[#E85A9F]/90 rounded-md transition-colors"
             >
-              Přijmout
+              {t('cookie.accept')}
             </button>
             <button
               onClick={declineCookies}

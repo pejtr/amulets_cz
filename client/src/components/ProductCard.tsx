@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { ShoppingCart, Eye, ExternalLink, Flame, Users, Truck } from "lucide-react";
 import { track } from "@/lib/tracking";
 import StarRating from "@/components/StarRating";
+import { useTranslation } from 'react-i18next';
 
 interface ProductCardProps {
   name: string;
@@ -33,6 +34,7 @@ export default function ProductCard({
 }: ProductCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (imgRef.current?.complete) {
@@ -46,11 +48,11 @@ export default function ProductCard({
     
     // Pyramids: "Skladem" (each is unique original)
     if (name.includes('Pyramida')) {
-      return 'Skladem';
+      return t('products.inStock');
     }
     
     // Essences: "Limitovaná edice"
-    return 'Limitovaná edice';
+    return t('products.limitedEdition');
   };
   const handleClick = () => {
     // Open QuickView popup instead of direct link
@@ -118,7 +120,7 @@ export default function ProductCard({
         {!available && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
             <span className="text-white font-semibold bg-destructive px-4 py-2 rounded">
-              Vyprodáno
+              {t('products.soldOut')}
             </span>
           </div>
         )}
@@ -127,7 +129,7 @@ export default function ProductCard({
         {available && (
           <div className="absolute top-2 left-2 bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1 animate-pulse">
             <Flame className="h-3 w-3" />
-            Poslední kusy!
+            {t('products.lastPieces')}
           </div>
         )}
         
@@ -143,7 +145,7 @@ export default function ProductCard({
           <button
             onClick={handleQuickViewClick}
             className="absolute bottom-2 right-2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100"
-            aria-label="Rychlý náhled"
+            aria-label={t('products.quickView')}
           >
             <Eye className="h-5 w-5 text-[#D4AF37]" />
           </button>
@@ -182,12 +184,12 @@ export default function ProductCard({
             <div className="flex items-center justify-between text-xs text-muted-foreground pt-1">
               <div className="flex items-center gap-1 text-green-600">
                 <Users className="h-3 w-3" />
-                <span className="font-medium">500+ spokojených</span>
+                <span className="font-medium">{t('products.happyCustomers')}</span>
               </div>
               {showFreeShipping && (
                 <div className="flex items-center gap-1 text-blue-600">
                   <Truck className="h-3 w-3" />
-                  <span className="font-medium">Doprava zdarma</span>
+                  <span className="font-medium">{t('products.freeShipping')}</span>
                 </div>
               )}
             </div>
@@ -204,7 +206,7 @@ export default function ProductCard({
             onClick={handleBuyClick}
           >
             <ShoppingCart className="h-4 w-4" />
-            <span>Koupit na OHORAI</span>
+            <span>{t('products.buyOnOhorai')}</span>
             <ExternalLink className="h-3 w-3" />
           </Button>
         </div>

@@ -1,7 +1,8 @@
-import { Sparkles, Target, Gem } from "lucide-react";
+import { Target, Sparkles, Gem } from "lucide-react";
 import { Link } from "wouter";
 import { useState, useEffect, useRef } from "react";
 import LazyImage from "@/components/LazyImage";
+import { useTranslation } from 'react-i18next';
 
 const symbols = [
   // Původních 12
@@ -85,6 +86,7 @@ const purposes = [
 export default function GuideSection() {
   const [showAllSymbols, setShowAllSymbols] = useState(false);
   const [showAllStones, setShowAllStones] = useState(false);
+  const { t } = useTranslation();
   const [hasSymbolsAnimated, setHasSymbolsAnimated] = useState(false);
   const [hasStonesAnimated, setHasStonesAnimated] = useState(false);
   const symbolsRef = useRef<HTMLDivElement>(null);
@@ -180,12 +182,12 @@ export default function GuideSection() {
           <div className="inline-block">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 px-6 py-4 md:px-8 md:py-5 rounded-2xl bg-gradient-to-br from-white via-purple-50/80 to-pink-50/80 shadow-lg">
               <span className="bg-gradient-to-r from-[#2C3E50] via-[#E85A9F] to-[#9B59B6] bg-clip-text text-transparent">
-                Průvodce amulety
+                {t('guide.title')}
               </span>
             </h2>
           </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Vyberte si amulet podle symbolů, kamenů nebo účelu
+            {t('guide.subtitle')}
           </p>
         </div>
 
@@ -197,7 +199,7 @@ export default function GuideSection() {
             </div>
             <div>
               <h3 className="text-2xl font-bold text-foreground">
-                Výběr podle účelu
+                {t('guide.byPurpose')}
               </h3>
               <p className="text-sm text-muted-foreground">
                 Rychlý výběr podle účelu amuletů
@@ -227,7 +229,7 @@ export default function GuideSection() {
             </div>
             <div>
               <h3 className="text-2xl font-bold text-foreground">
-                Výběr podle symbolů
+                {t('guide.bySymbol')}
               </h3>
               <p className="text-sm text-muted-foreground">
                 Jaký je jejich význam?
@@ -266,7 +268,7 @@ export default function GuideSection() {
                 onClick={() => setShowAllSymbols(!showAllSymbols)}
                 className="px-6 py-3 bg-gradient-to-r from-[#E85A9F] to-[#9B59B6] text-white rounded-full font-medium hover:shadow-lg transition-all hover:scale-105"
               >
-                {showAllSymbols ? "Zobrazit méně" : `Zobrazit další (${symbols.length - 12})`}
+                {showAllSymbols ? t('guide.showLess') : `${t('guide.showMore')} (${symbols.length - 12})`}
               </button>
             </div>
           )}
@@ -280,7 +282,7 @@ export default function GuideSection() {
             </div>
             <div>
               <h3 className="text-2xl font-bold text-foreground">
-                Výběr podle kamenů
+                {t('guide.byStone')}
               </h3>
               <p className="text-sm text-muted-foreground">
                 Jaké jsou jejich léčivé účinky?
@@ -319,7 +321,7 @@ export default function GuideSection() {
                 onClick={() => setShowAllStones(!showAllStones)}
                 className="px-6 py-3 bg-gradient-to-r from-[#E85A9F] to-[#9B59B6] text-white rounded-full font-medium hover:shadow-lg transition-all hover:scale-105"
               >
-                {showAllStones ? "Zobrazit méně" : `Zobrazit další (${stones.length - 8})`}
+                {showAllStones ? t('guide.showLess') : `${t('guide.showMore')} (${stones.length - 8})`}
               </button>
             </div>
           )}

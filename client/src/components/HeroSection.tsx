@@ -310,13 +310,15 @@ export default function HeroSection() {
                         textShadow: '2px 2px 4px rgba(255, 255, 255, 1), -2px -2px 4px rgba(255, 255, 255, 1), 0 0 15px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.8)'
                       }}
                     >
-                      Posvátné symboly<br />a amulety
+                      {t('hero.title').split('\n').map((line, i) => (
+                        <span key={i}>{line}{i === 0 && <br />}</span>
+                      ))}
                     </h1>
                     <p className="text-sm md:text-lg lg:text-xl text-[#2C3E50] font-semibold animate-fade-in-up animation-delay-200"
                        style={{
                          textShadow: '1px 1px 3px rgba(255, 255, 255, 1), -1px -1px 3px rgba(255, 255, 255, 1), 0 0 10px rgba(255, 255, 255, 0.9)'
                        }}>
-                      Objevte sílu drahých kamenů a talismanů
+                      {t('hero.subtitle')}
                     </p>
                   </div>
                 </div>
@@ -335,7 +337,7 @@ export default function HeroSection() {
                     }}
                   >
                     <Eye className="w-5 h-5" />
-                    Zobrazit produkty
+                    {t('hero.cta.viewProducts')}
                   </Button>
                   <Button
                     size="lg"
@@ -346,7 +348,7 @@ export default function HeroSection() {
                       window.open('https://www.ohorai.cz?utm_source=amulets&utm_medium=hero_cta&utm_campaign=cross_promotion&utm_content=desktop', '_blank');
                     }}
                   >
-                    <span className="text-black group-hover:text-white transition-colors duration-300">Přejít na</span>
+                    <span className="text-black group-hover:text-white transition-colors duration-300">{t('hero.cta.visitOhorai')}</span>
                     <img src="/ohorai-logo.webp" alt="OHORAI" className="h-10 sm:h-12 w-auto group-hover:brightness-0 group-hover:invert transition-all duration-300" />
                   </Button>
                 </div>
@@ -361,7 +363,7 @@ export default function HeroSection() {
                       setLocation('/kviz');
                     }}
                   >
-                    <span className="relative z-10"><span className="text-4xl mr-2">☥</span>Zjisti svůj amulet</span>
+                    <span className="relative z-10"><span className="text-4xl mr-2">☥</span>{t('hero.cta.findAmulet')}</span>
                     <div className="absolute right-6 top-1/2 -translate-y-1/2 text-2xl group-hover:translate-x-1 transition-transform">
                       →
                     </div>
@@ -377,8 +379,8 @@ export default function HeroSection() {
                       if (chatButton) chatButton.click();
                     }}
                   >
-                    <span className="text-sm sm:text-base">💬 POPOVÍDAT SI</span>
-                    <span className="text-[9px] sm:text-[10px] text-white/80">Online 8:00-22:00</span>
+                    <span className="text-sm sm:text-base">💬 {t('hero.cta.chat')}</span>
+                    <span className="text-[9px] sm:text-[10px] text-white/80">{t('hero.cta.chatOnline')}</span>
                   </Button>
                 </div>
 
@@ -394,7 +396,7 @@ export default function HeroSection() {
                     }}>Natálie Ohorai</p>
                     <p className="italic text-[#2C3E50] font-semibold text-sm md:text-base" style={{
                       textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.7)'
-                    }}>Zakladatelka Amulets.cz</p>
+                    }}>{t('hero.founder')}</p>
                   </div>
                 </div>
               </div>

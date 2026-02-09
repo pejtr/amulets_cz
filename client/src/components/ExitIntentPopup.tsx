@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
+import { useTranslation } from 'react-i18next';
 
 export default function ExitIntentPopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,14 +12,15 @@ export default function ExitIntentPopup() {
   const [showCode, setShowCode] = useState(false);
   const [email, setEmail] = useState("");
   const [ctaVariant, setCtaVariant] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const subscribeDiscount = trpc.email.subscribeDiscount.useMutation({
     onSuccess: () => {
       setShowCode(true);
-      toast.success("Email odeslán! Zkontrolujte svou schránku.");
+      toast.success(t('exitPopup.emailSent'));
     },
     onError: (error) => {
-      toast.error("Nepodařilo se odeslat email. Zkuste to prosím znovu.");
+      toast.error(t('exitPopup.emailError'));
       console.error("[ExitIntentPopup] Error:", error);
     },
   });
@@ -93,7 +95,7 @@ export default function ExitIntentPopup() {
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText("OHORAI11");
-    toast.success("Kód zkopírován!");
+    toast.success(t('exitPopup.codeCopied'));
   };
 
   if (!isVisible) return null;
@@ -130,7 +132,7 @@ export default function ExitIntentPopup() {
 
           {/* Heading */}
           <h2 className="text-3xl font-bold text-center mb-2 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-            {ctaVariant?.includes('ebook') ? '📖 Ještě jste si nestáhli e-book?' : 'Exkluzivní sleva na amulety 🎁'}
+            {ctaVariant?.includes('ebook') ? t('exitPopup.ebookTitle') : t('exitPopup.discountTitle')}
           </h2>
 
           {!showCode ? (
@@ -138,8 +140,8 @@ export default function ExitIntentPopup() {
               {/* Email capture form */}
               <p className="text-center text-gray-600 mb-6">
                 {ctaVariant?.includes('ebook') 
-                  ? (<>Stáhněte si <span className="font-bold text-purple-600">"7 Kroků k Rovnováze"</span> zdarma</>) 
-                  : (<>Získejte <span className="font-bold text-purple-600">11% slevu</span> na celý sortiment</>)
+                  ? (<>{t('exitPopup.ebookDesc')}</>) 
+                  : (<>{t('exitPopup.discountDesc')}</>)
                 }
               </p>
 
@@ -148,7 +150,7 @@ export default function ExitIntentPopup() {
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                   <Input
                     type="email"
-                    placeholder="Váš email"
+                    placeholder={t('exitPopup.emailPlaceholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -162,7 +164,7 @@ export default function ExitIntentPopup() {
                   disabled={subscribeDiscount.isPending}
                   className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all"
                 >
-                  {subscribeDiscount.isPending ? "Odesílám..." : "Zobrazit slevový kód"}
+                  {subscribeDiscount.isPending ? t('exitPopup.sending') : t('exitPopup.showCode')}
                 </Button>
               </form>
 
@@ -184,7 +186,7 @@ export default function ExitIntentPopup() {
 
               {/* Privacy note */}
               <p className="text-xs text-center text-gray-400 mt-4">
-                Váš email nebudeme sdílet s třetími stranami
+                {t('exitPopup.privacyNote')}
               </p>
             </>
           ) : (
@@ -234,12 +236,12 @@ export default function ExitIntentPopup() {
                 onClick={handleClaim}
                 className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all"
               >
-                Uplatnit slevu na Ohorai.cz
+                {t('exitPopup.claimDiscount')}
               </Button>
 
               {/* Small print */}
               <p className="text-xs text-center text-gray-400 mt-4">
-                Kód se automaticky aplikuje při přesměrování
+                {t('exitPopup.autoApply')}
               </p>
             </>
           )}

@@ -1,5 +1,6 @@
 import { Star, Quote } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import { useTranslation } from 'react-i18next';
 
 const testimonials = [
   {
@@ -68,12 +69,14 @@ const testimonials = [
 ];
 
 export default function TestimonialsSection() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-white to-pink-50/30">
       <div className="container">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-[#2C3E50] mb-4">
-            Co říkají zákazníci a klienti
+            {t('testimonials.title')}
           </h2>
           <p className="text-lg text-[#2C3E50]/70 max-w-2xl mx-auto">
             Recenze spokojených zákazníků z Heureky a reference od koučovacích klientů

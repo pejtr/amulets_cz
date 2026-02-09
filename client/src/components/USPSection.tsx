@@ -1,47 +1,56 @@
 import { Truck, Sparkles, Hand, Gift } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
 
-const uspItems = [
+interface USPItem {
+  icon: typeof Truck;
+  titleKey: string;
+  descKey: string;
+  showOnMobile: boolean;
+}
+
+const uspItemDefs: USPItem[] = [
   {
     icon: Truck,
-    title: "Doprava zdarma od 1 500 Kč",
-    description: "Nakupte výhodně a ušetřete na poštovném",
-    showOnMobile: false, // Hidden on mobile - already shown in hero image
+    titleKey: "usp.delivery.title",
+    descKey: "usp.delivery.desc",
+    showOnMobile: false,
   },
   {
     icon: Sparkles,
-    title: "Úpravy na míru",
-    description: "Možnost zakázkové tvorby",
+    titleKey: "usp.handmade.title",
+    descKey: "usp.handmade.desc",
     showOnMobile: true,
   },
   {
     icon: Hand,
-    title: "Ruční výroba",
-    description: "Šperky a pyramidy pro vás s láskou vyrábíme",
+    titleKey: "usp.handcraft.title",
+    descKey: "usp.handcraft.desc",
     showOnMobile: true,
   },
   {
     icon: Gift,
-    title: "Dárek pro každého",
-    description: "Přibalíme malé překvapení pro hezčí den",
+    titleKey: "usp.gift.title",
+    descKey: "usp.gift.desc",
     showOnMobile: true,
   },
 ];
 
 // Mobile order: Dárek pro každého first, then Úpravy na míru, then Ruční výroba
-const mobileOrder = [3, 1, 2]; // indices: Gift, Sparkles, Mail
+const mobileOrder = [3, 1, 2];
 
 // Desktop animated item component
-function DesktopUSPItem({ item, index }: { item: typeof uspItems[0]; index: number }) {
+function DesktopUSPItem({ item, index }: { item: USPItem; index: number }) {
   const [isAnimated, setIsAnimated] = useState(false);
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.3 });
+  const { t } = useTranslation();
   
   useEffect(() => {
     if (isVisible && !isAnimated) {
       const timer = setTimeout(() => {
         setIsAnimated(true);
-      }, index * 150); // Staggered delay
+      }, index * 150);
       return () => clearTimeout(timer);
     }
   }, [isVisible, isAnimated, index]);
@@ -70,10 +79,10 @@ function DesktopUSPItem({ item, index }: { item: typeof uspItems[0]; index: numb
       </div>
       <div className="flex-1">
         <h3 className="font-bold text-foreground text-sm mb-1 leading-tight">
-          {item.title}
+          {t(item.titleKey)}
         </h3>
         <p className="text-xs text-muted-foreground leading-relaxed">
-          {item.description}
+          {t(item.descKey)}
         </p>
       </div>
     </div>
@@ -81,9 +90,11 @@ function DesktopUSPItem({ item, index }: { item: typeof uspItems[0]; index: numb
 }
 
 export default function USPSection() {
+  const { t } = useTranslation();
+  
   // Filter items for mobile (exclude those with showOnMobile: false) and reorder
   const mobileItems = mobileOrder
-    .map(i => uspItems[i])
+    .map(i => uspItemDefs[i])
     .filter(item => item.showOnMobile !== false);
 
   return (
@@ -91,7 +102,7 @@ export default function USPSection() {
       <div className="container">
         {/* Desktop - 4 columns horizontal with zoom-in animation */}
         <div className="hidden md:grid md:grid-cols-4 gap-8">
-          {uspItems.map((item, index) => (
+          {uspItemDefs.map((item, index) => (
             <DesktopUSPItem key={index} item={item} index={index} />
           ))}
         </div>
@@ -119,10 +130,10 @@ export default function USPSection() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-foreground text-base mb-1">
-                    {item.title}
+                    {t(item.titleKey)}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {item.description}
+                    {t(item.descKey)}
                   </p>
                 </div>
               </div>

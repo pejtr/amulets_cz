@@ -1,7 +1,10 @@
 import { Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
 import OhoraiBanner from "@/components/OhoraiBanner";
+import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <>
       <OhoraiBanner />
@@ -11,10 +14,10 @@ export default function Footer() {
           {/* Contact */}
           <div className="space-y-4">
             <h3 className="font-bold text-foreground text-lg">
-              Potřebujete se zeptat na něco konkrétního?
+              {t('footer.contactTitle')}
             </h3>
             <p className="text-sm text-muted-foreground">
-              Zavolej, nebo napiš na email.
+              {t('footer.contactDesc')}
             </p>
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm">
@@ -22,14 +25,14 @@ export default function Footer() {
                 <span className="font-semibold">776 041 740</span>
               </div>
               <p className="text-xs text-muted-foreground ml-6">
-                Po-Pá: 9:00 - 19:00
+                {t('footer.hours')}
               </p>
               <div className="flex items-center gap-2 text-sm">
                 <Mail className="h-4 w-4 text-primary" />
                 <span>info@amulets.cz</span>
               </div>
               <p className="text-xs text-muted-foreground ml-6">
-                napsat nám můžeš kdykoliv
+                {t('footer.emailAnytime')}
               </p>
             </div>
           </div>
@@ -37,32 +40,32 @@ export default function Footer() {
           {/* Links */}
           <div className="space-y-4">
             <h3 className="font-bold text-foreground text-lg">
-              Vše o nákupu
+              {t('footer.shopping')}
             </h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <a href="/o-nas" className="hover:text-primary transition-colors">
-                  O Natálii
+                  {t('footer.aboutNatalie')}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
-                  Doprava a platba
+                  {t('footer.shipping')}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
-                  Obchodní podmínky
+                  {t('footer.terms')}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
-                  Podmínky ochrany osobních údajů
+                  {t('footer.privacy')}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
-                  Vrácení zboží
+                  {t('footer.returns')}
                 </a>
               </li>
             </ul>
@@ -71,7 +74,7 @@ export default function Footer() {
           {/* Social */}
           <div className="space-y-4">
             <h3 className="font-bold text-foreground text-lg">
-              Sledujte nás
+              {t('footer.followUs')}
             </h3>
             <div className="flex gap-4">
               <a
@@ -94,10 +97,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Partners - všechny v jednom řádku */}
+        {/* Partners */}
         <div className="mt-8 pt-8 border-t border-border">
           <div className="text-center mb-6">
-            <h4 className="text-base md:text-lg font-semibold text-foreground">✨ Spřízněné projekty ✨</h4>
+            <h4 className="text-base md:text-lg font-semibold text-foreground">✨ {t('footer.partners')} ✨</h4>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-9 gap-3 max-w-7xl mx-auto">
             {/* Dobrá čajovna Praha */}
@@ -212,7 +215,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="mt-6 pt-6 border-t border-border text-center text-sm text-muted-foreground">
-          <p>2020 - 2025 © Amulets.cz, všechna práva vyhrazena</p>
+          <p>{t('footer.copyright')}</p>
         </div>
       </div>
     </footer>

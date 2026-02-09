@@ -2763,3 +2763,16 @@
 - [x] Admin A/B Test Dashboard - vizuální panel s CTR grafy trendů a manuálním nasazením vítěze (/admin/widget-ab)
 - [x] Rozšíření admin weekly digestu o sekci s nejčastějšími dotazy z chatbotu (top témata, top otázky, content gaps)
 - [x] Vitest testy pro useWidgetABTest hook, dashboard a chatbot digest (25/25 passed)
+
+## Integrace Instagram příspěvku @ohorai.cz - 4 kultury, 4 síly (Feb 9, 2026)
+- [x] Nahrát IG obrázek (4 kultury) na S3 (CDN URL)
+- [x] Vytvořit nový magazínový článek "4 země, 4 kultury, 4 síly - Jedno spojení"
+- [x] Propojit článek se stávajícími symboly (7 interních linků: půlměsíc, slunce, strom života, skarabeus, ankh, lotosová mandala, hamsa)
+- [x] Přidat promování článku na homepage (featured article v magazínu)
+- [x] Přidat Instagram odkaz do článku (@ohorai.cz)
+- [x] Aktualizovat sitemap.xml
+- [x] Vitest testy pro nový článek a i18n překlady (15/15 passed)
+
+## Oprava English verze webu (Feb 9, 2026)
+- [x] Diagnostikovat proč se English překlad nepřepíná - useTranslation chybělo v 16+ komponentách
+- [x] Opravit přepínání jazyků na webu (přidáno useTranslation do Header, HeroSection, USPSection, Footer, FAQSection, CookieConsent, MobileBottomNav, PromoBanner, TestimonialsSection, GuideSection, ProductsSection, ProductCard, MagazineSection, GuideCTA, QuizCTA, ExitIntentPopup)
