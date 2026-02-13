@@ -1,0 +1,1201 @@
+import { eq, and, gte, lte, lt, like, sql, desc, sum, avg, count, inArray } from "drizzle-orm";
+import { drizzle } from "drizzle-orm/mysql2";
+import { InsertUser, users, chatbotVariants, chatbotSessions, chatbotMessages, chatbotEvents, chatbotDailyStats, chatbotConversions, chatbotTickets, chatbotTicketResponses, topicCategories, detectedTopics, demandReports, contentSuggestions, ohoraiStats, ohoraiSyncLog, type InsertOhoraiStats, type InsertOhoraiSyncLog } from "../drizzle/schema";
+import { ENV } from './_core/env';
+
+let _db: ReturnType<typeof drizzle> | null = null;
+
+// Lazily create the drizzle instance so local tooling can run without a DB.
+export async function getDb() {
+  if (!_db && process.env.DATABASE_URL) {
+    try {
+      _db = drizzle(process.env.DATABASE_URL);
+    } catch (error) {
+      console.warn("[Database] Failed to connect:", error);
+      _db = null;
+    }
+  }
+  return _db;
+}
+
+export async function upsertUser(user: InsertUser): Promise<void> {
+  if (!user.openId) {
+    throw new Error("User openId is required for upsert");
+  }
+
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot upsert user: database not available");
+    return;
+  }
+
+  try {
+    const values: InsertUser = {
+      openId: user.openId,
+    };
+    const updateSet: Record<string, unknown> = {};
+
+    const textFields = ["name", "email", "loginMethod"] as const;
+    type TextField = (typeof textFields)[number];
+
+    const assignNullable = (field: TextField) => {
+      const value = user[field];
+      if (value === undefined) return;
+      const normalized = value ?? null;
+      values[field] = normalized;
+      updateSet[field] = normalized;
+    };
+
+    textFields.forEach(assignNullable);
+
+    if (user.lastSignedIn !== undefined) {
+      values.lastSignedIn = user.lastSignedIn;
+      updateSet.lastSignedIn = user.lastSignedIn;
+    }
+    if (user.role !== undefined) {
+      values.role = user.role;
+      updateSet.role = user.role;
+    } else if (user.openId === ENV.ownerOpenId) {
+      values.role = 'admin';
+      updateSet.role = 'admin';
+    }
+
+    if (!values.lastSignedIn) {
+      values.lastSignedIn = new Date();
+    }
+
+    if (Object.keys(updateSet).length === 0) {
+      updateSet.lastSignedIn = new Date();
+    }
+
+    await db.insert(users).values(values).onDuplicateKeyUpdate({
+      set: updateSet,
+    });
+  } catch (error) {
+    console.error("[Database] Failed to upsert user:", error);
+    throw error;
+  }
+}
+
+export async function getUserByOpenId(openId: string) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get user: database not available");
+    return undefined;
+  }
+
+  const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
+
+  return result.length > 0 ? result[0] : undefined;
+}
+
+// TODO: add feature queries here as your schema grows.
+
+// ============================================
+// CHATBOT A/B TESTING HELPERS
+// ============================================
+
+// Get random variant based on weights
+export async function getRandomChatbotVariant() {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const variants = await db.select().from(chatbotVariants).where(eq(chatbotVariants.isActive, true));
+  
+  if (variants.length === 0) return null;
+  
+  // Calculate total weight
+  const totalWeight = variants.reduce((s, v) => s + v.weight, 0);
+  
+  // Random selection based on weight
+  let random = Math.random() * totalWeight;
+  for (const variant of variants) {
+    random -= variant.weight;
+    if (random <= 0) return variant;
+  }
+  
+  return variants[0];
+}
+
+// Get variant by key
+export async function getChatbotVariantByKey(variantKey: string) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [variant] = await db.select().from(chatbotVariants).where(eq(chatbotVariants.variantKey, variantKey));
+  return variant;
+}
+
+// Get all variants
+export async function getAllChatbotVariants() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select().from(chatbotVariants).orderBy(chatbotVariants.id);
+}
+
+// Create new session
+export async function createChatbotSession(data: {
+  sessionId: string;
+  visitorId: string;
+  variantId: number;
+  userId?: number;
+  sourcePage?: string;
+  referrer?: string;
+  device?: string;
+  browser?: string;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db.insert(chatbotSessions).values(data);
+  
+  // Return the numeric ID of the created session
+  if (result && result.insertId) {
+    return { id: Number(result.insertId), ...data };
+  }
+  
+  return result;
+}
+
+// Update session
+export async function updateChatbotSession(sessionId: string, data: Partial<{
+  endedAt: Date;
+  duration: number;
+  messageCount: number;
+  userMessageCount: number;
+  botMessageCount: number;
+  categoryClicks: number;
+  questionClicks: number;
+  converted: boolean;
+  conversionType: string;
+  conversionValue: string;
+  overallSentiment: string;
+  satisfactionScore: number;
+  status: string;
+}>) {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db.update(chatbotSessions).set(data).where(eq(chatbotSessions.sessionId, sessionId));
+}
+
+// Add message to session
+export async function addChatbotMessage(data: {
+  sessionId: number;
+  variantId: number;
+  role: string;
+  content: string;
+  responseTime?: number;
+  tokenCount?: number;
+  clickedCategory?: string;
+  clickedQuestion?: string;
+  sentiment?: string;
+  intent?: string;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db.insert(chatbotMessages).values(data);
+  return result;
+}
+
+// Get messages by session ID
+export async function getChatbotMessagesBySession(sessionId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select()
+    .from(chatbotMessages)
+    .where(eq(chatbotMessages.sessionId, sessionId))
+    .orderBy(chatbotMessages.createdAt);
+}
+
+// Log event
+export async function logChatbotEvent(data: {
+  sessionId?: number;
+  variantId?: number;
+  visitorId: string;
+  eventType: string;
+  eventData?: string;
+  page?: string;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db.insert(chatbotEvents).values(data);
+  return result;
+}
+
+// Get session by sessionId
+export async function getChatbotSessionBySessionId(sessionId: string) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [session] = await db.select().from(chatbotSessions).where(eq(chatbotSessions.sessionId, sessionId));
+  return session;
+}
+
+// Get variant stats for date range
+export async function getChatbotVariantStats(variantId: number, startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const stats = await db.select({
+    totalSessions: count(chatbotSessions.id),
+    totalMessages: sum(chatbotSessions.messageCount),
+    avgDuration: avg(chatbotSessions.duration),
+    totalConversions: sql<number>`SUM(CASE WHEN ${chatbotSessions.converted} = 1 THEN 1 ELSE 0 END)`,
+    conversionRate: sql<number>`SUM(CASE WHEN ${chatbotSessions.converted} = 1 THEN 1 ELSE 0 END) / COUNT(*) * 100`,
+  })
+  .from(chatbotSessions)
+  .where(and(
+    eq(chatbotSessions.variantId, variantId),
+    gte(chatbotSessions.startedAt, startDate),
+    lte(chatbotSessions.startedAt, endDate)
+  ));
+  
+  return stats[0];
+}
+
+// Get all variants comparison stats
+export async function getChatbotComparisonStats(startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  // Extend endDate to include the entire day (add 1 day)
+  const endDateExtended = new Date(endDate);
+  endDateExtended.setDate(endDateExtended.getDate() + 1);
+  
+  const stats = await db.select({
+    variantId: chatbotSessions.variantId,
+    variantKey: chatbotVariants.variantKey,
+    variantName: chatbotVariants.name,
+    totalSessions: count(chatbotSessions.id),
+    totalMessages: sum(chatbotSessions.messageCount),
+    avgDuration: avg(chatbotSessions.duration),
+    avgMessages: avg(chatbotSessions.messageCount),
+    totalConversions: sql<number>`SUM(CASE WHEN ${chatbotSessions.converted} = 1 THEN 1 ELSE 0 END)`,
+    conversionRate: sql<number>`ROUND(SUM(CASE WHEN ${chatbotSessions.converted} = 1 THEN 1 ELSE 0 END) / COUNT(*) * 100, 2)`,
+    totalConversionValue: sum(chatbotSessions.conversionValue),
+  })
+  .from(chatbotSessions)
+  .innerJoin(chatbotVariants, eq(chatbotSessions.variantId, chatbotVariants.id))
+  .where(and(
+    gte(chatbotSessions.startedAt, startDate),
+    lte(chatbotSessions.startedAt, endDateExtended)
+  ))
+  .groupBy(chatbotSessions.variantId, chatbotVariants.variantKey, chatbotVariants.name);
+  
+  return stats;
+}
+
+// Get daily stats for a variant
+export async function getChatbotDailyStats(variantId: number, days: number = 30) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() - days);
+  
+  return db.select()
+    .from(chatbotDailyStats)
+    .where(and(
+      eq(chatbotDailyStats.variantId, variantId),
+      gte(chatbotDailyStats.date, startDate)
+    ))
+    .orderBy(desc(chatbotDailyStats.date));
+}
+
+
+// ============================================
+// CHATBOT CONVERSION TRACKING HELPERS
+// ============================================
+
+// Track a conversion event
+export async function trackChatbotConversion(data: {
+  sessionId?: number;
+  variantId: number;
+  visitorId: string;
+  conversionType: 'email_capture' | 'whatsapp_click' | 'affiliate_click' | 'purchase' | 'newsletter';
+  conversionSubtype?: string;
+  conversionValue?: string;
+  currency?: string;
+  productId?: string;
+  productName?: string;
+  affiliatePartner?: string;
+  referralUrl?: string;
+  metadata?: Record<string, unknown>;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db.insert(chatbotConversions).values({
+    sessionId: data.sessionId,
+    variantId: data.variantId,
+    visitorId: data.visitorId,
+    conversionType: data.conversionType,
+    conversionSubtype: data.conversionSubtype,
+    conversionValue: data.conversionValue,
+    currency: data.currency || 'CZK',
+    productId: data.productId,
+    productName: data.productName,
+    affiliatePartner: data.affiliatePartner,
+    referralUrl: data.referralUrl,
+    metadata: data.metadata ? JSON.stringify(data.metadata) : undefined,
+  });
+  
+  // Also update session converted flag
+  if (data.sessionId) {
+    const session = await db.select().from(chatbotSessions).where(eq(chatbotSessions.id, data.sessionId)).limit(1);
+    if (session.length > 0) {
+      await db.update(chatbotSessions).set({
+        converted: true,
+        conversionType: data.conversionType,
+        conversionValue: data.conversionValue,
+      }).where(eq(chatbotSessions.id, data.sessionId));
+    }
+  }
+  
+  return result;
+}
+
+// Get conversion stats by variant
+export async function getChatbotConversionStats(startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  // Extend endDate to include the entire day (add 1 day)
+  const endDateExtended = new Date(endDate);
+  endDateExtended.setDate(endDateExtended.getDate() + 1);
+  
+  const stats = await db.select({
+    variantId: chatbotConversions.variantId,
+    variantKey: chatbotVariants.variantKey,
+    variantName: chatbotVariants.name,
+    conversionType: chatbotConversions.conversionType,
+    totalConversions: count(chatbotConversions.id),
+    totalValue: sum(chatbotConversions.conversionValue),
+  })
+  .from(chatbotConversions)
+  .innerJoin(chatbotVariants, eq(chatbotConversions.variantId, chatbotVariants.id))
+  .where(and(
+    gte(chatbotConversions.createdAt, startDate),
+    lte(chatbotConversions.createdAt, endDateExtended)
+  ))
+  .groupBy(chatbotConversions.variantId, chatbotVariants.variantKey, chatbotVariants.name, chatbotConversions.conversionType);
+  
+  return stats;
+}
+
+// Get affiliate click stats
+export async function getChatbotAffiliateStats(startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  // Extend endDate to include the entire day (add 1 day)
+  const endDateExtended = new Date(endDate);
+  endDateExtended.setDate(endDateExtended.getDate() + 1);
+  
+  const stats = await db.select({
+    variantId: chatbotConversions.variantId,
+    variantKey: chatbotVariants.variantKey,
+    variantName: chatbotVariants.name,
+    affiliatePartner: chatbotConversions.affiliatePartner,
+    totalClicks: count(chatbotConversions.id),
+    totalValue: sum(chatbotConversions.conversionValue),
+  })
+  .from(chatbotConversions)
+  .innerJoin(chatbotVariants, eq(chatbotConversions.variantId, chatbotVariants.id))
+  .where(and(
+    eq(chatbotConversions.conversionType, 'affiliate_click'),
+    gte(chatbotConversions.createdAt, startDate),
+    lte(chatbotConversions.createdAt, endDateExtended)
+  ))
+  .groupBy(chatbotConversions.variantId, chatbotVariants.variantKey, chatbotVariants.name, chatbotConversions.affiliatePartner);
+  
+  return stats;
+}
+
+// Get all conversions for a session
+export async function getChatbotSessionConversions(sessionId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select()
+    .from(chatbotConversions)
+    .where(eq(chatbotConversions.sessionId, sessionId))
+    .orderBy(desc(chatbotConversions.createdAt));
+}
+
+// Get conversion funnel data
+export async function getChatbotConversionFunnel(variantId: number, startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  // Extend endDate to include the entire day (add 1 day)
+  const endDateExtended = new Date(endDate);
+  endDateExtended.setDate(endDateExtended.getDate() + 1);
+  
+  // Get total sessions
+  const [sessionsResult] = await db.select({
+    total: count(chatbotSessions.id),
+  })
+  .from(chatbotSessions)
+  .where(and(
+    eq(chatbotSessions.variantId, variantId),
+    gte(chatbotSessions.startedAt, startDate),
+    lte(chatbotSessions.startedAt, endDateExtended)
+  ));
+  
+  // Get sessions with messages
+  const [engagedResult] = await db.select({
+    total: count(chatbotSessions.id),
+  })
+  .from(chatbotSessions)
+  .where(and(
+    eq(chatbotSessions.variantId, variantId),
+    gte(chatbotSessions.startedAt, startDate),
+    lte(chatbotSessions.startedAt, endDateExtended),
+    gte(chatbotSessions.userMessageCount, 1)
+  ));
+  
+  // Get conversions by type
+  const conversionsByType = await db.select({
+    conversionType: chatbotConversions.conversionType,
+    total: count(chatbotConversions.id),
+  })
+  .from(chatbotConversions)
+  .where(and(
+    eq(chatbotConversions.variantId, variantId),
+    gte(chatbotConversions.createdAt, startDate),
+    lte(chatbotConversions.createdAt, endDateExtended)
+  ))
+  .groupBy(chatbotConversions.conversionType);
+  
+  return {
+    totalSessions: sessionsResult?.total || 0,
+    engagedSessions: engagedResult?.total || 0,
+    conversions: conversionsByType,
+  };
+}
+
+
+// ============================================
+// OFFLINE TICKET SYSTEM HELPERS
+// ============================================
+
+// Create a new ticket
+export async function createChatbotTicket(data: {
+  visitorId: string;
+  variantId?: number;
+  sessionId?: number;
+  name: string;
+  email: string;
+  phone?: string;
+  message: string;
+  conversationHistory?: string;
+  sourcePage?: string;
+  device?: string;
+  browser?: string;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db.insert(chatbotTickets).values({
+    visitorId: data.visitorId,
+    variantId: data.variantId,
+    sessionId: data.sessionId,
+    name: data.name,
+    email: data.email,
+    phone: data.phone,
+    message: data.message,
+    conversationHistory: data.conversationHistory,
+    sourcePage: data.sourcePage,
+    device: data.device,
+    browser: data.browser,
+    status: 'pending',
+    priority: 'normal',
+  });
+  
+  return result;
+}
+
+// Get ticket by ID
+export async function getChatbotTicketById(ticketId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [ticket] = await db.select().from(chatbotTickets).where(eq(chatbotTickets.id, ticketId));
+  return ticket;
+}
+
+// Get pending tickets
+export async function getPendingChatbotTickets() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select()
+    .from(chatbotTickets)
+    .where(eq(chatbotTickets.status, 'pending'))
+    .orderBy(desc(chatbotTickets.createdAt));
+}
+
+// Update ticket status
+export async function updateChatbotTicketStatus(ticketId: number, status: 'pending' | 'processing' | 'answered' | 'closed') {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db.update(chatbotTickets)
+    .set({ status })
+    .where(eq(chatbotTickets.id, ticketId));
+  
+  return result;
+}
+
+// Add response to ticket
+export async function addChatbotTicketResponse(data: {
+  ticketId: number;
+  responseType: 'email' | 'chat' | 'internal_note';
+  content: string;
+  senderType: 'ai' | 'operator' | 'customer';
+  senderName?: string;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db.insert(chatbotTicketResponses).values({
+    ticketId: data.ticketId,
+    responseType: data.responseType,
+    content: data.content,
+    senderType: data.senderType,
+    senderName: data.senderName,
+    emailSent: false,
+  });
+  
+  return result;
+}
+
+// Mark ticket as answered with response
+export async function answerChatbotTicket(ticketId: number, response: string, respondedBy: string = 'ai') {
+  const db = await getDb();
+  if (!db) return null;
+  
+  // Update ticket
+  await db.update(chatbotTickets)
+    .set({
+      status: 'answered',
+      response,
+      respondedAt: new Date(),
+      respondedBy,
+    })
+    .where(eq(chatbotTickets.id, ticketId));
+  
+  // Add response record
+  await addChatbotTicketResponse({
+    ticketId,
+    responseType: 'email',
+    content: response,
+    senderType: respondedBy === 'ai' ? 'ai' : 'operator',
+    senderName: respondedBy,
+  });
+  
+  return true;
+}
+
+// Get ticket responses
+export async function getChatbotTicketResponses(ticketId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select()
+    .from(chatbotTicketResponses)
+    .where(eq(chatbotTicketResponses.ticketId, ticketId))
+    .orderBy(chatbotTicketResponses.createdAt);
+}
+
+// Get tickets by visitor
+export async function getChatbotTicketsByVisitor(visitorId: string) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return db.select()
+    .from(chatbotTickets)
+    .where(eq(chatbotTickets.visitorId, visitorId))
+    .orderBy(desc(chatbotTickets.createdAt));
+}
+
+// Get all tickets with filters (admin)
+export async function getAllChatbotTickets(status: 'pending' | 'answered' | 'all' = 'all', limit: number = 50, offset: number = 0) {
+  const db = await getDb();
+  if (!db) return { tickets: [], total: 0 };
+  
+  let query = db.select().from(chatbotTickets);
+  
+  if (status !== 'all') {
+    query = query.where(eq(chatbotTickets.status, status)) as typeof query;
+  }
+  
+  const tickets = await query
+    .orderBy(desc(chatbotTickets.createdAt))
+    .limit(limit)
+    .offset(offset);
+  
+  // Get total count
+  const countQuery = status !== 'all' 
+    ? db.select().from(chatbotTickets).where(eq(chatbotTickets.status, status))
+    : db.select().from(chatbotTickets);
+  const allTickets = await countQuery;
+  
+  return { tickets, total: allTickets.length };
+}
+
+// Mark email as sent
+export async function markTicketEmailSent(responseId: number) {
+  const db = await getDb();
+  if (!db) return null;
+  
+  const [result] = await db.update(chatbotTicketResponses)
+    .set({
+      emailSent: true,
+      emailSentAt: new Date(),
+    })
+    .where(eq(chatbotTicketResponses.id, responseId));
+  
+  return result;
+}
+
+// ============================================
+// OHORAI SYNCHRONIZACE - Propojené nádoby
+// ============================================
+
+/**
+ * Uložit statistiky z OHORAI
+ */
+export async function saveOhoraiStats(stats: {
+  date: Date;
+  hour: number;
+  totalConversations: number;
+  totalMessages: number;
+  uniqueVisitors: number;
+  emailCaptures?: number;
+  affiliateClicks?: number;
+  productViews?: number;
+  avgSessionDuration?: number;
+  avgMessagesPerSession?: number;
+  topTopics?: string[];
+  sourceVersion?: string;
+}) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot save OHORAI stats: database not available");
+    return null;
+  }
+
+  try {
+    const [result] = await db.insert(ohoraiStats).values({
+      date: stats.date,
+      hour: stats.hour,
+      totalConversations: stats.totalConversations,
+      totalMessages: stats.totalMessages,
+      uniqueVisitors: stats.uniqueVisitors,
+      emailCaptures: stats.emailCaptures || 0,
+      affiliateClicks: stats.affiliateClicks || 0,
+      productViews: stats.productViews || 0,
+      avgSessionDuration: stats.avgSessionDuration || 0,
+      avgMessagesPerSession: stats.avgMessagesPerSession || 0,
+      topTopics: stats.topTopics ? JSON.stringify(stats.topTopics) : null,
+      sourceVersion: stats.sourceVersion || '1.0.0',
+    });
+    
+    console.log(`[OHORAI] Stats saved for ${stats.date.toISOString()} hour ${stats.hour}`);
+    return result;
+  } catch (error) {
+    console.error("[OHORAI] Error saving stats:", error);
+    return null;
+  }
+}
+
+/**
+ * Získat OHORAI statistiky pro daný den
+ */
+export async function getOhoraiDailyStats(date: Date) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const startOfDay = new Date(date);
+  startOfDay.setHours(0, 0, 0, 0);
+  
+  const endOfDay = new Date(date);
+  endOfDay.setHours(23, 59, 59, 999);
+
+  return db.select()
+    .from(ohoraiStats)
+    .where(and(
+      gte(ohoraiStats.date, startOfDay),
+      lte(ohoraiStats.date, endOfDay)
+    ))
+    .orderBy(ohoraiStats.hour);
+}
+
+/**
+ * Získat agregované OHORAI statistiky pro report
+ */
+export async function getOhoraiAggregatedStats(date: Date) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const startOfDay = new Date(date);
+  startOfDay.setHours(0, 0, 0, 0);
+  
+  const endOfDay = new Date(date);
+  endOfDay.setHours(23, 59, 59, 999);
+
+  const [result] = await db.select({
+    totalConversations: sum(ohoraiStats.totalConversations),
+    totalMessages: sum(ohoraiStats.totalMessages),
+    uniqueVisitors: sum(ohoraiStats.uniqueVisitors),
+    emailCaptures: sum(ohoraiStats.emailCaptures),
+    affiliateClicks: sum(ohoraiStats.affiliateClicks),
+    productViews: sum(ohoraiStats.productViews),
+    avgSessionDuration: avg(ohoraiStats.avgSessionDuration),
+    avgMessagesPerSession: avg(ohoraiStats.avgMessagesPerSession),
+  })
+    .from(ohoraiStats)
+    .where(and(
+      gte(ohoraiStats.date, startOfDay),
+      lte(ohoraiStats.date, endOfDay)
+    ));
+
+  return result;
+}
+
+/**
+ * Zalogovat synchronizaci
+ */
+export async function logOhoraiSync(log: {
+  syncType: 'hourly' | 'daily' | 'manual';
+  status: 'success' | 'failed' | 'partial';
+  recordsReceived: number;
+  recordsProcessed: number;
+  errorMessage?: string;
+  duration: number;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    const [result] = await db.insert(ohoraiSyncLog).values({
+      syncType: log.syncType,
+      status: log.status,
+      recordsReceived: log.recordsReceived,
+      recordsProcessed: log.recordsProcessed,
+      errorMessage: log.errorMessage || null,
+      duration: log.duration,
+    });
+    
+    return result;
+  } catch (error) {
+    console.error("[OHORAI] Error logging sync:", error);
+    return null;
+  }
+}
+
+/**
+ * Získat poslední úspěšnou synchronizaci
+ */
+export async function getLastSuccessfulOhoraiSync() {
+  const db = await getDb();
+  if (!db) return null;
+
+  const [result] = await db.select()
+    .from(ohoraiSyncLog)
+    .where(eq(ohoraiSyncLog.status, 'success'))
+    .orderBy(desc(ohoraiSyncLog.syncedAt))
+    .limit(1);
+
+  return result || null;
+}
+
+
+// ============================================
+// CHATBOT ANALYTICS TRACKING
+// ============================================
+
+/**
+ * Track chatbot event (email capture, link click, etc.)
+ */
+export async function trackChatbotEvent(event: {
+  sessionId?: number;
+  variantId?: number;
+  visitorId: string;
+  eventType: string;
+  eventData?: string;
+  page?: string;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    const [result] = await db.insert(chatbotEvents).values({
+      sessionId: event.sessionId || null,
+      variantId: event.variantId || null,
+      visitorId: event.visitorId,
+      eventType: event.eventType,
+      eventData: event.eventData || null,
+      page: event.page || null,
+    });
+    
+    return result;
+  } catch (error) {
+    console.error("[Chatbot] Error tracking event:", error);
+    return null;
+  }
+}
+
+/**
+ * Get email captures for a date range
+ */
+export async function getEmailCaptures(startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select()
+    .from(chatbotEvents)
+    .where(and(
+      eq(chatbotEvents.eventType, 'email_captured'),
+      gte(chatbotEvents.createdAt, startDate),
+      lte(chatbotEvents.createdAt, endDate)
+    ))
+    .orderBy(desc(chatbotEvents.createdAt));
+}
+
+/**
+ * Get link clicks for a date range
+ */
+export async function getLinkClicks(startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return [];
+
+  return db.select()
+    .from(chatbotEvents)
+    .where(and(
+      eq(chatbotEvents.eventType, 'link_clicked'),
+      gte(chatbotEvents.createdAt, startDate),
+      lte(chatbotEvents.createdAt, endDate)
+    ))
+    .orderBy(desc(chatbotEvents.createdAt));
+}
+
+/**
+ * Get chatbot analytics summary for a date range
+ */
+export async function getChatbotAnalyticsSummary(startDate: Date, endDate: Date) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const [emailCount] = await db.select({ count: count() })
+    .from(chatbotEvents)
+    .where(and(
+      eq(chatbotEvents.eventType, 'email_captured'),
+      gte(chatbotEvents.createdAt, startDate),
+      lte(chatbotEvents.createdAt, endDate)
+    ));
+
+  const [linkClickCount] = await db.select({ count: count() })
+    .from(chatbotEvents)
+    .where(and(
+      eq(chatbotEvents.eventType, 'link_clicked'),
+      gte(chatbotEvents.createdAt, startDate),
+      lte(chatbotEvents.createdAt, endDate)
+    ));
+
+  const [sessionCount] = await db.select({ count: count() })
+    .from(chatbotSessions)
+    .where(and(
+      gte(chatbotSessions.startedAt, startDate),
+      lte(chatbotSessions.startedAt, endDate)
+    ));
+
+  return {
+    emailsCaptured: emailCount?.count || 0,
+    linkClicks: linkClickCount?.count || 0,
+    totalSessions: sessionCount?.count || 0,
+    emailCaptureRate: sessionCount?.count ? ((emailCount?.count || 0) / sessionCount.count * 100).toFixed(2) : '0.00',
+    linkClickRate: sessionCount?.count ? ((linkClickCount?.count || 0) / sessionCount.count * 100).toFixed(2) : '0.00',
+  };
+}
+
+
+// ============================================
+// OFFLINE MESSAGES HELPERS
+// ============================================
+
+import { offlineMessages } from "../drizzle/schema";
+
+/**
+ * Uložit offline zprávu do databáze
+ */
+export async function saveOfflineMessage(data: {
+  userId?: number;
+  email?: string;
+  message: string;
+  conversationHistory?: unknown;
+  browsingContext?: unknown;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+
+  try {
+    const [result] = await db.insert(offlineMessages).values({
+      userId: data.userId || null,
+      email: data.email || null,
+      message: data.message,
+      conversationHistory: data.conversationHistory || null,
+      browsingContext: data.browsingContext || null,
+      isRead: false,
+    });
+    
+    return result;
+  } catch (error) {
+    console.error("[OfflineMessages] Error saving message:", error);
+    return null;
+  }
+}
+
+/**
+ * Získat všechny offline zprávy (pro admin panel)
+ */
+export async function getAllOfflineMessages(options?: {
+  limit?: number;
+  offset?: number;
+  unreadOnly?: boolean;
+  email?: string;
+  dateFrom?: string;
+  dateTo?: string;
+}) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const { limit = 50, offset = 0, unreadOnly = false, email, dateFrom, dateTo } = options || {};
+
+  let query = db.select({
+    id: offlineMessages.id,
+    userId: offlineMessages.userId,
+    email: offlineMessages.email,
+    message: offlineMessages.message,
+    conversationHistory: offlineMessages.conversationHistory,
+    browsingContext: offlineMessages.browsingContext,
+    isRead: offlineMessages.isRead,
+    readAt: offlineMessages.readAt,
+    readBy: offlineMessages.readBy,
+    createdAt: offlineMessages.createdAt,
+  }).from(offlineMessages);
+
+  // Build WHERE conditions
+  const conditions = [];
+  
+  if (unreadOnly) {
+    conditions.push(eq(offlineMessages.isRead, false));
+  }
+  
+  if (email) {
+    conditions.push(like(offlineMessages.email, `%${email}%`));
+  }
+  
+  if (dateFrom) {
+    const fromDate = new Date(dateFrom);
+    conditions.push(gte(offlineMessages.createdAt, fromDate));
+  }
+  
+  if (dateTo) {
+    const toDate = new Date(dateTo);
+    // Add 1 day to include the entire day
+    toDate.setDate(toDate.getDate() + 1);
+    conditions.push(lt(offlineMessages.createdAt, toDate));
+  }
+  
+  if (conditions.length > 0) {
+    query = query.where(and(...conditions)) as typeof query;
+  }
+
+  return query
+    .orderBy(desc(offlineMessages.createdAt))
+    .limit(limit)
+    .offset(offset);
+}
+
+/**
+ * Získat počet nepřečtených offline zpráv
+ */
+export async function getUnreadOfflineMessagesCount() {
+  const db = await getDb();
+  if (!db) return 0;
+
+  const [result] = await db.select({ count: count() })
+    .from(offlineMessages)
+    .where(eq(offlineMessages.isRead, false));
+
+  return result?.count || 0;
+}
+
+/**
+ * Označit offline zprávu jako přečtenou
+ */
+export async function markOfflineMessageAsRead(messageId: number, readByUserId: number) {
+  const db = await getDb();
+  if (!db) return false;
+
+  try {
+    await db.update(offlineMessages)
+      .set({
+        isRead: true,
+        readAt: new Date(),
+        readBy: readByUserId,
+      })
+      .where(eq(offlineMessages.id, messageId));
+    
+    return true;
+  } catch (error) {
+    console.error("[OfflineMessages] Error marking as read:", error);
+    return false;
+  }
+}
+
+/**
+ * Získat jednu offline zprávu podle ID
+ */
+export async function getOfflineMessageById(messageId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const [result] = await db.select()
+    .from(offlineMessages)
+    .where(eq(offlineMessages.id, messageId))
+    .limit(1);
+
+  return result || null;
+}
+
+/**
+ * Smazat offline zprávu
+ */
+export async function deleteOfflineMessage(messageId: number) {
+  const db = await getDb();
+  if (!db) return false;
+
+  try {
+    await db.delete(offlineMessages)
+      .where(eq(offlineMessages.id, messageId));
+    
+    return true;
+  } catch (error) {
+    console.error("[OfflineMessages] Error deleting message:", error);
+    return false;
+  }
+}
+
+/**
+ * Hromadně označit více offline zpráv jako přečtené
+ */
+export async function markMultipleOfflineMessagesAsRead(
+  messageIds: number[],
+  readBy: number
+): Promise<number> {
+  if (messageIds.length === 0) return 0;
+
+  const db = await getDb();
+  if (!db) return 0;
+
+  try {
+    const result = await db
+      .update(offlineMessages)
+      .set({
+        isRead: true,
+        readAt: new Date(),
+        readBy,
+      })
+      .where(inArray(offlineMessages.id, messageIds));
+
+    return Array.isArray(result) ? result.length : 0;
+  } catch (error) {
+    console.error("[OfflineMessages] Error marking multiple as read:", error);
+    return 0;
+  }
+}
+
+/**
+ * Získat statistiky offline zpráv za posledních N dní
+ */
+export async function getOfflineMessagesStatistics(days: number = 30) {
+  const db = await getDb();
+  if (!db) return {
+    totalMessages: 0,
+    unreadMessages: 0,
+    messagesWithEmail: 0,
+    avgMessagesPerDay: 0,
+    messagesByDate: [],
+    topWords: [],
+  };
+
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() - days);
+
+  // Získat všechny zprávy za období
+  const messages = await db
+    .select()
+    .from(offlineMessages)
+    .where(gte(offlineMessages.createdAt, startDate))
+    .orderBy(offlineMessages.createdAt);
+
+  // Časová řada - počet zpráv po dnech
+  const messagesByDate: Record<string, number> = {};
+  messages.forEach(msg => {
+    const date = new Date(msg.createdAt).toISOString().split('T')[0];
+    messagesByDate[date] = (messagesByDate[date] || 0) + 1;
+  });
+
+  // Word frequency - nejčastější slova ze zpráv
+  const wordCounts: Record<string, number> = {};
+  const stopWords = new Set([
+    'a', 'i', 'o', 'v', 'z', 'k', 'na', 's', 'do', 'po', 'pro', 'za', 'od', 'u', 'je', 'se', 'to', 'že',
+    'bych', 'byl', 'byla', 'bylo', 'byli', 'jsem', 'jsi', 'jsme', 'jste', 'jsou', 'budu', 'budeš', 'bude', 'budeme', 'budete', 'budou',
+    'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'from', 'is', 'are', 'was', 'were', 'be', 'been', 'being'
+  ]);
+
+  messages.forEach(msg => {
+    if (!msg.message) return;
+    
+    // Rozdělit na slova a normalizovat
+    const words = msg.message
+      .toLowerCase()
+      .replace(/[^a-záčďéěíňóřšťúůýž0-9\s]/g, '') // Odstranit interpunkci, zachovat česká písmena
+      .split(/\s+/)
+      .filter(word => word.length > 3 && !stopWords.has(word)); // Minimálně 4 znaky, ne stop slova
+
+    words.forEach(word => {
+      wordCounts[word] = (wordCounts[word] || 0) + 1;
+    });
+  });
+
+  // Top 20 slov
+  const topWords = Object.entries(wordCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 20)
+    .map(([word, count]) => ({ word, count }));
+
+  // Základní statistiky
+  const totalMessages = messages.length;
+  const unreadMessages = messages.filter(m => !m.isRead).length;
+  const messagesWithEmail = messages.filter(m => m.email).length;
+  const avgMessagesPerDay = totalMessages / days;
+
+  return {
+    totalMessages,
+    unreadMessages,
+    messagesWithEmail,
+    avgMessagesPerDay: Math.round(avgMessagesPerDay * 10) / 10,
+    messagesByDate: Object.entries(messagesByDate).map(([date, count]) => ({ date, count })),
+    topWords,
+  };
+}

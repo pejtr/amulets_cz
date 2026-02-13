@@ -1,0 +1,214 @@
+import { Button } from "@/components/ui/button";
+import { useState, useRef, useEffect } from "react";
+import { ShoppingCart, Eye, ExternalLink, Flame, Users, Truck } from "lucide-react";
+import { track } from "@/lib/tracking";
+import StarRating from "@/components/StarRating";
+
+interface ProductCardProps {
+  name: string;
+  price: string;
+  image?: string;
+  video?: string;
+  available?: boolean;
+  url?: string;
+  description?: string;
+  onQuickView?: () => void;
+  badgeText?: string; // Custom urgency badge text
+  rating?: number; // 0-5 star rating
+  reviewCount?: number; // Number of reviews
+}
+
+export default function ProductCard({
+  name,
+  price,
+  image,
+  video,
+  available = true,
+  url,
+  description,
+  onQuickView,
+  badgeText,
+  rating,
+  reviewCount,
+}: ProductCardProps) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      setImageLoaded(true);
+    }
+  }, []);
+
+  // Determine badge text based on product type
+  const getBadgeText = () => {
+    if (badgeText) return badgeText;
+    
+    // Pyramids: "Skladem" (each is unique original)
+    if (name.includes('Pyramida')) {
+      return 'Skladem';
+    }
+    
+    // Essences: "Limitovaná edice"
+    return 'Limitovaná edice';
+  };
+  const handleClick = () => {
+    // Open QuickView popup instead of direct link
+    if (onQuickView) {
+      onQuickView();
+    }
+  };
+
+  const handleBuyClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (url) {
+      // Track product click
+      const priceNum = parseInt(price.replace(/\D/g, ''));
+      track.buyButtonClicked(name, priceNum, url);
+      window.open(url, '_blank');
+    }
+  };
+
+  const handleQuickViewClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onQuickView) {
+      onQuickView();
+    }
+  };
+
+  return (
+    <div 
+      className={`group bg-white rounded-lg border border-border overflow-hidden hover:shadow-xl transition-all duration-300 ${
+        url ? 'cursor-pointer' : ''
+      }`}
+      onClick={handleClick}
+    >
+      {/* Image or Video */}
+      <div className="aspect-square bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center relative overflow-hidden">
+        {video ? (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src={video} type="video/mp4" />
+          </video>
+        ) : image ? (
+          <>
+            {/* Skeleton loader */}
+            {!imageLoaded && (
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skeleton-shimmer" />
+              </div>
+            )}
+            <img
+              ref={imgRef}
+              src={image}
+              alt={name}
+              loading="lazy"
+              onLoad={() => setImageLoaded(true)}
+              className={`w-full h-full object-cover group-hover:scale-105 transition-all duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+            />
+          </>
+        ) : (
+          <div className="text-6xl">🔺</div>
+        )}
+        {!available && (
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <span className="text-white font-semibold bg-destructive px-4 py-2 rounded">
+              Vyprodáno
+            </span>
+          </div>
+        )}
+        
+        {/* Urgency Badge - "Poslední kusy!" */}
+        {available && (
+          <div className="absolute top-2 left-2 bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1 animate-pulse">
+            <Flame className="h-3 w-3" />
+            Poslední kusy!
+          </div>
+        )}
+        
+        {/* Original Badge */}
+        {available && (
+          <div className="absolute top-2 right-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">
+            {getBadgeText()}
+          </div>
+        )}
+        
+        {/* Quick View Button */}
+        {onQuickView && (
+          <button
+            onClick={handleQuickViewClick}
+            className="absolute bottom-2 right-2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100"
+            aria-label="Rychlý náhled"
+          >
+            <Eye className="h-5 w-5 text-[#D4AF37]" />
+          </button>
+        )}
+      </div>
+
+      {/* Content */}
+      <div className="p-4 space-y-2">
+        <h3 className="font-semibold text-foreground text-sm line-clamp-2 min-h-[2.5rem]">
+          {name}
+        </h3>
+
+        {description && (
+          <p className="text-xs text-muted-foreground line-clamp-2">
+            {description}
+          </p>
+        )}
+
+        {/* Star Rating */}
+        {rating !== undefined && reviewCount !== undefined && (
+          <div className="pt-1">
+            <StarRating 
+              rating={rating} 
+              reviewCount={reviewCount} 
+              showCount={true}
+              size="sm"
+            />
+          </div>
+        )}
+
+        {/* Social Proof & Benefit Row */}
+        {(() => {
+          const priceNum = parseInt(price.replace(/\D/g, ''));
+          const showFreeShipping = priceNum >= 1500;
+          return (
+            <div className="flex items-center justify-between text-xs text-muted-foreground pt-1">
+              <div className="flex items-center gap-1 text-green-600">
+                <Users className="h-3 w-3" />
+                <span className="font-medium">500+ spokojených</span>
+              </div>
+              {showFreeShipping && (
+                <div className="flex items-center gap-1 text-blue-600">
+                  <Truck className="h-3 w-3" />
+                  <span className="font-medium">Doprava zdarma</span>
+                </div>
+              )}
+            </div>
+          );
+        })()}
+
+        <div className="flex items-center justify-between gap-2 pt-2">
+          <span className="text-lg font-bold text-primary whitespace-nowrap">{price}</span>
+          <Button
+            size="sm"
+            className="gap-1.5 bg-gradient-to-r from-[#D4AF37] to-[#F4CF47] hover:from-[#C19B2E] hover:to-[#D4AF37] text-black font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            disabled={!available}
+            title="Přesměrování na obchod OHORAI.cz"
+            onClick={handleBuyClick}
+          >
+            <ShoppingCart className="h-4 w-4" />
+            <span>Koupit na OHORAI</span>
+            <ExternalLink className="h-3 w-3" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
