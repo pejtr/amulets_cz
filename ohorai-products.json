@@ -1,0 +1,160 @@
+{
+  "pyramids": [
+    {
+      "name": "Pyramida OHORAI ~ Hojnost",
+      "price": "8 800 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-hojnost/",
+      "status": "Skladem",
+      "image": "pyramida-hojnost.jpg"
+    },
+    {
+      "name": "Pyramida OHORAI ~ Hojnost života",
+      "price": "13 300 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-hojnost-zivota/",
+      "status": "Vyprodáno",
+      "image": "pyramida-hojnost-zivota.jpg"
+    },
+    {
+      "name": "Pyramida OHORAI ~ Jednota",
+      "price": "8 800 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-jednota/",
+      "status": "Skladem",
+      "image": "pyramida-jednota.jpg"
+    },
+    {
+      "name": "Pyramida OHORAI ~ Královna andělů",
+      "price": "13 300 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-kralovna-andelu/",
+      "status": "Vyprodáno",
+      "image": "pyramida-kralovna-andelu.jpg"
+    },
+    {
+      "name": "Pyramida OHORAI ~ Kristovo světlo",
+      "price": "8 800 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-kristovo-svetlo/",
+      "status": "Skladem",
+      "image": "pyramida-kristovo-svetlo.jpg"
+    },
+    {
+      "name": "Pyramida OHORAI ~ Kundaliní",
+      "price": "9 000 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-kundalini/",
+      "status": "Skladem",
+      "image": "pyramida-kundalini.jpg"
+    },
+    {
+      "name": "Pyramida OHORAI ~ Maria",
+      "price": "7 400 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-maria/",
+      "status": "Vyprodáno",
+      "image": "pyramida-maria.jpg"
+    },
+    {
+      "name": "Pyramida OHORAI ~ Mer-ka-ba",
+      "price": "9 900 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-mer-ka-ba/",
+      "status": "Skladem",
+      "image": "pyramida-merkaba.jpg"
+    },
+    {
+      "name": "Pyramida OHORAI ~ Odevzdání",
+      "price": "8 600 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-odevzdani/",
+      "status": "Vyprodáno",
+      "image": "pyramida-odevzdani.jpg"
+    },
+    {
+      "name": "Pyramida OHORAI ~ Pevnost & vůle",
+      "price": "8 800 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-pevnost-vule/",
+      "status": "Vyprodáno",
+      "image": "pyramida-pevnost-vule.jpg"
+    },
+    {
+      "name": "Pyramida OHORAI ~ Přijetí",
+      "price": "5 500 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-prijeti/",
+      "status": "Skladem",
+      "image": "pyramida-prijeti.jpg"
+    },
+    {
+      "name": "Pyramida OHORAI ~ Rovnováha",
+      "price": "11 000 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-rovnovaha/",
+      "status": "Vyprodáno",
+      "image": "pyramida-rovnovaha.jpg"
+    },
+    {
+      "name": "Pyramida OHORAI ~ Světlo univerza",
+      "price": "8 800 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-svetlo-univerza/",
+      "status": "Skladem",
+      "image": "pyramida-svetlo-univerza.jpg"
+    },
+    {
+      "name": "Pyramida OHORAI ~ Zlatý drak",
+      "price": "14 400 Kč",
+      "url": "https://www.ohorai.cz/pyramida-ohorai-zlaty-drak/",
+      "status": "Vyprodáno",
+      "image": "pyramida-zlaty-drak.jpg"
+    }
+  ],
+  "essences": [
+    {
+      "name": "Esence ~ OhoRÁJ lotos",
+      "price": "2 200 Kč",
+      "url": "https://www.ohorai.cz/esence-ohoraj-lotos/",
+      "status": "Skladem",
+      "size": "10ml"
+    },
+    {
+      "name": "Esence ~ MUŽ",
+      "price": "890 Kč",
+      "url": "https://www.ohorai.cz/esence-muz-10ml/",
+      "status": "Skladem",
+      "size": "10ml"
+    },
+    {
+      "name": "Ikonická esence ~ OHORAI modrý lotos",
+      "price": "1 100 Kč",
+      "url": "https://www.ohorai.cz/ikonicka-esence-ohorai-modry-lotos-10ml/",
+      "status": "Skladem",
+      "size": "10ml"
+    },
+    {
+      "name": "Esence ~ Žena - mateřská",
+      "price": "440 Kč",
+      "url": "https://www.ohorai.cz/esence-zena-materska-5ml/",
+      "status": "Skladem",
+      "size": "5ml"
+    },
+    {
+      "name": "Ikonická esence ~ OHORAI modrý lotos",
+      "price": "490 Kč",
+      "url": "https://www.ohorai.cz/ikonicka-esence-ohorai-modry-lotos-5ml/",
+      "status": "Skladem",
+      "size": "5ml"
+    },
+    {
+      "name": "Esence ~ MUŽ",
+      "price": "440 Kč",
+      "url": "https://www.ohorai.cz/esence-muz-5ml/",
+      "status": "Skladem",
+      "size": "5ml"
+    },
+    {
+      "name": "Esence ~ Zlatá brána",
+      "price": "990 Kč",
+      "url": "https://www.ohorai.cz/esence-zlata-brana-10ml/",
+      "status": "Skladem",
+      "size": "10ml"
+    },
+    {
+      "name": "Esence ~ Tantra",
+      "price": "440 Kč",
+      "url": "https://www.ohorai.cz/esence-tantra-5ml/",
+      "status": "Skladem",
+      "size": "5ml"
+    }
+  ]
+}
