@@ -2776,3 +2776,17 @@
 ## Oprava English verze webu (Feb 9, 2026)
 - [x] Diagnostikovat proč se English překlad nepřepíná - useTranslation chybělo v 16+ komponentách
 - [x] Opravit přepínání jazyků na webu (přidáno useTranslation do Header, HeroSection, USPSection, Footer, FAQSection, CookieConsent, MobileBottomNav, PromoBanner, TestimonialsSection, GuideSection, ProductsSection, ProductCard, MagazineSection, GuideCTA, QuizCTA, ExitIntentPopup)
+
+## Překlad obsahových stránek do EN/IT (Feb 9, 2026)
+- [ ] Přeložit obsah symbolů (guideContent.ts) - 38 symbolů do angličtiny a italštiny
+- [ ] Přeložit obsah magazínu (magazineContent.ts) - 20+ článků do EN/IT
+- [ ] Přeložit obsah kvízu (quizContent.ts) - otázky a odpovědi do EN/IT
+- [ ] Přidat useTranslation do GuideDetail, MagazineArticle, Quiz, QuizResult
+- [ ] Vitest testy pro přeložené stránky
+
+## Integrace ROI Metrics Visualization Dashboard (Feb 12, 2026)
+- [x] Stáhnout ROI_METRICS_VISUALIZATION.png z GitHub repo pejtr/amulets_cz
+- [x] Nahrát ROI_METRICS_VISUALIZATION.png na S3 (CDN URL)
+- [x] Vytvořit admin dashboard stránku /admin/roi-metrics pro zobrazení ROI metrik
+- [x] Přidat odkazy na ROI dashboard do admin navigace (route v App.tsx)
+- [ ] Vitest testy pro ROI dashboard

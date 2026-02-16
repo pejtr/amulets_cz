@@ -50,6 +50,7 @@ import AdminMetaDescABTest from "./pages/AdminMetaDescABTest";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminRecommendations from "./pages/AdminRecommendations";
 import AdminWidgetABTest from "./pages/AdminWidgetABTest";
+import AdminROIMetrics from "./pages/AdminROIMetrics";
 
 
 function Router() {
@@ -98,6 +99,7 @@ function Router() {
       <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/admin/recommendations" component={AdminRecommendations} />
       <Route path="/admin/widget-ab" component={AdminWidgetABTest} />
+      <Route path="/admin/roi-metrics" component={AdminROIMetrics} />
       <Route path="/ebook" component={EbookLanding} />
       {/* Redirects for old/removed pages */}
       <Route path="/darujte-lasku">{() => <Redirect to="/" />}</Route>
