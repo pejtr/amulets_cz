@@ -141,7 +141,7 @@ export default function Footer() {
 
             {/* DO-ITALIE.cz */}
             <a
-              href="https://do-italie.manus.space/"
+              href="https://www.do-italie.cz"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted/50 transition-all duration-300 group hover:scale-105"

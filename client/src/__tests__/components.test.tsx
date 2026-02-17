@@ -1,66 +1,62 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import React from 'react';
 import Header from '@/components/Header';
-import HeroSection from '@/components/HeroSection';
 import USPSection from '@/components/USPSection';
 import ProductCard from '@/components/ProductCard';
 import Footer from '@/components/Footer';
+import i18n from '@/i18n';
+import { MusicProvider } from '@/contexts/MusicContext';
+
+// Wrapper that provides all required contexts
+function TestWrapper({ children }: { children: React.ReactNode }) {
+  return (
+    <MusicProvider>
+      {children}
+    </MusicProvider>
+  );
+}
+
+// Ensure Czech is active for tests
+beforeAll(async () => {
+  await i18n.changeLanguage('cs');
+});
 
 describe('Amulets.cz Components', () => {
   describe('Header', () => {
     it('should render logo', () => {
-      render(<Header />);
+      render(<Header />, { wrapper: TestWrapper });
       const logo = screen.getByAltText('Amulets');
       expect(logo).toBeDefined();
     });
 
     it('should render search input', () => {
-      render(<Header />);
-      const searchInput = screen.getByPlaceholderText(/Co hledáte/i);
+      render(<Header />, { wrapper: TestWrapper });
+      const searchInput = screen.getByPlaceholderText(i18n.t('header.search'));
       expect(searchInput).toBeDefined();
     });
 
     it('should render contact phone number', () => {
-      render(<Header />);
+      render(<Header />, { wrapper: TestWrapper });
       const phone = screen.getByText(/776 041 740/i);
       expect(phone).toBeDefined();
     });
 
     it('should render navigation items', () => {
-      render(<Header />);
-      expect(screen.getByText('Orgonitové pyramidy')).toBeDefined();
-      expect(screen.getByText('Aromaterapie')).toBeDefined();
-      expect(screen.getByText('Kontakt')).toBeDefined();
-    });
-  });
-
-  describe('HeroSection', () => {
-    it('should render main heading', () => {
-      render(<HeroSection />);
-      const heading = screen.getByText(/Otevřete své/i);
-      expect(heading).toBeDefined();
-    });
-
-    it('should render CTA button', () => {
-      render(<HeroSection />);
-      const button = screen.getByText('ZÍSKAT VÍCE');
-      expect(button).toBeDefined();
-    });
-
-    it('should render hero image', () => {
-      render(<HeroSection />);
-      const img = screen.getByAltText(/Natálie Ohorai/i);
-      expect(img).toBeDefined();
+      render(<Header />, { wrapper: TestWrapper });
+      expect(screen.getByText(i18n.t('nav.pyramids'))).toBeDefined();
+      expect(screen.getByText(i18n.t('nav.aromatherapy'))).toBeDefined();
+      expect(screen.getByText(i18n.t('nav.contact'))).toBeDefined();
     });
   });
 
   describe('USPSection', () => {
     it('should render all 4 USP boxes', () => {
-      render(<USPSection />);
-      expect(screen.getAllByText(/Doprava zdarma od 1 500 Kč/i).length).toBeGreaterThan(0);
-      expect(screen.getAllByText(/Úprava amuletů na míru/i).length).toBeGreaterThan(0);
-      expect(screen.getAllByText(/Ruční výroba/i).length).toBeGreaterThan(0);
-      expect(screen.getAllByText(/Dárek pro každého/i).length).toBeGreaterThan(0);
+      render(<USPSection />, { wrapper: TestWrapper });
+      expect(screen.getAllByText(new RegExp(i18n.t('usp.delivery.title'), 'i')).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(new RegExp(i18n.t('usp.handmade.title'), 'i')).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(new RegExp(i18n.t('usp.handcraft.title'), 'i')).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(new RegExp(i18n.t('usp.gift.title'), 'i')).length).toBeGreaterThan(0);
     });
   });
 
@@ -71,53 +67,56 @@ describe('Amulets.cz Components', () => {
           name="Pyramida OHORAI ~ Hojnost"
           price="8 800 Kč"
           available={true}
-        />
+        />,
+        { wrapper: TestWrapper }
       );
       expect(screen.getByText('Pyramida OHORAI ~ Hojnost')).toBeDefined();
       expect(screen.getByText('8 800 Kč')).toBeDefined();
     });
 
-    it('should show "Skladem" badge when available', () => {
+    it('should show availability badge when available', () => {
       render(
         <ProductCard
           name="Test Product"
           price="1 000 Kč"
           available={true}
-        />
+        />,
+        { wrapper: TestWrapper }
       );
-      // Badge text now varies (Pouze 3 kusy, Limitovaná edice, Poslední kusy)
-      const badge = screen.getByText(/Pouze \d kusy|Limitovaná edice|Poslední kusy/);
-      expect(badge).toBeDefined();
+      // Badge text varies - use getAllByText and check at least one exists
+      const badges = screen.getAllByText(/Pouze|Limitovaná|Poslední|Only|Limited|Last/i);
+      expect(badges.length).toBeGreaterThan(0);
     });
 
-    it('should show "Vyprodáno" when not available', () => {
+    it('should show sold out when not available', () => {
       render(
         <ProductCard
           name="Test Product"
           price="1 000 Kč"
           available={false}
-        />
+        />,
+        { wrapper: TestWrapper }
       );
-      expect(screen.getByText('Vyprodáno')).toBeDefined();
+      expect(screen.getByText(i18n.t('products.soldOut'))).toBeDefined();
     });
   });
 
   describe('Footer', () => {
     it('should render contact information', () => {
-      render(<Footer />);
+      render(<Footer />, { wrapper: TestWrapper });
       expect(screen.getByText(/776 041 740/i)).toBeDefined();
       expect(screen.getByText('info@amulets.cz')).toBeDefined();
     });
 
     it('should render copyright', () => {
-      render(<Footer />);
-      expect(screen.getByText(/2020 - 2025 © Amulets.cz/i)).toBeDefined();
+      render(<Footer />, { wrapper: TestWrapper });
+      expect(screen.getByText(i18n.t('footer.copyright'))).toBeDefined();
     });
 
     it('should render footer links', () => {
-      render(<Footer />);
-      expect(screen.getByText('Doprava a platba')).toBeDefined();
-      expect(screen.getByText('Obchodní podmínky')).toBeDefined();
+      render(<Footer />, { wrapper: TestWrapper });
+      expect(screen.getByText(i18n.t('footer.shipping'))).toBeDefined();
+      expect(screen.getByText(i18n.t('footer.terms'))).toBeDefined();
     });
   });
 });

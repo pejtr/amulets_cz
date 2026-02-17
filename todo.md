@@ -2790,3 +2790,9 @@
 - [x] Vytvořit admin dashboard stránku /admin/roi-metrics pro zobrazení ROI metrik
 - [x] Přidat odkazy na ROI dashboard do admin navigace (route v App.tsx)
 - [ ] Vitest testy pro ROI dashboard
+
+## Oprava odkazů a dokončení překladů (Feb 16, 2026)
+- [x] Najít a opravit odkazy na spřátelené projekty (www.do-italie.cz) - opraveno z do-italie.manus.space na www.do-italie.cz
+- [x] Přeložit AIChatAssistant komponentu do angličtiny a italštiny (100+ hardcoded textů nahrazeno t() voláními, přidány EN/IT překlady pro header, feedback, ticket, WhatsApp, email capture, offline, voice, font controls)
+- [ ] Přeložit Čínský horoskop sekci na homepage do angličtiny a italštiny
+- [x] Vitest testy pro překlady (opraveny component testy - i18n setup, IntersectionObserver mock, MusicProvider wrapper, správné i18n klíče)

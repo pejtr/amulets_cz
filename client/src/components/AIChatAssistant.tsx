@@ -1,94 +1,51 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
+import { useTranslation } from 'react-i18next';
 
-// Context-aware proactive prompts based on current page
-const getProactivePrompt = (path: string): string => {
-  const prompts = {
-    '/': [
-      'Dobrý den! 💜 Hledáte svůj amulet?',
-      'Ahoj! ✨ Mohu vám s něčím poradit?',
-      'Vítejte! 🔮 Máte otázku k našim produktům?',
-    ],
-    '/pruvodce-amulety': [
-      'Mohu vám pomoci vybrat symbol? ✨',
-      'Hledáte konkrétní amulet? 💎',
-      'Potřebujete poradit s výběrem? 🔮',
-    ],
-    '/kviz': [
-      'Chcete zjistit svůj spirituální symbol? ✨',
-      'Potřebujete pomoc s kvízem? 🔮',
-      'Máte otázku k výsledkům? 💜',
-    ],
-    '/cinský-horoskop-2026': [
-      'Zajímá vás váš čínský horoskop? 🐎',
-      'Potřebujete poradit s výkladem? ✨',
-      'Máte otázku k horoskopu? 🔮',
-    ],
-    '/moon-reading': [
-      'Zajímá vás Lunární čtení? 🌙',
-      'Chcete vědět více o měsíčním profilu? ✨',
-      'Potřebujete poradit? 💜',
-    ],
-    '/privěsky-amen': [
-      'Hledáte konkrétní přívěsek AMEN? 💎',
-      'Mohu vám poradit s výběrem? ✨',
-      'Máte otázku k produktům AMEN? 🔮',
-    ],
+// Context-aware proactive prompts based on current page - uses i18n
+const getProactivePrompt = (path: string, t: (key: string, opts?: any) => any): string => {
+  const pathMap: Record<string, string> = {
+    '/': 'chatbot.proactive.home',
+    '/pruvodce-amulety': 'chatbot.proactive.guide',
+    '/kviz': 'chatbot.proactive.quiz',
   };
   
-  // Find matching path or use default
-  for (const [key, questions] of Object.entries(prompts)) {
-    if (path.startsWith(key) || path === key) {
-      return questions[Math.floor(Math.random() * questions.length)];
+  let key = 'chatbot.proactive.default';
+  for (const [p, k] of Object.entries(pathMap)) {
+    if (path === p || path.startsWith(p)) {
+      key = k;
+      break;
     }
   }
   
-  // Default prompts for other pages
-  const defaultPrompts = [
-    'Dobrý den! 💜 Mohu vám pomoci?',
-    'Ahoj! ✨ Máte nějakou otázku?',
-    'Vítejte! 🔮 Potřebujete poradit?',
-  ];
-  return defaultPrompts[Math.floor(Math.random() * defaultPrompts.length)];
+  const prompts = t(key, { returnObjects: true }) as string[];
+  if (Array.isArray(prompts) && prompts.length > 0) {
+    return prompts[Math.floor(Math.random() * prompts.length)];
+  }
+  return t('chatbot.proactive.default', { returnObjects: true })?.[0] || '';
 };
 
-// Tři proudy vědomí: hmotné (produkty), éterické (duchovní), užitečné (služba)
-// Každý proud reprezentuje jiný směr zájmu zákazníka
-const SUGGESTED_CATEGORIES = [
+// Category definitions - questions are resolved via i18n at render time
+const CATEGORY_DEFS = [
   {
     id: "ethereal",
-    stream: "etericke", // pro tracking - duchovní rozvoj
-    category: "Spiritualita",
+    stream: "etericke",
+    categoryKey: "chatbot.category.spirituality",
     icon: "✨",
-    description: "Pochop, co tvá duše hledá",
-    questions: [
-      "Co má duše hledá?",
-      "Jaký symbol rezonuje s mou energií?",
-      "Jak posílit svou intuici?",
-    ],
+    questionKeys: ["chatbot.q.soulSearch", "chatbot.q.symbolEnergy", "chatbot.q.intuition"],
   },
   {
     id: "material",
-    stream: "hmotne", // pro tracking - produkty, prodej
-    category: "Amulety & Produkty",
-    icon: "☥", // Nilský egyptský kříž (Ankh) - symbol života
-    description: "Najdi svůj amulet nebo kámen",
-    questions: [
-      "Jaký amulet je vhodný pro mě?",
-      "Jaké máte drahé kameny?",
-      "Co jsou orgonitové pyramidy?",
-    ],
+    stream: "hmotne",
+    categoryKey: "chatbot.category.products",
+    icon: "☥",
+    questionKeys: ["chatbot.q.whichAmulet", "chatbot.q.gemstones", "chatbot.q.pyramids"],
   },
   {
     id: "useful",
-    stream: "uzitecne", // pro tracking - služby, kurzy, horoskop
-    category: "Služby & Kurzy",
-    icon: "💜", // Fialové srdce (přesunuto z prostřední pozice)
-    description: "Horoskop, kurzy, konzultace",
-    questions: [
-      "Jaké je moje zvířátko v čínském horoskopu?",
-      "Jaké kurzy nabízíte?",
-      "Chci se naučit tvořit amulety",
-    ],
+    stream: "uzitecne",
+    categoryKey: "chatbot.category.services",
+    icon: "💜",
+    questionKeys: ["chatbot.q.horoscope", "chatbot.q.courses", "chatbot.q.createAmulets"],
   },
 ];
 
@@ -136,57 +93,35 @@ interface ChatbotVariant {
   colorScheme: string | null;
 }
 
-// Síla Tří + Paige - čtyři osobnosti Natálie inspirované seriálem Charmed
-// Správné přiřazení fotek:
-// - Phoebe = mladá, energetická (close-up s mandalou) 🔥
-// - Piper = bílý rolák, moudrá a starostlivá 👑
-// - Prue = červená halenka, silná vůdkyně ⚡
-// - Paige = Velekněžka, zlatý šat, modré lotosy 🪷 (pouze pro přihlášené)
+// Persona definitions - descriptions and greetings resolved via i18n at render time
 const NATALIE_PERSONAS = {
-  // Phoebe - nejmladší, empatická, vizionářka, romantická, vidí do budoucnosti
   phoebe: {
     id: 'phoebe',
     name: 'Phoebe',
     emoji: '🔥',
-    avatar: '/natalie-phoebe-mlada.webp', // Close-up s mandalou - mladá energie
-    description: 'Empatická, intuitivní, romantická - vidí do tvé budoucnosti',
-    greeting: 'Ahoj! ✨🔮 Cítím tvůj příchod... Jsem Natálie a mám dar vidět věci, které ostatní nevídí. Něco ti chce být zjeveno - co tě sem přivedlo?',
-    traits: ['empatická', 'vizionářka', 'romantická', 'hravá', 'intuitivní'],
+    avatar: '/natalie-phoebe-mlada.webp',
+    descKey: 'chatbot.persona.phoebe.desc',
+    greetingKey: 'chatbot.persona.phoebe.greeting',
     requiresAuth: false,
   },
-  // Piper - prostřední, praktická, starostlivá, ochranitelka, mateřská energie
   piper: {
     id: 'piper',
     name: 'Piper',
     emoji: '👑',
-    avatar: '/images/natalie-piper.webp', // Bílý rolák s mandalou - moudrá a klidná
-    description: 'Praktická, starostlivá, moudrá - tvůj bezpečný přístav',
-    greeting: 'Ahoj, krásná duše! 💜✨ Jsem Natálie a jsem tu, abych tě provedla... Klidně, s láskou a péčí. Co potřebuješ?',
-    traits: ['praktická', 'starostlivá', 'uzemňující', 'moudrá', 'ochranitelka'],
+    avatar: '/images/natalie-piper.webp',
+    descKey: 'chatbot.persona.piper.desc',
+    greetingKey: 'chatbot.persona.piper.greeting',
     requiresAuth: false,
   },
-  // Prue - nejstarší, silná, odhodlaná, vůdkyně
   prue: {
     id: 'prue',
     name: 'Prue',
     emoji: '⚡',
-    avatar: '/natalie-energeticka-vila.jpg', // Červená halenka - silná vůdkyně
-    description: 'Silná, odhodlaná, vůdkyně - pomůže ti najít tvou sílu',
-    greeting: 'Ahoj! ⚡✨ Jsem Natálie. Cítím v tobě sílu, kterou možná ještě neznáš... Jsem tu, abych ti pomohla ji objevit. Co tě zajímá?',
-    traits: ['silná', 'odhodlaná', 'vůdkyně', 'ochránkyně', 'telekineze = síla vůle'],
+    avatar: '/natalie-energeticka-vila.jpg',
+    descKey: 'chatbot.persona.prue.desc',
+    greetingKey: 'chatbot.persona.prue.greeting',
     requiresAuth: false,
   },
-  // Paige (Velekněžka) - DOČasně skryta, nebude používána
-  // paige: {
-  //   id: 'paige',
-  //   name: 'Paige',
-  //   emoji: '🪷',
-  //   avatar: '/images/natalie-veleknezka.jpg',
-  //   description: 'Velekněžka - napůl anděl, sestupuje z vyšších sfér',
-  //   greeting: '✨🪷 Vítej, vyvolená duše...',
-  //   traits: ['mystická', 'andělská', 'spirituální', 'hluboká'],
-  //   requiresAuth: true,
-  // },
 } as const;
 
 type PersonaKey = keyof typeof NATALIE_PERSONAS;
@@ -247,37 +182,10 @@ function isGoodnightTime(): boolean {
   return hours === 23 && minutes >= 55;
 }
 
-// Goodnight message
-const GOODNIGHT_MESSAGE = `Milá duše, blíží se půlnoc a já se jdu nabíjet novými silami 🌙✨
-
-Děkuji ti za dnešní rozhovor. Až se probudim v 9:00 ráno, budu tu zase pro tebe.
-
-Přeji ti krásné sny plné světla a lásky. Dobrou noc! 💫💜
-
-~ Natálie`;
-
-// Offline message - pro nepřihlášené uživatele (00:00-08:00 a 20:00-24:00)
-const OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpočívám. Jsem tu denně 8:00-20:00. Napište mi na WhatsApp nebo zanechte dotaz!
-
-S láskou,
-Natálie 💜`;
-
-// Offline message - pro PREMIUM uživatele (20:00-24:00 - dostupná přes Telegram)
-const PREMIUM_OFFLINE_MESSAGE = `Dobrý den! 🌟 Právě odpočívám, ale pro tebe jako PREMIUM uživatele jsem dostupná přes Telegram! 💬
-
-Klikni na tlačítko "Telegram Bot" níže a můžeme pokračovat v rozhovoru. 😊
-
-S láskou,
-Natálie 💜`;
-
-// Auto-reply message when user sends message while offline
-const AUTO_REPLY_MESSAGE = `Vaše zpráva byla přijata! 💜
-
-Natálie vám odpoví hned, jak to bude možné. Děkuji za trpělivost!
-
-~ Amulets.cz tým ✨`;
+// Messages are now resolved via i18n - keys: chatbot.goodnight, chatbot.offline, chatbot.premiumOffline, chatbot.autoReply
 
 export default function AIChatAssistant() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
   const [fontSize, setFontSize] = useState<'small' | 'medium' | 'large'>(() => {
@@ -355,9 +263,8 @@ export default function AIChatAssistant() {
   // Check if this is a returning customer (2nd+ visit)
   const isReturningCustomer = visitCount >= 2;
   
-  // Default initial message - based on assigned persona
-  // Tři proudy: hmotné (produkty), éterické (duchovní), užitečné (služba)
-  const DEFAULT_INITIAL_MESSAGE = persona.greeting;
+  // Default initial message - based on assigned persona, resolved via i18n
+  const DEFAULT_INITIAL_MESSAGE = t(persona.greetingKey);
   
   // Messages state - starts with default message immediately
   const [messages, setMessages] = useState<Message[]>([
@@ -391,16 +298,16 @@ export default function AIChatAssistant() {
   const [whatsAppQualified, setWhatsAppQualified] = useState(false);
   const [selectedWhatsAppReason, setSelectedWhatsAppReason] = useState<string | null>(null);
 
-  // WhatsApp qualification reasons - pouze tyto důvody oprávňují k přímému kontaktu
-  const WHATSAPP_REASONS = [
-    { id: 'coaching', label: '💜 Osobní koučing s Natálií', icon: '✨' },
-    { id: 'concert', label: '🔮 Koncert křišťálových mís', icon: '🎶' },
-    { id: 'course', label: '🎨 Kreativní kurzy posvátné tvorby', icon: '📚' },
-    { id: 'ohorai', label: '🪷 Autorská tvorba OHORAI', icon: '🪷', subtitle: '(esence a pyramidy)' },
-    { id: 'ohorai-esence', label: '🧪 Esence OHORAI', icon: '✨', subtitle: '(aromaterapie)' },
-    { id: 'ohorai-pyramidy', label: '🔺 Pyramidy OHORAI', icon: '🔺', subtitle: '(orgonitové)' },
-    { id: 'lunar-reading', label: '🌙 Lunární čtení', icon: '🌙', subtitle: '(měsíční profil)' },
-  ];
+  // WhatsApp qualification reasons - resolved via i18n
+  const WHATSAPP_REASONS = useMemo(() => [
+    { id: 'coaching', label: t('chatbot.whatsapp.coaching'), icon: '✨' },
+    { id: 'concert', label: t('chatbot.whatsapp.concert'), icon: '🎶' },
+    { id: 'course', label: t('chatbot.whatsapp.course'), icon: '📚' },
+    { id: 'ohorai', label: t('chatbot.whatsapp.ohorai'), icon: '🪷' },
+    { id: 'ohorai-esence', label: t('chatbot.whatsapp.ohoraiEsence'), icon: '✨' },
+    { id: 'ohorai-pyramidy', label: t('chatbot.whatsapp.ohoraiPyramidy'), icon: '🔺' },
+    { id: 'lunar-reading', label: t('chatbot.whatsapp.lunarReading'), icon: '🌙' },
+  ], [t]);
 
   // Feedback state - sbírání zpětné vazby od návštěvníků
   const [showFeedback, setShowFeedback] = useState(false);
@@ -419,13 +326,13 @@ export default function AIChatAssistant() {
     joyFactor?: string;
   }>({});
 
-  // Feedback otázky
-  const FEEDBACK_QUESTIONS = [
-    { id: 'missing', label: '🤔 Co vám na webu chybí?', type: 'missing_feature' as const },
-    { id: 'improvement', label: '✨ Co byste rádi vylepšili?', type: 'improvement' as const },
-    { id: 'highValue', label: '💯 Jaká funkce by pro vás měla nejvyšší hodnotu?', type: 'high_value' as const },
-    { id: 'joyFactor', label: '🎉 Co by vám udělalo radost?', type: 'joy_factor' as const },
-  ];
+  // Feedback questions - resolved via i18n
+  const FEEDBACK_QUESTIONS = useMemo(() => [
+    { id: 'missing', label: t('chatbot.feedback.q.missing'), type: 'missing_feature' as const },
+    { id: 'improvement', label: t('chatbot.feedback.q.improvement'), type: 'improvement' as const },
+    { id: 'highValue', label: t('chatbot.feedback.q.highValue'), type: 'high_value' as const },
+    { id: 'joyFactor', label: t('chatbot.feedback.q.joyFactor'), type: 'joy_factor' as const },
+  ], [t]);
 
   // Feedback mutation
   const feedbackMutation = trpc.feedback.submit.useMutation();
@@ -457,21 +364,14 @@ export default function AIChatAssistant() {
     onSuccess: () => {
       setTicketSubmitted(true);
       setShowTicketForm(false);
-      toast.success("Děkujeme! Natálie vám odpoví hned, jak bude k dispozici.");
+      toast.success(t('chatbot.ticket.success'));
     },
     onError: () => {
-      toast.error("Nepodařilo se odeslat dotaz. Zkuste to prosím znovu.");
+      toast.error(t('chatbot.ticket.error'));
     },
   });
 
-  // Egyptian mystery welcome message for returning customers
-  const EGYPTIAN_WELCOME_MESSAGE = `Vítej zpět, krásná duše! 🌙✨
-
-Cítím, že tě sem něco přitahuje... Možná je to volání starověkého Egypta, které rezonuje s tvou duší.
-
-Víš, že **modrý lotos** byl nejposvátnější květinou faraonů? 🪻 Kněží ho používali při posvátných rituálech pro spojení s vyššími dimenzemi...
-
-Co tě dnes přivádí?`;
+  // Egyptian mystery welcome message for returning customers - resolved via i18n
 
   // Update variant and initial message when assigned
   useEffect(() => {
@@ -485,7 +385,7 @@ Co tě dnes přivádí?`;
       
       if (isReturningCustomer && assignedVariant.variantKey === 'young_mystic') {
         // Egyptian sequence for returning customers with mystic variant
-        newInitialMessage = EGYPTIAN_WELCOME_MESSAGE;
+        newInitialMessage = t('chatbot.egyptianWelcome');
         if (egyptianPhase === 0) {
           setEgyptianPhase(1);
           localStorage.setItem('amulets_egyptian_phase', '1');
@@ -536,7 +436,7 @@ Co tě dnes přivádí?`;
           ...prev,
           {
             role: "assistant",
-            content: GOODNIGHT_MESSAGE,
+            content: t('chatbot.goodnight'),
             timestamp: new Date(),
           },
         ]);
@@ -609,15 +509,7 @@ Co tě dnes přivádí?`;
             ...prev,
             {
               role: "assistant",
-              content: `💜 **Milá duše, vidím, že tě toto téma opravdu zajímá!**
-
-Pokud bys chtěl/a jít hlouběji, nabízím ti několik možností:
-
-✨ **Osobní konzultace** - 30 minut se mnou přes video/telefon
-🌙 **Lunární čtení** - Osobní měsíční profil podle tvého data narození
-🔮 **Kviz: Tvůj symbol** - Zjisti, který amulet rezonuje s tvou energií
-
-Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
+              content: t('chatbot.upsell'),
               timestamp: new Date(),
             },
           ]);
@@ -636,8 +528,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
         }, 2000); // 2 sekundy po odpovědi
       }
     },
-    onError: (error) => {
-      toast.error("Omlouváme se, došlo k chybě. Zkuste to prosím znovu.");
+    onError: (error) => {      toast.error(t('chatbot.chatError'));
       console.error("Chat error:", error);
     },
   });
@@ -646,10 +537,10 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
     onSuccess: () => {
       setEmail("");
       setShowEmailCapture(false);
-      toast.success("Děkujeme! Budeme vám psát 💌");
+      toast.success(t('chatbot.emailSuccess'));
     },
     onError: () => {
-      toast.error("Nepodařilo se uložit email. Zkuste to prosím znovu.");
+      toast.error(t('chatbot.emailError'));
     },
   });
 
@@ -691,7 +582,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
           ...prev,
           {
             role: "assistant",
-            content: AUTO_REPLY_MESSAGE,
+            content: t('chatbot.autoReply'),
             timestamp: new Date(),
           },
         ]);
@@ -739,33 +630,17 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
   };
 
   const handleWhatsAppEscalation = (reason?: string) => {
-    // Vytvořit personalizovanou zprávu podle důvodu
-    let messageText = 'Ahoj Natálie';
-    switch (reason) {
-      case 'coaching':
-        messageText = 'Ahoj Natálie, mám zájem o osobní koučing s tebou 💜';
-        break;
-      case 'concert':
-        messageText = 'Ahoj Natálie, zajímá mě koncert křišťálových mís 🔮';
-        break;
-      case 'course':
-        messageText = 'Ahoj Natálie, mám zájem o kreativní kurzy posvátné tvorby 🎨';
-        break;
-      case 'ohorai':
-        messageText = 'Ahoj Natálie, mám dotaz k autorské tvorbě OHORAI ✨';
-        break;
-      case 'ohorai-esence':
-        messageText = 'Ahoj Natálie, zajímají mě aromaterapeutické esence OHORAI 🧪';
-        break;
-      case 'ohorai-pyramidy':
-        messageText = 'Ahoj Natálie, mám zájem o orgonitové pyramidy OHORAI 🔺';
-        break;
-      case 'lunar-reading':
-        messageText = 'Ahoj Natálie, zajímá mě Lunární čtení - měsíční profil 🌙';
-        break;
-      default:
-        messageText = 'Ahoj Natálie, potřebuji pomoc';
-    }
+    // WhatsApp pre-filled messages - resolved via i18n
+    const waMessages: Record<string, string> = {
+      coaching: t('chatbot.wa.coaching'),
+      concert: t('chatbot.wa.concert'),
+      course: t('chatbot.wa.course'),
+      ohorai: t('chatbot.wa.ohorai'),
+      'ohorai-esence': t('chatbot.wa.ohoraiEsence'),
+      'ohorai-pyramidy': t('chatbot.wa.ohoraiPyramidy'),
+      'lunar-reading': t('chatbot.wa.lunarReading'),
+    };
+    const messageText = reason && waMessages[reason] ? waMessages[reason] : t('chatbot.wa.default');
     const message = encodeURIComponent(messageText);
     window.open(`https://wa.me/420776041740?text=${message}`, "_blank");
     
@@ -826,10 +701,10 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
   const toggleVoice = () => {
     setVoiceEnabled(!voiceEnabled);
     if (!voiceEnabled) {
-      toast.success("Hlasové odpovědi zapnuty");
+      toast.success(voiceEnabled ? '' : '✅');
     } else {
       window.speechSynthesis.cancel();
-      toast.info("Hlasové odpovědi vypnuty");
+      toast.info('🔇');
     }
   };
 
@@ -963,9 +838,9 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                   {/* Zlatý Ankh symbol - posvátný egyptský znak */}
                   <span className="text-amber-300 text-2xl animate-pulse drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" title="Ankh - symbol věčného života">☥</span>
                 </div>
-                <p className="text-xs text-white/90 font-medium">Průvodkyně procesem</p>
+                <p className="text-xs text-white/90 font-medium">{t('chatbot.header.guide')}</p>
                 <p className="text-xs text-white/70">
-                  {isOffline && !adminOverride && !isAdmin ? 'Offline • Online od 8:00 do 24:00' : 'Online • Odpovídám do 1 minuty'}
+                  {isOffline && !adminOverride && !isAdmin ? t('chatbot.header.offline') : t('chatbot.header.online')}
                 </p>
               </div>
             </div>
@@ -989,7 +864,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent side="bottom" className="bg-white text-gray-800 border border-purple-200">
-                    <p className="font-medium">Zvětšit text</p>
+                    <p className="font-medium">{t('chatbot.fontIncrease')}</p>
                   </TooltipContent>
                 </Tooltip>
                 <Tooltip>
@@ -1009,7 +884,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent side="bottom" className="bg-white text-gray-800 border border-purple-200">
-                    <p className="font-medium">Zmenšit text</p>
+                    <p className="font-medium">{t('chatbot.fontDecrease')}</p>
                   </TooltipContent>
                 </Tooltip>
               </div>
@@ -1026,11 +901,9 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="bottom" className="bg-white text-gray-800 border border-purple-200 max-w-xs">
-                  <p className="font-semibold mb-1">{voiceEnabled ? '🔊 Hlasové odpovědi zapnuty' : '🔇 Hlasové odpovědi vypnuty'}</p>
+                  <p className="font-semibold mb-1">{voiceEnabled ? t('chatbot.voiceOn') : t('chatbot.voiceOff')}</p>
                   <p className="text-xs text-gray-600">
-                    {voiceEnabled 
-                      ? 'Odpovědi se přehrávají nahlas. Klikněte pro vypnutí.' 
-                      : 'Zapněte pro poslouchání odpovědí – ideální při józe nebo relaxaci 🧘‍♀️'}
+                    {voiceEnabled ? t('chatbot.voiceOnDesc') : t('chatbot.voiceOffDesc')}
                   </p>
                 </TooltipContent>
               </Tooltip>
@@ -1046,8 +919,8 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="bottom" className="bg-white text-gray-800 border border-purple-200">
-                  <p className="font-medium">📞 Přímý kontakt s Natálií</p>
-                  <p className="text-xs text-gray-600 mt-0.5">WhatsApp / Telefon</p>
+                  <p className="font-medium">{t('chatbot.directContact')}</p>
+                  <p className="text-xs text-gray-600 mt-0.5">{t('chatbot.directContactDesc')}</p>
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
@@ -1062,7 +935,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="bottom" className="bg-white text-gray-800 border border-purple-200">
-                  <p className="font-medium">{isMaximized ? '⬇️ Zmenšit okno' : '⬆️ Zvětšit na celou obrazovku'}</p>
+                  <p className="font-medium">{isMaximized ? t('chatbot.minimize') : t('chatbot.maximize')}</p>
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
@@ -1090,7 +963,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="bottom" className="bg-white text-gray-800 border border-purple-200">
-                  <p className="font-medium">❌ Zavřít chat</p>
+                  <p className="font-medium">{t('chatbot.close')}</p>
                 </TooltipContent>
               </Tooltip>
             </div>
@@ -1105,7 +978,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                 <div className="flex justify-start">
                   <div className="max-w-[80%] rounded-2xl px-4 py-2 bg-white shadow-md text-gray-800">
                     <Streamdown className="text-sm prose prose-sm max-w-none">
-                      {isAuthenticated ? PREMIUM_OFFLINE_MESSAGE : OFFLINE_MESSAGE}
+                      {isAuthenticated ? t('chatbot.premiumOffline') : t('chatbot.offline')}
                     </Streamdown>
                     <p className="text-xs mt-1 text-gray-500">
                       {new Date().toLocaleTimeString("cs-CZ", {
@@ -1154,12 +1027,12 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
               {showEmailCapture && !email && (
                 <Card className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200">
                   <p className="text-sm font-medium text-gray-800 mb-2">
-                    💌 Chcete dostávat tipy a novinky o spirituálních symbolech?
+                    {t('chatbot.emailCapture')}
                   </p>
                   <div className="flex gap-2">
                     <Input
                       type="email"
-                      placeholder="vas@email.cz"
+                      placeholder={t('chatbot.emailPlaceholder')}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && handleEmailCapture()}
@@ -1171,7 +1044,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                       disabled={emailCaptureMutation.isPending}
                       className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
                     >
-                      {emailCaptureMutation.isPending ? "..." : "Odeslat"}
+                      {emailCaptureMutation.isPending ? "..." : t('chatbot.emailSend')}
                     </Button>
                   </div>
                 </Card>
@@ -1197,14 +1070,13 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
               <div className="border-t bg-white overflow-y-auto p-1.5 max-h-36">
                 {!selectedCategory ? (
                   <>
-                    <p className="text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">Jak ti mohu pomoci?</p>
+                    <p className="text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">{t('chatbot.category.howCanIHelp')}</p>
                     <div className="grid grid-cols-3 gap-1.5">
-                      {SUGGESTED_CATEGORIES.map((cat) => (
+                      {CATEGORY_DEFS.map((cat) => (
                         <button
                           key={cat.id}
                           onClick={() => {
                             setSelectedCategory(cat.id);
-                            // Track stream selection for analytics
                             if (variant && cat.stream) {
                               logEventMutation.mutate({
                                 visitorId,
@@ -1216,14 +1088,12 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                             }
                           }}
                           className="group p-2 rounded-lg bg-gradient-to-br from-purple-50 via-pink-50 to-amber-50 hover:from-purple-100 hover:via-pink-100 hover:to-amber-100 border-2 border-purple-200/60 hover:border-amber-400/80 transition-all duration-300 text-center flex flex-col items-center justify-center shadow-sm hover:shadow-lg hover:shadow-purple-200/50 hover:scale-105 relative overflow-hidden"
-                          title={cat.category}
+                          title={t(cat.categoryKey)}
                         >
-                          {/* Magický zářivý efekt */}
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                          {/* Pulzující aura */}
                           <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-purple-400/0 to-amber-400/0 group-hover:from-purple-400/10 group-hover:to-amber-400/10 animate-pulse" />
                           <div className="text-3xl leading-none relative z-10 group-hover:scale-110 transition-transform duration-300 drop-shadow-md">{cat.icon}</div>
-                          <p className="text-xs font-bold text-gray-800 group-hover:text-purple-900 leading-tight mt-2 relative z-10 transition-colors duration-300">{cat.category}</p>
+                          <p className="text-xs font-bold text-gray-800 group-hover:text-purple-900 leading-tight mt-2 relative z-10 transition-colors duration-300">{t(cat.categoryKey)}</p>
                         </button>
                       ))}
                     </div>
@@ -1234,22 +1104,24 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                       onClick={() => setSelectedCategory(null)}
                       className="text-xs text-purple-600 hover:text-purple-700 mb-2 flex items-center gap-1"
                     >
-                      ← Zpět
+                      {t('chatbot.category.back')}
                     </button>
                     <p className="text-xs font-semibold text-gray-600 mb-2 uppercase">
-                      {SUGGESTED_CATEGORIES.find((c) => c.id === selectedCategory)?.category}
+                      {t(CATEGORY_DEFS.find((c) => c.id === selectedCategory)?.categoryKey || '')}
                     </p>
                     <div className="space-y-1">
-                      {SUGGESTED_CATEGORIES.find((c) => c.id === selectedCategory)?.questions.map(
-                        (question, qIdx) => (
+                      {CATEGORY_DEFS.find((c) => c.id === selectedCategory)?.questionKeys.map(
+                        (qKey: string, qIdx: number) => {
+                          const questionText = t(qKey);
+                          return (
                           <button
                             key={qIdx}
                             onClick={() => {
-                              setInput(question);
+                              setInput(questionText);
                               setTimeout(() => {
                                 const userMessage: Message = {
                                   role: "user",
-                                  content: question,
+                                  content: questionText,
                                   timestamp: new Date(),
                                 };
                                 setMessages((prev) => [...prev, userMessage]);
@@ -1264,7 +1136,7 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                                   browsingHistory: browsingContextText,
                                 };
                                 chatMutation.mutate({
-                                  message: question,
+                                  message: questionText,
                                   context: browsingContext,
                                   email: email || undefined,
                                   sessionId: numericSessionId,
@@ -1275,9 +1147,10 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                             }}
                             className="w-full text-left text-xs p-1.5 rounded bg-gray-100 hover:bg-purple-100 text-gray-700 hover:text-purple-700 transition-colors line-clamp-2"
                           >
-                            {question}
+                            {questionText}
                           </button>
-                        )
+                          );
+                        }
                       )}
                     </div>
                   </>
@@ -1299,9 +1172,9 @@ Stačí napsat, co tě zajímá, a ráda ti povím více! 💜`,
                   <X className="h-5 w-5 text-gray-600" />
                 </button>
                 <div className="text-center mb-3">
-                  <p className="text-sm font-semibold text-gray-800">💬 Pomozte nám být lepší!</p>
+                  <p className="text-sm font-semibold text-gray-800">{t('chatbot.feedback.title')}</p>
                   <p className="text-xs text-gray-600 mt-1">
-Vaše názory jsou pro nás velmi cenné. Odpovězte na pár otázek (nepřipovízné):
+                    {t('chatbot.feedback.subtitle')}
                   </p>
                 </div>
                 <div className="space-y-3">
@@ -1311,7 +1184,7 @@ Vaše názory jsou pro nás velmi cenné. Odpovězte na pár otázek (nepřipov�
                         {q.label}
                       </label>
                       <textarea
-                        placeholder="Vaše myšlenky..."
+                        placeholder={t('chatbot.feedback.placeholder')}
                         value={feedbackAnswers[q.id as keyof typeof feedbackAnswers] || ''}
                         onChange={(e) => setFeedbackAnswers(prev => ({
                           ...prev,
@@ -1332,7 +1205,7 @@ Vaše názory jsou pro nás velmi cenné. Odpovězte na pár otázek (nepřipov�
                     }}
                     className="flex-1"
                   >
-                    Přeskočit
+                    {t('chatbot.feedback.skip')}
                   </Button>
                   <Button
                     size="sm"
@@ -1369,13 +1242,13 @@ Vaše názory jsou pro nás velmi cenné. Odpovězte na pár otázek (nepřipov�
                       } catch (error) {
                         console.error('[Feedback] Error submitting:', error);
                         // Zobrazit chybu uživateli
-                        alert('Nepodařilo se odeslat feedback. Zkuste to prosím později.');
+                        alert(t('chatbot.feedback.error'));
                       }
                     }}
                     className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
                     disabled={!Object.values(feedbackAnswers).some(v => v?.trim())}
                   >
-                    💜 Odeslat
+                    {t('chatbot.feedback.send')}
                   </Button>
                 </div>
               </Card>
@@ -1386,9 +1259,9 @@ Vaše názory jsou pro nás velmi cenné. Odpovězte na pár otázek (nepřipov�
               <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 mx-4 mb-4">
                 <div className="text-center">
                   <div className="text-3xl mb-2">✨</div>
-                  <p className="text-sm font-semibold text-gray-800">Děkujeme za vaši zpětnou vazbu!</p>
+                  <p className="text-sm font-semibold text-gray-800">{t('chatbot.feedback.thanks')}</p>
                   <p className="text-xs text-gray-600 mt-1">
-Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
+                    {t('chatbot.feedback.thanksDesc')}
                   </p>
                 </div>
               </Card>
@@ -1402,32 +1275,32 @@ Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
                 {ticketSubmitted ? (
                   <div className="text-center py-4">
                     <div className="text-4xl mb-2">✅</div>
-                    <p className="text-sm font-medium text-gray-800">Děkujeme za váš dotaz!</p>
+                    <p className="text-sm font-medium text-gray-800">{t('chatbot.ticket.thanks')}</p>
                     <p className="text-xs text-gray-600 mt-1">
-                      Natálie vám odpoví emailem hned, jak bude k dispozici (9:00-24:00).
+                      {t('chatbot.ticket.thanksDesc')}
                     </p>
                   </div>
                 ) : showTicketForm ? (
                   <div className="space-y-2">
                     <p className="text-xs font-medium text-gray-700 text-center">
-                      📝 Zanechte svůj dotaz a Natálie vám odpoví emailem
+                      {t('chatbot.ticket.leaveQuestion')}
                     </p>
                     <Input
                       type="text"
-                      placeholder="Vaše jméno"
+                      placeholder={t('chatbot.ticket.name')}
                       value={ticketName}
                       onChange={(e) => setTicketName(e.target.value)}
                       className="text-sm"
                     />
                     <Input
                       type="email"
-                      placeholder="Váš email"
+                      placeholder={t('chatbot.ticket.email')}
                       value={ticketEmail}
                       onChange={(e) => setTicketEmail(e.target.value)}
                       className="text-sm"
                     />
                     <textarea
-                      placeholder="Váš dotaz..."
+                      placeholder={t('chatbot.ticket.message')}
                       value={ticketMessage}
                       onChange={(e) => setTicketMessage(e.target.value)}
                       className="w-full text-sm p-2 border rounded-md resize-none h-20 focus:outline-none focus:ring-2 focus:ring-purple-500"
@@ -1439,13 +1312,13 @@ Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
                         onClick={() => setShowTicketForm(false)}
                         className="flex-1"
                       >
-                        Zpět
+                        {t('chatbot.ticket.back')}
                       </Button>
                       <Button
                         size="sm"
                         onClick={() => {
                           if (!ticketName.trim() || !ticketEmail.trim() || !ticketMessage.trim()) {
-                            toast.error("Vyplňte prosím všechna pole");
+                            toast.error(t('chatbot.ticket.fillAll'));
                             return;
                           }
                           createTicketMutation.mutate({
@@ -1463,7 +1336,7 @@ Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
                         disabled={createTicketMutation.isPending}
                         className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
                       >
-                        {createTicketMutation.isPending ? "Odesílám..." : "Odeslat dotaz"}
+                        {createTicketMutation.isPending ? t('chatbot.ticket.sending') : t('chatbot.ticket.send')}
                       </Button>
                     </div>
                   </div>
@@ -1473,10 +1346,10 @@ Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
                     {!whatsAppQualified ? (
                       <>
                         <p className="text-xs font-medium text-gray-700 text-center">
-                          💜 WhatsApp je exkluzivní kontakt pro vážné zájemce
+                          {t('chatbot.whatsapp.exclusive')}
                         </p>
                         <p className="text-[10px] text-gray-500 text-center mb-2">
-                          Vyberte důvod vašeho zájmu:
+                          {t('chatbot.whatsapp.selectReason')}
                         </p>
                         <div className="grid grid-cols-2 gap-1.5">
                           {WHATSAPP_REASONS.map((reason) => (
@@ -1486,9 +1359,6 @@ Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
                               className="text-[10px] p-2 rounded-lg border border-purple-200 hover:border-purple-400 hover:bg-purple-50 transition-all text-left"
                             >
                               <span className="block font-medium text-purple-700">{reason.label}</span>
-                              {reason.subtitle && (
-                                <span className="block text-[9px] text-purple-500 mt-0.5">{reason.subtitle}</span>
-                              )}
                             </button>
                           ))}
                         </div>
@@ -1498,16 +1368,16 @@ Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
                           onClick={() => setShowWhatsAppQualification(false)}
                           className="w-full text-[10px] text-gray-500 mt-1"
                         >
-                          ← Zpět
+                          {t('chatbot.category.back')}
                         </Button>
                       </>
                     ) : (
                       <>
                         <div className="text-center py-2">
                           <div className="text-2xl mb-1">✨</div>
-                          <p className="text-xs font-medium text-purple-700">Děkujeme za váš zájem!</p>
+                          <p className="text-xs font-medium text-purple-700">{t('chatbot.whatsapp.thanks')}</p>
                           <p className="text-[10px] text-gray-600 mt-1">
-                            Natálie se těší na váš kontakt
+                            {t('chatbot.whatsapp.thanksDesc')}
                           </p>
                         </div>
                         <Button
@@ -1516,7 +1386,7 @@ Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
                           className="w-full h-9 bg-green-500 hover:bg-green-600 text-white text-sm shadow-md"
                         >
                           <Phone className="h-4 w-4 mr-2" />
-                          Otevřít WhatsApp
+                          {t('chatbot.whatsapp.open')}
                         </Button>
                         <Button
                           variant="ghost"
@@ -1527,7 +1397,7 @@ Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
                           }}
                           className="w-full text-[10px] text-gray-500"
                         >
-                          ← Změnit důvod
+                          {t('chatbot.category.back')}
                         </Button>
                       </>
                     )}
@@ -1535,13 +1405,13 @@ Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
                 ) : (
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] text-gray-400 whitespace-nowrap">🌙 Odpočívá (9-24h)</span>
+                      <span className="text-[10px] text-gray-400 whitespace-nowrap">{t('chatbot.offline.resting')}</span>
                       <Button
                         onClick={() => setShowTicketForm(true)}
                         size="sm"
                         className="h-7 px-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-[10px]"
                       >
-                        📝 Dotaz
+                        {t('chatbot.offline.question')}
                       </Button>
                     </div>
                     <div className="flex items-center gap-2">
@@ -1577,7 +1447,7 @@ Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                    placeholder="Napište zprávu..."
+                    placeholder={t('chatbot.inputPlaceholder')}
                     disabled={chatMutation.isPending}
                     className="flex-1"
                   />
@@ -1590,7 +1460,7 @@ Vaše názory nám pomáhají vytvářet lepší zážitek pro všechny.
                   </Button>
                 </div>
                 <p className="text-xs text-gray-500 mt-2 text-center">
-                  Powered by AI • Odpovědi mohou obsahovat chyby
+                  {t('chatbot.poweredBy')}
                 </p>
               </>
             )}
