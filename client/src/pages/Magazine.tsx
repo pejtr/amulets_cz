@@ -5,6 +5,7 @@ import { tantraArticles } from "@/data/tantraArticles";
 import { Link } from "wouter";
 import { ArrowRight, Star, Sparkles, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 // Kombinovat všechny články
 const allArticles = [...magazineArticles, ...tantraArticles];
@@ -21,6 +22,7 @@ const otherArticles = regularArticles.filter(a => !tantraArticles.find(t => t.sl
 const ARTICLES_PER_PAGE = 6;
 
 export default function Magazine() {
+  const { t } = useTranslation();
   const [tantraVisible, setTantraVisible] = useState(ARTICLES_PER_PAGE);
   const [otherVisible, setOtherVisible] = useState(ARTICLES_PER_PAGE);
 
@@ -71,10 +73,10 @@ export default function Magazine() {
           <div className="container relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
-                Magazín
+                {t('content.magazine.title')}
               </h1>
               <p className="text-lg text-white/90 drop-shadow-md">
-                Objevte zajímavé články o duchovnosti, léčivých rostlinách a aromaterapii
+                {t('content.magazine.subtitle')}
               </p>
             </div>
           </div>
@@ -112,7 +114,7 @@ export default function Magazine() {
               <div className="flex items-center gap-2 mb-6">
                 <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
                 <span className="text-sm font-semibold text-yellow-300 uppercase tracking-wider">
-                  Doporučený článek
+                  {t('content.magazine.featured')}
                 </span>
               </div>
               
@@ -138,7 +140,7 @@ export default function Magazine() {
                     <div className="flex items-center gap-2 mb-4">
                       <Sparkles className="h-5 w-5 text-amber-600" />
                       <span className="text-sm text-amber-600 font-medium">
-                        Egyptská mytologie
+                        {t('content.magazine.egyptianMythology')}
                       </span>
                     </div>
                     
@@ -151,7 +153,7 @@ export default function Magazine() {
                     </p>
 
                     <div className="flex items-center text-amber-700 font-semibold text-lg group-hover:gap-3 transition-all">
-                      Číst článek
+                      {t('content.magazine.readArticle')}
                       <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-2 transition-transform" />
                     </div>
                   </div>
@@ -167,7 +169,7 @@ export default function Magazine() {
             <div className="flex items-center gap-3 mb-8">
               <div className="h-1 w-12 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Všechny články
+                {t('content.magazine.allArticles')}
               </h2>
             </div>
             
@@ -206,7 +208,7 @@ export default function Magazine() {
                       </p>
 
                       <div className="flex items-center text-primary font-semibold text-sm group-hover:gap-2 transition-all">
-                        Číst více
+                        {t('content.magazine.readMore')}
                         <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
@@ -222,7 +224,7 @@ export default function Magazine() {
                   onClick={showMoreOther}
                   className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-full hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
-                  Zobrazit další
+                  {t('content.magazine.showMore')}
                   <ChevronDown className="h-5 w-5" />
                 </button>
               </div>
@@ -233,10 +235,10 @@ export default function Magazine() {
               <div className="text-center py-16">
                 <div className="text-6xl mb-4">📚</div>
                 <h3 className="text-2xl font-bold text-foreground mb-2">
-                  Zatím zde nejsou žádné články
+                  {t('content.magazine.noArticles')}
                 </h3>
                 <p className="text-muted-foreground">
-                  Brzy přidáme zajímavý obsah o amuletoch a duchovním růstu.
+                  {t('content.magazine.comingSoon')}
                 </p>
               </div>
             )}
@@ -249,7 +251,7 @@ export default function Magazine() {
             <div className="flex items-center gap-3 mb-8">
               <div className="h-1 w-12 bg-gradient-to-r from-pink-500 to-red-500 rounded-full" />
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                Tantra, Láska & Milování
+                {t('content.magazine.tantraSection')}
               </h2>
             </div>
             
@@ -288,7 +290,7 @@ export default function Magazine() {
                       </p>
 
                       <div className="flex items-center text-pink-500 font-semibold text-sm group-hover:gap-2 transition-all">
-                        Číst více
+                        {t('content.magazine.readMore')}
                         <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
@@ -304,7 +306,7 @@ export default function Magazine() {
                   onClick={showMoreTantra}
                   className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-pink-500 to-red-500 text-white font-semibold rounded-full hover:from-pink-600 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-pink-500/20"
                 >
-                  Zobrazit další
+                  {t('content.magazine.showMore')}
                   <ChevronDown className="h-5 w-5" />
                 </button>
               </div>

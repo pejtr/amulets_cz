@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
+import { useTranslation } from "react-i18next";
 import { quizQuestions, calculateQuizResult } from "@/data/quizData";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -9,6 +10,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function Quiz() {
+  const { t } = useTranslation();
   const [, setLocation] = useLocation();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
@@ -43,7 +45,6 @@ export default function Quiz() {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedOption(null);
     } else {
-      // Poslední otázka - vypočítáme výsledek
       const result = calculateQuizResult(newAnswers);
       setLocation(`/kviz/vysledek/${result}`);
     }
@@ -67,7 +68,7 @@ export default function Quiz() {
           <div className="mb-8">
             <div className="flex justify-between items-center mb-2">
               <p className="text-sm text-muted-foreground">
-                Otázka {currentQuestion + 1} z {quizQuestions.length}
+                {t('quiz.questionOf', { current: currentQuestion + 1, total: quizQuestions.length })}
               </p>
               <p className="text-sm font-semibold text-primary">
                 {Math.round(progress)}%
@@ -120,7 +121,7 @@ export default function Quiz() {
                 className="flex-1"
               >
                 <ArrowLeft className="h-5 w-5 mr-2" />
-                Zpět
+                {t('quiz.back')}
               </Button>
             )}
             <Button
@@ -129,14 +130,14 @@ export default function Quiz() {
               disabled={selectedOption === null}
               className={`${currentQuestion === 0 ? "w-full" : "flex-1"} bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700`}
             >
-              {currentQuestion < quizQuestions.length - 1 ? "Další" : "Zobrazit výsledek"}
+              {currentQuestion < quizQuestions.length - 1 ? t('quiz.next') : t('quiz.finish')}
               <ArrowRight className="h-5 w-5 ml-2" />
             </Button>
           </div>
 
           {/* Hint */}
           <p className="text-center text-sm text-muted-foreground mt-6">
-            Vyber odpověď, která tě nejvíce oslovuje
+            {t('quiz.hint')}
           </p>
         </div>
       </main>

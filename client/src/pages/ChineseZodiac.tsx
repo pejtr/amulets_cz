@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
+import { useTranslation } from "react-i18next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -9,57 +10,56 @@ import ChineseZodiacFAQ from "@/components/ChineseZodiacFAQ";
 import { setOpenGraphTags, setHreflangTags } from "@/lib/seo";
 import { setSchemaMarkup, createBreadcrumbSchema } from "@/lib/schema";
 
+const SIGN_KEYS = ["rat", "ox", "tiger", "rabbit", "dragon", "snake", "horse", "goat", "monkey", "rooster", "dog", "pig"] as const;
+const SIGN_EMOJIS = ["🐀", "🐂", "🐅", "🐇", "🐉", "🐍", "🐎", "🐏", "🐒", "🐓", "🐕", "🐖"];
+const SIGN_SLUGS = [
+  "cinsky-horoskop-krysa", "cinsky-horoskop-buvol", "cinsky-horoskop-tygr", "cinsky-horoskop-kralik",
+  "cinsky-horoskop-drak", "cinsky-horoskop-had", "cinsky-horoskop-kun", "cinsky-horoskop-koza",
+  "cinsky-horoskop-opice", "cinsky-horoskop-kohout", "cinsky-horoskop-pes", "cinsky-horoskop-prase",
+];
+const SIGN_YEARS = [
+  "2020, 2008, 1996, 1984", "2021, 2009, 1997, 1985", "2022, 2010, 1998, 1986", "2023, 2011, 1999, 1987",
+  "2024, 2012, 2000, 1988", "2025, 2013, 2001, 1989", "2026, 2014, 2002, 1990", "2027, 2015, 2003, 1991",
+  "2028, 2016, 2004, 1992", "2029, 2017, 2005, 1993", "2030, 2018, 2006, 1994", "2031, 2019, 2007, 1995",
+];
+
+const ELEMENT_KEYS = ["wood", "fire", "earth", "metal", "water"] as const;
+const ELEMENT_EMOJIS = ["🌳", "🔥", "🌍", "⚙️", "💧"];
+const ELEMENT_SLUGS = ["element-drevo", "element-ohen", "element-zeme", "element-kov", "element-voda"];
+const ELEMENT_COLORS = [
+  "from-green-100 to-green-200", "from-red-100 to-orange-200", "from-amber-100 to-yellow-200",
+  "from-gray-100 to-slate-200", "from-blue-100 to-cyan-200",
+];
+
 export default function ChineseZodiac() {
+  const { t } = useTranslation();
+
   useEffect(() => {
-    document.title = "🐎 Čínský horoskop 2026 | Čínská znamení a kalendář | Kalkulačka podle data narození";
+    document.title = t('zh.pageTitle');
     
     const metaDesc = document.querySelector('meta[name="description"]') || document.createElement('meta');
     metaDesc.setAttribute('name', 'description');
-    metaDesc.setAttribute('content', 'Čínský horoskop 2026 - Rok Ohnivého Koně. Zjistěte své čínské znamení podle data narození. Čínský kalendář, kompatibilita znamení, partnerský horoskop. Kalkulačka zdarma ✓');
+    metaDesc.setAttribute('content', t('zh.metaDesc'));
     if (!document.querySelector('meta[name="description"]')) {
       document.head.appendChild(metaDesc);
     }
 
     setOpenGraphTags({
-      title: "🐎 Čínský horoskop 2026 | Čínská znamení podle data narození | Kalkulačka",
-      description: "Čínský horoskop 2026 - Rok Ohnivého Koně. Zjistěte své čínské znamení podle data narození. Čínský kalendář, partnerský horoskop, kompatibilita.",
+      title: t('zh.pageTitle'),
+      description: t('zh.metaDesc'),
       url: "https://amulets.cz/cinsky-horoskop",
       type: "website",
       image: "https://amulets.cz/images/chinese-zodiac/kun.webp",
     });
 
     const breadcrumbs = createBreadcrumbSchema([
-      { name: "Domů", url: "https://amulets.cz/" },
-      { name: "Čínský horoskop 2026", url: "https://amulets.cz/cinsky-horoskop" },
+      { name: t('zh.breadcrumbHome'), url: "https://amulets.cz/" },
+      { name: t('zh.breadcrumbHoroscope'), url: "https://amulets.cz/cinsky-horoskop" },
     ]);
 
     setSchemaMarkup([breadcrumbs]);
-
     setHreflangTags("/cinsky-horoskop");
-  }, []);
-
-  const chineseZodiacSigns = [
-    { name: "Krysa", emoji: "🐀", slug: "cinsky-horoskop-krysa", years: "2020, 2008, 1996, 1984" },
-    { name: "Bůvol", emoji: "🐂", slug: "cinsky-horoskop-buvol", years: "2021, 2009, 1997, 1985" },
-    { name: "Tygr", emoji: "🐅", slug: "cinsky-horoskop-tygr", years: "2022, 2010, 1998, 1986" },
-    { name: "Králík", emoji: "🐇", slug: "cinsky-horoskop-kralik", years: "2023, 2011, 1999, 1987" },
-    { name: "Drak", emoji: "🐉", slug: "cinsky-horoskop-drak", years: "2024, 2012, 2000, 1988" },
-    { name: "Had", emoji: "🐍", slug: "cinsky-horoskop-had", years: "2025, 2013, 2001, 1989" },
-    { name: "Kůň", emoji: "🐎", slug: "cinsky-horoskop-kun", years: "2026, 2014, 2002, 1990", highlight: true },
-    { name: "Koza", emoji: "🐏", slug: "cinsky-horoskop-koza", years: "2027, 2015, 2003, 1991" },
-    { name: "Opice", emoji: "🐒", slug: "cinsky-horoskop-opice", years: "2028, 2016, 2004, 1992" },
-    { name: "Kohout", emoji: "🐓", slug: "cinsky-horoskop-kohout", years: "2029, 2017, 2005, 1993" },
-    { name: "Pes", emoji: "🐕", slug: "cinsky-horoskop-pes", years: "2030, 2018, 2006, 1994" },
-    { name: "Prase", emoji: "🐖", slug: "cinsky-horoskop-prase", years: "2031, 2019, 2007, 1995" },
-  ];
-
-  const elements = [
-    { name: "Dřevo", emoji: "🌳", slug: "element-drevo", color: "from-green-100 to-green-200" },
-    { name: "Oheň", emoji: "🔥", slug: "element-ohen", color: "from-red-100 to-orange-200" },
-    { name: "Země", emoji: "🌍", slug: "element-zeme", color: "from-amber-100 to-yellow-200" },
-    { name: "Kov", emoji: "⚙️", slug: "element-kov", color: "from-gray-100 to-slate-200" },
-    { name: "Voda", emoji: "💧", slug: "element-voda", color: "from-blue-100 to-cyan-200" },
-  ];
+  }, [t]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -67,20 +67,20 @@ export default function ChineseZodiac() {
       <main className="flex-1">
         <div className="container py-8 md:py-16">
           <Breadcrumbs items={[
-            { label: "Domů", href: "/" },
-            { label: "Čínský horoskop 2026" }
+            { label: t('zh.breadcrumbHome'), href: "/" },
+            { label: t('zh.breadcrumbHoroscope') }
           ]} />
 
           <div className="text-center mb-12">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              🐎 Čínský horoskop 2026
+              {t('zh.title')}
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Rok Ohnivého Koně - období energie, vášně a dobrodružství. Zjistěte své znamení a co vám rok 2026 přinese.
+              {t('zh.subtitle')}
             </p>
           </div>
 
-          {/* Rok 2026 - hlavní banner */}
+          {/* Year 2026 banner */}
           <div className="bg-gradient-to-r from-orange-500 via-red-500 to-rose-600 text-white rounded-2xl p-6 md:p-8 mb-8 text-center relative overflow-hidden">
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-0 left-0 w-32 h-32 bg-white rounded-full blur-3xl"></div>
@@ -88,158 +88,160 @@ export default function ChineseZodiac() {
             </div>
             <div className="relative z-10">
               <div className="text-5xl md:text-6xl mb-4">🐎🔥</div>
-              <h2 className="text-2xl md:text-4xl font-bold mb-3">Rok Ohnivého Koně 2026</h2>
+              <h2 className="text-2xl md:text-4xl font-bold mb-3">{t('zh.yearBanner')}</h2>
               <p className="text-orange-100 mb-2 text-lg">
-                Čínský Nový rok začíná <strong>17. února 2026</strong>
+                {t('zh.newYearStart')} <strong>{t('zh.newYearDate')}</strong>
               </p>
               <p className="text-orange-200 mb-6 max-w-xl mx-auto">
-                Kůň symbolizuje rychlost, nezávislost a dobrodružství. Rok 2026 přinese příležitosti pro odvážné činy, 
-                nové začátky a dynamické změny. Ohnivý element zesiluje energii a vášeň.
+                {t('zh.yearDesc')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
                   href="/symbol/cinsky-horoskop-kun"
                   className="inline-block bg-white text-orange-600 px-6 py-3 rounded-full font-semibold hover:bg-orange-100 transition-colors shadow-lg"
                 >
-                  🐎 Více o roku Koně 2026 →
+                  {t('zh.moreAboutHorse')}
                 </Link>
                 <Link 
                   href="#kalkulacka"
                   className="inline-block bg-orange-800/50 text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-800 transition-colors border border-orange-400/30"
                 >
-                  🔮 Zjistit své znamení
+                  {t('zh.findYourSign')}
                 </Link>
               </div>
             </div>
           </div>
 
-          {/* Co přinese rok 2026 */}
+          {/* What 2026 brings */}
           <section className="mb-12 bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-6 md:p-8 border border-orange-200">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-orange-800">
-              🌟 Co přinese Rok Koně 2026?
+              {t('zh.whatBrings')}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { icon: "⚡", title: "Energie", desc: "Čas pro akci a odvážné kroky" },
-                { icon: "🏃", title: "Svoboda", desc: "Nezávislost a nové cesty" },
-                { icon: "🔥", title: "Vášeň", desc: "Intenzivní emoce a vztahy" },
-                { icon: "🎯", title: "Úspěch", desc: "Rychlé výsledky a pokrok" },
+                { icon: "⚡", titleKey: "zh.energy", descKey: "zh.energyDesc" },
+                { icon: "🏃", titleKey: "zh.freedom", descKey: "zh.freedomDesc" },
+                { icon: "🔥", titleKey: "zh.passion", descKey: "zh.passionDesc" },
+                { icon: "🎯", titleKey: "zh.success", descKey: "zh.successDesc" },
               ].map((item) => (
-                <div key={item.title} className="bg-white rounded-xl p-5 shadow-md text-center">
+                <div key={item.titleKey} className="bg-white rounded-xl p-5 shadow-md text-center">
                   <div className="text-3xl mb-2">{item.icon}</div>
-                  <h3 className="font-bold text-orange-800 mb-1">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  <h3 className="font-bold text-orange-800 mb-1">{t(item.titleKey)}</h3>
+                  <p className="text-sm text-muted-foreground">{t(item.descKey)}</p>
                 </div>
               ))}
             </div>
           </section>
 
-          {/* Čínská znamení zvěrokruhu - SEO sekce */}
+          {/* Zodiac signs SEO section */}
           <section id="cinska-znameni" className="mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
-              🌟 Čínská znamení zvěrokruhu
+              {t('zh.signsTitle')}
             </h2>
             <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Čínský horoskop obsahuje 12 znamení zvěrokruhu. Každé čínské znamení má své jedinečné vlastnosti, element a kompatibilitu s ostatními znameními. Zjistěte své čínské znamení podle data narození a roku.
+              {t('zh.signsDesc')}
             </p>
           </section>
 
-          {/* Předpovědi 2026 pro jednotlivá znamení */}
+          {/* Predictions 2026 */}
           <section id="predpovedi-2026" className="mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
-              🔮 Předpovědi pro rok 2026 - Všechna čínská znamení
+              {t('zh.predictionsTitle')}
             </h2>
             <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Klikněte na své čínské znamení a zjistěte, co vám Rok Koně přinese v lásce, kariéře a zdraví.
+              {t('zh.predictionsDesc')}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {chineseZodiacSigns.map((sign) => (
-                <Link
-                  key={sign.name}
-                  href={`/symbol/${sign.slug}`}
-                  className={`rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border ${
-                    sign.highlight 
-                      ? "bg-gradient-to-br from-orange-100 to-red-100 border-orange-300 ring-2 ring-orange-400" 
-                      : "bg-white border-orange-100"
-                  }`}
-                >
-                  <div className="text-4xl mb-2">{sign.emoji}</div>
-                  <h3 className="font-bold text-foreground">{sign.name}</h3>
-                  <p className="text-xs text-muted-foreground mt-1">{sign.years}</p>
-                  {sign.highlight && (
-                    <span className="inline-block mt-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full font-bold">
-                      🐎 Váš rok!
-                    </span>
-                  )}
-                </Link>
-              ))}
+              {SIGN_KEYS.map((key, i) => {
+                const isHorse = key === "horse";
+                return (
+                  <Link
+                    key={key}
+                    href={`/symbol/${SIGN_SLUGS[i]}`}
+                    className={`rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border ${
+                      isHorse 
+                        ? "bg-gradient-to-br from-orange-100 to-red-100 border-orange-300 ring-2 ring-orange-400" 
+                        : "bg-white border-orange-100"
+                    }`}
+                  >
+                    <div className="text-4xl mb-2">{SIGN_EMOJIS[i]}</div>
+                    <h3 className="font-bold text-foreground">{t(`zh.sign.${key}`)}</h3>
+                    <p className="text-xs text-muted-foreground mt-1">{SIGN_YEARS[i]}</p>
+                    {isHorse && (
+                      <span className="inline-block mt-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                        {t('zh.yourYear')}
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
             </div>
           </section>
 
-          {/* Kalkulačka */}
+          {/* Calculator */}
           <section id="kalkulacka" className="mb-16">
             <ChineseZodiacCalculator />
           </section>
 
-          {/* Kompatibilita */}
+          {/* Compatibility */}
           <section id="kompatibilita" className="mb-16">
             <ChineseZodiacCompatibility />
           </section>
 
-          {/* 5 elementů */}
+          {/* 5 Elements */}
           <section id="elementy" className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
-              🔥 5 Elementů čínské astrologie
+              {t('zh.elementsTitle')}
             </h2>
             <p className="text-center text-muted-foreground mb-8 max-w-xl mx-auto">
-              Rok 2026 je rokem <strong>Ohnivého</strong> Koně. Element Oheň přináší vášeň, energii a transformaci.
+              {t('zh.elementsDesc')}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-              {elements.map((element) => (
+              {ELEMENT_KEYS.map((key, i) => (
                 <Link
-                  key={element.name}
-                  href={`/symbol/${element.slug}`}
-                  className={`bg-gradient-to-br ${element.color} rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 ${
-                    element.name === "Oheň" ? "ring-2 ring-red-500" : ""
+                  key={key}
+                  href={`/symbol/${ELEMENT_SLUGS[i]}`}
+                  className={`bg-gradient-to-br ${ELEMENT_COLORS[i]} rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 ${
+                    key === "fire" ? "ring-2 ring-red-500" : ""
                   }`}
                 >
-                  <div className="text-4xl mb-2">{element.emoji}</div>
-                  <h3 className="font-bold text-foreground">{element.name}</h3>
-                  {element.name === "Oheň" && (
-                    <span className="text-xs text-red-700 font-medium">Element 2026</span>
+                  <div className="text-4xl mb-2">{ELEMENT_EMOJIS[i]}</div>
+                  <h3 className="font-bold text-foreground">{t(`zh.el.${key}`)}</h3>
+                  {key === "fire" && (
+                    <span className="text-xs text-red-700 font-medium">{t('zh.element2026')}</span>
                   )}
                 </Link>
               ))}
             </div>
           </section>
 
-          {/* FAQ sekce */}
+          {/* FAQ */}
           <ChineseZodiacFAQ />
 
-          {/* Rok 2027 - menší sekce */}
+          {/* Year 2027 preview */}
           <section className="mb-12">
             <div className="bg-gradient-to-r from-pink-100 to-purple-100 rounded-2xl p-6 text-center border border-pink-200">
               <div className="text-3xl mb-2">🐏🔥</div>
-              <h3 className="text-xl font-bold text-pink-800 mb-2">Připravte se na rok 2027</h3>
+              <h3 className="text-xl font-bold text-pink-800 mb-2">{t('zh.prepare2027')}</h3>
               <p className="text-pink-700 mb-4 text-sm">
-                Rok Ohnivé Kozy začíná 6. února 2027 - rok kreativity, harmonie a umění.
+                {t('zh.prepare2027Desc')}
               </p>
               <Link 
                 href="/symbol/cinsky-horoskop-koza"
                 className="inline-block bg-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors"
               >
-                Více o roku Kozy →
+                {t('zh.moreAboutGoat')}
               </Link>
             </div>
           </section>
 
-          {/* Odkaz na hlavní stránku čínského kalendáře */}
+          {/* Calendar link */}
           <div className="text-center">
             <Link 
               href="/symbol/cinsky-kalendar"
               className="inline-block bg-orange-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-700 transition-colors"
             >
-              📅 Čínský kalendář - Kompletní přehled
+              {t('zh.calendarLink')}
             </Link>
           </div>
         </div>

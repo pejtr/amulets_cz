@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Filter, Search, ShoppingCart, Heart } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 interface AmenPendant {
   id: string;
@@ -21,6 +22,7 @@ interface AmenPendant {
 }
 
 export default function AmenPendants() {
+  const { t } = useTranslation();
   const [pendants, setPendants] = useState<AmenPendant[]>([]);
   const [filteredPendants, setFilteredPendants] = useState<AmenPendant[]>([]);
   const [loading, setLoading] = useState(true);
@@ -105,7 +107,7 @@ export default function AmenPendants() {
 
   const handleAddToCart = (pendant: AmenPendant) => {
     window.open(pendant.url, "_blank");
-    toast.success(`Přesměrování na ${pendant.affiliation}...`);
+    toast.success(t('content.amen.redirecting', { shop: pendant.affiliation }));
   };
 
   const categories = Array.from(new Set(pendants.map((p) => p.category)));
@@ -119,12 +121,10 @@ export default function AmenPendants() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Privěsky AMEN
+            {t('content.amen.title')}
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Objevte naši kolekci autentických privěsků AMEN s posvátnou symbolikou.
-            Každý kus je vybrán s péčí pro jeho energetické vlastnosti a spirituální
-            účinek.
+            {t('content.amen.subtitle')}
           </p>
         </div>
 
@@ -134,18 +134,18 @@ export default function AmenPendants() {
             <Card className="p-6 sticky top-4">
               <div className="flex items-center gap-2 mb-6">
                 <Filter className="h-5 w-5 text-purple-600" />
-                <h2 className="font-semibold text-gray-900">Filtry</h2>
+                <h2 className="font-semibold text-gray-900">{t('content.amen.filters')}</h2>
               </div>
 
               {/* Search */}
               <div className="mb-6">
                 <label className="text-sm font-medium text-gray-700 block mb-2">
-                  Hledat
+                  {t('content.amen.search')}
                 </label>
                 <div className="relative">
                   <Input
                     type="text"
-                    placeholder="Název, účel..."
+                    placeholder={t('content.amen.searchPlaceholder')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10"
@@ -157,7 +157,7 @@ export default function AmenPendants() {
               {/* Category Filter */}
               <div className="mb-6">
                 <label className="text-sm font-medium text-gray-700 block mb-3">
-                  Kategorie
+                  {t('content.amen.category')}
                 </label>
                 <div className="space-y-2">
                   <button
@@ -168,7 +168,7 @@ export default function AmenPendants() {
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
-                    Všechny
+                    {t('content.amen.all')}
                   </button>
                   {categories.map((cat) => (
                     <button
@@ -189,7 +189,7 @@ export default function AmenPendants() {
               {/* Purpose Filter */}
               <div className="mb-6">
                 <label className="text-sm font-medium text-gray-700 block mb-3">
-                  Účel
+                  {t('content.amen.purpose')}
                 </label>
                 <div className="space-y-2">
                   <button
@@ -200,7 +200,7 @@ export default function AmenPendants() {
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
-                    Všechny
+                    {t('content.amen.all')}
                   </button>
                   {purposes.map((purpose) => (
                     <button
@@ -221,7 +221,7 @@ export default function AmenPendants() {
               {/* Price Filter */}
               <div className="mb-6">
                 <label className="text-sm font-medium text-gray-700 block mb-3">
-                  Cena: {priceRange[0]} - {priceRange[1]} Kč
+                  {t('content.amen.price')}: {priceRange[0]} - {priceRange[1]} Kč
                 </label>
                 <div className="space-y-2">
                   <input
@@ -258,7 +258,7 @@ export default function AmenPendants() {
                 variant="outline"
                 className="w-full"
               >
-                Resetovat filtry
+                {t('content.amen.resetFilters')}
               </Button>
             </Card>
           </div>
@@ -274,7 +274,7 @@ export default function AmenPendants() {
             ) : filteredPendants.length === 0 ? (
               <Card className="p-12 text-center">
                 <p className="text-gray-500 text-lg">
-                  Žádné privěsky neodpovídají vašim kritériím. Zkuste změnit filtry.
+                  {t('content.amen.noResults')}
                 </p>
               </Card>
             ) : (
@@ -335,13 +335,13 @@ export default function AmenPendants() {
                           className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
                         >
                           <ShoppingCart className="h-4 w-4 mr-1" />
-                          Koupit
+                          {t('content.amen.buy')}
                         </Button>
                       </div>
 
                       {/* Affiliation */}
                       <p className="text-xs text-gray-500 mt-3 text-center">
-                        Prodejce: {pendant.affiliation}
+                        {t('content.amen.seller')}: {pendant.affiliation}
                       </p>
                     </div>
                   </Card>
@@ -352,8 +352,7 @@ export default function AmenPendants() {
             {/* Results Count */}
             <div className="mt-8 text-center text-gray-600">
               <p>
-                Zobrazeno <strong>{filteredPendants.length}</strong> z{" "}
-                <strong>{pendants.length}</strong> privěsků
+                {t('content.amen.showing', { shown: filteredPendants.length, total: pendants.length })}
               </p>
             </div>
           </div>

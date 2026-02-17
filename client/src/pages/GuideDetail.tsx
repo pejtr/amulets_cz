@@ -13,6 +13,7 @@ import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { symbolsData, stonesData, purposesData } from "@/data/guideContent";
 import { getMixedRelatedArticles } from "@/lib/relatedArticles";
 import React, { useEffect, useState, Fragment } from "react";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft } from "lucide-react";
 import { setOpenGraphTags, setHreflangTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema } from "@/lib/schema";
@@ -52,6 +53,7 @@ export default function GuideDetail() {
   const params = useParams();
   const [location] = useLocation();
   const slug = params.slug || "";
+  const { t } = useTranslation();
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
   // Track article view and engagement
@@ -74,7 +76,7 @@ export default function GuideDetail() {
   // Najdeme správný obsah podle typu a slugu
   let content = null;
   let backLink = "/";
-  let backText = "Zpět na hlavní stránku";
+  let backText = t('content.backHome');
 
   if (type === "symbol") {
     content = symbolsData.find((item) => item.slug === slug);
@@ -83,15 +85,15 @@ export default function GuideDetail() {
       content = purposesData.find((item) => item.slug === slug);
     }
     backLink = "/";
-    backText = "Zpět na Průvodce amulety";
+    backText = t('content.backToGuide');
   } else if (type === "kamen") {
     content = stonesData.find((item) => item.slug === slug);
     backLink = "/";
-    backText = "Zpět na Průvodce amulety";
+    backText = t('content.backToGuide');
   } else if (type === "ucel") {
     content = purposesData.find((item) => item.slug === slug);
     backLink = "/";
-    backText = "Zpět na Průvodce amulety";
+    backText = t('content.backToGuide');
   }
 
   // SEO meta tagy and tracking
@@ -127,8 +129,8 @@ export default function GuideDetail() {
 
       // Schema.org markup
       const breadcrumbs = createBreadcrumbSchema([
-        { name: "Domů", url: "https://amulets.cz/" },
-        { name: "Průvodce amulety", url: "https://amulets.cz/#pruvodce" },
+        { name: t('content.home'), url: "https://amulets.cz/" },
+        { name: t('content.guideTitle'), url: "https://amulets.cz/#pruvodce" },
         { name: content.title, url: `https://amulets.cz/${type}/${slug}` },
       ]);
 
@@ -196,9 +198,9 @@ export default function GuideDetail() {
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-1 container py-16">
-          <h1 className="text-3xl font-bold mb-4">Stránka nenalezena</h1>
+          <h1 className="text-3xl font-bold mb-4">{t('content.pageNotFound')}</h1>
           <Link href="/" className="text-[#D4AF37] hover:underline">
-            Zpět na hlavní stránku
+            {t('content.backHome')}
           </Link>
         </main>
         <Footer />
@@ -213,8 +215,8 @@ export default function GuideDetail() {
       <main className="flex-1">
         <article className="container py-8 md:py-16">
           <Breadcrumbs items={[
-            { label: "Domů", href: "/" },
-            { label: "Průvodce amulety", href: "/#pruvodce" },
+            { label: t('content.home'), href: "/" },
+            { label: t('content.guideTitle'), href: "/#pruvodce" },
             { label: content.title }
           ]} />
 
@@ -507,9 +509,9 @@ export default function GuideDetail() {
                 )}
 
                 <div className="mt-12 p-6 bg-accent/20 rounded-lg">
-                  <h3 className="text-xl font-bold mb-3">Objevte naše produkty</h3>
+                  <h3 className="text-xl font-bold mb-3">{t('content.discoverProducts')}</h3>
                   <p className="text-muted-foreground mb-4">
-                    Prozkoumejte naši nabídku ručně vyráběných orgonitových pyramid a aromaterapeutických esencí.
+                    {t('content.discoverProductsDesc')}
                   </p>
                   <Link 
                     href="/"
@@ -523,7 +525,7 @@ export default function GuideDetail() {
                     }}
                     className="inline-block bg-[#E85A9F] text-white px-6 py-3 rounded-md hover:bg-[#E85A9F]/90 transition-colors font-semibold"
                   >
-                    Zobrazit produkty
+                    {t('content.showProducts')}
                   </Link>
                 </div>
 

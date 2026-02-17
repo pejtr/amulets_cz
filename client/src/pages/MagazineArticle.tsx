@@ -22,6 +22,7 @@ import ArticleRating from "@/components/ArticleRating";
 import ArticleComments from "@/components/ArticleComments";
 import RecommendedArticles from "@/components/RecommendedArticles";
 import { ArrowLeft, Calendar } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { setOpenGraphTags, setHreflangTags } from "@/lib/seo";
 import { setSchemaMarkup, createArticleSchema, createBreadcrumbSchema, createHowToSchema } from "@/lib/schema";
 import { MarkdownContent } from "@/lib/markdownParser";
@@ -31,6 +32,7 @@ export default function MagazineArticle() {
   const slug = params.slug || "";
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
+  const { t } = useTranslation();
   const article = allArticles.find((item) => item.slug === slug);
 
   // Determine article type
@@ -75,8 +77,8 @@ export default function MagazineArticle() {
 
       // Schema.org markup
       const breadcrumbs = createBreadcrumbSchema([
-        { name: "Domů", url: "https://amulets.cz/" },
-        { name: "Magazín", url: "https://amulets.cz/#magazin" },
+        { name: t('content.home'), url: "https://amulets.cz/" },
+        { name: t('content.magazineTitle'), url: "https://amulets.cz/#magazin" },
         { name: article.title, url: `https://amulets.cz/magazin/${slug}` },
       ]);
 
@@ -144,9 +146,9 @@ export default function MagazineArticle() {
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-1 container py-16">
-          <h1 className="text-3xl font-bold mb-4">Článek nenalezen</h1>
+          <h1 className="text-3xl font-bold mb-4">{t('content.articleNotFound')}</h1>
           <Link href="/" className="text-[#D4AF37] hover:underline">
-            Zpět na hlavní stránku
+            {t('content.backHome')}
           </Link>
         </main>
         <Footer />
@@ -161,8 +163,8 @@ export default function MagazineArticle() {
       <main className="flex-1">
         <article className="container py-8 md:py-16">
           <Breadcrumbs items={[
-            { label: "Domů", href: "/" },
-            { label: "Magazín", href: "/#magazin" },
+            { label: t('content.home'), href: "/" },
+            { label: t('content.magazineTitle'), href: "/#magazin" },
             { label: article.title }
           ]} />
 
@@ -172,7 +174,7 @@ export default function MagazineArticle() {
             <div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                 <Calendar className="h-4 w-4" />
-                <span>Magazín</span>
+                <span>{t('content.magazineTitle')}</span>
               </div>
               
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
@@ -191,7 +193,7 @@ export default function MagazineArticle() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-[#E85A9F] text-white font-medium rounded-md hover:bg-[#E85A9F]/90 transition-colors"
                   >
-                    Zobrazit produkty
+                    {t('content.showProducts')}
                     <ArrowLeft className="h-4 w-4 rotate-180" />
                   </a>
                 </div>
@@ -240,9 +242,9 @@ export default function MagazineArticle() {
             <ArticleComments articleSlug={slug} articleType={articleType} visitorId={visitorId} />
 
             <div className="mt-16 p-8 bg-gradient-to-br from-accent/20 to-accent/5 rounded-lg border border-accent/20">
-              <h3 className="text-2xl font-bold mb-4">Prozkoumejte naše produkty</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('content.exploreProducts')}</h3>
               <p className="text-muted-foreground mb-6 text-lg">
-                Objevte naši nabídku ručně vyráběných orgonitových pyramid s modrým lotosem a aromaterapeutických esencí z řady KORUNA.
+                {t('content.exploreProductsDesc')}
               </p>
               <Link 
                 href="/"
@@ -256,7 +258,7 @@ export default function MagazineArticle() {
                 }}
                 className="inline-block bg-[#E85A9F] text-white px-6 py-3 rounded-md hover:bg-[#E85A9F]/90 transition-colors font-semibold"
               >
-                Zobrazit produkty
+                {t('content.showProducts')}
               </Link>
             </div>
           </div>

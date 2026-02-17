@@ -2,18 +2,21 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 import { setOpenGraphTags } from "@/lib/seo";
+import { useTranslation } from "react-i18next";
 
 export default function AboutNatalie() {
+  const { t } = useTranslation();
+
   useEffect(() => {
-    document.title = "O Nátálii - Zakladatelka Amulets.cz | Amulets";
+    document.title = t('content.about.metaTitle');
     
     setOpenGraphTags({
-      title: "O Nátálii - Zakladatelka Amulets | Amulets.cz",
-      description: "Poznejte Nátálii Ohorai, zakladatelku Amulets.cz. Rozhovor o spiritualitě, amuľtech, ručně vyráběných špercích a cestě k harmonïi. Amulets - posvaté symboly.",
+      title: t('content.about.metaTitle'),
+      description: t('content.about.metaDesc'),
       url: "https://amulets.cz/o-nas",
       type: "website",
     });
-  }, []);
+  }, [t]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -25,10 +28,10 @@ export default function AboutNatalie() {
           <div className="container">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-                O Nátálii - Zakladatelka Amulets
+                {t('content.about.title')}
               </h1>
               <p className="text-lg text-muted-foreground">
-                Tvůrkyně Amulets.cz - ručně vyráběné amulets, posvátné symboly a spirituální šperky
+                {t('content.about.subtitle')}
               </p>
             </div>
           </div>
@@ -42,7 +45,7 @@ export default function AboutNatalie() {
                 <div className="aspect-video bg-accent/20 flex items-center justify-center">
                   <iframe
                     src="https://rostecky.cz/natalie-ohorai-amulets-t45227"
-                    title="Rozhovor s Natálií Ohorai"
+                    title={t('content.about.interviewTitle')}
                     className="w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -50,11 +53,10 @@ export default function AboutNatalie() {
                 </div>
                 <div className="p-6">
                   <h2 className="text-2xl font-bold text-foreground mb-4">
-                    Rozhovor o Amulets - Rozhovor pro Rostečky.cz
+                    {t('content.about.interviewTitle')}
                   </h2>
                   <p className="text-muted-foreground">
-                    Poslechněte si rozhovor s Natálií o její cestě k tvorbě spirituálních šperků, 
-                    významu symboliky a o tom, jak spojuje tradiční řemeslo s moderním designem.
+                    {t('content.about.interviewDesc')}
                   </p>
                 </div>
               </div>
@@ -67,47 +69,42 @@ export default function AboutNatalie() {
           <div className="container">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
-                Můj příběh
+                {t('content.about.storyTitle')}
               </h2>
               
               <div className="space-y-6 text-muted-foreground">
                 <p className="text-lg leading-relaxed">
-                  Vítejte v mém světě spirituálních šperků a symboliky. Jsem Natálie Ohorai, 
-                  zakladatelka Amulets.cz a OHORAI, a mou vášní je vytvářet ručně vyráběné 
-                  šperky, které nesou hlubší význam a pomáhají lidem na jejich cestě k harmonii.
+                  {t('content.about.storyP1')}
                 </p>
 
                 <p className="text-lg leading-relaxed">
-                  Každý šperk, který vytvářím, je jedinečný a nese v sobě energii posvátných 
-                  symbolů. Od Květu života přes Merkábu až po tradiční talismany – každý kus 
-                  je vyroben s láskou a úctou k tradici.
+                  {t('content.about.storyP2')}
                 </p>
 
                 <p className="text-lg leading-relaxed">
-                  Kromě šperků se věnuji také orgonitu, aromaterapii a práci s drahými kameny. 
-                  Věřím, že správně zvolený symbol nebo kámen může být mocným pomocníkem v každodenním životě.
+                  {t('content.about.storyP3')}
                 </p>
 
                 <div className="bg-card border border-border rounded-lg p-6 mt-8">
                   <h3 className="text-xl font-semibold text-foreground mb-4">
-                    ✨ Co dělám
+                    {t('content.about.whatIDo')}
                   </h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1">💎</span>
-                      <span>Ručně vyráběné šperky s posvátnou symbolikou</span>
+                      <span>{t('content.about.do1')}</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1">🔮</span>
-                      <span>Orgonit pyramidy pro harmonizaci energie</span>
+                      <span>{t('content.about.do2')}</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1">🌿</span>
-                      <span>Aromaterapeutické esence a aroma šperky</span>
+                      <span>{t('content.about.do3')}</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1">💫</span>
-                      <span>Konzultace a výklad čínského horoskopu</span>
+                      <span>{t('content.about.do4')}</span>
                     </li>
                   </ul>
                 </div>
@@ -121,27 +118,27 @@ export default function AboutNatalie() {
           <div className="container">
             <div className="max-w-2xl mx-auto text-center">
               <h2 className="text-3xl font-bold text-foreground mb-6">
-                Pojďme se poznat
+                {t('content.about.contactTitle')}
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Máte dotaz nebo chcete konzultaci? Ráda vám pomohu najít správný symbol nebo kámen.
+                {t('content.about.contactDesc')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="tel:776041740"
                   className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold"
                 >
-                  📞 Zavolat: 776 041 740
+                  {t('content.about.callBtn')}
                 </a>
                 <a
                   href="mailto:info@amulets.cz"
                   className="inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground rounded-lg hover:bg-accent/80 transition-colors font-semibold"
                 >
-                  ✉️ Napsat email
+                  {t('content.about.emailBtn')}
                 </a>
               </div>
               <p className="text-sm text-muted-foreground mt-6">
-                Můžete mě také navštívit osobně v{" "}
+                {t('content.about.visitUs')}{" "}
                 <a
                   href="https://www.donuterie.eu/"
                   target="_blank"
@@ -150,7 +147,7 @@ export default function AboutNatalie() {
                 >
                   Donuterie Prague
                 </a>
-                {" "}– showroom a výdejna OHORAI
+                {" "}{t('content.about.showroom')}
               </p>
             </div>
           </div>

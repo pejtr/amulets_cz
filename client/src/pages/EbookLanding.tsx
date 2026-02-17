@@ -7,8 +7,10 @@ import { CheckCircle2, Download, Heart, Sparkles, Star, TrendingUp } from "lucid
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
 import { APP_LOGO, APP_TITLE } from "@/const";
+import { useTranslation } from "react-i18next";
 
 export default function EbookLanding() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,12 +19,11 @@ export default function EbookLanding() {
   const downloadMutation = trpc.ebook.requestDownload.useMutation({
     onSuccess: (data) => {
       setDownloadUrl(data.downloadUrl);
-      toast.success("E-book byl odeslán na váš email!");
+      toast.success(t('content.ebook.successToast'));
       
-      // Track conversion
       if (typeof window !== "undefined" && (window as any).fbq) {
         (window as any).fbq('track', 'Lead', {
-          content_name: '7 Kroků k Rovnováze E-book',
+          content_name: '7 Steps to Balance E-book',
           content_category: 'Lead Magnet',
           value: 0,
           currency: 'CZK'
@@ -30,7 +31,7 @@ export default function EbookLanding() {
       }
     },
     onError: (error) => {
-      toast.error(error.message || "Něco se pokazilo. Zkuste to prosím znovu.");
+      toast.error(error.message || t('content.ebook.errorToast'));
     },
     onSettled: () => {
       setIsSubmitting(false);
@@ -41,13 +42,12 @@ export default function EbookLanding() {
     e.preventDefault();
     
     if (!email || !name) {
-      toast.error("Prosím vyplňte všechna pole");
+      toast.error(t('content.ebook.fillAll'));
       return;
     }
 
     setIsSubmitting(true);
     
-    // Get UTM parameters and CTA variant from URL
     const urlParams = new URLSearchParams(window.location.search);
     const sourcePage = document.referrer || window.location.href;
     const ctaVariant = urlParams.get('cta') || undefined;
@@ -73,46 +73,45 @@ export default function EbookLanding() {
               <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
                 <CheckCircle2 className="w-10 h-10 text-green-600" />
               </div>
-              <CardTitle className="text-3xl">Děkujeme!</CardTitle>
+              <CardTitle className="text-3xl">{t('content.ebook.thankYou')}</CardTitle>
               <CardDescription className="text-lg">
-                E-book "7 Kroků k Rovnováze" byl odeslán na váš email
+                {t('content.ebook.sentToEmail')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <p className="text-muted-foreground">
-                Zkontrolujte prosím svou emailovou schránku <strong>{email}</strong>.
-                Pokud email nevidíte, podívejte se do složky spam.
+                {t('content.ebook.checkInbox', { email })}
               </p>
               
               <Button size="lg" asChild className="w-full">
                 <a href={downloadUrl} download>
                   <Download className="mr-2 h-5 w-5" />
-                  Stáhnout e-book nyní
+                  {t('content.ebook.downloadNow')}
                 </a>
               </Button>
 
               <div className="pt-6 border-t">
-                <h3 className="font-semibold text-lg mb-3">Co dál?</h3>
+                <h3 className="font-semibold text-lg mb-3">{t('content.ebook.whatsNext')}</h3>
                 <div className="space-y-3 text-left">
                   <div className="flex gap-3">
                     <Heart className="w-5 h-5 text-pink-500 flex-shrink-0 mt-0.5" />
                     <p className="text-sm">
-                      <strong>Prozkoumejte naše posvátné symboly</strong> - Najděte svůj osobní talisman
-                      {" "}<a href="/pruvod" className="text-primary hover:underline">v průvodci</a>
+                      <strong>{t('content.ebook.next1Title')}</strong> - {t('content.ebook.next1Desc')}
+                      {" "}<a href="/pruvod" className="text-primary hover:underline">{t('content.ebook.next1Link')}</a>
                     </p>
                   </div>
                   <div className="flex gap-3">
                     <Sparkles className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
                     <p className="text-sm">
-                      <strong>Vyzkoušejte náš kvíz</strong> - Zjistěte, který spirituální symbol je pro vás
-                      {" "}<a href="/kviz" className="text-primary hover:underline">začít kvíz</a>
+                      <strong>{t('content.ebook.next2Title')}</strong> - {t('content.ebook.next2Desc')}
+                      {" "}<a href="/kviz" className="text-primary hover:underline">{t('content.ebook.next2Link')}</a>
                     </p>
                   </div>
                   <div className="flex gap-3">
                     <TrendingUp className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" />
                     <p className="text-sm">
-                      <strong>Osobní koučink s Natálií</strong> - Hlubší podpora na vaší cestě
-                      {" "}<a href="/o-nas" className="text-primary hover:underline">zjistit více</a>
+                      <strong>{t('content.ebook.next3Title')}</strong> - {t('content.ebook.next3Desc')}
+                      {" "}<a href="/o-nas" className="text-primary hover:underline">{t('content.ebook.next3Link')}</a>
                     </p>
                   </div>
                 </div>
@@ -123,6 +122,16 @@ export default function EbookLanding() {
       </div>
     );
   }
+
+  const benefits = [
+    t('content.ebook.benefit1'),
+    t('content.ebook.benefit2'),
+    t('content.ebook.benefit3'),
+    t('content.ebook.benefit4'),
+    t('content.ebook.benefit5'),
+    t('content.ebook.benefit6'),
+    t('content.ebook.benefit7'),
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-amber-50">
@@ -141,37 +150,29 @@ export default function EbookLanding() {
           {/* Left Column - Value Proposition */}
           <div className="space-y-6">
             <div className="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
-              ✨ Zdarma ke stažení
+              {t('content.ebook.freeBadge')}
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              7 Kroků k Rovnováze
+              {t('content.ebook.title')}
             </h1>
             
             <p className="text-xl text-muted-foreground">
-              Praktický průvodce pro nalezení harmonie mezi prací, osobním životem a duchovním růstem
+              {t('content.ebook.subtitle')}
             </p>
 
             <div className="flex items-center gap-2 text-amber-600">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-5 h-5 fill-current" />
               ))}
-              <span className="ml-2 text-sm font-medium">Hodnocení 4.9/5 od 127 čtenářů</span>
+              <span className="ml-2 text-sm font-medium">{t('content.ebook.rating')}</span>
             </div>
 
             {/* Benefits */}
             <div className="space-y-4 pt-4">
-              <h3 className="font-semibold text-lg">Co se v e-booku dozvíte:</h3>
+              <h3 className="font-semibold text-lg">{t('content.ebook.benefitsTitle')}</h3>
               <ul className="space-y-3">
-                {[
-                  "Jak poznat sám sebe a žít autenticky podle svých hodnot",
-                  "Techniky pro stanovení zdravých hranic v práci i osobním životě",
-                  "Ranní a večerní rituály pro každodenní klid a energii",
-                  "Strategie pro harmonickou integraci práce a života",
-                  "Jak najít svou spirituální kotvu v moderním světě",
-                  "Praktická cvičení pro budování podporujících vztahů",
-                  "Systém pro neustálé přizpůsobování a udržení rovnováhy"
-                ].map((benefit, index) => (
+                {benefits.map((benefit, index) => (
                   <li key={index} className="flex gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                     <span>{benefit}</span>
@@ -182,7 +183,7 @@ export default function EbookLanding() {
 
             {/* Author */}
             <div className="pt-6 border-t">
-              <p className="text-sm text-muted-foreground mb-2">Autorka:</p>
+              <p className="text-sm text-muted-foreground mb-2">{t('content.ebook.author')}:</p>
               <div className="flex items-center gap-4">
                 <img 
                   src="/natalie-avatar.jpg" 
@@ -195,7 +196,7 @@ export default function EbookLanding() {
                 <div>
                   <p className="font-semibold">Natálie Ohorai</p>
                   <p className="text-sm text-muted-foreground">
-                    Zakladatelka Amulets.cz & Executive Coach
+                    {t('content.ebook.authorRole')}
                   </p>
                 </div>
               </div>
@@ -205,19 +206,19 @@ export default function EbookLanding() {
           {/* Right Column - Form */}
           <Card className="shadow-2xl">
             <CardHeader>
-              <CardTitle className="text-2xl">Stáhněte si e-book zdarma</CardTitle>
+              <CardTitle className="text-2xl">{t('content.ebook.formTitle')}</CardTitle>
               <CardDescription>
-                Zadejte svůj email a jméno a e-book vám okamžitě zašleme
+                {t('content.ebook.formDesc')}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Jméno</Label>
+                  <Label htmlFor="name">{t('content.ebook.nameLabel')}</Label>
                   <Input
                     id="name"
                     type="text"
-                    placeholder="Vaše jméno"
+                    placeholder={t('content.ebook.namePlaceholder')}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
@@ -230,7 +231,7 @@ export default function EbookLanding() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="vas@email.cz"
+                    placeholder={t('content.ebook.emailPlaceholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -245,34 +246,30 @@ export default function EbookLanding() {
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
-                    <>Odesílám...</>
+                    <>{t('content.ebook.submitting')}</>
                   ) : (
                     <>
                       <Download className="mr-2 h-5 w-5" />
-                      Stáhnout e-book zdarma
+                      {t('content.ebook.submitBtn')}
                     </>
                   )}
                 </Button>
 
                 <p className="text-xs text-center text-muted-foreground">
-                  Odesláním souhlasíte s našimi{" "}
-                  <a href="/ochrana-osobnich-udaju" className="underline hover:text-primary">
-                    podmínkami ochrany osobních údajů
-                  </a>
-                  . Žádný spam, kdykoli se můžete odhlásit.
+                  {t('content.ebook.privacy')}
                 </p>
               </form>
 
               {/* Social Proof */}
               <div className="mt-6 pt-6 border-t space-y-3">
-                <p className="text-sm font-medium text-center">Co říkají naši čtenáři:</p>
+                <p className="text-sm font-medium text-center">{t('content.ebook.socialProof')}</p>
                 <div className="space-y-3">
                   <blockquote className="text-sm italic text-muted-foreground border-l-2 border-purple-300 pl-3">
-                    "Konečně praktický průvodce, který skutečně funguje. Ranní rituály změnily můj život!"
+                    {t('content.ebook.testimonial1')}
                     <footer className="text-xs mt-1 not-italic">— Petra K.</footer>
                   </blockquote>
                   <blockquote className="text-sm italic text-muted-foreground border-l-2 border-pink-300 pl-3">
-                    "Jako CEO jsem byl na pokraji vyhoření. Tento e-book mi pomohl najít rovnováhu."
+                    {t('content.ebook.testimonial2')}
                     <footer className="text-xs mt-1 not-italic">— Martin Š.</footer>
                   </blockquote>
                 </div>
@@ -285,7 +282,7 @@ export default function EbookLanding() {
       {/* Footer */}
       <footer className="border-t bg-white/80 backdrop-blur-sm py-8">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>© 2026 {APP_TITLE} | Všechna práva vyhrazena</p>
+          <p>© 2026 {APP_TITLE} | {t('footer.copyright')}</p>
         </div>
       </footer>
     </div>

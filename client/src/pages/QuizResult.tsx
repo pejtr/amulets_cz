@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRoute, useLocation, Link } from "wouter";
+import { useTranslation } from "react-i18next";
 import { symbolMapping } from "@/data/quizData";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Share2, RotateCcw, ArrowRight } from "lucide-react";
@@ -9,6 +10,7 @@ import Footer from "@/components/Footer";
 import { toast } from "sonner";
 
 export default function QuizResult() {
+  const { t } = useTranslation();
   const [, params] = useRoute("/kviz/vysledek/:symbol");
   const [, setLocation] = useLocation();
   const [isVisible, setIsVisible] = useState(false);
@@ -17,18 +19,15 @@ export default function QuizResult() {
   const result = symbolMapping[symbolSlug];
 
   useEffect(() => {
-    // Animace při načtení
     setTimeout(() => setIsVisible(true), 100);
 
-    // SEO meta tagy a tracking
     if (result) {
-      document.title = `Tvůj symbol: ${result.name} | Amulets.cz`;
+      document.title = `${t('quiz.result.title')}: ${result.name} | Amulets.cz`;
       
-      // Track quiz completion and result view
       track.quizCompleted(symbolSlug, result.name);
       track.resultViewed(symbolSlug, result.name);
     }
-  }, [result, symbolSlug]);
+  }, [result, symbolSlug, t]);
 
   if (!result) {
     return (
@@ -36,9 +35,9 @@ export default function QuizResult() {
         <Header />
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Symbol nenalezen</h1>
+            <h1 className="text-2xl font-bold mb-4">{t('quiz.result.notFound')}</h1>
             <Button onClick={() => setLocation("/kviz")}>
-              Zkusit znovu
+              {t('quiz.result.tryAgain')}
             </Button>
           </div>
         </main>
@@ -47,17 +46,16 @@ export default function QuizResult() {
     );
   }
 
-  const shareText = `Můj spirituální symbol je ${result.name}! 🔮✨ Zjisti svůj na Amulets.cz`;
+  const shareText = t('quiz.result.shareText', { name: result.name });
   const shareUrl = `https://amulets.cz/kviz/vysledek/${symbolSlug}`;
 
   const handleShare = async () => {
-    // Track share attempt
     track.resultShared(symbolSlug, result.name, (navigator as any).share ? "native_share" : "clipboard");
     
     if (navigator.share) {
       try {
         await navigator.share({
-          title: `Můj spirituální symbol: ${result.name}`,
+          title: t('quiz.result.shareTitle', { name: result.name }),
           text: shareText,
           url: shareUrl,
         });
@@ -65,9 +63,8 @@ export default function QuizResult() {
         // User cancelled
       }
     } else {
-      // Fallback: copy to clipboard
       navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
-      toast.success("Odkaz zkopírován do schránky!");
+      toast.success(t('quiz.result.copied'));
     }
   };
 
@@ -83,7 +80,7 @@ export default function QuizResult() {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full shadow-lg animate-bounce">
               <Sparkles className="h-5 w-5" />
-              <span className="font-semibold">Tvůj spirituální symbol je...</span>
+              <span className="font-semibold">{t('quiz.result.yourSymbol')}</span>
             </div>
           </div>
 
@@ -97,7 +94,6 @@ export default function QuizResult() {
                 loading="lazy"
                 className="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-2xl animate-in zoom-in-50 duration-700"
                 onError={(e) => {
-                  // Fallback pro nové symboly s .jpg
                   (e.target as HTMLImageElement).src = `/images/symbols/${symbolSlug}.jpg`;
                 }}
               />
@@ -134,7 +130,7 @@ export default function QuizResult() {
                   className="w-full"
                 >
                   <RotateCcw className="h-5 w-5 mr-2" />
-                  Zkusit znovu
+                  {t('quiz.result.tryAgain')}
                 </Button>
 
                 <Button
@@ -144,7 +140,7 @@ export default function QuizResult() {
                   className="w-full"
                 >
                   <Share2 className="h-5 w-5 mr-2" />
-                  Sdílet
+                  {t('quiz.result.share')}
                 </Button>
 
                 <Link href={`/symbol/${symbolSlug}`}>
@@ -152,7 +148,7 @@ export default function QuizResult() {
                     size="lg"
                     className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700"
                   >
-                    Zjistit více
+                    {t('quiz.result.learnMore')}
                     <ArrowRight className="h-5 w-5 ml-2" />
                   </Button>
                 </Link>
@@ -163,14 +159,14 @@ export default function QuizResult() {
           {/* CTA */}
           <div className="text-center mt-8">
             <p className="text-muted-foreground mb-4">
-              Chceš si objednat amulet se svým symbolem?
+              {t('quiz.result.orderCta')}
             </p>
             <Button
               variant="outline"
               size="lg"
               onClick={() => window.open("https://www.ohorai.cz/", "_blank")}
             >
-              Prohlédnout amulety
+              {t('quiz.result.browseAmulets')}
             </Button>
           </div>
         </div>

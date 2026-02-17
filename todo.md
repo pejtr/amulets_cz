@@ -1517,10 +1517,10 @@
 ## Automatická detekce jazyka a překlad do angličtiny (Jan 19, 2026)
 - [ ] Implementovat automatickou detekci jazyka (navigator.language)
 - [ ] Vytvořit LanguageContext pro správu jazyka
-- [ ] Přeložit Header komponentu do angličtiny
-- [ ] Přeložit Footer komponentu do angličtiny
-- [ ] Přeložit Homepage do angličtiny
-- [ ] Přeložit chatbota (system prompt + UI) do angličtiny
+- [x] Přeložit Header komponentu do angličtiny
+- [x] Přeložit Footer komponentu do angličtiny
+- [x] Přeložit Homepage do angličtiny
+- [x] Přeložit chatbota (system prompt + UI) do angličtiny
 - [ ] Přidat přepínač jazyka do headeru
 
 ## Oprava cross-promo banneru (Jan 19, 2026)
@@ -2781,7 +2781,7 @@
 - [ ] Přeložit obsah symbolů (guideContent.ts) - 38 symbolů do angličtiny a italštiny
 - [ ] Přeložit obsah magazínu (magazineContent.ts) - 20+ článků do EN/IT
 - [ ] Přeložit obsah kvízu (quizContent.ts) - otázky a odpovědi do EN/IT
-- [ ] Přidat useTranslation do GuideDetail, MagazineArticle, Quiz, QuizResult
+- [x] Přidat useTranslation do GuideDetail, MagazineArticle, Quiz, QuizResult (+ NotFound, Prediction2026, Magazine, AmenPendants, AboutNatalie, OHORAI, EbookLanding, LunarReading)
 - [ ] Vitest testy pro přeložené stránky
 
 ## Integrace ROI Metrics Visualization Dashboard (Feb 12, 2026)
@@ -2794,5 +2794,25 @@
 ## Oprava odkazů a dokončení překladů (Feb 16, 2026)
 - [x] Najít a opravit odkazy na spřátelené projekty (www.do-italie.cz) - opraveno z do-italie.manus.space na www.do-italie.cz
 - [x] Přeložit AIChatAssistant komponentu do angličtiny a italštiny (100+ hardcoded textů nahrazeno t() voláními, přidány EN/IT překlady pro header, feedback, ticket, WhatsApp, email capture, offline, voice, font controls)
-- [ ] Přeložit Čínský horoskop sekci na homepage do angličtiny a italštiny
+- [x] Přeložit Čínský horoskop sekci na homepage do angličtiny a italštiny (ChineseZodiacCalculator, ChineseZodiacCompatibility, ChineseZodiacFAQ, ChineseHoroscope2026Section, ChineseZodiac page)
 - [x] Vitest testy pro překlady (opraveny component testy - i18n setup, IntersectionObserver mock, MusicProvider wrapper, správné i18n klíče)
+
+## Kompletní lokalizace content stránek do EN/IT (Feb 17, 2026)
+- [x] Opravit promo banner - přidán chybějící i18n klíč promo.freeShipping do CZ sekce
+- [x] Přeložit ChineseZodiac page (ChineseZodiacCalculator, ChineseZodiacCompatibility, ChineseZodiacFAQ, ChineseHoroscope2026Section) do EN/IT
+- [x] Přeložit Quiz.tsx do EN/IT (useTranslation + i18n klíče)
+- [x] Přeložit QuizResult.tsx do EN/IT
+- [x] Přeložit GuideDetail.tsx do EN/IT (UI texty - breadcrumb, loading, error, related)
+- [x] Přeložit MagazineArticle.tsx do EN/IT (UI texty - breadcrumb, loading, error, related)
+- [x] Přeložit NotFound.tsx do EN/IT
+- [x] Přeložit Prediction2026.tsx do EN/IT (breadcrumb, navigation, share, copy)
+- [x] Přeložit Magazine.tsx do EN/IT (filtry, prázdný stav, nadpisy)
+- [x] Přeložit AmenPendants.tsx do EN/IT (filtry, vyhledávání, produkty)
+- [x] Přeložit AboutNatalie.tsx do EN/IT (příběh, kontakt, showroom)
+- [x] Přeložit OHORAI.tsx do EN/IT (produkty, filozofie, CTA)
+- [x] Přeložit EbookLanding.tsx do EN/IT (formulář, benefity, testimonials)
+- [x] Přeložit LunarReading.tsx do EN/IT (měsíční fáze, numerologie, rituály, produkty)
+- [x] Přidáno 300+ i18n klíčů do CZ/EN/IT sekcí v i18n.ts
+- [ ] Přeložit obsah symbolů (guideContent.ts) - 38 symbolů do EN/IT (obsahový překlad)
+- [ ] Přeložit obsah magazínu (magazineContent.ts) - 20+ článků do EN/IT (obsahový překlad)
+- [ ] Přeložit obsah kvízu (quizContent.ts) - otázky a odpovědi do EN/IT (obsahový překlad)
