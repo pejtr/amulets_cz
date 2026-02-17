@@ -656,6 +656,18 @@ const resources = {
       "content.notFound.desc": "Omlouváme se, ale stránka, kterou hledáte, neexistuje.",
       "content.notFound.home": "Zpět na hlavní stránku",
 
+      // Mobile Bottom Nav
+      "mobileNav.home": "Domů",
+      "mobileNav.quizzes": "Kvízy",
+      "mobileNav.guide": "Průvodce",
+      "mobileNav.magazine": "Magazín",
+      
+      // Cookie Consent
+      "cookie.title": "Používáme cookies",
+      "cookie.description": "Tento web používá cookies pro funkčnost Google Translate a analytiku. Kliknutím na \"Přijmout\" souhlasíte s používáním cookies v souladu s GDPR.",
+      "cookie.accept": "Přijmout",
+      "cookie.reject": "Odmítnout",
+      
       // SEO
       "seo.title": "Amulets.cz - Zjisti svůj spirituální symbol | 33 posvátných symbolů",
       "seo.description": "Objevte význam 33 spirituálních symbolů a najděte svůj osobní talisman. Průvodce ezoteriky, drahými kameny a jejich léčivými účinky."

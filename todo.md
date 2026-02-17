@@ -2816,3 +2816,12 @@
 - [ ] Přeložit obsah symbolů (guideContent.ts) - 38 symbolů do EN/IT (obsahový překlad)
 - [ ] Přeložit obsah magazínu (magazineContent.ts) - 20+ článků do EN/IT (obsahový překlad)
 - [ ] Přeložit obsah kvízu (quizContent.ts) - otázky a odpovědi do EN/IT (obsahový překlad)
+
+## Oprava CookieConsent i18n klíčů (Feb 17, 2026)
+- [x] Přidat chybějící i18n klíče pro CookieConsent (cookie.title, cookie.description, cookie.reject, cookie.accept) do CZ/EN/IT
+- [x] Vyřešit upgrade konflikty v App.tsx - obnovit routes pro GuideDetail, MagazineArticle, Quiz, QuizResult, Prediction2026, Magazine, AmenPendants, AboutNatalie, OHORAI, EbookLanding, LunarReading, ChineseZodiac (všechny routes již byly obnoveny dříve)
+
+## Oprava CookieConsent a MobileBottomNav i18n klíčů (Feb 17, 2026)
+- [x] Přidat chybějící i18n klíče pro CookieConsent (cookie.title, cookie.description, cookie.reject, cookie.accept) do CZ/EN/IT
+- [x] Přidat chybějící i18n klíče pro MobileBottomNav (mobileNav.home, mobileNav.quizzes, mobileNav.guide, mobileNav.magazine) do CZ/EN/IT
+- [x] Vyřešit upgrade konflikty v App.tsx - obnovit routes pro GuideDetail, MagazineArticle, Quiz, QuizResult, Prediction2026, Magazine, AmenPendants, AboutNatalie, OHORAI, EbookLanding, LunarReading, ChineseZodiac (všechny routes již byly obnoveny dříve)
